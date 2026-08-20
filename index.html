@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelMeta - Global Travel Meta Search Engine</title>
+    <!-- Google Fonts: Plus Jakarta Sans & Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <style>
+        body { 
+            scroll-behavior: smooth; 
+            font-family: 'Plus Jakarta Sans', 'Poppins', sans-serif !important; 
+        }
+        .hero-carousel { height: 600px; }
+        .hero-carousel img { height: 600px; object-fit: cover; filter: brightness(0.6); }
+        .search-card { margin-top: -140px; z-index: 10; position: relative; }
+        .card-hover:hover { transform: translateY(-5px); transition: all 0.3s ease; box-shadow: 0 1rem 3rem rgba(0,0,0,.15)!important; }
+        
+        /* Custom Pill Active Styling */
+        .nav-pills .nav-link {
+            color: #495057;
+            background-color: #f1f5f9;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .nav-pills .nav-link.active {
+            color: #fff !important;
+            background-color: #0d6efd !important;
+            box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+        }
+
+        /* Modern Elevated Search Inputs */
+        .search-box-item {
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            background: #fff;
+            padding: 10px 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            min-height: 68px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .search-box-item:focus-within {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+        }
+
+        /* Autocomplete dropdown style */
+        .autocomplete-suggestions {
+            position: absolute;
+            top: 105%;
+            left: 0;
+            right: 0;
+            z-index: 1050;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            max-height: 250px;
+            overflow-y: auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .autocomplete-suggestion-item {
+            padding: 10px 14px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #f8f9fa;
+            transition: background 0.2s;
+        }
+        .autocomplete-suggestion-item:hover {
+            background-color: #f1f5f9;
+        }
+
+        /* Modern Footer Styles */
+        .modern-footer {
+            background: linear-gradient(180deg, #111827 0%, #030712 100%);
+            position: relative;
+        }
+        .footer-link {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+        .footer-link:hover {
+            color: #ffffff;
+            transform: translateX(4px);
+        }
+        .social-btn {
+            width: 38px;
+            height: 38px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .social-btn:hover {
+            background: #0d6efd;
+            border-color: #0d6efd;
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+        .footer-badge {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 0.6rem;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            border: 2px solid rgba(255,255,255,0.15);
+        }
+    </style>
+</head>
+<body class="bg-light text-slate-800">
+
+    <!-- 1. MODERN HEADER & NAVIGATION -->
+    <header class="bg-white sticky-top shadow-sm z-3">
+        <!-- Main Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light py-3">
+            <div class="container">
+                <a class="navbar-brand fw-bold fs-4 text-dark d-flex align-items-center gap-2" href="#">
+                    <i class="bi bi-airplane-engines text-primary"></i> TravelMeta
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto align-items-lg-center gap-3">
+                        <li class="nav-item"><a class="nav-link text-primary fw-semibold" href="#">Home</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button" data-bs-toggle="dropdown">Destination</a>
+                            <ul class="dropdown-menu border-0 shadow rounded-4">
+                                <li><a class="dropdown-item" href="#best-deals">Amerika</a></li>
+                                <li><a class="dropdown-item" href="#best-deals">Eropa</a></li>
+                                <li><a class="dropdown-item" href="#best-deals">Asia</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button" data-bs-toggle="dropdown">Pages</a>
+                            <ul class="dropdown-menu border-0 shadow rounded-4">
+                                <li><a class="dropdown-item" href="#offers">Discounts & Offers</a></li>
+                                <li><a class="dropdown-item" href="#hotels">Popular Hotels</a></li>
+                                <li><a class="dropdown-item" href="#tours">Popular Tours</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="#about">Holidays</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="#footer">Contact</a></li>
+                    </ul>
+
+                    <div class="d-flex align-items-center gap-3">
+                        <a href="#" class="btn btn-outline-primary rounded-pill px-3 py-2 small fw-semibold d-flex align-items-center gap-2">
+                            <i class="bi bi-robot"></i> Plan with AI
+                        </a>
+                        <a href="https://whatsapp.com" target="_blank" class="btn btn-primary rounded-pill px-4 py-2 small fw-semibold d-flex align-items-center gap-2 shadow-sm">
+                            <i class="bi bi-whatsapp fs-6"></i> +44-800 123 456
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Sub-Header Line (Rating, Multi-Currency Popup, Multi-Language Popup, Cart, Profile) -->
+        <div class="border-top py-2 bg-white small">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="text-secondary d-flex align-items-center gap-1">
+                    <span class="text-warning">★</span> 
+                    <span class="fw-bold text-dark">4.9 Rated</span> by <strong class="text-dark">10,000+</strong> Travelers Worldwide.
+                </div>
+
+                <div class="d-flex align-items-center gap-3 text-secondary">
+                    <!-- Currency Popup Trigger Button -->
+                    <button class="btn btn-sm btn-light border py-1 px-2 fw-semibold rounded-pill d-flex align-items-center gap-1" type="button" data-bs-toggle="modal" data-bs-target="#currencyModal" id="selectedCurrencyBtn">
+                        <i class="bi bi-coin text-warning"></i> USD ($)
+                    </button>
+
+                    <!-- Language Popup Trigger Button -->
+                    <button class="btn btn-sm btn-light border py-1 px-2 fw-semibold rounded-pill d-flex align-items-center gap-1" type="button" data-bs-toggle="modal" data-bs-target="#langModal" id="selectedLangBtn">
+                        <i class="bi bi-globe text-info"></i> English (EN)
+                    </button>
+
+                    <a href="#" class="text-secondary text-decoration-none" title="Cart"><i class="bi bi-cart3 fs-6"></i></a>
+                    <a href="#" class="text-secondary text-decoration-none" title="Profile"><i class="bi bi-person-circle fs-5"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. HERO SLIDER -->
+    <div id="heroSlider" class="carousel slide hero-carousel" data-bs-ride="carousel">
+        <div class="carousel-inner h-100">
+            <div class="carousel-item active h-100">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80" class="d-block w-100 h-100" alt="Paradise Beach">
+                <div class="carousel-caption d-none d-md-block text-start mb-5 pb-5">
+                    <span class="badge bg-primary mb-2 px-3 py-2 rounded-pill">Eksplorasi Dunia</span>
+                    <h1 class="display-3 fw-bold text-white">Temukan Harga Tiket & Hotel Termurah</h1>
+                    <p class="lead text-white-50">Bandingkan penawaran dari ratusan situs travel secara instan.</p>
+                </div>
+            </div>
+            <div class="carousel-item h-100">
+                <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1920&q=80" class="d-block w-100 h-100" alt="Mountain View">
+                <div class="carousel-caption d-none d-md-block text-start mb-5 pb-5">
+                    <span class="badge bg-success mb-2 px-3 py-2 rounded-pill">Petualangan Baru</span>
+                    <h1 class="display-3 fw-bold text-white">Liburan Impian Tanpa Bikin Kantong Bolong</h1>
+                    <p class="lead text-white-50">Nikmati diskon eksklusif tur, rental mobil, dan reservasi hotel global.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroSlider" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroSlider" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+    </div>
+
+    <!-- 4. ADVANCED SEARCH BOX WIDGET -->
+    <div class="container search-card">
+        <div class="card shadow-lg border-0 rounded-4 p-4 p-lg-4 bg-white">
+            
+            <!-- Category Pills -->
+            <ul class="nav nav-pills mb-3 gap-2" id="searchCategoryTab" role="tablist">
+                <li class="nav-item"><button class="nav-link rounded-pill px-4 py-2" data-bs-toggle="pill" data-bs-target="#tourSearchTab"><i class="bi bi-map me-2"></i>Tours</button></li>
+                <li class="nav-item"><button class="nav-link rounded-pill px-4 py-2" data-bs-toggle="pill" data-bs-target="#hotelSearchTab"><i class="bi bi-building me-2"></i>Hotels</button></li>
+                <li class="nav-item"><button class="nav-link active rounded-pill px-4 py-2" data-bs-toggle="pill" data-bs-target="#flightSearchTab"><i class="bi bi-airplane me-2"></i>Flights</button></li>
+                <li class="nav-item"><button class="nav-link rounded-pill px-4 py-2" data-bs-toggle="pill" data-bs-target="#carSearchTab"><i class="bi bi-car-front me-2"></i>Transport</button></li>
+                <li class="nav-item"><button class="nav-link rounded-pill px-4 py-2" data-bs-toggle="pill" data-bs-target="#expSearchTab"><i class="bi bi-lightning-charge me-2"></i>Experience</button></li>
+                <li class="nav-item"><button class="nav-link rounded-pill px-4 py-2" data-bs-toggle="pill" data-bs-target="#visaSearchTab"><i class="bi bi-file-earmark-person me-2"></i>Visa</button></li>
+            </ul>
+
+            <div class="tab-content pt-2">
+                <!-- FLIGHTS TAB -->
+                <div class="tab-pane fade show active" id="flightSearchTab">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <ul class="nav nav-pills gap-2 small" role="tablist">
+                            <li class="nav-item"><button class="nav-link active rounded-pill px-3 py-1" data-bs-toggle="tab" data-bs-target="#oneWay">One-way</button></li>
+                            <li class="nav-item"><button class="nav-link rounded-pill px-3 py-1 text-dark" data-bs-toggle="tab" data-bs-target="#roundTrip">Roundtrip</button></li>
+                            <li class="nav-item"><button class="nav-link rounded-pill px-3 py-1 text-dark" data-bs-toggle="tab" data-bs-target="#multiCity">Multi-city</button></li>
+                        </ul>
+
+                        <!-- Cabin Class Selector -->
+                        <div class="dropdown">
+                            <button class="btn btn-light btn-sm dropdown-toggle rounded-pill px-3 border text-primary fw-semibold shadow-sm" type="button" data-bs-toggle="dropdown" id="cabinClassDropdownBtn">
+                                Economy
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-4">
+                                <li><a class="dropdown-item cabin-option" href="#" data-cabin="Economy">Economy</a></li>
+                                <li><a class="dropdown-item cabin-option" href="#" data-cabin="Premium Economy">Premium Economy</a></li>
+                                <li><a class="dropdown-item cabin-option" href="#" data-cabin="Business">Business</a></li>
+                                <li><a class="dropdown-item cabin-option" href="#" data-cabin="First Class">First Class</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content">
+                        <!-- ONE-WAY FLIGHT -->
+                        <div class="tab-pane fade show active" id="oneWay">
+                            <div class="row g-2 align-items-center">
+                                <div class="col-lg-4">
+                                    <div class="search-box-item position-relative">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="flex-grow-1 position-relative pe-2">
+                                                <div class="text-muted small mb-1"><i class="bi bi-airplane-engines text-primary me-1"></i> Leaving From</div>
+                                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Singapore (SIN)">
+                                            </div>
+                                            <button class="btn btn-light btn-sm rounded-circle border shadow-sm d-flex align-items-center justify-content-center swap-inputs-btn" style="width: 32px; height: 32px;" type="button" title="Tukar">
+                                                <i class="bi bi-arrow-left-right text-secondary"></i>
+                                            </button>
+                                            <div class="flex-grow-1 position-relative ps-3">
+                                                <div class="text-muted small mb-1"><i class="bi bi-airplane-fill text-primary me-1"></i> Going To</div>
+                                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Jakarta (CGK)">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="search-box-item">
+                                        <div class="text-muted small mb-1"><i class="bi bi-calendar text-primary me-1"></i> Departure</div>
+                                        <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Pilih Tanggal">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="search-box-item dropdown cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                        <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Travelers</div>
+                                        <div class="fw-bold small text-dark" id="travelersSummaryText">1 Adult, 0 Child, Economy</div>
+                                    </div>
+                                    <!-- Dropdown menu for travelers -->
+                                    <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4" style="width: 280px;">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="small">Dewasa (12+)</span>
+                                            <div class="input-group input-group-sm w-50">
+                                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightAdult">-</button>
+                                                <input type="text" id="flightAdult" class="form-control text-center fw-bold" value="1" readonly>
+                                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightAdult">+</button>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="small">Anak (2-11)</span>
+                                            <div class="input-group input-group-sm w-50">
+                                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightChild">-</button>
+                                                <input type="text" id="flightChild" class="form-control text-center fw-bold" value="0" readonly>
+                                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightChild">+</button>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <span class="small">Bayi (&lt;2)</span>
+                                            <div class="input-group input-group-sm w-50">
+                                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightInfant">-</button>
+                                                <input type="text" id="flightInfant" class="form-control text-center fw-bold" value="0" readonly>
+                                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightInfant">+</button>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary btn-sm w-100 apply-travelers-btn" type="button">Terapkan</button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 68px;">Search</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ROUND-TRIP FLIGHT -->
+                        <div class="tab-pane fade" id="roundTrip">
+                            <div class="row g-2 align-items-center">
+                                <div class="col-lg-3">
+                                    <div class="search-box-item position-relative">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="flex-grow-1 position-relative pe-1">
+                                                <div class="text-muted small mb-1"><i class="bi bi-airplane-engines text-primary me-1"></i> From</div>
+                                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Origin">
+                                            </div>
+                                            <button class="btn btn-light btn-sm rounded-circle border shadow-sm d-flex align-items-center justify-content-center swap-inputs-btn" style="width: 30px; height: 30px;" type="button"><i class="bi bi-arrow-left-right text-secondary"></i></button>
+                                            <div class="flex-grow-1 position-relative ps-2">
+                                                <div class="text-muted small mb-1"><i class="bi bi-airplane-fill text-primary me-1"></i> To</div>
+                                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Destination">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="search-box-item">
+                                        <div class="text-muted small mb-1"><i class="bi bi-calendar text-primary me-1"></i> Departure</div>
+                                        <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Pergi">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="search-box-item">
+                                        <div class="text-muted small mb-1"><i class="bi bi-calendar-check text-primary me-1"></i> Return</div>
+                                        <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Kembali">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="search-box-item dropdown cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                        <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Passengers</div>
+                                        <div class="fw-bold small text-dark rt-travelers-summary">1 Adult, Economy</div>
+                                    </div>
+                                    <!-- Dropdown menu for Round-trip travelers -->
+                                    <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4" style="width: 280px;">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="small">Dewasa (12+)</span>
+                                            <div class="input-group input-group-sm w-50">
+                                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="rtAdult">-</button>
+                                                <input type="text" id="rtAdult" class="form-control text-center fw-bold" value="1" readonly>
+                                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="rtAdult">+</button>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="small">Anak (2-11)</span>
+                                            <div class="input-group input-group-sm w-50">
+                                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="rtChild">-</button>
+                                                <input type="text" id="rtChild" class="form-control text-center fw-bold" value="0" readonly>
+                                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="rtChild">+</button>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <span class="small">Bayi (&lt;2)</span>
+                                            <div class="input-group input-group-sm w-50">
+                                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="rtInfant">-</button>
+                                                <input type="text" id="rtInfant" class="form-control text-center fw-bold" value="0" readonly>
+                                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="rtInfant">+</button>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary btn-sm w-100 apply-rt-travelers-btn" type="button">Terapkan</button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 68px;">Search</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- MULTI-CITY FLIGHT -->
+                        <div class="tab-pane fade" id="multiCity">
+                            <div id="multiCityContainer">
+                                <div class="row g-2 mb-2 multicity-row align-items-center">
+                                    <div class="col-lg-5">
+                                        <div class="search-box-item">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Penerbangan 1: Dari">
+                                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent ps-2 border-start" placeholder="Penerbangan 1: Ke">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="search-box-item">
+                                            <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Tanggal">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="search-box-item dropdown cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                            <div class="text-muted small mb-1">Passengers</div>
+                                            <div class="fw-bold small text-dark mc-travelers-summary">1 Adult</div>
+                                        </div>
+                                        <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4" style="width: 250px;">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <span class="small">Dewasa</span>
+                                                <div class="input-group input-group-sm w-50">
+                                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcAdult">-</button>
+                                                    <input type="text" id="mcAdult" class="form-control text-center fw-bold" value="1" readonly>
+                                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcAdult">+</button>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-primary btn-sm w-100 apply-mc-travelers-btn" type="button">Terapkan</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <button class="btn btn-outline-danger btn-sm w-100 py-3 remove-row rounded-3" disabled style="height: 68px;"><i class="bi bi-trash3"></i> Hapus</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 d-flex justify-content-between align-items-center">
+                                <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3" id="addFlightBtn"><i class="bi bi-plus me-1"></i> Tambah Penerbangan</button>
+                                <button class="btn btn-primary px-4 py-2 fw-bold search-action-btn rounded-4">Cari Multi-City</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-3 text-muted small">
+                        Save Up to <span class="text-primary fw-bold">$390</span> on Schengen Visa – 14 days delivery!
+                    </div>
+                </div>
+
+                <!-- HOTELS TAB -->
+                <div class="tab-pane fade" id="hotelSearchTab">
+                    <div class="row g-2 align-items-center">
+                        <div class="col-lg-3">
+                            <div class="search-box-item">
+                                <div class="text-muted small mb-1"><i class="bi bi-geo-alt text-primary me-1"></i> Destination</div>
+                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent" placeholder="Cth: Singapura, Bali">
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="search-box-item">
+                                <div class="text-muted small mb-1"><i class="bi bi-calendar text-primary me-1"></i> Check-in</div>
+                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Check-in">
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="search-box-item">
+                                <div class="text-muted small mb-1"><i class="bi bi-calendar-check text-primary me-1"></i> Check-out</div>
+                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Check-out">
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="search-box-item dropdown cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                <div class="text-muted small mb-1"><i class="bi bi-people text-primary me-1"></i> Guests & Rooms</div>
+                                <div class="fw-bold small text-dark" id="hotelSummaryText">1 Room, 2 Guests</div>
+                            </div>
+                            <!-- Dropdown for hotel guests & rooms -->
+                            <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4" style="width: 280px;">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="small">Kamar</span>
+                                    <div class="input-group input-group-sm w-50">
+                                        <button class="btn btn-outline-secondary decrease-count" type="button" data-target="hotelRoom">-</button>
+                                        <input type="text" id="hotelRoom" class="form-control text-center fw-bold" value="1" readonly>
+                                        <button class="btn btn-outline-secondary increase-count" type="button" data-target="hotelRoom">+</button>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="small">Dewasa</span>
+                                    <div class="input-group input-group-sm w-50">
+                                        <button class="btn btn-outline-secondary decrease-count" type="button" data-target="hotelAdult">-</button>
+                                        <input type="text" id="hotelAdult" class="form-control text-center fw-bold" value="2" readonly>
+                                        <button class="btn btn-outline-secondary increase-count" type="button" data-target="hotelAdult">+</button>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="small">Anak</span>
+                                    <div class="input-group input-group-sm w-50">
+                                        <button class="btn btn-outline-secondary decrease-count" type="button" data-target="hotelChild">-</button>
+                                        <input type="text" id="hotelChild" class="form-control text-center fw-bold" value="0" readonly>
+                                        <button class="btn btn-outline-secondary increase-count" type="button" data-target="hotelChild">+</button>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-sm w-100" type="button" id="applyHotelGuests">Terapkan</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 68px;">Search</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TRANSPORT TAB (Car Rental) -->
+                <div class="tab-pane fade" id="carSearchTab">
+                    <div class="row g-2 align-items-center">
+                        <div class="col-lg-4">
+                            <div class="search-box-item">
+                                <div class="text-muted small mb-1"><i class="bi bi-geo-alt text-primary me-1"></i> Pick-up Location</div>
+                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent" placeholder="Bandara / Kota Penjemputan">
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="search-box-item">
+                                <div class="text-muted small mb-1"><i class="bi bi-calendar text-primary me-1"></i> Start Date</div>
+                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Tanggal Mulai">
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="search-box-item">
+                                <div class="text-muted small mb-1"><i class="bi bi-calendar-check text-primary me-1"></i> End Date</div>
+                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Tanggal Selesai">
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 68px;">Cari Mobil</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EXPERIENCE TAB -->
+                <div class="tab-pane fade" id="expSearchTab">
+                    <div class="row g-2 align-items-center">
+                        <div class="col-lg-5">
+                            <div class="search-box-item">
+                                <div class="text-muted small mb-1"><i class="bi bi-lightning-charge text-primary me-1"></i> Experience or Activity</div>
+                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent" placeholder="Cth: Skydiving, Scuba Diving, Rafting">
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="search-box-item">
+                                <div class="text-muted small mb-1"><i class="bi bi-calendar text-primary me-1"></i> Date</div>
+                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Tanggal Aktivitas">
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="search-box-item">
+                                <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Participants</div>
+                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent" value="2 Persons" readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 68px;">Cari</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VISA TAB -->
+                <div class="tab-pane fade" id="visaSearchTab">
+                    <div class="row g-2 align-items-center">
+                        <div class="col-lg-4">
+                            <div class="search-box-item">
+                                <div class="text-muted small mb-1"><i class="bi bi-file-earmark-person text-primary me-1"></i> Your Nationality</div>
+                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent" placeholder="Warga Negara (Cth: Indonesia)">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="search-box-item">
+                                <div class="text-muted small mb-1"><i class="bi bi-globe text-primary me-1"></i> Destination Country</div>
+                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent" placeholder="Negara Tujuan (Cth: Jepang)">
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="search-box-item">
+                                <div class="text-muted small mb-1"><i class="bi bi-calendar text-primary me-1"></i> Travel Date</div>
+                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Estimasi">
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 68px;">Cek Visa</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TOURS TAB -->
+                <div class="tab-pane fade" id="tourSearchTab">
+                    <div class="row g-2 align-items-center">
+                        <div class="col-lg-5">
+                            <div class="search-box-item">
+                                <div class="text-muted small mb-1"><i class="bi bi-compass text-primary me-1"></i> Tour Destination</div>
+                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent" placeholder="Cth: Paris, Bali, Cappadocia">
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="search-box-item">
+                                <div class="text-muted small mb-1"><i class="bi bi-calendar text-primary me-1"></i> Date</div>
+                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Tanggal Mulai">
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="search-box-item">
+                                <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Travelers</div>
+                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent" value="2 Adults" readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 68px;">Cari Tur</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. SECTION: DISCOUNTS & OFFERS -->
+    <section id="offers" class="container py-5 mt-4">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">Discounts & Offers</h2>
+            <p class="text-muted mb-0">Manfaatkan kupon dan paket promo eksklusif untuk destinasi impian Anda.</p>
+        </div>
+
+        <!-- Slider Wrapper -->
+        <div class="position-relative px-md-4">
+            <!-- Scrollable Slider Track -->
+            <div class="d-flex gap-4 overflow-x-auto pb-4 pt-2" id="offerSlider" style="scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none;">
+                
+                <!-- Offer Card 1 -->
+                <div class="card border-0 rounded-4 overflow-hidden text-white flex-shrink-0 card-hover position-relative" style="width: 270px; height: 380px; scroll-snap-align: start;">
+                    <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=600&q=80" class="w-100 h-100 object-fit-cover" alt="Travel Around the World">
+                    <div class="position-absolute inset-0 bg-dark bg-opacity-25 d-flex flex-column justify-content-between p-4" style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%);">
+                        <div>
+                            <h3 class="fw-bold text-uppercase text-white lh-sm" style="font-family: 'Poppins', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.6);">TRAVEL AROUND THE WORLD</h3>
+                        </div>
+                        <div>
+                            <span class="badge rounded-pill px-3 py-2 fs-6 fw-bold shadow" style="background-color: #ff007f;">25% off</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Offer Card 2 -->
+                <div class="card border-0 rounded-4 overflow-hidden text-white flex-shrink-0 card-hover position-relative" style="width: 270px; height: 380px; scroll-snap-align: start;">
+                    <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" class="w-100 h-100 object-fit-cover" alt="Breath Adventure Awaits">
+                    <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%);">
+                        <div>
+                            <i class="bi bi-airplane text-white fs-5 mb-2 d-inline-block"></i>
+                            <h3 class="fw-bold text-warning lh-sm" style="font-family: 'Poppins', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.6);">Breath Adventure Awaits</h3>
+                        </div>
+                        <div class="align-self-end bg-danger text-white rounded-circle d-flex flex-column align-items-center justify-content-center p-3 fw-bold shadow-lg" style="width: 80px; height: 80px; transform: rotate(-10deg);">
+                            <span class="fs-5 lh-1 fw-extrabold">$199</span>
+                            <span style="font-size: 0.65rem; letter-spacing: 1px;">/only</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Offer Card 3 -->
+                <div class="card border-0 rounded-4 overflow-hidden text-white flex-shrink-0 card-hover position-relative" style="width: 270px; height: 380px; scroll-snap-align: start;">
+                    <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" class="w-100 h-100 object-fit-cover" alt="20% off SALE">
+                    <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%);">
+                        <div>
+                            <span class="text-uppercase small fw-bold tracking-wider text-warning">up to</span>
+                            <h1 class="fw-bold text-white mb-0 display-5" style="text-shadow: 0 2px 4px rgba(0,0,0,0.6);">20% off</h1>
+                            <h4 class="fw-bold tracking-widest text-uppercase">SALE</h4>
+                        </div>
+                        <div class="text-center bg-success text-white py-2 rounded-pill fw-bold small shadow">
+                            ★ TRAVEL • View All Tour
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Offer Card 4 -->
+                <div class="card border-0 rounded-4 overflow-hidden text-white flex-shrink-0 card-hover position-relative" style="width: 270px; height: 380px; scroll-snap-align: start;">
+                    <img src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=600&q=80" class="w-100 h-100 object-fit-cover" alt="Summer Vacation">
+                    <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%);">
+                        <div>
+                            <h3 class="fw-bold text-white lh-sm" style="font-family: 'Poppins', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.6);">Summer Vacation</h3>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-end">
+                            <span class="badge bg-light text-dark rounded-pill px-3 py-1 fw-semibold small shadow">VACATION mode</span>
+                            <div class="rounded-circle d-flex flex-column align-items-center justify-content-center p-3 fw-bold shadow-lg text-white" style="width: 80px; height: 80px; background-color: #ff007f;">
+                                <span class="fs-5 lh-1 fw-extrabold">$199</span>
+                                <span style="font-size: 0.65rem; letter-spacing: 1px;">/only</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Slider Control Buttons (Vanilla JS) -->
+            <button class="btn btn-light shadow border position-absolute top-50 start-0 translate-middle-y rounded-circle d-none d-md-flex align-items-center justify-content-center ms-n3 z-2" id="slideLeftBtn" style="width: 45px; height: 45px;"><i class="bi bi-chevron-left fs-5"></i></button>
+            <button class="btn btn-light shadow border position-absolute top-50 end-0 translate-middle-y rounded-circle d-none d-md-flex align-items-center justify-content-center me-n3 z-2" id="slideRightBtn" style="width: 45px; height: 45px;"><i class="bi bi-chevron-right fs-5"></i></button>
+        </div>
+    </section>
+
+    <!-- 6. SECTION: BEST DEALS FLIGHT ROUTES -->
+    <section id="best-deals" class="container py-5 bg-white rounded-4 shadow-sm my-4">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">Best Deals Rute Penerbangan Round-Trip</h2>
+            <p class="text-muted">Pilihan rute pulang-pergi terhemat berdasarkan wilayah.</p>
+        </div>
+        <ul class="nav nav-pills justify-content-center mb-4 gap-2" role="tablist">
+            <li class="nav-item"><button class="nav-link active rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#dealAmerica">Amerika</button></li>
+            <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#dealEurope">Eropa</button></li>
+            <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#dealAsia">Asia</button></li>
+            <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#dealAfrica">Afrika</button></li>
+            <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#dealMiddleEast">Middle East</button></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="dealAmerica">
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card border shadow-sm rounded-4 overflow-hidden card-hover">
+                            <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?auto=format&fit=crop&w=600&q=80" height="200" class="object-fit-cover" alt="New York">
+                            <div class="card-body">
+                                <span class="badge bg-primary-subtle text-primary mb-2">Round-Trip</span>
+                                <h5 class="fw-bold">Jakarta (CGK) ➔ New York (JFK)</h5>
+                                <p class="text-muted small mb-3">Emirates • Bagasi 30kg</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="text-danger fw-bold fs-5">IDR 14.250.000</span>
+                                    <button class="btn btn-outline-primary btn-sm rounded-pill px-3 book-btn">Pesan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="dealEurope"><div class="text-center py-4 text-muted">Penawaran Eropa segera hadir...</div></div>
+            <div class="tab-pane fade" id="dealAsia"><div class="text-center py-4 text-muted">Penawaran Asia segera hadir...</div></div>
+            <div class="tab-pane fade" id="dealAfrica"><div class="text-center py-4 text-muted">Penawaran Afrika segera hadir...</div></div>
+            <div class="tab-pane fade" id="dealMiddleEast"><div class="text-center py-4 text-muted">Penawaran Middle East segera hadir...</div></div>
+        </div>
+    </section>
+
+    <!-- 7. SECTION: POPULAR HOTELS (Amerika, Eropa, Asia, Afrika, MiddleEast) -->
+    <section id="hotels" class="container py-5">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">Popular Hotels Globally</h2>
+            <p class="text-muted">Akomodasi pilihan dengan fasilitas mewah dan ulasan terbaik.</p>
+        </div>
+        <ul class="nav nav-pills justify-content-center mb-4 gap-2" role="tablist">
+            <li class="nav-item"><button class="nav-link active rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#hotelAmerica">Amerika</button></li>
+            <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#hotelEurope">Eropa</button></li>
+            <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#hotelAsia">Asia</button></li>
+            <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#hotelAfrica">Afrika</button></li>
+            <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#hotelMiddleEast">Middle East</button></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="hotelAmerica">
+                <div class="row g-4">
+                    <div class="col-md-3">
+                        <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover">
+                            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" height="180" class="object-fit-cover" alt="Hotel">
+                            <div class="card-body">
+                                <div class="text-warning small mb-1"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i> (4.9)</div>
+                                <h5 class="fw-bold text-truncate">The Plaza New York</h5>
+                                <p class="text-muted small mb-3"><i class="bi bi-geo-alt me-1"></i> New York, USA</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="text-primary fw-bold">IDR 4.500.000<small>/mlm</small></span>
+                                    <button class="btn btn-primary btn-sm rounded-pill px-3 book-btn">Pesan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="hotelEurope"><div class="text-center py-4 text-muted">Hotel Eropa segera hadir...</div></div>
+            <div class="tab-pane fade" id="hotelAsia"><div class="text-center py-4 text-muted">Hotel Asia segera hadir...</div></div>
+            <div class="tab-pane fade" id="hotelAfrica"><div class="text-center py-4 text-muted">Hotel Afrika segera hadir...</div></div>
+            <div class="tab-pane fade" id="hotelMiddleEast"><div class="text-center py-4 text-muted">Hotel Middle East segera hadir...</div></div>
+        </div>
+    </section>
+
+    <!-- 8. SECTION: POPULAR TOURS (Amerika, Eropa, Asia, Afrika, MiddleEast) -->
+    <section id="tours" class="container py-5 bg-white rounded-4 shadow-sm my-4">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">Popular Tours & Attractions</h2>
+            <p class="text-muted">Temukan pengalaman tur dan aktivitas paling berkesan.</p>
+        </div>
+        <ul class="nav nav-pills justify-content-center mb-4 gap-2" role="tablist">
+            <li class="nav-item"><button class="nav-link active rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#tourAmerica">Amerika</button></li>
+            <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#tourEurope">Eropa</button></li>
+            <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#tourAsia">Asia</button></li>
+            <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#tourAfrica">Afrika</button></li>
+            <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#tourMiddleEast">Middle East</button></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="tourAmerica">
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card border shadow-sm rounded-4 overflow-hidden card-hover">
+                            <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=600&q=80" height="200" class="object-fit-cover" alt="Tour">
+                            <div class="card-body">
+                                <span class="badge bg-success-subtle text-success mb-2">Full Day Tour</span>
+                                <h5 class="fw-bold">Grand Canyon Helicopter & Skywalk</h5>
+                                <p class="text-muted small mb-3">Termasuk pemandu profesional & tiket.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="text-danger fw-bold fs-5">IDR 3.250.000</span>
+                                    <button class="btn btn-outline-primary btn-sm rounded-pill px-3 book-btn">Book Tour</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="tourEurope"><div class="text-center py-4 text-muted">Tur Eropa segera hadir...</div></div>
+            <div class="tab-pane fade" id="tourAsia"><div class="text-center py-4 text-muted">Tur Asia segera hadir...</div></div>
+            <div class="tab-pane fade" id="tourAfrica"><div class="text-center py-4 text-muted">Tur Afrika segera hadir...</div></div>
+            <div class="tab-pane fade" id="tourMiddleEast"><div class="text-center py-4 text-muted">Tur Middle East segera hadir...</div></div>
+        </div>
+    </section>
+
+    <!-- 9. SECTION: ABOUT (Diperbarui Sesuai Referensi Gambar) -->
+    <section id="about" class="container py-5 my-4">
+        <div class="row align-items-center g-5">
+            <!-- Left Column: Content Text -->
+            <div class="col-lg-6">
+                <span class="text-primary fw-semibold small d-block mb-2">We're #01 travel agency in globally</span>
+                <h1 class="display-5 fw-bold text-dark mb-4 lh-sm">Explore the World With Confidence.</h1>
+                <p class="text-muted mb-3" style="line-height: 1.7;">
+                    Travel is more than visiting places - it's about discovering cultures, creating memories, and experiencing the world in a way that stays with you forever. Our travel agency is dedicated to designing seamless and inspiring journeys for explorers who want more than just a typical vacation.
+                </p>
+                <p class="text-muted mb-4" style="line-height: 1.7;">
+                    Our team of passionate travel experts works closely with each traveler to understand their interests, preferences, and expectations. This allows us to create journeys that feel personal, well-organized, and truly extraordinary.
+                </p>
+                <a href="#" class="btn btn-primary rounded-pill px-5 py-3 fw-bold shadow-sm">Discover More</a>
+            </div>
+
+            <!-- Right Column: Overlapping Image Cards & Trust Badges -->
+            <div class="col-lg-6">
+                <!-- Stacked Image Cards Wrapper -->
+                <div class="position-relative d-flex justify-content-center align-items-center mb-5" style="height: 380px;">
+                    <!-- Card 1 (Back Left) -->
+                    <div class="position-absolute shadow-lg rounded-4 overflow-hidden border border-white border-3" style="width: 200px; height: 320px; transform: rotate(-8deg) translateX(-80px); z-index: 1;">
+                        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=500&q=80" class="w-100 h-100 object-fit-cover" alt="Traveler">
+                    </div>
+                    <!-- Card 2 (Center Foreground - Landmarks & Airplane) -->
+                    <div class="position-absolute shadow-lg rounded-4 overflow-hidden border border-white border-3" style="width: 210px; height: 340px; transform: translateY(-10px); z-index: 3;">
+                        <img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=500&q=80" class="w-100 h-100 object-fit-cover" alt="World Landmarks">
+                    </div>
+                    <!-- Card 3 (Back Right - Beach) -->
+                    <div class="position-absolute shadow-lg rounded-4 overflow-hidden border border-white border-3" style="width: 200px; height: 320px; transform: rotate(8deg) translateX(80px); z-index: 2;">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" class="w-100 h-100 object-fit-cover" alt="Beach Resort">
+                    </div>
+                </div>
+
+                <!-- Trust Badges Below Cards -->
+                <div class="row text-center align-items-center g-3 pt-2">
+                    <div class="col-6">
+                        <div class="d-flex flex-column align-items-center">
+                            <h4 class="fw-bold mb-0 fs-4">5,000,000</h4>
+                            <small class="text-muted fw-semibold mb-1" style="font-size: 0.75rem;">Trusted by 5M Users</small>
+                            <span class="text-success small fw-bold"><i class="bi bi-tripadvisor"></i> Tripadvisor</span>
+                        </div>
+                    </div>
+                    <div class="col-6 border-start">
+                        <div class="d-flex flex-column align-items-center">
+                            <span class="text-danger fw-extrabold fs-6" style="letter-spacing: 0.5px;">Traveler</span>
+                            <small class="text-dark fw-bold" style="font-size: 0.65rem;">BEST CITY TOUR AWARD</small>
+                            <span class="badge bg-danger text-white rounded-pill px-2 py-0 fw-bold mt-1" style="font-size: 0.65rem;">2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. FOOTER -->
+    <footer id="footer" class="modern-footer text-white pt-5 pb-4 border-top border-secondary border-opacity-25">
+        <div class="container py-3">
+            <!-- 4-Column Structure -->
+            <div class="row g-5 mb-5">
+                <!-- Column 1: Brand Info, Socials, & Awards Badges -->
+                <div class="col-lg-3 col-md-6">
+                    <a class="navbar-brand fw-bold fs-4 text-white d-flex align-items-center gap-2 mb-3 text-decoration-none" href="#">
+                        <i class="bi bi-airplane-engines text-primary"></i> TravelMeta
+                    </a>
+                    <h6 class="fw-bold mb-2 text-white">TravelMeta Travel Agency</h6>
+                    <p class="text-white-50 small mb-4 lh-sm">
+                        Skyline Plaza, 5th Floor, 123 Main Street<br>
+                        Los Angeles, CA 90001, USA
+                    </p>
+                    <div class="d-flex gap-2 mb-4">
+                        <a href="#" class="social-btn" title="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-btn" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="social-btn" title="YouTube"><i class="bi bi-youtube"></i></a>
+                        <a href="#" class="social-btn" title="Instagram"><i class="bi bi-instagram"></i></a>
+                    </div>
+                    <div class="d-flex gap-3 align-items-center">
+                        <div class="footer-badge bg-success text-white p-1">
+                            <i class="bi bi-award-fill fs-6 mb-0"></i>
+                            <span>Tripadvisor 2026</span>
+                        </div>
+                        <div class="footer-badge bg-danger text-white p-1">
+                            <i class="bi bi-trophy-fill fs-6 mb-0"></i>
+                            <span>Traveler 2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 2: Explore -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="fw-bold mb-4 text-white border-start border-primary border-3 ps-2">Explore</h5>
+                    <ul class="list-unstyled small d-flex flex-column gap-2 m-0">
+                        <li><a href="#about" class="footer-link">About TravelMeta</a></li>
+                        <li><a href="#" class="footer-link">Health & Safety Measure</a></li>
+                        <li><a href="#" class="footer-link">Customize Tour</a></li>
+                        <li><a href="#offers" class="footer-link">Deals & Discount</a></li>
+                        <li><a href="#" class="footer-link">Last Minutes Deal</a></li>
+                        <li><a href="#" class="footer-link">Travel Inspirations</a></li>
+                        <li><a href="#" class="footer-link">Traveler Reviews</a></li>
+                        <li><a href="#" class="footer-link">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Useful -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="fw-bold mb-4 text-white border-start border-primary border-3 ps-2">Useful</h5>
+                    <ul class="list-unstyled small d-flex flex-column gap-2 m-0">
+                        <li><a href="#" class="footer-link">Flight Booking</a></li>
+                        <li><a href="#" class="footer-link">Visa Processing</a></li>
+                        <li><a href="#hotels" class="footer-link">Hotel Booking</a></li>
+                        <li><a href="#" class="footer-link">Transport</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Helpline -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="fw-bold mb-4 text-white border-start border-primary border-3 ps-2">Helpline</h5>
+                    <ul class="list-unstyled small d-flex flex-column gap-2 m-0">
+                        <li><a href="#" class="footer-link">Help & Support</a></li>
+                        <li><a href="#" class="footer-link">FAQs</a></li>
+                        <li><a href="#" class="footer-link">Terms & Condition</a></li>
+                        <li><a href="#" class="footer-link">Affiliates</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Payment Methods Card -->
+            <div class="bg-white text-dark rounded-4 p-3 px-4 mb-4 d-flex align-items-center justify-content-between flex-wrap gap-3 shadow-lg">
+                <span class="fw-bold fs-6 text-dark">We Accept:-</span>
+                <div class="d-flex align-items-center gap-3 fs-4 flex-wrap text-secondary">
+                    <i class="bi bi-credit-card-2-front text-dark" title="Mastercard"></i>
+                    <i class="bi bi-paypal text-primary" title="PayPal"></i>
+                    <i class="bi bi-credit-card text-dark" title="Visa"></i>
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">G Pay</span>
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">stripe</span>
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">paysafe</span>
+                    <i class="bi bi-apple text-dark" title="Apple Pay"></i>
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">adyen</span>
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">elavon</span>
+                </div>
+            </div>
+
+            <!-- Copyright & Disclaimer -->
+            <div class="text-white-50 small pt-2 border-top border-secondary border-opacity-25 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+                <p class="mb-0">&copy; 2026 TravelMeta, <strong class="text-white">Egenslab</strong>. All Rights Reserved.</p>
+                <p class="mb-0 text-white-50" style="font-size: 0.75rem; max-width: 600px;">
+                    All travel services are provided in accordance with applicable international travel regulations, airline policies, visa requirements, and local tourism laws, ensuring transparency, reliability, and compliance throughout your journey.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- POPUP MODAL: MULTI-CURRENCY -->
+    <div class="modal fade" id="currencyModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0 shadow-lg">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-coin text-warning me-2"></i>Pilih Mata Uang</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted small mb-3">Pilih mata uang standar untuk menampilkan tarif di seluruh situs.</p>
+                    <div class="row g-2">
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold" data-curr="USD ($)">USD ($)</button></div>
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold" data-curr="IDR (Rp)">IDR (Rp)</button></div>
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold" data-curr="EUR (€)">EUR (€)</button></div>
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold" data-curr="GBP (£)">GBP (£)</button></div>
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold" data-curr="SGD (S$)">SGD (S$)</button></div>
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold" data-curr="JPY (¥)">JPY (¥)</button></div>
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold" data-curr="AUD (A$)">AUD (A$)</button></div>
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold" data-curr="CAD (C$)">CAD (C$)</button></div>
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold" data-curr="CNY (¥)">CNY (¥)</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- POPUP MODAL: MULTI-LANGUAGE -->
+    <div class="modal fade" id="langModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0 shadow-lg">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-globe text-info me-2"></i>Pilih Bahasa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted small mb-3">Pilih bahasa tampilan antarmuka yang Anda inginkan.</p>
+                    <div class="row g-2">
+                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold" data-lang="English (EN)">English (EN)</button></div>
+                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold" data-lang="Bahasa Indonesia (ID)">Bahasa Indonesia (ID)</button></div>
+                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold" data-lang="Español (ES)">Español (ES)</button></div>
+                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold" data-lang="Français (FR)">Français (FR)</button></div>
+                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold" data-lang="Deutsch (DE)">Deutsch (DE)</button></div>
+                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold" data-lang="日本語 (JA)">日本語 (JA)</button></div>
+                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold" data-lang="中文 (ZH)">中文 (ZH)</button></div>
+                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold" data-lang="العربية (AR)">العربية (AR)</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+    
+    <!-- VANILLA JS: Autocomplete, Counters, Offer Slider, Popups & Flatpickr -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Offer Slider Scroll Buttons (Vanilla JS)
+            const offerSlider = document.getElementById('offerSlider');
+            const slideLeftBtn = document.getElementById('slideLeftBtn');
+            const slideRightBtn = document.getElementById('slideRightBtn');
+
+            if(slideLeftBtn && offerSlider) {
+                slideLeftBtn.addEventListener('click', () => {
+                    offerSlider.scrollBy({ left: -300, behavior: 'smooth' });
+                });
+            }
+            if(slideRightBtn && offerSlider) {
+                slideRightBtn.addEventListener('click', () => {
+                    offerSlider.scrollBy({ left: 300, behavior: 'smooth' });
+                });
+            }
+
+            // 2. Travelpayouts API Autocomplete
+            const setupTravelAutocomplete = (input) => {
+                let container = input.parentNode.querySelector('.autocomplete-suggestions');
+                if (!container) {
+                    container = document.createElement('div');
+                    container.className = 'autocomplete-suggestions';
+                    input.parentNode.appendChild(container);
+                }
+
+                let debounceTimer;
+                input.addEventListener('input', () => {
+                    clearTimeout(debounceTimer);
+                    const query = input.value.trim();
+                    if (query.length < 2) {
+                        container.innerHTML = '';
+                        container.style.display = 'none';
+                        return;
+                    }
+
+                    debounceTimer = setTimeout(() => {
+                        fetch(`https://autocomplete.travelpayouts.com/jravia?with_countries=true&locale=en&service=aviasales&q=${encodeURIComponent(query)}`)
+                            .then(res => res.json())
+                            .then(data => {
+                                container.innerHTML = '';
+                                if (!data || data.length === 0) {
+                                    container.style.display = 'none';
+                                    return;
+                                }
+
+                                data.forEach(item => {
+                                    const div = document.createElement('div');
+                                    div.className = 'autocomplete-suggestion-item';
+                                    div.innerHTML = `<strong>${item.name || item.city_name}</strong> (${item.code}) <br><small class="text-muted">${item.country_name || ''}</small>`;
+                                    
+                                    div.addEventListener('click', () => {
+                                        input.value = `${item.name || item.city_name} (${item.code})`;
+                                        container.innerHTML = '';
+                                        container.style.display = 'none';
+                                    });
+                                    container.appendChild(div);
+                                });
+                                container.style.display = 'block';
+                            })
+                            .catch(err => console.error("Autocomplete error:", err));
+                    }, 300);
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!input.contains(e.target) && !container.contains(e.target)) {
+                        container.style.display = 'none';
+                    }
+                });
+            };
+
+            document.querySelectorAll('.autocomplete-input').forEach(input => {
+                setupTravelAutocomplete(input);
+            });
+
+            // 3. Swap Origin & Destination Inputs
+            document.querySelectorAll('.swap-inputs-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const boxItem = btn.closest('.search-box-item');
+                    const inputs = boxItem.querySelectorAll('.autocomplete-input');
+                    if (inputs.length === 2) {
+                        const temp = inputs[0].value;
+                        inputs[0].value = inputs[1].value;
+                        inputs[1].value = temp;
+                    }
+                });
+            });
+
+            // 4. Cabin Class Selector
+            document.querySelectorAll('.cabin-option').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const cabin = e.target.getAttribute('data-cabin');
+                    document.getElementById('cabinClassDropdownBtn').textContent = cabin;
+                });
+            });
+
+            // 5. Lazy Load Flatpickr
+            const dateInputs = document.querySelectorAll(".lazy-date");
+            let flatpickrLoaded = false;
+            const loadFlatpickr = () => {
+                if (flatpickrLoaded) return;
+                const link = document.createElement("link");
+                link.rel = "stylesheet";
+                link.href = "https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css";
+                document.head.appendChild(link);
+                
+                const script = document.createElement("script");
+                script.src = "https://cdn.jsdelivr.net/npm/flatpickr";
+                script.onload = () => {
+                    flatpickr(".lazy-date", { dateFormat: "Y-m-d", altInput: true, altFormat: "j M Y" });
+                };
+                document.body.appendChild(script);
+                flatpickrLoaded = true;
+            };
+
+            dateInputs.forEach(input => {
+                input.addEventListener("mouseover", loadFlatpickr, { once: true });
+                input.addEventListener("focus", loadFlatpickr, { once: true });
+            });
+
+            // 6. Counters Logic
+            document.querySelectorAll(".increase-count").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const targetId = btn.getAttribute("data-target");
+                    const input = document.getElementById(targetId);
+                    input.value = parseInt(input.value) + 1;
+                });
+            });
+
+            document.querySelectorAll(".decrease-count").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const targetId = btn.getAttribute("data-target");
+                    const input = document.getElementById(targetId);
+                    if (parseInt(input.value) > 0) {
+                        if ((targetId === 'flightAdult' || targetId === 'rtAdult' || targetId === 'mcAdult' || targetId === 'hotelRoom' || targetId === 'hotelAdult') && parseInt(input.value) <= 1) return;
+                        input.value = parseInt(input.value) - 1;
+                    }
+                });
+            });
+
+            // Apply One-way Travelers
+            const applyTravelersBtn = document.querySelector(".apply-travelers-btn");
+            if(applyTravelersBtn) {
+                applyTravelersBtn.addEventListener("click", () => {
+                    const adults = parseInt(document.getElementById("flightAdult").value);
+                    const kids = parseInt(document.getElementById("flightChild").value);
+                    const infants = parseInt(document.getElementById("flightInfant").value);
+                    const cabin = document.getElementById("cabinClassDropdownBtn").textContent;
+                    document.getElementById("travelersSummaryText").textContent = `${adults} Adult, ${kids + infants} Child, ${cabin}`;
+                });
+            }
+
+            // Apply Round-trip Travelers
+            const applyRtTravelersBtn = document.querySelector(".apply-rt-travelers-btn");
+            if(applyRtTravelersBtn) {
+                applyRtTravelersBtn.addEventListener("click", () => {
+                    const adults = parseInt(document.getElementById("rtAdult").value);
+                    const kids = parseInt(document.getElementById("rtChild").value);
+                    const infants = parseInt(document.getElementById("rtInfant").value);
+                    document.querySelectorAll(".rt-travelers-summary").forEach(el => {
+                        el.textContent = `${adults} Adult, ${kids + infants} Child`;
+                    });
+                });
+            }
+
+            // Apply Multi-city Travelers
+            const applyMcTravelersBtn = document.querySelector(".apply-mc-travelers-btn");
+            if(applyMcTravelersBtn) {
+                applyMcTravelersBtn.addEventListener("click", () => {
+                    const adults = parseInt(document.getElementById("mcAdult").value);
+                    document.querySelectorAll(".mc-travelers-summary").forEach(el => {
+                        el.textContent = `${adults} Adult`;
+                    });
+                });
+            }
+
+            // Apply Hotel Guests & Rooms
+            const applyHotelGuestsBtn = document.getElementById("applyHotelGuests");
+            if(applyHotelGuestsBtn) {
+                applyHotelGuestsBtn.addEventListener("click", () => {
+                    const rooms = parseInt(document.getElementById("hotelRoom").value);
+                    const adults = parseInt(document.getElementById("hotelAdult").value);
+                    const kids = parseInt(document.getElementById("hotelChild").value);
+                    document.getElementById("hotelSummaryText").textContent = `${rooms} Room, ${adults + kids} Guests`;
+                });
+            }
+
+            // 7. Multi-City Dynamic Rows
+            const addFlightBtn = document.getElementById("addFlightBtn");
+            const multiCityContainer = document.getElementById("multiCityContainer");
+
+            if(addFlightBtn) {
+                addFlightBtn.addEventListener("click", () => {
+                    const rowCount = multiCityContainer.querySelectorAll(".multicity-row").length + 1;
+                    const newRow = document.createElement("div");
+                    newRow.className = "row g-2 mb-2 multicity-row align-items-center";
+                    newRow.innerHTML = `
+                        <div class="col-lg-5">
+                            <div class="search-box-item">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Penerbangan ${rowCount}: Dari">
+                                    <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent ps-2 border-start" placeholder="Penerbangan ${rowCount}: Ke">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="search-box-item">
+                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Tanggal">
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="search-box-item dropdown cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                <div class="text-muted small mb-1">Passengers</div>
+                                <div class="fw-bold small text-dark mc-travelers-summary">1 Adult</div>
+                            </div>
+                            <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4" style="width: 250px;">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="small">Dewasa</span>
+                                    <div class="input-group input-group-sm w-50">
+                                        <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcAdult${rowCount}">-</button>
+                                        <input type="text" id="mcAdult${rowCount}" class="form-control text-center fw-bold" value="1" readonly>
+                                        <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcAdult${rowCount}">+</button>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-sm w-100 apply-mc-travelers-btn" type="button">Terapkan</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <button class="btn btn-outline-danger btn-sm w-100 py-3 remove-row rounded-3" style="height: 68px;"><i class="bi bi-trash3"></i> Hapus</button>
+                        </div>
+                    `;
+                    multiCityContainer.appendChild(newRow);
+                    
+                    newRow.querySelectorAll(".autocomplete-input").forEach(input => setupTravelAutocomplete(input));
+                    newRow.querySelector(".lazy-date").addEventListener("mouseover", loadFlatpickr, { once: true });
+                    newRow.querySelector(".lazy-date").addEventListener("focus", loadFlatpickr, { once: true });
+                    updateRemoveButtons();
+                });
+            }
+
+            document.addEventListener("click", (e) => {
+                if (e.target.closest(".remove-row")) {
+                    e.target.closest(".multicity-row").remove();
+                    updateRemoveButtons();
+                }
+            });
+
+            function updateRemoveButtons() {
+                const rows = document.querySelectorAll(".multicity-row");
+                rows.forEach((row) => {
+                    const btn = row.querySelector(".remove-row");
+                    if (rows.length === 1) {
+                        btn.setAttribute("disabled", "true");
+                    } else {
+                        btn.removeAttribute("disabled");
+                    }
+                });
+            }
+
+            // 8. Currency & Language Popup Handlers
+            document.querySelectorAll(".currency-option").forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    const curr = e.target.getAttribute("data-curr");
+                    document.getElementById("selectedCurrencyBtn").innerHTML = `<i class="bi bi-coin text-warning"></i> ${curr}`;
+                    const modalEl = document.getElementById('currencyModal');
+                    const modalInstance = bootstrap.Modal.getInstance(modalEl);
+                    modalInstance.hide();
+                });
+            });
+
+            document.querySelectorAll(".lang-option").forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    const lang = e.target.getAttribute("data-lang");
+                    document.getElementById("selectedLangBtn").innerHTML = `<i class="bi bi-globe text-info"></i> ${lang}`;
+                    const modalEl = document.getElementById('langModal');
+                    const modalInstance = bootstrap.Modal.getInstance(modalEl);
+                    modalInstance.hide();
+                });
+            });
+
+            document.querySelectorAll(".search-action-btn").forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    alert("Mencari data secara real-time...");
+                });
+            });
+
+            const subForm = document.getElementById("subscribeForm");
+            if(subForm) {
+                subForm.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    document.getElementById("subscribeAlert").classList.remove("d-none");
+                    subForm.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
