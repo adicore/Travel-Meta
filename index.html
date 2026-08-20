@@ -159,25 +159,53 @@
             transform: translateX(5px);
         }
 
-        /* Luxurious Modern Footer Styles */
+        /* Luxurious, Modern, & Neat Footer Styles */
         .modern-footer {
-            background: radial-gradient(circle at top right, #1e293b 0%, #090d16 60%, #020617 100%);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: radial-gradient(circle at top right, #0f172a 0%, #070a13 60%, #020617 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
             position: relative;
             overflow: hidden;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
         .modern-footer::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; height: 2px;
-            background: linear-gradient(90deg, transparent, #38bdf8, #2563eb, transparent);
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, transparent, #38bdf8, #2563eb, #6366f1, transparent);
+        }
+        .modern-footer h5 {
+            font-size: 1.05rem;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: #f8fafc !important;
+            font-weight: 700;
+        }
+        .modern-footer h6 {
+            color: #e2e8f0 !important;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+        .modern-footer p {
+            color: #94a3b8 !important;
+            line-height: 1.7;
+            font-size: 0.9rem;
+        }
+        .footer-link {
+            color: #94a3b8 !important;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+        .footer-link:hover {
+            color: #38bdf8 !important;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.45);
         }
         .social-btn {
             width: 44px;
             height: 44px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            color: #ffffff;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #f8fafc;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -185,27 +213,28 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .social-btn:hover {
-            background: #2563eb;
+            background: var(--button-gradient);
             border-color: #38bdf8;
             color: #ffffff;
             transform: translateY(-5px) scale(1.1);
             box-shadow: 0 10px 20px rgba(37, 99, 235, 0.4);
         }
         .footer-badge {
-            width: 85px;
-            height: 85px;
+            width: 82px;
+            height: 82px;
             border-radius: 50%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            font-size: 0.6rem;
+            font-size: 0.58rem;
             font-weight: 700;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-            border: 2px solid rgba(255,255,255,0.2);
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
-            backdrop-filter: blur(5px);
+            letter-spacing: 0.2px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            border: 1.5px solid rgba(255,255,255,0.15);
+            background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            backdrop-filter: blur(6px);
         }
 
         /* Hide scrollbars for clean look */
@@ -1257,21 +1286,21 @@
         </div>
     </section>
 
-    <!-- 14. FOOTER (LUXURIOUS & MODERN REDESIGN) -->
-    <footer id="footer" class="modern-footer text-white pt-5 pb-4 border-top border-secondary border-opacity-25">
+    <!-- 14. FOOTER (LUXURIOUS, MODERN & NEAT TYPOGRAPHY REDESIGN) -->
+    <footer id="footer" class="modern-footer text-white pt-5 pb-4">
         <div class="container py-4">
             <!-- 4-Column Structure -->
             <div class="row g-5 mb-5">
                 <!-- Column 1: Brand Info, Socials, & Awards Badges -->
                 <div class="col-lg-3 col-md-6">
                     <a class="navbar-brand fw-bold fs-4 text-white d-flex align-items-center gap-2 mb-3 text-decoration-none hover-glow" href="#">
-                        <div class="bg-primary text-white p-2 rounded-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 36px; height: 36px;">
+                        <div class="bg-primary text-white p-2 rounded-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 38px; height: 38px;">
                             <i class="bi bi-airplane-engines fs-5"></i>
                         </div>
                         TravelMeta
                     </a>
                     <h6 class="fw-bold mb-2 text-white">TravelMeta Travel Agency</h6>
-                    <p class="text-white-50 small mb-4 lh-sm">
+                    <p class="small mb-4 lh-sm">
                         Skyline Plaza, 5th Floor, 123 Main Street<br>
                         Los Angeles, CA 90001, USA
                     </p>
@@ -1295,7 +1324,7 @@
 
                 <!-- Column 2: Explore -->
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="fw-bold mb-4 text-white border-start border-info border-3 ps-2">Explore</h5>
+                    <h5 class="mb-4 text-white border-start border-info border-3 ps-2">Explore</h5>
                     <ul class="list-unstyled small d-flex flex-column gap-2 m-0">
                         <li><a href="#about" class="footer-link">About TravelMeta</a></li>
                         <li><a href="#" class="footer-link">Health & Safety Measure</a></li>
@@ -1310,7 +1339,7 @@
 
                 <!-- Column 3: Useful -->
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="fw-bold mb-4 text-white border-start border-info border-3 ps-2">Useful</h5>
+                    <h5 class="mb-4 text-white border-start border-info border-3 ps-2">Useful</h5>
                     <ul class="list-unstyled small d-flex flex-column gap-2 m-0">
                         <li><a href="#" class="footer-link">Flight Booking</a></li>
                         <li><a href="#" class="footer-link">Visa Processing</a></li>
@@ -1321,7 +1350,7 @@
 
                 <!-- Column 4: Helpline -->
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="fw-bold mb-4 text-white border-start border-info border-3 ps-2">Helpline</h5>
+                    <h5 class="mb-4 text-white border-start border-info border-3 ps-2">Helpline</h5>
                     <ul class="list-unstyled small d-flex flex-column gap-2 m-0">
                         <li><a href="#" class="footer-link">Help & Support</a></li>
                         <li><a href="#" class="footer-link">FAQs</a></li>
@@ -1332,8 +1361,8 @@
             </div>
 
             <!-- Payment Methods Card -->
-            <div class="bg-dark text-white rounded-4 p-3 px-4 mb-4 d-flex align-items-center justify-content-between flex-wrap gap-3 shadow-lg border border-secondary border-opacity-25">
-                <span class="fw-bold fs-6 text-white">We Accept:-</span>
+            <div class="bg-dark text-white rounded-4 p-3 px-4 mb-4 d-flex align-items-center justify-content-between flex-wrap gap-3 shadow-lg border border-secondary border-opacity-25" style="background: rgba(15, 23, 42, 0.8) !important; backdrop-filter: blur(8px);">
+                <span class="fw-bold fs-6 text-white" style="letter-spacing: 0.5px;">We Accept:-</span>
                 <div class="d-flex align-items-center gap-3 fs-4 flex-wrap text-light">
                     <i class="bi bi-credit-card-2-front text-info" title="Mastercard"></i>
                     <i class="bi bi-paypal text-primary" title="PayPal"></i>
@@ -1348,9 +1377,9 @@
             </div>
 
             <!-- Copyright & Disclaimer -->
-            <div class="text-white-50 small pt-2 border-top border-secondary border-opacity-25 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+            <div class="text-white-50 small pt-3 border-top border-secondary border-opacity-25 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
                 <p class="mb-0">&copy; 2026 TravelMeta, <strong class="text-white">Egenslab</strong>. All Rights Reserved.</p>
-                <p class="mb-0 text-white-50" style="font-size: 0.75rem; max-width: 600px;">
+                <p class="mb-0 text-white-50" style="font-size: 0.75rem; max-width: 600px; line-height: 1.6;">
                     All travel services are provided in accordance with applicable international travel regulations, airline policies, visa requirements, and local tourism laws, ensuring transparency, reliability, and compliance throughout your journey.
                 </p>
             </div>
