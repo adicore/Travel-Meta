@@ -883,11 +883,11 @@
         </div>
     </section>
 
-    <!-- 6. SECTION: BEST DEALS FLIGHT ROUTES (DYNAMIC TRAVELPAYOUTS API - CONTINENT POPULAR CITIES) -->
+    <!-- 6. SECTION: BEST DEALS FLIGHT ROUTES (DYNAMIC TRAVELPAYOUTS API VIA PROXY) -->
     <section id="best-deals" class="container py-5 bg-white rounded-4 shadow-sm my-4 border">
         <div class="text-center mb-4">
             <h2 class="fw-extrabold display-6 text-dark">Best Deals Rute Penerbangan Round-Trip</h2>
-            <p class="text-muted">Pilihan rute pulang-pergi terhemat berdasarkan kota terpopuler per benua (Travelpayouts API).</p>
+            <p class="text-muted">Pilihan rute pulang-pergi terhemat berdasarkan kota terpopuler per benua (Travelpayouts API via Proxy).</p>
         </div>
         <ul class="nav nav-pills justify-content-center mb-4 gap-2" id="flightDealsTab" role="tablist">
             <li class="nav-item"><button class="nav-link active rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#dealAmerica" data-continent="dealAmerica">Amerika</button></li>
@@ -1525,9 +1525,12 @@
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
     
-    <!-- VANILLA JS: Geolocation Whereami, Travelpayouts API (Continent Cities), Autocomplete, Sliders & Popups -->
+    <!-- VANILLA JS: Geolocation Whereami, Travelpayouts API (via Cloudflare Proxy), Autocomplete, Sliders & Popups -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            // Ganti URL di bawah ini dengan URL Cloudflare Worker Anda yang sudah di-deploy
+            const PROXY_WORKER_URL = "https://api.pesan.workers.dev/";
+
             let userOrigin = "SIN"; // Default fallback origin
 
             // Popular destination cities per continent for Travelpayouts API
@@ -1559,8 +1562,8 @@
                 ]
             };
 
-            // 1. Detect User Location using whereami API
-            fetch("https://www.apistp.com/whereami?locale=en")
+            // 1. Detect User Location via Proxy (Whereami)
+            fetch(`${PROXY_WORKER_URL}?type=whereami`)
                 .then(res => res.json())
                 .then(locData => {
                     if(locData && (locData.code || locData.iata || locData.city)) {
@@ -1574,24 +1577,23 @@
                     fetchContinentDeals('dealAmerica', document.querySelector('#dealAmerica .flight-results-container'));
                 })
                 .catch(err => {
-                    console.warn("Whereami API fallback used:", err);
+                    console.warn("Whereami Proxy fallback used:", err);
                     const originInput = document.getElementById("originInput");
                     if(originInput) originInput.value = "Singapore (SIN)";
                     fetchContinentDeals('dealAmerica', document.querySelector('#dealAmerica .flight-results-container'));
                 });
 
-            // 2. Fetch Flight Deals for Continent Popular Cities using Travelpayouts API
+            // 2. Fetch Flight Deals for Continent Popular Cities via Cloudflare Proxy
             function fetchContinentDeals(continentKey, containerEl) {
                 if(!containerEl) return;
                 const cities = continentDestinations[continentKey];
                 if(!cities) return;
 
-                containerEl.innerHTML = `<div class="col-12 text-center py-4 text-primary"><div class="spinner-border spinner-border-sm me-2"></div>Memuat rute penerbangan terpopuler...</div>`;
+                containerEl.innerHTML = `<div class="col-12 text-center py-4 text-primary"><div class="spinner-border spinner-border-sm me-2"></div>Memuat rute penerbangan terpopuler via Proxy...</div>`;
 
-                const token = "e3f5d349ea54ab0af9049686d7c1520e";
                 let promises = cities.map(city => {
-                    const url = `https://api.travelpayouts.com/aviasales/v3/prices_for_dates?destination=${city.code}&unique=true&sorting=price&currency=USD&page=1&one_way=false&token=${token}`;
-                    return fetch(url)
+                    const proxyUrl = `${PROXY_WORKER_URL}?destination=${city.code}`;
+                    return fetch(proxyUrl)
                         .then(res => res.json())
                         .then(resData => {
                             let priceUSD = 320; // default fallback price
