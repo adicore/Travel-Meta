@@ -30,7 +30,6 @@
             overflow-x: hidden;
         }
 
-        /* HEADER Z-INDEX HIGHER THAN SEARCH CARD */
         header.sticky-top {
             z-index: 1070 !important;
         }
@@ -46,9 +45,7 @@
             border-radius: 24px !important;
         }
 
-        /* ==========================================
-           SCROLL REVEAL ANIMATION FOR ALL ELEMENTS
-           ========================================== */
+        /* SCROLL REVEAL ANIMATION */
         .scroll-reveal {
             opacity: 0;
             transform: translateY(35px);
@@ -59,16 +56,16 @@
             transform: translateY(0);
         }
 
-        /* ==========================================
-           WHITE TEXT SHADOW ON ALL BUTTONS
-           ========================================== */
+        /* BUTTON HOVER COLOR WHITE & NO TEXT SHADOW */
         .btn, .btn-primary, .btn-gradient, .btn-dark, .btn-outline-primary, .btn-outline-dark, .btn-outline-danger {
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.9) !important;
+            text-shadow: none !important;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+        }
+        .btn:hover, .btn-primary:hover, .btn-gradient:hover, .btn-dark:hover, .btn-outline-primary:hover, .btn-outline-dark:hover, .btn-outline-danger:hover {
+            color: #ffffff !important;
         }
 
-        /* ==========================================
-           UNIVERSAL SKELETON & SHIMMER EFFECT FOR IMAGES
-           ========================================== */
+        /* IMAGE SHIMMER EFFECT */
         .image-shimmer-effect {
             position: relative;
             overflow: hidden;
@@ -91,33 +88,21 @@
             pointer-events: none;
             z-index: 5;
         }
-        .image-shimmer-effect:hover::after, .image-shimmer-effect:active::after {
+        .image-shimmer-effect:hover::after {
             transform: rotate(30deg) translateX(100%);
         }
         .image-shimmer-effect:hover img {
             transform: scale(1.06);
             filter: brightness(1.03);
         }
-        .image-shimmer-effect:active img {
-            transform: scale(0.98);
-            filter: brightness(0.92);
-        }
 
-        /* ==========================================
-           UNIVERSAL SKELETON & SHIMMER EFFECT FOR LINKS
-           ========================================== */
         a {
             position: relative;
             transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
         a:hover, a:focus {
             color: #38bdf8 !important;
-            text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
             transform: translateX(2px);
-        }
-        a:active {
-            transform: scale(0.96) translateY(1px);
-            opacity: 0.8;
         }
 
         .card-hover { 
@@ -132,7 +117,6 @@
             border-color: rgba(59, 130, 246, 0.3);
         }
         
-        /* Modern Pill Active Styling */
         .nav-pills .nav-link {
             color: #475569;
             background-color: #f1f5f9;
@@ -150,7 +134,6 @@
             box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
         }
 
-        /* Modern Elevated Search Inputs */
         .search-box-item {
             border: 1px solid #cbd5e1;
             border-radius: 16px;
@@ -169,7 +152,6 @@
             background-color: #fff;
         }
 
-        /* Autocomplete dropdown style */
         .autocomplete-suggestions {
             position: absolute;
             top: 108%;
@@ -194,48 +176,25 @@
             background-color: #f8fafc;
         }
 
-        /* Gradient Buttons with Skeleton/Shimmer & Hover Effect */
         .btn-primary, .btn-gradient, .btn-dark {
             background: var(--button-gradient) !important;
             border: none !important;
             position: relative;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
         }
         .btn-primary:hover, .btn-gradient:hover, .btn-dark:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(37, 99, 235, 0.45);
         }
-        .btn-primary::after, .btn-gradient::after, .btn-dark::after {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%; width: 200%; height: 200%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0) 100%);
-            transform: rotate(30deg) translateX(-100%);
-            transition: transform 0.6s ease;
-        }
-        .btn-primary:hover::after, .btn-gradient:hover::after, .btn-dark:hover::after {
-            transform: rotate(30deg) translateX(100%);
-        }
 
-        /* EXACT REFERENCE FOOTER STYLING */
         .modern-footer {
             background-color: #000000 !important;
             color: #ffffff !important;
             font-family: 'Plus Jakarta Sans', sans-serif !important;
         }
-        .modern-footer h5 {
+        .modern-footer h5, .modern-footer h6 {
             color: #ffffff !important;
-            font-size: 1.15rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            margin-bottom: 1.5rem;
-        }
-        .modern-footer h6 {
-            color: #ffffff !important;
-            font-size: 1rem;
-            font-weight: 700;
         }
         .modern-footer p {
             color: #d1d5db !important;
@@ -250,7 +209,6 @@
         }
         .footer-link:hover {
             color: #ffffff !important;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
             transform: translateX(4px);
         }
         .social-btn {
@@ -263,7 +221,6 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            font-size: 0.95rem;
             text-decoration: none;
         }
         .social-btn:hover {
@@ -272,44 +229,16 @@
             transform: translateY(-3px) scale(1.08);
         }
         .footer-badge-green {
-            width: 82px;
-            height: 82px;
-            border-radius: 50%;
-            background-color: #00b050;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-size: 0.55rem;
-            font-weight: 700;
-            padding: 6px;
-            box-shadow: 0 4px 12px rgba(0, 176, 80, 0.3);
+            width: 82px; height: 82px; border-radius: 50%; background-color: #00b050; color: #ffffff;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 0.55rem; font-weight: 700; padding: 6px;
         }
         .footer-badge-red {
-            width: 82px;
-            height: 82px;
-            border-radius: 50%;
-            background-color: #ed1c24;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-size: 0.55rem;
-            font-weight: 700;
-            padding: 6px;
-            box-shadow: 0 4px 12px rgba(237, 28, 36, 0.3);
+            width: 82px; height: 82px; border-radius: 50%; background-color: #ed1c24; color: #ffffff;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 0.55rem; font-weight: 700; padding: 6px;
         }
 
-        /* Hide scrollbars for clean look */
-        .overflow-x-auto::-webkit-scrollbar {
-            display: none;
-        }
+        .overflow-x-auto::-webkit-scrollbar { display: none; }
 
-        /* Mobile Responsive Adjustments */
         @media (max-width: 991.98px) {
             .hero-carousel { height: 480px; }
             .hero-carousel img { height: 480px; }
@@ -325,7 +254,6 @@
 
     <!-- 1. MODERN HEADER & NAVIGATION -->
     <header class="bg-white sticky-top shadow-sm scroll-reveal">
-        <!-- Main Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light py-3">
             <div class="container">
                 <a class="navbar-brand fw-bold fs-4 text-dark d-flex align-items-center gap-2 text-decoration-none" href="#">
@@ -374,7 +302,6 @@
             </div>
         </nav>
 
-        <!-- Sub-Header Line -->
         <div class="border-top py-2 bg-white small">
             <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
                 <div class="text-secondary d-flex align-items-center gap-1">
@@ -383,16 +310,12 @@
                 </div>
 
                 <div class="d-flex align-items-center gap-3 text-secondary">
-                    <!-- Currency Popup Trigger Button -->
                     <button class="btn btn-sm btn-light border py-1 px-3 fw-semibold rounded-pill d-flex align-items-center gap-1 shadow-sm" type="button" data-bs-toggle="modal" data-bs-target="#currencyModal" id="selectedCurrencyBtn">
                         <i class="bi bi-coin text-warning"></i> USD ($)
                     </button>
-
-                    <!-- Language Popup Trigger Button -->
                     <button class="btn btn-sm btn-light border py-1 px-3 fw-semibold rounded-pill d-flex align-items-center gap-1 shadow-sm" type="button" data-bs-toggle="modal" data-bs-target="#langModal" id="selectedLangBtn">
                         <i class="bi bi-globe text-info"></i> English (EN)
                     </button>
-
                     <a href="#" class="text-secondary text-decoration-none px-1" title="Cart"><i class="bi bi-cart3 fs-6"></i></a>
                     <a href="#" class="text-secondary text-decoration-none px-1" title="Profile"><i class="bi bi-person-circle fs-5"></i></a>
                 </div>
@@ -431,8 +354,6 @@
     <!-- 4. ADVANCED SEARCH BOX WIDGET -->
     <div class="container search-card scroll-reveal">
         <div class="card border-0 p-3 p-lg-4 bg-white">
-            
-            <!-- Category Pills -->
             <ul class="nav nav-pills mb-4 gap-2 flex-wrap" id="searchCategoryTab" role="tablist">
                 <li class="nav-item"><button class="nav-link rounded-pill px-4 py-2" data-bs-toggle="pill" data-bs-target="#tourSearchTab"><i class="bi bi-map me-2"></i>Tours</button></li>
                 <li class="nav-item"><button class="nav-link rounded-pill px-4 py-2" data-bs-toggle="pill" data-bs-target="#hotelSearchTab"><i class="bi bi-building me-2"></i>Hotels</button></li>
@@ -451,8 +372,6 @@
                             <li class="nav-item"><button class="nav-link rounded-pill px-3 py-1 text-dark" data-bs-toggle="tab" data-bs-target="#roundTrip">Roundtrip</button></li>
                             <li class="nav-item"><button class="nav-link rounded-pill px-3 py-1 text-dark" data-bs-toggle="tab" data-bs-target="#multiCity">Multi-city</button></li>
                         </ul>
-
-                        <!-- Cabin Class Selector -->
                         <div class="dropdown">
                             <button class="btn btn-light btn-sm dropdown-toggle rounded-pill px-3 border text-primary fw-semibold shadow-sm" type="button" data-bs-toggle="dropdown" id="cabinClassDropdownBtn">
                                 Economy
@@ -467,7 +386,6 @@
                     </div>
                     
                     <div class="tab-content">
-                        <!-- ONE-WAY FLIGHT -->
                         <div class="tab-pane fade show active" id="oneWay">
                             <div class="row g-2 align-items-center">
                                 <div class="col-lg-4 col-md-12">
@@ -498,7 +416,6 @@
                                         <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Travelers</div>
                                         <div class="fw-bold small text-dark" id="travelersSummaryText">1 Adult, 0 Child, Economy</div>
                                     </div>
-                                    <!-- Dropdown menu for travelers -->
                                     <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4" style="width: 280px;">
                                         <div class="d-flex justify-content-between align-items-center mb-2">
                                             <span class="small">Dewasa (12+)</span>
@@ -533,7 +450,6 @@
                             </div>
                         </div>
 
-                        <!-- ROUND-TRIP FLIGHT -->
                         <div class="tab-pane fade" id="roundTrip">
                             <div class="row g-2 align-items-center">
                                 <div class="col-lg-3 col-md-12">
@@ -602,7 +518,6 @@
                             </div>
                         </div>
 
-                        <!-- MULTI-CITY FLIGHT -->
                         <div class="tab-pane fade" id="multiCity">
                             <div id="multiCityContainer">
                                 <div class="row g-2 mb-2 multicity-row align-items-center">
@@ -841,7 +756,7 @@
                     </div>
                     <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.65) 100%); pointer-events: none;">
                         <div style="pointer-events: auto;">
-                            <h3 class="fw-bold text-uppercase text-white lh-sm fs-4" style="font-family: 'Poppins', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.6);">TRAVEL AROUND THE WORLD</h3>
+                            <h3 class="fw-bold text-uppercase text-white lh-sm fs-4" style="font-family: 'Poppins', sans-serif;">TRAVEL AROUND THE WORLD</h3>
                         </div>
                         <div style="pointer-events: auto;">
                             <span class="badge rounded-pill px-3 py-2 fs-6 fw-bold shadow" style="background-color: #ff007f;">25% off</span>
@@ -856,7 +771,7 @@
                     <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
                         <div style="pointer-events: auto;">
                             <i class="bi bi-airplane text-white fs-5 mb-2 d-inline-block"></i>
-                            <h3 class="fw-bold text-warning lh-sm fs-4" style="font-family: 'Poppins', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.6);">Breath Adventure Awaits</h3>
+                            <h3 class="fw-bold text-warning lh-sm fs-4" style="font-family: 'Poppins', sans-serif;">Breath Adventure Awaits</h3>
                         </div>
                         <div class="align-self-end bg-danger text-white rounded-circle d-flex flex-column align-items-center justify-content-center p-3 fw-bold shadow-lg" style="width: 80px; height: 80px; transform: rotate(-10deg); pointer-events: auto;">
                             <span class="fs-5 lh-1 fw-extrabold">$199</span>
@@ -872,7 +787,7 @@
                     <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
                         <div style="pointer-events: auto;">
                             <span class="text-uppercase small fw-bold tracking-wider text-warning">up to</span>
-                            <h1 class="fw-bold text-white mb-0 display-5" style="text-shadow: 0 2px 4px rgba(0,0,0,0.6);">20% off</h1>
+                            <h1 class="fw-bold text-white mb-0 display-5">20% off</h1>
                             <h4 class="fw-bold tracking-widest text-uppercase">SALE</h4>
                         </div>
                         <div class="text-center bg-success text-white py-2 rounded-pill fw-bold small shadow" style="pointer-events: auto;">
@@ -887,7 +802,7 @@
                     </div>
                     <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
                         <div style="pointer-events: auto;">
-                            <h3 class="fw-bold text-white lh-sm fs-4" style="font-family: 'Poppins', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.6);">Summer Vacation</h3>
+                            <h3 class="fw-bold text-white lh-sm fs-4" style="font-family: 'Poppins', sans-serif;">Summer Vacation</h3>
                         </div>
                         <div class="d-flex justify-content-between align-items-end" style="pointer-events: auto;">
                             <span class="badge bg-light text-dark rounded-pill px-3 py-1 fw-semibold small shadow">VACATION mode</span>
@@ -948,7 +863,7 @@
         </div>
     </section>
 
-    <!-- 7. SECTION: POPULAR HOTELS (WITH CLICKABLE HOTEL NAME, ROTATE 0 DEG, AND CLICKABLE PRIMARY BUTTON) -->
+    <!-- 7. SECTION: POPULAR HOTELS -->
     <section id="hotels" class="container py-5 scroll-reveal">
         <div class="text-center mb-4">
             <h2 class="fw-extrabold display-6 text-dark">Popular Hotels Globally</h2>
@@ -978,11 +893,9 @@
 
                             <div class="card-body p-4 d-flex flex-column justify-content-between">
                                 <div>
-                                    <!-- Clickable Hotel Name -->
                                     <h5 class="fw-bold mb-1 fs-5">
                                         <a href="#" class="text-dark text-decoration-none">Luxury Ocean View Hotel</a>
                                     </h5>
-                                    <!-- Location with bi-cursor at 0 deg transform -->
                                     <p class="text-muted small mb-3 d-flex align-items-center gap-1">
                                         <i class="bi bi-cursor text-secondary" style="font-size: 0.85rem; transform: rotate(0deg);"></i> Bali, Indonesia
                                     </p>
@@ -1011,7 +924,6 @@
                                         <small class="text-muted" style="font-size: 0.75rem;">per night</small>
                                     </div>
 
-                                    <!-- Clickable Button with standard primary button hover/shimmer effect -->
                                     <button class="btn btn-primary w-100 rounded-pill py-2 fw-bold shadow-sm">
                                         Check Availability
                                     </button>
@@ -1028,7 +940,7 @@
         </div>
     </section>
 
-    <!-- 8. SECTION: POPULAR TOURS -->
+    <!-- 8. SECTION: POPULAR TOURS (REDESIGNED TO MATCH REFERENCE IMAGE) -->
     <section id="tours" class="container py-5 bg-white rounded-4 shadow-sm my-4 border scroll-reveal">
         <div class="text-center mb-4">
             <h2 class="fw-extrabold display-6 text-dark">Popular Tours & Attractions</h2>
@@ -1044,22 +956,98 @@
         <div class="tab-content">
             <div class="tab-pane fade show active" id="tourAmerica">
                 <div class="row g-4">
-                    <div class="col-md-4">
-                        <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover">
-                            <div class="image-shimmer-effect" style="height: 200px;">
-                                <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=600&q=80" alt="Tour">
+                    
+                    <!-- Tour Item Card 1: Maldives Handpicked Adventure Tours -->
+                    <div class="col-md-6">
+                        <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover position-relative bg-white">
+                            <!-- Image with Clickable link, Wishlist & Dual Badges -->
+                            <a href="#" class="image-shimmer-effect position-relative d-block" style="height: 240px;">
+                                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" alt="Maldives Handpicked Adventure Tours">
+                            </a>
+                            <button class="btn btn-white bg-white rounded-circle position-absolute top-0 start-0 m-3 d-flex align-items-center justify-content-center shadow-sm border-0" style="width: 38px; height: 38px; z-index: 2;" title="Wishlist">
+                                <i class="bi bi-heart text-dark fs-5"></i>
+                            </button>
+                            <div class="position-absolute top-0 end-0 m-3 d-flex flex-column align-items-end gap-1 z-2">
+                                <span class="badge px-3 py-2 rounded-pill fw-bold text-white shadow-sm" style="background-color: #ff3b30; font-size: 0.75rem;">Sale on!</span>
+                                <span class="badge px-3 py-2 rounded-pill fw-bold text-dark shadow-sm" style="background-color: #ffcc00; font-size: 0.75rem;">Group tour</span>
                             </div>
-                            <div class="card-body p-4">
-                                <span class="badge bg-success bg-opacity-10 text-success mb-2 px-3 py-1 rounded-pill fw-semibold">Full Day Tour</span>
-                                <h5 class="fw-bold text-dark">Grand Canyon Helicopter & Skywalk</h5>
-                                <p class="text-muted small mb-3">Termasuk pemandu profesional & tiket.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="text-danger fw-bold fs-5">IDR 3.250.000</span>
-                                    <button class="btn btn-outline-primary btn-sm rounded-pill px-3 py-2 fw-semibold">Book Tour</button>
+
+                            <div class="card-body p-4 d-flex flex-column justify-content-between">
+                                <div>
+                                    <!-- Star Ratings -->
+                                    <div class="d-flex align-items-center gap-1 mb-2">
+                                        <span class="text-warning small">★★★★★</span>
+                                        <span class="text-dark small fw-bold">(4.9)</span>
+                                    </div>
+                                    <!-- Clickable Title -->
+                                    <h5 class="fw-bold mb-2 fs-5">
+                                        <a href="#" class="text-dark text-decoration-none">Maldives Handpicked Adventure Tours</a>
+                                    </h5>
+                                    <!-- Location & Duration Meta -->
+                                    <div class="d-flex align-items-center gap-4 text-muted small mb-4">
+                                        <span><i class="bi bi-geo-alt me-1 text-secondary"></i> Maldives</span>
+                                        <span><i class="bi bi-clock me-1 text-secondary"></i> 2 Hours</span>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-end">
+                                    <div>
+                                        <small class="text-muted d-block" style="font-size: 0.75rem;">Starting From</small>
+                                        <span class="fw-extrabold text-dark fs-4">$69<small class="fw-normal text-muted fs-6">/per person</small></span>
+                                    </div>
+                                    <button class="btn btn-primary rounded-pill px-4 py-2 fw-bold shadow-sm">
+                                        View Tour
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Tour Item Card 2: Camel Ride Journey -->
+                    <div class="col-md-6">
+                        <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover position-relative bg-white">
+                            <a href="#" class="image-shimmer-effect position-relative d-block" style="height: 240px;">
+                                <img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80" alt="Camel Ride Journey">
+                            </a>
+                            <button class="btn btn-white bg-white rounded-circle position-absolute top-0 start-0 m-3 d-flex align-items-center justify-content-center shadow-sm border-0" style="width: 38px; height: 38px; z-index: 2;" title="Wishlist">
+                                <i class="bi bi-heart text-dark fs-5"></i>
+                            </button>
+                            <div class="position-absolute top-0 end-0 m-3 d-flex flex-column align-items-end gap-1 z-2">
+                                <span class="badge px-3 py-2 rounded-pill fw-bold text-white shadow-sm" style="background-color: #ff3b30; font-size: 0.75rem;">Up to 15% off</span>
+                                <span class="badge px-3 py-2 rounded-pill fw-bold text-dark shadow-sm" style="background-color: #ffcc00; font-size: 0.75rem;">👑 Best seller</span>
+                            </div>
+
+                            <div class="card-body p-4 d-flex flex-column justify-content-between">
+                                <div>
+                                    <div class="d-flex align-items-center gap-1 mb-2">
+                                        <span class="text-warning small">★★★★★</span>
+                                        <span class="text-dark small fw-bold">(4.9)</span>
+                                    </div>
+                                    <h5 class="fw-bold mb-2 fs-5">
+                                        <a href="#" class="text-dark text-decoration-none">Camel Ride Journey</a>
+                                    </h5>
+                                    <div class="d-flex align-items-center gap-4 text-muted small mb-4">
+                                        <span><i class="bi bi-geo-alt me-1 text-secondary"></i> Morocco</span>
+                                        <span><i class="bi bi-clock me-1 text-secondary"></i> 1 Hour</span>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-end">
+                                    <div>
+                                        <small class="text-muted d-block" style="font-size: 0.75rem;">Starting From</small>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="text-muted text-decoration-line-through small">$39</span>
+                                            <span class="fw-extrabold text-dark fs-4">$329<small class="fw-normal text-muted fs-6">/per person</small></span>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width: 45px; height: 45px;">
+                                        <i class="bi bi-globe fs-5"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="tab-pane fade" id="tourEurope"><div class="text-center py-4 text-muted">Tur Eropa segera hadir...</div></div>
@@ -1120,7 +1108,6 @@
     <!-- 10. SECTION: CUSTOMER REVIEWS -->
     <section class="py-5 my-4 position-relative overflow-hidden scroll-reveal" style="background: linear-gradient(135deg, #e3fcef 0%, #cbf5df 100%);">
         <div class="container py-4">
-            
             <div class="row align-items-center mb-5">
                 <div class="col-lg-8">
                     <span class="text-success fw-bold small d-block mb-1 text-uppercase tracking-wider">Customer experience at TravelMeta</span>
@@ -1291,7 +1278,7 @@
                 <span class="text-primary fw-bold small text-uppercase tracking-wider">Edukasi & Wawasan</span>
                 <h2 class="fw-extrabold display-6 mb-0 text-dark">Travel Tips & Inspirations.</h2>
             </div>
-            <a href="#" class="btn btn-outline-dark rounded-pill px-4 py-2 fw-semibold small shadow-sm hover-glow text-decoration-none">View All Inspiration</a>
+            <a href="#" class="btn btn-outline-dark rounded-pill px-4 py-2 fw-semibold small shadow-sm text-decoration-none">View All Inspiration</a>
         </div>
         
         <div class="row g-4">
@@ -1312,7 +1299,7 @@
                                 The Maldives is a dream destination known for its crystal-clear lagoons and luxury overwater villas.
                             </p>
                         </div>
-                        <a href="#" class="text-primary fw-bold text-decoration-none small d-flex align-items-center gap-1 hover-glow">
+                        <a href="#" class="text-primary fw-bold text-decoration-none small d-flex align-items-center gap-1">
                             Read More <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
@@ -1336,7 +1323,7 @@
                                 An African safari is one of the most exciting travel experiences in the world. Visitors can witness the Big Five wildlife.
                             </p>
                         </div>
-                        <a href="#" class="text-primary fw-bold text-decoration-none small d-flex align-items-center gap-1 hover-glow">
+                        <a href="#" class="text-primary fw-bold text-decoration-none small d-flex align-items-center gap-1">
                             Read More <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
@@ -1360,7 +1347,7 @@
                                 Switzerland is famous for its snow-capped Alps, charming villages, and scenic train journeys.
                             </p>
                         </div>
-                        <a href="#" class="text-primary fw-bold text-decoration-none small d-flex align-items-center gap-1 hover-glow">
+                        <a href="#" class="text-primary fw-bold text-decoration-none small d-flex align-items-center gap-1">
                             Read More <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
@@ -1397,7 +1384,7 @@
         <div class="container py-4">
             <div class="row g-5 mb-5">
                 <div class="col-lg-3 col-md-6">
-                    <a class="fw-bold fs-4 text-white d-flex align-items-center gap-2 mb-3 text-decoration-none hover-glow" href="#">
+                    <a class="fw-bold fs-4 text-white d-flex align-items-center gap-2 mb-3 text-decoration-none" href="#">
                         <span class="text-white">Atlastrip</span>
                     </a>
                     <h6 class="mb-2">Atlastrip Travel Agency</h6>
@@ -1542,7 +1529,6 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             
-            // GANTI URL INI DENGAN WORKER CLOUDFLARE ANDA
             const PROXY_WORKER_URL = "https://api.pesan.workers.dev/";
 
             let userOrigin = "SIN"; 
@@ -1596,7 +1582,6 @@
                 ]
             };
 
-            // Scroll Reveal Intersection Observer for scroll down effect
             const revealObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1610,7 +1595,6 @@
                 revealObserver.observe(el);
             });
 
-            // 1. Detect User Location via Whereami API
             fetch("https://www.apistp.com/whereami?locale=en")
                 .then(res => res.json())
                 .then(locData => {
@@ -1637,7 +1621,6 @@
                     fetchContinentDeals('dealAmerica', document.querySelector('#dealAmerica .flight-results-container'));
                 });
 
-            // 2. Fetch Flight Deals via Cloudflare Proxy
             function fetchContinentDeals(continentKey, containerEl) {
                 if(!containerEl) return;
                 const cities = continentDestinations[continentKey];
