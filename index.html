@@ -887,7 +887,7 @@
     <section id="best-deals" class="container py-5 bg-white rounded-4 shadow-sm my-4 border">
         <div class="text-center mb-4">
             <h2 class="fw-extrabold display-6 text-dark">Best Deals Rute Penerbangan Round-Trip</h2>
-            <p class="text-muted">Pilihan rute pulang-pergi terhemat dari lokasi Anda menuju kota terpopuler per benua.</p>
+            <p class="text-muted">Pilihan rute pulang-pergi terhemat berdasarkan kota terpopuler per benua.</p>
         </div>
         <ul class="nav nav-pills justify-content-center mb-4 gap-2" id="flightDealsTab" role="tablist">
             <li class="nav-item"><button class="nav-link active rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#dealAmerica" data-continent="dealAmerica">Amerika</button></li>
@@ -1529,13 +1529,19 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             
-            // GANTI URL INI DENGAN WORKER CLOUDFLARE ANDA YANG SUDAH DIPERBARUI
+            // GANTI URL INI DENGAN WORKER CLOUDFLARE ANDA
             const PROXY_WORKER_URL = "https://api.pesan.workers.dev/";
 
             let userOrigin = "SIN"; 
             let userOriginName = "Singapore";
+            let visitorCurrency = "USD"; // Default fallback currency
 
-            // 6+ Popular destination cities per continent (IATA Code only needed for dynamic images & API)
+            // Tabel pemetaan mata uang negara
+            const currencyMapping = {
+                "AB":"RUB","AD":"EUR","AE":"AED","AF":"AFN","AG":"XCD","AI":"XCD","AL":"ALL","AM":"AMD","AO":"AOA","AQ":"","AR":"ARS","AS":"USD","AT":"EUR","AU":"AUD","AW":"AWG","AX":"EUR","AZ":"AZN","BA":"BAM","BB":"BBD","BD":"BDT","BE":"EUR","BF":"XOF","BG":"EUR","BH":"BHD","BI":"BIF","BJ":"XOF","BL":"EUR","BM":"BMD","BN":"BND","BO":"BOB","BQ":"USD","BR":"BRL","BS":"BSD","BT":"BTN","BV":"NOK","BW":"BWP","BY":"BYN","BZ":"BZD","CA":"CAD","CC":"AUD","CD":"CDF","CF":"XAF","CG":"XAF","CH":"CHF","CI":"XOF","CK":"NZD","CL":"CLP","CM":"XAF","CN":"CNY","CO":"COP","CR":"CRC","CU":"CUP","CV":"CVE","CW":"XCG","CX":"AUD","CY":"EUR","CZ":"CZK","DE":"EUR","DJ":"DJF","DK":"DKK","DM":"XCD","DO":"DOP","DZ":"DZD","EC":"USD","EE":"EUR","EG":"EGP","EH":"MAD","ER":"ERN","ES":"EUR","ET":"ETB","FI":"EUR","FJ":"FJD","FK":"FKP","FM":"USD","FO":"DKK","FR":"EUR","GA":"XAF","GB":"GBP","GD":"XCD","GE":"GEL","GF":"EUR","GG":"GBP","GH":"GHS","GI":"GIP","GL":"DKK","GM":"GMD","GN":"GNF","GP":"EUR","GQ":"XAF","GR":"EUR","GS":"GBP","GT":"GTQ","GU":"USD","GW":"XOF","GY":"GYD","HK":"HKD","HM":"AUD","HN":"HNL","HR":"EUR","HT":"HTG","HU":"HUF","ID":"IDR","IE":"EUR","IL":"ILS","IM":"GBP","IN":"INR","IO":"USD","IQ":"IQD","IR":"IRR","IS":"ISK","IT":"EUR","JE":"GBP","JM":"JMD","JO":"JOD","JP":"JPY","KE":"KES","KG":"KGS","KH":"KHR","KI":"AUD","KM":"KMF","KN":"XCD","KP":"KPW","KR":"KRW","KW":"KWD","KX":"","KY":"KYD","KZ":"KZT","LA":"LAK","LB":"LBP","LC":"XCD","LI":"CHF","LK":"LKR","LR":"LRD","LS":"LSL","LT":"EUR","LU":"EUR","LV":"EUR","LY":"LYD","MA":"MAD","MC":"EUR","MD":"MDL","ME":"EUR","MF":"EUR","MG":"MGA","MH":"USD","MK":"MKD","ML":"XOF","MM":"MMK","MN":"MNT","MO":"MOP","MP":"USD","MQ":"EUR","MR":"MRO","MS":"XCD","MT":"EUR","MU":"MUR","MV":"MVR","MW":"MWK","MX":"MXN","MY":"MYR","MZ":"MZN","NA":"NAD","NC":"XPF","NE":"XOF","NF":"AUD","NG":"NGN","NI":"NIO","NL":"EUR","NO":"NOK","NP":"NPR","NR":"AUD","NU":"NZD","NY":"TRY","NZ":"NZD","OM":"OMR","PA":"PAB","PE":"PEN","PF":"XPF","PG":"PGK","PH":"PHP","PK":"PKR","PL":"PLN","PM":"EUR","PN":"NZD","PR":"USD","PS":"ILS","PT":"EUR","PW":"USD","PY":"PYG","QA":"QAR","RE":"EUR","RO":"RON","RS":"RSD","RU":"RUB","RW":"RWF","SA":"SAR","SB":"SBD","SC":"SCR","SD":"SDG","SE":"SEK","SG":"SGD","SH":"SHP","SI":"EUR","SJ":"NOK","SK":"EUR","SL":"SLL","SM":"EUR","SN":"XOF","SO":"SOS","SR":"SRD","SS":"SSP","ST":"STD","SV":"USD","SX":"XCG","SY":"SYP","SZ":"SZL","TC":"USD","TD":"XAF","TF":"EUR","TG":"XOF","TH":"THB","TJ":"TJS","TK":"NZD","TL":"USD","TM":"TMT","TN":"TND","TO":"TOP","TR":"TRY","TT":"TTD","TV":"AUD","TW":"TWD","TZ":"TZS","UA":"UAH","UG":"UGX","UM":"USD","US":"USD","UY":"UYU","UZ":"UZS","VA":"EUR","VC":"XCD","VE":"VEF","VG":"USD","VI":"USD","VN":"VND","VU":"VUV","WF":"XPF","WS":"WST","XK":"EUR","YE":"YER","YT":"EUR","ZA":"ZAR","ZM":"ZMK","ZW":"ZWL"
+            };
+
+            // 6+ Popular destination cities per continent
             const continentDestinations = {
                 'dealAmerica': [
                     { code: 'NYC', name: 'New York' },
@@ -1579,20 +1585,26 @@
                 ]
             };
 
-            // 1. Detect User Location (Direct Fetch to Whereami - Tanpa Proxy)
+            // 1. Detect User Location via Whereami API
             fetch("https://www.apistp.com/whereami?locale=en")
                 .then(res => res.json())
                 .then(locData => {
-                    if(locData && (locData.code || locData.iata || locData.city)) {
+                    if(locData) {
                         userOrigin = locData.code || locData.iata || "SIN";
                         userOriginName = locData.city || locData.name || userOrigin;
+                        
+                        // Menentukan mata uang berdasarkan kode negara hasil deteksi[cite: 1]
+                        const countryCode = locData.country || locData.country_code || "";
+                        if (countryCode && currencyMapping[countryCode]) {
+                            visitorCurrency = currencyMapping[countryCode];
+                        }
                         
                         const originInput = document.getElementById("originInput");
                         if(originInput) {
                             originInput.value = `${userOriginName} (${userOrigin})`;
                         }
                     }
-                    // Load initial flight deals for America continent setelah lokasi ditemukan
+                    // Load initial flight deals for America
                     fetchContinentDeals('dealAmerica', document.querySelector('#dealAmerica .flight-results-container'));
                 })
                 .catch(err => {
@@ -1602,29 +1614,34 @@
                     fetchContinentDeals('dealAmerica', document.querySelector('#dealAmerica .flight-results-container'));
                 });
 
-            // 2. Fetch Flight Deals for Continent Popular Cities via Cloudflare Proxy (Controlled by Frontend)
+            // 2. Fetch Flight Deals via Cloudflare Proxy with Dynamic Currency & Dates
             function fetchContinentDeals(continentKey, containerEl) {
                 if(!containerEl) return;
                 const cities = continentDestinations[continentKey];
                 if(!cities) return;
 
-                containerEl.innerHTML = `<div class="col-12 text-center py-4 text-primary"><div class="spinner-border spinner-border-sm me-2"></div>Mencari rute terbaik dari ${userOriginName}...</div>`;
+                containerEl.innerHTML = `<div class="col-12 text-center py-4 text-primary"><div class="spinner-border spinner-border-sm me-2"></div>Mencari rute terbaik dari ${userOriginName} (${visitorCurrency})...</div>`;
 
                 let promises = cities.map(city => {
-                    // Frontend memegang kendali atas semua parameter API (disampaikan via Proxy)
-                    const proxyUrl = `${PROXY_WORKER_URL}?origin=${userOrigin}&destination=${city.code}&unique=true&sorting=price&currency=USD&page=1&one_way=false`;
+                    const proxyUrl = `${PROXY_WORKER_URL}?origin=${userOrigin}&destination=${city.code}&unique=true&sorting=price&currency=${visitorCurrency}&page=1&one_way=false`;
                     
                     return fetch(proxyUrl)
                         .then(res => res.json())
                         .then(resData => {
-                            let priceUSD = 0;
-                            let departureDate = "Cek Jadwal"; 
+                            let priceText = "Cek Harga";
+                            let datesText = "Jadwal Fleksibel";
                             
-                            // Ekstrak Harga & Tanggal langsung dari data balasan API Travelpayouts
                             if(resData && resData.data && resData.data.length > 0) {
-                                priceUSD = resData.data[0].price || 0;
-                                if (resData.data[0].departure_at) {
-                                    departureDate = resData.data[0].departure_at.split('T')[0]; // Ambil YYYY-MM-DD
+                                const flightInfo = resData.data[0];
+                                if(flightInfo.price) {
+                                    priceText = `${visitorCurrency} ${Number(flightInfo.price).toLocaleString()}`;
+                                }
+                                if(flightInfo.departure_at && flightInfo.return_at) {
+                                    const depDate = flightInfo.departure_at.split('T')[0];
+                                    const retDate = flightInfo.return_at.split('T')[0];
+                                    datesText = `${depDate} ➔ ${retDate}`;
+                                } else if(flightInfo.departure_at) {
+                                    datesText = flightInfo.departure_at.split('T')[0];
                                 }
                             }
                             
@@ -1632,25 +1649,22 @@
                                 code: city.code,
                                 name: city.name,
                                 imgUrl: `https://zen.wego.com/cdn-cgi/image/height=280/destinations/cities/${city.code}.jpg`,
-                                priceUSD: priceUSD,
-                                departureDate: departureDate
+                                priceText: priceText,
+                                datesText: datesText
                             };
                         })
                         .catch(() => ({
                             code: city.code,
                             name: city.name,
                             imgUrl: `https://zen.wego.com/cdn-cgi/image/height=280/destinations/cities/${city.code}.jpg`,
-                            priceUSD: 0,
-                            departureDate: "Cek Jadwal"
+                            priceText: "Cek Harga",
+                            datesText: "Cek Jadwal"
                         }));
                 });
 
                 Promise.all(promises).then(results => {
                     let htmlContent = "";
                     results.forEach(item => {
-                        const priceIDR = (item.priceUSD * 16000).toLocaleString("id-ID");
-                        const displayPrice = item.priceUSD > 0 ? `IDR ${priceIDR}` : "Cek Harga";
-                        
                         htmlContent += `
                             <div class="col-md-4">
                                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover">
@@ -1659,12 +1673,12 @@
                                     </div>
                                     <div class="card-body p-4">
                                         <span class="badge bg-primary bg-opacity-10 text-primary mb-2 px-3 py-1 rounded-pill fw-semibold">
-                                            <i class="bi bi-calendar3 me-1"></i> ${item.departureDate}
+                                            <i class="bi bi-calendar3 me-1"></i> ${item.datesText}
                                         </span>
                                         <h5 class="fw-bold text-dark text-truncate" title="${userOriginName} ke ${item.name}">${userOriginName} ➔ ${item.name}</h5>
                                         <p class="text-muted small mb-3">Round-Trip • Bagasi Termasuk</p>
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <span class="text-danger fw-bold fs-5">${displayPrice}</span>
+                                            <span class="text-danger fw-bold fs-5">${item.priceText}</span>
                                             <button class="btn btn-outline-primary btn-sm rounded-pill px-3 py-2 fw-semibold">Pesan</button>
                                         </div>
                                     </div>
