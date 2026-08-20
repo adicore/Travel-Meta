@@ -37,6 +37,32 @@
             z-index: 1070 !important;
         }
 
+        /* LZY LOAD IMAGE EFFECT */
+        .lazy-img {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out, transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            will-change: opacity, transform;
+        }
+        .lazy-img.loaded {
+            opacity: 1;
+        }
+
+        /* SKELETON LOADER CSS */
+        .skeleton {
+            background: #e2e8f0;
+            background: linear-gradient(90deg, #e2e8f0 25%, #cbd5e1 50%, #e2e8f0 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+            border-radius: 6px;
+        }
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .skeleton-text { height: 16px; margin-bottom: 8px; width: 100%; }
+        .skeleton-text.short { width: 60%; }
+        .skeleton-img-box { height: 200px; width: 100%; border-radius: 1rem 1rem 0 0; }
+
         .hero-carousel { height: 620px; }
         .hero-carousel img { height: 620px; object-fit: cover; filter: brightness(0.55); }
         
@@ -140,7 +166,6 @@
             width: 100%;
         }
         .image-shimmer-effect img {
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.4s ease;
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -158,7 +183,7 @@
         .image-shimmer-effect:hover::after {
             transform: rotate(30deg) translateX(100%);
         }
-        .image-shimmer-effect:hover img {
+        .image-shimmer-effect:hover img.loaded {
             transform: scale(1.06);
             filter: brightness(1.03);
         }
@@ -514,7 +539,7 @@
         <div class="carousel-inner h-100">
             <div class="carousel-item active h-100">
                 <div class="image-shimmer-effect h-100">
-                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80" class="d-block w-100 h-100" alt="Paradise Beach">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80" loading="lazy" class="d-block w-100 h-100 lazy-img" onload="this.classList.add('loaded')" alt="Paradise Beach">
                 </div>
                 <div class="carousel-caption d-none d-md-block text-start mb-5 pb-5 container z-2">
                     <span class="badge bg-primary bg-opacity-75 backdrop-blur mb-3 px-3 py-2 rounded-pill fw-semibold">Eksplorasi Dunia</span>
@@ -524,7 +549,7 @@
             </div>
             <div class="carousel-item h-100">
                 <div class="image-shimmer-effect h-100">
-                    <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1920&q=80" class="d-block w-100 h-100" alt="Mountain View">
+                    <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1920&q=80" loading="lazy" class="d-block w-100 h-100 lazy-img" onload="this.classList.add('loaded')" alt="Mountain View">
                 </div>
                 <div class="carousel-caption d-none d-md-block text-start mb-5 pb-5 container z-2">
                     <span class="badge bg-success bg-opacity-75 backdrop-blur mb-3 px-3 py-2 rounded-pill fw-semibold">Petualangan Baru</span>
@@ -940,7 +965,7 @@
                     <div class="vc-item">
                         <div class="card border-0 rounded-4 overflow-hidden text-white card-hover position-relative card-item" style="height: 380px;">
                             <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
-                                <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=600&q=80" alt="Travel Around the World">
+                                <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=600&q=80" loading="lazy" class="lazy-img" onload="this.classList.add('loaded')" alt="Travel Around the World">
                             </div>
                             <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.65) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
@@ -956,7 +981,7 @@
                     <div class="vc-item">
                         <div class="card border-0 rounded-4 overflow-hidden text-white card-hover position-relative card-item" style="height: 380px;">
                             <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
-                                <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" alt="Breath Adventure Awaits">
+                                <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" loading="lazy" class="lazy-img" onload="this.classList.add('loaded')" alt="Breath Adventure Awaits">
                             </div>
                             <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
@@ -974,7 +999,7 @@
                     <div class="vc-item">
                         <div class="card border-0 rounded-4 overflow-hidden text-white card-hover position-relative card-item" style="height: 380px;">
                             <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
-                                <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" alt="20% off SALE">
+                                <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" loading="lazy" class="lazy-img" onload="this.classList.add('loaded')" alt="20% off SALE">
                             </div>
                             <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
@@ -992,7 +1017,7 @@
                     <div class="vc-item">
                         <div class="card border-0 rounded-4 overflow-hidden text-white card-hover position-relative card-item" style="height: 380px;">
                             <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
-                                <img src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=600&q=80" alt="Summer Vacation">
+                                <img src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=600&q=80" loading="lazy" class="lazy-img" onload="this.classList.add('loaded')" alt="Summer Vacation">
                             </div>
                             <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
@@ -1043,27 +1068,23 @@
         <div class="tab-content" id="flightDealsContent">
             <div class="tab-pane fade show active" id="dealAmerica">
                 <div class="row g-4 flight-results-container" data-continent="dealAmerica">
-                    <div class="col-12 text-center py-4 text-muted">Memuat rute terbaik ke Amerika...</div>
+                    <!-- SKELETON PLACEHOLDER -->
                 </div>
             </div>
             <div class="tab-pane fade" id="dealEurope">
                 <div class="row g-4 flight-results-container" data-continent="dealEurope">
-                    <div class="col-12 text-center py-4 text-muted">Memuat rute terbaik ke Eropa...</div>
                 </div>
             </div>
             <div class="tab-pane fade" id="dealAsia">
                 <div class="row g-4 flight-results-container" data-continent="dealAsia">
-                    <div class="col-12 text-center py-4 text-muted">Memuat rute terbaik ke Asia...</div>
                 </div>
             </div>
             <div class="tab-pane fade" id="dealAfrica">
                 <div class="row g-4 flight-results-container" data-continent="dealAfrica">
-                    <div class="col-12 text-center py-4 text-muted">Memuat rute terbaik ke Afrika...</div>
                 </div>
             </div>
             <div class="tab-pane fade" id="dealMiddleEast">
                 <div class="row g-4 flight-results-container" data-continent="dealMiddleEast">
-                    <div class="col-12 text-center py-4 text-muted">Memuat rute terbaik ke Middle East...</div>
                 </div>
             </div>
         </div>
@@ -1088,7 +1109,7 @@
                     <div class="col-md-4">
                         <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover position-relative bg-white">
                             <div class="image-shimmer-effect position-relative" style="height: 220px;">
-                                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" alt="Luxury Ocean View Hotel">
+                                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" loading="lazy" class="lazy-img" onload="this.classList.add('loaded')" alt="Luxury Ocean View Hotel">
                                 <button class="btn btn-white bg-white rounded-circle position-absolute top-0 start-0 m-3 d-flex align-items-center justify-content-center shadow-sm border-0" style="width: 38px; height: 38px; z-index: 2;" title="Wishlist">
                                     <i class="bi bi-heart text-dark fs-5"></i>
                                 </button>
@@ -1166,7 +1187,7 @@
                     <div class="col-md-6">
                         <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover position-relative bg-white">
                             <a href="#" class="image-shimmer-effect position-relative d-block" style="height: 240px;">
-                                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" alt="Maldives Handpicked Adventure Tours">
+                                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" loading="lazy" class="lazy-img" onload="this.classList.add('loaded')" alt="Maldives Handpicked Adventure Tours">
                             </a>
                             <button class="btn btn-white bg-white rounded-circle position-absolute top-0 start-0 m-3 d-flex align-items-center justify-content-center shadow-sm border-0" style="width: 38px; height: 38px; z-index: 2;" title="Wishlist">
                                 <i class="bi bi-heart text-dark fs-5"></i>
@@ -1207,7 +1228,7 @@
                     <div class="col-md-6">
                         <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover position-relative bg-white">
                             <a href="#" class="image-shimmer-effect position-relative d-block" style="height: 240px;">
-                                <img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80" alt="Camel Ride Journey">
+                                <img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80" loading="lazy" class="lazy-img" onload="this.classList.add('loaded')" alt="Camel Ride Journey">
                             </a>
                             <button class="btn btn-white bg-white rounded-circle position-absolute top-0 start-0 m-3 d-flex align-items-center justify-content-center shadow-sm border-0" style="width: 38px; height: 38px; z-index: 2;" title="Wishlist">
                                 <i class="bi bi-heart text-dark fs-5"></i>
@@ -1275,13 +1296,13 @@
             <div class="col-lg-6">
                 <div class="position-relative d-flex justify-content-center align-items-center mb-5" style="height: 380px;">
                     <div class="position-absolute shadow-lg rounded-4 overflow-hidden border border-white border-3 image-shimmer-effect" style="width: 200px; height: 320px; transform: rotate(-8deg) translateX(-80px); z-index: 1;">
-                        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=500&q=80" alt="Traveler">
+                        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=500&q=80" loading="lazy" class="lazy-img" onload="this.classList.add('loaded')" alt="Traveler">
                     </div>
                     <div class="position-absolute shadow-lg rounded-4 overflow-hidden border border-white border-3 image-shimmer-effect" style="width: 210px; height: 340px; transform: translateY(-10px); z-index: 3;">
-                        <img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=500&q=80" alt="World Landmarks">
+                        <img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=500&q=80" loading="lazy" class="lazy-img" onload="this.classList.add('loaded')" alt="World Landmarks">
                     </div>
                     <div class="position-absolute shadow-lg rounded-4 overflow-hidden border border-white border-3 image-shimmer-effect" style="width: 200px; height: 320px; transform: rotate(8deg) translateX(80px); z-index: 2;">
-                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" alt="Beach Resort">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" loading="lazy" class="lazy-img" onload="this.classList.add('loaded')" alt="Beach Resort">
                     </div>
                 </div>
 
@@ -1305,6 +1326,40 @@
         </div>
     </section>
 
+    <!-- 9.5. SECTION: ABOUT FEATURES (ADDED PER REQUEST) -->
+    <section class="container py-5 my-4 scroll-reveal">
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 rounded-4 h-100 p-4" style="background-color: #e6f4a3;">
+                    <i class="bi bi-award fs-1 mb-3 text-dark"></i>
+                    <h4 class="fw-bold fs-5 text-dark mb-3">Best Price Guarantee Ever.</h4>
+                    <p class="text-dark mb-0 small" style="line-height: 1.7;">Travel confidently knowing you're getting the best value - we guarantee competitive prices with <strong class="fw-bold">no hidden costs</strong>.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 rounded-4 h-100 p-4" style="background-color: #f1f2f4;">
+                    <i class="bi bi-shield-check fs-1 mb-3 text-dark"></i>
+                    <h4 class="fw-bold fs-5 text-dark mb-3">Safe, Secure & Hassle-Free Booking.</h4>
+                    <p class="text-dark mb-0 small" style="line-height: 1.7;">Plan and confirm your trip quickly with our safe, simple, and fully <strong class="fw-bold">secure booking system</strong>.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 rounded-4 h-100 p-4" style="background-color: #c1edcc;">
+                    <i class="bi bi-train-front fs-1 mb-3 text-dark"></i>
+                    <h4 class="fw-bold fs-5 text-dark mb-3">Flexible & Custom Travel Packages.</h4>
+                    <p class="text-dark mb-0 small" style="line-height: 1.7;">Plan your trip your way with flexible travel packages tailored to your interests and <strong class="fw-bold">custom package</strong>.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 rounded-4 h-100 p-4" style="background-color: #e2e0ff;">
+                    <i class="bi bi-chat-dots fs-1 mb-3 text-dark"></i>
+                    <h4 class="fw-bold fs-5 text-dark mb-3">Our Support Always with You 24/7.</h4>
+                    <p class="text-dark mb-0 small" style="line-height: 1.7;">Travel with peace of mind knowing our expert team is always ready to <strong class="fw-bold">support you anytime, anywhere</strong>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- 10. SECTION: CUSTOMER REVIEWS (USING VANILLA CAROUSEL) -->
     <section class="py-5 my-4 position-relative overflow-hidden scroll-reveal" style="background: linear-gradient(135deg, #e3fcef 0%, #cbf5df 100%);">
         <div class="container py-4">
@@ -1315,10 +1370,10 @@
                     <div class="d-flex align-items-center gap-3 flex-wrap">
                         <div class="d-flex align-items-center">
                             <div class="image-shimmer-effect rounded-circle shadow-sm" style="width: 40px; height: 40px; border: 2px solid #fff;">
-                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" class="rounded-circle" alt="User">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" loading="lazy" class="rounded-circle lazy-img" onload="this.classList.add('loaded')" alt="User">
                             </div>
                             <div class="image-shimmer-effect rounded-circle shadow-sm ms-n3" style="width: 40px; height: 40px; border: 2px solid #fff;">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="rounded-circle" alt="User">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" loading="lazy" class="rounded-circle lazy-img" onload="this.classList.add('loaded')" alt="User">
                             </div>
                             <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fw-bold ms-n3 small border border-white border-2 shadow-sm" style="width: 40px; height: 40px;">+</div>
                         </div>
@@ -1357,7 +1412,7 @@
                                 </div>
                                 <div class="d-flex align-items-center gap-3 pt-3 border-top">
                                     <div class="image-shimmer-effect rounded-circle shadow-sm" style="width: 45px; height: 45px;">
-                                        <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=100&q=80" class="rounded-circle" alt="Anderson">
+                                        <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=100&q=80" loading="lazy" class="rounded-circle lazy-img" onload="this.classList.add('loaded')" alt="Anderson">
                                     </div>
                                     <div>
                                         <h6 class="fw-bold mb-0 text-dark">Anderson</h6>
@@ -1383,7 +1438,7 @@
                                 </div>
                                 <div class="d-flex align-items-center gap-3 pt-3 border-top">
                                     <div class="image-shimmer-effect rounded-circle shadow-sm" style="width: 45px; height: 45px;">
-                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="rounded-circle" alt="James Bonde">
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" loading="lazy" class="rounded-circle lazy-img" onload="this.classList.add('loaded')" alt="James Bonde">
                                     </div>
                                     <div>
                                         <h6 class="fw-bold mb-0 text-dark">James Bonde</h6>
@@ -1409,7 +1464,7 @@
                                 </div>
                                 <div class="d-flex align-items-center gap-3 pt-3 border-top">
                                     <div class="image-shimmer-effect rounded-circle shadow-sm" style="width: 45px; height: 45px;">
-                                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" class="rounded-circle" alt="Amber Lashleye">
+                                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" loading="lazy" class="rounded-circle lazy-img" onload="this.classList.add('loaded')" alt="Amber Lashleye">
                                     </div>
                                     <div>
                                         <h6 class="fw-bold mb-0 text-dark">Amber Lashleye</h6>
@@ -1435,7 +1490,7 @@
                                 </div>
                                 <div class="d-flex align-items-center gap-3 pt-3 border-top">
                                     <div class="image-shimmer-effect rounded-circle shadow-sm" style="width: 45px; height: 45px;">
-                                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" class="rounded-circle" alt="Michael Smith">
+                                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" loading="lazy" class="rounded-circle lazy-img" onload="this.classList.add('loaded')" alt="Michael Smith">
                                     </div>
                                     <div>
                                         <h6 class="fw-bold mb-0 text-dark">Michael Smith</h6>
@@ -1485,10 +1540,10 @@
                     </p>
                     <div class="d-flex align-items-center gap-3 mb-4 flex-wrap">
                         <a href="#" class="d-inline-block text-decoration-none">
-                            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" height="46" alt="App Store">
+                            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" loading="lazy" height="46" class="lazy-img" onload="this.classList.add('loaded')" alt="App Store">
                         </a>
                         <a href="#" class="d-inline-block text-decoration-none">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" height="46" alt="Google Play">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" loading="lazy" height="46" class="lazy-img" onload="this.classList.add('loaded')" alt="Google Play">
                         </a>
                     </div>
                     <div class="d-flex align-items-center gap-2 text-dark small fw-bold bg-white d-inline-flex px-3 py-2 rounded-pill shadow-sm">
@@ -1499,7 +1554,7 @@
                 <div class="col-lg-5 text-center position-relative d-none d-lg-block">
                     <div class="position-relative" style="height: 320px;">
                         <div class="image-shimmer-effect rounded-4 shadow-lg position-absolute end-0 top-0 border border-white border-3" style="width: 250px; height: 340px; transform: rotate(4deg);">
-                            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=500&q=80" class="rounded-4" alt="Mobile App">
+                            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=500&q=80" loading="lazy" class="rounded-4 lazy-img" onload="this.classList.add('loaded')" alt="Mobile App">
                         </div>
                         <div class="position-absolute bg-white rounded-pill px-4 py-2 shadow-sm small fw-bold text-dark d-flex align-items-center gap-2" style="top: 40px; left: 10px; z-index: 2;">
                             <span class="text-warning">★ 4.9</span> Average rating
@@ -1528,7 +1583,7 @@
                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover h-100 bg-white">
                     <div class="position-relative">
                         <div class="image-shimmer-effect" style="height: 220px;">
-                            <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80" alt="Maldives Beach">
+                            <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80" loading="lazy" class="lazy-img" onload="this.classList.add('loaded')" alt="Maldives Beach">
                         </div>
                         <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 rounded-pill px-3 py-2 shadow-sm small fw-bold z-2">
                             <i class="bi bi-geo-alt text-primary me-1"></i> Maldives Beach
@@ -1552,7 +1607,7 @@
                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover h-100 bg-white">
                     <div class="position-relative">
                         <div class="image-shimmer-effect" style="height: 220px;">
-                            <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=600&q=80" alt="South Africa">
+                            <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=600&q=80" loading="lazy" class="lazy-img" onload="this.classList.add('loaded')" alt="South Africa">
                         </div>
                         <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 rounded-pill px-3 py-2 shadow-sm small fw-bold z-2">
                             <i class="bi bi-geo-alt text-primary me-1"></i> South Africa
@@ -1576,7 +1631,7 @@
                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover h-100 bg-white">
                     <div class="position-relative">
                         <div class="image-shimmer-effect" style="height: 220px;">
-                            <img src="https://images.unsplash.com/photo-1527668752550-956627f04c6d?auto=format&fit=crop&w=600&q=80" alt="Switzerland">
+                            <img src="https://images.unsplash.com/photo-1527668752550-956627f04c6d?auto=format&fit=crop&w=600&q=80" loading="lazy" class="lazy-img" onload="this.classList.add('loaded')" alt="Switzerland">
                         </div>
                         <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 rounded-pill px-3 py-2 shadow-sm small fw-bold z-2">
                             <i class="bi bi-geo-alt text-primary me-1"></i> Switzerland
@@ -1950,8 +2005,8 @@
             }
 
             bindEvents() {
-                if (this.nextBtn) this.nextBtn.addEventListener('click', () => this.slideNext());
-                if (this.prevBtn) this.prevBtn.addEventListener('click', () => this.slidePrev());
+                if (this.nextBtn) this.nextBtn.addEventListener('click', () => { this.slideNext(); this.startAutoplay(); });
+                if (this.prevBtn) this.prevBtn.addEventListener('click', () => { this.slidePrev(); this.startAutoplay(); });
 
                 if (this.options.autoplay) {
                     this.carousel.addEventListener('mouseenter', () => this.stopAutoplay());
@@ -2056,7 +2111,7 @@
         document.addEventListener("DOMContentLoaded", () => {
             
             // PROXY WORKER URL
-            const PROXY_WORKER_URL = "https://api.pesan.workers.dev/";
+            const PROXY_WORKER_URL = "https://api.pesan.workers.dev/";[cite: 1]
 
             let userOrigin = "SIN"; 
             let userOriginName = "Singapore";
@@ -2155,12 +2210,14 @@
                 requestAnimationFrame(scrollStep);
             });
 
-            // VANILLA CAROUSEL INITIALIZATION
+            // VANILLA CAROUSEL INITIALIZATION DENGAN AUTOPLAY
             const carousels = document.querySelectorAll('.vanilla-carousel');
             carousels.forEach(function(carouselElement) {
                 new VanillaCarousel(carouselElement, {
                     items: 1, 
-                    loop: false,
+                    loop: true,
+                    autoplay: true,
+                    autoplayTimeout: 4000,
                     dots: true,
                     nav: true,
                     responsive: {
@@ -2203,7 +2260,27 @@
                 const cities = continentDestinations[continentKey];
                 if(!cities) return;
 
-                containerEl.innerHTML = `<div class="col-12 text-center py-4 text-primary"><div class="spinner-border spinner-border-sm me-2"></div>Mencari rute terbaik dari ${userOriginName} (${visitorCurrency})...</div>`;
+                // INJECT SKELETON LOADER
+                let skeletonHtml = '';
+                for(let i=0; i<6; i++) {
+                    skeletonHtml += `
+                        <div class="col-md-4">
+                            <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white">
+                                <div class="skeleton skeleton-img-box"></div>
+                                <div class="card-body p-4">
+                                    <div class="skeleton skeleton-text short mb-3"></div>
+                                    <div class="skeleton skeleton-text mb-2"></div>
+                                    <div class="skeleton skeleton-text short mb-4"></div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="skeleton skeleton-text w-25 mb-0"></div>
+                                        <div class="skeleton skeleton-text w-25 mb-0 rounded-pill" style="height: 35px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+                containerEl.innerHTML = skeletonHtml;
 
                 let promises = cities.map(city => {
                     const proxyUrl = `${PROXY_WORKER_URL}?origin=${userOrigin}&destination=${city.code}&unique=true&sorting=price&currency=${visitorCurrency}&page=1&one_way=false`;
@@ -2250,9 +2327,9 @@
                     results.forEach(item => {
                         htmlContent += `
                             <div class="col-md-4">
-                                <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover">
+                                <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover bg-white">
                                     <div class="image-shimmer-effect" style="height: 200px;">
-                                        <img src="${item.imgUrl}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80'">
+                                        <img src="${item.imgUrl}" loading="lazy" class="lazy-img" onload="this.classList.add('loaded')" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80'">
                                     </div>
                                     <div class="card-body p-4">
                                         <span class="badge bg-primary bg-opacity-10 text-primary mb-2 px-3 py-1 rounded-pill fw-semibold">
