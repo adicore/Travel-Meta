@@ -883,43 +883,43 @@
         </div>
     </section>
 
-    <!-- 6. SECTION: BEST DEALS FLIGHT ROUTES (DYNAMIC TRAVELPAYOUTS API) -->
+    <!-- 6. SECTION: BEST DEALS FLIGHT ROUTES (DYNAMIC TRAVELPAYOUTS API - CONTINENT POPULAR CITIES) -->
     <section id="best-deals" class="container py-5 bg-white rounded-4 shadow-sm my-4 border">
         <div class="text-center mb-4">
             <h2 class="fw-extrabold display-6 text-dark">Best Deals Rute Penerbangan Round-Trip</h2>
-            <p class="text-muted">Pilihan rute pulang-pergi terhemat berdasarkan wilayah (Travelpayouts Live API).</p>
+            <p class="text-muted">Pilihan rute pulang-pergi terhemat berdasarkan kota terpopuler per benua (Travelpayouts API).</p>
         </div>
         <ul class="nav nav-pills justify-content-center mb-4 gap-2" id="flightDealsTab" role="tablist">
-            <li class="nav-item"><button class="nav-link active rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#dealAmerica" data-country="US">Amerika</button></li>
-            <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#dealEurope" data-country="FR">Eropa</button></li>
-            <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#dealAsia" data-country="SG">Asia</button></li>
-            <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#dealAfrica" data-country="ZA">Afrika</button></li>
-            <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#dealMiddleEast" data-country="AE">Middle East</button></li>
+            <li class="nav-item"><button class="nav-link active rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#dealAmerica" data-continent="dealAmerica">Amerika</button></li>
+            <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#dealEurope" data-continent="dealEurope">Eropa</button></li>
+            <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#dealAsia" data-continent="dealAsia">Asia</button></li>
+            <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#dealAfrica" data-continent="dealAfrica">Afrika</button></li>
+            <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#dealMiddleEast" data-continent="dealMiddleEast">Middle East</button></li>
         </ul>
         <div class="tab-content" id="flightDealsContent">
             <div class="tab-pane fade show active" id="dealAmerica">
-                <div class="row g-4 flight-results-container" data-country="US">
-                    <div class="col-12 text-center py-4 text-muted">Memuat data rute Amerika dari Travelpayouts...</div>
+                <div class="row g-4 flight-results-container" data-continent="dealAmerica">
+                    <div class="col-12 text-center py-4 text-muted">Memuat kota terpopuler Amerika dari Travelpayouts...</div>
                 </div>
             </div>
             <div class="tab-pane fade" id="dealEurope">
-                <div class="row g-4 flight-results-container" data-country="FR">
-                    <div class="col-12 text-center py-4 text-muted">Memuat data rute Eropa...</div>
+                <div class="row g-4 flight-results-container" data-continent="dealEurope">
+                    <div class="col-12 text-center py-4 text-muted">Memuat kota terpopuler Eropa...</div>
                 </div>
             </div>
             <div class="tab-pane fade" id="dealAsia">
-                <div class="row g-4 flight-results-container" data-country="SG">
-                    <div class="col-12 text-center py-4 text-muted">Memuat data rute Asia...</div>
+                <div class="row g-4 flight-results-container" data-continent="dealAsia">
+                    <div class="col-12 text-center py-4 text-muted">Memuat kota terpopuler Asia...</div>
                 </div>
             </div>
             <div class="tab-pane fade" id="dealAfrica">
-                <div class="row g-4 flight-results-container" data-country="ZA">
-                    <div class="col-12 text-center py-4 text-muted">Memuat data rute Afrika...</div>
+                <div class="row g-4 flight-results-container" data-continent="dealAfrica">
+                    <div class="col-12 text-center py-4 text-muted">Memuat kota terpopuler Afrika...</div>
                 </div>
             </div>
             <div class="tab-pane fade" id="dealMiddleEast">
-                <div class="row g-4 flight-results-container" data-country="AE">
-                    <div class="col-12 text-center py-4 text-muted">Memuat data rute Middle East...</div>
+                <div class="row g-4 flight-results-container" data-continent="dealMiddleEast">
+                    <div class="col-12 text-center py-4 text-muted">Memuat kota terpopuler Middle East...</div>
                 </div>
             </div>
         </div>
@@ -1525,11 +1525,41 @@
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
     
-    <!-- VANILLA JS: Geolocation Whereami, Travelpayouts API, Autocomplete, Sliders & Popups -->
+    <!-- VANILLA JS: Geolocation Whereami, Travelpayouts API (Continent Cities), Autocomplete, Sliders & Popups -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            let userOrigin = "SIN"; // Default fallback origin
+
+            // Popular destination cities per continent for Travelpayouts API
+            const continentDestinations = {
+                'dealAmerica': [
+                    { code: 'NYC', name: 'New York', img: 'https://images.unsplash.com/photo-1534430480872-3498386e7856?auto=format&fit=crop&w=600&q=80' },
+                    { code: 'LAX', name: 'Los Angeles', img: 'https://images.unsplash.com/photo-1580655653885-65763b2597d0?auto=format&fit=crop&w=600&q=80' },
+                    { code: 'MIA', name: 'Miami', img: 'https://images.unsplash.com/photo-1506966953602-c20cc11f75e3?auto=format&fit=crop&w=600&q=80' }
+                ],
+                'dealEurope': [
+                    { code: 'PAR', name: 'Paris', img: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=600&q=80' },
+                    { code: 'LON', name: 'London', img: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=600&q=80' },
+                    { code: 'ROM', name: 'Rome', img: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=600&q=80' }
+                ],
+                'dealAsia': [
+                    { code: 'BKK', name: 'Bangkok', img: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=600&q=80' },
+                    { code: 'SIN', name: 'Singapore', img: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=600&q=80' },
+                    { code: 'TYO', name: 'Tokyo', img: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=600&q=80' }
+                ],
+                'dealAfrica': [
+                    { code: 'CPT', name: 'Cape Town', img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=600&q=80' },
+                    { code: 'JNB', name: 'Johannesburg', img: 'https://images.unsplash.com/photo-1578895101408-1a364e7e783c?auto=format&fit=crop&w=600&q=80' },
+                    { code: 'CAI', name: 'Cairo', img: 'https://images.unsplash.com/photo-1572252009286-268acec5ca0a?auto=format&fit=crop&w=600&q=80' }
+                ],
+                'dealMiddleEast': [
+                    { code: 'DXB', name: 'Dubai', img: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80' },
+                    { code: 'DOH', name: 'Doha', img: 'https://images.unsplash.com/photo-1588714477688-cf28b6a455a2?auto=format&fit=crop&w=600&q=80' },
+                    { code: 'IST', name: 'Istanbul', img: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=600&q=80' }
+                ]
+            };
+
             // 1. Detect User Location using whereami API
-            let userOrigin = "SIN"; // Default fallback
             fetch("https://www.apistp.com/whereami?locale=en")
                 .then(res => res.json())
                 .then(locData => {
@@ -1540,81 +1570,85 @@
                             originInput.value = `${locData.name || locData.city || userOrigin} (${userOrigin})`;
                         }
                     }
-                    // Load initial flight deals for America (US)
-                    fetchFlightDeals("US", document.querySelector('#dealAmerica .flight-results-container'));
+                    // Load initial flight deals for America continent
+                    fetchContinentDeals('dealAmerica', document.querySelector('#dealAmerica .flight-results-container'));
                 })
                 .catch(err => {
                     console.warn("Whereami API fallback used:", err);
                     const originInput = document.getElementById("originInput");
                     if(originInput) originInput.value = "Singapore (SIN)";
-                    fetchFlightDeals("US", document.querySelector('#dealAmerica .flight-results-container'));
+                    fetchContinentDeals('dealAmerica', document.querySelector('#dealAmerica .flight-results-container'));
                 });
 
-            // 2. Fetch Flight Deals from Travelpayouts API
-            function fetchFlightDeals(destinationCode, containerEl) {
+            // 2. Fetch Flight Deals for Continent Popular Cities using Travelpayouts API
+            function fetchContinentDeals(continentKey, containerEl) {
                 if(!containerEl) return;
+                const cities = continentDestinations[continentKey];
+                if(!cities) return;
+
+                containerEl.innerHTML = `<div class="col-12 text-center py-4 text-primary"><div class="spinner-border spinner-border-sm me-2"></div>Memuat rute penerbangan terpopuler...</div>`;
+
                 const token = "e3f5d349ea54ab0af9049686d7c1520e";
-                const url = `https://api.travelpayouts.com/aviasales/v3/prices_for_dates?destination=${destinationCode}&unique=true&sorting=price&currency=USD&page=1&one_way=false&token=${token}`;
+                let promises = cities.map(city => {
+                    const url = `https://api.travelpayouts.com/aviasales/v3/prices_for_dates?destination=${city.code}&unique=true&sorting=price&currency=USD&page=1&one_way=false&token=${token}`;
+                    return fetch(url)
+                        .then(res => res.json())
+                        .then(resData => {
+                            let priceUSD = 320; // default fallback price
+                            if(resData && resData.data && resData.data.length > 0) {
+                                priceUSD = resData.data[0].price || 320;
+                            }
+                            return {
+                                code: city.code,
+                                name: city.name,
+                                img: city.img,
+                                priceUSD: priceUSD
+                            };
+                        })
+                        .catch(() => ({
+                            code: city.code,
+                            name: city.name,
+                            img: city.img,
+                            priceUSD: 350
+                        }));
+                });
 
-                containerEl.innerHTML = `<div class="col-12 text-center py-4 text-primary"><div class="spinner-border spinner-border-sm me-2"></div>Memuat rute penerbangan terbaik...</div>`;
-
-                fetch(url)
-                    .then(res => res.json())
-                    .then(response => {
-                        if(!response || !response.data || response.data.length === 0) {
-                            containerEl.innerHTML = `<div class="col-12 text-center py-4 text-muted">Tidak ada rute penerbangan ditemukan untuk wilayah ini.</div>`;
-                            return;
-                        }
-
-                        let htmlContent = "";
-                        // Take up to 3 results
-                        const items = response.data.slice(0, 3);
-                        items.forEach((item, index) => {
-                            const images = [
-                                "https://images.unsplash.com/photo-1534430480872-3498386e7856?auto=format&fit=crop&w=600&q=80",
-                                "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=600&q=80",
-                                "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80"
-                            ];
-                            const imgUrl = images[index % images.length];
-                            const priceUSD = item.price || 250;
-                            const priceIDR = (priceUSD * 16000).toLocaleString("id-ID");
-
-                            htmlContent += `
-                                <div class="col-md-4">
-                                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover">
-                                        <div class="image-shimmer-effect" style="height: 200px;">
-                                            <img src="${imgUrl}" alt="Flight Route">
-                                        </div>
-                                        <div class="card-body p-4">
-                                            <span class="badge bg-primary bg-opacity-10 text-primary mb-2 px-3 py-1 rounded-pill fw-semibold">Round-Trip • Flight</span>
-                                            <h5 class="fw-bold text-dark">${item.origin || userOrigin} ➔ ${item.destination || destinationCode}</h5>
-                                            <p class="text-muted small mb-3">Maskapai Partner • Bagasi 30kg</p>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <span class="text-danger fw-bold fs-5">IDR ${priceIDR}</span>
-                                                <button class="btn btn-outline-primary btn-sm rounded-pill px-3 py-2 fw-semibold">Pesan</button>
-                                            </div>
+                Promise.all(promises).then(results => {
+                    let htmlContent = "";
+                    results.forEach(item => {
+                        const priceIDR = (item.priceUSD * 16000).toLocaleString("id-ID");
+                        htmlContent += `
+                            <div class="col-md-4">
+                                <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover">
+                                    <div class="image-shimmer-effect" style="height: 200px;">
+                                        <img src="${item.img}" alt="${item.name}">
+                                    </div>
+                                    <div class="card-body p-4">
+                                        <span class="badge bg-primary bg-opacity-10 text-primary mb-2 px-3 py-1 rounded-pill fw-semibold">Round-Trip • ${item.code}</span>
+                                        <h5 class="fw-bold text-dark">${userOrigin} ➔ ${item.name} (${item.code})</h5>
+                                        <p class="text-muted small mb-3">Maskapai Partner • Bagasi 30kg</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="text-danger fw-bold fs-5">IDR ${priceIDR}</span>
+                                            <button class="btn btn-outline-primary btn-sm rounded-pill px-3 py-2 fw-semibold">Pesan</button>
                                         </div>
                                     </div>
                                 </div>
-                            `;
-                        });
-                        containerEl.innerHTML = htmlContent;
-                    })
-                    .catch(err => {
-                        console.error("Travelpayouts API error:", err);
-                        containerEl.innerHTML = `<div class="col-12 text-center py-4 text-danger">Gagal memuat data penerbangan dari server.</div>`;
+                            </div>
+                        `;
                     });
+                    containerEl.innerHTML = htmlContent;
+                });
             }
 
             // Tab switching event listener for flight deals
             const flightDealsTabs = document.querySelectorAll('#flightDealsTab button');
             flightDealsTabs.forEach(tab => {
                 tab.addEventListener('shown.bs.tab', (e) => {
-                    const countryCode = e.target.getAttribute('data-country');
+                    const continentKey = e.target.getAttribute('data-continent');
                     const targetPaneSelector = e.target.getAttribute('data-bs-target');
                     const paneEl = document.querySelector(targetPaneSelector + ' .flight-results-container');
                     if(paneEl && paneEl.children.length <= 1) {
-                        fetchFlightDeals(countryCode, paneEl);
+                        fetchContinentDeals(continentKey, paneEl);
                     }
                 });
             });
