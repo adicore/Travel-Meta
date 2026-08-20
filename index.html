@@ -887,7 +887,7 @@
     <section id="best-deals" class="container py-5 bg-white rounded-4 shadow-sm my-4 border">
         <div class="text-center mb-4">
             <h2 class="fw-extrabold display-6 text-dark">Best Deals Rute Penerbangan Round-Trip</h2>
-            <p class="text-muted">Pilihan rute pulang-pergi terhemat berdasarkan 6+ kota terpopuler per benua.</p>
+            <p class="text-muted">Pilihan rute pulang-pergi terhemat dari lokasi Anda menuju kota terpopuler per benua.</p>
         </div>
         <ul class="nav nav-pills justify-content-center mb-4 gap-2" id="flightDealsTab" role="tablist">
             <li class="nav-item"><button class="nav-link active rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#dealAmerica" data-continent="dealAmerica">Amerika</button></li>
@@ -899,27 +899,27 @@
         <div class="tab-content" id="flightDealsContent">
             <div class="tab-pane fade show active" id="dealAmerica">
                 <div class="row g-4 flight-results-container" data-continent="dealAmerica">
-                    <div class="col-12 text-center py-4 text-muted">Memuat kota terpopuler Amerika...</div>
+                    <div class="col-12 text-center py-4 text-muted">Memuat rute terbaik ke Amerika...</div>
                 </div>
             </div>
             <div class="tab-pane fade" id="dealEurope">
                 <div class="row g-4 flight-results-container" data-continent="dealEurope">
-                    <div class="col-12 text-center py-4 text-muted">Memuat kota terpopuler Eropa...</div>
+                    <div class="col-12 text-center py-4 text-muted">Memuat rute terbaik ke Eropa...</div>
                 </div>
             </div>
             <div class="tab-pane fade" id="dealAsia">
                 <div class="row g-4 flight-results-container" data-continent="dealAsia">
-                    <div class="col-12 text-center py-4 text-muted">Memuat kota terpopuler Asia...</div>
+                    <div class="col-12 text-center py-4 text-muted">Memuat rute terbaik ke Asia...</div>
                 </div>
             </div>
             <div class="tab-pane fade" id="dealAfrica">
                 <div class="row g-4 flight-results-container" data-continent="dealAfrica">
-                    <div class="col-12 text-center py-4 text-muted">Memuat kota terpopuler Afrika...</div>
+                    <div class="col-12 text-center py-4 text-muted">Memuat rute terbaik ke Afrika...</div>
                 </div>
             </div>
             <div class="tab-pane fade" id="dealMiddleEast">
                 <div class="row g-4 flight-results-container" data-continent="dealMiddleEast">
-                    <div class="col-12 text-center py-4 text-muted">Memuat kota terpopuler Middle East...</div>
+                    <div class="col-12 text-center py-4 text-muted">Memuat rute terbaik ke Middle East...</div>
                 </div>
             </div>
         </div>
@@ -1528,52 +1528,54 @@
     <!-- VANILLA JS: Geolocation Whereami, Travelpayouts API, Autocomplete, Sliders & Popups -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Ganti URL di bawah ini dengan URL Cloudflare Worker Anda yang sudah di-deploy
+            
+            // GANTI URL INI DENGAN WORKER CLOUDFLARE ANDA YANG SUDAH DIPERBARUI
             const PROXY_WORKER_URL = "https://api.pesan.workers.dev/";
 
-            let userOrigin = "SIN"; // Default fallback origin
+            let userOrigin = "SIN"; 
+            let userOriginName = "Singapore";
 
-            // 6+ Popular destination cities per continent
+            // 6+ Popular destination cities per continent (IATA Code only needed for dynamic images & API)
             const continentDestinations = {
                 'dealAmerica': [
-                    { code: 'NYC', name: 'New York', img: 'https://images.unsplash.com/photo-1534430480872-3498386e7856?auto=format&fit=crop&w=600&q=80' },
-                    { code: 'LAX', name: 'Los Angeles', img: 'https://images.unsplash.com/photo-1580655653885-65763b2597d0?auto=format&fit=crop&w=600&q=80' },
-                    { code: 'MIA', name: 'Miami', img: 'https://images.unsplash.com/photo-1506966953602-c20cc11f75e3?auto=format&fit=crop&w=600&q=80' },
-                    { code: 'YYZ', name: 'Toronto', img: 'https://images.unsplash.com/photo-1517090504586-fde19ea6066f?auto=format&fit=crop&w=600&q=80' },
-                    { code: 'CUN', name: 'Cancun', img: 'https://images.unsplash.com/photo-1552074284-5e88ef1aef18?auto=format&fit=crop&w=600&q=80' },
-                    { code: 'GRU', name: 'Sao Paulo', img: 'https://images.unsplash.com/photo-1543026362-e9ccdc97be23?auto=format&fit=crop&w=600&q=80' }
+                    { code: 'NYC', name: 'New York' },
+                    { code: 'LAX', name: 'Los Angeles' },
+                    { code: 'MIA', name: 'Miami' },
+                    { code: 'YYZ', name: 'Toronto' },
+                    { code: 'CUN', name: 'Cancun' },
+                    { code: 'GRU', name: 'Sao Paulo' }
                 ],
                 'dealEurope': [
-                    { code: 'PAR', name: 'Paris', img: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=600&q=80' },
-                    { code: 'LON', name: 'London', img: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=600&q=80' },
-                    { code: 'ROM', name: 'Rome', img: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=600&q=80' },
-                    { code: 'AMS', name: 'Amsterdam', img: 'https://images.unsplash.com/photo-1534351590666-818d488175b2?auto=format&fit=crop&w=600&q=80' },
-                    { code: 'BCN', name: 'Barcelona', img: 'https://images.unsplash.com/photo-1583422409516-1500d05a0fc1?auto=format&fit=crop&w=600&q=80' },
-                    { code: 'BER', name: 'Berlin', img: 'https://images.unsplash.com/photo-1560969184-10fe8719e047?auto=format&fit=crop&w=600&q=80' }
+                    { code: 'PAR', name: 'Paris' },
+                    { code: 'LON', name: 'London' },
+                    { code: 'ROM', name: 'Rome' },
+                    { code: 'AMS', name: 'Amsterdam' },
+                    { code: 'BCN', name: 'Barcelona' },
+                    { code: 'BER', name: 'Berlin' }
                 ],
                 'dealAsia': [
-                    { code: 'BKK', name: 'Bangkok', img: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=600&q=80' },
-                    { code: 'SIN', name: 'Singapore', img: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=600&q=80' },
-                    { code: 'TYO', name: 'Tokyo', img: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=600&q=80' },
-                    { code: 'ICN', name: 'Seoul', img: 'https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=600&q=80' },
-                    { code: 'KUL', name: 'Kuala Lumpur', img: 'https://images.unsplash.com/photo-1596422846543-75c6fc197f0a?auto=format&fit=crop&w=600&q=80' },
-                    { code: 'TPE', name: 'Taipei', img: 'https://images.unsplash.com/photo-1503126487127-d42f50b4ec1f?auto=format&fit=crop&w=600&q=80' }
+                    { code: 'BKK', name: 'Bangkok' },
+                    { code: 'SIN', name: 'Singapore' },
+                    { code: 'TYO', name: 'Tokyo' },
+                    { code: 'ICN', name: 'Seoul' },
+                    { code: 'KUL', name: 'Kuala Lumpur' },
+                    { code: 'TPE', name: 'Taipei' }
                 ],
                 'dealAfrica': [
-                    { code: 'CPT', name: 'Cape Town', img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=600&q=80' },
-                    { code: 'JNB', name: 'Johannesburg', img: 'https://images.unsplash.com/photo-1578895101408-1a364e7e783c?auto=format&fit=crop&w=600&q=80' },
-                    { code: 'CAI', name: 'Cairo', img: 'https://images.unsplash.com/photo-1572252009286-268acec5ca0a?auto=format&fit=crop&w=600&q=80' },
-                    { code: 'CMN', name: 'Casablanca', img: 'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=600&q=80' },
-                    { code: 'NBO', name: 'Nairobi', img: 'https://images.unsplash.com/photo-1558983995-5cba89632eb1?auto=format&fit=crop&w=600&q=80' },
-                    { code: 'MRU', name: 'Mauritius', img: 'https://images.unsplash.com/photo-1559132223-95c5d1e2e924?auto=format&fit=crop&w=600&q=80' }
+                    { code: 'CPT', name: 'Cape Town' },
+                    { code: 'JNB', name: 'Johannesburg' },
+                    { code: 'CAI', name: 'Cairo' },
+                    { code: 'CMN', name: 'Casablanca' },
+                    { code: 'NBO', name: 'Nairobi' },
+                    { code: 'MRU', name: 'Mauritius' }
                 ],
                 'dealMiddleEast': [
-                    { code: 'DXB', name: 'Dubai', img: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80' },
-                    { code: 'DOH', name: 'Doha', img: 'https://images.unsplash.com/photo-1588714477688-cf28b6a455a2?auto=format&fit=crop&w=600&q=80' },
-                    { code: 'IST', name: 'Istanbul', img: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=600&q=80' },
-                    { code: 'AUH', name: 'Abu Dhabi', img: 'https://images.unsplash.com/photo-1512632578888-169bbbc64f33?auto=format&fit=crop&w=600&q=80' },
-                    { code: 'TLV', name: 'Tel Aviv', img: 'https://images.unsplash.com/photo-1544716278-e513176f20b5?auto=format&fit=crop&w=600&q=80' },
-                    { code: 'RUH', name: 'Riyadh', img: 'https://images.unsplash.com/photo-1588698188166-733d3c880da3?auto=format&fit=crop&w=600&q=80' }
+                    { code: 'DXB', name: 'Dubai' },
+                    { code: 'DOH', name: 'Doha' },
+                    { code: 'IST', name: 'Istanbul' },
+                    { code: 'AUH', name: 'Abu Dhabi' },
+                    { code: 'TLV', name: 'Tel Aviv' },
+                    { code: 'RUH', name: 'Riyadh' }
                 ]
             };
 
@@ -1582,13 +1584,15 @@
                 .then(res => res.json())
                 .then(locData => {
                     if(locData && (locData.code || locData.iata || locData.city)) {
-                        userOrigin = locData.code || locData.iata || locData.city;
+                        userOrigin = locData.code || locData.iata || "SIN";
+                        userOriginName = locData.city || locData.name || userOrigin;
+                        
                         const originInput = document.getElementById("originInput");
                         if(originInput) {
-                            originInput.value = `${locData.name || locData.city || userOrigin} (${userOrigin})`;
+                            originInput.value = `${userOriginName} (${userOrigin})`;
                         }
                     }
-                    // Load initial flight deals for America continent
+                    // Load initial flight deals for America continent setelah lokasi ditemukan
                     fetchContinentDeals('dealAmerica', document.querySelector('#dealAmerica .flight-results-container'));
                 })
                 .catch(err => {
@@ -1598,35 +1602,46 @@
                     fetchContinentDeals('dealAmerica', document.querySelector('#dealAmerica .flight-results-container'));
                 });
 
-            // 2. Fetch Flight Deals for Continent Popular Cities via Cloudflare Proxy
+            // 2. Fetch Flight Deals for Continent Popular Cities via Cloudflare Proxy (Controlled by Frontend)
             function fetchContinentDeals(continentKey, containerEl) {
                 if(!containerEl) return;
                 const cities = continentDestinations[continentKey];
                 if(!cities) return;
 
-                containerEl.innerHTML = `<div class="col-12 text-center py-4 text-primary"><div class="spinner-border spinner-border-sm me-2"></div>Memuat rute penerbangan terpopuler...</div>`;
+                containerEl.innerHTML = `<div class="col-12 text-center py-4 text-primary"><div class="spinner-border spinner-border-sm me-2"></div>Mencari rute terbaik dari ${userOriginName}...</div>`;
 
                 let promises = cities.map(city => {
-                    const proxyUrl = `${PROXY_WORKER_URL}?destination=${city.code}`;
+                    // Frontend memegang kendali atas semua parameter API (disampaikan via Proxy)
+                    const proxyUrl = `${PROXY_WORKER_URL}?origin=${userOrigin}&destination=${city.code}&unique=true&sorting=price&currency=USD&page=1&one_way=false`;
+                    
                     return fetch(proxyUrl)
                         .then(res => res.json())
                         .then(resData => {
-                            let priceUSD = 320; // default fallback price
+                            let priceUSD = 0;
+                            let departureDate = "Cek Jadwal"; 
+                            
+                            // Ekstrak Harga & Tanggal langsung dari data balasan API Travelpayouts
                             if(resData && resData.data && resData.data.length > 0) {
-                                priceUSD = resData.data[0].price || 320;
+                                priceUSD = resData.data[0].price || 0;
+                                if (resData.data[0].departure_at) {
+                                    departureDate = resData.data[0].departure_at.split('T')[0]; // Ambil YYYY-MM-DD
+                                }
                             }
+                            
                             return {
                                 code: city.code,
                                 name: city.name,
-                                img: city.img,
-                                priceUSD: priceUSD
+                                imgUrl: `https://zen.wego.com/cdn-cgi/image/height=280/destinations/cities/${city.code}.jpg`,
+                                priceUSD: priceUSD,
+                                departureDate: departureDate
                             };
                         })
                         .catch(() => ({
                             code: city.code,
                             name: city.name,
-                            img: city.img,
-                            priceUSD: 350
+                            imgUrl: `https://zen.wego.com/cdn-cgi/image/height=280/destinations/cities/${city.code}.jpg`,
+                            priceUSD: 0,
+                            departureDate: "Cek Jadwal"
                         }));
                 });
 
@@ -1634,18 +1649,22 @@
                     let htmlContent = "";
                     results.forEach(item => {
                         const priceIDR = (item.priceUSD * 16000).toLocaleString("id-ID");
+                        const displayPrice = item.priceUSD > 0 ? `IDR ${priceIDR}` : "Cek Harga";
+                        
                         htmlContent += `
                             <div class="col-md-4">
                                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover">
                                     <div class="image-shimmer-effect" style="height: 200px;">
-                                        <img src="${item.img}" alt="${item.name}">
+                                        <img src="${item.imgUrl}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80'">
                                     </div>
                                     <div class="card-body p-4">
-                                        <span class="badge bg-primary bg-opacity-10 text-primary mb-2 px-3 py-1 rounded-pill fw-semibold">Round-Trip • ${item.code}</span>
-                                        <h5 class="fw-bold text-dark">${userOrigin} ➔ ${item.name}</h5>
-                                        <p class="text-muted small mb-3">Maskapai Partner • Bagasi 30kg</p>
+                                        <span class="badge bg-primary bg-opacity-10 text-primary mb-2 px-3 py-1 rounded-pill fw-semibold">
+                                            <i class="bi bi-calendar3 me-1"></i> ${item.departureDate}
+                                        </span>
+                                        <h5 class="fw-bold text-dark text-truncate" title="${userOriginName} ke ${item.name}">${userOriginName} ➔ ${item.name}</h5>
+                                        <p class="text-muted small mb-3">Round-Trip • Bagasi Termasuk</p>
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <span class="text-danger fw-bold fs-5">IDR ${priceIDR}</span>
+                                            <span class="text-danger fw-bold fs-5">${displayPrice}</span>
                                             <button class="btn btn-outline-primary btn-sm rounded-pill px-3 py-2 fw-semibold">Pesan</button>
                                         </div>
                                     </div>
