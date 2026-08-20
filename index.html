@@ -27,6 +27,7 @@
             font-family: 'Plus Jakarta Sans', 'Poppins', sans-serif !important; 
             background-color: #f8fafc !important;
             color: #1e293b;
+            overflow-x: hidden;
         }
 
         /* HEADER Z-INDEX HIGHER THAN SEARCH CARD */
@@ -43,6 +44,26 @@
             position: relative; 
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1) !important;
             border-radius: 24px !important;
+        }
+
+        /* ==========================================
+           SCROLL REVEAL ANIMATION FOR ALL ELEMENTS
+           ========================================== */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==========================================
+           WHITE TEXT SHADOW ON ALL BUTTONS
+           ========================================== */
+        .btn, .btn-primary, .btn-gradient, .btn-dark, .btn-outline-primary, .btn-outline-dark, .btn-outline-danger {
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.9) !important;
         }
 
         /* ==========================================
@@ -92,7 +113,7 @@
         a:hover, a:focus {
             color: #38bdf8 !important;
             text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
-            transform: translateX(3px);
+            transform: translateX(2px);
         }
         a:active {
             transform: scale(0.96) translateY(1px);
@@ -287,12 +308,23 @@
         .overflow-x-auto::-webkit-scrollbar {
             display: none;
         }
+
+        /* Mobile Responsive Adjustments */
+        @media (max-width: 991.98px) {
+            .hero-carousel { height: 480px; }
+            .hero-carousel img { height: 480px; }
+            .search-card { margin-top: -80px; padding: 1rem !important; }
+        }
+        @media (max-width: 575.98px) {
+            .hero-carousel { height: 380px; }
+            .hero-carousel img { height: 380px; }
+        }
     </style>
 </head>
 <body class="bg-light">
 
     <!-- 1. MODERN HEADER & NAVIGATION -->
-    <header class="bg-white sticky-top shadow-sm">
+    <header class="bg-white sticky-top shadow-sm scroll-reveal">
         <!-- Main Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light py-3">
             <div class="container">
@@ -330,7 +362,7 @@
                         <li class="nav-item"><a class="nav-link text-dark fw-medium" href="#footer">Contact</a></li>
                     </ul>
 
-                    <div class="d-flex align-items-center gap-3">
+                    <div class="d-flex align-items-center gap-3 flex-wrap">
                         <a href="#" class="btn btn-outline-primary rounded-pill px-3 py-2 small fw-semibold d-flex align-items-center gap-2 border-2 text-decoration-none">
                             <i class="bi bi-robot"></i> Plan with AI
                         </a>
@@ -344,7 +376,7 @@
 
         <!-- Sub-Header Line -->
         <div class="border-top py-2 bg-white small">
-            <div class="container d-flex justify-content-between align-items-center">
+            <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
                 <div class="text-secondary d-flex align-items-center gap-1">
                     <span class="text-warning">★</span> 
                     <span class="fw-bold text-dark">4.9 Rated</span> by <strong class="text-dark">10,000+</strong> Travelers Worldwide.
@@ -369,7 +401,7 @@
     </header>
 
     <!-- 3. HERO SLIDER -->
-    <div id="heroSlider" class="carousel slide hero-carousel" data-bs-ride="carousel">
+    <div id="heroSlider" class="carousel slide hero-carousel scroll-reveal" data-bs-ride="carousel">
         <div class="carousel-inner h-100">
             <div class="carousel-item active h-100">
                 <div class="image-shimmer-effect h-100">
@@ -397,11 +429,11 @@
     </div>
 
     <!-- 4. ADVANCED SEARCH BOX WIDGET -->
-    <div class="container search-card">
-        <div class="card border-0 p-4 p-lg-4 bg-white">
+    <div class="container search-card scroll-reveal">
+        <div class="card border-0 p-3 p-lg-4 bg-white">
             
             <!-- Category Pills -->
-            <ul class="nav nav-pills mb-4 gap-2" id="searchCategoryTab" role="tablist">
+            <ul class="nav nav-pills mb-4 gap-2 flex-wrap" id="searchCategoryTab" role="tablist">
                 <li class="nav-item"><button class="nav-link rounded-pill px-4 py-2" data-bs-toggle="pill" data-bs-target="#tourSearchTab"><i class="bi bi-map me-2"></i>Tours</button></li>
                 <li class="nav-item"><button class="nav-link rounded-pill px-4 py-2" data-bs-toggle="pill" data-bs-target="#hotelSearchTab"><i class="bi bi-building me-2"></i>Hotels</button></li>
                 <li class="nav-item"><button class="nav-link active rounded-pill px-4 py-2" data-bs-toggle="pill" data-bs-target="#flightSearchTab"><i class="bi bi-airplane me-2"></i>Flights</button></li>
@@ -413,7 +445,7 @@
             <div class="tab-content pt-2">
                 <!-- FLIGHTS TAB -->
                 <div class="tab-pane fade show active" id="flightSearchTab">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
                         <ul class="nav nav-pills gap-2 small" role="tablist">
                             <li class="nav-item"><button class="nav-link active rounded-pill px-3 py-1" data-bs-toggle="tab" data-bs-target="#oneWay">One-way</button></li>
                             <li class="nav-item"><button class="nav-link rounded-pill px-3 py-1 text-dark" data-bs-toggle="tab" data-bs-target="#roundTrip">Roundtrip</button></li>
@@ -438,14 +470,14 @@
                         <!-- ONE-WAY FLIGHT -->
                         <div class="tab-pane fade show active" id="oneWay">
                             <div class="row g-2 align-items-center">
-                                <div class="col-lg-4">
+                                <div class="col-lg-4 col-md-12">
                                     <div class="search-box-item position-relative">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="flex-grow-1 position-relative pe-2">
                                                 <div class="text-muted small mb-1"><i class="bi bi-airplane-engines text-primary me-1"></i> Leaving From</div>
                                                 <input type="text" id="originInput" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Detecting location...">
                                             </div>
-                                            <button class="btn btn-light btn-sm rounded-circle border shadow-sm d-flex align-items-center justify-content-center swap-inputs-btn" style="width: 32px; height: 32px;" type="button" title="Tukar">
+                                            <button class="btn btn-light btn-sm rounded-circle border shadow-sm d-flex align-items-center justify-content-center swap-inputs-btn flex-shrink-0" style="width: 32px; height: 32px;" type="button" title="Tukar">
                                                 <i class="bi bi-arrow-left-right text-secondary"></i>
                                             </button>
                                             <div class="flex-grow-1 position-relative ps-3">
@@ -455,13 +487,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-2">
+                                <div class="col-lg-2 col-md-6">
                                     <div class="search-box-item">
                                         <div class="text-muted small mb-1"><i class="bi bi-calendar text-primary me-1"></i> Departure</div>
                                         <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Pilih Tanggal">
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-4 col-md-6">
                                     <div class="search-box-item dropdown cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
                                         <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Travelers</div>
                                         <div class="fw-bold small text-dark" id="travelersSummaryText">1 Adult, 0 Child, Economy</div>
@@ -495,8 +527,8 @@
                                         <button class="btn btn-primary btn-sm w-100 apply-travelers-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
                                     </div>
                                 </div>
-                                <div class="col-lg-2">
-                                    <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 72px;">Search</button>
+                                <div class="col-lg-2 col-md-12">
+                                    <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="min-height: 72px;">Search</button>
                                 </div>
                             </div>
                         </div>
@@ -504,14 +536,14 @@
                         <!-- ROUND-TRIP FLIGHT -->
                         <div class="tab-pane fade" id="roundTrip">
                             <div class="row g-2 align-items-center">
-                                <div class="col-lg-3">
+                                <div class="col-lg-3 col-md-12">
                                     <div class="search-box-item position-relative">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="flex-grow-1 position-relative pe-1">
                                                 <div class="text-muted small mb-1"><i class="bi bi-airplane-engines text-primary me-1"></i> From</div>
                                                 <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Origin">
                                             </div>
-                                            <button class="btn btn-light btn-sm rounded-circle border shadow-sm d-flex align-items-center justify-content-center swap-inputs-btn" style="width: 30px; height: 30px;" type="button"><i class="bi bi-arrow-left-right text-secondary"></i></button>
+                                            <button class="btn btn-light btn-sm rounded-circle border shadow-sm d-flex align-items-center justify-content-center swap-inputs-btn flex-shrink-0" style="width: 30px; height: 30px;" type="button"><i class="bi bi-arrow-left-right text-secondary"></i></button>
                                             <div class="flex-grow-1 position-relative ps-2">
                                                 <div class="text-muted small mb-1"><i class="bi bi-airplane-fill text-primary me-1"></i> To</div>
                                                 <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Destination">
@@ -519,24 +551,23 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-2">
+                                <div class="col-lg-2 col-md-6">
                                     <div class="search-box-item">
                                         <div class="text-muted small mb-1"><i class="bi bi-calendar text-primary me-1"></i> Departure</div>
                                         <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Pergi">
                                     </div>
                                 </div>
-                                <div class="col-lg-2">
+                                <div class="col-lg-2 col-md-6">
                                     <div class="search-box-item">
                                         <div class="text-muted small mb-1"><i class="bi bi-calendar-check text-primary me-1"></i> Return</div>
                                         <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Kembali">
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-3 col-md-12">
                                     <div class="search-box-item dropdown cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
                                         <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Passengers</div>
                                         <div class="fw-bold small text-dark rt-travelers-summary">1 Adult, Economy</div>
                                     </div>
-                                    <!-- Dropdown menu for Round-trip travelers -->
                                     <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4" style="width: 280px;">
                                         <div class="d-flex justify-content-between align-items-center mb-2">
                                             <span class="small">Dewasa (12+)</span>
@@ -565,8 +596,8 @@
                                         <button class="btn btn-primary btn-sm w-100 apply-rt-travelers-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
                                     </div>
                                 </div>
-                                <div class="col-lg-2">
-                                    <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 72px;">Search</button>
+                                <div class="col-lg-2 col-md-12">
+                                    <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="min-height: 72px;">Search</button>
                                 </div>
                             </div>
                         </div>
@@ -575,7 +606,7 @@
                         <div class="tab-pane fade" id="multiCity">
                             <div id="multiCityContainer">
                                 <div class="row g-2 mb-2 multicity-row align-items-center">
-                                    <div class="col-lg-5">
+                                    <div class="col-lg-5 col-md-12">
                                         <div class="search-box-item">
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Penerbangan 1: Dari">
@@ -583,12 +614,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-3 col-md-6">
                                         <div class="search-box-item">
                                             <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Tanggal">
                                         </div>
                                     </div>
-                                    <div class="col-lg-2">
+                                    <div class="col-lg-2 col-md-6">
                                         <div class="search-box-item dropdown cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
                                             <div class="text-muted small mb-1">Passengers</div>
                                             <div class="fw-bold small text-dark mc-travelers-summary">1 Adult</div>
@@ -605,12 +636,12 @@
                                             <button class="btn btn-primary btn-sm w-100 apply-mc-travelers-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
                                         </div>
                                     </div>
-                                    <div class="col-lg-2">
-                                        <button class="btn btn-outline-danger btn-sm w-100 py-3 remove-row rounded-3" disabled style="height: 72px;"><i class="bi bi-trash3"></i> Hapus</button>
+                                    <div class="col-lg-2 col-md-12">
+                                        <button class="btn btn-outline-danger btn-sm w-100 py-3 remove-row rounded-3" disabled style="min-height: 72px;"><i class="bi bi-trash3"></i> Hapus</button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="mt-3 d-flex justify-content-between align-items-center">
+                            <div class="mt-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
                                 <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3 py-2 fw-semibold" id="addFlightBtn"><i class="bi bi-plus me-1"></i> Tambah Penerbangan</button>
                                 <button class="btn btn-primary px-4 py-2 fw-bold search-action-btn rounded-pill shadow-sm">Cari Multi-City</button>
                             </div>
@@ -625,30 +656,29 @@
                 <!-- HOTELS TAB -->
                 <div class="tab-pane fade" id="hotelSearchTab">
                     <div class="row g-2 align-items-center">
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 col-md-6">
                             <div class="search-box-item">
                                 <div class="text-muted small mb-1"><i class="bi bi-geo-alt text-primary me-1"></i> Destination</div>
                                 <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent" placeholder="Cth: Singapura, Bali">
                             </div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-2 col-md-6">
                             <div class="search-box-item">
                                 <div class="text-muted small mb-1"><i class="bi bi-calendar text-primary me-1"></i> Check-in</div>
                                 <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Check-in">
                             </div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-2 col-md-6">
                             <div class="search-box-item">
                                 <div class="text-muted small mb-1"><i class="bi bi-calendar-check text-primary me-1"></i> Check-out</div>
                                 <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Check-out">
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 col-md-6">
                             <div class="search-box-item dropdown cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
                                 <div class="text-muted small mb-1"><i class="bi bi-people text-primary me-1"></i> Guests & Rooms</div>
                                 <div class="fw-bold small text-dark" id="hotelSummaryText">1 Room, 2 Guests</div>
                             </div>
-                            <!-- Dropdown for hotel guests & rooms -->
                             <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4" style="width: 280px;">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
                                     <span class="small">Kamar</span>
@@ -677,35 +707,35 @@
                                 <button class="btn btn-primary btn-sm w-100 py-2 rounded-pill fw-bold" type="button" id="applyHotelGuests">Terapkan</button>
                             </div>
                         </div>
-                        <div class="col-lg-2">
-                            <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 72px;">Search</button>
+                        <div class="col-lg-2 col-md-12">
+                            <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="min-height: 72px;">Search</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- TRANSPORT TAB (Car Rental) -->
+                <!-- TRANSPORT TAB -->
                 <div class="tab-pane fade" id="carSearchTab">
                     <div class="row g-2 align-items-center">
-                        <div class="col-lg-4">
+                        <div class="col-lg-4 col-md-12">
                             <div class="search-box-item">
                                 <div class="text-muted small mb-1"><i class="bi bi-geo-alt text-primary me-1"></i> Pick-up Location</div>
                                 <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent" placeholder="Bandara / Kota Penjemputan">
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 col-md-6">
                             <div class="search-box-item">
                                 <div class="text-muted small mb-1"><i class="bi bi-calendar text-primary me-1"></i> Start Date</div>
                                 <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Tanggal Mulai">
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 col-md-6">
                             <div class="search-box-item">
                                 <div class="text-muted small mb-1"><i class="bi bi-calendar-check text-primary me-1"></i> End Date</div>
                                 <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Tanggal Selesai">
                             </div>
                         </div>
-                        <div class="col-lg-2">
-                            <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 72px;">Cari Mobil</button>
+                        <div class="col-lg-2 col-md-12">
+                            <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="min-height: 72px;">Cari Mobil</button>
                         </div>
                     </div>
                 </div>
@@ -713,26 +743,26 @@
                 <!-- EXPERIENCE TAB -->
                 <div class="tab-pane fade" id="expSearchTab">
                     <div class="row g-2 align-items-center">
-                        <div class="col-lg-5">
+                        <div class="col-lg-5 col-md-12">
                             <div class="search-box-item">
                                 <div class="text-muted small mb-1"><i class="bi bi-lightning-charge text-primary me-1"></i> Experience or Activity</div>
                                 <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent" placeholder="Cth: Skydiving, Scuba Diving, Rafting">
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 col-md-6">
                             <div class="search-box-item">
                                 <div class="text-muted small mb-1"><i class="bi bi-calendar text-primary me-1"></i> Date</div>
                                 <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Tanggal Aktivitas">
                             </div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-2 col-md-6">
                             <div class="search-box-item">
                                 <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Participants</div>
                                 <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent" value="2 Persons" readonly>
                             </div>
                         </div>
-                        <div class="col-lg-2">
-                            <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 72px;">Cari</button>
+                        <div class="col-lg-2 col-md-12">
+                            <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="min-height: 72px;">Cari</button>
                         </div>
                     </div>
                 </div>
@@ -740,26 +770,26 @@
                 <!-- VISA TAB -->
                 <div class="tab-pane fade" id="visaSearchTab">
                     <div class="row g-2 align-items-center">
-                        <div class="col-lg-4">
+                        <div class="col-lg-4 col-md-6">
                             <div class="search-box-item">
                                 <div class="text-muted small mb-1"><i class="bi bi-file-earmark-person text-primary me-1"></i> Your Nationality</div>
                                 <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent" placeholder="Warga Negara (Cth: Indonesia)">
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-4 col-md-6">
                             <div class="search-box-item">
                                 <div class="text-muted small mb-1"><i class="bi bi-globe text-primary me-1"></i> Destination Country</div>
                                 <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent" placeholder="Negara Tujuan (Cth: Jepang)">
                             </div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-2 col-md-6">
                             <div class="search-box-item">
                                 <div class="text-muted small mb-1"><i class="bi bi-calendar text-primary me-1"></i> Travel Date</div>
                                 <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Estimasi">
                             </div>
                         </div>
-                        <div class="col-lg-2">
-                            <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 72px;">Cek Visa</button>
+                        <div class="col-lg-2 col-md-6">
+                            <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="min-height: 72px;">Cek Visa</button>
                         </div>
                     </div>
                 </div>
@@ -767,26 +797,26 @@
                 <!-- TOURS TAB -->
                 <div class="tab-pane fade" id="tourSearchTab">
                     <div class="row g-2 align-items-center">
-                        <div class="col-lg-5">
+                        <div class="col-lg-5 col-md-12">
                             <div class="search-box-item">
                                 <div class="text-muted small mb-1"><i class="bi bi-compass text-primary me-1"></i> Tour Destination</div>
                                 <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent" placeholder="Cth: Paris, Bali, Cappadocia">
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 col-md-6">
                             <div class="search-box-item">
                                 <div class="text-muted small mb-1"><i class="bi bi-calendar text-primary me-1"></i> Date</div>
                                 <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Tanggal Mulai">
                             </div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-2 col-md-6">
                             <div class="search-box-item">
                                 <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Travelers</div>
                                 <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent" value="2 Adults" readonly>
                             </div>
                         </div>
-                        <div class="col-lg-2">
-                            <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 72px;">Cari Tur</button>
+                        <div class="col-lg-2 col-md-12">
+                            <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="min-height: 72px;">Cari Tur</button>
                         </div>
                     </div>
                 </div>
@@ -795,19 +825,16 @@
     </div>
 
     <!-- 5. SECTION: DISCOUNTS & OFFERS -->
-    <section id="offers" class="container py-5 mt-5">
+    <section id="offers" class="container py-5 mt-5 scroll-reveal">
         <div class="text-center mb-5">
             <span class="text-primary fw-semibold small text-uppercase tracking-wider">Promo Spesial</span>
             <h2 class="fw-extrabold display-6 text-dark mt-1">Discounts & Offers</h2>
             <p class="text-muted mb-0">Manfaatkan kupon dan paket promo eksklusif untuk destinasi impian Anda.</p>
         </div>
 
-        <!-- Slider Wrapper -->
         <div class="position-relative px-md-4">
-            <!-- Scrollable Slider Track -->
             <div class="d-flex gap-4 overflow-x-auto pb-4 pt-2" id="offerSlider" style="scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none;">
                 
-                <!-- Offer Card 1 -->
                 <div class="card border-0 rounded-4 overflow-hidden text-white flex-shrink-0 card-hover position-relative" style="width: 270px; height: 380px; scroll-snap-align: start;">
                     <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
                         <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=600&q=80" alt="Travel Around the World">
@@ -822,7 +849,6 @@
                     </div>
                 </div>
 
-                <!-- Offer Card 2 -->
                 <div class="card border-0 rounded-4 overflow-hidden text-white flex-shrink-0 card-hover position-relative" style="width: 270px; height: 380px; scroll-snap-align: start;">
                     <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
                         <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" alt="Breath Adventure Awaits">
@@ -839,7 +865,6 @@
                     </div>
                 </div>
 
-                <!-- Offer Card 3 -->
                 <div class="card border-0 rounded-4 overflow-hidden text-white flex-shrink-0 card-hover position-relative" style="width: 270px; height: 380px; scroll-snap-align: start;">
                     <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
                         <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" alt="20% off SALE">
@@ -856,7 +881,6 @@
                     </div>
                 </div>
 
-                <!-- Offer Card 4 -->
                 <div class="card border-0 rounded-4 overflow-hidden text-white flex-shrink-0 card-hover position-relative" style="width: 270px; height: 380px; scroll-snap-align: start;">
                     <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
                         <img src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=600&q=80" alt="Summer Vacation">
@@ -877,19 +901,18 @@
 
             </div>
 
-            <!-- Slider Control Buttons -->
             <button class="btn btn-white bg-white shadow-lg border-0 position-absolute top-50 start-0 translate-middle-y rounded-circle d-none d-md-flex align-items-center justify-content-center ms-n3 z-2 text-dark" id="slideLeftBtn" style="width: 48px; height: 48px;"><i class="bi bi-chevron-left fs-5"></i></button>
             <button class="btn btn-white bg-white shadow-lg border-0 position-absolute top-50 end-0 translate-middle-y rounded-circle d-none d-md-flex align-items-center justify-content-center me-n3 z-2 text-dark" id="slideRightBtn" style="width: 48px; height: 48px;"><i class="bi bi-chevron-right fs-5"></i></button>
         </div>
     </section>
 
     <!-- 6. SECTION: BEST DEALS FLIGHT ROUTES -->
-    <section id="best-deals" class="container py-5 bg-white rounded-4 shadow-sm my-4 border">
+    <section id="best-deals" class="container py-5 bg-white rounded-4 shadow-sm my-4 border scroll-reveal">
         <div class="text-center mb-4">
             <h2 class="fw-extrabold display-6 text-dark">Best Deals Rute Penerbangan Round-Trip</h2>
             <p class="text-muted">Pilihan rute pulang-pergi terhemat berdasarkan kota terpopuler per benua.</p>
         </div>
-        <ul class="nav nav-pills justify-content-center mb-4 gap-2" id="flightDealsTab" role="tablist">
+        <ul class="nav nav-pills justify-content-center mb-4 gap-2 flex-wrap" id="flightDealsTab" role="tablist">
             <li class="nav-item"><button class="nav-link active rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#dealAmerica" data-continent="dealAmerica">Amerika</button></li>
             <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#dealEurope" data-continent="dealEurope">Eropa</button></li>
             <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#dealAsia" data-continent="dealAsia">Asia</button></li>
@@ -925,13 +948,13 @@
         </div>
     </section>
 
-    <!-- 7. SECTION: POPULAR HOTELS (UPDATED DESIGN TO MATCH REFERENCE IMAGE) -->
-    <section id="hotels" class="container py-5">
+    <!-- 7. SECTION: POPULAR HOTELS (WITH CLICKABLE HOTEL NAME, ROTATE 0 DEG, AND CLICKABLE PRIMARY BUTTON) -->
+    <section id="hotels" class="container py-5 scroll-reveal">
         <div class="text-center mb-4">
             <h2 class="fw-extrabold display-6 text-dark">Popular Hotels Globally</h2>
             <p class="text-muted">Akomodasi pilihan dengan fasilitas mewah dan ulasan terbaik.</p>
         </div>
-        <ul class="nav nav-pills justify-content-center mb-4 gap-2" role="tablist">
+        <ul class="nav nav-pills justify-content-center mb-4 gap-2 flex-wrap" role="tablist">
             <li class="nav-item"><button class="nav-link active rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#hotelAmerica">Amerika</button></li>
             <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#hotelEurope">Eropa</button></li>
             <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#hotelAsia">Asia</button></li>
@@ -941,33 +964,29 @@
         <div class="tab-content">
             <div class="tab-pane fade show active" id="hotelAmerica">
                 <div class="row g-4">
-                    <!-- Hotel Item Card matching reference image -->
                     <div class="col-md-4">
                         <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover position-relative bg-white">
-                            <!-- Top Image with Wishlist & Discount Badge -->
                             <div class="image-shimmer-effect position-relative" style="height: 220px;">
                                 <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" alt="Luxury Ocean View Hotel">
-                                <!-- Wishlist Button -->
                                 <button class="btn btn-white bg-white rounded-circle position-absolute top-0 start-0 m-3 d-flex align-items-center justify-content-center shadow-sm border-0" style="width: 38px; height: 38px; z-index: 2;" title="Wishlist">
                                     <i class="bi bi-heart text-dark fs-5"></i>
                                 </button>
-                                <!-- Discount Badge -->
                                 <span class="badge position-absolute top-0 end-0 m-3 px-3 py-2 rounded-pill fw-bold text-white shadow-sm" style="background-color: #ff3b30; z-index: 2; font-size: 0.8rem;">
                                     10% Off
                                 </span>
                             </div>
 
-                            <!-- Card Body -->
                             <div class="card-body p-4 d-flex flex-column justify-content-between">
                                 <div>
-                                    <!-- Hotel Title -->
-                                    <h5 class="fw-bold text-dark mb-1 fs-5">Luxury Ocean View Hotel</h5>
-                                    <!-- Location -->
+                                    <!-- Clickable Hotel Name -->
+                                    <h5 class="fw-bold mb-1 fs-5">
+                                        <a href="#" class="text-dark text-decoration-none">Luxury Ocean View Hotel</a>
+                                    </h5>
+                                    <!-- Location with bi-cursor at 0 deg transform -->
                                     <p class="text-muted small mb-3 d-flex align-items-center gap-1">
-                                        <i class="bi bi-cursor-fill text-secondary" style="font-size: 0.85rem; transform: rotate(45deg);"></i> Bali, Indonesia
+                                        <i class="bi bi-cursor text-secondary" style="font-size: 0.85rem; transform: rotate(0deg);"></i> Bali, Indonesia
                                     </p>
 
-                                    <!-- Rating Row -->
                                     <div class="d-flex align-items-center gap-2 mb-3">
                                         <span class="badge bg-primary text-white px-2 py-1 rounded-2 fw-bold fs-6">4.5</span>
                                         <div>
@@ -976,14 +995,12 @@
                                         </div>
                                     </div>
 
-                                    <!-- Free Cancellation -->
                                     <div class="d-flex align-items-center gap-2 mb-3 text-dark small fw-medium">
                                         <i class="bi bi-check-circle-fill text-primary fs-6"></i>
                                         <span>Free Cancellation</span>
                                     </div>
                                 </div>
 
-                                <!-- Price & Availability Section -->
                                 <div>
                                     <div class="text-end mb-2">
                                         <span class="text-muted text-decoration-line-through small me-2">USD 2,959</span>
@@ -994,8 +1011,8 @@
                                         <small class="text-muted" style="font-size: 0.75rem;">per night</small>
                                     </div>
 
-                                    <!-- Check Availability Button -->
-                                    <button class="btn w-100 rounded-pill py-2 fw-bold text-primary shadow-none" style="background-color: #eff6ff !important; border: 1px solid #bfdbfe;">
+                                    <!-- Clickable Button with standard primary button hover/shimmer effect -->
+                                    <button class="btn btn-primary w-100 rounded-pill py-2 fw-bold shadow-sm">
                                         Check Availability
                                     </button>
                                 </div>
@@ -1012,12 +1029,12 @@
     </section>
 
     <!-- 8. SECTION: POPULAR TOURS -->
-    <section id="tours" class="container py-5 bg-white rounded-4 shadow-sm my-4 border">
+    <section id="tours" class="container py-5 bg-white rounded-4 shadow-sm my-4 border scroll-reveal">
         <div class="text-center mb-4">
             <h2 class="fw-extrabold display-6 text-dark">Popular Tours & Attractions</h2>
             <p class="text-muted">Temukan pengalaman tur dan aktivitas paling berkesan.</p>
         </div>
-        <ul class="nav nav-pills justify-content-center mb-4 gap-2" role="tablist">
+        <ul class="nav nav-pills justify-content-center mb-4 gap-2 flex-wrap" role="tablist">
             <li class="nav-item"><button class="nav-link active rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#tourAmerica">Amerika</button></li>
             <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#tourEurope">Eropa</button></li>
             <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#tourAsia">Asia</button></li>
@@ -1053,9 +1070,8 @@
     </section>
 
     <!-- 9. SECTION: ABOUT -->
-    <section id="about" class="container py-5 my-4">
+    <section id="about" class="container py-5 my-4 scroll-reveal">
         <div class="row align-items-center g-5">
-            <!-- Left Column: Content Text -->
             <div class="col-lg-6">
                 <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill fw-bold mb-3">We're #01 travel agency in globally</span>
                 <h1 class="display-5 fw-extrabold text-dark mb-4 lh-tight" style="letter-spacing: -1px;">Explore the World With Confidence.</h1>
@@ -1068,25 +1084,19 @@
                 <a href="#" class="btn btn-primary rounded-pill px-5 py-3 fw-bold shadow text-decoration-none">Discover More</a>
             </div>
 
-            <!-- Right Column: Overlapping Image Cards & Trust Badges -->
             <div class="col-lg-6">
-                <!-- Stacked Image Cards Wrapper -->
                 <div class="position-relative d-flex justify-content-center align-items-center mb-5" style="height: 380px;">
-                    <!-- Card 1 (Back Left) -->
                     <div class="position-absolute shadow-lg rounded-4 overflow-hidden border border-white border-3 image-shimmer-effect" style="width: 200px; height: 320px; transform: rotate(-8deg) translateX(-80px); z-index: 1;">
                         <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=500&q=80" alt="Traveler">
                     </div>
-                    <!-- Card 2 (Center Foreground) -->
                     <div class="position-absolute shadow-lg rounded-4 overflow-hidden border border-white border-3 image-shimmer-effect" style="width: 210px; height: 340px; transform: translateY(-10px); z-index: 3;">
                         <img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=500&q=80" alt="World Landmarks">
                     </div>
-                    <!-- Card 3 (Back Right) -->
                     <div class="position-absolute shadow-lg rounded-4 overflow-hidden border border-white border-3 image-shimmer-effect" style="width: 200px; height: 320px; transform: rotate(8deg) translateX(80px); z-index: 2;">
                         <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" alt="Beach Resort">
                     </div>
                 </div>
 
-                <!-- Trust Badges Below Cards -->
                 <div class="row text-center align-items-center g-3 pt-2 bg-white p-4 rounded-4 shadow-sm border">
                     <div class="col-6">
                         <div class="d-flex flex-column align-items-center">
@@ -1108,10 +1118,9 @@
     </section>
 
     <!-- 10. SECTION: CUSTOMER REVIEWS -->
-    <section class="py-5 my-4 position-relative overflow-hidden" style="background: linear-gradient(135deg, #e3fcef 0%, #cbf5df 100%);">
+    <section class="py-5 my-4 position-relative overflow-hidden scroll-reveal" style="background: linear-gradient(135deg, #e3fcef 0%, #cbf5df 100%);">
         <div class="container py-4">
             
-            <!-- Section Header -->
             <div class="row align-items-center mb-5">
                 <div class="col-lg-8">
                     <span class="text-success fw-bold small d-block mb-1 text-uppercase tracking-wider">Customer experience at TravelMeta</span>
@@ -1141,11 +1150,9 @@
                 </div>
             </div>
 
-            <!-- Review Cards Slider Track -->
             <div class="position-relative">
                 <div class="d-flex gap-4 overflow-x-auto pb-4 pt-2" id="reviewSlider" style="scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none;">
                     
-                    <!-- Review Card 1 -->
                     <div class="card border-0 rounded-4 p-4 shadow-sm flex-shrink-0 card-hover d-flex flex-column justify-content-between" style="width: 360px; height: 310px; scroll-snap-align: start; background-color: #ffffff;">
                         <div>
                             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -1170,7 +1177,6 @@
                         </div>
                     </div>
 
-                    <!-- Review Card 2 -->
                     <div class="card border-0 rounded-4 p-4 shadow-sm flex-shrink-0 card-hover d-flex flex-column justify-content-between" style="width: 360px; height: 310px; scroll-snap-align: start; background-color: #ffffff;">
                         <div>
                             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -1195,7 +1201,6 @@
                         </div>
                     </div>
 
-                    <!-- Review Card 3 -->
                     <div class="card border-0 rounded-4 p-4 shadow-sm flex-shrink-0 card-hover d-flex flex-column justify-content-between" style="width: 360px; height: 310px; scroll-snap-align: start; background-color: #ffffff;">
                         <div>
                             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -1220,35 +1225,9 @@
                         </div>
                     </div>
 
-                    <!-- Review Card 4 -->
-                    <div class="card border-0 rounded-4 p-4 shadow-sm flex-shrink-0 card-hover d-flex flex-column justify-content-between" style="width: 360px; height: 310px; scroll-snap-align: start; background-color: #ffffff;">
-                        <div>
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <div class="text-success fs-5">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                                </div>
-                                <button class="btn btn-light btn-sm rounded-circle shadow-sm border d-flex align-items-center justify-content-center text-primary" style="width: 36px; height: 36px;"><i class="bi bi-play-fill fs-5 ps-1"></i></button>
-                            </div>
-                            <h5 class="fw-bold text-dark mb-2">Unforgettable Experience!</h5>
-                            <p class="text-secondary small lh-base mb-0">
-                                The booking process was smooth and the customer support was top-notch during our European tour.
-                            </p>
-                        </div>
-                        <div class="d-flex align-items-center gap-3 pt-3 border-top">
-                            <div class="image-shimmer-effect rounded-circle shadow-sm" style="width: 45px; height: 45px;">
-                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" class="rounded-circle" alt="Michael Smith">
-                            </div>
-                            <div>
-                                <h6 class="fw-bold mb-0 text-dark">Michael Smith</h6>
-                                <small class="text-muted" style="font-size: 0.75rem;">TravelMeta Traveler</small>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
 
-            <!-- Slider Controls & Tripadvisor Rating Footer -->
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mt-4 pt-2">
                 <div class="d-flex gap-2">
                     <button class="btn btn-white bg-white shadow-sm border-0 rounded-circle d-flex align-items-center justify-content-center" id="reviewSlideLeft" style="width: 48px; height: 48px;"><i class="bi bi-chevron-left fs-5"></i></button>
@@ -1266,7 +1245,7 @@
     </section>
 
     <!-- 11. SECTION: DOWNLOAD MOBILE APP -->
-    <section class="container py-5 my-4">
+    <section class="container py-5 my-4 scroll-reveal">
         <div class="rounded-5 p-4 p-lg-5 position-relative overflow-hidden text-dark shadow-lg border" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);">
             <div class="row align-items-center">
                 <div class="col-lg-7 py-4">
@@ -1306,7 +1285,7 @@
     </section>
 
     <!-- 12. SECTION: TRAVEL TIPS & INSPIRATIONS -->
-    <section class="container py-5 my-3">
+    <section class="container py-5 my-3 scroll-reveal">
         <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-3">
             <div>
                 <span class="text-primary fw-bold small text-uppercase tracking-wider">Edukasi & Wawasan</span>
@@ -1316,7 +1295,6 @@
         </div>
         
         <div class="row g-4">
-            <!-- Card 1 -->
             <div class="col-md-4">
                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover h-100 bg-white">
                     <div class="position-relative">
@@ -1341,7 +1319,6 @@
                 </div>
             </div>
 
-            <!-- Card 2 -->
             <div class="col-md-4">
                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover h-100 bg-white">
                     <div class="position-relative">
@@ -1366,7 +1343,6 @@
                 </div>
             </div>
 
-            <!-- Card 3 -->
             <div class="col-md-4">
                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover h-100 bg-white">
                     <div class="position-relative">
@@ -1394,7 +1370,7 @@
     </section>
 
     <!-- 13. SECTION: SUBSCRIBE NEWSLETTER -->
-    <section class="container py-4 my-4">
+    <section class="container py-4 my-4 scroll-reveal">
         <div class="rounded-5 p-4 p-lg-5 text-white position-relative overflow-hidden shadow-lg" style="background: var(--primary-gradient);">
             <div class="row align-items-center g-4">
                 <div class="col-lg-6">
@@ -1417,11 +1393,9 @@
     </section>
 
     <!-- 14. FOOTER -->
-    <footer id="footer" class="modern-footer pt-5 pb-4">
+    <footer id="footer" class="modern-footer pt-5 pb-4 scroll-reveal">
         <div class="container py-4">
-            <!-- 4-Column Structure -->
             <div class="row g-5 mb-5">
-                <!-- Column 1: Brand Info, Socials, & Awards Badges -->
                 <div class="col-lg-3 col-md-6">
                     <a class="fw-bold fs-4 text-white d-flex align-items-center gap-2 mb-3 text-decoration-none hover-glow" href="#">
                         <span class="text-white">Atlastrip</span>
@@ -1452,7 +1426,6 @@
                     </div>
                 </div>
 
-                <!-- Column 2: Explore -->
                 <div class="col-lg-3 col-md-6">
                     <h5>Explore</h5>
                     <ul class="list-unstyled d-flex flex-column gap-2 m-0">
@@ -1462,12 +1435,10 @@
                         <li><a href="#offers" class="footer-link">Deals & Discount</a></li>
                         <li><a href="#" class="footer-link">Last Minutes Deal</a></li>
                         <li><a href="#" class="footer-link">Travel Inspirations</a></li>
-                        <li><a href="#" class="footer-link">Traveler Reviews</a></li>
                         <li><a href="#footer" class="footer-link">Contact Us</a></li>
                     </ul>
                 </div>
 
-                <!-- Column 3: Useful -->
                 <div class="col-lg-3 col-md-6">
                     <h5>Useful</h5>
                     <ul class="list-unstyled d-flex flex-column gap-2 m-0">
@@ -1478,7 +1449,6 @@
                     </ul>
                 </div>
 
-                <!-- Column 4: Helpline -->
                 <div class="col-lg-3 col-md-6">
                     <h5>Helpline</h5>
                     <ul class="list-unstyled d-flex flex-column gap-2 m-0">
@@ -1490,7 +1460,6 @@
                 </div>
             </div>
 
-            <!-- Payment Methods Card -->
             <div class="bg-white text-dark rounded-4 p-3 px-4 mb-4 d-flex align-items-center justify-content-between flex-wrap gap-3 shadow-lg">
                 <span class="fw-bold fs-6 text-dark" style="letter-spacing: 0.5px;">We Accept:-</span>
                 <div class="d-flex align-items-center gap-3 fs-4 flex-wrap text-secondary">
@@ -1506,7 +1475,6 @@
                 </div>
             </div>
 
-            <!-- Copyright & Disclaimer -->
             <div class="small pt-3 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2" style="color: #9ca3af !important;">
                 <p class="mb-0">&copy; 2026 Atlastrip, <strong class="text-white">Egenslab</strong>. All Rights Reserved.</p>
                 <p class="mb-0" style="font-size: 0.75rem; max-width: 600px; line-height: 1.6; color: #9ca3af !important;">
@@ -1516,7 +1484,7 @@
         </div>
     </footer>
 
-    <!-- POPUP MODAL: MULTI-CURRENCY -->
+    <!-- MODAL CURRENCY -->
     <div class="modal fade" id="currencyModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content rounded-4 border-0 shadow-lg p-2">
@@ -1542,7 +1510,7 @@
         </div>
     </div>
 
-    <!-- POPUP MODAL: MULTI-LANGUAGE -->
+    <!-- MODAL LANGUAGE -->
     <div class="modal fade" id="langModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content rounded-4 border-0 shadow-lg p-2">
@@ -1570,7 +1538,7 @@
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
     
-    <!-- VANILLA JS: Geolocation Whereami, Travelpayouts API, Autocomplete, Sliders & Popups -->
+    <!-- VANILLA JS: Geolocation Whereami, Travelpayouts API, Autocomplete, Sliders, Popups & Scroll Reveal -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             
@@ -1579,14 +1547,12 @@
 
             let userOrigin = "SIN"; 
             let userOriginName = "Singapore";
-            let visitorCurrency = "USD"; // Default fallback currency
+            let visitorCurrency = "USD";
 
-            // Tabel pemetaan mata uang negara[cite: 1]
             const currencyMapping = {
                 "AB":"RUB","AD":"EUR","AE":"AED","AF":"AFN","AG":"XCD","AI":"XCD","AL":"ALL","AM":"AMD","AO":"AOA","AQ":"","AR":"ARS","AS":"USD","AT":"EUR","AU":"AUD","AW":"AWG","AX":"EUR","AZ":"AZN","BA":"BAM","BB":"BBD","BD":"BDT","BE":"EUR","BF":"XOF","BG":"EUR","BH":"BHD","BI":"BIF","BJ":"XOF","BL":"EUR","BM":"BMD","BN":"BND","BO":"BOB","BQ":"USD","BR":"BRL","BS":"BSD","BT":"BTN","BV":"NOK","BW":"BWP","BY":"BYN","BZ":"BZD","CA":"CAD","CC":"AUD","CD":"CDF","CF":"XAF","CG":"XAF","CH":"CHF","CI":"XOF","CK":"NZD","CL":"CLP","CM":"XAF","CN":"CNY","CO":"COP","CR":"CRC","CU":"CUP","CV":"CVE","CW":"XCG","CX":"AUD","CY":"EUR","CZ":"CZK","DE":"EUR","DJ":"DJF","DK":"DKK","DM":"XCD","DO":"DOP","DZ":"DZD","EC":"USD","EE":"EUR","EG":"EGP","EH":"MAD","ER":"ERN","ES":"EUR","ET":"ETB","FI":"EUR","FJ":"FJD","FK":"FKP","FM":"USD","FO":"DKK","FR":"EUR","GA":"XAF","GB":"GBP","GD":"XCD","GE":"GEL","GF":"EUR","GG":"GBP","GH":"GHS","GI":"GIP","GL":"DKK","GM":"GMD","GN":"GNF","GP":"EUR","GQ":"XAF","GR":"EUR","GS":"GBP","GT":"GTQ","GU":"USD","GW":"XOF","GY":"GYD","HK":"HKD","HM":"AUD","HN":"HNL","HR":"EUR","HT":"HTG","HU":"HUF","ID":"IDR","IE":"EUR","IL":"ILS","IM":"GBP","IN":"INR","IO":"USD","IQ":"IQD","IR":"IRR","IS":"ISK","IT":"EUR","JE":"GBP","JM":"JMD","JO":"JOD","JP":"JPY","KE":"KES","KG":"KGS","KH":"KHR","KI":"AUD","KM":"KMF","KN":"XCD","KP":"KPW","KR":"KRW","KW":"KWD","KX":"","KY":"KYD","KZ":"KZT","LA":"LAK","LB":"LBP","LC":"XCD","LI":"CHF","LK":"LKR","LR":"LRD","LS":"LSL","LT":"EUR","LU":"EUR","LV":"EUR","LY":"LYD","MA":"MAD","MC":"EUR","MD":"MDL","ME":"EUR","MF":"EUR","MG":"MGA","MH":"USD","MK":"MKD","ML":"XOF","MM":"MMK","MN":"MNT","MO":"MOP","MP":"USD","MQ":"EUR","MR":"MRO","MS":"XCD","MT":"EUR","MU":"MUR","MV":"MVR","MW":"MWK","MX":"MXN","MY":"MYR","MZ":"MZN","NA":"NAD","NC":"XPF","NE":"XOF","NF":"AUD","NG":"NGN","NI":"NIO","NL":"EUR","NO":"NOK","NP":"NPR","NR":"AUD","NU":"NZD","NY":"TRY","NZ":"NZD","OM":"OMR","PA":"PAB","PE":"PEN","PF":"XPF","PG":"PGK","PH":"PHP","PK":"PKR","PL":"PLN","PM":"EUR","PN":"NZD","PR":"USD","PS":"ILS","PT":"EUR","PW":"USD","PY":"PYG","QA":"QAR","RE":"EUR","RO":"RON","RS":"RSD","RU":"RUB","RW":"RWF","SA":"SAR","SB":"SBD","SC":"SCR","SD":"SDG","SE":"SEK","SG":"SGD","SH":"SHP","SI":"EUR","SJ":"NOK","SK":"EUR","SL":"SLL","SM":"EUR","SN":"XOF","SO":"SOS","SR":"SRD","SS":"SSP","ST":"STD","SV":"USD","SX":"XCG","SY":"SYP","SZ":"SZL","TC":"USD","TD":"XAF","TF":"EUR","TG":"XOF","TH":"THB","TJ":"TJS","TK":"NZD","TL":"USD","TM":"TMT","TN":"TND","TO":"TOP","TR":"TRY","TT":"TTD","TV":"AUD","TW":"TWD","TZ":"TZS","UA":"UAH","UG":"UGX","UM":"USD","US":"USD","UY":"UYU","UZ":"UZS","VA":"EUR","VC":"XCD","VE":"VEF","VG":"USD","VI":"USD","VN":"VND","VU":"VUV","WF":"XPF","WS":"WST","XK":"EUR","YE":"YER","YT":"EUR","ZA":"ZAR","ZM":"ZMK","ZW":"ZWL"
             };
 
-            // 6+ Popular destination cities per continent
             const continentDestinations = {
                 'dealAmerica': [
                     { code: 'NYC', name: 'New York' },
@@ -1630,6 +1596,20 @@
                 ]
             };
 
+            // Scroll Reveal Intersection Observer for scroll down effect
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+            document.querySelectorAll('.scroll-reveal').forEach(el => {
+                revealObserver.observe(el);
+            });
+
             // 1. Detect User Location via Whereami API
             fetch("https://www.apistp.com/whereami?locale=en")
                 .then(res => res.json())
@@ -1638,7 +1618,6 @@
                         userOrigin = locData.code || locData.iata || "SIN";
                         userOriginName = locData.city || locData.name || userOrigin;
                         
-                        // Menentukan mata uang berdasarkan kode negara hasil deteksi[cite: 1]
                         const countryCode = locData.country || locData.country_code || "";
                         if (countryCode && currencyMapping[countryCode]) {
                             visitorCurrency = currencyMapping[countryCode];
@@ -1649,7 +1628,6 @@
                             originInput.value = `${userOriginName} (${userOrigin})`;
                         }
                     }
-                    // Load initial flight deals for America
                     fetchContinentDeals('dealAmerica', document.querySelector('#dealAmerica .flight-results-container'));
                 })
                 .catch(err => {
@@ -1659,7 +1637,7 @@
                     fetchContinentDeals('dealAmerica', document.querySelector('#dealAmerica .flight-results-container'));
                 });
 
-            // 2. Fetch Flight Deals via Cloudflare Proxy with Dynamic Currency & Dates
+            // 2. Fetch Flight Deals via Cloudflare Proxy
             function fetchContinentDeals(continentKey, containerEl) {
                 if(!containerEl) return;
                 const cities = continentDestinations[continentKey];
@@ -1735,7 +1713,6 @@
                 });
             }
 
-            // Tab switching event listener for flight deals
             const flightDealsTabs = document.querySelectorAll('#flightDealsTab button');
             flightDealsTabs.forEach(tab => {
                 tab.addEventListener('shown.bs.tab', (e) => {
@@ -1748,39 +1725,28 @@
                 });
             });
 
-            // 3. Offer Slider Scroll Buttons (Vanilla JS)
             const offerSlider = document.getElementById('offerSlider');
             const slideLeftBtn = document.getElementById('slideLeftBtn');
             const slideRightBtn = document.getElementById('slideRightBtn');
 
             if(slideLeftBtn && offerSlider) {
-                slideLeftBtn.addEventListener('click', () => {
-                    offerSlider.scrollBy({ left: -320, behavior: 'smooth' });
-                });
+                slideLeftBtn.addEventListener('click', () => { offerSlider.scrollBy({ left: -320, behavior: 'smooth' }); });
             }
             if(slideRightBtn && offerSlider) {
-                slideRightBtn.addEventListener('click', () => {
-                    offerSlider.scrollBy({ left: 320, behavior: 'smooth' });
-                });
+                slideRightBtn.addEventListener('click', () => { offerSlider.scrollBy({ left: 320, behavior: 'smooth' }); });
             }
 
-            // 4. Customer Review Slider Scroll Buttons (Vanilla JS)
             const reviewSlider = document.getElementById('reviewSlider');
             const reviewSlideLeft = document.getElementById('reviewSlideLeft');
             const reviewSlideRight = document.getElementById('reviewSlideRight');
 
             if(reviewSlideLeft && reviewSlider) {
-                reviewSlideLeft.addEventListener('click', () => {
-                    reviewSlider.scrollBy({ left: -380, behavior: 'smooth' });
-                });
+                reviewSlideLeft.addEventListener('click', () => { reviewSlider.scrollBy({ left: -380, behavior: 'smooth' }); });
             }
             if(reviewSlideRight && reviewSlider) {
-                reviewSlideRight.addEventListener('click', () => {
-                    reviewSlider.scrollBy({ left: 380, behavior: 'smooth' });
-                });
+                reviewSlideRight.addEventListener('click', () => { reviewSlider.scrollBy({ left: 380, behavior: 'smooth' }); });
             }
 
-            // 5. Travelpayouts API Autocomplete
             const setupTravelAutocomplete = (input) => {
                 let container = input.parentNode.querySelector('.autocomplete-suggestions');
                 if (!container) {
@@ -1834,11 +1800,8 @@
                 });
             };
 
-            document.querySelectorAll('.autocomplete-input').forEach(input => {
-                setupTravelAutocomplete(input);
-            });
+            document.querySelectorAll('.autocomplete-input').forEach(input => setupTravelAutocomplete(input));
 
-            // 6. Swap Origin & Destination Inputs
             document.querySelectorAll('.swap-inputs-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const boxItem = btn.closest('.search-box-item');
@@ -1851,17 +1814,13 @@
                 });
             });
 
-            // 7. Cabin Class Selector
             document.querySelectorAll('.cabin-option').forEach(item => {
                 item.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const cabin = e.target.getAttribute('data-cabin');
-                    document.getElementById('cabinClassDropdownBtn').textContent = cabin;
+                    document.getElementById('cabinClassDropdownBtn').textContent = e.target.getAttribute('data-cabin');
                 });
             });
 
-            // 8. Lazy Load Flatpickr
-            const dateInputs = document.querySelectorAll(".lazy-date");
             let flatpickrLoaded = false;
             const loadFlatpickr = () => {
                 if (flatpickrLoaded) return;
@@ -1872,23 +1831,19 @@
                 
                 const script = document.createElement("script");
                 script.src = "https://cdn.jsdelivr.net/npm/flatpickr";
-                script.onload = () => {
-                    flatpickr(".lazy-date", { dateFormat: "Y-m-d", altInput: true, altFormat: "j M Y" });
-                };
+                script.onload = () => { flatpickr(".lazy-date", { dateFormat: "Y-m-d", altInput: true, altFormat: "j M Y" }); };
                 document.body.appendChild(script);
                 flatpickrLoaded = true;
             };
 
-            dateInputs.forEach(input => {
+            document.querySelectorAll(".lazy-date").forEach(input => {
                 input.addEventListener("mouseover", loadFlatpickr, { once: true });
                 input.addEventListener("focus", loadFlatpickr, { once: true });
             });
 
-            // 9. Counters Logic
             document.querySelectorAll(".increase-count").forEach(btn => {
                 btn.addEventListener("click", () => {
-                    const targetId = btn.getAttribute("data-target");
-                    const input = document.getElementById(targetId);
+                    const input = document.getElementById(btn.getAttribute("data-target"));
                     input.value = parseInt(input.value) + 1;
                 });
             });
@@ -1898,13 +1853,12 @@
                     const targetId = btn.getAttribute("data-target");
                     const input = document.getElementById(targetId);
                     if (parseInt(input.value) > 0) {
-                        if ((targetId === 'flightAdult' || targetId === 'rtAdult' || targetId === 'mcAdult' || targetId === 'hotelRoom' || targetId === 'hotelAdult') && parseInt(input.value) <= 1) return;
+                        if ((targetId.includes('Adult') || targetId === 'hotelRoom') && parseInt(input.value) <= 1) return;
                         input.value = parseInt(input.value) - 1;
                     }
                 });
             });
 
-            // Apply One-way Travelers
             const applyTravelersBtn = document.querySelector(".apply-travelers-btn");
             if(applyTravelersBtn) {
                 applyTravelersBtn.addEventListener("click", () => {
@@ -1916,31 +1870,24 @@
                 });
             }
 
-            // Apply Round-trip Travelers
             const applyRtTravelersBtn = document.querySelector(".apply-rt-travelers-btn");
             if(applyRtTravelersBtn) {
                 applyRtTravelersBtn.addEventListener("click", () => {
                     const adults = parseInt(document.getElementById("rtAdult").value);
                     const kids = parseInt(document.getElementById("rtChild").value);
                     const infants = parseInt(document.getElementById("rtInfant").value);
-                    document.querySelectorAll(".rt-travelers-summary").forEach(el => {
-                        el.textContent = `${adults} Adult, ${kids + infants} Child`;
-                    });
+                    document.querySelectorAll(".rt-travelers-summary").forEach(el => { el.textContent = `${adults} Adult, ${kids + infants} Child`; });
                 });
             }
 
-            // Apply Multi-city Travelers
             const applyMcTravelersBtn = document.querySelector(".apply-mc-travelers-btn");
             if(applyMcTravelersBtn) {
                 applyMcTravelersBtn.addEventListener("click", () => {
                     const adults = parseInt(document.getElementById("mcAdult").value);
-                    document.querySelectorAll(".mc-travelers-summary").forEach(el => {
-                        el.textContent = `${adults} Adult`;
-                    });
+                    document.querySelectorAll(".mc-travelers-summary").forEach(el => { el.textContent = `${adults} Adult`; });
                 });
             }
 
-            // Apply Hotel Guests & Rooms
             const applyHotelGuestsBtn = document.getElementById("applyHotelGuests");
             if(applyHotelGuestsBtn) {
                 applyHotelGuestsBtn.addEventListener("click", () => {
@@ -1951,7 +1898,6 @@
                 });
             }
 
-            // 10. Multi-City Dynamic Rows
             const addFlightBtn = document.getElementById("addFlightBtn");
             const multiCityContainer = document.getElementById("multiCityContainer");
 
@@ -1961,7 +1907,7 @@
                     const newRow = document.createElement("div");
                     newRow.className = "row g-2 mb-2 multicity-row align-items-center";
                     newRow.innerHTML = `
-                        <div class="col-lg-5">
+                        <div class="col-lg-5 col-md-12">
                             <div class="search-box-item">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Penerbangan ${rowCount}: Dari">
@@ -1969,12 +1915,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 col-md-6">
                             <div class="search-box-item">
                                 <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Tanggal">
                             </div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-2 col-md-6">
                             <div class="search-box-item dropdown cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
                                 <div class="text-muted small mb-1">Passengers</div>
                                 <div class="fw-bold small text-dark mc-travelers-summary">1 Adult</div>
@@ -1991,12 +1937,11 @@
                                 <button class="btn btn-primary btn-sm w-100 apply-mc-travelers-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
                             </div>
                         </div>
-                        <div class="col-lg-2">
-                            <button class="btn btn-outline-danger btn-sm w-100 py-3 remove-row rounded-3" style="height: 72px;"><i class="bi bi-trash3"></i> Hapus</button>
+                        <div class="col-lg-2 col-md-12">
+                            <button class="btn btn-outline-danger btn-sm w-100 py-3 remove-row rounded-3" style="min-height: 72px;"><i class="bi bi-trash3"></i> Hapus</button>
                         </div>
                     `;
                     multiCityContainer.appendChild(newRow);
-                    
                     newRow.querySelectorAll(".autocomplete-input").forEach(input => setupTravelAutocomplete(input));
                     newRow.querySelector(".lazy-date").addEventListener("mouseover", loadFlatpickr, { once: true });
                     newRow.querySelector(".lazy-date").addEventListener("focus", loadFlatpickr, { once: true });
@@ -2015,32 +1960,22 @@
                 const rows = document.querySelectorAll(".multicity-row");
                 rows.forEach((row) => {
                     const btn = row.querySelector(".remove-row");
-                    if (rows.length === 1) {
-                        btn.setAttribute("disabled", "true");
-                    } else {
-                        btn.removeAttribute("disabled");
-                    }
+                    if (rows.length === 1) { btn.setAttribute("disabled", "true"); } 
+                    else { btn.removeAttribute("disabled"); }
                 });
             }
 
-            // 11. Currency & Language Popup Handlers
             document.querySelectorAll(".currency-option").forEach(btn => {
                 btn.addEventListener("click", (e) => {
-                    const curr = e.target.textContent;
-                    document.getElementById("selectedCurrencyBtn").innerHTML = `<i class="bi bi-coin text-warning"></i> ${curr}`;
-                    const modalEl = document.getElementById('currencyModal');
-                    const modalInstance = bootstrap.Modal.getInstance(modalEl);
-                    modalInstance.hide();
+                    document.getElementById("selectedCurrencyBtn").innerHTML = `<i class="bi bi-coin text-warning"></i> ${e.target.textContent}`;
+                    bootstrap.Modal.getInstance(document.getElementById('currencyModal')).hide();
                 });
             });
 
             document.querySelectorAll(".lang-option").forEach(btn => {
                 btn.addEventListener("click", (e) => {
-                    const lang = e.target.textContent;
-                    document.getElementById("selectedLangBtn").innerHTML = `<i class="bi bi-globe text-info"></i> ${lang}`;
-                    const modalEl = document.getElementById('langModal');
-                    const modalInstance = bootstrap.Modal.getInstance(modalEl);
-                    modalInstance.hide();
+                    document.getElementById("selectedLangBtn").innerHTML = `<i class="bi bi-globe text-info"></i> ${e.target.textContent}`;
+                    bootstrap.Modal.getInstance(document.getElementById('langModal')).hide();
                 });
             });
 
