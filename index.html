@@ -16,7 +16,7 @@
     <!-- Bootstrap Icons CSS (Fetchpriority Low) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" fetchpriority="low">
     
-    <!-- Lazysizes JS (Fetchpriority High agar gambar lazyload segera diproses) -->
+    <!-- Lazysizes JS (Fetchpriority High) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async fetchpriority="high"></script>
 
     <style>
@@ -35,9 +35,7 @@
             --card-hover-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
         }
 
-        html { 
-            scroll-behavior: smooth; 
-        }
+        html { scroll-behavior: smooth; }
 
         body { 
             font-family: 'Plus Jakarta Sans', 'Poppins', sans-serif !important; 
@@ -47,34 +45,25 @@
             overflow-x: hidden;
         }
 
-        header.sticky-top {
-            z-index: 1070 !important;
-        }
+        header.sticky-top { z-index: 1070 !important; }
+
+        .cursor-pointer { cursor: pointer; }
 
         /* LAZYSIZES EFFECT */
         .lazy-effect {
-            opacity: 0.3;
-            filter: blur(10px);
+            opacity: 0.3; filter: blur(10px);
             transition: opacity 0.8s ease-in-out, filter 0.8s ease-in-out, transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
             will-change: opacity, filter, transform;
         }
-        .lazy-effect.lazyloaded {
-            opacity: 1;
-            filter: blur(0px);
-        }
+        .lazy-effect.lazyloaded { opacity: 1; filter: blur(0px); }
 
         /* SKELETON LOADER CSS */
         .skeleton {
             background: #e2e8f0;
             background: linear-gradient(90deg, #e2e8f0 25%, #cbd5e1 50%, #e2e8f0 75%);
-            background-size: 200% 100%;
-            animation: skeleton-loading 1.5s infinite;
-            border-radius: 6px;
+            background-size: 200% 100%; animation: skeleton-loading 1.5s infinite; border-radius: 6px;
         }
-        @keyframes skeleton-loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
+        @keyframes skeleton-loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
         .skeleton-text { height: 16px; margin-bottom: 8px; width: 100%; }
         .skeleton-text.short { width: 60%; }
         .skeleton-img-box { height: 200px; width: 100%; border-radius: 1rem 1rem 0 0; }
@@ -83,58 +72,33 @@
         .hero-carousel img { height: 620px; object-fit: cover; filter: brightness(0.55); }
         
         .search-card { 
-            margin-top: -150px; 
-            z-index: 10; 
-            position: relative; 
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1) !important;
-            border-radius: 24px !important;
+            margin-top: -150px; z-index: 10; position: relative; 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1) !important; border-radius: 24px !important;
         }
 
-        /* SCROLL REVEAL & FADE ANIMATION */
+        /* SCROLL REVEAL */
         .scroll-reveal {
-            opacity: 0;
-            transform: translateY(35px);
+            opacity: 0; transform: translateY(35px);
             transition: opacity 0.9s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.9s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-        .scroll-reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
 
-        /* SMOOTH HOVER DROPDOWN & MEGA MENU ANIMATION */
+        /* DROPDOWN & MEGA MENU */
         .dropdown-menu {
-            display: block;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(12px);
-            transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
-            margin-top: 0px;
-            pointer-events: none;
+            display: block; opacity: 0; visibility: hidden; transform: translateY(12px);
+            transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1); margin-top: 0px; pointer-events: none;
         }
-        .dropdown:hover > .dropdown-menu,
-        .dropdown-menu:hover {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-            pointer-events: auto;
+        .dropdown:hover > .dropdown-menu, .dropdown-menu:hover {
+            opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto;
         }
-
         .mega-menu {
-            width: 700px;
-            left: 50% !important;
-            transform: translateX(-50%) translateY(12px) !important;
-            padding: 24px !important;
+            width: 700px; left: 50% !important; transform: translateX(-50%) translateY(12px) !important; padding: 24px !important;
         }
-        .dropdown:hover > .mega-menu {
-            transform: translateX(-50%) translateY(0) !important;
-        }
+        .dropdown:hover > .mega-menu { transform: translateX(-50%) translateY(0) !important; }
 
         /* TITLE & BUTTON EFFECTS */
         h1, h2, h3, h4, .display-6, .display-5, .display-3 {
-            background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            transition: transform 0.3s ease, filter 0.3s ease;
+            background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; transition: transform 0.3s ease, filter 0.3s ease;
         }
         h1:hover, h2:hover, h3:hover, h4:hover { filter: brightness(1.1); }
         .carousel-caption h1, .modern-footer h5, .modern-footer h6, .modern-footer a.navbar-brand, .text-white h2, .text-white h1 {
@@ -158,8 +122,7 @@
         .image-shimmer-effect::after {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0) 100%);
-            transform: rotate(30deg) translateX(-100%); transition: transform 0.75s cubic-bezier(0.165, 0.84, 0.44, 1);
-            pointer-events: none; z-index: 5;
+            transform: rotate(30deg) translateX(-100%); transition: transform 0.75s cubic-bezier(0.165, 0.84, 0.44, 1); pointer-events: none; z-index: 5;
         }
         .image-shimmer-effect:hover::after { transform: rotate(30deg) translateX(100%); }
         .image-shimmer-effect:hover img.lazyloaded { transform: scale(1.06); filter: brightness(1.03); }
@@ -370,7 +333,7 @@
                             <li class="nav-item"><button class="nav-link rounded-pill px-3 py-1 text-dark" data-bs-toggle="tab" data-bs-target="#roundTrip">Roundtrip</button></li>
                             <li class="nav-item"><button class="nav-link rounded-pill px-3 py-1 text-dark" data-bs-toggle="tab" data-bs-target="#multiCity">Multi-city</button></li>
                         </ul>
-                        <div class="dropdown">
+                        <div class="dropdown dropdown-cabin">
                             <button class="btn btn-light btn-sm dropdown-toggle rounded-pill px-3 border text-primary fw-semibold shadow-sm" type="button" data-bs-toggle="dropdown" id="cabinClassDropdownBtn">
                                 Economy
                             </button>
@@ -411,7 +374,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6">
-                                    <div class="search-box-item dropdown cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                    <div class="search-box-item dropdown cursor-pointer dropdown-passengers" data-bs-toggle="dropdown" data-bs-auto-close="outside">
                                         <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Travelers</div>
                                         <div class="fw-bold small text-dark" id="travelersSummaryText">1 Adult, 0 Child, Economy</div>
                                     </div>
@@ -440,7 +403,7 @@
                                                 <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightInfant">+</button>
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary btn-sm w-100 apply-travelers-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
+                                        <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-md-12">
@@ -480,9 +443,9 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-12">
-                                    <div class="search-box-item dropdown cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                    <div class="search-box-item dropdown cursor-pointer dropdown-passengers" data-bs-toggle="dropdown" data-bs-auto-close="outside">
                                         <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Passengers</div>
-                                        <div class="fw-bold small text-dark rt-travelers-summary">1 Adult, Economy</div>
+                                        <div class="fw-bold small text-dark rt-travelers-summary">1 Adult, 0 Child</div>
                                     </div>
                                     <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4" style="width: 280px;">
                                         <div class="d-flex justify-content-between align-items-center mb-2">
@@ -509,7 +472,7 @@
                                                 <button class="btn btn-outline-secondary increase-count" type="button" data-target="rtInfant">+</button>
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary btn-sm w-100 apply-rt-travelers-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
+                                        <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-md-12">
@@ -536,7 +499,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-md-6">
-                                        <div class="search-box-item dropdown cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                        <div class="search-box-item dropdown cursor-pointer dropdown-passengers" data-bs-toggle="dropdown" data-bs-auto-close="outside">
                                             <div class="text-muted small mb-1">Passengers</div>
                                             <div class="fw-bold small text-dark mc-travelers-summary">1 Adult</div>
                                         </div>
@@ -544,12 +507,12 @@
                                             <div class="d-flex justify-content-between align-items-center mb-2">
                                                 <span class="small">Dewasa</span>
                                                 <div class="input-group input-group-sm w-50">
-                                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcAdult">-</button>
-                                                    <input type="text" id="mcAdult" class="form-control text-center fw-bold" value="1" readonly>
-                                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcAdult">+</button>
+                                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcAdult1">-</button>
+                                                    <input type="text" id="mcAdult1" class="form-control text-center fw-bold mc-input" value="1" readonly>
+                                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcAdult1">+</button>
                                                 </div>
                                             </div>
-                                            <button class="btn btn-primary btn-sm w-100 apply-mc-travelers-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
+                                            <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-md-12">
@@ -569,7 +532,6 @@
                     </div>
                 </div>
 
-                <!-- Lanjut Tab Lainnya... (Hotels, Transport, Tours, Experience, Visa) -->
                 <!-- HOTELS TAB -->
                 <div class="tab-pane fade" id="hotelSearchTab">
                     <div class="row g-2 align-items-center">
@@ -592,12 +554,36 @@
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6">
-                            <div class="search-box-item dropdown cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                            <div class="search-box-item dropdown cursor-pointer dropdown-passengers" data-bs-toggle="dropdown" data-bs-auto-close="outside">
                                 <div class="text-muted small mb-1"><i class="bi bi-people text-primary me-1"></i> Guests & Rooms</div>
                                 <div class="fw-bold small text-dark" id="hotelSummaryText">1 Room, 2 Guests</div>
                             </div>
                             <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4" style="width: 280px;">
-                                <!-- Isi sama -->
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="small">Kamar</span>
+                                    <div class="input-group input-group-sm w-50">
+                                        <button class="btn btn-outline-secondary decrease-count" type="button" data-target="hotelRoom">-</button>
+                                        <input type="text" id="hotelRoom" class="form-control text-center fw-bold" value="1" readonly>
+                                        <button class="btn btn-outline-secondary increase-count" type="button" data-target="hotelRoom">+</button>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="small">Dewasa</span>
+                                    <div class="input-group input-group-sm w-50">
+                                        <button class="btn btn-outline-secondary decrease-count" type="button" data-target="hotelAdult">-</button>
+                                        <input type="text" id="hotelAdult" class="form-control text-center fw-bold" value="2" readonly>
+                                        <button class="btn btn-outline-secondary increase-count" type="button" data-target="hotelAdult">+</button>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="small">Anak</span>
+                                    <div class="input-group input-group-sm w-50">
+                                        <button class="btn btn-outline-secondary decrease-count" type="button" data-target="hotelChild">-</button>
+                                        <input type="text" id="hotelChild" class="form-control text-center fw-bold" value="0" readonly>
+                                        <button class="btn btn-outline-secondary increase-count" type="button" data-target="hotelChild">+</button>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-sm w-100 py-2 rounded-pill fw-bold apply-btn" type="button">Terapkan</button>
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-12">
@@ -633,7 +619,7 @@
                     </div>
                 </div>
 
-                <!-- TOURS TAB -->
+                <!-- TOURS TAB (Updated Interactive) -->
                 <div class="tab-pane fade" id="tourSearchTab">
                     <div class="row g-2 align-items-center">
                         <div class="col-lg-5 col-md-12">
@@ -649,9 +635,20 @@
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-6">
-                            <div class="search-box-item">
+                            <div class="search-box-item dropdown cursor-pointer dropdown-passengers" data-bs-toggle="dropdown" data-bs-auto-close="outside">
                                 <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Travelers</div>
-                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent" value="2 Adults" readonly>
+                                <div class="fw-bold small text-dark" id="tourSummaryText">2 Adults</div>
+                            </div>
+                            <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4" style="width: 250px;">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="small">Peserta</span>
+                                    <div class="input-group input-group-sm w-50">
+                                        <button class="btn btn-outline-secondary decrease-count" type="button" data-target="tourAdult">-</button>
+                                        <input type="text" id="tourAdult" class="form-control text-center fw-bold" value="2" readonly>
+                                        <button class="btn btn-outline-secondary increase-count" type="button" data-target="tourAdult">+</button>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-sm w-100 py-2 rounded-pill fw-bold apply-btn" type="button">Terapkan</button>
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-12">
@@ -660,7 +657,7 @@
                     </div>
                 </div>
 
-                <!-- EXPERIENCE TAB -->
+                <!-- EXPERIENCE TAB (Updated Interactive) -->
                 <div class="tab-pane fade" id="expSearchTab">
                     <div class="row g-2 align-items-center">
                         <div class="col-lg-5 col-md-12">
@@ -676,9 +673,20 @@
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-6">
-                            <div class="search-box-item">
+                            <div class="search-box-item dropdown cursor-pointer dropdown-passengers" data-bs-toggle="dropdown" data-bs-auto-close="outside">
                                 <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Participants</div>
-                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent" value="2 Persons" readonly>
+                                <div class="fw-bold small text-dark" id="expSummaryText">2 Persons</div>
+                            </div>
+                            <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4" style="width: 250px;">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="small">Peserta</span>
+                                    <div class="input-group input-group-sm w-50">
+                                        <button class="btn btn-outline-secondary decrease-count" type="button" data-target="expAdult">-</button>
+                                        <input type="text" id="expAdult" class="form-control text-center fw-bold" value="2" readonly>
+                                        <button class="btn btn-outline-secondary increase-count" type="button" data-target="expAdult">+</button>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-sm w-100 py-2 rounded-pill fw-bold apply-btn" type="button">Terapkan</button>
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-12">
@@ -734,12 +742,12 @@
                             <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
                                 <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=600&q=80" width="600" height="380" class="lazyload lazy-effect" alt="Travel Around the World" fetchpriority="low">
                             </div>
-                            <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.65) 100%); pointer-events: none;">
+                            <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-3 p-md-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.65) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
-                                    <h3 class="fw-bold text-uppercase text-white lh-sm fs-4" style="font-family: 'Poppins', sans-serif;">TRAVEL AROUND THE WORLD</h3>
+                                    <h3 class="fw-bold text-uppercase text-white lh-sm" style="font-family: 'Poppins', sans-serif; font-size: clamp(1.2rem, 3vw, 1.5rem);">TRAVEL AROUND THE WORLD</h3>
                                 </div>
                                 <div style="pointer-events: auto;">
-                                    <span class="badge rounded-pill px-3 py-2 fs-6 fw-bold shadow" style="background-color: #ff007f;">25% off</span>
+                                    <span class="badge rounded-pill px-3 py-2 fw-bold shadow" style="background-color: #ff007f; font-size: clamp(0.85rem, 1.5vw, 1rem);">25% off</span>
                                 </div>
                             </div>
                         </div>
@@ -750,14 +758,14 @@
                             <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
                                 <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" width="600" height="380" class="lazyload lazy-effect" alt="Breath Adventure Awaits" fetchpriority="low">
                             </div>
-                            <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
+                            <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-3 p-md-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
                                     <i class="bi bi-airplane text-white fs-5 mb-2 d-inline-block"></i>
-                                    <h3 class="fw-bold text-warning lh-sm fs-4" style="font-family: 'Poppins', sans-serif;">Breath Adventure Awaits</h3>
+                                    <h3 class="fw-bold text-warning lh-sm" style="font-family: 'Poppins', sans-serif; font-size: clamp(1.2rem, 3vw, 1.5rem);">Breath Adventure Awaits</h3>
                                 </div>
-                                <div class="align-self-end bg-danger text-white rounded-circle d-flex flex-column align-items-center justify-content-center p-3 fw-bold shadow-lg" style="width: 80px; height: 80px; transform: rotate(-10deg); pointer-events: auto;">
-                                    <span class="fs-5 lh-1 fw-extrabold">$199</span>
-                                    <span style="font-size: 0.65rem; letter-spacing: 1px;">/only</span>
+                                <div class="align-self-end bg-danger text-white rounded-circle d-flex flex-column align-items-center justify-content-center p-2 fw-bold shadow-lg" style="width: clamp(65px, 15vw, 80px); height: clamp(65px, 15vw, 80px); transform: rotate(-10deg); pointer-events: auto;">
+                                    <span class="lh-1 fw-extrabold" style="font-size: clamp(1rem, 2.5vw, 1.25rem);">$199</span>
+                                    <span style="font-size: clamp(0.55rem, 1.2vw, 0.65rem); letter-spacing: 1px;">/only</span>
                                 </div>
                             </div>
                         </div>
@@ -768,13 +776,13 @@
                             <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
                                 <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" width="600" height="380" class="lazyload lazy-effect" alt="20% off SALE" fetchpriority="low">
                             </div>
-                            <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
+                            <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-3 p-md-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
                                     <span class="text-uppercase small fw-bold tracking-wider text-warning">up to</span>
-                                    <h1 class="fw-bold text-white mb-0 display-5">20% off</h1>
-                                    <h4 class="fw-bold tracking-widest text-uppercase">SALE</h4>
+                                    <h1 class="fw-bold text-white mb-0" style="font-size: clamp(2.5rem, 6vw, 3.5rem);">20% off</h1>
+                                    <h4 class="fw-bold tracking-widest text-uppercase" style="font-size: clamp(1.2rem, 3vw, 1.5rem);">SALE</h4>
                                 </div>
-                                <div class="text-center bg-success text-white py-2 rounded-pill fw-bold small shadow" style="pointer-events: auto;">
+                                <div class="text-center bg-success text-white py-2 rounded-pill fw-bold small shadow" style="pointer-events: auto; font-size: clamp(0.7rem, 2vw, 0.875rem);">
                                     ★ TRAVEL • View All Tour
                                 </div>
                             </div>
@@ -786,15 +794,15 @@
                             <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
                                 <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=600&q=80" width="600" height="380" class="lazyload lazy-effect" alt="Summer Vacation" fetchpriority="low">
                             </div>
-                            <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
+                            <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-3 p-md-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
-                                    <h3 class="fw-bold text-white lh-sm fs-4" style="font-family: 'Poppins', sans-serif;">Summer Vacation</h3>
+                                    <h3 class="fw-bold text-white lh-sm" style="font-family: 'Poppins', sans-serif; font-size: clamp(1.2rem, 3vw, 1.5rem);">Summer Vacation</h3>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-end" style="pointer-events: auto;">
-                                    <span class="badge bg-light text-dark rounded-pill px-3 py-1 fw-semibold small shadow">VACATION mode</span>
-                                    <div class="rounded-circle d-flex flex-column align-items-center justify-content-center p-3 fw-bold shadow-lg text-white" style="width: 80px; height: 80px; background-color: #ff007f;">
-                                        <span class="fs-5 lh-1 fw-extrabold">$199</span>
-                                        <span style="font-size: 0.65rem; letter-spacing: 1px;">/only</span>
+                                    <span class="badge bg-light text-dark rounded-pill px-3 py-1 fw-semibold shadow" style="font-size: clamp(0.65rem, 1.5vw, 0.8rem);">VACATION mode</span>
+                                    <div class="rounded-circle d-flex flex-column align-items-center justify-content-center p-2 fw-bold shadow-lg text-white" style="width: clamp(65px, 15vw, 80px); height: clamp(65px, 15vw, 80px); background-color: #ff007f;">
+                                        <span class="lh-1 fw-extrabold" style="font-size: clamp(1rem, 2.5vw, 1.25rem);">$199</span>
+                                        <span style="font-size: clamp(0.55rem, 1.2vw, 0.65rem); letter-spacing: 1px;">/only</span>
                                     </div>
                                 </div>
                             </div>
@@ -829,11 +837,7 @@
             <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold" data-bs-toggle="pill" data-bs-target="#dealMiddleEast" data-continent="dealMiddleEast">Middle East</button></li>
         </ul>
         <div class="tab-content" id="flightDealsContent">
-            <div class="tab-pane fade show active" id="dealAmerica">
-                <div class="row g-4 flight-results-container" data-continent="dealAmerica">
-                    <!-- SKELETON PLACEHOLDER -->
-                </div>
-            </div>
+            <div class="tab-pane fade show active" id="dealAmerica"><div class="row g-4 flight-results-container" data-continent="dealAmerica"></div></div>
             <div class="tab-pane fade" id="dealEurope"><div class="row g-4 flight-results-container" data-continent="dealEurope"></div></div>
             <div class="tab-pane fade" id="dealAsia"><div class="row g-4 flight-results-container" data-continent="dealAsia"></div></div>
             <div class="tab-pane fade" id="dealAfrica"><div class="row g-4 flight-results-container" data-continent="dealAfrica"></div></div>
@@ -1429,9 +1433,9 @@
             <div class="row g-5 mb-5">
                 <div class="col-lg-3 col-md-6">
                     <a class="fw-bold fs-4 text-white d-flex align-items-center gap-2 mb-3 text-decoration-none" href="#">
-                        <span class="text-white">Atlastrip</span>
+                        <span class="text-white">TravelMeta</span>
                     </a>
-                    <h6 class="mb-2">Atlastrip Travel Agency</h6>
+                    <h6 class="mb-2">TravelMeta Travel Agency</h6>
                     <p class="small mb-4 lh-sm">
                         Skyline Plaza, 5th Floor, 123 Main Street<br>
                         Los Angeles, CA 90001, USA
@@ -1460,7 +1464,7 @@
                 <div class="col-lg-3 col-md-6">
                     <h5>Explore</h5>
                     <ul class="list-unstyled d-flex flex-column gap-2 m-0">
-                        <li><a href="#about" class="footer-link">About Atlastrip</a></li>
+                        <li><a href="#about" class="footer-link">About TravelMeta</a></li>
                         <li><a href="#" class="footer-link">Health & Safety Measure</a></li>
                         <li><a href="#" class="footer-link">Customize Tour</a></li>
                         <li><a href="#offers" class="footer-link">Deals & Discount</a></li>
@@ -1507,7 +1511,7 @@
             </div>
 
             <div class="small pt-3 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2" style="color: #9ca3af !important;">
-                <p class="mb-0">&copy; 2026 Atlastrip, <strong class="text-white">Egenslab</strong>. All Rights Reserved.</p>
+                <p class="mb-0">&copy; 2026 TravelMeta. All Rights Reserved.</p>
                 <p class="mb-0" style="font-size: 0.75rem; max-width: 600px; line-height: 1.6; color: #9ca3af !important;">
                     All travel services are provided in accordance with applicable international travel regulations, airline policies, visa requirements, and local tourism laws, ensuring transparency, reliability, and compliance throughout your journey.
                 </p>
@@ -2088,7 +2092,6 @@
                             <div class="col-md-4">
                                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover bg-white">
                                     <div class="image-shimmer-effect" style="height: 200px;">
-                                        <!-- Ditambahkan Width dan Height pada tag Img -->
                                         <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="${item.imgUrl}" width="600" height="280" class="lazyload lazy-effect" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80'" fetchpriority="low">
                                     </div>
                                     <div class="card-body p-4">
@@ -2189,10 +2192,12 @@
                 });
             });
 
+            // INTERACTIVE CABIN DROPDOWN
             document.querySelectorAll('.cabin-option').forEach(item => {
                 item.addEventListener('click', (e) => {
                     e.preventDefault();
                     document.getElementById('cabinClassDropdownBtn').textContent = e.target.getAttribute('data-cabin');
+                    updateAllSummaries();
                 });
             });
 
@@ -2216,60 +2221,94 @@
                 input.addEventListener("focus", loadFlatpickr, { once: true });
             });
 
-            document.querySelectorAll(".increase-count").forEach(btn => {
-                btn.addEventListener("click", () => {
-                    const input = document.getElementById(btn.getAttribute("data-target"));
-                    input.value = parseInt(input.value) + 1;
-                });
-            });
-
-            document.querySelectorAll(".decrease-count").forEach(btn => {
-                btn.addEventListener("click", () => {
-                    const targetId = btn.getAttribute("data-target");
+            // ==========================================
+            // GLOBAL INTERACTIVE EVENT DELEGATION
+            // ==========================================
+            document.addEventListener('click', (e) => {
+                // INCREASE BUTTON
+                if (e.target.classList.contains('increase-count')) {
+                    const targetId = e.target.getAttribute('data-target');
                     const input = document.getElementById(targetId);
-                    if (parseInt(input.value) > 0) {
-                        if ((targetId.includes('Adult') || targetId === 'hotelRoom') && parseInt(input.value) <= 1) return;
-                        input.value = parseInt(input.value) - 1;
+                    if (input) {
+                        input.value = parseInt(input.value) + 1;
+                        updateAllSummaries();
                     }
-                });
+                }
+                
+                // DECREASE BUTTON
+                if (e.target.classList.contains('decrease-count')) {
+                    const targetId = e.target.getAttribute('data-target');
+                    const input = document.getElementById(targetId);
+                    if (input) {
+                        let minValue = 0;
+                        if (targetId.includes('Adult') || targetId.includes('Room')) {
+                            minValue = 1; // Minimal Dewasa/Kamar adalah 1
+                        }
+                        if (parseInt(input.value) > minValue) {
+                            input.value = parseInt(input.value) - 1;
+                            updateAllSummaries();
+                        }
+                    }
+                }
+
+                // APPLY BUTTON - Menutup dropdown agar terlihat rapi (UX)
+                if (e.target.classList.contains('apply-btn')) {
+                    const dropdownMenu = e.target.closest('.dropdown-menu');
+                    if (dropdownMenu) {
+                        const toggleEl = dropdownMenu.closest('.dropdown-passengers').querySelector('[data-bs-toggle="dropdown"]');
+                        if (toggleEl) {
+                            const bsDropdown = bootstrap.Dropdown.getOrCreateInstance(toggleEl);
+                            bsDropdown.hide();
+                        }
+                    }
+                }
             });
 
-            const applyTravelersBtn = document.querySelector(".apply-travelers-btn");
-            if(applyTravelersBtn) {
-                applyTravelersBtn.addEventListener("click", () => {
+            // FUNGSI UPDATE SEMUA TEKS RINGKASAN
+            function updateAllSummaries() {
+                // 1. One Way Flight
+                if (document.getElementById("flightAdult")) {
                     const adults = parseInt(document.getElementById("flightAdult").value);
                     const kids = parseInt(document.getElementById("flightChild").value);
                     const infants = parseInt(document.getElementById("flightInfant").value);
-                    const cabin = document.getElementById("cabinClassDropdownBtn").textContent;
+                    const cabin = document.getElementById("cabinClassDropdownBtn").textContent.trim();
                     document.getElementById("travelersSummaryText").textContent = `${adults} Adult, ${kids + infants} Child, ${cabin}`;
-                });
-            }
+                }
+                
+                // 2. Round Trip Flight
+                if (document.getElementById("rtAdult")) {
+                    const rtAdults = parseInt(document.getElementById("rtAdult").value);
+                    const rtKids = parseInt(document.getElementById("rtChild").value);
+                    const rtInfants = parseInt(document.getElementById("rtInfant").value);
+                    document.querySelector(".rt-travelers-summary").textContent = `${rtAdults} Adult, ${rtKids + rtInfants} Child`;
+                }
 
-            const applyRtTravelersBtn = document.querySelector(".apply-rt-travelers-btn");
-            if(applyRtTravelersBtn) {
-                applyRtTravelersBtn.addEventListener("click", () => {
-                    const adults = parseInt(document.getElementById("rtAdult").value);
-                    const kids = parseInt(document.getElementById("rtChild").value);
-                    const infants = parseInt(document.getElementById("rtInfant").value);
-                    document.querySelectorAll(".rt-travelers-summary").forEach(el => { el.textContent = `${adults} Adult, ${kids + infants} Child`; });
-                });
-            }
-
-            const applyMcTravelersBtn = document.querySelector(".apply-mc-travelers-btn");
-            if(applyMcTravelersBtn) {
-                applyMcTravelersBtn.addEventListener("click", () => {
-                    const adults = parseInt(document.getElementById("mcAdult").value);
-                    document.querySelectorAll(".mc-travelers-summary").forEach(el => { el.textContent = `${adults} Adult`; });
-                });
-            }
-
-            const applyHotelGuestsBtn = document.getElementById("applyHotelGuests");
-            if(applyHotelGuestsBtn) {
-                applyHotelGuestsBtn.addEventListener("click", () => {
+                // 3. Hotel
+                if (document.getElementById("hotelRoom")) {
                     const rooms = parseInt(document.getElementById("hotelRoom").value);
-                    const adults = parseInt(document.getElementById("hotelAdult").value);
-                    const kids = parseInt(document.getElementById("hotelChild").value);
-                    document.getElementById("hotelSummaryText").textContent = `${rooms} Room, ${adults + kids} Guests`;
+                    const guests = parseInt(document.getElementById("hotelAdult").value) + parseInt(document.getElementById("hotelChild").value);
+                    document.getElementById("hotelSummaryText").textContent = `${rooms} Room, ${guests} Guests`;
+                }
+
+                // 4. Tours
+                if (document.getElementById("tourAdult")) {
+                    const tourAdults = parseInt(document.getElementById("tourAdult").value);
+                    document.getElementById("tourSummaryText").textContent = `${tourAdults} Persons`;
+                }
+
+                // 5. Experience
+                if (document.getElementById("expAdult")) {
+                    const expAdults = parseInt(document.getElementById("expAdult").value);
+                    document.getElementById("expSummaryText").textContent = `${expAdults} Persons`;
+                }
+
+                // 6. Multi-City (Perulangan berdasarkan jumlah baris)
+                document.querySelectorAll(".multicity-row").forEach((row) => {
+                    const mcInput = row.querySelector(".mc-input");
+                    const mcSummary = row.querySelector(".mc-travelers-summary");
+                    if (mcInput && mcSummary) {
+                        mcSummary.textContent = `${mcInput.value} Adult`;
+                    }
                 });
             }
 
@@ -2296,7 +2335,7 @@
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-6">
-                            <div class="search-box-item dropdown cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                            <div class="search-box-item dropdown cursor-pointer dropdown-passengers" data-bs-toggle="dropdown" data-bs-auto-close="outside">
                                 <div class="text-muted small mb-1">Passengers</div>
                                 <div class="fw-bold small text-dark mc-travelers-summary">1 Adult</div>
                             </div>
@@ -2305,11 +2344,11 @@
                                     <span class="small">Dewasa</span>
                                     <div class="input-group input-group-sm w-50">
                                         <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcAdult${rowCount}">-</button>
-                                        <input type="text" id="mcAdult${rowCount}" class="form-control text-center fw-bold" value="1" readonly>
+                                        <input type="text" id="mcAdult${rowCount}" class="form-control text-center fw-bold mc-input" value="1" readonly>
                                         <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcAdult${rowCount}">+</button>
                                     </div>
                                 </div>
-                                <button class="btn btn-primary btn-sm w-100 apply-mc-travelers-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
+                                <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-12">
