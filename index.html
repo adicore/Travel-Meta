@@ -56,13 +56,33 @@
             transform: translateY(0);
         }
 
-        /* BUTTON HOVER COLOR WHITE & NO TEXT SHADOW */
-        .btn, .btn-primary, .btn-gradient, .btn-dark, .btn-outline-primary, .btn-outline-dark, .btn-outline-danger {
+        /* NO TEXT SHADOW ON LINKS & BUTTONS */
+        a, .btn, .btn-primary, .btn-gradient, .btn-dark, .btn-outline-primary, .btn-outline-dark, .btn-outline-danger {
             text-shadow: none !important;
-            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
         }
-        .btn:hover, .btn-primary:hover, .btn-gradient:hover, .btn-dark:hover, .btn-outline-primary:hover, .btn-outline-dark:hover, .btn-outline-danger:hover {
+
+        /* BUTTON SKELETON / SHIMMER EFFECT */
+        .btn, .btn-primary, .btn-gradient, .btn-dark {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+        }
+        .btn::after, .btn-primary::after, .btn-gradient::after, .btn-dark::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(30deg) translateX(-100%);
+            transition: transform 0.6s ease;
+            pointer-events: none;
+        }
+        .btn:hover::after, .btn-primary:hover::after, .btn-gradient:hover::after, .btn-dark:hover::after {
+            transform: rotate(30deg) translateX(100%);
+        }
+        .btn:hover {
             color: #ffffff !important;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.45);
         }
 
         /* IMAGE SHIMMER EFFECT */
@@ -97,7 +117,6 @@
         }
 
         a {
-            position: relative;
             transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
         a:hover, a:focus {
@@ -176,16 +195,17 @@
             background-color: #f8fafc;
         }
 
-        .btn-primary, .btn-gradient, .btn-dark {
-            background: var(--button-gradient) !important;
-            border: none !important;
+        /* VANILLA CAROUSEL CONTAINER STYLES */
+        .vanilla-carousel-wrapper {
             position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            width: 100%;
         }
-        .btn-primary:hover, .btn-gradient:hover, .btn-dark:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.45);
+        .vanilla-carousel-track {
+            display: flex;
+            gap: 1.5rem;
+            transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            will-change: transform;
         }
 
         .modern-footer {
@@ -236,8 +256,6 @@
             width: 82px; height: 82px; border-radius: 50%; background-color: #ed1c24; color: #ffffff;
             display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 0.55rem; font-weight: 700; padding: 6px;
         }
-
-        .overflow-x-auto::-webkit-scrollbar { display: none; }
 
         @media (max-width: 991.98px) {
             .hero-carousel { height: 480px; }
@@ -739,7 +757,7 @@
         </div>
     </div>
 
-    <!-- 5. SECTION: DISCOUNTS & OFFERS -->
+    <!-- 5. SECTION: DISCOUNTS & OFFERS (VANILLA CAROUSEL) -->
     <section id="offers" class="container py-5 mt-5 scroll-reveal">
         <div class="text-center mb-5">
             <span class="text-primary fw-semibold small text-uppercase tracking-wider">Promo Spesial</span>
@@ -748,76 +766,78 @@
         </div>
 
         <div class="position-relative px-md-4">
-            <div class="d-flex gap-4 overflow-x-auto pb-4 pt-2" id="offerSlider" style="scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none;">
-                
-                <div class="card border-0 rounded-4 overflow-hidden text-white flex-shrink-0 card-hover position-relative" style="width: 270px; height: 380px; scroll-snap-align: start;">
-                    <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
-                        <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=600&q=80" alt="Travel Around the World">
-                    </div>
-                    <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.65) 100%); pointer-events: none;">
-                        <div style="pointer-events: auto;">
-                            <h3 class="fw-bold text-uppercase text-white lh-sm fs-4" style="font-family: 'Poppins', sans-serif;">TRAVEL AROUND THE WORLD</h3>
+            <div class="vanilla-carousel-wrapper" id="offerCarouselWrapper">
+                <div class="vanilla-carousel-track" id="offerCarouselTrack">
+                    
+                    <div class="card border-0 rounded-4 overflow-hidden text-white flex-shrink-0 card-hover position-relative" style="width: 280px; height: 380px;">
+                        <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
+                            <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=600&q=80" alt="Travel Around the World">
                         </div>
-                        <div style="pointer-events: auto;">
-                            <span class="badge rounded-pill px-3 py-2 fs-6 fw-bold shadow" style="background-color: #ff007f;">25% off</span>
+                        <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.65) 100%); pointer-events: none;">
+                            <div style="pointer-events: auto;">
+                                <h3 class="fw-bold text-uppercase text-white lh-sm fs-4" style="font-family: 'Poppins', sans-serif;">TRAVEL AROUND THE WORLD</h3>
+                            </div>
+                            <div style="pointer-events: auto;">
+                                <span class="badge rounded-pill px-3 py-2 fs-6 fw-bold shadow" style="background-color: #ff007f;">25% off</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="card border-0 rounded-4 overflow-hidden text-white flex-shrink-0 card-hover position-relative" style="width: 270px; height: 380px; scroll-snap-align: start;">
-                    <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
-                        <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" alt="Breath Adventure Awaits">
-                    </div>
-                    <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
-                        <div style="pointer-events: auto;">
-                            <i class="bi bi-airplane text-white fs-5 mb-2 d-inline-block"></i>
-                            <h3 class="fw-bold text-warning lh-sm fs-4" style="font-family: 'Poppins', sans-serif;">Breath Adventure Awaits</h3>
+                    <div class="card border-0 rounded-4 overflow-hidden text-white flex-shrink-0 card-hover position-relative" style="width: 280px; height: 380px;">
+                        <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
+                            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" alt="Breath Adventure Awaits">
                         </div>
-                        <div class="align-self-end bg-danger text-white rounded-circle d-flex flex-column align-items-center justify-content-center p-3 fw-bold shadow-lg" style="width: 80px; height: 80px; transform: rotate(-10deg); pointer-events: auto;">
-                            <span class="fs-5 lh-1 fw-extrabold">$199</span>
-                            <span style="font-size: 0.65rem; letter-spacing: 1px;">/only</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card border-0 rounded-4 overflow-hidden text-white flex-shrink-0 card-hover position-relative" style="width: 270px; height: 380px; scroll-snap-align: start;">
-                    <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
-                        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" alt="20% off SALE">
-                    </div>
-                    <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
-                        <div style="pointer-events: auto;">
-                            <span class="text-uppercase small fw-bold tracking-wider text-warning">up to</span>
-                            <h1 class="fw-bold text-white mb-0 display-5">20% off</h1>
-                            <h4 class="fw-bold tracking-widest text-uppercase">SALE</h4>
-                        </div>
-                        <div class="text-center bg-success text-white py-2 rounded-pill fw-bold small shadow" style="pointer-events: auto;">
-                            ★ TRAVEL • View All Tour
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card border-0 rounded-4 overflow-hidden text-white flex-shrink-0 card-hover position-relative" style="width: 270px; height: 380px; scroll-snap-align: start;">
-                    <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
-                        <img src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=600&q=80" alt="Summer Vacation">
-                    </div>
-                    <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
-                        <div style="pointer-events: auto;">
-                            <h3 class="fw-bold text-white lh-sm fs-4" style="font-family: 'Poppins', sans-serif;">Summer Vacation</h3>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-end" style="pointer-events: auto;">
-                            <span class="badge bg-light text-dark rounded-pill px-3 py-1 fw-semibold small shadow">VACATION mode</span>
-                            <div class="rounded-circle d-flex flex-column align-items-center justify-content-center p-3 fw-bold shadow-lg text-white" style="width: 80px; height: 80px; background-color: #ff007f;">
+                        <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
+                            <div style="pointer-events: auto;">
+                                <i class="bi bi-airplane text-white fs-5 mb-2 d-inline-block"></i>
+                                <h3 class="fw-bold text-warning lh-sm fs-4" style="font-family: 'Poppins', sans-serif;">Breath Adventure Awaits</h3>
+                            </div>
+                            <div class="align-self-end bg-danger text-white rounded-circle d-flex flex-column align-items-center justify-content-center p-3 fw-bold shadow-lg" style="width: 80px; height: 80px; transform: rotate(-10deg); pointer-events: auto;">
                                 <span class="fs-5 lh-1 fw-extrabold">$199</span>
                                 <span style="font-size: 0.65rem; letter-spacing: 1px;">/only</span>
                             </div>
                         </div>
                     </div>
-                </div>
 
+                    <div class="card border-0 rounded-4 overflow-hidden text-white flex-shrink-0 card-hover position-relative" style="width: 280px; height: 380px;">
+                        <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
+                            <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" alt="20% off SALE">
+                        </div>
+                        <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
+                            <div style="pointer-events: auto;">
+                                <span class="text-uppercase small fw-bold tracking-wider text-warning">up to</span>
+                                <h1 class="fw-bold text-white mb-0 display-5">20% off</h1>
+                                <h4 class="fw-bold tracking-widest text-uppercase">SALE</h4>
+                            </div>
+                            <div class="text-center bg-success text-white py-2 rounded-pill fw-bold small shadow" style="pointer-events: auto;">
+                                ★ TRAVEL • View All Tour
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 rounded-4 overflow-hidden text-white flex-shrink-0 card-hover position-relative" style="width: 280px; height: 380px;">
+                        <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
+                            <img src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=600&q=80" alt="Summer Vacation">
+                        </div>
+                        <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
+                            <div style="pointer-events: auto;">
+                                <h3 class="fw-bold text-white lh-sm fs-4" style="font-family: 'Poppins', sans-serif;">Summer Vacation</h3>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-end" style="pointer-events: auto;">
+                                <span class="badge bg-light text-dark rounded-pill px-3 py-1 fw-semibold small shadow">VACATION mode</span>
+                                <div class="rounded-circle d-flex flex-column align-items-center justify-content-center p-3 fw-bold shadow-lg text-white" style="width: 80px; height: 80px; background-color: #ff007f;">
+                                    <span class="fs-5 lh-1 fw-extrabold">$199</span>
+                                    <span style="font-size: 0.65rem; letter-spacing: 1px;">/only</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
-            <button class="btn btn-white bg-white shadow-lg border-0 position-absolute top-50 start-0 translate-middle-y rounded-circle d-none d-md-flex align-items-center justify-content-center ms-n3 z-2 text-dark" id="slideLeftBtn" style="width: 48px; height: 48px;"><i class="bi bi-chevron-left fs-5"></i></button>
-            <button class="btn btn-white bg-white shadow-lg border-0 position-absolute top-50 end-0 translate-middle-y rounded-circle d-none d-md-flex align-items-center justify-content-center me-n3 z-2 text-dark" id="slideRightBtn" style="width: 48px; height: 48px;"><i class="bi bi-chevron-right fs-5"></i></button>
+            <button class="btn btn-white bg-white shadow-lg border-0 position-absolute top-50 start-0 translate-middle-y rounded-circle d-none d-md-flex align-items-center justify-content-center ms-n3 z-2 text-dark" id="offerSlideLeft" style="width: 48px; height: 48px;"><i class="bi bi-chevron-left fs-5"></i></button>
+            <button class="btn btn-white bg-white shadow-lg border-0 position-absolute top-50 end-0 translate-middle-y rounded-circle d-none d-md-flex align-items-center justify-content-center me-n3 z-2 text-dark" id="offerSlideRight" style="width: 48px; height: 48px;"><i class="bi bi-chevron-right fs-5"></i></button>
         </div>
     </section>
 
@@ -940,7 +960,7 @@
         </div>
     </section>
 
-    <!-- 8. SECTION: POPULAR TOURS (REDESIGNED TO MATCH REFERENCE IMAGE) -->
+    <!-- 8. SECTION: POPULAR TOURS -->
     <section id="tours" class="container py-5 bg-white rounded-4 shadow-sm my-4 border scroll-reveal">
         <div class="text-center mb-4">
             <h2 class="fw-extrabold display-6 text-dark">Popular Tours & Attractions</h2>
@@ -957,10 +977,8 @@
             <div class="tab-pane fade show active" id="tourAmerica">
                 <div class="row g-4">
                     
-                    <!-- Tour Item Card 1: Maldives Handpicked Adventure Tours -->
                     <div class="col-md-6">
                         <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover position-relative bg-white">
-                            <!-- Image with Clickable link, Wishlist & Dual Badges -->
                             <a href="#" class="image-shimmer-effect position-relative d-block" style="height: 240px;">
                                 <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" alt="Maldives Handpicked Adventure Tours">
                             </a>
@@ -974,16 +992,13 @@
 
                             <div class="card-body p-4 d-flex flex-column justify-content-between">
                                 <div>
-                                    <!-- Star Ratings -->
                                     <div class="d-flex align-items-center gap-1 mb-2">
                                         <span class="text-warning small">★★★★★</span>
                                         <span class="text-dark small fw-bold">(4.9)</span>
                                     </div>
-                                    <!-- Clickable Title -->
                                     <h5 class="fw-bold mb-2 fs-5">
                                         <a href="#" class="text-dark text-decoration-none">Maldives Handpicked Adventure Tours</a>
                                     </h5>
-                                    <!-- Location & Duration Meta -->
                                     <div class="d-flex align-items-center gap-4 text-muted small mb-4">
                                         <span><i class="bi bi-geo-alt me-1 text-secondary"></i> Maldives</span>
                                         <span><i class="bi bi-clock me-1 text-secondary"></i> 2 Hours</span>
@@ -1003,7 +1018,6 @@
                         </div>
                     </div>
 
-                    <!-- Tour Item Card 2: Camel Ride Journey -->
                     <div class="col-md-6">
                         <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover position-relative bg-white">
                             <a href="#" class="image-shimmer-effect position-relative d-block" style="height: 240px;">
@@ -1105,7 +1119,7 @@
         </div>
     </section>
 
-    <!-- 10. SECTION: CUSTOMER REVIEWS -->
+    <!-- 10. SECTION: CUSTOMER REVIEWS (VANILLA CAROUSEL) -->
     <section class="py-5 my-4 position-relative overflow-hidden scroll-reveal" style="background: linear-gradient(135deg, #e3fcef 0%, #cbf5df 100%);">
         <div class="container py-4">
             <div class="row align-items-center mb-5">
@@ -1138,80 +1152,106 @@
             </div>
 
             <div class="position-relative">
-                <div class="d-flex gap-4 overflow-x-auto pb-4 pt-2" id="reviewSlider" style="scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none;">
-                    
-                    <div class="card border-0 rounded-4 p-4 shadow-sm flex-shrink-0 card-hover d-flex flex-column justify-content-between" style="width: 360px; height: 310px; scroll-snap-align: start; background-color: #ffffff;">
-                        <div>
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <div class="text-success fs-5">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                                </div>
-                                <button class="btn btn-light btn-sm rounded-circle shadow-sm border d-flex align-items-center justify-content-center text-primary" style="width: 36px; height: 36px;"><i class="bi bi-play-fill fs-5 ps-1"></i></button>
-                            </div>
-                            <h5 class="fw-bold text-dark mb-2">Perfect Itinerary!</h5>
-                            <p class="text-secondary small lh-base mb-0">
-                                Our trip to Vietnam was perfectly organized from start to finish. Highly recommended for international travel.
-                            </p>
-                        </div>
-                        <div class="d-flex align-items-center gap-3 pt-3 border-top">
-                            <div class="image-shimmer-effect rounded-circle shadow-sm" style="width: 45px; height: 45px;">
-                                <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=100&q=80" class="rounded-circle" alt="Anderson">
-                            </div>
+                <div class="vanilla-carousel-wrapper" id="reviewCarouselWrapper">
+                    <div class="vanilla-carousel-track" id="reviewCarouselTrack">
+                        
+                        <div class="card border-0 rounded-4 p-4 shadow-sm flex-shrink-0 card-hover d-flex flex-column justify-content-between" style="width: 360px; height: 310px; background-color: #ffffff;">
                             <div>
-                                <h6 class="fw-bold mb-0 text-dark">Anderson</h6>
-                                <small class="text-muted" style="font-size: 0.75rem;">TravelMeta Traveler</small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card border-0 rounded-4 p-4 shadow-sm flex-shrink-0 card-hover d-flex flex-column justify-content-between" style="width: 360px; height: 310px; scroll-snap-align: start; background-color: #ffffff;">
-                        <div>
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <div class="text-success fs-5">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div class="text-success fs-5">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    </div>
+                                    <button class="btn btn-light btn-sm rounded-circle shadow-sm border d-flex align-items-center justify-content-center text-primary" style="width: 36px; height: 36px;"><i class="bi bi-play-fill fs-5 ps-1"></i></button>
                                 </div>
-                                <button class="btn btn-light btn-sm rounded-circle shadow-sm border d-flex align-items-center justify-content-center text-primary" style="width: 36px; height: 36px;"><i class="bi bi-play-fill fs-5 ps-1"></i></button>
+                                <h5 class="fw-bold text-dark mb-2">Perfect Itinerary!</h5>
+                                <p class="text-secondary small lh-base mb-0">
+                                    Our trip to Vietnam was perfectly organized from start to finish. Highly recommended for international travel.
+                                </p>
                             </div>
-                            <h5 class="fw-bold text-dark mb-2">Great Visitors Venue!</h5>
-                            <p class="text-secondary small lh-base mb-0">
-                                Thank you so much for your work on our honeymoon. We really did have such a great time.
-                            </p>
-                        </div>
-                        <div class="d-flex align-items-center gap-3 pt-3 border-top">
-                            <div class="image-shimmer-effect rounded-circle shadow-sm" style="width: 45px; height: 45px;">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="rounded-circle" alt="James Bonde">
-                            </div>
-                            <div>
-                                <h6 class="fw-bold mb-0 text-dark">James Bonde</h6>
-                                <small class="text-muted" style="font-size: 0.75rem;">TravelMeta Traveler</small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card border-0 rounded-4 p-4 shadow-sm flex-shrink-0 card-hover d-flex flex-column justify-content-between" style="width: 360px; height: 310px; scroll-snap-align: start; background-color: #ffffff;">
-                        <div>
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <div class="text-success fs-5">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            <div class="d-flex align-items-center gap-3 pt-3 border-top">
+                                <div class="image-shimmer-effect rounded-circle shadow-sm" style="width: 45px; height: 45px;">
+                                    <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=100&q=80" class="rounded-circle" alt="Anderson">
                                 </div>
-                                <button class="btn btn-light btn-sm rounded-circle shadow-sm border d-flex align-items-center justify-content-center text-primary" style="width: 36px; height: 36px;"><i class="bi bi-play-fill fs-5 ps-1"></i></button>
-                            </div>
-                            <h5 class="fw-bold text-dark mb-2">Fantastic Service!</h5>
-                            <p class="text-secondary small lh-base mb-0">
-                                We have returned from Greece and want to let you know how terrific the trip was! Everything was great.
-                            </p>
-                        </div>
-                        <div class="d-flex align-items-center gap-3 pt-3 border-top">
-                            <div class="image-shimmer-effect rounded-circle shadow-sm" style="width: 45px; height: 45px;">
-                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" class="rounded-circle" alt="Amber Lashleye">
-                            </div>
-                            <div>
-                                <h6 class="fw-bold mb-0 text-dark">Amber Lashleye</h6>
-                                <small class="text-muted" style="font-size: 0.75rem;">TravelMeta Traveler</small>
+                                <div>
+                                    <h6 class="fw-bold mb-0 text-dark">Anderson</h6>
+                                    <small class="text-muted" style="font-size: 0.75rem;">TravelMeta Traveler</small>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
+                        <div class="card border-0 rounded-4 p-4 shadow-sm flex-shrink-0 card-hover d-flex flex-column justify-content-between" style="width: 360px; height: 310px; background-color: #ffffff;">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div class="text-success fs-5">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    </div>
+                                    <button class="btn btn-light btn-sm rounded-circle shadow-sm border d-flex align-items-center justify-content-center text-primary" style="width: 36px; height: 36px;"><i class="bi bi-play-fill fs-5 ps-1"></i></button>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-2">Great Visitors Venue!</h5>
+                                <p class="text-secondary small lh-base mb-0">
+                                    Thank you so much for your work on our honeymoon. We really did have such a great time.
+                                </p>
+                            </div>
+                            <div class="d-flex align-items-center gap-3 pt-3 border-top">
+                                <div class="image-shimmer-effect rounded-circle shadow-sm" style="width: 45px; height: 45px;">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="rounded-circle" alt="James Bonde">
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0 text-dark">James Bonde</h6>
+                                    <small class="text-muted" style="font-size: 0.75rem;">TravelMeta Traveler</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card border-0 rounded-4 p-4 shadow-sm flex-shrink-0 card-hover d-flex flex-column justify-content-between" style="width: 360px; height: 310px; background-color: #ffffff;">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div class="text-success fs-5">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    </div>
+                                    <button class="btn btn-light btn-sm rounded-circle shadow-sm border d-flex align-items-center justify-content-center text-primary" style="width: 36px; height: 36px;"><i class="bi bi-play-fill fs-5 ps-1"></i></button>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-2">Fantastic Service!</h5>
+                                <p class="text-secondary small lh-base mb-0">
+                                    We have returned from Greece and want to let you know how terrific the trip was! Everything was great.
+                                </p>
+                            </div>
+                            <div class="d-flex align-items-center gap-3 pt-3 border-top">
+                                <div class="image-shimmer-effect rounded-circle shadow-sm" style="width: 45px; height: 45px;">
+                                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" class="rounded-circle" alt="Amber Lashleye">
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0 text-dark">Amber Lashleye</h6>
+                                    <small class="text-muted" style="font-size: 0.75rem;">TravelMeta Traveler</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card border-0 rounded-4 p-4 shadow-sm flex-shrink-0 card-hover d-flex flex-column justify-content-between" style="width: 360px; height: 310px; background-color: #ffffff;">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div class="text-success fs-5">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    </div>
+                                    <button class="btn btn-light btn-sm rounded-circle shadow-sm border d-flex align-items-center justify-content-center text-primary" style="width: 36px; height: 36px;"><i class="bi bi-play-fill fs-5 ps-1"></i></button>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-2">Unforgettable Experience!</h5>
+                                <p class="text-secondary small lh-base mb-0">
+                                    The booking process was smooth and the customer support was top-notch during our European tour.
+                                </p>
+                            </div>
+                            <div class="d-flex align-items-center gap-3 pt-3 border-top">
+                                <div class="image-shimmer-effect rounded-circle shadow-sm" style="width: 45px; height: 45px;">
+                                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" class="rounded-circle" alt="Michael Smith">
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0 text-dark">Michael Smith</h6>
+                                    <small class="text-muted" style="font-size: 0.75rem;">TravelMeta Traveler</small>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
 
@@ -1525,7 +1565,7 @@
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
     
-    <!-- VANILLA JS: Geolocation Whereami, Travelpayouts API, Autocomplete, Sliders, Popups & Scroll Reveal -->
+    <!-- VANILLA JS: Geolocation Whereami, Travelpayouts API, Autocomplete, Vanilla Carousel, Popups & Scroll Reveal -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             
@@ -1594,6 +1634,56 @@
             document.querySelectorAll('.scroll-reveal').forEach(el => {
                 revealObserver.observe(el);
             });
+
+            // VANILLA CAROUSEL CONTROLLER
+            function initVanillaCarousel(trackId, leftBtnId, rightBtnId) {
+                const track = document.getElementById(trackId);
+                const leftBtn = document.getElementById(leftBtnId);
+                const rightBtn = document.getElementById(rightBtnId);
+                if (!track || !leftBtn || !rightBtn) return;
+
+                let currentIndex = 0;
+                const items = track.children;
+                if (items.length === 0) return;
+
+                const getStep = () => {
+                    const itemWidth = items[0].getBoundingClientRect().width;
+                    const gap = parseFloat(window.getComputedStyle(track).gap) || 24;
+                    return itemWidth + gap;
+                };
+
+                const updateCarousel = () => {
+                    const step = getStep();
+                    track.style.transform = `translateX(-${currentIndex * step}px)`;
+                };
+
+                rightBtn.addEventListener('click', () => {
+                    const visibleCount = Math.floor(track.parentElement.clientWidth / getStep()) || 1;
+                    if (currentIndex < items.length - visibleCount) {
+                        currentIndex++;
+                        updateCarousel();
+                    } else {
+                        currentIndex = 0; // Loop back
+                        updateCarousel();
+                    }
+                });
+
+                leftBtn.addEventListener('click', () => {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        updateCarousel();
+                    } else {
+                        const visibleCount = Math.floor(track.parentElement.clientWidth / getStep()) || 1;
+                        currentIndex = Math.max(0, items.length - visibleCount);
+                        updateCarousel();
+                    }
+                });
+
+                window.addEventListener('resize', () => { updateCarousel(); });
+            }
+
+            initVanillaCarousel('offerCarouselTrack', 'offerSlideLeft', 'offerSlideRight');
+            initVanillaCarousel('reviewCarouselTrack', 'reviewSlideLeft', 'reviewSlideRight');
 
             fetch("https://www.apistp.com/whereami?locale=en")
                 .then(res => res.json())
@@ -1707,28 +1797,6 @@
                     }
                 });
             });
-
-            const offerSlider = document.getElementById('offerSlider');
-            const slideLeftBtn = document.getElementById('slideLeftBtn');
-            const slideRightBtn = document.getElementById('slideRightBtn');
-
-            if(slideLeftBtn && offerSlider) {
-                slideLeftBtn.addEventListener('click', () => { offerSlider.scrollBy({ left: -320, behavior: 'smooth' }); });
-            }
-            if(slideRightBtn && offerSlider) {
-                slideRightBtn.addEventListener('click', () => { offerSlider.scrollBy({ left: 320, behavior: 'smooth' }); });
-            }
-
-            const reviewSlider = document.getElementById('reviewSlider');
-            const reviewSlideLeft = document.getElementById('reviewSlideLeft');
-            const reviewSlideRight = document.getElementById('reviewSlideRight');
-
-            if(reviewSlideLeft && reviewSlider) {
-                reviewSlideLeft.addEventListener('click', () => { reviewSlider.scrollBy({ left: -380, behavior: 'smooth' }); });
-            }
-            if(reviewSlideRight && reviewSlider) {
-                reviewSlideRight.addEventListener('click', () => { reviewSlider.scrollBy({ left: 380, behavior: 'smooth' }); });
-            }
 
             const setupTravelAutocomplete = (input) => {
                 let container = input.parentNode.querySelector('.autocomplete-suggestions');
