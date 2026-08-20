@@ -2122,7 +2122,7 @@
                 revealObserver.observe(el);
             });
 
-            // BACK TO TOP BUTTON LOGIC (ULTRA SMOOTH)
+            // BACK TO TOP BUTTON LOGIC (CUSTOM SLOWER & SMOOTH SCROLL)
             const backToTopBtn = document.getElementById('backToTopBtn');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 300) {
@@ -2131,9 +2131,28 @@
                     backToTopBtn.classList.remove('show');
                 }
             });
+
             backToTopBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                const startY = window.scrollY || window.pageYOffset;
+                if (startY === 0) return;
+                const duration = 1200; // Durasi 1.2 detik (agak perlahan & smooth)
+                const startTime = performance.now();
+
+                function scrollStep(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    // Ease out cubic function untuk perlambatan halus di akhir
+                    const easeProgress = 1 - Math.pow(1 - progress, 3);
+                    
+                    window.scrollTo(0, startY * (1 - easeProgress));
+
+                    if (progress < 1) {
+                        requestAnimationFrame(scrollStep);
+                    }
+                }
+
+                requestAnimationFrame(scrollStep);
             });
 
             // VANILLA CAROUSEL INITIALIZATION
