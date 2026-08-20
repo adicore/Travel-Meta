@@ -22,8 +22,11 @@
             --card-hover-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
         }
 
-        body { 
+        html { 
             scroll-behavior: smooth; 
+        }
+
+        body { 
             font-family: 'Plus Jakarta Sans', 'Poppins', sans-serif !important; 
             background-color: #f8fafc !important;
             color: #1e293b;
@@ -56,6 +59,35 @@
             transform: translateY(0);
         }
 
+        /* SMOOTH HOVER DROPDOWN & MEGA MENU ANIMATION */
+        .dropdown-menu {
+            display: block;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px);
+            transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+            margin-top: 0px;
+            pointer-events: none;
+        }
+        .dropdown:hover > .dropdown-menu,
+        .dropdown-menu:hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* MEGA MENU STYLING */
+        .mega-menu {
+            width: 700px;
+            left: 50% !important;
+            transform: translateX(-50%) translateY(12px) !important;
+            padding: 24px !important;
+        }
+        .dropdown:hover > .mega-menu {
+            transform: translateX(-50%) translateY(0) !important;
+        }
+
         /* TITLE & SUBTITLE ENHANCED EFFECTS */
         h1, h2, h3, h4, .display-6, .display-5, .display-3 {
             background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%);
@@ -66,7 +98,6 @@
         h1:hover, h2:hover, h3:hover, h4:hover {
             filter: brightness(1.1);
         }
-        /* Override for white/light headings inside dark or banner backgrounds */
         .carousel-caption h1, .modern-footer h5, .modern-footer h6, .modern-footer a.navbar-brand, .text-white h2, .text-white h1 {
             background: none !important;
             -webkit-text-fill-color: #ffffff !important;
@@ -369,6 +400,7 @@
             .hero-carousel { height: 480px; }
             .hero-carousel img { height: 480px; }
             .search-card { margin-top: -80px; padding: 1rem !important; }
+            .mega-menu { width: 100% !important; left: 0 !important; transform: none !important; }
         }
         @media (max-width: 575.98px) {
             .hero-carousel { height: 380px; }
@@ -396,22 +428,50 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mx-auto align-items-lg-center gap-3">
                         <li class="nav-item"><a class="nav-link text-primary fw-semibold" href="#">Home</a></li>
+                        
+                        <!-- MEGA MENU DESTINATION (HOVER SMOOTH) -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button" data-bs-toggle="dropdown">Destination</a>
-                            <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2">
-                                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="#best-deals">Amerika</a></li>
-                                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="#best-deals">Eropa</a></li>
-                                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="#best-deals">Asia</a></li>
-                            </ul>
+                            <div class="dropdown-menu border-0 shadow-lg rounded-4 p-4 mega-menu">
+                                <div class="row g-4">
+                                    <div class="col-md-4">
+                                        <h6 class="fw-bold text-primary mb-3"><i class="bi bi-globe-americas me-1"></i> Amerika</h6>
+                                        <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">New York (NYC)</a></li>
+                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">Los Angeles (LAX)</a></li>
+                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">Toronto (YYZ)</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h6 class="fw-bold text-primary mb-3"><i class="bi bi-globe-europe-africa me-1"></i> Eropa</h6>
+                                        <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">Paris (PAR)</a></li>
+                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">London (LON)</a></li>
+                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">Rome (ROM)</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h6 class="fw-bold text-primary mb-3"><i class="bi bi-globe-asia-australia me-1"></i> Asia</h6>
+                                        <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">Singapura (SIN)</a></li>
+                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">Tokyo (TYO)</a></li>
+                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">Bangkok (BKK)</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
+
+                        <!-- STANDARD HOVER DROPDOWN FOR PAGES -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button" data-bs-toggle="dropdown">Pages</a>
-                            <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2">
-                                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="#offers">Discounts & Offers</a></li>
-                                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="#hotels">Popular Hotels</a></li>
-                                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="#tours">Popular Tours</a></li>
+                            <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2" style="width: 220px;">
+                                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="#offers"><i class="bi bi-tag text-primary me-2"></i> Discounts & Offers</a></li>
+                                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="#hotels"><i class="bi bi-building text-primary me-2"></i> Popular Hotels</a></li>
+                                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="#tours"><i class="bi bi-map text-primary me-2"></i> Popular Tours</a></li>
                             </ul>
                         </li>
+
                         <li class="nav-item"><a class="nav-link text-dark fw-medium" href="#about">Holidays</a></li>
                         <li class="nav-item"><a class="nav-link text-dark fw-medium" href="#footer">Contact</a></li>
                     </ul>
@@ -1996,7 +2056,7 @@
         document.addEventListener("DOMContentLoaded", () => {
             
             // PROXY WORKER URL
-            const PROXY_WORKER_URL = "https://api.pesan.workers.dev/";
+            const PROXY_WORKER_URL = "https://api.pesan.workers.dev/";[cite: 1]
 
             let userOrigin = "SIN"; 
             let userOriginName = "Singapore";
@@ -2062,7 +2122,7 @@
                 revealObserver.observe(el);
             });
 
-            // BACK TO TOP BUTTON LOGIC
+            // BACK TO TOP BUTTON LOGIC (ULTRA SMOOTH)
             const backToTopBtn = document.getElementById('backToTopBtn');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 300) {
@@ -2071,7 +2131,8 @@
                     backToTopBtn.classList.remove('show');
                 }
             });
-            backToTopBtn.addEventListener('click', () => {
+            backToTopBtn.addEventListener('click', (e) => {
+                e.preventDefault();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
