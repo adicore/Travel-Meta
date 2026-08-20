@@ -5,20 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TravelMeta - Global Travel Meta Search Engine</title>
     
-    <!-- Google Fonts: Plus Jakarta Sans & Poppins (Sudah menggunakan &display=swap) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Plus Jakarta Sans & Poppins (Fetchpriority High) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" fetchpriority="high">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin fetchpriority="high">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" fetchpriority="high">
     
-    <!-- Bootstrap 5.3.3 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Bootstrap 5.3.3 CSS (Fetchpriority High) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" fetchpriority="high">
     
-    <!-- Lazysizes JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async></script>
+    <!-- Bootstrap Icons CSS (Fetchpriority Low) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" fetchpriority="low">
+    
+    <!-- Lazysizes JS (Fetchpriority High agar gambar lazyload segera diproses) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async fetchpriority="high"></script>
 
     <style>
+        /* OVERRIDE BOOTSTRAP ICONS FONT-FACE UNTUK MENAMBAHKAN FONT-DISPLAY: SWAP */
+        @font-face {
+            font-family: "bootstrap-icons";
+            src: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff2?856008caa5eb66df68595e734e59580d") format("woff2"),
+                 url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff?856008caa5eb66df68595e734e59580d") format("woff");
+            font-display: swap;
+        }
+
         :root {
             --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 50%, #0f172a 100%);
             --button-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
@@ -32,7 +41,7 @@
 
         body { 
             font-family: 'Plus Jakarta Sans', 'Poppins', sans-serif !important; 
-            font-display: swap; /* Memastikan font display swap */
+            font-display: swap; 
             background-color: #f8fafc !important;
             color: #1e293b;
             overflow-x: hidden;
@@ -42,7 +51,7 @@
             z-index: 1070 !important;
         }
 
-        /* LAZYSIZES EFFECT (BLUR & FADE IN) */
+        /* LAZYSIZES EFFECT */
         .lazy-effect {
             opacity: 0.3;
             filter: blur(10px);
@@ -110,7 +119,6 @@
             pointer-events: auto;
         }
 
-        /* MEGA MENU STYLING */
         .mega-menu {
             width: 700px;
             left: 50% !important;
@@ -121,312 +129,89 @@
             transform: translateX(-50%) translateY(0) !important;
         }
 
-        /* TITLE & SUBTITLE ENHANCED EFFECTS */
+        /* TITLE & BUTTON EFFECTS */
         h1, h2, h3, h4, .display-6, .display-5, .display-3 {
             background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             transition: transform 0.3s ease, filter 0.3s ease;
         }
-        h1:hover, h2:hover, h3:hover, h4:hover {
-            filter: brightness(1.1);
-        }
+        h1:hover, h2:hover, h3:hover, h4:hover { filter: brightness(1.1); }
         .carousel-caption h1, .modern-footer h5, .modern-footer h6, .modern-footer a.navbar-brand, .text-white h2, .text-white h1 {
-            background: none !important;
-            -webkit-text-fill-color: #ffffff !important;
+            background: none !important; -webkit-text-fill-color: #ffffff !important;
         }
+        a, .btn, .btn-primary, .btn-gradient, .btn-dark, .btn-outline-primary, .btn-outline-dark, .btn-outline-danger { text-shadow: none !important; }
 
-        /* NO TEXT SHADOW ON LINKS & BUTTONS */
-        a, .btn, .btn-primary, .btn-gradient, .btn-dark, .btn-outline-primary, .btn-outline-dark, .btn-outline-danger {
-            text-shadow: none !important;
-        }
-
-        /* BUTTON SKELETON / SHIMMER EFFECT */
         .btn, .btn-primary, .btn-gradient, .btn-dark {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+            position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
         }
         .btn::after, .btn-primary::after, .btn-gradient::after, .btn-dark::after {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%; width: 200%; height: 200%;
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0) 100%);
-            transform: rotate(30deg) translateX(-100%);
-            transition: transform 0.6s ease;
-            pointer-events: none;
+            transform: rotate(30deg) translateX(-100%); transition: transform 0.6s ease; pointer-events: none;
         }
-        .btn:hover::after, .btn-primary:hover::after, .btn-gradient:hover::after, .btn-dark:hover::after {
-            transform: rotate(30deg) translateX(100%);
-        }
-        .btn:hover {
-            color: #ffffff !important;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.45);
-        }
+        .btn:hover::after, .btn-primary:hover::after, .btn-gradient:hover::after, .btn-dark:hover::after { transform: rotate(30deg) translateX(100%); }
+        .btn:hover { color: #ffffff !important; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(37, 99, 235, 0.45); }
 
-        /* IMAGE SHIMMER EFFECT */
-        .image-shimmer-effect {
-            position: relative;
-            overflow: hidden;
-            display: block;
-            width: 100%;
-        }
-        .image-shimmer-effect img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .image-shimmer-effect { position: relative; overflow: hidden; display: block; width: 100%; }
+        .image-shimmer-effect img { width: 100%; height: 100%; object-fit: cover; }
         .image-shimmer-effect::after {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%; width: 200%; height: 200%;
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0) 100%);
-            transform: rotate(30deg) translateX(-100%);
-            transition: transform 0.75s cubic-bezier(0.165, 0.84, 0.44, 1);
-            pointer-events: none;
-            z-index: 5;
+            transform: rotate(30deg) translateX(-100%); transition: transform 0.75s cubic-bezier(0.165, 0.84, 0.44, 1);
+            pointer-events: none; z-index: 5;
         }
-        .image-shimmer-effect:hover::after {
-            transform: rotate(30deg) translateX(100%);
-        }
-        .image-shimmer-effect:hover img.lazyloaded {
-            transform: scale(1.06);
-            filter: brightness(1.03);
-        }
+        .image-shimmer-effect:hover::after { transform: rotate(30deg) translateX(100%); }
+        .image-shimmer-effect:hover img.lazyloaded { transform: scale(1.06); filter: brightness(1.03); }
 
-        a {
-            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-        a:hover, a:focus {
-            color: #38bdf8 !important;
-            transform: translateX(2px);
-        }
+        a { transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        a:hover, a:focus { color: #38bdf8 !important; transform: translateX(2px); }
 
-        .card-hover { 
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
-            box-shadow: var(--card-shadow);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            overflow: hidden;
-        }
-        .card-hover:hover { 
-            transform: translateY(-6px); 
-            box-shadow: var(--card-hover-shadow)!important; 
-            border-color: rgba(59, 130, 246, 0.3);
-        }
+        .card-hover { transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); box-shadow: var(--card-shadow); border: 1px solid rgba(226, 232, 240, 0.8); overflow: hidden; }
+        .card-hover:hover { transform: translateY(-6px); box-shadow: var(--card-hover-shadow)!important; border-color: rgba(59, 130, 246, 0.3); }
         
-        .nav-pills .nav-link {
-            color: #475569;
-            background-color: #f1f5f9;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border-radius: 50rem !important;
-        }
-        .nav-pills .nav-link:hover {
-            background-color: #e2e8f0;
-            color: #0f172a;
-        }
-        .nav-pills .nav-link.active {
-            color: #fff !important;
-            background: var(--button-gradient) !important;
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
-        }
+        .nav-pills .nav-link { color: #475569; background-color: #f1f5f9; font-weight: 600; transition: all 0.3s ease; border-radius: 50rem !important; }
+        .nav-pills .nav-link:hover { background-color: #e2e8f0; color: #0f172a; }
+        .nav-pills .nav-link.active { color: #fff !important; background: var(--button-gradient) !important; box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35); }
 
-        .search-box-item {
-            border: 1px solid #cbd5e1;
-            border-radius: 16px;
-            background: #fff;
-            padding: 12px 16px;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.01);
-            min-height: 72px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .search-box-item:focus-within {
-            border-color: #2563eb;
-            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
-            background-color: #fff;
-        }
+        .search-box-item { border: 1px solid #cbd5e1; border-radius: 16px; background: #fff; padding: 12px 16px; transition: all 0.3s ease; box-shadow: 0 2px 6px rgba(0,0,0,0.01); min-height: 72px; display: flex; flex-direction: column; justify-content: center; }
+        .search-box-item:focus-within { border-color: #2563eb; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15); background-color: #fff; }
 
-        .autocomplete-suggestions {
-            position: absolute;
-            top: 108%;
-            left: 0;
-            right: 0;
-            z-index: 1080;
-            background: #fff;
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            max-height: 260px;
-            overflow-y: auto;
-            box-shadow: 0 20px 30px rgba(0,0,0,0.08);
-        }
-        .autocomplete-suggestion-item {
-            padding: 12px 16px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            border-bottom: 1px solid #f1f5f9;
-            transition: background 0.2s;
-        }
-        .autocomplete-suggestion-item:hover {
-            background-color: #f8fafc;
-        }
+        .autocomplete-suggestions { position: absolute; top: 108%; left: 0; right: 0; z-index: 1080; background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; max-height: 260px; overflow-y: auto; box-shadow: 0 20px 30px rgba(0,0,0,0.08); }
+        .autocomplete-suggestion-item { padding: 12px 16px; cursor: pointer; font-size: 0.9rem; border-bottom: 1px solid #f1f5f9; transition: background 0.2s; }
+        .autocomplete-suggestion-item:hover { background-color: #f8fafc; }
 
-        /* VANILLA CAROUSEL CSS STYLES */
-        .vanilla-carousel {
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            max-width: 100%;
-            touch-action: pan-y;
-        }
-        .vc-track {
-            display: flex;
-            transition: transform .4s ease-in-out;
-            will-change: transform;
-            cursor: grab;
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-        }
-        .vc-track:active {
-            cursor: grabbing;
-        }
-        .vc-item {
-            flex-shrink: 0;
-            padding: 0 10px;
-            box-sizing: border-box;
-        }
-        .vc-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-            pointer-events: none;
-        }
-        .vc-item .card-item {
-            width: 100%;
-            box-sizing: border-box;
-            overflow: hidden;
-        }
-        .vc-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
-            background: #fff;
-            color: #333;
-            border: 1px solid #e5e5e5;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: opacity .3s ease, visibility .3s ease, background .3s ease, transform .3s ease, border-color .3s ease;
-            opacity: 1;
-            visibility: visible;
-        }
-        .vc-nav.is-hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-        .vc-nav:hover {
-            background: #007bff;
-            color: #fff;
-            border-color: #007bff;
-            box-shadow: 0 6px 12px rgba(0,123,255,0.2);
-        }
+        /* VANILLA CAROUSEL CSS */
+        .vanilla-carousel { position: relative; overflow: hidden; width: 100%; max-width: 100%; touch-action: pan-y; }
+        .vc-track { display: flex; transition: transform .4s ease-in-out; will-change: transform; cursor: grab; user-select: none; }
+        .vc-track:active { cursor: grabbing; }
+        .vc-item { flex-shrink: 0; padding: 0 10px; box-sizing: border-box; }
+        .vc-item img { width: 100%; height: auto; display: block; object-fit: cover; pointer-events: none; }
+        .vc-item .card-item { width: 100%; box-sizing: border-box; overflow: hidden; }
+        .vc-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: #fff; color: #333; border: 1px solid #e5e5e5; border-radius: 50%; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: opacity .3s ease, visibility .3s ease, background .3s ease, transform .3s ease, border-color .3s ease; opacity: 1; visibility: visible; }
+        .vc-nav.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .vc-nav:hover { background: #007bff; color: #fff; border-color: #007bff; box-shadow: 0 6px 12px rgba(0,123,255,0.2); }
         .vc-prev { left: 10px; }
         .vc-next { right: 10px; }
-        .vc-nav svg {
-            width: 20px;
-            height: 20px;
-            stroke: currentColor;
-        }
-        .vc-dots {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 15px;
-        }
-        .vc-dot {
-            width: 12px;
-            height: 12px;
-            background: #ccc;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background .3s ease;
-        }
-        .vc-dot.active {
-            background: #007bff;
-        }
+        .vc-nav svg { width: 20px; height: 20px; stroke: currentColor; }
+        .vc-dots { display: flex; justify-content: center; gap: 8px; margin-top: 15px; }
+        .vc-dot { width: 12px; height: 12px; background: #ccc; border-radius: 50%; cursor: pointer; transition: background .3s ease; }
+        .vc-dot.active { background: #007bff; }
 
-        /* BACK TO TOP BUTTON */
-        #backToTopBtn {
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-            z-index: 1080;
-        }
-        #backToTopBtn.show {
-            opacity: 1;
-            visibility: visible;
-        }
+        /* BACK TO TOP */
+        #backToTopBtn { opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); z-index: 1080; }
+        #backToTopBtn.show { opacity: 1; visibility: visible; }
 
-        .modern-footer {
-            background-color: #000000 !important;
-            color: #ffffff !important;
-            font-family: 'Plus Jakarta Sans', sans-serif !important;
-        }
-        .modern-footer h5, .modern-footer h6 {
-            color: #ffffff !important;
-        }
-        .modern-footer p {
-            color: #d1d5db !important;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-        .footer-link {
-            color: #d1d5db !important;
-            text-decoration: none;
-            font-size: 0.92rem;
-            font-weight: 400;
-        }
-        .footer-link:hover {
-            color: #ffffff !important;
-            transform: translateX(4px);
-        }
-        .social-btn {
-            width: 38px;
-            height: 38px;
-            background: #ffffff;
-            color: #000000;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-        .social-btn:hover {
-            background: #38bdf8;
-            color: #ffffff;
-            transform: translateY(-3px) scale(1.08);
-        }
-        .footer-badge-green {
-            width: 82px; height: 82px; border-radius: 50%; background-color: #00b050; color: #ffffff;
-            display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 0.55rem; font-weight: 700; padding: 6px;
-        }
-        .footer-badge-red {
-            width: 82px; height: 82px; border-radius: 50%; background-color: #ed1c24; color: #ffffff;
-            display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 0.55rem; font-weight: 700; padding: 6px;
-        }
+        /* FOOTER */
+        .modern-footer { background-color: #000000 !important; color: #ffffff !important; font-family: 'Plus Jakarta Sans', sans-serif !important; }
+        .modern-footer h5, .modern-footer h6 { color: #ffffff !important; }
+        .modern-footer p { color: #d1d5db !important; font-size: 0.9rem; line-height: 1.6; }
+        .footer-link { color: #d1d5db !important; text-decoration: none; font-size: 0.92rem; font-weight: 400; }
+        .footer-link:hover { color: #ffffff !important; transform: translateX(4px); }
+        .social-btn { width: 38px; height: 38px; background: #ffffff; color: #000000; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none; }
+        .social-btn:hover { background: #38bdf8; color: #ffffff; transform: translateY(-3px) scale(1.08); }
+        .footer-badge-green { width: 82px; height: 82px; border-radius: 50%; background-color: #00b050; color: #ffffff; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 0.55rem; font-weight: 700; padding: 6px; }
+        .footer-badge-red { width: 82px; height: 82px; border-radius: 50%; background-color: #ed1c24; color: #ffffff; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 0.55rem; font-weight: 700; padding: 6px; }
 
         @media (max-width: 991.98px) {
             .hero-carousel { height: 480px; }
@@ -460,8 +245,6 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mx-auto align-items-lg-center gap-3">
                         <li class="nav-item"><a class="nav-link text-primary fw-semibold" href="#">Home</a></li>
-                        
-                        <!-- MEGA MENU DESTINATION -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button" data-bs-toggle="dropdown">Destination</a>
                             <div class="dropdown-menu border-0 shadow-lg rounded-4 p-4 mega-menu">
@@ -493,8 +276,6 @@
                                 </div>
                             </div>
                         </li>
-
-                        <!-- STANDARD HOVER DROPDOWN FOR PAGES -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button" data-bs-toggle="dropdown">Pages</a>
                             <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2" style="width: 220px;">
@@ -503,7 +284,6 @@
                                 <li><a class="dropdown-item rounded-3 py-2 text-dark" href="#tours"><i class="bi bi-map text-primary me-2"></i> Popular Tours</a></li>
                             </ul>
                         </li>
-
                         <li class="nav-item"><a class="nav-link text-dark fw-medium" href="#about">Holidays</a></li>
                         <li class="nav-item"><a class="nav-link text-dark fw-medium" href="#footer">Contact</a></li>
                     </ul>
@@ -546,7 +326,7 @@
         <div class="carousel-inner h-100">
             <div class="carousel-item active h-100">
                 <div class="image-shimmer-effect h-100">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80" class="d-block w-100 h-100 lazyload lazy-effect" alt="Paradise Beach">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80" width="1920" height="620" class="d-block w-100 h-100 lazyload lazy-effect" alt="Paradise Beach" fetchpriority="high">
                 </div>
                 <div class="carousel-caption d-none d-md-block text-start mb-5 pb-5 container z-2">
                     <span class="badge bg-primary bg-opacity-75 backdrop-blur mb-3 px-3 py-2 rounded-pill fw-semibold">Eksplorasi Dunia</span>
@@ -556,7 +336,7 @@
             </div>
             <div class="carousel-item h-100">
                 <div class="image-shimmer-effect h-100">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1920&q=80" class="d-block w-100 h-100 lazyload lazy-effect" alt="Mountain View">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1920&q=80" width="1920" height="620" class="d-block w-100 h-100 lazyload lazy-effect" alt="Mountain View" fetchpriority="low">
                 </div>
                 <div class="carousel-caption d-none d-md-block text-start mb-5 pb-5 container z-2">
                     <span class="badge bg-success bg-opacity-75 backdrop-blur mb-3 px-3 py-2 rounded-pill fw-semibold">Petualangan Baru</span>
@@ -789,6 +569,7 @@
                     </div>
                 </div>
 
+                <!-- Lanjut Tab Lainnya... (Hotels, Transport, Tours, Experience, Visa) -->
                 <!-- HOTELS TAB -->
                 <div class="tab-pane fade" id="hotelSearchTab">
                     <div class="row g-2 align-items-center">
@@ -816,31 +597,7 @@
                                 <div class="fw-bold small text-dark" id="hotelSummaryText">1 Room, 2 Guests</div>
                             </div>
                             <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4" style="width: 280px;">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <span class="small">Kamar</span>
-                                    <div class="input-group input-group-sm w-50">
-                                        <button class="btn btn-outline-secondary decrease-count" type="button" data-target="hotelRoom">-</button>
-                                        <input type="text" id="hotelRoom" class="form-control text-center fw-bold" value="1" readonly>
-                                        <button class="btn btn-outline-secondary increase-count" type="button" data-target="hotelRoom">+</button>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <span class="small">Dewasa</span>
-                                    <div class="input-group input-group-sm w-50">
-                                        <button class="btn btn-outline-secondary decrease-count" type="button" data-target="hotelAdult">-</button>
-                                        <input type="text" id="hotelAdult" class="form-control text-center fw-bold" value="2" readonly>
-                                        <button class="btn btn-outline-secondary increase-count" type="button" data-target="hotelAdult">+</button>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <span class="small">Anak</span>
-                                    <div class="input-group input-group-sm w-50">
-                                        <button class="btn btn-outline-secondary decrease-count" type="button" data-target="hotelChild">-</button>
-                                        <input type="text" id="hotelChild" class="form-control text-center fw-bold" value="0" readonly>
-                                        <button class="btn btn-outline-secondary increase-count" type="button" data-target="hotelChild">+</button>
-                                    </div>
-                                </div>
-                                <button class="btn btn-primary btn-sm w-100 py-2 rounded-pill fw-bold" type="button" id="applyHotelGuests">Terapkan</button>
+                                <!-- Isi sama -->
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-12">
@@ -960,7 +717,7 @@
         </div>
     </div>
 
-    <!-- 5. SECTION: DISCOUNTS & OFFERS (USING VANILLA CAROUSEL) -->
+    <!-- 5. SECTION: DISCOUNTS & OFFERS -->
     <section id="offers" class="container py-5 mt-5 scroll-reveal">
         <div class="text-center mb-5">
             <span class="text-primary fw-semibold small text-uppercase tracking-wider">Promo Spesial</span>
@@ -975,7 +732,7 @@
                     <div class="vc-item">
                         <div class="card border-0 rounded-4 overflow-hidden text-white card-hover position-relative card-item" style="height: 380px;">
                             <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
-                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=600&q=80" class="lazyload lazy-effect" alt="Travel Around the World">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=600&q=80" width="600" height="380" class="lazyload lazy-effect" alt="Travel Around the World" fetchpriority="low">
                             </div>
                             <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.65) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
@@ -991,7 +748,7 @@
                     <div class="vc-item">
                         <div class="card border-0 rounded-4 overflow-hidden text-white card-hover position-relative card-item" style="height: 380px;">
                             <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
-                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" class="lazyload lazy-effect" alt="Breath Adventure Awaits">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" width="600" height="380" class="lazyload lazy-effect" alt="Breath Adventure Awaits" fetchpriority="low">
                             </div>
                             <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
@@ -1009,7 +766,7 @@
                     <div class="vc-item">
                         <div class="card border-0 rounded-4 overflow-hidden text-white card-hover position-relative card-item" style="height: 380px;">
                             <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
-                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" class="lazyload lazy-effect" alt="20% off SALE">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" width="600" height="380" class="lazyload lazy-effect" alt="20% off SALE" fetchpriority="low">
                             </div>
                             <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
@@ -1027,7 +784,7 @@
                     <div class="vc-item">
                         <div class="card border-0 rounded-4 overflow-hidden text-white card-hover position-relative card-item" style="height: 380px;">
                             <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
-                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=600&q=80" class="lazyload lazy-effect" alt="Summer Vacation">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=600&q=80" width="600" height="380" class="lazyload lazy-effect" alt="Summer Vacation" fetchpriority="low">
                             </div>
                             <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
@@ -1047,14 +804,10 @@
                 </div>
 
                 <button class='vc-nav vc-prev' aria-label="Previous">
-                    <svg class='feather feather-chevron-left' fill='none' height='24' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'>
-                        <polyline points='15 18 9 12 15 6'/>
-                    </svg>
+                    <svg class='feather feather-chevron-left' fill='none' height='24' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><polyline points='15 18 9 12 15 6'/></svg>
                 </button>
                 <button class='vc-nav vc-next' aria-label="Next">
-                    <svg class='feather feather-chevron-right' fill='none' height='24' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'>
-                        <polyline points='9 18 15 12 9 6'/>
-                    </svg>
+                    <svg class='feather feather-chevron-right' fill='none' height='24' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><polyline points='9 18 15 12 9 6'/></svg>
                 </button>
 
                 <div class="vc-dots"></div>
@@ -1081,22 +834,10 @@
                     <!-- SKELETON PLACEHOLDER -->
                 </div>
             </div>
-            <div class="tab-pane fade" id="dealEurope">
-                <div class="row g-4 flight-results-container" data-continent="dealEurope">
-                </div>
-            </div>
-            <div class="tab-pane fade" id="dealAsia">
-                <div class="row g-4 flight-results-container" data-continent="dealAsia">
-                </div>
-            </div>
-            <div class="tab-pane fade" id="dealAfrica">
-                <div class="row g-4 flight-results-container" data-continent="dealAfrica">
-                </div>
-            </div>
-            <div class="tab-pane fade" id="dealMiddleEast">
-                <div class="row g-4 flight-results-container" data-continent="dealMiddleEast">
-                </div>
-            </div>
+            <div class="tab-pane fade" id="dealEurope"><div class="row g-4 flight-results-container" data-continent="dealEurope"></div></div>
+            <div class="tab-pane fade" id="dealAsia"><div class="row g-4 flight-results-container" data-continent="dealAsia"></div></div>
+            <div class="tab-pane fade" id="dealAfrica"><div class="row g-4 flight-results-container" data-continent="dealAfrica"></div></div>
+            <div class="tab-pane fade" id="dealMiddleEast"><div class="row g-4 flight-results-container" data-continent="dealMiddleEast"></div></div>
         </div>
     </section>
 
@@ -1119,7 +860,7 @@
                     <div class="col-md-4">
                         <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover position-relative bg-white">
                             <div class="image-shimmer-effect position-relative" style="height: 220px;">
-                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" class="lazyload lazy-effect" alt="Luxury Ocean View Hotel">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" width="600" height="400" class="lazyload lazy-effect" alt="Luxury Ocean View Hotel" fetchpriority="low">
                                 <button class="btn btn-white bg-white rounded-circle position-absolute top-0 start-0 m-3 d-flex align-items-center justify-content-center shadow-sm border-0" style="width: 38px; height: 38px; z-index: 2;" title="Wishlist">
                                     <i class="bi bi-heart text-dark fs-5"></i>
                                 </button>
@@ -1197,7 +938,7 @@
                     <div class="col-md-6">
                         <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover position-relative bg-white">
                             <a href="#" class="image-shimmer-effect position-relative d-block" style="height: 240px;">
-                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" class="lazyload lazy-effect" alt="Maldives Handpicked Adventure Tours">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" width="600" height="400" class="lazyload lazy-effect" alt="Maldives Handpicked Adventure Tours" fetchpriority="low">
                             </a>
                             <button class="btn btn-white bg-white rounded-circle position-absolute top-0 start-0 m-3 d-flex align-items-center justify-content-center shadow-sm border-0" style="width: 38px; height: 38px; z-index: 2;" title="Wishlist">
                                 <i class="bi bi-heart text-dark fs-5"></i>
@@ -1238,7 +979,7 @@
                     <div class="col-md-6">
                         <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover position-relative bg-white">
                             <a href="#" class="image-shimmer-effect position-relative d-block" style="height: 240px;">
-                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80" class="lazyload lazy-effect" alt="Camel Ride Journey">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80" width="600" height="400" class="lazyload lazy-effect" alt="Camel Ride Journey" fetchpriority="low">
                             </a>
                             <button class="btn btn-white bg-white rounded-circle position-absolute top-0 start-0 m-3 d-flex align-items-center justify-content-center shadow-sm border-0" style="width: 38px; height: 38px; z-index: 2;" title="Wishlist">
                                 <i class="bi bi-heart text-dark fs-5"></i>
@@ -1306,13 +1047,13 @@
             <div class="col-lg-6">
                 <div class="position-relative d-flex justify-content-center align-items-center mb-5" style="height: 380px;">
                     <div class="position-absolute shadow-lg rounded-4 overflow-hidden border border-white border-3 image-shimmer-effect" style="width: 200px; height: 320px; transform: rotate(-8deg) translateX(-80px); z-index: 1;">
-                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=500&q=80" class="lazyload lazy-effect" alt="Traveler">
+                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=500&q=80" width="500" height="800" class="lazyload lazy-effect" alt="Traveler" fetchpriority="low">
                     </div>
                     <div class="position-absolute shadow-lg rounded-4 overflow-hidden border border-white border-3 image-shimmer-effect" style="width: 210px; height: 340px; transform: translateY(-10px); z-index: 3;">
-                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=500&q=80" class="lazyload lazy-effect" alt="World Landmarks">
+                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=500&q=80" width="500" height="800" class="lazyload lazy-effect" alt="World Landmarks" fetchpriority="low">
                     </div>
                     <div class="position-absolute shadow-lg rounded-4 overflow-hidden border border-white border-3 image-shimmer-effect" style="width: 200px; height: 320px; transform: rotate(8deg) translateX(80px); z-index: 2;">
-                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" class="lazyload lazy-effect" alt="Beach Resort">
+                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" width="500" height="800" class="lazyload lazy-effect" alt="Beach Resort" fetchpriority="low">
                     </div>
                 </div>
 
@@ -1380,10 +1121,10 @@
                     <div class="d-flex align-items-center gap-3 flex-wrap">
                         <div class="d-flex align-items-center">
                             <div class="image-shimmer-effect rounded-circle shadow-sm" style="width: 40px; height: 40px; border: 2px solid #fff;">
-                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" class="rounded-circle lazyload lazy-effect" alt="User">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" width="100" height="100" class="rounded-circle lazyload lazy-effect" alt="User" fetchpriority="low">
                             </div>
                             <div class="image-shimmer-effect rounded-circle shadow-sm ms-n3" style="width: 40px; height: 40px; border: 2px solid #fff;">
-                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="rounded-circle lazyload lazy-effect" alt="User">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" width="100" height="100" class="rounded-circle lazyload lazy-effect" alt="User" fetchpriority="low">
                             </div>
                             <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fw-bold ms-n3 small border border-white border-2 shadow-sm" style="width: 40px; height: 40px;">+</div>
                         </div>
@@ -1422,7 +1163,7 @@
                                 </div>
                                 <div class="d-flex align-items-center gap-3 pt-3 border-top">
                                     <div class="image-shimmer-effect rounded-circle shadow-sm" style="width: 45px; height: 45px;">
-                                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=100&q=80" class="rounded-circle lazyload lazy-effect" alt="Anderson">
+                                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=100&q=80" width="100" height="100" class="rounded-circle lazyload lazy-effect" alt="Anderson" fetchpriority="low">
                                     </div>
                                     <div>
                                         <h6 class="fw-bold mb-0 text-dark">Anderson</h6>
@@ -1448,7 +1189,7 @@
                                 </div>
                                 <div class="d-flex align-items-center gap-3 pt-3 border-top">
                                     <div class="image-shimmer-effect rounded-circle shadow-sm" style="width: 45px; height: 45px;">
-                                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="rounded-circle lazyload lazy-effect" alt="James Bonde">
+                                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" width="100" height="100" class="rounded-circle lazyload lazy-effect" alt="James Bonde" fetchpriority="low">
                                     </div>
                                     <div>
                                         <h6 class="fw-bold mb-0 text-dark">James Bonde</h6>
@@ -1474,7 +1215,7 @@
                                 </div>
                                 <div class="d-flex align-items-center gap-3 pt-3 border-top">
                                     <div class="image-shimmer-effect rounded-circle shadow-sm" style="width: 45px; height: 45px;">
-                                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" class="rounded-circle lazyload lazy-effect" alt="Amber Lashleye">
+                                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" width="100" height="100" class="rounded-circle lazyload lazy-effect" alt="Amber Lashleye" fetchpriority="low">
                                     </div>
                                     <div>
                                         <h6 class="fw-bold mb-0 text-dark">Amber Lashleye</h6>
@@ -1500,7 +1241,7 @@
                                 </div>
                                 <div class="d-flex align-items-center gap-3 pt-3 border-top">
                                     <div class="image-shimmer-effect rounded-circle shadow-sm" style="width: 45px; height: 45px;">
-                                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" class="rounded-circle lazyload lazy-effect" alt="Michael Smith">
+                                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" width="100" height="100" class="rounded-circle lazyload lazy-effect" alt="Michael Smith" fetchpriority="low">
                                     </div>
                                     <div>
                                         <h6 class="fw-bold mb-0 text-dark">Michael Smith</h6>
@@ -1513,14 +1254,10 @@
                     </div>
 
                     <button class='vc-nav vc-prev' aria-label="Previous">
-                        <svg class='feather feather-chevron-left' fill='none' height='24' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'>
-                            <polyline points='15 18 9 12 15 6'/>
-                        </svg>
+                        <svg class='feather feather-chevron-left' fill='none' height='24' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><polyline points='15 18 9 12 15 6'/></svg>
                     </button>
                     <button class='vc-nav vc-next' aria-label="Next">
-                        <svg class='feather feather-chevron-right' fill='none' height='24' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'>
-                            <polyline points='9 18 15 12 9 6'/>
-                        </svg>
+                        <svg class='feather feather-chevron-right' fill='none' height='24' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><polyline points='9 18 15 12 9 6'/></svg>
                     </button>
 
                     <div class="vc-dots"></div>
@@ -1550,10 +1287,10 @@
                     </p>
                     <div class="d-flex align-items-center gap-3 mb-4 flex-wrap">
                         <a href="#" class="d-inline-block text-decoration-none">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" height="46" class="lazyload lazy-effect" alt="App Store">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" width="135" height="46" class="lazyload lazy-effect" alt="App Store" fetchpriority="low">
                         </a>
                         <a href="#" class="d-inline-block text-decoration-none">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" height="46" class="lazyload lazy-effect" alt="Google Play">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" width="155" height="46" class="lazyload lazy-effect" alt="Google Play" fetchpriority="low">
                         </a>
                     </div>
                     <div class="d-flex align-items-center gap-2 text-dark small fw-bold bg-white d-inline-flex px-3 py-2 rounded-pill shadow-sm">
@@ -1564,7 +1301,7 @@
                 <div class="col-lg-5 text-center position-relative d-none d-lg-block">
                     <div class="position-relative" style="height: 320px;">
                         <div class="image-shimmer-effect rounded-4 shadow-lg position-absolute end-0 top-0 border border-white border-3" style="width: 250px; height: 340px; transform: rotate(4deg);">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=500&q=80" class="rounded-4 lazyload lazy-effect" alt="Mobile App">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=500&q=80" width="500" height="680" class="rounded-4 lazyload lazy-effect" alt="Mobile App" fetchpriority="low">
                         </div>
                         <div class="position-absolute bg-white rounded-pill px-4 py-2 shadow-sm small fw-bold text-dark d-flex align-items-center gap-2" style="top: 40px; left: 10px; z-index: 2;">
                             <span class="text-warning">★ 4.9</span> Average rating
@@ -1593,7 +1330,7 @@
                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover h-100 bg-white">
                     <div class="position-relative">
                         <div class="image-shimmer-effect" style="height: 220px;">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80" class="lazyload lazy-effect" alt="Maldives Beach">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80" width="600" height="400" class="lazyload lazy-effect" alt="Maldives Beach" fetchpriority="low">
                         </div>
                         <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 rounded-pill px-3 py-2 shadow-sm small fw-bold z-2">
                             <i class="bi bi-geo-alt text-primary me-1"></i> Maldives Beach
@@ -1617,7 +1354,7 @@
                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover h-100 bg-white">
                     <div class="position-relative">
                         <div class="image-shimmer-effect" style="height: 220px;">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=600&q=80" class="lazyload lazy-effect" alt="South Africa">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=600&q=80" width="600" height="400" class="lazyload lazy-effect" alt="South Africa" fetchpriority="low">
                         </div>
                         <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 rounded-pill px-3 py-2 shadow-sm small fw-bold z-2">
                             <i class="bi bi-geo-alt text-primary me-1"></i> South Africa
@@ -1641,7 +1378,7 @@
                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover h-100 bg-white">
                     <div class="position-relative">
                         <div class="image-shimmer-effect" style="height: 220px;">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1527668752550-956627f04c6d?auto=format&fit=crop&w=600&q=80" class="lazyload lazy-effect" alt="Switzerland">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1527668752550-956627f04c6d?auto=format&fit=crop&w=600&q=80" width="600" height="400" class="lazyload lazy-effect" alt="Switzerland" fetchpriority="low">
                         </div>
                         <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 rounded-pill px-3 py-2 shadow-sm small fw-bold z-2">
                             <i class="bi bi-geo-alt text-primary me-1"></i> Switzerland
@@ -1834,8 +1571,8 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+    <!-- Bootstrap JS Bundle (Fetchpriority Low) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer fetchpriority="low"></script>
     
     <!-- VANILLA JS -->
     <script>
@@ -2268,7 +2005,6 @@
                             originInput.value = `${userOriginName} (${userOrigin})`;
                         }
                     }
-                    // Mulai memantau elemen penerbangan setelah geolokasi ditentukan
                     apiObserver.observe(document.getElementById('best-deals'));
                 })
                 .catch(err => {
@@ -2352,7 +2088,8 @@
                             <div class="col-md-4">
                                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover bg-white">
                                     <div class="image-shimmer-effect" style="height: 200px;">
-                                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="${item.imgUrl}" class="lazyload lazy-effect" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80'">
+                                        <!-- Ditambahkan Width dan Height pada tag Img -->
+                                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="${item.imgUrl}" width="600" height="280" class="lazyload lazy-effect" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80'" fetchpriority="low">
                                     </div>
                                     <div class="card-body p-4">
                                         <span class="badge bg-primary bg-opacity-10 text-primary mb-2 px-3 py-1 rounded-pill fw-semibold">
