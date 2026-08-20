@@ -8,7 +8,7 @@
     <!-- Google Fonts: Plus Jakarta Sans & Poppins (Fetchpriority High) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin fetchpriority="high">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" fetchpriority="high">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet" fetchpriority="high">
     
     <!-- Bootstrap 5.3.3 CSS (Fetchpriority High) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" fetchpriority="high">
@@ -70,6 +70,10 @@
         .hero-carousel { height: 620px; }
         .hero-carousel img { height: 620px; object-fit: cover; filter: brightness(0.55); }
         
+        /* Typography Responsive di Hero Caption */
+        .hero-title { font-size: clamp(2rem, 5vw, 4rem); letter-spacing: -1px; }
+        .hero-subtitle { font-size: clamp(1rem, 2.5vw, 1.25rem); }
+
         .search-card { 
             margin-top: -150px; z-index: 10; position: relative; 
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1) !important; border-radius: 24px !important;
@@ -82,31 +86,78 @@
         }
         .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
 
-        /* MENU DROPDOWN & MEGA MENU ANIMATION (Scoped only to Navbar to prevent Search Box bug) */
+        /* MENU DROPDOWN & MEGA MENU ANIMATION */
         .dropdown-menu {
             display: block; opacity: 0; visibility: hidden; transform: translateY(12px);
             transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1); margin-top: 0px; pointer-events: none;
         }
-        .navbar .dropdown:hover > .dropdown-menu, 
-        .navbar .dropdown-menu:hover {
-            opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto;
+        @media (min-width: 992px) {
+            .navbar .dropdown:hover > .dropdown-menu, 
+            .navbar .dropdown-menu:hover {
+                opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto;
+            }
+            .mega-menu {
+                width: 700px; left: 50% !important; transform: translateX(-50%) translateY(12px) !important; padding: 24px !important;
+            }
+            .navbar .dropdown:hover > .mega-menu { transform: translateX(-50%) translateY(0) !important; }
         }
-        /* Bootstrap JS trigger for Search Box Interaction */
+        
         .dropdown-menu.show {
             opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important;
         }
 
-        .mega-menu {
-            width: 700px; left: 50% !important; transform: translateX(-50%) translateY(12px) !important; padding: 24px !important;
+        /* Responsive Navbar Khusus Mobile */
+        @media (max-width: 991.98px) {
+            .mega-menu {
+                width: 100% !important; max-width: 100%;
+                left: 0 !important; transform: none !important;
+                position: relative !important;
+                box-shadow: none !important; border: 1px solid #e2e8f0 !important;
+                margin-top: 10px; padding: 15px !important;
+            }
+            .navbar-nav .dropdown-menu {
+                position: relative; transform: none !important; transition: none;
+                box-shadow: none !important; border: 1px solid #e2e8f0 !important; margin-top: 10px;
+            }
         }
-        .navbar .dropdown:hover > .mega-menu { transform: translateX(-50%) translateY(0) !important; }
+
+        /* ABOUT IMAGES RESPONSIVE CSS */
+        .about-img-container { position: relative; height: 380px; display: flex; justify-content: center; align-items: center; }
+        .about-img-item { position: absolute; shadow-lg; border-radius: 1rem; overflow: hidden; border: 3px solid white; box-shadow: 0 1rem 3rem rgba(0,0,0,0.175); transition: all 0.3s ease; }
+        .about-img-1 { width: 200px; height: 320px; transform: rotate(-8deg) translateX(-80px); z-index: 1; }
+        .about-img-2 { width: 210px; height: 340px; transform: translateY(-10px); z-index: 3; }
+        .about-img-3 { width: 200px; height: 320px; transform: rotate(8deg) translateX(80px); z-index: 2; }
+        
+        @media (max-width: 767.98px) {
+            .hero-carousel { height: 550px; }
+            .hero-carousel img { height: 550px; }
+            .carousel-caption { bottom: 90px; padding-bottom: 0 !important; margin-bottom: 0 !important; } /* Push up above search card */
+            .search-card { margin-top: -120px; }
+            
+            /* Responsive About Images */
+            .about-img-container { height: 280px; }
+            .about-img-1 { width: 140px; height: 220px; transform: rotate(-8deg) translateX(-50px); }
+            .about-img-2 { width: 150px; height: 240px; transform: translateY(-5px); }
+            .about-img-3 { width: 140px; height: 220px; transform: rotate(8deg) translateX(50px); }
+        }
+        @media (max-width: 575.98px) {
+            .hero-carousel { height: 500px; }
+            .hero-carousel img { height: 500px; }
+            .carousel-caption { bottom: 80px; }
+            
+            /* Extra Small About Images */
+            .about-img-container { height: 240px; }
+            .about-img-1 { width: 110px; height: 180px; transform: rotate(-8deg) translateX(-40px); }
+            .about-img-2 { width: 120px; height: 190px; transform: translateY(0px); }
+            .about-img-3 { width: 110px; height: 180px; transform: rotate(8deg) translateX(40px); }
+        }
 
         /* TITLE & BUTTON EFFECTS */
         h1, h2, h3, h4, .display-6, .display-5, .display-3 {
             background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; transition: transform 0.3s ease, filter 0.3s ease;
         }
         h1:hover, h2:hover, h3:hover, h4:hover { filter: brightness(1.1); }
-        .carousel-caption h1, .modern-footer h5, .modern-footer h6, .modern-footer a.navbar-brand, .text-white h2, .text-white h1 {
+        .carousel-caption h1, .modern-footer h5, .modern-footer h6, .modern-footer a.navbar-brand, .text-white h2, .text-white h1, .hero-title {
             background: none !important; -webkit-text-fill-color: #ffffff !important;
         }
         a, .btn, .btn-primary, .btn-gradient, .btn-dark, .btn-outline-primary, .btn-outline-dark, .btn-outline-danger { text-shadow: none !important; }
@@ -180,17 +231,6 @@
         .social-btn:hover { background: #38bdf8; color: #ffffff; transform: translateY(-3px) scale(1.08); }
         .footer-badge-green { width: 82px; height: 82px; border-radius: 50%; background-color: #00b050; color: #ffffff; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 0.55rem; font-weight: 700; padding: 6px; }
         .footer-badge-red { width: 82px; height: 82px; border-radius: 50%; background-color: #ed1c24; color: #ffffff; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 0.55rem; font-weight: 700; padding: 6px; }
-
-        @media (max-width: 991.98px) {
-            .hero-carousel { height: 480px; }
-            .hero-carousel img { height: 480px; }
-            .search-card { margin-top: -80px; padding: 1rem !important; }
-            .mega-menu { width: 100% !important; left: 0 !important; transform: none !important; }
-        }
-        @media (max-width: 575.98px) {
-            .hero-carousel { height: 380px; }
-            .hero-carousel img { height: 380px; }
-        }
     </style>
 </head>
 <body class="bg-light">
@@ -215,7 +255,7 @@
                         <li class="nav-item"><a class="nav-link text-primary fw-semibold" href="#">Home</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button" data-bs-toggle="dropdown">Destination</a>
-                            <div class="dropdown-menu border-0 shadow-lg rounded-4 p-4 mega-menu">
+                            <div class="dropdown-menu shadow-lg rounded-4 p-4 mega-menu">
                                 <div class="row g-4">
                                     <div class="col-md-4">
                                         <h6 class="fw-bold text-primary mb-3"><i class="bi bi-globe-americas me-1"></i> Amerika</h6>
@@ -246,7 +286,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button" data-bs-toggle="dropdown">Pages</a>
-                            <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2" style="width: 220px;">
+                            <ul class="dropdown-menu shadow-lg rounded-4 p-2" style="width: 220px;">
                                 <li><a class="dropdown-item rounded-3 py-2 text-dark" href="#offers"><i class="bi bi-tag text-primary me-2"></i> Discounts & Offers</a></li>
                                 <li><a class="dropdown-item rounded-3 py-2 text-dark" href="#hotels"><i class="bi bi-building text-primary me-2"></i> Popular Hotels</a></li>
                                 <li><a class="dropdown-item rounded-3 py-2 text-dark" href="#tours"><i class="bi bi-map text-primary me-2"></i> Popular Tours</a></li>
@@ -256,7 +296,7 @@
                         <li class="nav-item"><a class="nav-link text-dark fw-medium" href="#footer">Contact</a></li>
                     </ul>
 
-                    <div class="d-flex align-items-center gap-3 flex-wrap">
+                    <div class="d-flex align-items-center gap-3 flex-wrap mt-3 mt-lg-0">
                         <a href="#" class="btn btn-outline-primary rounded-pill px-3 py-2 small fw-semibold d-flex align-items-center gap-2 border-2 text-decoration-none">
                             <i class="bi bi-robot"></i> Plan with AI
                         </a>
@@ -268,14 +308,15 @@
             </div>
         </nav>
 
+        <!-- Diubah flex-column untuk HP, flex-row untuk PC agar tidak bertumpukan saat sempit -->
         <div class="border-top py-2 bg-white small">
-            <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
-                <div class="text-secondary d-flex align-items-center gap-1">
+            <div class="container d-flex flex-column flex-md-row justify-content-center justify-content-md-between align-items-center gap-2 text-center text-md-start">
+                <div class="text-secondary d-flex align-items-center justify-content-center gap-1">
                     <span class="text-warning">★</span> 
                     <span class="fw-bold text-dark">4.9 Rated</span> by <strong class="text-dark">10,000+</strong> Travelers Worldwide.
                 </div>
 
-                <div class="d-flex align-items-center gap-3 text-secondary">
+                <div class="d-flex align-items-center justify-content-center gap-3 text-secondary flex-wrap">
                     <button class="btn btn-sm btn-light border py-1 px-3 fw-semibold rounded-pill d-flex align-items-center gap-1 shadow-sm" type="button" data-bs-toggle="modal" data-bs-target="#currencyModal" id="selectedCurrencyBtn">
                         <i class="bi bi-coin text-warning"></i> USD ($)
                     </button>
@@ -296,20 +337,22 @@
                 <div class="image-shimmer-effect">
                     <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80" width="1920" height="620" class="d-block w-100 h-100 lazyload lazy-effect" alt="Paradise Beach" fetchpriority="high">
                 </div>
-                <div class="carousel-caption d-none d-md-block text-start mb-5 pb-5 container z-2">
-                    <span class="badge bg-primary bg-opacity-75 backdrop-blur mb-3 px-3 py-2 rounded-pill fw-semibold">Eksplorasi Dunia</span>
-                    <h1 class="display-3 fw-extrabold text-white mb-3" style="letter-spacing: -1px;">Temukan Harga Tiket & Hotel Termurah</h1>
-                    <p class="lead text-white-50 fs-5">Bandingkan penawaran dari ratusan situs travel secara instan.</p>
+                <!-- Menambahkan text-center (HP) dan text-md-start (PC) -->
+                <div class="carousel-caption text-center text-md-start mb-md-5 pb-md-5 container z-2">
+                    <span class="badge bg-primary bg-opacity-75 backdrop-blur mb-3 px-3 py-2 rounded-pill fw-semibold shadow-sm">Eksplorasi Dunia</span>
+                    <h1 class="hero-title fw-extrabold text-white mb-3">Temukan Harga Tiket & Hotel Termurah</h1>
+                    <p class="hero-subtitle text-white-50">Bandingkan penawaran dari ratusan situs travel secara instan.</p>
                 </div>
             </div>
             <div class="carousel-item h-100">
                 <div class="image-shimmer-effect">
                     <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1920&q=80" width="1920" height="620" class="d-block w-100 h-100 lazyload lazy-effect" alt="Mountain View" fetchpriority="low">
                 </div>
-                <div class="carousel-caption d-none d-md-block text-start mb-5 pb-5 container z-2">
-                    <span class="badge bg-success bg-opacity-75 backdrop-blur mb-3 px-3 py-2 rounded-pill fw-semibold">Petualangan Baru</span>
-                    <h1 class="display-3 fw-extrabold text-white mb-3" style="letter-spacing: -1px;">Liburan Impian Tanpa Bikin Kantong Bolong</h1>
-                    <p class="lead text-white-50 fs-5">Nikmati diskon eksklusif tur, rental mobil, dan reservasi hotel global.</p>
+                <!-- Menambahkan text-center (HP) dan text-md-start (PC) -->
+                <div class="carousel-caption text-center text-md-start mb-md-5 pb-md-5 container z-2">
+                    <span class="badge bg-success bg-opacity-75 backdrop-blur mb-3 px-3 py-2 rounded-pill fw-semibold shadow-sm">Petualangan Baru</span>
+                    <h1 class="hero-title fw-extrabold text-white mb-3">Liburan Impian Tanpa Bikin Kantong Bolong</h1>
+                    <p class="hero-subtitle text-white-50">Nikmati diskon eksklusif tur, rental mobil, dan reservasi hotel global.</p>
                 </div>
             </div>
         </div>
@@ -756,15 +799,19 @@
                     
                     <div class="vc-item">
                         <div class="card border-0 rounded-4 overflow-hidden text-white card-hover position-relative card-item" style="height: 380px;">
-                            <div class="image-shimmer-effect position-absolute top-0 start-0 w-100 h-100">
-                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=600&q=80" width="600" height="380" class="lazyload lazy-effect" alt="Travel Around the World" fetchpriority="low">
+                            <!-- Memastikan Absolute top-0 start-0 w-100 h-100 agar mengunci sempurna pada box -->
+                            <div class="position-absolute top-0 start-0 w-100 h-100">
+                                <div class="image-shimmer-effect w-100 h-100">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=600&q=80" width="600" height="380" class="lazyload lazy-effect" alt="Travel Around the World" fetchpriority="low">
+                                </div>
                             </div>
-                            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.65) 100%); pointer-events: none;">
+                            <!-- Menggunakan inset-0 dan Clamp font size untuk teks -->
+                            <div class="position-absolute inset-0 top-0 start-0 w-100 h-100 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.65) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
-                                    <h3 class="fw-bold text-uppercase text-white lh-sm fs-4" style="font-family: 'Poppins', sans-serif;">TRAVEL AROUND THE WORLD</h3>
+                                    <h3 class="fw-bold text-uppercase text-white lh-sm" style="font-family: 'Poppins', sans-serif; font-size: clamp(1.25rem, 4vw, 1.75rem);">TRAVEL AROUND THE WORLD</h3>
                                 </div>
                                 <div style="pointer-events: auto;">
-                                    <span class="badge rounded-pill px-3 py-2 fw-bold shadow fs-6" style="background-color: #ff007f;">25% off</span>
+                                    <span class="badge rounded-pill px-3 py-2 fw-bold shadow" style="background-color: #ff007f; font-size: clamp(0.85rem, 2vw, 1rem);">25% off</span>
                                 </div>
                             </div>
                         </div>
@@ -772,17 +819,19 @@
 
                     <div class="vc-item">
                         <div class="card border-0 rounded-4 overflow-hidden text-white card-hover position-relative card-item" style="height: 380px;">
-                            <div class="image-shimmer-effect position-absolute top-0 start-0 w-100 h-100">
-                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" width="600" height="380" class="lazyload lazy-effect" alt="Breath Adventure Awaits" fetchpriority="low">
+                            <div class="position-absolute top-0 start-0 w-100 h-100">
+                                <div class="image-shimmer-effect w-100 h-100">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" width="600" height="380" class="lazyload lazy-effect" alt="Breath Adventure Awaits" fetchpriority="low">
+                                </div>
                             </div>
-                            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
+                            <div class="position-absolute inset-0 top-0 start-0 w-100 h-100 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
                                     <i class="bi bi-airplane text-white fs-5 mb-2 d-inline-block"></i>
-                                    <h3 class="fw-bold text-warning lh-sm fs-4" style="font-family: 'Poppins', sans-serif;">Breath Adventure Awaits</h3>
+                                    <h3 class="fw-bold text-warning lh-sm" style="font-family: 'Poppins', sans-serif; font-size: clamp(1.25rem, 4vw, 1.75rem);">Breath Adventure Awaits</h3>
                                 </div>
-                                <div class="align-self-end bg-danger text-white rounded-circle d-flex flex-column align-items-center justify-content-center p-2 fw-bold shadow-lg" style="width: 80px; height: 80px; transform: rotate(-10deg); pointer-events: auto;">
-                                    <span class="lh-1 fw-extrabold fs-5">$199</span>
-                                    <span style="font-size: 0.65rem; letter-spacing: 1px;">/only</span>
+                                <div class="align-self-end bg-danger text-white rounded-circle d-flex flex-column align-items-center justify-content-center p-2 fw-bold shadow-lg" style="width: clamp(70px, 15vw, 85px); height: clamp(70px, 15vw, 85px); transform: rotate(-10deg); pointer-events: auto;">
+                                    <span class="lh-1 fw-extrabold" style="font-size: clamp(1.2rem, 3vw, 1.5rem);">$199</span>
+                                    <span style="font-size: clamp(0.55rem, 1.5vw, 0.75rem); letter-spacing: 1px;">/only</span>
                                 </div>
                             </div>
                         </div>
@@ -790,14 +839,16 @@
 
                     <div class="vc-item">
                         <div class="card border-0 rounded-4 overflow-hidden text-white card-hover position-relative card-item" style="height: 380px;">
-                            <div class="image-shimmer-effect position-absolute top-0 start-0 w-100 h-100">
-                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" width="600" height="380" class="lazyload lazy-effect" alt="20% off SALE" fetchpriority="low">
+                            <div class="position-absolute top-0 start-0 w-100 h-100">
+                                <div class="image-shimmer-effect w-100 h-100">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" width="600" height="380" class="lazyload lazy-effect" alt="20% off SALE" fetchpriority="low">
+                                </div>
                             </div>
-                            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
+                            <div class="position-absolute inset-0 top-0 start-0 w-100 h-100 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
                                     <span class="text-uppercase small fw-bold tracking-wider text-warning">up to</span>
-                                    <h1 class="fw-bold text-white mb-0 display-5">20% off</h1>
-                                    <h4 class="fw-bold tracking-widest text-uppercase fs-4">SALE</h4>
+                                    <h1 class="fw-bold text-white mb-0" style="font-size: clamp(3rem, 8vw, 4rem);">20% off</h1>
+                                    <h4 class="fw-bold tracking-widest text-uppercase" style="font-size: clamp(1.25rem, 4vw, 1.75rem);">SALE</h4>
                                 </div>
                                 <div class="text-center bg-success text-white py-2 rounded-pill fw-bold small shadow" style="pointer-events: auto;">
                                     ★ TRAVEL • View All Tour
@@ -808,18 +859,20 @@
 
                     <div class="vc-item">
                         <div class="card border-0 rounded-4 overflow-hidden text-white card-hover position-relative card-item" style="height: 380px;">
-                            <div class="image-shimmer-effect position-absolute top-0 start-0 w-100 h-100">
-                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=600&q=80" width="600" height="380" class="lazyload lazy-effect" alt="Summer Vacation" fetchpriority="low">
+                            <div class="position-absolute top-0 start-0 w-100 h-100">
+                                <div class="image-shimmer-effect w-100 h-100">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=600&q=80" width="600" height="380" class="lazyload lazy-effect" alt="Summer Vacation" fetchpriority="low">
+                                </div>
                             </div>
-                            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
+                            <div class="position-absolute inset-0 top-0 start-0 w-100 h-100 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
-                                    <h3 class="fw-bold text-white lh-sm fs-4" style="font-family: 'Poppins', sans-serif;">Summer Vacation</h3>
+                                    <h3 class="fw-bold text-white lh-sm" style="font-family: 'Poppins', sans-serif; font-size: clamp(1.25rem, 4vw, 1.75rem);">Summer Vacation</h3>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-end" style="pointer-events: auto;">
-                                    <span class="badge bg-light text-dark rounded-pill px-3 py-1 fw-semibold shadow">VACATION mode</span>
-                                    <div class="rounded-circle d-flex flex-column align-items-center justify-content-center p-2 fw-bold shadow-lg text-white" style="width: 80px; height: 80px; background-color: #ff007f;">
-                                        <span class="lh-1 fw-extrabold fs-5">$199</span>
-                                        <span style="font-size: 0.65rem; letter-spacing: 1px;">/only</span>
+                                    <span class="badge bg-light text-dark rounded-pill px-3 py-1 fw-semibold shadow" style="font-size: clamp(0.7rem, 2vw, 0.85rem);">VACATION mode</span>
+                                    <div class="rounded-circle d-flex flex-column align-items-center justify-content-center p-2 fw-bold shadow-lg text-white" style="width: clamp(70px, 15vw, 85px); height: clamp(70px, 15vw, 85px); background-color: #ff007f;">
+                                        <span class="lh-1 fw-extrabold" style="font-size: clamp(1.2rem, 3vw, 1.5rem);">$199</span>
+                                        <span style="font-size: clamp(0.55rem, 1.5vw, 0.75rem); letter-spacing: 1px;">/only</span>
                                     </div>
                                 </div>
                             </div>
@@ -1065,16 +1118,23 @@
                 <a href="#" class="btn btn-primary rounded-pill px-5 py-3 fw-bold shadow text-decoration-none">Discover More</a>
             </div>
 
+            <!-- Diperbarui agar lebih Mobile Responsive -->
             <div class="col-lg-6">
-                <div class="position-relative d-flex justify-content-center align-items-center mb-5" style="height: 380px;">
-                    <div class="position-absolute shadow-lg rounded-4 overflow-hidden border border-white border-3 image-shimmer-effect" style="width: 200px; height: 320px; transform: rotate(-8deg) translateX(-80px); z-index: 1;">
-                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=500&q=80" width="500" height="800" class="lazyload lazy-effect" alt="Traveler" fetchpriority="low">
+                <div class="about-img-container mb-5">
+                    <div class="about-img-item about-img-1">
+                        <div class="image-shimmer-effect">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=500&q=80" width="500" height="800" class="lazyload lazy-effect" alt="Traveler" fetchpriority="low">
+                        </div>
                     </div>
-                    <div class="position-absolute shadow-lg rounded-4 overflow-hidden border border-white border-3 image-shimmer-effect" style="width: 210px; height: 340px; transform: translateY(-10px); z-index: 3;">
-                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=500&q=80" width="500" height="800" class="lazyload lazy-effect" alt="World Landmarks" fetchpriority="low">
+                    <div class="about-img-item about-img-2">
+                        <div class="image-shimmer-effect">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=500&q=80" width="500" height="800" class="lazyload lazy-effect" alt="World Landmarks" fetchpriority="low">
+                        </div>
                     </div>
-                    <div class="position-absolute shadow-lg rounded-4 overflow-hidden border border-white border-3 image-shimmer-effect" style="width: 200px; height: 320px; transform: rotate(8deg) translateX(80px); z-index: 2;">
-                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" width="500" height="800" class="lazyload lazy-effect" alt="Beach Resort" fetchpriority="low">
+                    <div class="about-img-item about-img-3">
+                        <div class="image-shimmer-effect">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" width="500" height="800" class="lazyload lazy-effect" alt="Beach Resort" fetchpriority="low">
+                        </div>
                     </div>
                 </div>
 
