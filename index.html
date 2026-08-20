@@ -46,7 +46,6 @@
         }
 
         header.sticky-top { z-index: 1070 !important; }
-
         .cursor-pointer { cursor: pointer; }
 
         /* LAZYSIZES EFFECT */
@@ -83,18 +82,24 @@
         }
         .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
 
-        /* DROPDOWN & MEGA MENU */
+        /* MENU DROPDOWN & MEGA MENU ANIMATION (Scoped only to Navbar to prevent Search Box bug) */
         .dropdown-menu {
             display: block; opacity: 0; visibility: hidden; transform: translateY(12px);
             transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1); margin-top: 0px; pointer-events: none;
         }
-        .dropdown:hover > .dropdown-menu, .dropdown-menu:hover {
+        .navbar .dropdown:hover > .dropdown-menu, 
+        .navbar .dropdown-menu:hover {
             opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto;
         }
+        /* Bootstrap JS trigger for Search Box Interaction */
+        .dropdown-menu.show {
+            opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important;
+        }
+
         .mega-menu {
             width: 700px; left: 50% !important; transform: translateX(-50%) translateY(12px) !important; padding: 24px !important;
         }
-        .dropdown:hover > .mega-menu { transform: translateX(-50%) translateY(0) !important; }
+        .navbar .dropdown:hover > .mega-menu { transform: translateX(-50%) translateY(0) !important; }
 
         /* TITLE & BUTTON EFFECTS */
         h1, h2, h3, h4, .display-6, .display-5, .display-3 {
@@ -117,7 +122,7 @@
         .btn:hover::after, .btn-primary:hover::after, .btn-gradient:hover::after, .btn-dark:hover::after { transform: rotate(30deg) translateX(100%); }
         .btn:hover { color: #ffffff !important; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(37, 99, 235, 0.45); }
 
-        .image-shimmer-effect { position: relative; overflow: hidden; display: block; width: 100%; }
+        .image-shimmer-effect { position: relative; overflow: hidden; display: block; width: 100%; height: 100%; }
         .image-shimmer-effect img { width: 100%; height: 100%; object-fit: cover; }
         .image-shimmer-effect::after {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
@@ -288,7 +293,7 @@
     <div id="heroSlider" class="carousel slide hero-carousel scroll-reveal" data-bs-ride="carousel">
         <div class="carousel-inner h-100">
             <div class="carousel-item active h-100">
-                <div class="image-shimmer-effect h-100">
+                <div class="image-shimmer-effect">
                     <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80" width="1920" height="620" class="d-block w-100 h-100 lazyload lazy-effect" alt="Paradise Beach" fetchpriority="high">
                 </div>
                 <div class="carousel-caption d-none d-md-block text-start mb-5 pb-5 container z-2">
@@ -298,7 +303,7 @@
                 </div>
             </div>
             <div class="carousel-item h-100">
-                <div class="image-shimmer-effect h-100">
+                <div class="image-shimmer-effect">
                     <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1920&q=80" width="1920" height="620" class="d-block w-100 h-100 lazyload lazy-effect" alt="Mountain View" fetchpriority="low">
                 </div>
                 <div class="carousel-caption d-none d-md-block text-start mb-5 pb-5 container z-2">
@@ -333,9 +338,9 @@
                             <li class="nav-item"><button class="nav-link rounded-pill px-3 py-1 text-dark" data-bs-toggle="tab" data-bs-target="#roundTrip">Roundtrip</button></li>
                             <li class="nav-item"><button class="nav-link rounded-pill px-3 py-1 text-dark" data-bs-toggle="tab" data-bs-target="#multiCity">Multi-city</button></li>
                         </ul>
-                        <div class="dropdown dropdown-cabin">
-                            <button class="btn btn-light btn-sm dropdown-toggle rounded-pill px-3 border text-primary fw-semibold shadow-sm" type="button" data-bs-toggle="dropdown" id="cabinClassDropdownBtn">
-                                Economy
+                        <div class="dropdown">
+                            <button class="btn btn-light btn-sm dropdown-toggle rounded-pill px-3 border text-primary fw-semibold shadow-sm" type="button" data-bs-toggle="dropdown">
+                                <span id="cabinClassDropdownBtn">Economy</span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-4 p-2">
                                 <li><a class="dropdown-item cabin-option rounded-3 py-2 text-dark" href="#" data-cabin="Economy">Economy</a></li>
@@ -374,36 +379,38 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6">
-                                    <div class="search-box-item dropdown cursor-pointer dropdown-passengers" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                                        <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Travelers</div>
-                                        <div class="fw-bold small text-dark" id="travelersSummaryText">1 Adult, 0 Child, Economy</div>
-                                    </div>
-                                    <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4" style="width: 280px;">
-                                        <div class="d-flex justify-content-between align-items-center mb-2">
-                                            <span class="small">Dewasa (12+)</span>
-                                            <div class="input-group input-group-sm w-50">
-                                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightAdult">-</button>
-                                                <input type="text" id="flightAdult" class="form-control text-center fw-bold" value="1" readonly>
-                                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightAdult">+</button>
-                                            </div>
+                                    <div class="dropdown w-100">
+                                        <div class="search-box-item cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                            <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Travelers</div>
+                                            <div class="fw-bold small text-dark" id="travelersSummaryText">1 Adult, 0 Child, Economy</div>
                                         </div>
-                                        <div class="d-flex justify-content-between align-items-center mb-2">
-                                            <span class="small">Anak (2-11)</span>
-                                            <div class="input-group input-group-sm w-50">
-                                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightChild">-</button>
-                                                <input type="text" id="flightChild" class="form-control text-center fw-bold" value="0" readonly>
-                                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightChild">+</button>
+                                        <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100" style="min-width: 280px;">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <span class="small">Dewasa (12+)</span>
+                                                <div class="input-group input-group-sm w-50">
+                                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightAdult">-</button>
+                                                    <input type="text" id="flightAdult" class="form-control text-center fw-bold bg-white" value="1" readonly>
+                                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightAdult">+</button>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <span class="small">Bayi (&lt;2)</span>
-                                            <div class="input-group input-group-sm w-50">
-                                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightInfant">-</button>
-                                                <input type="text" id="flightInfant" class="form-control text-center fw-bold" value="0" readonly>
-                                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightInfant">+</button>
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <span class="small">Anak (2-11)</span>
+                                                <div class="input-group input-group-sm w-50">
+                                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightChild">-</button>
+                                                    <input type="text" id="flightChild" class="form-control text-center fw-bold bg-white" value="0" readonly>
+                                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightChild">+</button>
+                                                </div>
                                             </div>
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <span class="small">Bayi (&lt;2)</span>
+                                                <div class="input-group input-group-sm w-50">
+                                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightInfant">-</button>
+                                                    <input type="text" id="flightInfant" class="form-control text-center fw-bold bg-white" value="0" readonly>
+                                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightInfant">+</button>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
                                         </div>
-                                        <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-md-12">
@@ -443,36 +450,38 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-12">
-                                    <div class="search-box-item dropdown cursor-pointer dropdown-passengers" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                                        <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Passengers</div>
-                                        <div class="fw-bold small text-dark rt-travelers-summary">1 Adult, 0 Child</div>
-                                    </div>
-                                    <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4" style="width: 280px;">
-                                        <div class="d-flex justify-content-between align-items-center mb-2">
-                                            <span class="small">Dewasa (12+)</span>
-                                            <div class="input-group input-group-sm w-50">
-                                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="rtAdult">-</button>
-                                                <input type="text" id="rtAdult" class="form-control text-center fw-bold" value="1" readonly>
-                                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="rtAdult">+</button>
-                                            </div>
+                                    <div class="dropdown w-100">
+                                        <div class="search-box-item cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                            <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Passengers</div>
+                                            <div class="fw-bold small text-dark rt-travelers-summary">1 Adult, 0 Child</div>
                                         </div>
-                                        <div class="d-flex justify-content-between align-items-center mb-2">
-                                            <span class="small">Anak (2-11)</span>
-                                            <div class="input-group input-group-sm w-50">
-                                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="rtChild">-</button>
-                                                <input type="text" id="rtChild" class="form-control text-center fw-bold" value="0" readonly>
-                                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="rtChild">+</button>
+                                        <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100" style="min-width: 280px;">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <span class="small">Dewasa (12+)</span>
+                                                <div class="input-group input-group-sm w-50">
+                                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="rtAdult">-</button>
+                                                    <input type="text" id="rtAdult" class="form-control text-center fw-bold bg-white" value="1" readonly>
+                                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="rtAdult">+</button>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <span class="small">Bayi (&lt;2)</span>
-                                            <div class="input-group input-group-sm w-50">
-                                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="rtInfant">-</button>
-                                                <input type="text" id="rtInfant" class="form-control text-center fw-bold" value="0" readonly>
-                                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="rtInfant">+</button>
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <span class="small">Anak (2-11)</span>
+                                                <div class="input-group input-group-sm w-50">
+                                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="rtChild">-</button>
+                                                    <input type="text" id="rtChild" class="form-control text-center fw-bold bg-white" value="0" readonly>
+                                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="rtChild">+</button>
+                                                </div>
                                             </div>
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <span class="small">Bayi (&lt;2)</span>
+                                                <div class="input-group input-group-sm w-50">
+                                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="rtInfant">-</button>
+                                                    <input type="text" id="rtInfant" class="form-control text-center fw-bold bg-white" value="0" readonly>
+                                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="rtInfant">+</button>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
                                         </div>
-                                        <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-md-12">
@@ -499,20 +508,22 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-md-6">
-                                        <div class="search-box-item dropdown cursor-pointer dropdown-passengers" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                                            <div class="text-muted small mb-1">Passengers</div>
-                                            <div class="fw-bold small text-dark mc-travelers-summary">1 Adult</div>
-                                        </div>
-                                        <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4" style="width: 250px;">
-                                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                                <span class="small">Dewasa</span>
-                                                <div class="input-group input-group-sm w-50">
-                                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcAdult1">-</button>
-                                                    <input type="text" id="mcAdult1" class="form-control text-center fw-bold mc-input" value="1" readonly>
-                                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcAdult1">+</button>
-                                                </div>
+                                        <div class="dropdown w-100">
+                                            <div class="search-box-item cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                                <div class="text-muted small mb-1">Passengers</div>
+                                                <div class="fw-bold small text-dark mc-travelers-summary">1 Adult</div>
                                             </div>
-                                            <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
+                                            <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100" style="min-width: 250px;">
+                                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                                    <span class="small">Dewasa</span>
+                                                    <div class="input-group input-group-sm w-50">
+                                                        <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcAdult1">-</button>
+                                                        <input type="text" id="mcAdult1" class="form-control text-center fw-bold mc-input bg-white" value="1" readonly>
+                                                        <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcAdult1">+</button>
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-md-12">
@@ -554,36 +565,38 @@
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6">
-                            <div class="search-box-item dropdown cursor-pointer dropdown-passengers" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                                <div class="text-muted small mb-1"><i class="bi bi-people text-primary me-1"></i> Guests & Rooms</div>
-                                <div class="fw-bold small text-dark" id="hotelSummaryText">1 Room, 2 Guests</div>
-                            </div>
-                            <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4" style="width: 280px;">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <span class="small">Kamar</span>
-                                    <div class="input-group input-group-sm w-50">
-                                        <button class="btn btn-outline-secondary decrease-count" type="button" data-target="hotelRoom">-</button>
-                                        <input type="text" id="hotelRoom" class="form-control text-center fw-bold" value="1" readonly>
-                                        <button class="btn btn-outline-secondary increase-count" type="button" data-target="hotelRoom">+</button>
-                                    </div>
+                            <div class="dropdown w-100">
+                                <div class="search-box-item cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                    <div class="text-muted small mb-1"><i class="bi bi-people text-primary me-1"></i> Guests & Rooms</div>
+                                    <div class="fw-bold small text-dark" id="hotelSummaryText">1 Room, 2 Guests</div>
                                 </div>
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <span class="small">Dewasa</span>
-                                    <div class="input-group input-group-sm w-50">
-                                        <button class="btn btn-outline-secondary decrease-count" type="button" data-target="hotelAdult">-</button>
-                                        <input type="text" id="hotelAdult" class="form-control text-center fw-bold" value="2" readonly>
-                                        <button class="btn btn-outline-secondary increase-count" type="button" data-target="hotelAdult">+</button>
+                                <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100" style="min-width: 280px;">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="small">Kamar</span>
+                                        <div class="input-group input-group-sm w-50">
+                                            <button class="btn btn-outline-secondary decrease-count" type="button" data-target="hotelRoom">-</button>
+                                            <input type="text" id="hotelRoom" class="form-control text-center fw-bold bg-white" value="1" readonly>
+                                            <button class="btn btn-outline-secondary increase-count" type="button" data-target="hotelRoom">+</button>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <span class="small">Anak</span>
-                                    <div class="input-group input-group-sm w-50">
-                                        <button class="btn btn-outline-secondary decrease-count" type="button" data-target="hotelChild">-</button>
-                                        <input type="text" id="hotelChild" class="form-control text-center fw-bold" value="0" readonly>
-                                        <button class="btn btn-outline-secondary increase-count" type="button" data-target="hotelChild">+</button>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="small">Dewasa</span>
+                                        <div class="input-group input-group-sm w-50">
+                                            <button class="btn btn-outline-secondary decrease-count" type="button" data-target="hotelAdult">-</button>
+                                            <input type="text" id="hotelAdult" class="form-control text-center fw-bold bg-white" value="2" readonly>
+                                            <button class="btn btn-outline-secondary increase-count" type="button" data-target="hotelAdult">+</button>
+                                        </div>
                                     </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <span class="small">Anak</span>
+                                        <div class="input-group input-group-sm w-50">
+                                            <button class="btn btn-outline-secondary decrease-count" type="button" data-target="hotelChild">-</button>
+                                            <input type="text" id="hotelChild" class="form-control text-center fw-bold bg-white" value="0" readonly>
+                                            <button class="btn btn-outline-secondary increase-count" type="button" data-target="hotelChild">+</button>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary btn-sm w-100 py-2 rounded-pill fw-bold apply-btn" type="button">Terapkan</button>
                                 </div>
-                                <button class="btn btn-primary btn-sm w-100 py-2 rounded-pill fw-bold apply-btn" type="button">Terapkan</button>
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-12">
@@ -619,7 +632,7 @@
                     </div>
                 </div>
 
-                <!-- TOURS TAB (Updated Interactive) -->
+                <!-- TOURS TAB -->
                 <div class="tab-pane fade" id="tourSearchTab">
                     <div class="row g-2 align-items-center">
                         <div class="col-lg-5 col-md-12">
@@ -635,20 +648,22 @@
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-6">
-                            <div class="search-box-item dropdown cursor-pointer dropdown-passengers" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                                <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Travelers</div>
-                                <div class="fw-bold small text-dark" id="tourSummaryText">2 Adults</div>
-                            </div>
-                            <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4" style="width: 250px;">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <span class="small">Peserta</span>
-                                    <div class="input-group input-group-sm w-50">
-                                        <button class="btn btn-outline-secondary decrease-count" type="button" data-target="tourAdult">-</button>
-                                        <input type="text" id="tourAdult" class="form-control text-center fw-bold" value="2" readonly>
-                                        <button class="btn btn-outline-secondary increase-count" type="button" data-target="tourAdult">+</button>
-                                    </div>
+                            <div class="dropdown w-100">
+                                <div class="search-box-item cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                    <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Travelers</div>
+                                    <div class="fw-bold small text-dark" id="tourSummaryText">2 Persons</div>
                                 </div>
-                                <button class="btn btn-primary btn-sm w-100 py-2 rounded-pill fw-bold apply-btn" type="button">Terapkan</button>
+                                <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100" style="min-width: 250px;">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <span class="small">Peserta</span>
+                                        <div class="input-group input-group-sm w-50">
+                                            <button class="btn btn-outline-secondary decrease-count" type="button" data-target="tourAdult">-</button>
+                                            <input type="text" id="tourAdult" class="form-control text-center fw-bold bg-white" value="2" readonly>
+                                            <button class="btn btn-outline-secondary increase-count" type="button" data-target="tourAdult">+</button>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary btn-sm w-100 py-2 rounded-pill fw-bold apply-btn" type="button">Terapkan</button>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-12">
@@ -657,7 +672,7 @@
                     </div>
                 </div>
 
-                <!-- EXPERIENCE TAB (Updated Interactive) -->
+                <!-- EXPERIENCE TAB -->
                 <div class="tab-pane fade" id="expSearchTab">
                     <div class="row g-2 align-items-center">
                         <div class="col-lg-5 col-md-12">
@@ -673,20 +688,22 @@
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-6">
-                            <div class="search-box-item dropdown cursor-pointer dropdown-passengers" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                                <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Participants</div>
-                                <div class="fw-bold small text-dark" id="expSummaryText">2 Persons</div>
-                            </div>
-                            <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4" style="width: 250px;">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <span class="small">Peserta</span>
-                                    <div class="input-group input-group-sm w-50">
-                                        <button class="btn btn-outline-secondary decrease-count" type="button" data-target="expAdult">-</button>
-                                        <input type="text" id="expAdult" class="form-control text-center fw-bold" value="2" readonly>
-                                        <button class="btn btn-outline-secondary increase-count" type="button" data-target="expAdult">+</button>
-                                    </div>
+                            <div class="dropdown w-100">
+                                <div class="search-box-item cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                    <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Participants</div>
+                                    <div class="fw-bold small text-dark" id="expSummaryText">2 Persons</div>
                                 </div>
-                                <button class="btn btn-primary btn-sm w-100 py-2 rounded-pill fw-bold apply-btn" type="button">Terapkan</button>
+                                <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100" style="min-width: 250px;">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <span class="small">Peserta</span>
+                                        <div class="input-group input-group-sm w-50">
+                                            <button class="btn btn-outline-secondary decrease-count" type="button" data-target="expAdult">-</button>
+                                            <input type="text" id="expAdult" class="form-control text-center fw-bold bg-white" value="2" readonly>
+                                            <button class="btn btn-outline-secondary increase-count" type="button" data-target="expAdult">+</button>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary btn-sm w-100 py-2 rounded-pill fw-bold apply-btn" type="button">Terapkan</button>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-12">
@@ -739,15 +756,15 @@
                     
                     <div class="vc-item">
                         <div class="card border-0 rounded-4 overflow-hidden text-white card-hover position-relative card-item" style="height: 380px;">
-                            <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
+                            <div class="image-shimmer-effect position-absolute top-0 start-0 w-100 h-100">
                                 <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=600&q=80" width="600" height="380" class="lazyload lazy-effect" alt="Travel Around the World" fetchpriority="low">
                             </div>
-                            <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-3 p-md-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.65) 100%); pointer-events: none;">
+                            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.65) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
-                                    <h3 class="fw-bold text-uppercase text-white lh-sm" style="font-family: 'Poppins', sans-serif; font-size: clamp(1.2rem, 3vw, 1.5rem);">TRAVEL AROUND THE WORLD</h3>
+                                    <h3 class="fw-bold text-uppercase text-white lh-sm fs-4" style="font-family: 'Poppins', sans-serif;">TRAVEL AROUND THE WORLD</h3>
                                 </div>
                                 <div style="pointer-events: auto;">
-                                    <span class="badge rounded-pill px-3 py-2 fw-bold shadow" style="background-color: #ff007f; font-size: clamp(0.85rem, 1.5vw, 1rem);">25% off</span>
+                                    <span class="badge rounded-pill px-3 py-2 fw-bold shadow fs-6" style="background-color: #ff007f;">25% off</span>
                                 </div>
                             </div>
                         </div>
@@ -755,17 +772,17 @@
 
                     <div class="vc-item">
                         <div class="card border-0 rounded-4 overflow-hidden text-white card-hover position-relative card-item" style="height: 380px;">
-                            <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
+                            <div class="image-shimmer-effect position-absolute top-0 start-0 w-100 h-100">
                                 <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" width="600" height="380" class="lazyload lazy-effect" alt="Breath Adventure Awaits" fetchpriority="low">
                             </div>
-                            <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-3 p-md-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
+                            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
                                     <i class="bi bi-airplane text-white fs-5 mb-2 d-inline-block"></i>
-                                    <h3 class="fw-bold text-warning lh-sm" style="font-family: 'Poppins', sans-serif; font-size: clamp(1.2rem, 3vw, 1.5rem);">Breath Adventure Awaits</h3>
+                                    <h3 class="fw-bold text-warning lh-sm fs-4" style="font-family: 'Poppins', sans-serif;">Breath Adventure Awaits</h3>
                                 </div>
-                                <div class="align-self-end bg-danger text-white rounded-circle d-flex flex-column align-items-center justify-content-center p-2 fw-bold shadow-lg" style="width: clamp(65px, 15vw, 80px); height: clamp(65px, 15vw, 80px); transform: rotate(-10deg); pointer-events: auto;">
-                                    <span class="lh-1 fw-extrabold" style="font-size: clamp(1rem, 2.5vw, 1.25rem);">$199</span>
-                                    <span style="font-size: clamp(0.55rem, 1.2vw, 0.65rem); letter-spacing: 1px;">/only</span>
+                                <div class="align-self-end bg-danger text-white rounded-circle d-flex flex-column align-items-center justify-content-center p-2 fw-bold shadow-lg" style="width: 80px; height: 80px; transform: rotate(-10deg); pointer-events: auto;">
+                                    <span class="lh-1 fw-extrabold fs-5">$199</span>
+                                    <span style="font-size: 0.65rem; letter-spacing: 1px;">/only</span>
                                 </div>
                             </div>
                         </div>
@@ -773,16 +790,16 @@
 
                     <div class="vc-item">
                         <div class="card border-0 rounded-4 overflow-hidden text-white card-hover position-relative card-item" style="height: 380px;">
-                            <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
+                            <div class="image-shimmer-effect position-absolute top-0 start-0 w-100 h-100">
                                 <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" width="600" height="380" class="lazyload lazy-effect" alt="20% off SALE" fetchpriority="low">
                             </div>
-                            <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-3 p-md-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
+                            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
                                     <span class="text-uppercase small fw-bold tracking-wider text-warning">up to</span>
-                                    <h1 class="fw-bold text-white mb-0" style="font-size: clamp(2.5rem, 6vw, 3.5rem);">20% off</h1>
-                                    <h4 class="fw-bold tracking-widest text-uppercase" style="font-size: clamp(1.2rem, 3vw, 1.5rem);">SALE</h4>
+                                    <h1 class="fw-bold text-white mb-0 display-5">20% off</h1>
+                                    <h4 class="fw-bold tracking-widest text-uppercase fs-4">SALE</h4>
                                 </div>
-                                <div class="text-center bg-success text-white py-2 rounded-pill fw-bold small shadow" style="pointer-events: auto; font-size: clamp(0.7rem, 2vw, 0.875rem);">
+                                <div class="text-center bg-success text-white py-2 rounded-pill fw-bold small shadow" style="pointer-events: auto;">
                                     ★ TRAVEL • View All Tour
                                 </div>
                             </div>
@@ -791,18 +808,18 @@
 
                     <div class="vc-item">
                         <div class="card border-0 rounded-4 overflow-hidden text-white card-hover position-relative card-item" style="height: 380px;">
-                            <div class="image-shimmer-effect w-100 h-100 position-absolute inset-0">
+                            <div class="image-shimmer-effect position-absolute top-0 start-0 w-100 h-100">
                                 <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=600&q=80" width="600" height="380" class="lazyload lazy-effect" alt="Summer Vacation" fetchpriority="low">
                             </div>
-                            <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-3 p-md-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
+                            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
-                                    <h3 class="fw-bold text-white lh-sm" style="font-family: 'Poppins', sans-serif; font-size: clamp(1.2rem, 3vw, 1.5rem);">Summer Vacation</h3>
+                                    <h3 class="fw-bold text-white lh-sm fs-4" style="font-family: 'Poppins', sans-serif;">Summer Vacation</h3>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-end" style="pointer-events: auto;">
-                                    <span class="badge bg-light text-dark rounded-pill px-3 py-1 fw-semibold shadow" style="font-size: clamp(0.65rem, 1.5vw, 0.8rem);">VACATION mode</span>
-                                    <div class="rounded-circle d-flex flex-column align-items-center justify-content-center p-2 fw-bold shadow-lg text-white" style="width: clamp(65px, 15vw, 80px); height: clamp(65px, 15vw, 80px); background-color: #ff007f;">
-                                        <span class="lh-1 fw-extrabold" style="font-size: clamp(1rem, 2.5vw, 1.25rem);">$199</span>
-                                        <span style="font-size: clamp(0.55rem, 1.2vw, 0.65rem); letter-spacing: 1px;">/only</span>
+                                    <span class="badge bg-light text-dark rounded-pill px-3 py-1 fw-semibold shadow">VACATION mode</span>
+                                    <div class="rounded-circle d-flex flex-column align-items-center justify-content-center p-2 fw-bold shadow-lg text-white" style="width: 80px; height: 80px; background-color: #ff007f;">
+                                        <span class="lh-1 fw-extrabold fs-5">$199</span>
+                                        <span style="font-size: 0.65rem; letter-spacing: 1px;">/only</span>
                                     </div>
                                 </div>
                             </div>
@@ -2192,6 +2209,65 @@
                 });
             });
 
+            // FUNCTION TO UPDATE TEXT SUMMARIES (Passengers & Guests)
+            function updateAllSummaries() {
+                // One Way
+                const flightAdult = document.getElementById("flightAdult");
+                if (flightAdult) {
+                    const adults = parseInt(flightAdult.value) || 1;
+                    const kids = parseInt(document.getElementById("flightChild").value) || 0;
+                    const infants = parseInt(document.getElementById("flightInfant").value) || 0;
+                    const cabinBtn = document.getElementById("cabinClassDropdownBtn");
+                    const cabin = cabinBtn ? cabinBtn.textContent.trim() : "Economy";
+                    const summary = document.getElementById("travelersSummaryText");
+                    if (summary) summary.textContent = `${adults} Adult, ${kids + infants} Child, ${cabin}`;
+                }
+
+                // Round Trip
+                const rtAdult = document.getElementById("rtAdult");
+                if (rtAdult) {
+                    const adults = parseInt(rtAdult.value) || 1;
+                    const kids = parseInt(document.getElementById("rtChild").value) || 0;
+                    const infants = parseInt(document.getElementById("rtInfant").value) || 0;
+                    const summary = document.querySelector(".rt-travelers-summary");
+                    if (summary) summary.textContent = `${adults} Adult, ${kids + infants} Child`;
+                }
+
+                // Multi City
+                document.querySelectorAll(".multicity-row").forEach(row => {
+                    const mcInput = row.querySelector(".mc-input");
+                    const mcSummary = row.querySelector(".mc-travelers-summary");
+                    if (mcInput && mcSummary) {
+                        mcSummary.textContent = `${mcInput.value} Adult`;
+                    }
+                });
+
+                // Hotel
+                const hotelRoom = document.getElementById("hotelRoom");
+                if (hotelRoom) {
+                    const rooms = parseInt(hotelRoom.value) || 1;
+                    const guests = (parseInt(document.getElementById("hotelAdult").value) || 1) + (parseInt(document.getElementById("hotelChild").value) || 0);
+                    const summary = document.getElementById("hotelSummaryText");
+                    if (summary) summary.textContent = `${rooms} Room, ${guests} Guests`;
+                }
+
+                // Tour
+                const tourAdult = document.getElementById("tourAdult");
+                if (tourAdult) {
+                    const adults = parseInt(tourAdult.value) || 1;
+                    const summary = document.getElementById("tourSummaryText");
+                    if (summary) summary.textContent = `${adults} Persons`;
+                }
+
+                // Experience
+                const expAdult = document.getElementById("expAdult");
+                if (expAdult) {
+                    const adults = parseInt(expAdult.value) || 1;
+                    const summary = document.getElementById("expSummaryText");
+                    if (summary) summary.textContent = `${adults} Persons`;
+                }
+            }
+
             // INTERACTIVE CABIN DROPDOWN
             document.querySelectorAll('.cabin-option').forEach(item => {
                 item.addEventListener('click', (e) => {
@@ -2225,92 +2301,51 @@
             // GLOBAL INTERACTIVE EVENT DELEGATION
             // ==========================================
             document.addEventListener('click', (e) => {
-                // INCREASE BUTTON
-                if (e.target.classList.contains('increase-count')) {
-                    const targetId = e.target.getAttribute('data-target');
+                
+                // Increase Button [+]
+                const incBtn = e.target.closest('.increase-count');
+                if (incBtn) {
+                    e.preventDefault(); e.stopPropagation();
+                    const targetId = incBtn.getAttribute('data-target');
                     const input = document.getElementById(targetId);
                     if (input) {
                         input.value = parseInt(input.value) + 1;
                         updateAllSummaries();
                     }
+                    return;
                 }
                 
-                // DECREASE BUTTON
-                if (e.target.classList.contains('decrease-count')) {
-                    const targetId = e.target.getAttribute('data-target');
+                // Decrease Button [-]
+                const decBtn = e.target.closest('.decrease-count');
+                if (decBtn) {
+                    e.preventDefault(); e.stopPropagation();
+                    const targetId = decBtn.getAttribute('data-target');
                     const input = document.getElementById(targetId);
                     if (input) {
                         let minValue = 0;
                         if (targetId.includes('Adult') || targetId.includes('Room')) {
-                            minValue = 1; // Minimal Dewasa/Kamar adalah 1
+                            minValue = 1; // Limit minimal untuk Dewasa / Kamar
                         }
                         if (parseInt(input.value) > minValue) {
                             input.value = parseInt(input.value) - 1;
                             updateAllSummaries();
                         }
                     }
+                    return;
                 }
 
-                // APPLY BUTTON - Menutup dropdown agar terlihat rapi (UX)
-                if (e.target.classList.contains('apply-btn')) {
-                    const dropdownMenu = e.target.closest('.dropdown-menu');
-                    if (dropdownMenu) {
-                        const toggleEl = dropdownMenu.closest('.dropdown-passengers').querySelector('[data-bs-toggle="dropdown"]');
-                        if (toggleEl) {
-                            const bsDropdown = bootstrap.Dropdown.getOrCreateInstance(toggleEl);
-                            bsDropdown.hide();
-                        }
+                // Apply Button
+                const applyBtn = e.target.closest('.apply-btn');
+                if (applyBtn) {
+                    e.preventDefault(); e.stopPropagation();
+                    // Menutup dropdown dengan aman tanpa error (Menggunakan DOM/Bootstrap API)
+                    const toggleEl = applyBtn.closest('.dropdown').querySelector('[data-bs-toggle="dropdown"]');
+                    if (toggleEl) {
+                        const bsDropdown = bootstrap.Dropdown.getInstance(toggleEl) || new bootstrap.Dropdown(toggleEl);
+                        bsDropdown.hide();
                     }
                 }
             });
-
-            // FUNGSI UPDATE SEMUA TEKS RINGKASAN
-            function updateAllSummaries() {
-                // 1. One Way Flight
-                if (document.getElementById("flightAdult")) {
-                    const adults = parseInt(document.getElementById("flightAdult").value);
-                    const kids = parseInt(document.getElementById("flightChild").value);
-                    const infants = parseInt(document.getElementById("flightInfant").value);
-                    const cabin = document.getElementById("cabinClassDropdownBtn").textContent.trim();
-                    document.getElementById("travelersSummaryText").textContent = `${adults} Adult, ${kids + infants} Child, ${cabin}`;
-                }
-                
-                // 2. Round Trip Flight
-                if (document.getElementById("rtAdult")) {
-                    const rtAdults = parseInt(document.getElementById("rtAdult").value);
-                    const rtKids = parseInt(document.getElementById("rtChild").value);
-                    const rtInfants = parseInt(document.getElementById("rtInfant").value);
-                    document.querySelector(".rt-travelers-summary").textContent = `${rtAdults} Adult, ${rtKids + rtInfants} Child`;
-                }
-
-                // 3. Hotel
-                if (document.getElementById("hotelRoom")) {
-                    const rooms = parseInt(document.getElementById("hotelRoom").value);
-                    const guests = parseInt(document.getElementById("hotelAdult").value) + parseInt(document.getElementById("hotelChild").value);
-                    document.getElementById("hotelSummaryText").textContent = `${rooms} Room, ${guests} Guests`;
-                }
-
-                // 4. Tours
-                if (document.getElementById("tourAdult")) {
-                    const tourAdults = parseInt(document.getElementById("tourAdult").value);
-                    document.getElementById("tourSummaryText").textContent = `${tourAdults} Persons`;
-                }
-
-                // 5. Experience
-                if (document.getElementById("expAdult")) {
-                    const expAdults = parseInt(document.getElementById("expAdult").value);
-                    document.getElementById("expSummaryText").textContent = `${expAdults} Persons`;
-                }
-
-                // 6. Multi-City (Perulangan berdasarkan jumlah baris)
-                document.querySelectorAll(".multicity-row").forEach((row) => {
-                    const mcInput = row.querySelector(".mc-input");
-                    const mcSummary = row.querySelector(".mc-travelers-summary");
-                    if (mcInput && mcSummary) {
-                        mcSummary.textContent = `${mcInput.value} Adult`;
-                    }
-                });
-            }
 
             const addFlightBtn = document.getElementById("addFlightBtn");
             const multiCityContainer = document.getElementById("multiCityContainer");
@@ -2335,20 +2370,22 @@
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-6">
-                            <div class="search-box-item dropdown cursor-pointer dropdown-passengers" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                                <div class="text-muted small mb-1">Passengers</div>
-                                <div class="fw-bold small text-dark mc-travelers-summary">1 Adult</div>
-                            </div>
-                            <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4" style="width: 250px;">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <span class="small">Dewasa</span>
-                                    <div class="input-group input-group-sm w-50">
-                                        <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcAdult${rowCount}">-</button>
-                                        <input type="text" id="mcAdult${rowCount}" class="form-control text-center fw-bold mc-input" value="1" readonly>
-                                        <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcAdult${rowCount}">+</button>
-                                    </div>
+                            <div class="dropdown w-100">
+                                <div class="search-box-item cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                    <div class="text-muted small mb-1">Passengers</div>
+                                    <div class="fw-bold small text-dark mc-travelers-summary">1 Adult</div>
                                 </div>
-                                <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
+                                <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100" style="min-width: 250px;">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="small">Dewasa</span>
+                                        <div class="input-group input-group-sm w-50">
+                                            <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcAdult${rowCount}">-</button>
+                                            <input type="text" id="mcAdult${rowCount}" class="form-control text-center fw-bold mc-input bg-white" value="1" readonly>
+                                            <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcAdult${rowCount}">+</button>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-12">
