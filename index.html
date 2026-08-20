@@ -16,9 +16,10 @@
     
     <style>
         :root {
-            --primary-gradient: linear-gradient(135deg, #0d6efd 0%, #0043a8 100%);
+            --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 50%, #0f172a 100%);
+            --button-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            --card-hover-shadow: 0 20px 40px rgba(13, 110, 253, 0.12);
+            --card-hover-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
         }
 
         body { 
@@ -40,15 +41,24 @@
             border-radius: 24px !important;
         }
 
+        /* Image Hover Effect */
+        .card img, .card-hover img, img.transition-hover {
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.4s ease;
+        }
+        .card:hover img, .card-hover:hover img {
+            transform: scale(1.06);
+        }
+
         .card-hover { 
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
             box-shadow: var(--card-shadow);
             border: 1px solid rgba(226, 232, 240, 0.8);
+            overflow: hidden;
         }
         .card-hover:hover { 
             transform: translateY(-6px); 
             box-shadow: var(--card-hover-shadow)!important; 
-            border-color: rgba(13, 110, 253, 0.2);
+            border-color: rgba(59, 130, 246, 0.3);
         }
         
         /* Modern Pill Active Styling */
@@ -65,8 +75,8 @@
         }
         .nav-pills .nav-link.active {
             color: #fff !important;
-            background: var(--primary-gradient) !important;
-            box-shadow: 0 8px 20px rgba(13, 110, 253, 0.35);
+            background: var(--button-gradient) !important;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
         }
 
         /* Modern Elevated Search Inputs */
@@ -83,8 +93,8 @@
             justify-content: center;
         }
         .search-box-item:focus-within {
-            border-color: #0d6efd;
-            box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.12);
+            border-color: #2563eb;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
             background-color: #fff;
         }
 
@@ -113,50 +123,73 @@
             background-color: #f8fafc;
         }
 
-        /* Primary Styled Buttons */
-        .btn-primary {
-            background: var(--primary-gradient) !important;
+        /* Gradient Buttons with Skeleton/Shimmer & Hover Effect */
+        .btn-primary, .btn-gradient, .btn-dark {
+            background: var(--button-gradient) !important;
             border: none !important;
-            box-shadow: 0 4px 14px rgba(13, 110, 253, 0.35);
-            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
         }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(13, 110, 253, 0.45);
+        .btn-primary:hover, .btn-gradient:hover, .btn-dark:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.45);
+        }
+        /* Shimmer / Skeleton Effect on Hover for Buttons */
+        .btn-primary::after, .btn-gradient::after, .btn-dark::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(30deg) translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        .btn-primary:hover::after, .btn-gradient:hover::after, .btn-dark:hover::after {
+            transform: rotate(30deg) translateX(100%);
         }
 
-        /* Modern Footer Styles */
+        /* Link Hover Effect (Skeleton / Glow / Highlight) */
+        a, .footer-link, .nav-link {
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .footer-link:hover, .nav-link:hover, a.hover-glow:hover {
+            color: #38bdf8 !important;
+            text-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+            transform: translateX(5px);
+        }
+
+        /* Luxurious Modern Footer Styles */
         .modern-footer {
-            background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+            background: radial-gradient(circle at top right, #1e293b 0%, #090d16 60%, #020617 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
+            overflow: hidden;
         }
-        .footer-link {
-            color: #94a3b8;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-        .footer-link:hover {
-            color: #ffffff;
-            transform: translateX(6px);
+        .modern-footer::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, #38bdf8, #2563eb, transparent);
         }
         .social-btn {
-            width: 42px;
-            height: 42px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             color: #ffffff;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .social-btn:hover {
-            background: #0d6efd;
-            border-color: #0d6efd;
+            background: #2563eb;
+            border-color: #38bdf8;
             color: #ffffff;
-            transform: translateY(-4px) scale(1.05);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.4);
         }
         .footer-badge {
             width: 85px;
@@ -171,6 +204,8 @@
             font-weight: 700;
             box-shadow: 0 10px 25px rgba(0,0,0,0.4);
             border: 2px solid rgba(255,255,255,0.2);
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+            backdrop-filter: blur(5px);
         }
 
         /* Hide scrollbars for clean look */
@@ -262,7 +297,7 @@
     <div id="heroSlider" class="carousel slide hero-carousel" data-bs-ride="carousel">
         <div class="carousel-inner h-100">
             <div class="carousel-item active h-100">
-                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80" class="d-block w-100 h-100" alt="Paradise Beach">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80" class="d-block w-100 h-100 transition-hover" alt="Paradise Beach">
                 <div class="carousel-caption d-none d-md-block text-start mb-5 pb-5 container">
                     <span class="badge bg-primary bg-opacity-75 backdrop-blur mb-3 px-3 py-2 rounded-pill fw-semibold">Eksplorasi Dunia</span>
                     <h1 class="display-3 fw-extrabold text-white mb-3" style="letter-spacing: -1px;">Temukan Harga Tiket & Hotel Termurah</h1>
@@ -270,7 +305,7 @@
                 </div>
             </div>
             <div class="carousel-item h-100">
-                <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1920&q=80" class="d-block w-100 h-100" alt="Mountain View">
+                <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1920&q=80" class="d-block w-100 h-100 transition-hover" alt="Mountain View">
                 <div class="carousel-caption d-none d-md-block text-start mb-5 pb-5 container">
                     <span class="badge bg-success bg-opacity-75 backdrop-blur mb-3 px-3 py-2 rounded-pill fw-semibold">Petualangan Baru</span>
                     <h1 class="display-3 fw-extrabold text-white mb-3" style="letter-spacing: -1px;">Liburan Impian Tanpa Bikin Kantong Bolong</h1>
@@ -695,7 +730,7 @@
                 
                 <!-- Offer Card 1 -->
                 <div class="card border-0 rounded-4 overflow-hidden text-white flex-shrink-0 card-hover position-relative" style="width: 270px; height: 380px; scroll-snap-align: start;">
-                    <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=600&q=80" class="w-100 h-100 object-fit-cover" alt="Travel Around the World">
+                    <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=600&q=80" class="w-100 h-100 object-fit-cover transition-hover" alt="Travel Around the World">
                     <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4" style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.65) 100%);">
                         <div>
                             <h3 class="fw-bold text-uppercase text-white lh-sm fs-4" style="font-family: 'Poppins', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.6);">TRAVEL AROUND THE WORLD</h3>
@@ -708,7 +743,7 @@
 
                 <!-- Offer Card 2 -->
                 <div class="card border-0 rounded-4 overflow-hidden text-white flex-shrink-0 card-hover position-relative" style="width: 270px; height: 380px; scroll-snap-align: start;">
-                    <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" class="w-100 h-100 object-fit-cover" alt="Breath Adventure Awaits">
+                    <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" class="w-100 h-100 object-fit-cover transition-hover" alt="Breath Adventure Awaits">
                     <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%);">
                         <div>
                             <i class="bi bi-airplane text-white fs-5 mb-2 d-inline-block"></i>
@@ -723,7 +758,7 @@
 
                 <!-- Offer Card 3 -->
                 <div class="card border-0 rounded-4 overflow-hidden text-white flex-shrink-0 card-hover position-relative" style="width: 270px; height: 380px; scroll-snap-align: start;">
-                    <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" class="w-100 h-100 object-fit-cover" alt="20% off SALE">
+                    <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" class="w-100 h-100 object-fit-cover transition-hover" alt="20% off SALE">
                     <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%);">
                         <div>
                             <span class="text-uppercase small fw-bold tracking-wider text-warning">up to</span>
@@ -738,7 +773,7 @@
 
                 <!-- Offer Card 4 -->
                 <div class="card border-0 rounded-4 overflow-hidden text-white flex-shrink-0 card-hover position-relative" style="width: 270px; height: 380px; scroll-snap-align: start;">
-                    <img src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=600&q=80" class="w-100 h-100 object-fit-cover" alt="Summer Vacation">
+                    <img src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=600&q=80" class="w-100 h-100 object-fit-cover transition-hover" alt="Summer Vacation">
                     <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%);">
                         <div>
                             <h3 class="fw-bold text-white lh-sm fs-4" style="font-family: 'Poppins', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.6);">Summer Vacation</h3>
@@ -779,7 +814,7 @@
                 <div class="row g-4">
                     <div class="col-md-4">
                         <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover">
-                            <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?auto=format&fit=crop&w=600&q=80" height="200" class="object-fit-cover" alt="New York">
+                            <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?auto=format&fit=crop&w=600&q=80" height="200" class="object-fit-cover transition-hover" alt="New York">
                             <div class="card-body p-4">
                                 <span class="badge bg-primary bg-opacity-10 text-primary mb-2 px-3 py-1 rounded-pill fw-semibold">Round-Trip</span>
                                 <h5 class="fw-bold text-dark">Jakarta (CGK) ➔ New York (JFK)</h5>
@@ -818,7 +853,7 @@
                 <div class="row g-4">
                     <div class="col-md-3">
                         <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover">
-                            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" height="190" class="object-fit-cover" alt="Hotel">
+                            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" height="190" class="object-fit-cover transition-hover" alt="Hotel">
                             <div class="card-body p-4">
                                 <div class="text-warning small mb-1"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i> <span class="text-dark fw-bold">(4.9)</span></div>
                                 <h5 class="fw-bold text-dark text-truncate">The Plaza New York</h5>
@@ -857,7 +892,7 @@
                 <div class="row g-4">
                     <div class="col-md-4">
                         <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover">
-                            <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=600&q=80" height="200" class="object-fit-cover" alt="Tour">
+                            <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=600&q=80" height="200" class="object-fit-cover transition-hover" alt="Tour">
                             <div class="card-body p-4">
                                 <span class="badge bg-success bg-opacity-10 text-success mb-2 px-3 py-1 rounded-pill fw-semibold">Full Day Tour</span>
                                 <h5 class="fw-bold text-dark">Grand Canyon Helicopter & Skywalk</h5>
@@ -900,15 +935,15 @@
                 <div class="position-relative d-flex justify-content-center align-items-center mb-5" style="height: 380px;">
                     <!-- Card 1 (Back Left) -->
                     <div class="position-absolute shadow-lg rounded-4 overflow-hidden border border-white border-3" style="width: 200px; height: 320px; transform: rotate(-8deg) translateX(-80px); z-index: 1;">
-                        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=500&q=80" class="w-100 h-100 object-fit-cover" alt="Traveler">
+                        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=500&q=80" class="w-100 h-100 object-fit-cover transition-hover" alt="Traveler">
                     </div>
                     <!-- Card 2 (Center Foreground) -->
                     <div class="position-absolute shadow-lg rounded-4 overflow-hidden border border-white border-3" style="width: 210px; height: 340px; transform: translateY(-10px); z-index: 3;">
-                        <img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=500&q=80" class="w-100 h-100 object-fit-cover" alt="World Landmarks">
+                        <img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=500&q=80" class="w-100 h-100 object-fit-cover transition-hover" alt="World Landmarks">
                     </div>
                     <!-- Card 3 (Back Right) -->
                     <div class="position-absolute shadow-lg rounded-4 overflow-hidden border border-white border-3" style="width: 200px; height: 320px; transform: rotate(8deg) translateX(80px); z-index: 2;">
-                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" class="w-100 h-100 object-fit-cover" alt="Beach Resort">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" class="w-100 h-100 object-fit-cover transition-hover" alt="Beach Resort">
                     </div>
                 </div>
 
@@ -944,8 +979,8 @@
                     <h2 class="display-5 fw-extrabold text-dark mb-3">What’s the People Say</h2>
                     <div class="d-flex align-items-center gap-3 flex-wrap">
                         <div class="d-flex align-items-center">
-                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" class="rounded-circle border border-white border-2 shadow-sm" width="40" height="40" style="object-fit: cover;" alt="User">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="rounded-circle border border-white border-2 ms-n3 shadow-sm" width="40" height="40" style="object-fit: cover;" alt="User">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" class="rounded-circle border border-white border-2 shadow-sm transition-hover" width="40" height="40" style="object-fit: cover;" alt="User">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="rounded-circle border border-white border-2 ms-n3 shadow-sm transition-hover" width="40" height="40" style="object-fit: cover;" alt="User">
                             <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fw-bold ms-n3 small border border-white border-2 shadow-sm" style="width: 40px; height: 40px;">+</div>
                         </div>
                         <span class="text-dark fw-semibold small">10,000+ trusted travelers to join TravelMeta community.</span>
@@ -982,7 +1017,7 @@
                             </p>
                         </div>
                         <div class="d-flex align-items-center gap-3 pt-3 border-top">
-                            <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=100&q=80" class="rounded-circle object-fit-cover shadow-sm" width="45" height="45" alt="Anderson">
+                            <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=100&q=80" class="rounded-circle object-fit-cover shadow-sm transition-hover" width="45" height="45" alt="Anderson">
                             <div>
                                 <h6 class="fw-bold mb-0 text-dark">Anderson</h6>
                                 <small class="text-muted" style="font-size: 0.75rem;">TravelMeta Traveler</small>
@@ -1005,7 +1040,7 @@
                             </p>
                         </div>
                         <div class="d-flex align-items-center gap-3 pt-3 border-top">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="rounded-circle object-fit-cover shadow-sm" width="45" height="45" alt="James Bonde">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="rounded-circle object-fit-cover shadow-sm transition-hover" width="45" height="45" alt="James Bonde">
                             <div>
                                 <h6 class="fw-bold mb-0 text-dark">James Bonde</h6>
                                 <small class="text-muted" style="font-size: 0.75rem;">TravelMeta Traveler</small>
@@ -1028,7 +1063,7 @@
                             </p>
                         </div>
                         <div class="d-flex align-items-center gap-3 pt-3 border-top">
-                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" class="rounded-circle object-fit-cover shadow-sm" width="45" height="45" alt="Amber Lashleye">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" class="rounded-circle object-fit-cover shadow-sm transition-hover" width="45" height="45" alt="Amber Lashleye">
                             <div>
                                 <h6 class="fw-bold mb-0 text-dark">Amber Lashleye</h6>
                                 <small class="text-muted" style="font-size: 0.75rem;">TravelMeta Traveler</small>
@@ -1051,7 +1086,7 @@
                             </p>
                         </div>
                         <div class="d-flex align-items-center gap-3 pt-3 border-top">
-                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" class="rounded-circle object-fit-cover shadow-sm" width="45" height="45" alt="Michael Smith">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" class="rounded-circle object-fit-cover shadow-sm transition-hover" width="45" height="45" alt="Michael Smith">
                             <div>
                                 <h6 class="fw-bold mb-0 text-dark">Michael Smith</h6>
                                 <small class="text-muted" style="font-size: 0.75rem;">TravelMeta Traveler</small>
@@ -1104,7 +1139,7 @@
                 </div>
                 <div class="col-lg-5 text-center position-relative d-none d-lg-block">
                     <div class="position-relative" style="height: 320px;">
-                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=500&q=80" class="rounded-4 shadow-lg position-absolute end-0 top-0 object-fit-cover border border-white border-3" style="width: 250px; height: 340px; transform: rotate(4deg);" alt="Mobile App">
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=500&q=80" class="rounded-4 shadow-lg position-absolute end-0 top-0 object-fit-cover border border-white border-3 transition-hover" style="width: 250px; height: 340px; transform: rotate(4deg);" alt="Mobile App">
                         <div class="position-absolute bg-white rounded-pill px-4 py-2 shadow-sm small fw-bold text-dark d-flex align-items-center gap-2" style="top: 40px; left: 10px; z-index: 2;">
                             <span class="text-warning">★ 4.9</span> Average rating
                         </div>
@@ -1124,7 +1159,7 @@
                 <span class="text-primary fw-bold small text-uppercase tracking-wider">Edukasi & Wawasan</span>
                 <h2 class="fw-extrabold display-6 mb-0 text-dark">Travel Tips & Inspirations.</h2>
             </div>
-            <a href="#" class="btn btn-outline-dark rounded-pill px-4 py-2 fw-semibold small shadow-sm">View All Inspiration</a>
+            <a href="#" class="btn btn-outline-dark rounded-pill px-4 py-2 fw-semibold small shadow-sm hover-glow">View All Inspiration</a>
         </div>
         
         <div class="row g-4">
@@ -1132,7 +1167,7 @@
             <div class="col-md-4">
                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover h-100 bg-white">
                     <div class="position-relative">
-                        <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80" height="220" class="w-100 object-fit-cover" alt="Maldives Beach">
+                        <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80" height="220" class="w-100 object-fit-cover transition-hover" alt="Maldives Beach">
                         <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 rounded-pill px-3 py-2 shadow-sm small fw-bold">
                             <i class="bi bi-geo-alt text-primary me-1"></i> Maldives Beach
                         </span>
@@ -1144,7 +1179,7 @@
                                 The Maldives is a dream destination known for its crystal-clear lagoons and luxury overwater villas.
                             </p>
                         </div>
-                        <a href="#" class="text-primary fw-bold text-decoration-none small d-flex align-items-center gap-1 hover-arrow">
+                        <a href="#" class="text-primary fw-bold text-decoration-none small d-flex align-items-center gap-1 hover-glow">
                             Read More <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
@@ -1155,7 +1190,7 @@
             <div class="col-md-4">
                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover h-100 bg-white">
                     <div class="position-relative">
-                        <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=600&q=80" height="220" class="w-100 object-fit-cover" alt="South Africa">
+                        <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=600&q=80" height="220" class="w-100 object-fit-cover transition-hover" alt="South Africa">
                         <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 rounded-pill px-3 py-2 shadow-sm small fw-bold">
                             <i class="bi bi-geo-alt text-primary me-1"></i> South Africa
                         </span>
@@ -1167,7 +1202,7 @@
                                 An African safari is one of the most exciting travel experiences in the world. Visitors can witness the Big Five wildlife.
                             </p>
                         </div>
-                        <a href="#" class="text-primary fw-bold text-decoration-none small d-flex align-items-center gap-1 hover-arrow">
+                        <a href="#" class="text-primary fw-bold text-decoration-none small d-flex align-items-center gap-1 hover-glow">
                             Read More <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
@@ -1178,7 +1213,7 @@
             <div class="col-md-4">
                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover h-100 bg-white">
                     <div class="position-relative">
-                        <img src="https://images.unsplash.com/photo-1527668752550-956627f04c6d?auto=format&fit=crop&w=600&q=80" height="220" class="w-100 object-fit-cover" alt="Switzerland">
+                        <img src="https://images.unsplash.com/photo-1527668752550-956627f04c6d?auto=format&fit=crop&w=600&q=80" height="220" class="w-100 object-fit-cover transition-hover" alt="Switzerland">
                         <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 rounded-pill px-3 py-2 shadow-sm small fw-bold">
                             <i class="bi bi-geo-alt text-primary me-1"></i> Switzerland
                         </span>
@@ -1190,7 +1225,7 @@
                                 Switzerland is famous for its snow-capped Alps, charming villages, and scenic train journeys.
                             </p>
                         </div>
-                        <a href="#" class="text-primary fw-bold text-decoration-none small d-flex align-items-center gap-1 hover-arrow">
+                        <a href="#" class="text-primary fw-bold text-decoration-none small d-flex align-items-center gap-1 hover-glow">
                             Read More <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
@@ -1222,15 +1257,18 @@
         </div>
     </section>
 
-    <!-- 14. FOOTER -->
+    <!-- 14. FOOTER (LUXURIOUS & MODERN REDESIGN) -->
     <footer id="footer" class="modern-footer text-white pt-5 pb-4 border-top border-secondary border-opacity-25">
         <div class="container py-4">
             <!-- 4-Column Structure -->
             <div class="row g-5 mb-5">
                 <!-- Column 1: Brand Info, Socials, & Awards Badges -->
                 <div class="col-lg-3 col-md-6">
-                    <a class="navbar-brand fw-bold fs-4 text-white d-flex align-items-center gap-2 mb-3 text-decoration-none" href="#">
-                        <i class="bi bi-airplane-engines text-primary"></i> TravelMeta
+                    <a class="navbar-brand fw-bold fs-4 text-white d-flex align-items-center gap-2 mb-3 text-decoration-none hover-glow" href="#">
+                        <div class="bg-primary text-white p-2 rounded-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 36px; height: 36px;">
+                            <i class="bi bi-airplane-engines fs-5"></i>
+                        </div>
+                        TravelMeta
                     </a>
                     <h6 class="fw-bold mb-2 text-white">TravelMeta Travel Agency</h6>
                     <p class="text-white-50 small mb-4 lh-sm">
@@ -1245,11 +1283,11 @@
                     </div>
                     <div class="d-flex gap-3 align-items-center">
                         <div class="footer-badge bg-success text-white p-1">
-                            <i class="bi bi-award-fill fs-6 mb-0"></i>
+                            <i class="bi bi-award-fill fs-6 mb-0 text-warning"></i>
                             <span>Tripadvisor 2026</span>
                         </div>
                         <div class="footer-badge bg-danger text-white p-1">
-                            <i class="bi bi-trophy-fill fs-6 mb-0"></i>
+                            <i class="bi bi-trophy-fill fs-6 mb-0 text-warning"></i>
                             <span>Traveler 2025</span>
                         </div>
                     </div>
@@ -1257,7 +1295,7 @@
 
                 <!-- Column 2: Explore -->
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="fw-bold mb-4 text-white border-start border-primary border-3 ps-2">Explore</h5>
+                    <h5 class="fw-bold mb-4 text-white border-start border-info border-3 ps-2">Explore</h5>
                     <ul class="list-unstyled small d-flex flex-column gap-2 m-0">
                         <li><a href="#about" class="footer-link">About TravelMeta</a></li>
                         <li><a href="#" class="footer-link">Health & Safety Measure</a></li>
@@ -1266,13 +1304,13 @@
                         <li><a href="#" class="footer-link">Last Minutes Deal</a></li>
                         <li><a href="#" class="footer-link">Travel Inspirations</a></li>
                         <li><a href="#" class="footer-link">Traveler Reviews</a></li>
-                        <li><a href="#" class="footer-link">Contact Us</a></li>
+                        <li><a href="#footer" class="footer-link">Contact Us</a></li>
                     </ul>
                 </div>
 
                 <!-- Column 3: Useful -->
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="fw-bold mb-4 text-white border-start border-primary border-3 ps-2">Useful</h5>
+                    <h5 class="fw-bold mb-4 text-white border-start border-info border-3 ps-2">Useful</h5>
                     <ul class="list-unstyled small d-flex flex-column gap-2 m-0">
                         <li><a href="#" class="footer-link">Flight Booking</a></li>
                         <li><a href="#" class="footer-link">Visa Processing</a></li>
@@ -1283,7 +1321,7 @@
 
                 <!-- Column 4: Helpline -->
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="fw-bold mb-4 text-white border-start border-primary border-3 ps-2">Helpline</h5>
+                    <h5 class="fw-bold mb-4 text-white border-start border-info border-3 ps-2">Helpline</h5>
                     <ul class="list-unstyled small d-flex flex-column gap-2 m-0">
                         <li><a href="#" class="footer-link">Help & Support</a></li>
                         <li><a href="#" class="footer-link">FAQs</a></li>
@@ -1294,18 +1332,18 @@
             </div>
 
             <!-- Payment Methods Card -->
-            <div class="bg-white text-dark rounded-4 p-3 px-4 mb-4 d-flex align-items-center justify-content-between flex-wrap gap-3 shadow-lg">
-                <span class="fw-bold fs-6 text-dark">We Accept:-</span>
-                <div class="d-flex align-items-center gap-3 fs-4 flex-wrap text-secondary">
-                    <i class="bi bi-credit-card-2-front text-dark" title="Mastercard"></i>
+            <div class="bg-dark text-white rounded-4 p-3 px-4 mb-4 d-flex align-items-center justify-content-between flex-wrap gap-3 shadow-lg border border-secondary border-opacity-25">
+                <span class="fw-bold fs-6 text-white">We Accept:-</span>
+                <div class="d-flex align-items-center gap-3 fs-4 flex-wrap text-light">
+                    <i class="bi bi-credit-card-2-front text-info" title="Mastercard"></i>
                     <i class="bi bi-paypal text-primary" title="PayPal"></i>
-                    <i class="bi bi-credit-card text-dark" title="Visa"></i>
-                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">G Pay</span>
-                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">stripe</span>
-                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">paysafe</span>
-                    <i class="bi bi-apple text-dark" title="Apple Pay"></i>
-                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">adyen</span>
-                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">elavon</span>
+                    <i class="bi bi-credit-card text-light" title="Visa"></i>
+                    <span class="badge bg-secondary text-white border px-2 py-1 fw-bold small">G Pay</span>
+                    <span class="badge bg-secondary text-white border px-2 py-1 fw-bold small">stripe</span>
+                    <span class="badge bg-secondary text-white border px-2 py-1 fw-bold small">paysafe</span>
+                    <i class="bi bi-apple text-light" title="Apple Pay"></i>
+                    <span class="badge bg-secondary text-white border px-2 py-1 fw-bold small">adyen</span>
+                    <span class="badge bg-secondary text-white border px-2 py-1 fw-bold small">elavon</span>
                 </div>
             </div>
 
