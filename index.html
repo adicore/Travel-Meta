@@ -15,107 +15,152 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     
     <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #0d6efd 0%, #0043a8 100%);
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --card-hover-shadow: 0 20px 40px rgba(13, 110, 253, 0.12);
+        }
+
         body { 
             scroll-behavior: smooth; 
             font-family: 'Plus Jakarta Sans', 'Poppins', sans-serif !important; 
+            background-color: #f8fafc !important;
+            color: #1e293b;
         }
-        .hero-carousel { height: 600px; }
-        .hero-carousel img { height: 600px; object-fit: cover; filter: brightness(0.6); }
-        .search-card { margin-top: -140px; z-index: 10; position: relative; }
-        .card-hover:hover { transform: translateY(-5px); transition: all 0.3s ease; box-shadow: 0 1rem 3rem rgba(0,0,0,.15)!important; }
+
+        .hero-carousel { height: 620px; }
+        .hero-carousel img { height: 620px; object-fit: cover; filter: brightness(0.55); transition: transform 6s ease; }
+        .hero-carousel .carousel-item.active img { transform: scale(1.03); }
         
-        /* Custom Pill Active Styling */
+        .search-card { 
+            margin-top: -150px; 
+            z-index: 10; 
+            position: relative; 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1) !important;
+            border-radius: 24px !important;
+        }
+
+        .card-hover { 
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .card-hover:hover { 
+            transform: translateY(-6px); 
+            box-shadow: var(--card-hover-shadow)!important; 
+            border-color: rgba(13, 110, 253, 0.2);
+        }
+        
+        /* Modern Pill Active Styling */
         .nav-pills .nav-link {
-            color: #495057;
+            color: #475569;
             background-color: #f1f5f9;
-            font-weight: 500;
-            transition: all 0.2s ease;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-radius: 50rem !important;
+        }
+        .nav-pills .nav-link:hover {
+            background-color: #e2e8f0;
+            color: #0f172a;
         }
         .nav-pills .nav-link.active {
             color: #fff !important;
-            background-color: #0d6efd !important;
-            box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+            background: var(--primary-gradient) !important;
+            box-shadow: 0 8px 20px rgba(13, 110, 253, 0.35);
         }
 
         /* Modern Elevated Search Inputs */
         .search-box-item {
-            border: 1px solid #e2e8f0;
-            border-radius: 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 16px;
             background: #fff;
-            padding: 10px 14px;
+            padding: 12px 16px;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            min-height: 68px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+            min-height: 72px;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
         .search-box-item:focus-within {
             border-color: #0d6efd;
-            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+            box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.12);
+            background-color: #fff;
         }
 
         /* Autocomplete dropdown style */
         .autocomplete-suggestions {
             position: absolute;
-            top: 105%;
+            top: 108%;
             left: 0;
             right: 0;
             z-index: 1050;
             background: #fff;
             border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            max-height: 250px;
+            border-radius: 16px;
+            max-height: 260px;
             overflow-y: auto;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.08);
         }
         .autocomplete-suggestion-item {
-            padding: 10px 14px;
+            padding: 12px 16px;
             cursor: pointer;
             font-size: 0.9rem;
-            border-bottom: 1px solid #f8f9fa;
+            border-bottom: 1px solid #f1f5f9;
             transition: background 0.2s;
         }
         .autocomplete-suggestion-item:hover {
-            background-color: #f1f5f9;
+            background-color: #f8fafc;
+        }
+
+        /* Primary Styled Buttons */
+        .btn-primary {
+            background: var(--primary-gradient) !important;
+            border: none !important;
+            box-shadow: 0 4px 14px rgba(13, 110, 253, 0.35);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(13, 110, 253, 0.45);
         }
 
         /* Modern Footer Styles */
         .modern-footer {
-            background: linear-gradient(180deg, #111827 0%, #030712 100%);
+            background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
             position: relative;
         }
         .footer-link {
-            color: #9ca3af;
+            color: #94a3b8;
             text-decoration: none;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             display: inline-block;
         }
         .footer-link:hover {
             color: #ffffff;
-            transform: translateX(4px);
+            transform: translateX(6px);
         }
         .social-btn {
-            width: 38px;
-            height: 38px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 42px;
+            height: 42px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             color: #ffffff;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .social-btn:hover {
             background: #0d6efd;
             border-color: #0d6efd;
             color: #ffffff;
-            transform: translateY(-3px);
+            transform: translateY(-4px) scale(1.05);
         }
         .footer-badge {
-            width: 80px;
-            height: 80px;
+            width: 85px;
+            height: 85px;
             border-radius: 50%;
             display: flex;
             flex-direction: column;
@@ -124,12 +169,17 @@
             text-align: center;
             font-size: 0.6rem;
             font-weight: 700;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            border: 2px solid rgba(255,255,255,0.15);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        /* Hide scrollbars for clean look */
+        .overflow-x-auto::-webkit-scrollbar {
+            display: none;
         }
     </style>
 </head>
-<body class="bg-light text-slate-800">
+<body class="bg-light">
 
     <!-- 1. MODERN HEADER & NAVIGATION -->
     <header class="bg-white sticky-top shadow-sm z-3">
@@ -137,10 +187,13 @@
         <nav class="navbar navbar-expand-lg navbar-light py-3">
             <div class="container">
                 <a class="navbar-brand fw-bold fs-4 text-dark d-flex align-items-center gap-2" href="#">
-                    <i class="bi bi-airplane-engines text-primary"></i> TravelMeta
+                    <div class="bg-primary text-white p-2 rounded-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 38px; height: 38px;">
+                        <i class="bi bi-airplane-engines fs-5"></i>
+                    </div>
+                    TravelMeta
                 </a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -149,18 +202,18 @@
                         <li class="nav-item"><a class="nav-link text-primary fw-semibold" href="#">Home</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button" data-bs-toggle="dropdown">Destination</a>
-                            <ul class="dropdown-menu border-0 shadow rounded-4">
-                                <li><a class="dropdown-item" href="#best-deals">Amerika</a></li>
-                                <li><a class="dropdown-item" href="#best-deals">Eropa</a></li>
-                                <li><a class="dropdown-item" href="#best-deals">Asia</a></li>
+                            <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2">
+                                <li><a class="dropdown-item rounded-3 py-2" href="#best-deals">Amerika</a></li>
+                                <li><a class="dropdown-item rounded-3 py-2" href="#best-deals">Eropa</a></li>
+                                <li><a class="dropdown-item rounded-3 py-2" href="#best-deals">Asia</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button" data-bs-toggle="dropdown">Pages</a>
-                            <ul class="dropdown-menu border-0 shadow rounded-4">
-                                <li><a class="dropdown-item" href="#offers">Discounts & Offers</a></li>
-                                <li><a class="dropdown-item" href="#hotels">Popular Hotels</a></li>
-                                <li><a class="dropdown-item" href="#tours">Popular Tours</a></li>
+                            <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2">
+                                <li><a class="dropdown-item rounded-3 py-2" href="#offers">Discounts & Offers</a></li>
+                                <li><a class="dropdown-item rounded-3 py-2" href="#hotels">Popular Hotels</a></li>
+                                <li><a class="dropdown-item rounded-3 py-2" href="#tours">Popular Tours</a></li>
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link text-dark fw-medium" href="#about">Holidays</a></li>
@@ -168,10 +221,10 @@
                     </ul>
 
                     <div class="d-flex align-items-center gap-3">
-                        <a href="#" class="btn btn-outline-primary rounded-pill px-3 py-2 small fw-semibold d-flex align-items-center gap-2">
+                        <a href="#" class="btn btn-outline-primary rounded-pill px-3 py-2 small fw-semibold d-flex align-items-center gap-2 border-2">
                             <i class="bi bi-robot"></i> Plan with AI
                         </a>
-                        <a href="https://whatsapp.com" target="_blank" class="btn btn-primary rounded-pill px-4 py-2 small fw-semibold d-flex align-items-center gap-2 shadow-sm">
+                        <a href="https://whatsapp.com" target="_blank" class="btn btn-primary rounded-pill px-4 py-2 small fw-semibold d-flex align-items-center gap-2">
                             <i class="bi bi-whatsapp fs-6"></i> +44-800 123 456
                         </a>
                     </div>
@@ -179,7 +232,7 @@
             </div>
         </nav>
 
-        <!-- Sub-Header Line (Rating, Multi-Currency Popup, Multi-Language Popup, Cart, Profile) -->
+        <!-- Sub-Header Line -->
         <div class="border-top py-2 bg-white small">
             <div class="container d-flex justify-content-between align-items-center">
                 <div class="text-secondary d-flex align-items-center gap-1">
@@ -189,17 +242,17 @@
 
                 <div class="d-flex align-items-center gap-3 text-secondary">
                     <!-- Currency Popup Trigger Button -->
-                    <button class="btn btn-sm btn-light border py-1 px-2 fw-semibold rounded-pill d-flex align-items-center gap-1" type="button" data-bs-toggle="modal" data-bs-target="#currencyModal" id="selectedCurrencyBtn">
+                    <button class="btn btn-sm btn-light border py-1 px-3 fw-semibold rounded-pill d-flex align-items-center gap-1 shadow-sm" type="button" data-bs-toggle="modal" data-bs-target="#currencyModal" id="selectedCurrencyBtn">
                         <i class="bi bi-coin text-warning"></i> USD ($)
                     </button>
 
                     <!-- Language Popup Trigger Button -->
-                    <button class="btn btn-sm btn-light border py-1 px-2 fw-semibold rounded-pill d-flex align-items-center gap-1" type="button" data-bs-toggle="modal" data-bs-target="#langModal" id="selectedLangBtn">
+                    <button class="btn btn-sm btn-light border py-1 px-3 fw-semibold rounded-pill d-flex align-items-center gap-1 shadow-sm" type="button" data-bs-toggle="modal" data-bs-target="#langModal" id="selectedLangBtn">
                         <i class="bi bi-globe text-info"></i> English (EN)
                     </button>
 
-                    <a href="#" class="text-secondary text-decoration-none" title="Cart"><i class="bi bi-cart3 fs-6"></i></a>
-                    <a href="#" class="text-secondary text-decoration-none" title="Profile"><i class="bi bi-person-circle fs-5"></i></a>
+                    <a href="#" class="text-secondary text-decoration-none px-1" title="Cart"><i class="bi bi-cart3 fs-6"></i></a>
+                    <a href="#" class="text-secondary text-decoration-none px-1" title="Profile"><i class="bi bi-person-circle fs-5"></i></a>
                 </div>
             </div>
         </div>
@@ -210,18 +263,18 @@
         <div class="carousel-inner h-100">
             <div class="carousel-item active h-100">
                 <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80" class="d-block w-100 h-100" alt="Paradise Beach">
-                <div class="carousel-caption d-none d-md-block text-start mb-5 pb-5">
-                    <span class="badge bg-primary mb-2 px-3 py-2 rounded-pill">Eksplorasi Dunia</span>
-                    <h1 class="display-3 fw-bold text-white">Temukan Harga Tiket & Hotel Termurah</h1>
-                    <p class="lead text-white-50">Bandingkan penawaran dari ratusan situs travel secara instan.</p>
+                <div class="carousel-caption d-none d-md-block text-start mb-5 pb-5 container">
+                    <span class="badge bg-primary bg-opacity-75 backdrop-blur mb-3 px-3 py-2 rounded-pill fw-semibold">Eksplorasi Dunia</span>
+                    <h1 class="display-3 fw-extrabold text-white mb-3" style="letter-spacing: -1px;">Temukan Harga Tiket & Hotel Termurah</h1>
+                    <p class="lead text-white-50 fs-5">Bandingkan penawaran dari ratusan situs travel secara instan.</p>
                 </div>
             </div>
             <div class="carousel-item h-100">
                 <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1920&q=80" class="d-block w-100 h-100" alt="Mountain View">
-                <div class="carousel-caption d-none d-md-block text-start mb-5 pb-5">
-                    <span class="badge bg-success mb-2 px-3 py-2 rounded-pill">Petualangan Baru</span>
-                    <h1 class="display-3 fw-bold text-white">Liburan Impian Tanpa Bikin Kantong Bolong</h1>
-                    <p class="lead text-white-50">Nikmati diskon eksklusif tur, rental mobil, dan reservasi hotel global.</p>
+                <div class="carousel-caption d-none d-md-block text-start mb-5 pb-5 container">
+                    <span class="badge bg-success bg-opacity-75 backdrop-blur mb-3 px-3 py-2 rounded-pill fw-semibold">Petualangan Baru</span>
+                    <h1 class="display-3 fw-extrabold text-white mb-3" style="letter-spacing: -1px;">Liburan Impian Tanpa Bikin Kantong Bolong</h1>
+                    <p class="lead text-white-50 fs-5">Nikmati diskon eksklusif tur, rental mobil, dan reservasi hotel global.</p>
                 </div>
             </div>
         </div>
@@ -231,10 +284,10 @@
 
     <!-- 4. ADVANCED SEARCH BOX WIDGET -->
     <div class="container search-card">
-        <div class="card shadow-lg border-0 rounded-4 p-4 p-lg-4 bg-white">
+        <div class="card border-0 p-4 p-lg-4 bg-white">
             
             <!-- Category Pills -->
-            <ul class="nav nav-pills mb-3 gap-2" id="searchCategoryTab" role="tablist">
+            <ul class="nav nav-pills mb-4 gap-2" id="searchCategoryTab" role="tablist">
                 <li class="nav-item"><button class="nav-link rounded-pill px-4 py-2" data-bs-toggle="pill" data-bs-target="#tourSearchTab"><i class="bi bi-map me-2"></i>Tours</button></li>
                 <li class="nav-item"><button class="nav-link rounded-pill px-4 py-2" data-bs-toggle="pill" data-bs-target="#hotelSearchTab"><i class="bi bi-building me-2"></i>Hotels</button></li>
                 <li class="nav-item"><button class="nav-link active rounded-pill px-4 py-2" data-bs-toggle="pill" data-bs-target="#flightSearchTab"><i class="bi bi-airplane me-2"></i>Flights</button></li>
@@ -258,11 +311,11 @@
                             <button class="btn btn-light btn-sm dropdown-toggle rounded-pill px-3 border text-primary fw-semibold shadow-sm" type="button" data-bs-toggle="dropdown" id="cabinClassDropdownBtn">
                                 Economy
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-4">
-                                <li><a class="dropdown-item cabin-option" href="#" data-cabin="Economy">Economy</a></li>
-                                <li><a class="dropdown-item cabin-option" href="#" data-cabin="Premium Economy">Premium Economy</a></li>
-                                <li><a class="dropdown-item cabin-option" href="#" data-cabin="Business">Business</a></li>
-                                <li><a class="dropdown-item cabin-option" href="#" data-cabin="First Class">First Class</a></li>
+                            <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-4 p-2">
+                                <li><a class="dropdown-item cabin-option rounded-3 py-2" href="#" data-cabin="Economy">Economy</a></li>
+                                <li><a class="dropdown-item cabin-option rounded-3 py-2" href="#" data-cabin="Premium Economy">Premium Economy</a></li>
+                                <li><a class="dropdown-item cabin-option rounded-3 py-2" href="#" data-cabin="Business">Business</a></li>
+                                <li><a class="dropdown-item cabin-option rounded-3 py-2" href="#" data-cabin="First Class">First Class</a></li>
                             </ul>
                         </div>
                     </div>
@@ -325,11 +378,11 @@
                                                 <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightInfant">+</button>
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary btn-sm w-100 apply-travelers-btn" type="button">Terapkan</button>
+                                        <button class="btn btn-primary btn-sm w-100 apply-travelers-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
                                     </div>
                                 </div>
                                 <div class="col-lg-2">
-                                    <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 68px;">Search</button>
+                                    <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 72px;">Search</button>
                                 </div>
                             </div>
                         </div>
@@ -395,11 +448,11 @@
                                                 <button class="btn btn-outline-secondary increase-count" type="button" data-target="rtInfant">+</button>
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary btn-sm w-100 apply-rt-travelers-btn" type="button">Terapkan</button>
+                                        <button class="btn btn-primary btn-sm w-100 apply-rt-travelers-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
                                     </div>
                                 </div>
                                 <div class="col-lg-2">
-                                    <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 68px;">Search</button>
+                                    <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 72px;">Search</button>
                                 </div>
                             </div>
                         </div>
@@ -435,17 +488,17 @@
                                                     <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcAdult">+</button>
                                                 </div>
                                             </div>
-                                            <button class="btn btn-primary btn-sm w-100 apply-mc-travelers-btn" type="button">Terapkan</button>
+                                            <button class="btn btn-primary btn-sm w-100 apply-mc-travelers-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
                                         </div>
                                     </div>
                                     <div class="col-lg-2">
-                                        <button class="btn btn-outline-danger btn-sm w-100 py-3 remove-row rounded-3" disabled style="height: 68px;"><i class="bi bi-trash3"></i> Hapus</button>
+                                        <button class="btn btn-outline-danger btn-sm w-100 py-3 remove-row rounded-3" disabled style="height: 72px;"><i class="bi bi-trash3"></i> Hapus</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="mt-3 d-flex justify-content-between align-items-center">
-                                <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3" id="addFlightBtn"><i class="bi bi-plus me-1"></i> Tambah Penerbangan</button>
-                                <button class="btn btn-primary px-4 py-2 fw-bold search-action-btn rounded-4">Cari Multi-City</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3 py-2 fw-semibold" id="addFlightBtn"><i class="bi bi-plus me-1"></i> Tambah Penerbangan</button>
+                                <button class="btn btn-primary px-4 py-2 fw-bold search-action-btn rounded-pill shadow-sm">Cari Multi-City</button>
                             </div>
                         </div>
                     </div>
@@ -507,11 +560,11 @@
                                         <button class="btn btn-outline-secondary increase-count" type="button" data-target="hotelChild">+</button>
                                     </div>
                                 </div>
-                                <button class="btn btn-primary btn-sm w-100" type="button" id="applyHotelGuests">Terapkan</button>
+                                <button class="btn btn-primary btn-sm w-100 py-2 rounded-pill fw-bold" type="button" id="applyHotelGuests">Terapkan</button>
                             </div>
                         </div>
                         <div class="col-lg-2">
-                            <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 68px;">Search</button>
+                            <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 72px;">Search</button>
                         </div>
                     </div>
                 </div>
@@ -538,7 +591,7 @@
                             </div>
                         </div>
                         <div class="col-lg-2">
-                            <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 68px;">Cari Mobil</button>
+                            <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 72px;">Cari Mobil</button>
                         </div>
                     </div>
                 </div>
@@ -565,7 +618,7 @@
                             </div>
                         </div>
                         <div class="col-lg-2">
-                            <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 68px;">Cari</button>
+                            <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 72px;">Cari</button>
                         </div>
                     </div>
                 </div>
@@ -592,7 +645,7 @@
                             </div>
                         </div>
                         <div class="col-lg-2">
-                            <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 68px;">Cek Visa</button>
+                            <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 72px;">Cek Visa</button>
                         </div>
                     </div>
                 </div>
@@ -619,7 +672,7 @@
                             </div>
                         </div>
                         <div class="col-lg-2">
-                            <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 68px;">Cari Tur</button>
+                            <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="height: 72px;">Cari Tur</button>
                         </div>
                     </div>
                 </div>
@@ -628,9 +681,10 @@
     </div>
 
     <!-- 5. SECTION: DISCOUNTS & OFFERS -->
-    <section id="offers" class="container py-5 mt-4">
-        <div class="text-center mb-4">
-            <h2 class="fw-bold">Discounts & Offers</h2>
+    <section id="offers" class="container py-5 mt-5">
+        <div class="text-center mb-5">
+            <span class="text-primary fw-semibold small text-uppercase tracking-wider">Promo Spesial</span>
+            <h2 class="fw-extrabold display-6 text-dark mt-1">Discounts & Offers</h2>
             <p class="text-muted mb-0">Manfaatkan kupon dan paket promo eksklusif untuk destinasi impian Anda.</p>
         </div>
 
@@ -642,9 +696,9 @@
                 <!-- Offer Card 1 -->
                 <div class="card border-0 rounded-4 overflow-hidden text-white flex-shrink-0 card-hover position-relative" style="width: 270px; height: 380px; scroll-snap-align: start;">
                     <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=600&q=80" class="w-100 h-100 object-fit-cover" alt="Travel Around the World">
-                    <div class="position-absolute inset-0 bg-dark bg-opacity-25 d-flex flex-column justify-content-between p-4" style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%);">
+                    <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4" style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.65) 100%);">
                         <div>
-                            <h3 class="fw-bold text-uppercase text-white lh-sm" style="font-family: 'Poppins', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.6);">TRAVEL AROUND THE WORLD</h3>
+                            <h3 class="fw-bold text-uppercase text-white lh-sm fs-4" style="font-family: 'Poppins', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.6);">TRAVEL AROUND THE WORLD</h3>
                         </div>
                         <div>
                             <span class="badge rounded-pill px-3 py-2 fs-6 fw-bold shadow" style="background-color: #ff007f;">25% off</span>
@@ -658,7 +712,7 @@
                     <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%);">
                         <div>
                             <i class="bi bi-airplane text-white fs-5 mb-2 d-inline-block"></i>
-                            <h3 class="fw-bold text-warning lh-sm" style="font-family: 'Poppins', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.6);">Breath Adventure Awaits</h3>
+                            <h3 class="fw-bold text-warning lh-sm fs-4" style="font-family: 'Poppins', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.6);">Breath Adventure Awaits</h3>
                         </div>
                         <div class="align-self-end bg-danger text-white rounded-circle d-flex flex-column align-items-center justify-content-center p-3 fw-bold shadow-lg" style="width: 80px; height: 80px; transform: rotate(-10deg);">
                             <span class="fs-5 lh-1 fw-extrabold">$199</span>
@@ -687,7 +741,7 @@
                     <img src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=600&q=80" class="w-100 h-100 object-fit-cover" alt="Summer Vacation">
                     <div class="position-absolute inset-0 d-flex flex-column justify-content-between p-4" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%);">
                         <div>
-                            <h3 class="fw-bold text-white lh-sm" style="font-family: 'Poppins', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.6);">Summer Vacation</h3>
+                            <h3 class="fw-bold text-white lh-sm fs-4" style="font-family: 'Poppins', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.6);">Summer Vacation</h3>
                         </div>
                         <div class="d-flex justify-content-between align-items-end">
                             <span class="badge bg-light text-dark rounded-pill px-3 py-1 fw-semibold small shadow">VACATION mode</span>
@@ -701,16 +755,16 @@
 
             </div>
 
-            <!-- Slider Control Buttons (Vanilla JS) -->
-            <button class="btn btn-light shadow border position-absolute top-50 start-0 translate-middle-y rounded-circle d-none d-md-flex align-items-center justify-content-center ms-n3 z-2" id="slideLeftBtn" style="width: 45px; height: 45px;"><i class="bi bi-chevron-left fs-5"></i></button>
-            <button class="btn btn-light shadow border position-absolute top-50 end-0 translate-middle-y rounded-circle d-none d-md-flex align-items-center justify-content-center me-n3 z-2" id="slideRightBtn" style="width: 45px; height: 45px;"><i class="bi bi-chevron-right fs-5"></i></button>
+            <!-- Slider Control Buttons -->
+            <button class="btn btn-white bg-white shadow-lg border-0 position-absolute top-50 start-0 translate-middle-y rounded-circle d-none d-md-flex align-items-center justify-content-center ms-n3 z-2 text-dark" id="slideLeftBtn" style="width: 48px; height: 48px;"><i class="bi bi-chevron-left fs-5"></i></button>
+            <button class="btn btn-white bg-white shadow-lg border-0 position-absolute top-50 end-0 translate-middle-y rounded-circle d-none d-md-flex align-items-center justify-content-center me-n3 z-2 text-dark" id="slideRightBtn" style="width: 48px; height: 48px;"><i class="bi bi-chevron-right fs-5"></i></button>
         </div>
     </section>
 
     <!-- 6. SECTION: BEST DEALS FLIGHT ROUTES -->
-    <section id="best-deals" class="container py-5 bg-white rounded-4 shadow-sm my-4">
+    <section id="best-deals" class="container py-5 bg-white rounded-4 shadow-sm my-4 border">
         <div class="text-center mb-4">
-            <h2 class="fw-bold">Best Deals Rute Penerbangan Round-Trip</h2>
+            <h2 class="fw-extrabold display-6 text-dark">Best Deals Rute Penerbangan Round-Trip</h2>
             <p class="text-muted">Pilihan rute pulang-pergi terhemat berdasarkan wilayah.</p>
         </div>
         <ul class="nav nav-pills justify-content-center mb-4 gap-2" role="tablist">
@@ -724,15 +778,15 @@
             <div class="tab-pane fade show active" id="dealAmerica">
                 <div class="row g-4">
                     <div class="col-md-4">
-                        <div class="card border shadow-sm rounded-4 overflow-hidden card-hover">
+                        <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover">
                             <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?auto=format&fit=crop&w=600&q=80" height="200" class="object-fit-cover" alt="New York">
-                            <div class="card-body">
-                                <span class="badge bg-primary-subtle text-primary mb-2">Round-Trip</span>
-                                <h5 class="fw-bold">Jakarta (CGK) ➔ New York (JFK)</h5>
+                            <div class="card-body p-4">
+                                <span class="badge bg-primary bg-opacity-10 text-primary mb-2 px-3 py-1 rounded-pill fw-semibold">Round-Trip</span>
+                                <h5 class="fw-bold text-dark">Jakarta (CGK) ➔ New York (JFK)</h5>
                                 <p class="text-muted small mb-3">Emirates • Bagasi 30kg</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <span class="text-danger fw-bold fs-5">IDR 14.250.000</span>
-                                    <button class="btn btn-outline-primary btn-sm rounded-pill px-3 book-btn">Pesan</button>
+                                    <button class="btn btn-outline-primary btn-sm rounded-pill px-3 py-2 fw-semibold">Pesan</button>
                                 </div>
                             </div>
                         </div>
@@ -749,7 +803,7 @@
     <!-- 7. SECTION: POPULAR HOTELS -->
     <section id="hotels" class="container py-5">
         <div class="text-center mb-4">
-            <h2 class="fw-bold">Popular Hotels Globally</h2>
+            <h2 class="fw-extrabold display-6 text-dark">Popular Hotels Globally</h2>
             <p class="text-muted">Akomodasi pilihan dengan fasilitas mewah dan ulasan terbaik.</p>
         </div>
         <ul class="nav nav-pills justify-content-center mb-4 gap-2" role="tablist">
@@ -764,14 +818,14 @@
                 <div class="row g-4">
                     <div class="col-md-3">
                         <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover">
-                            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" height="180" class="object-fit-cover" alt="Hotel">
-                            <div class="card-body">
-                                <div class="text-warning small mb-1"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i> (4.9)</div>
-                                <h5 class="fw-bold text-truncate">The Plaza New York</h5>
-                                <p class="text-muted small mb-3"><i class="bi bi-geo-alt me-1"></i> New York, USA</p>
+                            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" height="190" class="object-fit-cover" alt="Hotel">
+                            <div class="card-body p-4">
+                                <div class="text-warning small mb-1"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i> <span class="text-dark fw-bold">(4.9)</span></div>
+                                <h5 class="fw-bold text-dark text-truncate">The Plaza New York</h5>
+                                <p class="text-muted small mb-3"><i class="bi bi-geo-alt me-1 text-primary"></i> New York, USA</p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <span class="text-primary fw-bold">IDR 4.500.000<small>/mlm</small></span>
-                                    <button class="btn btn-primary btn-sm rounded-pill px-3 book-btn">Pesan</button>
+                                    <span class="text-primary fw-bold">IDR 4.5M<small class="text-muted">/mlm</small></span>
+                                    <button class="btn btn-primary btn-sm rounded-pill px-3 py-2 fw-semibold">Pesan</button>
                                 </div>
                             </div>
                         </div>
@@ -786,9 +840,9 @@
     </section>
 
     <!-- 8. SECTION: POPULAR TOURS -->
-    <section id="tours" class="container py-5 bg-white rounded-4 shadow-sm my-4">
+    <section id="tours" class="container py-5 bg-white rounded-4 shadow-sm my-4 border">
         <div class="text-center mb-4">
-            <h2 class="fw-bold">Popular Tours & Attractions</h2>
+            <h2 class="fw-extrabold display-6 text-dark">Popular Tours & Attractions</h2>
             <p class="text-muted">Temukan pengalaman tur dan aktivitas paling berkesan.</p>
         </div>
         <ul class="nav nav-pills justify-content-center mb-4 gap-2" role="tablist">
@@ -802,15 +856,15 @@
             <div class="tab-pane fade show active" id="tourAmerica">
                 <div class="row g-4">
                     <div class="col-md-4">
-                        <div class="card border shadow-sm rounded-4 overflow-hidden card-hover">
+                        <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover">
                             <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=600&q=80" height="200" class="object-fit-cover" alt="Tour">
-                            <div class="card-body">
-                                <span class="badge bg-success-subtle text-success mb-2">Full Day Tour</span>
-                                <h5 class="fw-bold">Grand Canyon Helicopter & Skywalk</h5>
+                            <div class="card-body p-4">
+                                <span class="badge bg-success bg-opacity-10 text-success mb-2 px-3 py-1 rounded-pill fw-semibold">Full Day Tour</span>
+                                <h5 class="fw-bold text-dark">Grand Canyon Helicopter & Skywalk</h5>
                                 <p class="text-muted small mb-3">Termasuk pemandu profesional & tiket.</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <span class="text-danger fw-bold fs-5">IDR 3.250.000</span>
-                                    <button class="btn btn-outline-primary btn-sm rounded-pill px-3 book-btn">Book Tour</button>
+                                    <button class="btn btn-outline-primary btn-sm rounded-pill px-3 py-2 fw-semibold">Book Tour</button>
                                 </div>
                             </div>
                         </div>
@@ -829,15 +883,15 @@
         <div class="row align-items-center g-5">
             <!-- Left Column: Content Text -->
             <div class="col-lg-6">
-                <span class="text-primary fw-semibold small d-block mb-2">We're #01 travel agency in globally</span>
-                <h1 class="display-5 fw-bold text-dark mb-4 lh-sm">Explore the World With Confidence.</h1>
-                <p class="text-muted mb-3" style="line-height: 1.7;">
+                <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill fw-bold mb-3">We're #01 travel agency in globally</span>
+                <h1 class="display-5 fw-extrabold text-dark mb-4 lh-tight" style="letter-spacing: -1px;">Explore the World With Confidence.</h1>
+                <p class="text-secondary mb-3" style="line-height: 1.8;">
                     Travel is more than visiting places - it's about discovering cultures, creating memories, and experiencing the world in a way that stays with you forever. Our travel agency is dedicated to designing seamless and inspiring journeys for explorers who want more than just a typical vacation.
                 </p>
-                <p class="text-muted mb-4" style="line-height: 1.7;">
+                <p class="text-secondary mb-4" style="line-height: 1.8;">
                     Our team of passionate travel experts works closely with each traveler to understand their interests, preferences, and expectations. This allows us to create journeys that feel personal, well-organized, and truly extraordinary.
                 </p>
-                <a href="#" class="btn btn-primary rounded-pill px-5 py-3 fw-bold shadow-sm">Discover More</a>
+                <a href="#" class="btn btn-primary rounded-pill px-5 py-3 fw-bold shadow">Discover More</a>
             </div>
 
             <!-- Right Column: Overlapping Image Cards & Trust Badges -->
@@ -859,10 +913,10 @@
                 </div>
 
                 <!-- Trust Badges Below Cards -->
-                <div class="row text-center align-items-center g-3 pt-2">
+                <div class="row text-center align-items-center g-3 pt-2 bg-white p-4 rounded-4 shadow-sm border">
                     <div class="col-6">
                         <div class="d-flex flex-column align-items-center">
-                            <h4 class="fw-bold mb-0 fs-4">5,000,000</h4>
+                            <h4 class="fw-extrabold mb-0 fs-4 text-dark">5,000,000</h4>
                             <small class="text-muted fw-semibold mb-1" style="font-size: 0.75rem;">Trusted by 5M Users</small>
                             <span class="text-success small fw-bold"><i class="bi bi-tripadvisor"></i> Tripadvisor</span>
                         </div>
@@ -879,20 +933,20 @@
         </div>
     </section>
 
-    <!-- 10. SECTION: CUSTOMER REVIEWS ("What's the People Say") -->
-    <section class="py-5 my-4 position-relative overflow-hidden" style="background-color: #d8f3e5;">
+    <!-- 10. SECTION: CUSTOMER REVIEWS -->
+    <section class="py-5 my-4 position-relative overflow-hidden" style="background: linear-gradient(135deg, #e3fcef 0%, #cbf5df 100%);">
         <div class="container py-4">
             
             <!-- Section Header -->
             <div class="row align-items-center mb-5">
                 <div class="col-lg-8">
-                    <span class="text-success fw-semibold small d-block mb-1">Customer experience at TravelMeta</span>
-                    <h2 class="display-5 fw-bold text-dark mb-3">What’s the People Say</h2>
+                    <span class="text-success fw-bold small d-block mb-1 text-uppercase tracking-wider">Customer experience at TravelMeta</span>
+                    <h2 class="display-5 fw-extrabold text-dark mb-3">What’s the People Say</h2>
                     <div class="d-flex align-items-center gap-3 flex-wrap">
                         <div class="d-flex align-items-center">
-                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" class="rounded-circle border border-white border-2" width="40" height="40" style="object-fit: cover;" alt="User">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="rounded-circle border border-white border-2 ms-n3" width="40" height="40" style="object-fit: cover;" alt="User">
-                            <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fw-bold ms-n3 small border border-white border-2" style="width: 40px; height: 40px;">+</div>
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" class="rounded-circle border border-white border-2 shadow-sm" width="40" height="40" style="object-fit: cover;" alt="User">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="rounded-circle border border-white border-2 ms-n3 shadow-sm" width="40" height="40" style="object-fit: cover;" alt="User">
+                            <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fw-bold ms-n3 small border border-white border-2 shadow-sm" style="width: 40px; height: 40px;">+</div>
                         </div>
                         <span class="text-dark fw-semibold small">10,000+ trusted travelers to join TravelMeta community.</span>
                     </div>
@@ -923,12 +977,12 @@
                                 <button class="btn btn-light btn-sm rounded-circle shadow-sm border d-flex align-items-center justify-content-center text-primary" style="width: 36px; height: 36px;"><i class="bi bi-play-fill fs-5 ps-1"></i></button>
                             </div>
                             <h5 class="fw-bold text-dark mb-2">Perfect Itinerary!</h5>
-                            <p class="text-muted small lh-base mb-0">
+                            <p class="text-secondary small lh-base mb-0">
                                 Our trip to Vietnam was perfectly organized from start to finish. Highly recommended for international travel.
                             </p>
                         </div>
                         <div class="d-flex align-items-center gap-3 pt-3 border-top">
-                            <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=100&q=80" class="rounded-circle object-fit-cover" width="45" height="45" alt="Anderson">
+                            <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=100&q=80" class="rounded-circle object-fit-cover shadow-sm" width="45" height="45" alt="Anderson">
                             <div>
                                 <h6 class="fw-bold mb-0 text-dark">Anderson</h6>
                                 <small class="text-muted" style="font-size: 0.75rem;">TravelMeta Traveler</small>
@@ -946,12 +1000,12 @@
                                 <button class="btn btn-light btn-sm rounded-circle shadow-sm border d-flex align-items-center justify-content-center text-primary" style="width: 36px; height: 36px;"><i class="bi bi-play-fill fs-5 ps-1"></i></button>
                             </div>
                             <h5 class="fw-bold text-dark mb-2">Great Visitors Venue!</h5>
-                            <p class="text-muted small lh-base mb-0">
+                            <p class="text-secondary small lh-base mb-0">
                                 Thank you so much for your work on our honeymoon. We really did have such a great time.
                             </p>
                         </div>
                         <div class="d-flex align-items-center gap-3 pt-3 border-top">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="rounded-circle object-fit-cover" width="45" height="45" alt="James Bonde">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="rounded-circle object-fit-cover shadow-sm" width="45" height="45" alt="James Bonde">
                             <div>
                                 <h6 class="fw-bold mb-0 text-dark">James Bonde</h6>
                                 <small class="text-muted" style="font-size: 0.75rem;">TravelMeta Traveler</small>
@@ -969,12 +1023,12 @@
                                 <button class="btn btn-light btn-sm rounded-circle shadow-sm border d-flex align-items-center justify-content-center text-primary" style="width: 36px; height: 36px;"><i class="bi bi-play-fill fs-5 ps-1"></i></button>
                             </div>
                             <h5 class="fw-bold text-dark mb-2">Fantastic Service!</h5>
-                            <p class="text-muted small lh-base mb-0">
+                            <p class="text-secondary small lh-base mb-0">
                                 We have returned from Greece and want to let you know how terrific the trip was! Everything was great.
                             </p>
                         </div>
                         <div class="d-flex align-items-center gap-3 pt-3 border-top">
-                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" class="rounded-circle object-fit-cover" width="45" height="45" alt="Amber Lashleye">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" class="rounded-circle object-fit-cover shadow-sm" width="45" height="45" alt="Amber Lashleye">
                             <div>
                                 <h6 class="fw-bold mb-0 text-dark">Amber Lashleye</h6>
                                 <small class="text-muted" style="font-size: 0.75rem;">TravelMeta Traveler</small>
@@ -992,12 +1046,12 @@
                                 <button class="btn btn-light btn-sm rounded-circle shadow-sm border d-flex align-items-center justify-content-center text-primary" style="width: 36px; height: 36px;"><i class="bi bi-play-fill fs-5 ps-1"></i></button>
                             </div>
                             <h5 class="fw-bold text-dark mb-2">Unforgettable Experience!</h5>
-                            <p class="text-muted small lh-base mb-0">
+                            <p class="text-secondary small lh-base mb-0">
                                 The booking process was smooth and the customer support was top-notch during our European tour.
                             </p>
                         </div>
                         <div class="d-flex align-items-center gap-3 pt-3 border-top">
-                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" class="rounded-circle object-fit-cover" width="45" height="45" alt="Michael Smith">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" class="rounded-circle object-fit-cover shadow-sm" width="45" height="45" alt="Michael Smith">
                             <div>
                                 <h6 class="fw-bold mb-0 text-dark">Michael Smith</h6>
                                 <small class="text-muted" style="font-size: 0.75rem;">TravelMeta Traveler</small>
@@ -1011,13 +1065,13 @@
             <!-- Slider Controls & Tripadvisor Rating Footer -->
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mt-4 pt-2">
                 <div class="d-flex gap-2">
-                    <button class="btn btn-white bg-white shadow-sm border rounded-circle d-flex align-items-center justify-content-center" id="reviewSlideLeft" style="width: 45px; height: 45px;"><i class="bi bi-chevron-left"></i></button>
-                    <button class="btn btn-white bg-white shadow-sm border rounded-circle d-flex align-items-center justify-content-center" id="reviewSlideRight" style="width: 45px; height: 45px;"><i class="bi bi-chevron-right"></i></button>
+                    <button class="btn btn-white bg-white shadow-sm border-0 rounded-circle d-flex align-items-center justify-content-center" id="reviewSlideLeft" style="width: 48px; height: 48px;"><i class="bi bi-chevron-left fs-5"></i></button>
+                    <button class="btn btn-white bg-white shadow-sm border-0 rounded-circle d-flex align-items-center justify-content-center" id="reviewSlideRight" style="width: 48px; height: 48px;"><i class="bi bi-chevron-right fs-5"></i></button>
                 </div>
 
-                <div class="d-flex align-items-center gap-2 text-dark small fw-semibold">
+                <div class="d-flex align-items-center gap-2 text-dark small fw-bold bg-white px-4 py-2 rounded-pill shadow-sm">
                     <i class="bi bi-tripadvisor text-success fs-5"></i>
-                    <span class="text-success">🟢🟢🟢🟢🟢</span>
+                    <span class="text-success">★★★★★</span>
                     <span>4.8 rated 10,000 real traveler at TravelMeta.</span>
                 </div>
             </div>
@@ -1025,36 +1079,37 @@
         </div>
     </section>
 
-    <!-- 11. SECTION: DOWNLOAD MOBILE APP (Sesuai Referensi Gambar) -->
+    <!-- 11. SECTION: DOWNLOAD MOBILE APP -->
     <section class="container py-5 my-4">
-        <div class="rounded-5 p-4 p-lg-5 position-relative overflow-hidden text-dark shadow-sm" style="background: linear-gradient(135deg, #e3fcef 0%, #d1f4e0 100%);">
+        <div class="rounded-5 p-4 p-lg-5 position-relative overflow-hidden text-dark shadow-lg border" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);">
             <div class="row align-items-center">
                 <div class="col-lg-7 py-4">
-                    <h1 class="display-5 fw-bold mb-3 text-dark">Download Mobile App</h1>
-                    <p class="text-secondary mb-4 lead fs-6" style="max-width: 500px;">
+                    <span class="badge bg-success text-white px-3 py-2 rounded-pill fw-semibold mb-3">Aplikasi Mobile Terbaik</span>
+                    <h1 class="display-5 fw-extrabold mb-3 text-dark" style="letter-spacing: -1px;">Download Mobile App</h1>
+                    <p class="text-secondary mb-4 lead fs-6" style="max-width: 500px; line-height: 1.7;">
                         Our community users and app download almost <strong>2M+</strong> in world-wide.
                     </p>
                     <div class="d-flex align-items-center gap-3 mb-4 flex-wrap">
-                        <a href="#" class="d-inline-block">
-                            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" height="45" alt="App Store">
+                        <a href="#" class="d-inline-block transition-hover">
+                            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" height="46" alt="App Store">
                         </a>
-                        <a href="#" class="d-inline-block">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" height="45" alt="Google Play">
+                        <a href="#" class="d-inline-block transition-hover">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" height="46" alt="Google Play">
                         </a>
                     </div>
-                    <div class="d-flex align-items-center gap-2 text-dark small fw-semibold">
-                        <span class="badge bg-primary text-white px-2 py-1">★ 4.9</span>
+                    <div class="d-flex align-items-center gap-2 text-dark small fw-bold bg-white d-inline-flex px-3 py-2 rounded-pill shadow-sm">
+                        <span class="text-warning fs-6">★ 4.9</span>
                         <span>12,300+ verified review TravelMeta app</span>
                     </div>
                 </div>
                 <div class="col-lg-5 text-center position-relative d-none d-lg-block">
-                    <div class="position-relative" style="height: 300px;">
-                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=500&q=80" class="rounded-4 shadow-lg position-absolute end-0 top-0 object-fit-cover border border-white border-3" style="width: 240px; height: 320px; transform: rotate(5deg);" alt="Mobile App">
-                        <div class="position-absolute bg-white rounded-pill px-3 py-2 shadow-sm small fw-bold text-dark d-flex align-items-center gap-2" style="top: 40px; left: 20px; z-index: 2;">
+                    <div class="position-relative" style="height: 320px;">
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=500&q=80" class="rounded-4 shadow-lg position-absolute end-0 top-0 object-fit-cover border border-white border-3" style="width: 250px; height: 340px; transform: rotate(4deg);" alt="Mobile App">
+                        <div class="position-absolute bg-white rounded-pill px-4 py-2 shadow-sm small fw-bold text-dark d-flex align-items-center gap-2" style="top: 40px; left: 10px; z-index: 2;">
                             <span class="text-warning">★ 4.9</span> Average rating
                         </div>
-                        <div class="position-absolute bg-white rounded-pill px-3 py-2 shadow-sm small fw-bold text-dark d-flex align-items-center gap-2" style="bottom: 40px; left: 10px; z-index: 2;">
-                            <span class="bg-primary text-white rounded-circle p-1 small"><i class="bi bi-people-fill"></i></span> 2M active users.
+                        <div class="position-absolute bg-white rounded-pill px-4 py-2 shadow-sm small fw-bold text-dark d-flex align-items-center gap-2" style="bottom: 40px; left: 0px; z-index: 2;">
+                            <span class="bg-success text-white rounded-circle p-1 small"><i class="bi bi-people-fill"></i></span> 2M active users.
                         </div>
                     </div>
                 </div>
@@ -1062,14 +1117,14 @@
         </div>
     </section>
 
-    <!-- 12. SECTION: TRAVEL TIPS & INSPIRATIONS (Sesuai Referensi Gambar) -->
-    <section class="container py-5">
+    <!-- 12. SECTION: TRAVEL TIPS & INSPIRATIONS -->
+    <section class="container py-5 my-3">
         <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-3">
             <div>
-                <span class="text-primary fw-semibold small d-block mb-1">Get to know more with TravelMeta</span>
-                <h2 class="fw-bold display-6 mb-0">Travel Tips & Inspirations.</h2>
+                <span class="text-primary fw-bold small text-uppercase tracking-wider">Edukasi & Wawasan</span>
+                <h2 class="fw-extrabold display-6 mb-0 text-dark">Travel Tips & Inspirations.</h2>
             </div>
-            <a href="#" class="btn btn-outline-dark rounded-pill px-4 py-2 fw-semibold small">View All Inspiration</a>
+            <a href="#" class="btn btn-outline-dark rounded-pill px-4 py-2 fw-semibold small shadow-sm">View All Inspiration</a>
         </div>
         
         <div class="row g-4">
@@ -1078,18 +1133,18 @@
                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover h-100 bg-white">
                     <div class="position-relative">
                         <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80" height="220" class="w-100 object-fit-cover" alt="Maldives Beach">
-                        <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 rounded-pill px-3 py-2 shadow-sm small fw-semibold">
+                        <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 rounded-pill px-3 py-2 shadow-sm small fw-bold">
                             <i class="bi bi-geo-alt text-primary me-1"></i> Maldives Beach
                         </span>
                     </div>
                     <div class="card-body p-4 d-flex flex-column justify-content-between">
                         <div>
-                            <h4 class="fw-bold mb-3 text-dark fs-5">Best Time to Visit the Maldives for a Perfect Beach Escape.</h4>
-                            <p class="text-muted small mb-4 lh-base">
+                            <h4 class="fw-bold mb-3 text-dark fs-5 lh-sm">Best Time to Visit the Maldives for a Perfect Beach Escape.</h4>
+                            <p class="text-secondary small mb-4 lh-base">
                                 The Maldives is a dream destination known for its crystal-clear lagoons and luxury overwater villas.
                             </p>
                         </div>
-                        <a href="#" class="text-primary fw-bold text-decoration-none small d-flex align-items-center gap-1">
+                        <a href="#" class="text-primary fw-bold text-decoration-none small d-flex align-items-center gap-1 hover-arrow">
                             Read More <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
@@ -1101,18 +1156,18 @@
                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover h-100 bg-white">
                     <div class="position-relative">
                         <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=600&q=80" height="220" class="w-100 object-fit-cover" alt="South Africa">
-                        <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 rounded-pill px-3 py-2 shadow-sm small fw-semibold">
+                        <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 rounded-pill px-3 py-2 shadow-sm small fw-bold">
                             <i class="bi bi-geo-alt text-primary me-1"></i> South Africa
                         </span>
                     </div>
                     <div class="card-body p-4 d-flex flex-column justify-content-between">
                         <div>
-                            <h4 class="fw-bold mb-3 text-dark fs-5">What to Expect on Your First Wildlife Adventure Africa Safari.</h4>
-                            <p class="text-muted small mb-4 lh-base">
+                            <h4 class="fw-bold mb-3 text-dark fs-5 lh-sm">What to Expect on Your First Wildlife Adventure Africa Safari.</h4>
+                            <p class="text-secondary small mb-4 lh-base">
                                 An African safari is one of the most exciting travel experiences in the world. Visitors can witness the Big Five wildlife.
                             </p>
                         </div>
-                        <a href="#" class="text-primary fw-bold text-decoration-none small d-flex align-items-center gap-1">
+                        <a href="#" class="text-primary fw-bold text-decoration-none small d-flex align-items-center gap-1 hover-arrow">
                             Read More <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
@@ -1124,18 +1179,18 @@
                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover h-100 bg-white">
                     <div class="position-relative">
                         <img src="https://images.unsplash.com/photo-1527668752550-956627f04c6d?auto=format&fit=crop&w=600&q=80" height="220" class="w-100 object-fit-cover" alt="Switzerland">
-                        <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 rounded-pill px-3 py-2 shadow-sm small fw-semibold">
+                        <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 rounded-pill px-3 py-2 shadow-sm small fw-bold">
                             <i class="bi bi-geo-alt text-primary me-1"></i> Switzerland
                         </span>
                     </div>
                     <div class="card-body p-4 d-flex flex-column justify-content-between">
                         <div>
-                            <h4 class="fw-bold mb-3 text-dark fs-5">Top Places to Visit in Switzerland for Nature Lovers.</h4>
-                            <p class="text-muted small mb-4 lh-base">
+                            <h4 class="fw-bold mb-3 text-dark fs-5 lh-sm">Top Places to Visit in Switzerland for Nature Lovers.</h4>
+                            <p class="text-secondary small mb-4 lh-base">
                                 Switzerland is famous for its snow-capped Alps, charming villages, and scenic train journeys.
                             </p>
                         </div>
-                        <a href="#" class="text-primary fw-bold text-decoration-none small d-flex align-items-center gap-1">
+                        <a href="#" class="text-primary fw-bold text-decoration-none small d-flex align-items-center gap-1 hover-arrow">
                             Read More <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
@@ -1144,22 +1199,22 @@
         </div>
     </section>
 
-    <!-- 13. SECTION: SUBSCRIBE NEWSLETTER (Sesuai Referensi Gambar) -->
+    <!-- 13. SECTION: SUBSCRIBE NEWSLETTER -->
     <section class="container py-4 my-4">
-        <div class="rounded-4 p-4 p-lg-5 text-white position-relative overflow-hidden shadow-lg" style="background: linear-gradient(135deg, #0d6efd 0%, #0043a8 100%);">
+        <div class="rounded-5 p-4 p-lg-5 text-white position-relative overflow-hidden shadow-lg" style="background: var(--primary-gradient);">
             <div class="row align-items-center g-4">
                 <div class="col-lg-6">
-                    <h2 class="fw-bold display-6 mb-2 lh-sm">Subscribe our newsletter to discount 10% all package.</h2>
+                    <h2 class="fw-extrabold display-6 mb-2 lh-sm" style="letter-spacing: -0.5px;">Subscribe our newsletter to discount 10% all package.</h2>
                 </div>
                 <div class="col-lg-6">
-                    <form id="subscribeForm" class="position-relative mb-2">
-                        <div class="input-group bg-white rounded-pill p-1 shadow-sm">
-                            <input type="email" class="form-control border-0 px-4 py-3 rounded-pill shadow-none bg-transparent" placeholder="Email Address" required>
-                            <button class="btn btn-dark rounded-circle d-flex align-items-center justify-content-center m-1" type="submit" style="width: 48px; height: 48px;"><i class="bi bi-send-fill text-white"></i></button>
+                    <form id="subscribeForm" class="position-relative mb-3">
+                        <div class="input-group bg-white rounded-pill p-1 shadow-lg">
+                            <input type="email" class="form-control border-0 px-4 py-3 rounded-pill shadow-none bg-transparent" placeholder="Enter your email address" required>
+                            <button class="btn btn-dark rounded-circle d-flex align-items-center justify-content-center m-1 shadow" type="submit" style="width: 48px; height: 48px;"><i class="bi bi-send-fill text-white"></i></button>
                         </div>
                     </form>
                     <div class="d-flex align-items-center gap-2 text-white-50 small">
-                        <i class="bi bi-bell-fill text-warning"></i>
+                        <i class="bi bi-shield-check text-warning fs-5"></i>
                         <span>Get practical strategies and business insights to help you grow with confidence.</span>
                     </div>
                 </div>
@@ -1169,7 +1224,7 @@
 
     <!-- 14. FOOTER -->
     <footer id="footer" class="modern-footer text-white pt-5 pb-4 border-top border-secondary border-opacity-25">
-        <div class="container py-3">
+        <div class="container py-4">
             <!-- 4-Column Structure -->
             <div class="row g-5 mb-5">
                 <!-- Column 1: Brand Info, Socials, & Awards Badges -->
@@ -1267,23 +1322,23 @@
     <!-- POPUP MODAL: MULTI-CURRENCY -->
     <div class="modal fade" id="currencyModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content rounded-4 border-0 shadow-lg">
+            <div class="modal-content rounded-4 border-0 shadow-lg p-2">
                 <div class="modal-header border-0 pb-0">
                     <h5 class="modal-title fw-bold"><i class="bi bi-coin text-warning me-2"></i>Pilih Mata Uang</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <p class="text-muted small mb-3">Pilih mata uang standar untuk menampilkan tarif di seluruh situs.</p>
                     <div class="row g-2">
-                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold" data-curr="USD ($)">USD ($)</button></div>
-                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold" data-curr="IDR (Rp)">IDR (Rp)</button></div>
-                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold" data-curr="EUR (€)">EUR (€)</button></div>
-                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold" data-curr="GBP (£)">GBP (£)</button></div>
-                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold" data-curr="SGD (S$)">SGD (S$)</button></div>
-                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold" data-curr="JPY (¥)">JPY (¥)</button></div>
-                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold" data-curr="AUD (A$)">AUD (A$)</button></div>
-                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold" data-curr="CAD (C$)">CAD (C$)</button></div>
-                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold" data-curr="CNY (¥)">CNY (¥)</button></div>
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">USD ($)</button></div>
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">IDR (Rp)</button></div>
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">EUR (€)</button></div>
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">GBP (£)</button></div>
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">SGD (S$)</button></div>
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">JPY (¥)</button></div>
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">AUD (A$)</button></div>
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">CAD (C$)</button></div>
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">CNY (¥)</button></div>
                     </div>
                 </div>
             </div>
@@ -1293,22 +1348,22 @@
     <!-- POPUP MODAL: MULTI-LANGUAGE -->
     <div class="modal fade" id="langModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content rounded-4 border-0 shadow-lg">
+            <div class="modal-content rounded-4 border-0 shadow-lg p-2">
                 <div class="modal-header border-0 pb-0">
                     <h5 class="modal-title fw-bold"><i class="bi bi-globe text-info me-2"></i>Pilih Bahasa</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <p class="text-muted small mb-3">Pilih bahasa tampilan antarmuka yang Anda inginkan.</p>
                     <div class="row g-2">
-                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold" data-lang="English (EN)">English (EN)</button></div>
-                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold" data-lang="Bahasa Indonesia (ID)">Bahasa Indonesia (ID)</button></div>
-                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold" data-lang="Español (ES)">Español (ES)</button></div>
-                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold" data-lang="Français (FR)">Français (FR)</button></div>
-                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold" data-lang="Deutsch (DE)">Deutsch (DE)</button></div>
-                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold" data-lang="日本語 (JA)">日本語 (JA)</button></div>
-                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold" data-lang="中文 (ZH)">中文 (ZH)</button></div>
-                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold" data-lang="العربية (AR)">العربية (AR)</button></div>
+                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold">English (EN)</button></div>
+                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold">Bahasa Indonesia (ID)</button></div>
+                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold">Español (ES)</button></div>
+                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold">Français (FR)</button></div>
+                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold">Deutsch (DE)</button></div>
+                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold">日本語 (JA)</button></div>
+                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold">中文 (ZH)</button></div>
+                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold">العربية (AR)</button></div>
                     </div>
                 </div>
             </div>
@@ -1328,12 +1383,12 @@
 
             if(slideLeftBtn && offerSlider) {
                 slideLeftBtn.addEventListener('click', () => {
-                    offerSlider.scrollBy({ left: -300, behavior: 'smooth' });
+                    offerSlider.scrollBy({ left: -320, behavior: 'smooth' });
                 });
             }
             if(slideRightBtn && offerSlider) {
                 slideRightBtn.addEventListener('click', () => {
-                    offerSlider.scrollBy({ left: 300, behavior: 'smooth' });
+                    offerSlider.scrollBy({ left: 320, behavior: 'smooth' });
                 });
             }
 
@@ -1561,11 +1616,11 @@
                                         <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcAdult${rowCount}">+</button>
                                     </div>
                                 </div>
-                                <button class="btn btn-primary btn-sm w-100 apply-mc-travelers-btn" type="button">Terapkan</button>
+                                <button class="btn btn-primary btn-sm w-100 apply-mc-travelers-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
                             </div>
                         </div>
                         <div class="col-lg-2">
-                            <button class="btn btn-outline-danger btn-sm w-100 py-3 remove-row rounded-3" style="height: 68px;"><i class="bi bi-trash3"></i> Hapus</button>
+                            <button class="btn btn-outline-danger btn-sm w-100 py-3 remove-row rounded-3" style="height: 72px;"><i class="bi bi-trash3"></i> Hapus</button>
                         </div>
                     `;
                     multiCityContainer.appendChild(newRow);
@@ -1599,7 +1654,7 @@
             // 9. Currency & Language Popup Handlers
             document.querySelectorAll(".currency-option").forEach(btn => {
                 btn.addEventListener("click", (e) => {
-                    const curr = e.target.getAttribute("data-curr");
+                    const curr = e.target.textContent;
                     document.getElementById("selectedCurrencyBtn").innerHTML = `<i class="bi bi-coin text-warning"></i> ${curr}`;
                     const modalEl = document.getElementById('currencyModal');
                     const modalInstance = bootstrap.Modal.getInstance(modalEl);
@@ -1609,7 +1664,7 @@
 
             document.querySelectorAll(".lang-option").forEach(btn => {
                 btn.addEventListener("click", (e) => {
-                    const lang = e.target.getAttribute("data-lang");
+                    const lang = e.target.textContent;
                     document.getElementById("selectedLangBtn").innerHTML = `<i class="bi bi-globe text-info"></i> ${lang}`;
                     const modalEl = document.getElementById('langModal');
                     const modalInstance = bootstrap.Modal.getInstance(modalEl);
