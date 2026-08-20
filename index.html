@@ -47,6 +47,10 @@
 
         header.sticky-top { z-index: 1070 !important; }
         .cursor-pointer { cursor: pointer; }
+        
+        .hamburger-icon { display: flex; flex-direction: column; justify-content: space-around; width: 22px; height: 18px; }
+        .hamburger-icon span { display: block; height: 2px; width: 100%; background-color: #1e293b; border-radius: 2px; transition: all 0.3s; }
+        .hamburger-icon span:nth-child(2) { width: 70%; }
 
         /* LAZYSIZES EFFECT */
         .lazy-effect {
@@ -71,8 +75,9 @@
         .hero-carousel img { height: 620px; object-fit: cover; filter: brightness(0.55); }
         
         /* Typography Responsive di Hero Caption */
-        .hero-title { font-size: clamp(2rem, 5vw, 4rem); letter-spacing: -1px; }
-        .hero-subtitle { font-size: clamp(1rem, 2.5vw, 1.25rem); }
+        .hero-title { font-size: clamp(2rem, 5vw, 4.2rem); letter-spacing: -1.5px; }
+        .hero-subtitle { font-size: clamp(1rem, 2.5vw, 1.35rem); }
+        .carousel-caption { padding-bottom: 9rem !important; }
 
         .search-card { 
             margin-top: -150px; z-index: 10; position: relative; 
@@ -106,24 +111,9 @@
             opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important;
         }
 
-        /* Responsive Navbar Khusus Mobile */
-        @media (max-width: 991.98px) {
-            .mega-menu {
-                width: 100% !important; max-width: 100%;
-                left: 0 !important; transform: none !important;
-                position: relative !important;
-                box-shadow: none !important; border: 1px solid #e2e8f0 !important;
-                margin-top: 10px; padding: 15px !important;
-            }
-            .navbar-nav .dropdown-menu {
-                position: relative; transform: none !important; transition: none;
-                box-shadow: none !important; border: 1px solid #e2e8f0 !important; margin-top: 10px;
-            }
-        }
-
         /* ABOUT IMAGES RESPONSIVE CSS */
         .about-img-container { position: relative; height: 380px; display: flex; justify-content: center; align-items: center; }
-        .about-img-item { position: absolute; shadow-lg; border-radius: 1rem; overflow: hidden; border: 3px solid white; box-shadow: 0 1rem 3rem rgba(0,0,0,0.175); transition: all 0.3s ease; }
+        .about-img-item { position: absolute; border-radius: 1rem; overflow: hidden; border: 3px solid white; box-shadow: 0 1rem 3rem rgba(0,0,0,0.175); transition: all 0.3s ease; }
         .about-img-1 { width: 200px; height: 320px; transform: rotate(-8deg) translateX(-80px); z-index: 1; }
         .about-img-2 { width: 210px; height: 340px; transform: translateY(-10px); z-index: 3; }
         .about-img-3 { width: 200px; height: 320px; transform: rotate(8deg) translateX(80px); z-index: 2; }
@@ -131,8 +121,8 @@
         @media (max-width: 767.98px) {
             .hero-carousel { height: 550px; }
             .hero-carousel img { height: 550px; }
-            .carousel-caption { bottom: 90px; padding-bottom: 0 !important; margin-bottom: 0 !important; } /* Push up above search card */
-            .search-card { margin-top: -120px; }
+            .carousel-caption { padding-bottom: 7rem !important; }
+            .search-card { margin-top: -100px; }
             
             /* Responsive About Images */
             .about-img-container { height: 280px; }
@@ -141,9 +131,9 @@
             .about-img-3 { width: 140px; height: 220px; transform: rotate(8deg) translateX(50px); }
         }
         @media (max-width: 575.98px) {
-            .hero-carousel { height: 500px; }
-            .hero-carousel img { height: 500px; }
-            .carousel-caption { bottom: 80px; }
+            .hero-carousel { height: 520px; }
+            .hero-carousel img { height: 520px; }
+            .carousel-caption { padding-bottom: 8rem !important; }
             
             /* Extra Small About Images */
             .about-img-container { height: 240px; }
@@ -237,21 +227,59 @@
 
     <!-- 1. MODERN HEADER & NAVIGATION -->
     <header class="bg-white sticky-top shadow-sm scroll-reveal">
+        
+        <!-- DESKTOP TOP BAR (Disembunyikan di Mobile) -->
+        <div class="border-bottom py-2 bg-white small d-none d-lg-block">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="text-secondary d-flex align-items-center gap-1">
+                    <span class="text-warning">★</span> 
+                    <span class="fw-bold text-dark">4.9 Rated</span> by <strong class="text-dark">10,000+</strong> Travelers Worldwide.
+                </div>
+
+                <div class="d-flex align-items-center gap-3 text-secondary">
+                    <button class="btn btn-sm btn-light border py-1 px-3 fw-semibold rounded-pill d-flex align-items-center gap-1 shadow-sm" type="button" data-bs-toggle="modal" data-bs-target="#currencyModal">
+                        <i class="bi bi-coin text-warning"></i> USD ($)
+                    </button>
+                    <button class="btn btn-sm btn-light border py-1 px-3 fw-semibold rounded-pill d-flex align-items-center gap-1 shadow-sm" type="button" data-bs-toggle="modal" data-bs-target="#langModal">
+                        <i class="bi bi-globe text-info"></i> English (EN)
+                    </button>
+                    <a href="#" class="text-secondary text-decoration-none px-1" title="Cart"><i class="bi bi-cart3 fs-6"></i></a>
+                    <a href="#" class="text-secondary text-decoration-none px-1" title="Profile"><i class="bi bi-person-circle fs-5"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN NAVBAR -->
         <nav class="navbar navbar-expand-lg navbar-light py-3">
-            <div class="container">
-                <a class="navbar-brand fw-bold fs-4 text-dark d-flex align-items-center gap-2 text-decoration-none" href="#">
+            <div class="container d-flex justify-content-between">
+                
+                <!-- LOGO (Tampil Kiri di PC dan Mobile) -->
+                <a class="navbar-brand fw-bold fs-4 text-dark d-flex align-items-center gap-2 text-decoration-none m-0" href="#">
                     <div class="bg-primary text-white p-2 rounded-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 38px; height: 38px;">
                         <i class="bi bi-airplane-engines fs-5"></i>
                     </div>
                     TravelMeta
                 </a>
 
-                <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <!-- MOBILE HEADER ACTIONS (Tampil khusus HP: Referensi image_e0f49c.png) -->
+                <div class="d-flex align-items-center gap-3 d-lg-none">
+                    <div class="d-flex align-items-center gap-1 cursor-pointer" data-bs-toggle="modal" data-bs-target="#currencyModal">
+                        <i class="bi bi-globe fs-5 text-dark"></i>
+                        <span class="fw-semibold text-dark small" style="font-size: 0.85rem;">USD</span>
+                    </div>
+                    <a href="#" class="text-dark text-decoration-none"><i class="bi bi-person-circle fs-4"></i></a>
+                    <button class="btn btn-white bg-white border shadow-sm rounded-3 p-2 d-flex align-items-center justify-content-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMobileMenu" style="width: 42px; height: 42px;">
+                        <div class="hamburger-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </button>
+                </div>
 
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav mx-auto align-items-lg-center gap-3">
+                <!-- DESKTOP MENU NAVBAR (Sembunyikan di Mobile) -->
+                <div class="collapse navbar-collapse d-none d-lg-flex justify-content-end" id="navbarNavDesk">
+                    <ul class="navbar-nav mx-auto align-items-center gap-3">
                         <li class="nav-item"><a class="nav-link text-primary fw-semibold" href="#">Home</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button" data-bs-toggle="dropdown">Destination</a>
@@ -296,7 +324,7 @@
                         <li class="nav-item"><a class="nav-link text-dark fw-medium" href="#footer">Contact</a></li>
                     </ul>
 
-                    <div class="d-flex align-items-center gap-3 flex-wrap mt-3 mt-lg-0">
+                    <div class="d-flex align-items-center gap-3">
                         <a href="#" class="btn btn-outline-primary rounded-pill px-3 py-2 small fw-semibold d-flex align-items-center gap-2 border-2 text-decoration-none">
                             <i class="bi bi-robot"></i> Plan with AI
                         </a>
@@ -306,29 +334,76 @@
                     </div>
                 </div>
             </div>
+
+            <!-- MOBILE SUB-HEADER (Rating & Cart. Khusus HP: Referensi image_e0f49c.png) -->
+            <div class="container d-lg-none mt-3 pt-3 border-top d-flex justify-content-between align-items-center">
+                <div class="text-secondary small d-flex align-items-start gap-1 w-75">
+                    <span class="text-warning fs-6 lh-1" style="margin-top: 1px;">★</span> 
+                    <span class="fw-medium text-dark lh-sm" style="font-size: 0.8rem;">
+                        <span class="text-primary fw-bold">4.9 Rated</span> by <strong class="text-dark">10,000+</strong> Travelers Worldwide.
+                    </span>
+                </div>
+                <a href="#" class="text-dark text-decoration-none"><i class="bi bi-cart3 fs-4"></i></a>
+            </div>
         </nav>
+    </header>
 
-        <!-- Diubah flex-column untuk HP, flex-row untuk PC agar tidak bertumpukan saat sempit -->
-        <div class="border-top py-2 bg-white small">
-            <div class="container d-flex flex-column flex-md-row justify-content-center justify-content-md-between align-items-center gap-2 text-center text-md-start">
-                <div class="text-secondary d-flex align-items-center justify-content-center gap-1">
-                    <span class="text-warning">★</span> 
-                    <span class="fw-bold text-dark">4.9 Rated</span> by <strong class="text-dark">10,000+</strong> Travelers Worldwide.
+    <!-- MOBILE OFFCANVAS SIDE MENU (Referensi image_e0f47a.png) -->
+    <div class="offcanvas offcanvas-start border-0 shadow-lg d-lg-none" tabindex="-1" id="offcanvasMobileMenu" style="width: 290px;">
+        <div class="offcanvas-header py-4 px-4 border-bottom border-light">
+            <a class="fw-bold fs-4 text-dark d-flex align-items-center gap-2 text-decoration-none m-0" href="#">
+                <div class="bg-primary text-white p-2 rounded-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 32px; height: 32px;">
+                    <i class="bi bi-airplane-engines fs-6"></i>
                 </div>
+                TravelMeta
+            </a>
+            <button type="button" class="btn btn-white bg-white border rounded-3 px-2 py-1 shadow-sm d-flex align-items-center justify-content-center" data-bs-dismiss="offcanvas" style="width: 36px; height: 36px;">
+                <i class="bi bi-x-lg fs-5"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body p-4 d-flex flex-column bg-white">
+            <ul class="list-unstyled d-flex flex-column gap-3 fw-semibold text-dark mb-auto" style="font-size: 1.05rem;">
+                <li><a href="#" class="text-primary text-decoration-none d-block py-2">Home</a></li>
+                <li>
+                    <div class="d-flex justify-content-between align-items-center py-2" data-bs-toggle="collapse" data-bs-target="#mobileDestCollapse">
+                        <span class="text-primary cursor-pointer">Destination</span>
+                        <i class="bi bi-plus-lg text-primary fs-5 cursor-pointer"></i>
+                    </div>
+                    <div class="collapse" id="mobileDestCollapse">
+                        <ul class="list-unstyled ps-3 mt-1 d-flex flex-column gap-3 small fw-normal">
+                            <li><a href="#best-deals" class="text-secondary text-decoration-none d-block">Amerika</a></li>
+                            <li><a href="#best-deals" class="text-secondary text-decoration-none d-block">Eropa</a></li>
+                            <li><a href="#best-deals" class="text-secondary text-decoration-none d-block">Asia</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="d-flex justify-content-between align-items-center py-2" data-bs-toggle="collapse" data-bs-target="#mobilePagesCollapse">
+                        <span class="text-dark cursor-pointer">Pages</span>
+                        <i class="bi bi-plus-lg text-dark fs-5 cursor-pointer"></i>
+                    </div>
+                    <div class="collapse" id="mobilePagesCollapse">
+                        <ul class="list-unstyled ps-3 mt-1 d-flex flex-column gap-3 small fw-normal">
+                            <li><a href="#offers" class="text-secondary text-decoration-none d-block">Discounts & Offers</a></li>
+                            <li><a href="#hotels" class="text-secondary text-decoration-none d-block">Popular Hotels</a></li>
+                            <li><a href="#tours" class="text-secondary text-decoration-none d-block">Popular Tours</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="#about" class="text-dark text-decoration-none d-block py-2">Holidays</a></li>
+                <li><a href="#footer" class="text-dark text-decoration-none d-block py-2">Contact</a></li>
+            </ul>
 
-                <div class="d-flex align-items-center justify-content-center gap-3 text-secondary flex-wrap">
-                    <button class="btn btn-sm btn-light border py-1 px-3 fw-semibold rounded-pill d-flex align-items-center gap-1 shadow-sm" type="button" data-bs-toggle="modal" data-bs-target="#currencyModal" id="selectedCurrencyBtn">
-                        <i class="bi bi-coin text-warning"></i> USD ($)
-                    </button>
-                    <button class="btn btn-sm btn-light border py-1 px-3 fw-semibold rounded-pill d-flex align-items-center gap-1 shadow-sm" type="button" data-bs-toggle="modal" data-bs-target="#langModal" id="selectedLangBtn">
-                        <i class="bi bi-globe text-info"></i> English (EN)
-                    </button>
-                    <a href="#" class="text-secondary text-decoration-none px-1" title="Cart"><i class="bi bi-cart3 fs-6"></i></a>
-                    <a href="#" class="text-secondary text-decoration-none px-1" title="Profile"><i class="bi bi-person-circle fs-5"></i></a>
-                </div>
+            <div class="mt-5 d-flex flex-column gap-3">
+                <a href="#" class="btn btn-outline-primary rounded-pill py-3 fw-semibold d-flex align-items-center justify-content-center gap-2 border-2">
+                    <i class="bi bi-robot fs-5"></i> Plan with AI
+                </a>
+                <a href="https://whatsapp.com" target="_blank" class="btn btn-primary rounded-pill py-3 fw-semibold d-flex align-items-center justify-content-center gap-2 shadow-sm text-white border-0" style="background-color: #0d6efd;">
+                    <i class="bi bi-whatsapp fs-5 text-white"></i> +44-800 123 456
+                </a>
             </div>
         </div>
-    </header>
+    </div>
 
     <!-- 3. HERO SLIDER -->
     <div id="heroSlider" class="carousel slide hero-carousel scroll-reveal" data-bs-ride="carousel">
@@ -337,22 +412,22 @@
                 <div class="image-shimmer-effect">
                     <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80" width="1920" height="620" class="d-block w-100 h-100 lazyload lazy-effect" alt="Paradise Beach" fetchpriority="high">
                 </div>
-                <!-- Menambahkan text-center (HP) dan text-md-start (PC) -->
-                <div class="carousel-caption text-center text-md-start mb-md-5 pb-md-5 container z-2">
+                <!-- Flexbox Rata Tengah Akurat -->
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center h-100 top-0 start-0 w-100 container z-2">
                     <span class="badge bg-primary bg-opacity-75 backdrop-blur mb-3 px-3 py-2 rounded-pill fw-semibold shadow-sm">Eksplorasi Dunia</span>
-                    <h1 class="hero-title fw-extrabold text-white mb-3">Temukan Harga Tiket & Hotel Termurah</h1>
-                    <p class="hero-subtitle text-white-50">Bandingkan penawaran dari ratusan situs travel secara instan.</p>
+                    <h1 class="hero-title fw-extrabold text-white text-center mb-3 w-100" style="max-width: 900px;">Temukan Harga Tiket & Hotel Termurah</h1>
+                    <p class="hero-subtitle text-white-50 text-center w-100" style="max-width: 700px;">Bandingkan penawaran dari ratusan situs travel secara instan.</p>
                 </div>
             </div>
             <div class="carousel-item h-100">
                 <div class="image-shimmer-effect">
                     <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1920&q=80" width="1920" height="620" class="d-block w-100 h-100 lazyload lazy-effect" alt="Mountain View" fetchpriority="low">
                 </div>
-                <!-- Menambahkan text-center (HP) dan text-md-start (PC) -->
-                <div class="carousel-caption text-center text-md-start mb-md-5 pb-md-5 container z-2">
+                <!-- Flexbox Rata Tengah Akurat -->
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center h-100 top-0 start-0 w-100 container z-2">
                     <span class="badge bg-success bg-opacity-75 backdrop-blur mb-3 px-3 py-2 rounded-pill fw-semibold shadow-sm">Petualangan Baru</span>
-                    <h1 class="hero-title fw-extrabold text-white mb-3">Liburan Impian Tanpa Bikin Kantong Bolong</h1>
-                    <p class="hero-subtitle text-white-50">Nikmati diskon eksklusif tur, rental mobil, dan reservasi hotel global.</p>
+                    <h1 class="hero-title fw-extrabold text-white text-center mb-3 w-100" style="max-width: 900px;">Liburan Impian Tanpa Bikin Kantong Bolong</h1>
+                    <p class="hero-subtitle text-white-50 text-center w-100" style="max-width: 700px;">Nikmati diskon eksklusif tur, rental mobil, dan reservasi hotel global.</p>
                 </div>
             </div>
         </div>
@@ -798,15 +873,11 @@
                 <div class="vc-track">
                     
                     <div class="vc-item">
-                        <div class="card border-0 rounded-4 overflow-hidden text-white card-hover position-relative card-item" style="height: 380px;">
-                            <!-- Memastikan Absolute top-0 start-0 w-100 h-100 agar mengunci sempurna pada box -->
-                            <div class="position-absolute top-0 start-0 w-100 h-100">
-                                <div class="image-shimmer-effect w-100 h-100">
-                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=600&q=80" width="600" height="380" class="lazyload lazy-effect" alt="Travel Around the World" fetchpriority="low">
-                                </div>
-                            </div>
-                            <!-- Menggunakan inset-0 dan Clamp font size untuk teks -->
-                            <div class="position-absolute inset-0 top-0 start-0 w-100 h-100 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.65) 100%); pointer-events: none;">
+                        <div class="card border-0 rounded-4 overflow-hidden text-white card-hover card-item" style="height: 380px;">
+                            <!-- Memasukkan gambar ke dalam tag dengan class standar bootstrap card-img -->
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=600&q=80" class="card-img lazyload lazy-effect w-100 h-100" style="object-fit: cover;" alt="Travel Around the World" fetchpriority="low">
+                            <!-- Overlay asli dari Bootstrap (Pasti sesuai batas margin dari gambar) -->
+                            <div class="card-img-overlay d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.65) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
                                     <h3 class="fw-bold text-uppercase text-white lh-sm" style="font-family: 'Poppins', sans-serif; font-size: clamp(1.25rem, 4vw, 1.75rem);">TRAVEL AROUND THE WORLD</h3>
                                 </div>
@@ -818,13 +889,10 @@
                     </div>
 
                     <div class="vc-item">
-                        <div class="card border-0 rounded-4 overflow-hidden text-white card-hover position-relative card-item" style="height: 380px;">
-                            <div class="position-absolute top-0 start-0 w-100 h-100">
-                                <div class="image-shimmer-effect w-100 h-100">
-                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" width="600" height="380" class="lazyload lazy-effect" alt="Breath Adventure Awaits" fetchpriority="low">
-                                </div>
-                            </div>
-                            <div class="position-absolute inset-0 top-0 start-0 w-100 h-100 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
+                        <div class="card border-0 rounded-4 overflow-hidden text-white card-hover card-item" style="height: 380px;">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" class="card-img lazyload lazy-effect w-100 h-100" style="object-fit: cover;" alt="Breath Adventure Awaits" fetchpriority="low">
+                            
+                            <div class="card-img-overlay d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
                                     <i class="bi bi-airplane text-white fs-5 mb-2 d-inline-block"></i>
                                     <h3 class="fw-bold text-warning lh-sm" style="font-family: 'Poppins', sans-serif; font-size: clamp(1.25rem, 4vw, 1.75rem);">Breath Adventure Awaits</h3>
@@ -838,16 +906,13 @@
                     </div>
 
                     <div class="vc-item">
-                        <div class="card border-0 rounded-4 overflow-hidden text-white card-hover position-relative card-item" style="height: 380px;">
-                            <div class="position-absolute top-0 start-0 w-100 h-100">
-                                <div class="image-shimmer-effect w-100 h-100">
-                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" width="600" height="380" class="lazyload lazy-effect" alt="20% off SALE" fetchpriority="low">
-                                </div>
-                            </div>
-                            <div class="position-absolute inset-0 top-0 start-0 w-100 h-100 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
+                        <div class="card border-0 rounded-4 overflow-hidden text-white card-hover card-item" style="height: 380px;">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" class="card-img lazyload lazy-effect w-100 h-100" style="object-fit: cover;" alt="20% off SALE" fetchpriority="low">
+                            
+                            <div class="card-img-overlay d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
                                     <span class="text-uppercase small fw-bold tracking-wider text-warning">up to</span>
-                                    <h1 class="fw-bold text-white mb-0" style="font-size: clamp(3rem, 8vw, 4rem);">20% off</h1>
+                                    <h1 class="fw-bold text-white mb-0 lh-1" style="font-size: clamp(3rem, 8vw, 4rem);">20% off</h1>
                                     <h4 class="fw-bold tracking-widest text-uppercase" style="font-size: clamp(1.25rem, 4vw, 1.75rem);">SALE</h4>
                                 </div>
                                 <div class="text-center bg-success text-white py-2 rounded-pill fw-bold small shadow" style="pointer-events: auto;">
@@ -858,13 +923,10 @@
                     </div>
 
                     <div class="vc-item">
-                        <div class="card border-0 rounded-4 overflow-hidden text-white card-hover position-relative card-item" style="height: 380px;">
-                            <div class="position-absolute top-0 start-0 w-100 h-100">
-                                <div class="image-shimmer-effect w-100 h-100">
-                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=600&q=80" width="600" height="380" class="lazyload lazy-effect" alt="Summer Vacation" fetchpriority="low">
-                                </div>
-                            </div>
-                            <div class="position-absolute inset-0 top-0 start-0 w-100 h-100 d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
+                        <div class="card border-0 rounded-4 overflow-hidden text-white card-hover card-item" style="height: 380px;">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=600&q=80" class="card-img lazyload lazy-effect w-100 h-100" style="object-fit: cover;" alt="Summer Vacation" fetchpriority="low">
+                            
+                            <div class="card-img-overlay d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
                                     <h3 class="fw-bold text-white lh-sm" style="font-family: 'Poppins', sans-serif; font-size: clamp(1.25rem, 4vw, 1.75rem);">Summer Vacation</h3>
                                 </div>
@@ -2398,7 +2460,6 @@
                 const applyBtn = e.target.closest('.apply-btn');
                 if (applyBtn) {
                     e.preventDefault(); e.stopPropagation();
-                    // Menutup dropdown dengan aman tanpa error (Menggunakan DOM/Bootstrap API)
                     const toggleEl = applyBtn.closest('.dropdown').querySelector('[data-bs-toggle="dropdown"]');
                     if (toggleEl) {
                         const bsDropdown = bootstrap.Dropdown.getInstance(toggleEl) || new bootstrap.Dropdown(toggleEl);
@@ -2476,16 +2537,25 @@
                 });
             }
 
+            // Sync Desktop & Mobile Currency buttons
             document.querySelectorAll(".currency-option").forEach(btn => {
                 btn.addEventListener("click", (e) => {
-                    document.getElementById("selectedCurrencyBtn").innerHTML = `<i class="bi bi-coin text-warning"></i> ${e.target.textContent}`;
+                    const txt = e.target.textContent;
+                    const deskBtn = document.getElementById("selectedCurrencyBtnDesk");
+                    if (deskBtn) deskBtn.innerHTML = `<i class="bi bi-coin text-warning"></i> ${txt}`;
+                    
+                    // Update mobile text as well
+                    const mobCurrencyTxt = document.querySelector(".d-lg-none .bi-globe").nextElementSibling;
+                    if (mobCurrencyTxt) mobCurrencyTxt.textContent = txt.split(' ')[0];
+                    
                     bootstrap.Modal.getInstance(document.getElementById('currencyModal')).hide();
                 });
             });
 
             document.querySelectorAll(".lang-option").forEach(btn => {
                 btn.addEventListener("click", (e) => {
-                    document.getElementById("selectedLangBtn").innerHTML = `<i class="bi bi-globe text-info"></i> ${e.target.textContent}`;
+                    const deskBtn = document.getElementById("selectedLangBtnDesk");
+                    if (deskBtn) deskBtn.innerHTML = `<i class="bi bi-globe text-info"></i> ${e.target.textContent}`;
                     bootstrap.Modal.getInstance(document.getElementById('langModal')).hide();
                 });
             });
