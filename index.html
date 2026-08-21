@@ -217,7 +217,7 @@
             background: linear-gradient(90deg, #e2e8f0 25%, #cbd5e1 50%, #e2e8f0 75%) !important;
             background-size: 200% 100% !important;
             animation: skeleton-loading 1.5s infinite !important;
-            color: transparent !important; /* Membuat teks tidak terlihat agar murni menjadi balok skeleton */
+            color: transparent !important; 
             box-shadow: none !important;
         }
 
@@ -270,15 +270,12 @@
 
     <!-- 1. MODERN HEADER & NAVIGATION -->
     <header class="bg-white sticky-top shadow-sm scroll-reveal">
-        
-        <!-- DESKTOP TOP BAR (Disembunyikan di Mobile & Tablet Kecil) -->
         <div class="border-bottom py-2 bg-white small d-none d-lg-block">
             <div class="container d-flex justify-content-between align-items-center">
                 <div class="text-secondary d-flex align-items-center gap-1">
                     <span class="text-warning">★</span> 
                     <span class="fw-bold text-dark">4.9 Rated</span> by <strong class="text-dark">10,000+</strong> Travelers Worldwide.
                 </div>
-
                 <div class="d-flex align-items-center gap-3 text-secondary">
                     <button id="selectedCurrencyBtnDesk" class="btn btn-sm btn-light border py-1 px-3 fw-semibold rounded-pill d-flex align-items-center gap-1 shadow-sm" type="button" data-bs-toggle="modal" data-bs-target="#currencyModal">
                         <i class="bi bi-coin text-warning"></i> USD ($)
@@ -292,11 +289,8 @@
             </div>
         </div>
 
-        <!-- MAIN NAVBAR -->
         <nav class="navbar navbar-expand-lg navbar-light py-2 py-lg-3">
             <div class="container d-flex justify-content-between align-items-center">
-                
-                <!-- LOGO RESPONSIVE (Tampil Kiri di PC, Tablet, Mobile) -->
                 <a class="navbar-brand fw-bold fs-5 fs-lg-4 text-dark d-flex align-items-center gap-2 text-decoration-none m-0" href="#">
                     <div class="logo-icon-box bg-primary text-white rounded-3 d-flex align-items-center justify-content-center shadow-sm">
                         <i class="bi bi-airplane-engines"></i>
@@ -304,16 +298,13 @@
                     TravelMeta
                 </a>
 
-                <!-- MOBILE & TABLET HEADER ACTIONS -->
                 <div class="d-flex align-items-center gap-2 gap-sm-3 d-lg-none header-mobile-actions">
-                    <!-- Penyatuan Bahasa & Mata Uang khusus Mobile -->
                     <div class="d-flex align-items-center gap-1 cursor-pointer bg-light px-2 py-1 rounded-pill border shadow-sm" data-bs-toggle="modal" data-bs-target="#mobileSettingsModal" title="Language & Currency">
                         <i class="bi bi-globe-americas fs-6 text-dark ms-1"></i>
                         <span class="fw-bold text-dark small me-1" style="font-size: 0.75rem;">
                             <span id="mobLangText">EN</span> • <span id="mobCurrText">USD</span>
                         </span>
                     </div>
-
                     <a href="#" class="text-dark text-decoration-none"><i class="bi bi-person-circle fs-4"></i></a>
                     <button class="btn btn-white bg-white border shadow-sm rounded-3 p-2 d-flex align-items-center justify-content-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMobileMenu" style="width: 42px; height: 42px;">
                         <div class="hamburger-icon">
@@ -324,7 +315,6 @@
                     </button>
                 </div>
 
-                <!-- DESKTOP MENU NAVBAR (Sembunyikan di Mobile/Tablet) -->
                 <div class="collapse navbar-collapse d-none d-lg-flex justify-content-end" id="navbarNavDesk">
                     <ul class="navbar-nav mx-auto align-items-center gap-3">
                         <li class="nav-item"><a class="nav-link text-primary fw-semibold" href="#">Home</a></li>
@@ -381,8 +371,7 @@
                     </div>
                 </div>
             </div>
-
-            <!-- MOBILE SUB-HEADER (Rating & Cart) -->
+            
             <div class="container d-lg-none mt-2 pt-3 border-top d-flex justify-content-between align-items-center flex-nowrap">
                 <div class="text-secondary small d-flex align-items-start gap-1 flex-grow-1 pe-2">
                     <span class="text-warning fs-6 lh-1" style="margin-top: 1px;">★</span> 
@@ -484,7 +473,6 @@
     <div class="container search-card scroll-reveal">
         <div class="card border-0 p-3 p-lg-4 bg-white">
             
-            <!-- TABS CATEGORY HORIZONTAL SCROLL RESPONSIVE -->
             <div class="overflow-hidden mb-4">
                 <div class="d-flex overflow-x-auto hide-scroll">
                     <ul class="nav nav-pills gap-2 flex-nowrap" id="searchCategoryTab" role="tablist">
@@ -502,9 +490,8 @@
                 <!-- FLIGHTS TAB -->
                 <div class="tab-pane fade show active" id="flightSearchTab">
                     
-                    <!-- FLIGHT TYPES & CABIN DROPDOWN -->
+                    <!-- FLIGHT TYPES & CABIN DROPDOWN (Global untuk semua tipe penerbangan) -->
                     <div class="d-flex justify-content-between align-items-center mb-3 gap-2">
-                        <!-- TABS FLIGHT TYPE RESPONSIVE -->
                         <div class="flex-grow-1 overflow-hidden border border-light rounded-pill p-1 shadow-sm" style="max-width: max-content;">
                             <div class="d-flex overflow-x-auto hide-scroll">
                                 <ul class="nav nav-pills gap-1 small flex-nowrap" role="tablist">
@@ -515,7 +502,6 @@
                             </div>
                         </div>
                         
-                        <!-- CABIN DROPDOWN (Selalu di Kanan dengan Panah Animasi) -->
                         <div class="dropdown ms-auto flex-shrink-0">
                             <button class="btn btn-light btn-sm custom-dropdown-toggle rounded-pill px-3 py-1 border text-primary fw-semibold shadow-sm d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown">
                                 <span id="cabinClassDropdownBtn">Economy</span>
@@ -539,14 +525,14 @@
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="flex-grow-1 position-relative pe-2">
                                                 <div class="text-muted small mb-1"><i class="bi bi-airplane-engines text-primary me-1"></i> Leaving From</div>
-                                                <input type="text" id="originInput" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Detecting location...">
+                                                <input type="text" id="owOrigin" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Detecting location...">
                                             </div>
                                             <button class="btn btn-light btn-sm rounded-circle border shadow-sm d-flex align-items-center justify-content-center swap-inputs-btn flex-shrink-0" style="width: 32px; height: 32px;" type="button" title="Tukar">
                                                 <i class="bi bi-arrow-left-right text-secondary"></i>
                                             </button>
-                                            <div class="flex-grow-1 position-relative ps-3">
+                                            <div class="flex-grow-1 position-relative ps-3 border-start">
                                                 <div class="text-muted small mb-1"><i class="bi bi-airplane-fill text-primary me-1"></i> Going To</div>
-                                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Jakarta (CGK)">
+                                                <input type="text" id="owDest" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Destination">
                                             </div>
                                         </div>
                                     </div>
@@ -561,7 +547,7 @@
                                     <div class="dropdown w-100">
                                         <div class="search-box-item cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
                                             <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Travelers</div>
-                                            <div class="fw-bold small text-dark" id="travelersSummaryText">1 Adult, 0 Child, Economy</div>
+                                            <div class="fw-bold small text-dark travelers-summary-text">1 Adult, 0 Child</div>
                                         </div>
                                         <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100" style="min-width: 280px;">
                                             <div class="d-flex justify-content-between align-items-center mb-2">
@@ -606,12 +592,12 @@
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="flex-grow-1 position-relative pe-1">
                                                 <div class="text-muted small mb-1"><i class="bi bi-airplane-engines text-primary me-1"></i> From</div>
-                                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Origin">
+                                                <input type="text" id="rtOrigin" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Origin">
                                             </div>
                                             <button class="btn btn-light btn-sm rounded-circle border shadow-sm d-flex align-items-center justify-content-center swap-inputs-btn flex-shrink-0" style="width: 30px; height: 30px;" type="button"><i class="bi bi-arrow-left-right text-secondary"></i></button>
-                                            <div class="flex-grow-1 position-relative ps-2">
+                                            <div class="flex-grow-1 position-relative ps-2 border-start">
                                                 <div class="text-muted small mb-1"><i class="bi bi-airplane-fill text-primary me-1"></i> To</div>
-                                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Destination">
+                                                <input type="text" id="rtDest" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Destination">
                                             </div>
                                         </div>
                                     </div>
@@ -632,7 +618,7 @@
                                     <div class="dropdown w-100">
                                         <div class="search-box-item cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
                                             <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Passengers</div>
-                                            <div class="fw-bold small text-dark rt-travelers-summary">1 Adult, 0 Child</div>
+                                            <div class="fw-bold small text-dark travelers-summary-text">1 Adult, 0 Child</div>
                                         </div>
                                         <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100" style="min-width: 280px;">
                                             <div class="d-flex justify-content-between align-items-center mb-2">
@@ -676,24 +662,32 @@
                                     <div class="col-lg-5 col-md-12">
                                         <div class="search-box-item">
                                             <div class="d-flex align-items-center justify-content-between">
-                                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Penerbangan 1: Dari">
-                                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent ps-2 border-start" placeholder="Penerbangan 1: Ke">
+                                                <div class="d-flex align-items-center flex-grow-1 position-relative pe-2">
+                                                    <i class="bi bi-airplane-engines text-primary me-2"></i>
+                                                    <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Penerbangan 1: Dari">
+                                                </div>
+                                                <div class="d-flex align-items-center flex-grow-1 position-relative ps-2 border-start">
+                                                    <i class="bi bi-airplane-fill text-primary me-2"></i>
+                                                    <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Penerbangan 1: Ke">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-6">
                                         <div class="search-box-item">
-                                            <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Tanggal">
+                                            <div class="d-flex align-items-center">
+                                                <i class="bi bi-calendar text-primary me-2"></i>
+                                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Tanggal">
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-md-6">
                                         <div class="dropdown w-100">
                                             <div class="search-box-item cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                                                <div class="text-muted small mb-1">Passengers</div>
-                                                <div class="fw-bold small text-dark mc-travelers-summary">1 Adult</div>
+                                                <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Passengers</div>
+                                                <div class="fw-bold small text-dark mc-travelers-summary travelers-summary-text">1 Adult, 0 Child</div>
                                             </div>
                                             <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100" style="min-width: 250px;">
-                                                <!-- MULTI CITY: DEWASA, ANAK, BAYI -->
                                                 <div class="d-flex justify-content-between align-items-center mb-2">
                                                     <span class="small">Dewasa</span>
                                                     <div class="input-group input-group-sm w-50">
@@ -967,7 +961,6 @@
                     <div class="vc-item">
                         <div class="card border-0 rounded-4 overflow-hidden text-white card-hover card-item" style="height: 380px;">
                             <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" class="card-img lazyload lazy-effect w-100 h-100" style="object-fit: cover;" alt="Breath Adventure Awaits" fetchpriority="low">
-                            
                             <div class="card-img-overlay d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
                                     <i class="bi bi-airplane text-white fs-5 mb-2 d-inline-block"></i>
@@ -984,7 +977,6 @@
                     <div class="vc-item">
                         <div class="card border-0 rounded-4 overflow-hidden text-white card-hover card-item" style="height: 380px;">
                             <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" class="card-img lazyload lazy-effect w-100 h-100" style="object-fit: cover;" alt="20% off SALE" fetchpriority="low">
-                            
                             <div class="card-img-overlay d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
                                     <span class="text-uppercase small fw-bold tracking-wider text-warning">up to</span>
@@ -1001,7 +993,6 @@
                     <div class="vc-item">
                         <div class="card border-0 rounded-4 overflow-hidden text-white card-hover card-item" style="height: 380px;">
                             <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=600&q=80" class="card-img lazyload lazy-effect w-100 h-100" style="object-fit: cover;" alt="Summer Vacation" fetchpriority="low">
-                            
                             <div class="card-img-overlay d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
                                 <div style="pointer-events: auto;">
                                     <h3 class="fw-bold text-white lh-sm" style="font-family: 'Poppins', sans-serif; font-size: clamp(1.25rem, 4vw, 1.75rem);">Summer Vacation</h3>
@@ -1025,7 +1016,6 @@
                 <button class='vc-nav vc-next' aria-label="Next">
                     <svg class='feather feather-chevron-right' fill='none' height='24' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><polyline points='9 18 15 12 9 6'/></svg>
                 </button>
-
                 <div class="vc-dots"></div>
             </div>
         </div>
@@ -1088,7 +1078,6 @@
                                     10% Off
                                 </span>
                             </div>
-
                             <div class="card-body p-4 d-flex flex-column justify-content-between">
                                 <div>
                                     <h5 class="fw-bold mb-1 fs-5">
@@ -1097,7 +1086,6 @@
                                     <p class="text-muted small mb-3 d-flex align-items-center gap-1">
                                         <i class="bi bi-cursor text-secondary" style="font-size: 0.85rem; transform: rotate(0deg);"></i> Bali, Indonesia
                                     </p>
-
                                     <div class="d-flex align-items-center gap-2 mb-3">
                                         <span class="badge bg-primary text-white px-2 py-1 rounded-2 fw-bold fs-6">4.5</span>
                                         <div>
@@ -1105,13 +1093,11 @@
                                             <small class="text-muted" style="font-size: 0.75rem;">Based on 2,456 reviews</small>
                                         </div>
                                     </div>
-
                                     <div class="d-flex align-items-center gap-2 mb-3 text-dark small fw-medium">
                                         <i class="bi bi-check-circle-fill text-primary fs-6"></i>
                                         <span>Free Cancellation</span>
                                     </div>
                                 </div>
-
                                 <div>
                                     <div class="text-end mb-2">
                                         <span class="text-muted text-decoration-line-through small me-2">USD 2,959</span>
@@ -1121,7 +1107,6 @@
                                         </div>
                                         <small class="text-muted" style="font-size: 0.75rem;">per night</small>
                                     </div>
-
                                     <button class="btn btn-primary w-100 rounded-pill py-2 fw-bold shadow-sm">
                                         Check Availability
                                     </button>
@@ -1158,7 +1143,6 @@
         <div class="tab-content">
             <div class="tab-pane fade show active" id="tourAmerica">
                 <div class="row g-4">
-                    
                     <div class="col-md-6">
                         <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover position-relative bg-white">
                             <a href="#" class="image-shimmer-effect position-relative d-block" style="height: 240px;">
@@ -1171,7 +1155,6 @@
                                 <span class="badge px-3 py-2 rounded-pill fw-bold text-white shadow-sm" style="background-color: #ff3b30; font-size: 0.75rem;">Sale on!</span>
                                 <span class="badge px-3 py-2 rounded-pill fw-bold text-dark shadow-sm" style="background-color: #ffcc00; font-size: 0.75rem;">Group tour</span>
                             </div>
-
                             <div class="card-body p-4 d-flex flex-column justify-content-between">
                                 <div>
                                     <div class="d-flex align-items-center gap-1 mb-2">
@@ -1186,7 +1169,6 @@
                                         <span><i class="bi bi-clock me-1 text-secondary"></i> 2 Hours</span>
                                     </div>
                                 </div>
-
                                 <div class="d-flex justify-content-between align-items-end">
                                     <div>
                                         <small class="text-muted d-block" style="font-size: 0.75rem;">Starting From</small>
@@ -1199,7 +1181,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-md-6">
                         <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover position-relative bg-white">
                             <a href="#" class="image-shimmer-effect position-relative d-block" style="height: 240px;">
@@ -1212,7 +1193,6 @@
                                 <span class="badge px-3 py-2 rounded-pill fw-bold text-white shadow-sm" style="background-color: #ff3b30; font-size: 0.75rem;">Up to 15% off</span>
                                 <span class="badge px-3 py-2 rounded-pill fw-bold text-dark shadow-sm" style="background-color: #ffcc00; font-size: 0.75rem;">👑 Best seller</span>
                             </div>
-
                             <div class="card-body p-4 d-flex flex-column justify-content-between">
                                 <div>
                                     <div class="d-flex align-items-center gap-1 mb-2">
@@ -1227,7 +1207,6 @@
                                         <span><i class="bi bi-clock me-1 text-secondary"></i> 1 Hour</span>
                                     </div>
                                 </div>
-
                                 <div class="d-flex justify-content-between align-items-end">
                                     <div>
                                         <small class="text-muted d-block" style="font-size: 0.75rem;">Starting From</small>
@@ -1243,7 +1222,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             <div class="tab-pane fade" id="tourEurope"><div class="text-center py-4 text-muted">Tur Eropa segera hadir...</div></div>
@@ -1489,7 +1467,6 @@
                     <button class='vc-nav vc-next' aria-label="Next">
                         <svg class='feather feather-chevron-right' fill='none' height='24' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><polyline points='9 18 15 12 9 6'/></svg>
                     </button>
-
                     <div class="vc-dots"></div>
                 </div>
             </div>
@@ -1750,7 +1727,7 @@
         <i class="bi bi-arrow-up fs-5 text-white"></i>
     </button>
 
-    <!-- COMBINED MOBILE SETTINGS MODAL (LANGUAGE & CURRENCY KHUSUS HP) -->
+    <!-- COMBINED MOBILE SETTINGS MODAL -->
     <div class="modal fade" id="mobileSettingsModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content rounded-4 border-0 shadow-lg p-2">
@@ -1759,7 +1736,6 @@
                     <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    
                     <h6 class="fw-bold mb-3"><i class="bi bi-coin text-warning me-1"></i> Mata Uang</h6>
                     <div class="row g-2 mb-4">
                         <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">USD ($)</button></div>
@@ -1769,7 +1745,6 @@
                         <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">SGD (S$)</button></div>
                         <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">JPY (¥)</button></div>
                     </div>
-
                     <h6 class="fw-bold mb-3 border-top pt-3"><i class="bi bi-globe text-info me-1"></i> Bahasa</h6>
                     <div class="row g-2">
                         <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold">English (EN)</button></div>
@@ -1777,7 +1752,6 @@
                         <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold">Español (ES)</button></div>
                         <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold">Français (FR)</button></div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -1834,7 +1808,7 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS Bundle (Fetchpriority Low) -->
+    <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer fetchpriority="low"></script>
     
     <!-- VANILLA JS -->
@@ -2263,17 +2237,22 @@
                             visitorCurrency = currencyMapping[countryCode];
                         }
                         
-                        const originInput = document.getElementById("originInput");
-                        if(originInput) {
-                            originInput.value = `${userOriginName} (${userOrigin})`;
-                        }
+                        // Set nilai pencarian lokasi default (One-Way & Round-Trip ter-sync)
+                        const owOriginInput = document.getElementById("owOrigin");
+                        const rtOriginInput = document.getElementById("rtOrigin");
+                        const val = `${userOriginName} (${userOrigin})`;
+                        if(owOriginInput) owOriginInput.value = val;
+                        if(rtOriginInput) rtOriginInput.value = val;
                     }
                     apiObserver.observe(document.getElementById('best-deals'));
                 })
                 .catch(err => {
                     console.warn("Whereami Direct API fallback used:", err);
-                    const originInput = document.getElementById("originInput");
-                    if(originInput) originInput.value = "Singapore (SIN)";
+                    const owOriginInput = document.getElementById("owOrigin");
+                    const rtOriginInput = document.getElementById("rtOrigin");
+                    const val = "Singapore (SIN)";
+                    if(owOriginInput) owOriginInput.value = val;
+                    if(rtOriginInput) rtOriginInput.value = val;
                     apiObserver.observe(document.getElementById('best-deals'));
                 });
 
@@ -2282,7 +2261,6 @@
                 const cities = continentDestinations[continentKey];
                 if(!cities) return;
 
-                // INJECT SKELETON LOADER
                 let skeletonHtml = '';
                 for(let i=0; i<6; i++) {
                     skeletonHtml += `
@@ -2384,6 +2362,28 @@
                 });
             });
 
+            // =========================================
+            // SINKRONISASI INPUT KOTA & AUTOCOMPLETE
+            // =========================================
+            const owOrigin = document.getElementById('owOrigin');
+            const owDest = document.getElementById('owDest');
+            const rtOrigin = document.getElementById('rtOrigin');
+            const rtDest = document.getElementById('rtDest');
+
+            // Saat mengetik manual
+            [owOrigin, rtOrigin].forEach(el => {
+                if(el) el.addEventListener('input', (e) => {
+                    const target = e.target === owOrigin ? rtOrigin : owOrigin;
+                    if(target) target.value = e.target.value;
+                });
+            });
+            [owDest, rtDest].forEach(el => {
+                if(el) el.addEventListener('input', (e) => {
+                    const target = e.target === owDest ? rtDest : owDest;
+                    if(target) target.value = e.target.value;
+                });
+            });
+
             const setupTravelAutocomplete = (input) => {
                 let container = input.parentNode.querySelector('.autocomplete-suggestions');
                 if (!container) {
@@ -2421,6 +2421,12 @@
                                         input.value = `${item.name || item.city_name} (${item.code})`;
                                         container.innerHTML = '';
                                         container.style.display = 'none';
+
+                                        // Sinkronisasi khusus jika autocomplete diklik untuk Origin/Destinasi utama
+                                        if (input.id === 'owOrigin' && rtOrigin) rtOrigin.value = input.value;
+                                        if (input.id === 'rtOrigin' && owOrigin) owOrigin.value = input.value;
+                                        if (input.id === 'owDest' && rtDest) rtDest.value = input.value;
+                                        if (input.id === 'rtDest' && owDest) owDest.value = input.value;
                                     });
                                     container.appendChild(div);
                                 });
@@ -2439,6 +2445,7 @@
 
             document.querySelectorAll('.autocomplete-input').forEach(input => setupTravelAutocomplete(input));
 
+            // Tombol Swap Origin/Destinasi otomatis ikut tersinkronisasi
             document.querySelectorAll('.swap-inputs-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const boxItem = btn.closest('.search-box-item');
@@ -2447,54 +2454,37 @@
                         const temp = inputs[0].value;
                         inputs[0].value = inputs[1].value;
                         inputs[1].value = temp;
+
+                        // Sinkron antar One-way dan Round-trip
+                        if(inputs[0].id === 'owOrigin' || inputs[0].id === 'rtOrigin') {
+                            if(owOrigin && rtOrigin) owOrigin.value = rtOrigin.value = inputs[0].value;
+                            if(owDest && rtDest) owDest.value = rtDest.value = inputs[1].value;
+                        }
                     }
                 });
             });
 
-            // FUNCTION TO UPDATE TEXT SUMMARIES (Passengers & Guests)
+            // ==========================================
+            // TEXT SUMMARIES (Sync Passengers Globally)
+            // ==========================================
             function updateAllSummaries() {
-                // One Way
+                // Ambil nilai dari input One-Way (sebagai referensi baseline jika diperlukan, tapi value tersinkron via Event Delegation)
                 const flightAdult = document.getElementById("flightAdult");
-                if (flightAdult) {
-                    const adults = parseInt(flightAdult.value) || 1;
-                    const kids = parseInt(document.getElementById("flightChild").value) || 0;
-                    const infants = parseInt(document.getElementById("flightInfant").value) || 0;
-                    const cabinBtn = document.getElementById("cabinClassDropdownBtn");
-                    const cabin = cabinBtn ? cabinBtn.textContent.trim() : "Economy";
-                    const summary = document.getElementById("travelersSummaryText");
-                    if (summary) summary.textContent = `${adults} Adult, ${kids + infants} Child, ${cabin}`;
-                }
+                const adults = flightAdult ? (parseInt(flightAdult.value) || 1) : 1;
+                const kids = parseInt(document.getElementById("flightChild").value) || 0;
+                const infants = parseInt(document.getElementById("flightInfant").value) || 0;
+                const totalKids = kids + infants;
 
-                // Round Trip
-                const rtAdult = document.getElementById("rtAdult");
-                if (rtAdult) {
-                    const adults = parseInt(rtAdult.value) || 1;
-                    const kids = parseInt(document.getElementById("rtChild").value) || 0;
-                    const infants = parseInt(document.getElementById("rtInfant").value) || 0;
-                    const summary = document.querySelector(".rt-travelers-summary");
-                    if (summary) summary.textContent = `${adults} Adult, ${kids + infants} Child`;
-                }
-
-                // Multi City - Telah ditambahkan kalkulasi lengkap (Adult, Child, Infant)
-                document.querySelectorAll(".multicity-row").forEach(row => {
-                    const adultInput = row.querySelector(".mc-adult");
-                    const childInput = row.querySelector(".mc-child");
-                    const infantInput = row.querySelector(".mc-infant");
-                    const mcSummary = row.querySelector(".mc-travelers-summary");
-                    
-                    if (adultInput && mcSummary) {
-                        const adults = parseInt(adultInput.value) || 1;
-                        const kids = (childInput ? parseInt(childInput.value) : 0) + (infantInput ? parseInt(infantInput.value) : 0);
-                        
-                        if (kids > 0) {
-                            mcSummary.textContent = `${adults} Adult, ${kids} Child`;
-                        } else {
-                            mcSummary.textContent = `${adults} Adult`;
-                        }
+                // Update teks summary di semua Tab Penerbangan (One-Way, Round-Trip, Multi-City)
+                document.querySelectorAll(".travelers-summary-text, .mc-travelers-summary").forEach(el => {
+                    if (totalKids > 0) {
+                        el.textContent = `${adults} Adult, ${totalKids} Child`;
+                    } else {
+                        el.textContent = `${adults} Adult, 0 Child`;
                     }
                 });
 
-                // Hotel
+                // Hotel Summary
                 const hotelRoom = document.getElementById("hotelRoom");
                 if (hotelRoom) {
                     const rooms = parseInt(hotelRoom.value) || 1;
@@ -2503,29 +2493,26 @@
                     if (summary) summary.textContent = `${rooms} Room, ${guests} Guests`;
                 }
 
-                // Tour
+                // Tour & Exp Summary
                 const tourAdult = document.getElementById("tourAdult");
                 if (tourAdult) {
-                    const adults = parseInt(tourAdult.value) || 1;
-                    const summary = document.getElementById("tourSummaryText");
-                    if (summary) summary.textContent = `${adults} Persons`;
+                    const a = parseInt(tourAdult.value) || 1;
+                    const sum = document.getElementById("tourSummaryText");
+                    if (sum) sum.textContent = `${a} Persons`;
                 }
-
-                // Experience
                 const expAdult = document.getElementById("expAdult");
                 if (expAdult) {
-                    const adults = parseInt(expAdult.value) || 1;
-                    const summary = document.getElementById("expSummaryText");
-                    if (summary) summary.textContent = `${adults} Persons`;
+                    const a = parseInt(expAdult.value) || 1;
+                    const sum = document.getElementById("expSummaryText");
+                    if (sum) sum.textContent = `${a} Persons`;
                 }
             }
 
-            // INTERACTIVE CABIN DROPDOWN
+            // Kelas Kabin bersifat Global (karena dropdownnya ada di luar tab)
             document.querySelectorAll('.cabin-option').forEach(item => {
                 item.addEventListener('click', (e) => {
                     e.preventDefault();
                     document.getElementById('cabinClassDropdownBtn').textContent = e.target.getAttribute('data-cabin');
-                    updateAllSummaries();
                 });
             });
 
@@ -2550,7 +2537,7 @@
             });
 
             // ==========================================
-            // GLOBAL INTERACTIVE EVENT DELEGATION
+            // GLOBAL EVENT DELEGATION (Increase/Decrease & Syncing)
             // ==========================================
             document.addEventListener('click', (e) => {
                 
@@ -2560,8 +2547,29 @@
                     e.preventDefault(); e.stopPropagation();
                     const targetId = incBtn.getAttribute('data-target');
                     const input = document.getElementById(targetId);
+                    
                     if (input) {
-                        input.value = parseInt(input.value) + 1;
+                        const newVal = parseInt(input.value) + 1;
+                        
+                        // SINKRONISASI jika itu input penumpang penerbangan (OW, RT, MC)
+                        const isFlight = targetId.startsWith('flight') || targetId.startsWith('rt') || targetId.startsWith('mc');
+                        if (isFlight) {
+                            let type = '';
+                            if (targetId.includes('Adult')) type = 'Adult';
+                            if (targetId.includes('Child')) type = 'Child';
+                            if (targetId.includes('Infant')) type = 'Infant';
+                            
+                            if (type) {
+                                document.querySelectorAll(`input[id*="Adult"], input[id*="Child"], input[id*="Infant"]`).forEach(el => {
+                                    if ((el.id.startsWith('flight') || el.id.startsWith('rt') || el.id.startsWith('mc')) && el.id.includes(type)) {
+                                        el.value = newVal;
+                                    }
+                                });
+                            }
+                        } else {
+                            // Bukan tipe flight (Hotel, Tour, dll)
+                            input.value = newVal;
+                        }
                         updateAllSummaries();
                     }
                     return;
@@ -2573,20 +2581,39 @@
                     e.preventDefault(); e.stopPropagation();
                     const targetId = decBtn.getAttribute('data-target');
                     const input = document.getElementById(targetId);
+                    
                     if (input) {
                         let minValue = 0;
-                        if (targetId.includes('Adult') || targetId.includes('Room')) {
-                            minValue = 1; // Limit minimal untuk Dewasa / Kamar
-                        }
+                        if (targetId.includes('Adult') || targetId.includes('Room')) minValue = 1;
+
                         if (parseInt(input.value) > minValue) {
-                            input.value = parseInt(input.value) - 1;
+                            const newVal = parseInt(input.value) - 1;
+                            
+                            // SINKRONISASI
+                            const isFlight = targetId.startsWith('flight') || targetId.startsWith('rt') || targetId.startsWith('mc');
+                            if (isFlight) {
+                                let type = '';
+                                if (targetId.includes('Adult')) type = 'Adult';
+                                if (targetId.includes('Child')) type = 'Child';
+                                if (targetId.includes('Infant')) type = 'Infant';
+                                
+                                if (type) {
+                                    document.querySelectorAll(`input[id*="Adult"], input[id*="Child"], input[id*="Infant"]`).forEach(el => {
+                                        if ((el.id.startsWith('flight') || el.id.startsWith('rt') || el.id.startsWith('mc')) && el.id.includes(type)) {
+                                            el.value = newVal;
+                                        }
+                                    });
+                                }
+                            } else {
+                                input.value = newVal;
+                            }
                             updateAllSummaries();
                         }
                     }
                     return;
                 }
 
-                // Apply Button
+                // Apply Button (Tutup Dropdown)
                 const applyBtn = e.target.closest('.apply-btn');
                 if (applyBtn) {
                     e.preventDefault(); e.stopPropagation();
@@ -2598,57 +2625,104 @@
                 }
             });
 
+            // ==========================================
+            // MULTI-CITY LOGIC & ROW MANAGEMENT
+            // ==========================================
             const addFlightBtn = document.getElementById("addFlightBtn");
             const multiCityContainer = document.getElementById("multiCityContainer");
 
+            function updateMultiCityButtons() {
+                const rows = document.querySelectorAll(".multicity-row");
+                
+                // Handle Disable Remove Button (Minimum 1 baris)
+                rows.forEach((row) => {
+                    const btn = row.querySelector(".remove-row");
+                    if (rows.length === 1) { 
+                        btn.setAttribute("disabled", "true"); 
+                    } else { 
+                        btn.removeAttribute("disabled"); 
+                    }
+                });
+
+                // Handle Max 4 Penerbangan
+                if (rows.length >= 4) {
+                    addFlightBtn.style.display = "none";
+                } else {
+                    addFlightBtn.style.display = "inline-flex";
+                }
+            }
+
             if(addFlightBtn) {
                 addFlightBtn.addEventListener("click", () => {
-                    const rowCount = multiCityContainer.querySelectorAll(".multicity-row").length + 1;
+                    const rows = multiCityContainer.querySelectorAll(".multicity-row");
+                    if (rows.length >= 4) return; // Preventifikasi ganda
+
+                    // Ambil nilai passenger saat ini agar baris baru tersinkronisasi
+                    const currentAdult = document.getElementById('flightAdult') ? document.getElementById('flightAdult').value : "1";
+                    const currentChild = document.getElementById('flightChild') ? document.getElementById('flightChild').value : "0";
+                    const currentInfant = document.getElementById('flightInfant') ? document.getElementById('flightInfant').value : "0";
+                    
+                    const totalKids = parseInt(currentChild) + parseInt(currentInfant);
+                    const summaryText = totalKids > 0 ? `${currentAdult} Adult, ${totalKids} Child` : `${currentAdult} Adult, 0 Child`;
+
+                    // Generate ID Unik berdasarkan Timestamp / Panjang baris
+                    const uniqueId = Date.now();
+                    const rowCountLabel = rows.length + 1;
+                    
                     const newRow = document.createElement("div");
                     newRow.className = "row g-2 mb-2 multicity-row align-items-center";
                     newRow.innerHTML = `
                         <div class="col-lg-5 col-md-12">
                             <div class="search-box-item">
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Penerbangan ${rowCount}: Dari">
-                                    <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent ps-2 border-start" placeholder="Penerbangan ${rowCount}: Ke">
+                                    <div class="d-flex align-items-center flex-grow-1 position-relative pe-2">
+                                        <i class="bi bi-airplane-engines text-primary me-2"></i>
+                                        <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Penerbangan ${rowCountLabel}: Dari">
+                                    </div>
+                                    <div class="d-flex align-items-center flex-grow-1 position-relative ps-2 border-start">
+                                        <i class="bi bi-airplane-fill text-primary me-2"></i>
+                                        <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Penerbangan ${rowCountLabel}: Ke">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6">
                             <div class="search-box-item">
-                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Tanggal">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-calendar text-primary me-2"></i>
+                                    <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Tanggal">
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-6">
                             <div class="dropdown w-100">
                                 <div class="search-box-item cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                                    <div class="text-muted small mb-1">Passengers</div>
-                                    <div class="fw-bold small text-dark mc-travelers-summary">1 Adult</div>
+                                    <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Passengers</div>
+                                    <div class="fw-bold small text-dark travelers-summary-text mc-travelers-summary">${summaryText}</div>
                                 </div>
                                 <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100" style="min-width: 250px;">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <span class="small">Dewasa</span>
                                         <div class="input-group input-group-sm w-50">
-                                            <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcAdult${rowCount}">-</button>
-                                            <input type="text" id="mcAdult${rowCount}" class="form-control text-center fw-bold mc-input mc-adult bg-white" value="1" readonly>
-                                            <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcAdult${rowCount}">+</button>
+                                            <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcAdult${uniqueId}">-</button>
+                                            <input type="text" id="mcAdult${uniqueId}" class="form-control text-center fw-bold mc-input mc-adult bg-white" value="${currentAdult}" readonly>
+                                            <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcAdult${uniqueId}">+</button>
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <span class="small">Anak</span>
                                         <div class="input-group input-group-sm w-50">
-                                            <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcChild${rowCount}">-</button>
-                                            <input type="text" id="mcChild${rowCount}" class="form-control text-center fw-bold mc-input mc-child bg-white" value="0" readonly>
-                                            <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcChild${rowCount}">+</button>
+                                            <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcChild${uniqueId}">-</button>
+                                            <input type="text" id="mcChild${uniqueId}" class="form-control text-center fw-bold mc-input mc-child bg-white" value="${currentChild}" readonly>
+                                            <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcChild${uniqueId}">+</button>
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <span class="small">Bayi</span>
                                         <div class="input-group input-group-sm w-50">
-                                            <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcInfant${rowCount}">-</button>
-                                            <input type="text" id="mcInfant${rowCount}" class="form-control text-center fw-bold mc-input mc-infant bg-white" value="0" readonly>
-                                            <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcInfant${rowCount}">+</button>
+                                            <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcInfant${uniqueId}">-</button>
+                                            <input type="text" id="mcInfant${uniqueId}" class="form-control text-center fw-bold mc-input mc-infant bg-white" value="${currentInfant}" readonly>
+                                            <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcInfant${uniqueId}">+</button>
                                         </div>
                                     </div>
                                     <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
@@ -2663,40 +2737,31 @@
                     newRow.querySelectorAll(".autocomplete-input").forEach(input => setupTravelAutocomplete(input));
                     newRow.querySelector(".lazy-date").addEventListener("mouseover", loadFlatpickr, { once: true });
                     newRow.querySelector(".lazy-date").addEventListener("focus", loadFlatpickr, { once: true });
-                    updateRemoveButtons();
+                    updateMultiCityButtons();
                 });
             }
 
+            // Hapus baris Multi-city
             document.addEventListener("click", (e) => {
                 if (e.target.closest(".remove-row")) {
                     e.target.closest(".multicity-row").remove();
-                    updateRemoveButtons();
+                    updateMultiCityButtons();
                 }
             });
-
-            function updateRemoveButtons() {
-                const rows = document.querySelectorAll(".multicity-row");
-                rows.forEach((row) => {
-                    const btn = row.querySelector(".remove-row");
-                    if (rows.length === 1) { btn.setAttribute("disabled", "true"); } 
-                    else { btn.removeAttribute("disabled"); }
-                });
-            }
+            // Initial call to set limit button constraint
+            updateMultiCityButtons();
 
             // Sync Desktop & Mobile Currency buttons
             document.querySelectorAll(".currency-option").forEach(btn => {
                 btn.addEventListener("click", (e) => {
                     const txt = e.target.textContent;
                     
-                    // Update Desktop Header
                     const deskBtn = document.getElementById("selectedCurrencyBtnDesk");
                     if (deskBtn) deskBtn.innerHTML = `<i class="bi bi-coin text-warning"></i> ${txt}`;
                     
-                    // Update Mobile Header Text
                     const mobCurrencyTxt = document.getElementById("mobCurrText");
                     if (mobCurrencyTxt) mobCurrencyTxt.textContent = txt.split(' ')[0];
                     
-                    // Hide Modal (Checking which modal is open)
                     const currModal = bootstrap.Modal.getInstance(document.getElementById('currencyModal'));
                     if (currModal) currModal.hide();
                     const mobSettingsModal = bootstrap.Modal.getInstance(document.getElementById('mobileSettingsModal'));
@@ -2708,19 +2773,15 @@
                 btn.addEventListener("click", (e) => {
                     const txt = e.target.textContent;
 
-                    // Update Desktop Header
                     const deskBtn = document.getElementById("selectedLangBtnDesk");
                     if (deskBtn) deskBtn.innerHTML = `<i class="bi bi-globe text-info"></i> ${txt}`;
                     
-                    // Update Mobile Header Text
                     const mobLangTxt = document.getElementById("mobLangText");
-                    // Extract code in parenthesis e.g., "English (EN)" -> "EN"
                     const langCode = txt.match(/\(([^)]+)\)/);
                     if (mobLangTxt && langCode) {
                         mobLangTxt.textContent = langCode[1];
                     }
 
-                    // Hide Modal
                     const langModal = bootstrap.Modal.getInstance(document.getElementById('langModal'));
                     if (langModal) langModal.hide();
                     const mobSettingsModal = bootstrap.Modal.getInstance(document.getElementById('mobileSettingsModal'));
