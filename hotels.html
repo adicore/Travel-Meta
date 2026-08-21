@@ -860,6 +860,41 @@
         </div>
     </div>
 
+    <!-- MOBILE BOTTOM NAVIGATION (Muncul hanya di Mobile/Tablet) -->
+    <nav class="mobile-bottom-nav d-lg-none d-flex justify-content-between align-items-center py-2 position-fixed bottom-0 w-100 shadow-lg" style="z-index: 1075;">
+        
+        <!-- Menu 1: Flight -->
+        <a href="flights.html" class="text-decoration-none d-flex flex-column align-items-center nav-item">
+            <i class="bi bi-airplane nav-icon"></i>
+            <span class="nav-text">Flight</span>
+        </a>
+
+        <!-- Menu 2: Hotel (Contoh kondisi Aktif) -->
+        <a href="hotels.html" class="text-decoration-none d-flex flex-column align-items-center nav-item active">
+            <i class="bi bi-building nav-icon"></i>
+            <span class="nav-text">Hotel</span>
+        </a>
+
+        <!-- Menu 3: Booking -->
+        <a href="#" class="text-decoration-none d-flex flex-column align-items-center nav-item">
+            <i class="bi bi-ticket-perforated nav-icon"></i>
+            <span class="nav-text">Booking</span>
+        </a>
+
+        <!-- Menu 4: Save -->
+        <a href="#" class="text-decoration-none d-flex flex-column align-items-center nav-item">
+            <i class="bi bi-heart nav-icon"></i>
+            <span class="nav-text">Save</span>
+        </a>
+
+        <!-- Menu 5: Login -->
+        <a href="#" class="text-decoration-none d-flex flex-column align-items-center nav-item" data-bs-toggle="modal" data-bs-target="#loginModal">
+            <i class="bi bi-box-arrow-in-right nav-icon"></i>
+            <span class="nav-text">Login</span>
+        </a>
+        
+    </nav>
+
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer fetchpriority="low"></script>
     

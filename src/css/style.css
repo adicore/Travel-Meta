@@ -242,3 +242,45 @@
         .social-btn:hover { background: #38bdf8; color: #ffffff; transform: translateY(-3px) scale(1.08); }
         .footer-badge-green { width: 82px; height: 82px; border-radius: 50%; background-color: #00b050; color: #ffffff; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 0.55rem; font-weight: 700; padding: 6px; }
         .footer-badge-red { width: 82px; height: 82px; border-radius: 50%; background-color: #ed1c24; color: #ffffff; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 0.55rem; font-weight: 700; padding: 6px; }
+
+        /* ==========================================================
+   MOBILE BOTTOM NAVIGATION
+   ========================================================== */
+.mobile-bottom-nav {
+    background-color: #f1f5f9; /* Warna latar sedikit abu-abu sesuai gambar */
+    padding-bottom: env(safe-area-inset-bottom); /* Jarak aman untuk iPhone layar penuh */
+    border-top: 1px solid #e2e8f0;
+}
+
+.mobile-bottom-nav .nav-item {
+    color: #64748b; /* Warna abu-abu slate untuk menu tidak aktif */
+    transition: all 0.2s ease-in-out;
+    width: 20%; /* Membagi rata 5 menu */
+}
+
+.mobile-bottom-nav .nav-item .nav-icon {
+    font-size: 1.35rem; /* Ukuran ikon proporsional */
+    margin-bottom: 2px;
+}
+
+.mobile-bottom-nav .nav-item .nav-text {
+    font-size: 0.65rem;
+    font-weight: 600;
+}
+
+/* Warna aktif untuk menu yang sedang dibuka */
+.mobile-bottom-nav .nav-item.active {
+    color: #0284c7; /* Warna biru sesuai gambar */
+}
+
+/* Mencegah konten website tertutup oleh navigasi bawah di HP */
+@media (max-width: 991.98px) {
+    body {
+        padding-bottom: 65px; /* Memberikan ruang ekstra di bagian paling bawah halaman */
+    }
+    
+    /* Naikkan sedikit tombol Back to Top agar tidak bertumpuk dengan navigasi */
+    #backToTopBtn {
+        bottom: 80px !important; 
+    }
+}
