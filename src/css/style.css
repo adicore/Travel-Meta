@@ -326,3 +326,32 @@ img, video, iframe, canvas {
         bottom: 80px !important; 
     }
 }
+
+/* ==========================================================
+   FIX BUG: RESPONSIVE MOBILE MODAL (CURRENCY & LANG)
+   ========================================================== */
+
+/* Membuat teks tombol menyesuaikan ukuran layar secara elastis (Fluid Typography) */
+.responsive-modal-btn {
+    font-size: clamp(0.7rem, 2.8vw, 0.9rem) !important; /* Terkecil 0.7rem, Ideal 2.8vw, Maksimal 0.9rem */
+    padding: 0.5rem 0.25rem !important;
+    white-space: normal; /* Mengizinkan teks turun ke baris baru jika terlalu panjang */
+    word-wrap: break-word;
+    height: 100%; /* Memastikan tinggi tombol sejajar meskipun jumlah baris teks berbeda */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Memastikan modal tidak memanjang melebihi batas layar HP */
+@media (max-width: 575.98px) {
+    #mobileSettingsModal .modal-content {
+        max-height: 85vh; /* Maksimal tinggi modal adalah 85% dari tinggi layar HP */
+        overflow: hidden; 
+    }
+    
+    .mobile-modal-scrollable {
+        overflow-y: auto; /* Mengaktifkan scroll vertikal di dalam popup jika layarnya sangat pendek */
+        -webkit-overflow-scrolling: touch; /* Scroll yang halus untuk iPhone */
+    }
+}
