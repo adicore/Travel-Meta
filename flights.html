@@ -1,0 +1,2376 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelMeta - Flight Search</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans & Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" fetchpriority="high">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin fetchpriority="high">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet" fetchpriority="high">
+    
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" fetchpriority="high">
+    
+    <!-- Bootstrap Icons CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" fetchpriority="low">
+    
+    <!-- Lazysizes JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async fetchpriority="high"></script>
+
+    <style>
+        /* OVERRIDE BOOTSTRAP ICONS FONT-FACE UNTUK MENAMBAHKAN FONT-DISPLAY: SWAP */
+        @font-face {
+            font-family: "bootstrap-icons";
+            src: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff2?856008caa5eb66df68595e734e59580d") format("woff2"),
+                 url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff?856008caa5eb66df68595e734e59580d") format("woff");
+            font-display: swap;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 50%, #0f172a 100%);
+            --button-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --card-hover-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body { 
+            font-family: 'Plus Jakarta Sans', 'Poppins', sans-serif !important; 
+            font-display: swap; 
+            background-color: #f8fafc !important;
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+
+        header.sticky-top { z-index: 1070 !important; }
+        .offcanvas { z-index: 1080 !important; } 
+        .cursor-pointer { cursor: pointer; }
+        
+        .hamburger-icon { display: flex; flex-direction: column; justify-content: space-around; width: 22px; height: 18px; }
+        .hamburger-icon span { display: block; height: 2px; width: 100%; background-color: #1e293b; border-radius: 2px; transition: all 0.3s; }
+        .hamburger-icon span:nth-child(2) { width: 70%; }
+
+        /* HEADER LOGO RESPONSIVE */
+        .logo-icon-box { width: 38px; height: 38px; font-size: 1.25rem; }
+        
+        /* RESPONSIVE MOBILE MODIFICATIONS */
+        @media (max-width: 575.98px) {
+            .logo-icon-box { width: 32px; height: 32px; font-size: 1rem; }
+            .header-mobile-actions { gap: 0.5rem !important; }
+            
+            /* Modal Mobile Positioning & Font Size */
+            .mobile-modal-top { margin-top: 1rem !important; align-items: flex-start !important; }
+            .mobile-modal-text { font-size: 0.8rem !important; padding: 0.4rem 0.5rem !important; }
+            .mobile-modal-title { font-size: 1.1rem !important; }
+            
+            /* Cabin class dropdown full width on mobile */
+            .cabin-dropdown-mobile { width: 100% !important; justify-content: space-between !important; }
+        }
+
+        /* LAZYSIZES EFFECT */
+        .lazy-effect {
+            opacity: 0.3; filter: blur(10px);
+            transition: opacity 0.8s ease-in-out, filter 0.8s ease-in-out, transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            will-change: opacity, filter, transform;
+        }
+        .lazy-effect.lazyloaded { opacity: 1; filter: blur(0px); }
+
+        /* SKELETON LOADER CSS */
+        .skeleton {
+            background: #e2e8f0;
+            background: linear-gradient(90deg, #e2e8f0 25%, #cbd5e1 50%, #e2e8f0 75%);
+            background-size: 200% 100%; animation: skeleton-loading 1.5s infinite; border-radius: 6px;
+        }
+        @keyframes skeleton-loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        .skeleton-text { height: 16px; margin-bottom: 8px; width: 100%; }
+        .skeleton-text.short { width: 60%; }
+        .skeleton-img-box { height: 200px; width: 100%; border-radius: 1rem 1rem 0 0; }
+
+        .search-card { 
+            z-index: 10; position: relative; 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1) !important; border-radius: 24px !important;
+        }
+
+        /* SCROLL REVEAL */
+        .scroll-reveal {
+            opacity: 0; transform: translateY(35px);
+            transition: opacity 0.9s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.9s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* MENU DROPDOWN & MEGA MENU ANIMATION */
+        .dropdown-menu {
+            display: block; opacity: 0; visibility: hidden; transform: translateY(12px);
+            transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1); margin-top: 0px; pointer-events: none;
+        }
+        @media (min-width: 992px) {
+            .navbar .dropdown:hover > .dropdown-menu, 
+            .navbar .dropdown-menu:hover {
+                opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto;
+            }
+            .mega-menu {
+                width: 700px; left: 50% !important; transform: translateX(-50%) translateY(12px) !important; padding: 24px !important;
+            }
+            .navbar .dropdown:hover > .mega-menu { transform: translateX(-50%) translateY(0) !important; }
+        }
+        
+        .dropdown-menu.show {
+            opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important;
+        }
+
+        /* ABOUT IMAGES RESPONSIVE CSS */
+        .about-img-container { position: relative; height: 380px; display: flex; justify-content: center; align-items: center; }
+        .about-img-item { position: absolute; border-radius: 1rem; overflow: hidden; border: 3px solid white; box-shadow: 0 1rem 3rem rgba(0,0,0,0.175); transition: all 0.3s ease; }
+        .about-img-1 { width: 200px; height: 320px; transform: rotate(-8deg) translateX(-80px); z-index: 1; }
+        .about-img-2 { width: 210px; height: 340px; transform: translateY(-10px); z-index: 3; }
+        .about-img-3 { width: 200px; height: 320px; transform: rotate(8deg) translateX(80px); z-index: 2; }
+        
+        @media (max-width: 767.98px) {
+            .about-img-container { height: 280px; }
+            .about-img-1 { width: 140px; height: 220px; transform: rotate(-8deg) translateX(-50px); }
+            .about-img-2 { width: 150px; height: 240px; transform: translateY(-5px); }
+            .about-img-3 { width: 140px; height: 220px; transform: rotate(8deg) translateX(50px); }
+        }
+        @media (max-width: 575.98px) {
+            .about-img-container { height: 240px; }
+            .about-img-1 { width: 110px; height: 180px; transform: rotate(-8deg) translateX(-40px); }
+            .about-img-2 { width: 120px; height: 190px; transform: translateY(0px); }
+            .about-img-3 { width: 110px; height: 180px; transform: rotate(8deg) translateX(40px); }
+            
+            .search-box-item { padding: 10px 14px; min-height: 64px; }
+            .search-action-btn { min-height: 64px !important; }
+        }
+        @media (max-width: 400px) {
+            .about-img-container { height: 200px; }
+            .about-img-1 { width: 90px; height: 150px; transform: rotate(-8deg) translateX(-30px); }
+            .about-img-2 { width: 100px; height: 160px; transform: translateY(0px); }
+            .about-img-3 { width: 90px; height: 150px; transform: rotate(8deg) translateX(30px); }
+        }
+
+        /* SCROLL HORIZONTAL HIDDEN SCROLLBAR */
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* TITLE & BUTTON EFFECTS */
+        h1, h2, .display-6, .display-5, .display-3, .hero-title {
+            background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            transition: transform 0.3s ease, filter 0.3s ease;
+            font-weight: 900 !important;
+        }
+        h3, h4 { font-weight: 800 !important; background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        h1:hover, h2:hover, h3:hover, h4:hover { filter: brightness(1.1); }
+        .modern-footer h5, .modern-footer h6, .modern-footer a.navbar-brand, .text-white h2, .text-white h1, .hero-title, .flight-hero-title {
+            background: none !important; -webkit-text-fill-color: #ffffff !important;
+        }
+        a, .btn, .btn-primary, .btn-gradient, .btn-dark, .btn-outline-primary, .btn-outline-dark, .btn-outline-danger { text-shadow: none !important; }
+
+        .btn, .btn-primary, .btn-gradient, .btn-dark {
+            position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+        }
+        .btn::after, .btn-primary::after, .btn-gradient::after, .btn-dark::after {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(30deg) translateX(-100%); transition: transform 0.6s ease; pointer-events: none;
+        }
+        .btn:hover::after, .btn-primary:hover::after, .btn-gradient:hover::after, .btn-dark:hover::after { transform: rotate(30deg) translateX(100%); }
+        .btn:hover { color: #ffffff !important; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(37, 99, 235, 0.45); }
+
+        .image-shimmer-effect { position: relative; overflow: hidden; display: block; width: 100%; height: 100%; }
+        .image-shimmer-effect img { width: 100%; height: 100%; object-fit: cover; }
+        .image-shimmer-effect::after {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(30deg) translateX(-100%); transition: transform 0.75s cubic-bezier(0.165, 0.84, 0.44, 1); pointer-events: none; z-index: 5;
+        }
+        .image-shimmer-effect:hover::after { transform: rotate(30deg) translateX(100%); }
+        .image-shimmer-effect:hover img.lazyloaded { transform: scale(1.06); filter: brightness(1.03); }
+
+        a { transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        a:hover, a:focus { color: #38bdf8 !important; transform: translateX(2px); }
+
+        .card-hover { transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); box-shadow: var(--card-shadow); border: 1px solid rgba(226, 232, 240, 0.8); overflow: hidden; }
+        .card-hover:hover { transform: translateY(-6px); box-shadow: var(--card-hover-shadow)!important; border-color: rgba(59, 130, 246, 0.3); }
+        
+        .nav-pills .nav-link { color: #475569; background-color: #f1f5f9; font-weight: 600; transition: all 0.3s ease; border-radius: 50rem !important; }
+        .nav-pills .nav-link.active { color: #fff !important; background: var(--button-gradient) !important; box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35); }
+        
+        /* EFEK SKELETON SAAT HOVER PADA TAB BUTTON */
+        .nav-pills .nav-link:hover {
+            background: linear-gradient(90deg, #e2e8f0 25%, #cbd5e1 50%, #e2e8f0 75%) !important;
+            background-size: 200% 100% !important;
+            animation: skeleton-loading 1.5s infinite !important;
+            color: #1e293b !important; /* Diperbarui agar teks tetap terlihat */
+            box-shadow: none !important;
+        }
+
+        /* DROPDOWN CUSTOM CLASS CABIN */
+        .custom-dropdown-toggle::after { display: none !important; }
+        .arrow-icon { transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .custom-dropdown-toggle.show .arrow-icon { transform: rotate(180deg); }
+
+        .search-box-item { border: 1px solid #cbd5e1; border-radius: 16px; background: #fff; padding: 12px 16px; transition: all 0.3s ease; box-shadow: 0 2px 6px rgba(0,0,0,0.01); min-height: 72px; display: flex; flex-direction: column; justify-content: center; }
+        .search-box-item:focus-within { border-color: #2563eb; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15); background-color: #fff; }
+
+        .autocomplete-suggestions { position: absolute; top: 108%; left: 0; right: 0; z-index: 1080; background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; max-height: 260px; overflow-y: auto; box-shadow: 0 20px 30px rgba(0,0,0,0.08); }
+        .autocomplete-suggestion-item { padding: 12px 16px; cursor: pointer; font-size: 0.9rem; border-bottom: 1px solid #f1f5f9; transition: background 0.2s; }
+        .autocomplete-suggestion-item:hover { background-color: #f8fafc; }
+
+        /* VANILLA CAROUSEL CSS */
+        .vanilla-carousel { position: relative; overflow: hidden; width: 100%; max-width: 100%; touch-action: pan-y; }
+        .vc-track { display: flex; transition: transform .4s ease-in-out; will-change: transform; cursor: grab; user-select: none; }
+        .vc-track:active { cursor: grabbing; }
+        .vc-item { flex-shrink: 0; padding: 0 10px; box-sizing: border-box; }
+        .vc-item img { width: 100%; height: auto; display: block; object-fit: cover; pointer-events: none; }
+        .vc-item .card-item { width: 100%; box-sizing: border-box; overflow: hidden; }
+        .vc-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: #fff; color: #333; border: 1px solid #e5e5e5; border-radius: 50%; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: opacity .3s ease, visibility .3s ease, background .3s ease, transform .3s ease, border-color .3s ease; opacity: 1; visibility: visible; }
+        .vc-nav.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .vc-nav:hover { background: #007bff; color: #fff; border-color: #007bff; box-shadow: 0 6px 12px rgba(0,123,255,0.2); }
+        .vc-prev { left: 10px; }
+        .vc-next { right: 10px; }
+        .vc-nav svg { width: 20px; height: 20px; stroke: currentColor; }
+        .vc-dots { display: flex; justify-content: center; gap: 8px; margin-top: 15px; }
+        .vc-dot { width: 12px; height: 12px; background: #ccc; border-radius: 50%; cursor: pointer; transition: background .3s ease; }
+        .vc-dot.active { background: #007bff; }
+
+        /* BACK TO TOP */
+        #backToTopBtn { opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); z-index: 1080; }
+        #backToTopBtn.show { opacity: 1; visibility: visible; }
+
+        /* FOOTER */
+        .modern-footer { background-color: #000000 !important; color: #ffffff !important; font-family: 'Plus Jakarta Sans', sans-serif !important; }
+        .modern-footer h5, .modern-footer h6 { color: #ffffff !important; }
+        .modern-footer p { color: #d1d5db !important; font-size: 0.9rem; line-height: 1.6; }
+        .footer-link { color: #d1d5db !important; text-decoration: none; font-size: 0.92rem; font-weight: 400; }
+        .footer-link:hover { color: #ffffff !important; transform: translateX(4px); }
+        .social-btn { width: 38px; height: 38px; background: #ffffff; color: #000000; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none; }
+        .social-btn:hover { background: #38bdf8; color: #ffffff; transform: translateY(-3px) scale(1.08); }
+        .footer-badge-green { width: 82px; height: 82px; border-radius: 50%; background-color: #00b050; color: #ffffff; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 0.55rem; font-weight: 700; padding: 6px; }
+        .footer-badge-red { width: 82px; height: 82px; border-radius: 50%; background-color: #ed1c24; color: #ffffff; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 0.55rem; font-weight: 700; padding: 6px; }
+    </style>
+</head>
+<body class="bg-light">
+
+    <!-- 1. MODERN HEADER & NAVIGATION -->
+    <header class="bg-white sticky-top shadow-sm scroll-reveal">
+        <div class="border-bottom py-2 bg-white small d-none d-lg-block">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="text-secondary d-flex align-items-center gap-1">
+                    <span class="text-warning">★</span> 
+                    <span class="fw-bold text-dark">4.9 Rated</span> by <strong class="text-dark">10,000+</strong> Travelers Worldwide.
+                </div>
+                <div class="d-flex align-items-center gap-3 text-secondary">
+                    <button id="selectedCurrencyBtnDesk" class="btn btn-sm btn-light border py-1 px-3 fw-semibold rounded-pill d-flex align-items-center gap-1 shadow-sm" type="button" data-bs-toggle="modal" data-bs-target="#currencyModal">
+                        <i class="bi bi-coin text-warning"></i> USD ($)
+                    </button>
+                    <button id="selectedLangBtnDesk" class="btn btn-sm btn-light border py-1 px-3 fw-semibold rounded-pill d-flex align-items-center gap-1 shadow-sm" type="button" data-bs-toggle="modal" data-bs-target="#langModal">
+                        <i class="bi bi-globe text-info"></i> English (EN)
+                    </button>
+                    <a href="#" class="text-secondary text-decoration-none px-1" title="Cart"><i class="bi bi-cart3 fs-6"></i></a>
+                    <a href="#" class="text-secondary text-decoration-none px-1" title="Profile"><i class="bi bi-person-circle fs-5"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg navbar-light py-2 py-lg-3">
+            <div class="container d-flex justify-content-between align-items-center">
+                <a class="navbar-brand fw-bold fs-5 fs-lg-4 text-dark d-flex align-items-center gap-2 text-decoration-none m-0" href="#">
+                    <div class="logo-icon-box bg-primary text-white rounded-3 d-flex align-items-center justify-content-center shadow-sm">
+                        <i class="bi bi-airplane-engines"></i>
+                    </div>
+                    TravelMeta
+                </a>
+
+                <div class="d-flex align-items-center gap-2 gap-sm-3 d-lg-none header-mobile-actions">
+                    <div class="d-flex align-items-center gap-1 cursor-pointer bg-light px-2 py-1 rounded-pill border shadow-sm" data-bs-toggle="modal" data-bs-target="#mobileSettingsModal" title="Language & Currency">
+                        <i class="bi bi-globe-americas fs-6 text-dark ms-1"></i>
+                        <span class="fw-bold text-dark small me-1" style="font-size: 0.75rem;">
+                            <span id="mobLangText">EN</span> • <span id="mobCurrText">USD</span>
+                        </span>
+                    </div>
+                    <a href="#" class="text-dark text-decoration-none"><i class="bi bi-person-circle fs-4"></i></a>
+                    <button class="btn btn-white bg-white border shadow-sm rounded-3 p-2 d-flex align-items-center justify-content-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMobileMenu" style="width: 42px; height: 42px;">
+                        <div class="hamburger-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="collapse navbar-collapse d-none d-lg-flex justify-content-end" id="navbarNavDesk">
+                    <ul class="navbar-nav mx-auto align-items-center gap-3">
+                        <li class="nav-item"><a class="nav-link text-primary fw-semibold" href="#">Home</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button" data-bs-toggle="dropdown">Destination</a>
+                            <div class="dropdown-menu shadow-lg rounded-4 p-4 mega-menu">
+                                <div class="row g-4">
+                                    <div class="col-md-4">
+                                        <h6 class="fw-bold text-primary mb-3"><i class="bi bi-globe-americas me-1"></i> Amerika</h6>
+                                        <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">New York (NYC)</a></li>
+                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">Los Angeles (LAX)</a></li>
+                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">Toronto (YYZ)</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h6 class="fw-bold text-primary mb-3"><i class="bi bi-globe-europe-africa me-1"></i> Eropa</h6>
+                                        <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">Paris (PAR)</a></li>
+                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">London (LON)</a></li>
+                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">Rome (ROM)</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h6 class="fw-bold text-primary mb-3"><i class="bi bi-globe-asia-australia me-1"></i> Asia</h6>
+                                        <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">Singapura (SIN)</a></li>
+                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">Tokyo (TYO)</a></li>
+                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">Bangkok (BKK)</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button" data-bs-toggle="dropdown">Pages</a>
+                            <ul class="dropdown-menu shadow-lg rounded-4 p-2" style="width: 220px;">
+                                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="#offers"><i class="bi bi-tag text-primary me-2"></i> Discounts & Offers</a></li>
+                                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="#about"><i class="bi bi-building text-primary me-2"></i> About Us</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="#about">Holidays</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="#footer">Contact</a></li>
+                    </ul>
+
+                    <div class="d-flex align-items-center gap-3">
+                        <a href="#" class="btn btn-outline-primary rounded-pill px-3 py-2 small fw-semibold d-flex align-items-center gap-2 border-2 text-decoration-none">
+                            <i class="bi bi-robot"></i> Plan with AI
+                        </a>
+                        <a href="https://whatsapp.com" target="_blank" class="btn btn-primary rounded-pill px-4 py-2 small fw-semibold d-flex align-items-center gap-2 text-decoration-none">
+                            <i class="bi bi-whatsapp fs-6"></i> +44-800 123 456
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="container d-lg-none mt-2 pt-3 border-top d-flex justify-content-between align-items-center flex-nowrap">
+                <div class="text-secondary small d-flex align-items-start gap-1 flex-grow-1 pe-2">
+                    <span class="text-warning fs-6 lh-1" style="margin-top: 1px;">★</span> 
+                    <span class="fw-medium text-dark lh-sm" style="font-size: 0.8rem;">
+                        <span class="text-primary fw-bold">4.9 Rated</span> by <strong class="text-dark">10,000+</strong> Travelers.
+                    </span>
+                </div>
+                <a href="#" class="text-dark text-decoration-none flex-shrink-0"><i class="bi bi-cart3 fs-4"></i></a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MOBILE OFFCANVAS SIDE MENU -->
+    <div class="offcanvas offcanvas-start border-0 shadow-lg d-lg-none w-100" tabindex="-1" id="offcanvasMobileMenu">
+        <div class="offcanvas-header py-4 px-4 border-bottom border-light d-flex justify-content-between align-items-center w-100">
+            <a class="fw-bold fs-4 text-dark d-flex align-items-center gap-2 text-decoration-none m-0" href="#">
+                <div class="bg-primary text-white p-2 rounded-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 32px; height: 32px;">
+                    <i class="bi bi-airplane-engines fs-6"></i>
+                </div>
+                TravelMeta
+            </a>
+            <button type="button" class="btn btn-white bg-white border rounded-3 px-2 py-1 shadow-sm d-flex align-items-center justify-content-center ms-auto" data-bs-dismiss="offcanvas" style="width: 36px; height: 36px;">
+                <i class="bi bi-x-lg fs-5"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body p-4 d-flex flex-column bg-white">
+            <ul class="list-unstyled d-flex flex-column gap-3 fw-semibold text-dark mb-auto" style="font-size: 1.05rem;">
+                <li><a href="#" class="text-primary text-decoration-none d-block py-2">Home</a></li>
+                <li>
+                    <div class="d-flex justify-content-between align-items-center py-2" data-bs-toggle="collapse" data-bs-target="#mobileDestCollapse">
+                        <span class="text-primary cursor-pointer">Destination</span>
+                        <i class="bi bi-plus-lg text-primary fs-5 cursor-pointer"></i>
+                    </div>
+                    <div class="collapse" id="mobileDestCollapse">
+                        <ul class="list-unstyled ps-3 mt-1 d-flex flex-column gap-3 small fw-normal">
+                            <li><a href="#best-deals" class="text-secondary text-decoration-none d-block">Amerika</a></li>
+                            <li><a href="#best-deals" class="text-secondary text-decoration-none d-block">Eropa</a></li>
+                            <li><a href="#best-deals" class="text-secondary text-decoration-none d-block">Asia</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="d-flex justify-content-between align-items-center py-2" data-bs-toggle="collapse" data-bs-target="#mobilePagesCollapse">
+                        <span class="text-dark cursor-pointer">Pages</span>
+                        <i class="bi bi-plus-lg text-dark fs-5 cursor-pointer"></i>
+                    </div>
+                    <div class="collapse" id="mobilePagesCollapse">
+                        <ul class="list-unstyled ps-3 mt-1 d-flex flex-column gap-3 small fw-normal">
+                            <li><a href="#offers" class="text-secondary text-decoration-none d-block">Discounts & Offers</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="#about" class="text-dark text-decoration-none d-block py-2">Holidays</a></li>
+                <li><a href="#footer" class="text-dark text-decoration-none d-block py-2">Contact</a></li>
+            </ul>
+
+            <div class="mt-5 d-flex flex-column gap-3">
+                <a href="#" class="btn btn-outline-primary rounded-pill py-3 fw-semibold d-flex align-items-center justify-content-center gap-2 border-2">
+                    <i class="bi bi-robot fs-5"></i> Plan with AI
+                </a>
+                <a href="https://whatsapp.com" target="_blank" class="btn btn-primary rounded-pill py-3 fw-semibold d-flex align-items-center justify-content-center gap-2 shadow-sm text-white border-0" style="background-color: #0d6efd;">
+                    <i class="bi bi-whatsapp fs-5 text-white"></i> +44-800 123 456
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. HERO FOR FLIGHT PAGE ONLY -->
+    <div class="position-relative pt-5 pb-5 mt-0 scroll-reveal" style="background: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat; min-height: 480px;">
+        <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(37, 99, 235, 0.6) 100%);"></div>
+        <div class="container position-relative z-2 pt-4 pb-5 text-center text-white">
+            <span class="badge bg-primary bg-opacity-75 backdrop-blur mb-3 px-3 py-2 rounded-pill fw-semibold shadow-sm">Tiket Pesawat Spesial</span>
+            <h1 class="display-4 fw-bold flight-hero-title mb-3">Terbang Lebih Jauh, Bayar Lebih Murah</h1>
+            <p class="lead text-white-50 mb-4 mx-auto" style="max-width: 700px;">Bandingkan harga tiket penerbangan dari ratusan maskapai secara instan dan temukan penawaran terbaik untuk perjalanan Anda berikutnya.</p>
+        </div>
+    </div>
+
+    <!-- 4. ADVANCED SEARCH BOX WIDGET (Hanya Penerbangan) -->
+    <div class="container search-card scroll-reveal" style="margin-top: -100px;">
+        <div class="card border-0 p-3 p-lg-4 bg-white">
+            <div id="flightSearchTab">
+                
+                <!-- FLIGHT TYPES & CABIN DROPDOWN (Flex-column untuk mobile agar Tab diatas Cabin) -->
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+                    <div class="overflow-hidden border border-light rounded-pill p-1 shadow-sm w-100 w-md-auto" style="max-width: 100%;">
+                        <div class="d-flex overflow-x-auto hide-scroll">
+                            <ul class="nav nav-pills gap-1 small flex-nowrap" role="tablist">
+                                <li class="nav-item flex-fill"><button class="nav-link active rounded-pill px-3 py-1 text-nowrap w-100 text-center" data-bs-toggle="tab" data-bs-target="#oneWay">One-way</button></li>
+                                <li class="nav-item flex-fill"><button class="nav-link rounded-pill px-3 py-1 text-dark text-nowrap w-100 text-center" data-bs-toggle="tab" data-bs-target="#roundTrip">Roundtrip</button></li>
+                                <li class="nav-item flex-fill"><button class="nav-link rounded-pill px-3 py-1 text-dark text-nowrap w-100 text-center" data-bs-toggle="tab" data-bs-target="#multiCity">Multi-city</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown align-self-start align-self-md-auto w-100 w-md-auto">
+                        <button class="btn btn-light btn-sm custom-dropdown-toggle rounded-pill px-3 py-2 border text-primary fw-semibold shadow-sm d-flex align-items-center justify-content-between cabin-dropdown-mobile" type="button" data-bs-toggle="dropdown">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="bi bi-star-fill text-warning" style="font-size: 0.75rem;"></i>
+                                <span id="cabinClassDropdownBtn">Economy</span>
+                            </div>
+                            <i class="bi bi-chevron-down arrow-icon text-dark ms-2" style="font-size: 0.8rem; -webkit-text-stroke: 1px;"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-4 p-2 w-100">
+                            <li><a class="dropdown-item cabin-option rounded-3 py-2 text-dark" href="#" data-cabin="Economy">Economy</a></li>
+                            <li><a class="dropdown-item cabin-option rounded-3 py-2 text-dark" href="#" data-cabin="Premium Economy">Premium Economy</a></li>
+                            <li><a class="dropdown-item cabin-option rounded-3 py-2 text-dark" href="#" data-cabin="Business">Business</a></li>
+                            <li><a class="dropdown-item cabin-option rounded-3 py-2 text-dark" href="#" data-cabin="First Class">First Class</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="tab-content">
+                    <!-- FLIGHT ONE WAY -->
+                    <div class="tab-pane fade show active" id="oneWay">
+                        <div class="row g-2 align-items-center">
+                            <div class="col-lg-4 col-md-12">
+                                <div class="search-box-item position-relative">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="flex-grow-1 position-relative pe-2">
+                                            <div class="text-muted small mb-1"><i class="bi bi-airplane-engines text-primary me-1"></i> Leaving From</div>
+                                            <input type="text" id="owOrigin" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Detecting location...">
+                                        </div>
+                                        <button class="btn btn-light btn-sm rounded-circle border shadow-sm d-flex align-items-center justify-content-center swap-inputs-btn flex-shrink-0" style="width: 32px; height: 32px;" type="button" title="Tukar">
+                                            <i class="bi bi-arrow-left-right text-secondary"></i>
+                                        </button>
+                                        <div class="flex-grow-1 position-relative ps-3 border-start">
+                                            <div class="text-muted small mb-1"><i class="bi bi-airplane-fill text-primary me-1"></i> Going To</div>
+                                            <input type="text" id="owDest" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Destination">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6">
+                                <div class="search-box-item">
+                                    <div class="text-muted small mb-1"><i class="bi bi-calendar text-primary me-1"></i> Departure</div>
+                                    <input type="text" id="owDepDate" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Pilih Tanggal">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="dropdown w-100">
+                                    <div class="search-box-item cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                        <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Travelers</div>
+                                        <div class="fw-bold small text-dark travelers-summary-text">1 Adult, 0 Child</div>
+                                    </div>
+                                    <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100" style="min-width: 280px;">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="small">Dewasa (12+)</span>
+                                            <div class="input-group input-group-sm w-50">
+                                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightAdult">-</button>
+                                                <input type="text" id="flightAdult" class="form-control text-center fw-bold bg-white" value="1" readonly>
+                                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightAdult">+</button>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="small">Anak (2-11)</span>
+                                            <div class="input-group input-group-sm w-50">
+                                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightChild">-</button>
+                                                <input type="text" id="flightChild" class="form-control text-center fw-bold bg-white" value="0" readonly>
+                                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightChild">+</button>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <span class="small">Bayi (&lt;2)</span>
+                                            <div class="input-group input-group-sm w-50">
+                                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightInfant">-</button>
+                                                <input type="text" id="flightInfant" class="form-control text-center fw-bold bg-white" value="0" readonly>
+                                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightInfant">+</button>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-12">
+                                <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="min-height: 72px;">Search</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FLIGHT ROUND TRIP -->
+                    <div class="tab-pane fade" id="roundTrip">
+                        <div class="row g-2 align-items-center">
+                            <div class="col-lg-3 col-md-12">
+                                <div class="search-box-item position-relative">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="flex-grow-1 position-relative pe-1">
+                                            <div class="text-muted small mb-1"><i class="bi bi-airplane-engines text-primary me-1"></i> From</div>
+                                            <input type="text" id="rtOrigin" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Origin">
+                                        </div>
+                                        <button class="btn btn-light btn-sm rounded-circle border shadow-sm d-flex align-items-center justify-content-center swap-inputs-btn flex-shrink-0" style="width: 30px; height: 30px;" type="button"><i class="bi bi-arrow-left-right text-secondary"></i></button>
+                                        <div class="flex-grow-1 position-relative ps-2 border-start">
+                                            <div class="text-muted small mb-1"><i class="bi bi-airplane-fill text-primary me-1"></i> To</div>
+                                            <input type="text" id="rtDest" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Destination">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6">
+                                <div class="search-box-item">
+                                    <div class="text-muted small mb-1"><i class="bi bi-calendar text-primary me-1"></i> Departure</div>
+                                    <input type="text" id="rtDepDate" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Pergi">
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6">
+                                <div class="search-box-item">
+                                    <div class="text-muted small mb-1"><i class="bi bi-calendar-check text-primary me-1"></i> Return</div>
+                                    <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Kembali">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-12">
+                                <div class="dropdown w-100">
+                                    <div class="search-box-item cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                        <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Passengers</div>
+                                        <div class="fw-bold small text-dark travelers-summary-text">1 Adult, 0 Child</div>
+                                    </div>
+                                    <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100" style="min-width: 280px;">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="small">Dewasa (12+)</span>
+                                            <div class="input-group input-group-sm w-50">
+                                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="rtAdult">-</button>
+                                                <input type="text" id="rtAdult" class="form-control text-center fw-bold bg-white" value="1" readonly>
+                                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="rtAdult">+</button>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="small">Anak (2-11)</span>
+                                            <div class="input-group input-group-sm w-50">
+                                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="rtChild">-</button>
+                                                <input type="text" id="rtChild" class="form-control text-center fw-bold bg-white" value="0" readonly>
+                                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="rtChild">+</button>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <span class="small">Bayi (&lt;2)</span>
+                                            <div class="input-group input-group-sm w-50">
+                                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="rtInfant">-</button>
+                                                <input type="text" id="rtInfant" class="form-control text-center fw-bold bg-white" value="0" readonly>
+                                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="rtInfant">+</button>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-12">
+                                <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="min-height: 72px;">Search</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FLIGHT MULTI CITY -->
+                    <div class="tab-pane fade" id="multiCity">
+                        <div id="multiCityContainer">
+                            <div class="row g-2 mb-2 multicity-row align-items-center">
+                                <div class="col-lg-5 col-md-12">
+                                    <div class="search-box-item">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="d-flex align-items-center flex-grow-1 position-relative pe-2">
+                                                <i class="bi bi-airplane-engines text-primary me-2"></i>
+                                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Penerbangan 1: Dari">
+                                            </div>
+                                            <div class="d-flex align-items-center flex-grow-1 position-relative ps-2 border-start">
+                                                <i class="bi bi-airplane-fill text-primary me-2"></i>
+                                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Penerbangan 1: Ke">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="search-box-item">
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-calendar text-primary me-2"></i>
+                                            <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Tanggal">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-6">
+                                    <div class="dropdown w-100">
+                                        <div class="search-box-item cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                            <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Passengers</div>
+                                            <div class="fw-bold small text-dark mc-travelers-summary travelers-summary-text">1 Adult, 0 Child</div>
+                                        </div>
+                                        <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100" style="min-width: 250px;">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <span class="small">Dewasa</span>
+                                                <div class="input-group input-group-sm w-50">
+                                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcAdult1">-</button>
+                                                    <input type="text" id="mcAdult1" class="form-control text-center fw-bold mc-input mc-adult bg-white" value="1" readonly>
+                                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcAdult1">+</button>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <span class="small">Anak</span>
+                                                <div class="input-group input-group-sm w-50">
+                                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcChild1">-</button>
+                                                    <input type="text" id="mcChild1" class="form-control text-center fw-bold mc-input mc-child bg-white" value="0" readonly>
+                                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcChild1">+</button>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <span class="small">Bayi</span>
+                                                <div class="input-group input-group-sm w-50">
+                                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcInfant1">-</button>
+                                                    <input type="text" id="mcInfant1" class="form-control text-center fw-bold mc-input mc-infant bg-white" value="0" readonly>
+                                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcInfant1">+</button>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-12">
+                                    <button class="btn btn-outline-danger btn-sm w-100 py-3 remove-row rounded-3" disabled style="min-height: 72px;"><i class="bi bi-trash3"></i> Hapus</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
+                            <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3 py-2 fw-semibold" id="addFlightBtn"><i class="bi bi-plus me-1"></i> Tambah Penerbangan</button>
+                            <button class="btn btn-primary px-4 py-2 fw-bold search-action-btn rounded-pill shadow-sm">Cari Multi-City</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-3 text-muted small">
+                    Save Up to <span class="text-primary fw-bold">$390</span> on Schengen Visa – 14 days delivery!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. SECTION: DISCOUNTS & OFFERS -->
+    <section id="offers" class="container py-5 mt-5 scroll-reveal">
+        <div class="text-center mb-5">
+            <span class="text-primary fw-semibold small text-uppercase tracking-wider">Promo Spesial</span>
+            <h2 class="display-6 text-dark mt-1">Discounts & Offers</h2>
+            <p class="text-muted mb-0">Manfaatkan kupon dan paket promo eksklusif untuk destinasi impian Anda.</p>
+        </div>
+
+        <div class="position-relative px-md-4">
+            <div class="vanilla-carousel card-wrap">
+                <div class="vc-track">
+                    
+                    <div class="vc-item">
+                        <div class="card border-0 rounded-4 overflow-hidden text-white card-hover card-item" style="height: 380px;">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=600&q=80" class="card-img lazyload lazy-effect w-100 h-100" style="object-fit: cover;" alt="Travel Around the World" fetchpriority="low">
+                            <div class="card-img-overlay d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.65) 100%); pointer-events: none;">
+                                <div style="pointer-events: auto;">
+                                    <h3 class="fw-bold text-uppercase text-white lh-sm" style="font-family: 'Poppins', sans-serif; font-size: clamp(1.25rem, 4vw, 1.75rem);">TRAVEL AROUND THE WORLD</h3>
+                                </div>
+                                <div style="pointer-events: auto;">
+                                    <span class="badge rounded-pill px-3 py-2 fw-bold shadow" style="background-color: #ff007f; font-size: clamp(0.85rem, 2vw, 1rem);">25% off</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="vc-item">
+                        <div class="card border-0 rounded-4 overflow-hidden text-white card-hover card-item" style="height: 380px;">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" class="card-img lazyload lazy-effect w-100 h-100" style="object-fit: cover;" alt="Breath Adventure Awaits" fetchpriority="low">
+                            <div class="card-img-overlay d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
+                                <div style="pointer-events: auto;">
+                                    <i class="bi bi-airplane text-white fs-5 mb-2 d-inline-block"></i>
+                                    <h3 class="fw-bold text-warning lh-sm" style="font-family: 'Poppins', sans-serif; font-size: clamp(1.25rem, 4vw, 1.75rem);">Breath Adventure Awaits</h3>
+                                </div>
+                                <div class="align-self-end bg-danger text-white rounded-circle d-flex flex-column align-items-center justify-content-center p-2 fw-bold shadow-lg" style="width: clamp(70px, 15vw, 85px); height: clamp(70px, 15vw, 85px); transform: rotate(-10deg); pointer-events: auto;">
+                                    <span class="lh-1 fw-extrabold" style="font-size: clamp(1.2rem, 3vw, 1.5rem);">$199</span>
+                                    <span style="font-size: clamp(0.55rem, 1.5vw, 0.75rem); letter-spacing: 1px;">/only</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="vc-item">
+                        <div class="card border-0 rounded-4 overflow-hidden text-white card-hover card-item" style="height: 380px;">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" class="card-img lazyload lazy-effect w-100 h-100" style="object-fit: cover;" alt="20% off SALE" fetchpriority="low">
+                            <div class="card-img-overlay d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
+                                <div style="pointer-events: auto;">
+                                    <span class="text-uppercase small fw-bold tracking-wider text-warning">up to</span>
+                                    <h1 class="text-white mb-0 lh-1" style="font-size: clamp(3rem, 8vw, 4rem);">20% off</h1>
+                                    <h4 class="fw-bold tracking-widest text-uppercase" style="font-size: clamp(1.25rem, 4vw, 1.75rem);">SALE</h4>
+                                </div>
+                                <div class="text-center bg-success text-white py-2 rounded-pill fw-bold small shadow" style="pointer-events: auto;">
+                                    ★ TRAVEL • View All Tour
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="vc-item">
+                        <div class="card border-0 rounded-4 overflow-hidden text-white card-hover card-item" style="height: 380px;">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=600&q=80" class="card-img lazyload lazy-effect w-100 h-100" style="object-fit: cover;" alt="Summer Vacation" fetchpriority="low">
+                            <div class="card-img-overlay d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
+                                <div style="pointer-events: auto;">
+                                    <h3 class="fw-bold text-white lh-sm" style="font-family: 'Poppins', sans-serif; font-size: clamp(1.25rem, 4vw, 1.75rem);">Summer Vacation</h3>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-end" style="pointer-events: auto;">
+                                    <span class="badge bg-light text-dark rounded-pill px-3 py-1 fw-semibold shadow" style="font-size: clamp(0.7rem, 2vw, 0.85rem);">VACATION mode</span>
+                                    <div class="rounded-circle d-flex flex-column align-items-center justify-content-center p-2 fw-bold shadow-lg text-white" style="width: clamp(70px, 15vw, 85px); height: clamp(70px, 15vw, 85px); background-color: #ff007f;">
+                                        <span class="lh-1 fw-extrabold" style="font-size: clamp(1.2rem, 3vw, 1.5rem);">$199</span>
+                                        <span style="font-size: clamp(0.55rem, 1.5vw, 0.75rem); letter-spacing: 1px;">/only</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button class='vc-nav vc-prev' aria-label="Previous">
+                    <svg class='feather feather-chevron-left' fill='none' height='24' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><polyline points='15 18 9 12 15 6'/></svg>
+                </button>
+                <button class='vc-nav vc-next' aria-label="Next">
+                    <svg class='feather feather-chevron-right' fill='none' height='24' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><polyline points='9 18 15 12 9 6'/></svg>
+                </button>
+                <div class="vc-dots"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. SECTION: BEST DEALS FLIGHT ROUTES -->
+    <section id="best-deals" class="container py-5 bg-white rounded-4 shadow-sm my-4 border scroll-reveal">
+        <div class="text-center mb-4">
+            <h2 class="display-6 text-dark">Best Deals Rute Penerbangan Round-Trip</h2>
+            <p class="text-muted">Pilihan rute pulang-pergi terhemat berdasarkan kota terpopuler per benua.</p>
+        </div>
+        <div class="overflow-hidden mb-4">
+            <div class="d-flex overflow-x-auto hide-scroll justify-content-md-center">
+                <ul class="nav nav-pills gap-2 flex-nowrap" id="flightDealsTab" role="tablist">
+                    <li class="nav-item"><button class="nav-link active rounded-pill px-4 fw-semibold text-nowrap" data-bs-toggle="pill" data-bs-target="#dealAmerica" data-continent="dealAmerica">Amerika</button></li>
+                    <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold text-nowrap" data-bs-toggle="pill" data-bs-target="#dealEurope" data-continent="dealEurope">Eropa</button></li>
+                    <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold text-nowrap" data-bs-toggle="pill" data-bs-target="#dealAsia" data-continent="dealAsia">Asia</button></li>
+                    <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold text-nowrap" data-bs-toggle="pill" data-bs-target="#dealAfrica" data-continent="dealAfrica">Afrika</button></li>
+                    <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold text-nowrap" data-bs-toggle="pill" data-bs-target="#dealMiddleEast" data-continent="dealMiddleEast">Middle East</button></li>
+                </ul>
+            </div>
+        </div>
+        <div class="tab-content" id="flightDealsContent">
+            <div class="tab-pane fade show active" id="dealAmerica"><div class="row g-4 flight-results-container" data-continent="dealAmerica"></div></div>
+            <div class="tab-pane fade" id="dealEurope"><div class="row g-4 flight-results-container" data-continent="dealEurope"></div></div>
+            <div class="tab-pane fade" id="dealAsia"><div class="row g-4 flight-results-container" data-continent="dealAsia"></div></div>
+            <div class="tab-pane fade" id="dealAfrica"><div class="row g-4 flight-results-container" data-continent="dealAfrica"></div></div>
+            <div class="tab-pane fade" id="dealMiddleEast"><div class="row g-4 flight-results-container" data-continent="dealMiddleEast"></div></div>
+        </div>
+    </section>
+
+    <!-- 9. SECTION: ABOUT -->
+    <section id="about" class="container py-5 my-4 scroll-reveal">
+        <div class="row align-items-center g-4 g-lg-5">
+            <div class="col-lg-6">
+                <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill fw-bold mb-3">We're #01 travel agency in globally</span>
+                <h1 class="display-5 text-dark mb-4 lh-tight" style="letter-spacing: -1px;">Explore the World With Confidence.</h1>
+                <p class="text-secondary mb-3" style="line-height: 1.8;">
+                    Travel is more than visiting places - it's about discovering cultures, creating memories, and experiencing the world in a way that stays with you forever. Our travel agency is dedicated to designing seamless and inspiring journeys for explorers who want more than just a typical vacation.
+                </p>
+                <p class="text-secondary mb-4" style="line-height: 1.8;">
+                    Our team of passionate travel experts works closely with each traveler to understand their interests, preferences, and expectations. This allows us to create journeys that feel personal, well-organized, and truly extraordinary.
+                </p>
+                <a href="#" class="btn btn-primary rounded-pill px-5 py-3 fw-bold shadow text-decoration-none">Discover More</a>
+            </div>
+
+            <div class="col-lg-6 mt-5 mt-lg-0">
+                <div class="about-img-container mb-5">
+                    <div class="about-img-item about-img-1">
+                        <div class="image-shimmer-effect">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=500&q=80" width="500" height="800" class="lazyload lazy-effect" alt="Traveler" fetchpriority="low">
+                        </div>
+                    </div>
+                    <div class="about-img-item about-img-2">
+                        <div class="image-shimmer-effect">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=500&q=80" width="500" height="800" class="lazyload lazy-effect" alt="World Landmarks" fetchpriority="low">
+                        </div>
+                    </div>
+                    <div class="about-img-item about-img-3">
+                        <div class="image-shimmer-effect">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" width="500" height="800" class="lazyload lazy-effect" alt="Beach Resort" fetchpriority="low">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row text-center align-items-center g-3 pt-2 bg-white p-4 rounded-4 shadow-sm border">
+                    <div class="col-6">
+                        <div class="d-flex flex-column align-items-center">
+                            <h4 class="fw-extrabold mb-0 fs-4 text-dark">5,000,000</h4>
+                            <small class="text-muted fw-semibold mb-1" style="font-size: 0.75rem;">Trusted by 5M Users</small>
+                            <span class="text-success small fw-bold"><i class="bi bi-tripadvisor"></i> Tripadvisor</span>
+                        </div>
+                    </div>
+                    <div class="col-6 border-start">
+                        <div class="d-flex flex-column align-items-center">
+                            <span class="text-danger fw-extrabold fs-6" style="letter-spacing: 0.5px;">Traveler</span>
+                            <small class="text-dark fw-bold" style="font-size: 0.65rem;">BEST CITY TOUR AWARD</small>
+                            <span class="badge bg-danger text-white rounded-pill px-2 py-0 fw-bold mt-1" style="font-size: 0.65rem;">2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9.5. SECTION: ABOUT FEATURES -->
+    <section class="container py-5 my-4 scroll-reveal">
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 rounded-4 h-100 p-4" style="background-color: #e6f4a3;">
+                    <i class="bi bi-award fs-1 mb-3 text-dark"></i>
+                    <h4 class="fw-bold fs-5 text-dark mb-3">Best Price Guarantee Ever.</h4>
+                    <p class="text-dark mb-0 small" style="line-height: 1.7;">Travel confidently knowing you're getting the best value - we guarantee competitive prices with <strong class="fw-bold">no hidden costs</strong>.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 rounded-4 h-100 p-4" style="background-color: #f1f2f4;">
+                    <i class="bi bi-shield-check fs-1 mb-3 text-dark"></i>
+                    <h4 class="fw-bold fs-5 text-dark mb-3">Safe, Secure & Hassle-Free Booking.</h4>
+                    <p class="text-dark mb-0 small" style="line-height: 1.7;">Plan and confirm your trip quickly with our safe, simple, and fully <strong class="fw-bold">secure booking system</strong>.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 rounded-4 h-100 p-4" style="background-color: #c1edcc;">
+                    <i class="bi bi-train-front fs-1 mb-3 text-dark"></i>
+                    <h4 class="fw-bold fs-5 text-dark mb-3">Flexible & Custom Travel Packages.</h4>
+                    <p class="text-dark mb-0 small" style="line-height: 1.7;">Plan your trip your way with flexible travel packages tailored to your interests and <strong class="fw-bold">custom package</strong>.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 rounded-4 h-100 p-4" style="background-color: #e2e0ff;">
+                    <i class="bi bi-chat-dots fs-1 mb-3 text-dark"></i>
+                    <h4 class="fw-bold fs-5 text-dark mb-3">Our Support Always with You 24/7.</h4>
+                    <p class="text-dark mb-0 small" style="line-height: 1.7;">Travel with peace of mind knowing our expert team is always ready to <strong class="fw-bold">support you anytime, anywhere</strong>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. SECTION: CUSTOMER REVIEWS (USING VANILLA CAROUSEL) -->
+    <section class="py-5 my-4 position-relative overflow-hidden scroll-reveal" style="background: linear-gradient(135deg, #e3fcef 0%, #cbf5df 100%);">
+        <div class="container py-4">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-8">
+                    <span class="text-success fw-bold small d-block mb-1 text-uppercase tracking-wider">Customer experience at TravelMeta</span>
+                    <h2 class="display-5 text-dark mb-3">What’s the People Say</h2>
+                    <div class="d-flex align-items-center gap-3 flex-wrap">
+                        <div class="d-flex align-items-center">
+                            <div class="image-shimmer-effect rounded-circle shadow-sm" style="width: 40px; height: 40px; border: 2px solid #fff;">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" width="100" height="100" class="rounded-circle lazyload lazy-effect" alt="User" fetchpriority="low">
+                            </div>
+                            <div class="image-shimmer-effect rounded-circle shadow-sm ms-n3" style="width: 40px; height: 40px; border: 2px solid #fff;">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" width="100" height="100" class="rounded-circle lazyload lazy-effect" alt="User" fetchpriority="low">
+                            </div>
+                            <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fw-bold ms-n3 small border border-white border-2 shadow-sm" style="width: 40px; height: 40px;">+</div>
+                        </div>
+                        <span class="text-dark fw-semibold small">10,000+ trusted travelers to join TravelMeta community.</span>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-lg-end mt-4 mt-lg-0 d-flex justify-content-lg-end gap-3 align-items-center">
+                    <div class="footer-badge-green p-1">
+                        <i class="bi bi-award-fill fs-6 mb-0 text-white"></i>
+                        <span style="font-size: 0.5rem;">Tripadvisor 2026</span>
+                    </div>
+                    <div class="footer-badge-red p-1">
+                        <i class="bi bi-trophy-fill fs-6 mb-0 text-white"></i>
+                        <span style="font-size: 0.5rem;">Traveler 2025</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="position-relative">
+                <div class="vanilla-carousel">
+                    <div class="vc-track">
+                        
+                        <div class="vc-item">
+                            <div class="card border-0 rounded-4 p-4 shadow-sm card-hover d-flex flex-column justify-content-between card-item" style="height: 310px; background-color: #ffffff;">
+                                <div>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div class="text-success fs-5">
+                                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                        </div>
+                                        <button class="btn btn-light btn-sm rounded-circle shadow-sm border d-flex align-items-center justify-content-center text-primary" style="width: 36px; height: 36px;"><i class="bi bi-play-fill fs-5 ps-1"></i></button>
+                                    </div>
+                                    <h5 class="fw-bold text-dark mb-2">Perfect Itinerary!</h5>
+                                    <p class="text-secondary small lh-base mb-0">
+                                        Our trip to Vietnam was perfectly organized from start to finish. Highly recommended for international travel.
+                                    </p>
+                                </div>
+                                <div class="d-flex align-items-center gap-3 pt-3 border-top">
+                                    <div class="image-shimmer-effect rounded-circle shadow-sm" style="width: 45px; height: 45px;">
+                                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=100&q=80" width="100" height="100" class="rounded-circle lazyload lazy-effect" alt="Anderson" fetchpriority="low">
+                                    </div>
+                                    <div>
+                                        <h6 class="fw-bold mb-0 text-dark">Anderson</h6>
+                                        <small class="text-muted" style="font-size: 0.75rem;">TravelMeta Traveler</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="vc-item">
+                            <div class="card border-0 rounded-4 p-4 shadow-sm card-hover d-flex flex-column justify-content-between card-item" style="height: 310px; background-color: #ffffff;">
+                                <div>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div class="text-success fs-5">
+                                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                        </div>
+                                        <button class="btn btn-light btn-sm rounded-circle shadow-sm border d-flex align-items-center justify-content-center text-primary" style="width: 36px; height: 36px;"><i class="bi bi-play-fill fs-5 ps-1"></i></button>
+                                    </div>
+                                    <h5 class="fw-bold text-dark mb-2">Great Visitors Venue!</h5>
+                                    <p class="text-secondary small lh-base mb-0">
+                                        Thank you so much for your work on our honeymoon. We really did have such a great time.
+                                    </p>
+                                </div>
+                                <div class="d-flex align-items-center gap-3 pt-3 border-top">
+                                    <div class="image-shimmer-effect rounded-circle shadow-sm" style="width: 45px; height: 45px;">
+                                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" width="100" height="100" class="rounded-circle lazyload lazy-effect" alt="James Bonde" fetchpriority="low">
+                                    </div>
+                                    <div>
+                                        <h6 class="fw-bold mb-0 text-dark">James Bonde</h6>
+                                        <small class="text-muted" style="font-size: 0.75rem;">TravelMeta Traveler</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="vc-item">
+                            <div class="card border-0 rounded-4 p-4 shadow-sm card-hover d-flex flex-column justify-content-between card-item" style="height: 310px; background-color: #ffffff;">
+                                <div>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div class="text-success fs-5">
+                                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                        </div>
+                                        <button class="btn btn-light btn-sm rounded-circle shadow-sm border d-flex align-items-center justify-content-center text-primary" style="width: 36px; height: 36px;"><i class="bi bi-play-fill fs-5 ps-1"></i></button>
+                                    </div>
+                                    <h5 class="fw-bold text-dark mb-2">Fantastic Service!</h5>
+                                    <p class="text-secondary small lh-base mb-0">
+                                        We have returned from Greece and want to let you know how terrific the trip was! Everything was great.
+                                    </p>
+                                </div>
+                                <div class="d-flex align-items-center gap-3 pt-3 border-top">
+                                    <div class="image-shimmer-effect rounded-circle shadow-sm" style="width: 45px; height: 45px;">
+                                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" width="100" height="100" class="rounded-circle lazyload lazy-effect" alt="Amber Lashleye" fetchpriority="low">
+                                    </div>
+                                    <div>
+                                        <h6 class="fw-bold mb-0 text-dark">Amber Lashleye</h6>
+                                        <small class="text-muted" style="font-size: 0.75rem;">TravelMeta Traveler</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <button class='vc-nav vc-prev' aria-label="Previous">
+                        <svg class='feather feather-chevron-left' fill='none' height='24' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><polyline points='15 18 9 12 15 6'/></svg>
+                    </button>
+                    <button class='vc-nav vc-next' aria-label="Next">
+                        <svg class='feather feather-chevron-right' fill='none' height='24' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><polyline points='9 18 15 12 9 6'/></svg>
+                    </button>
+                    <div class="vc-dots"></div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end align-items-center flex-wrap gap-3 mt-4 pt-2">
+                <div class="d-flex align-items-center gap-2 text-dark small fw-bold bg-white px-4 py-2 rounded-pill shadow-sm">
+                    <i class="bi bi-tripadvisor text-success fs-5"></i>
+                    <span class="text-success">★★★★★</span>
+                    <span>4.8 rated 10,000 real traveler at TravelMeta.</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 11. SECTION: DOWNLOAD MOBILE APP -->
+    <section class="container py-5 my-4 scroll-reveal">
+        <div class="rounded-5 p-4 p-lg-5 position-relative overflow-hidden text-dark shadow-lg border" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);">
+            <div class="row align-items-center">
+                <div class="col-lg-7 py-4">
+                    <span class="badge bg-success text-white px-3 py-2 rounded-pill fw-semibold mb-3">Aplikasi Mobile Terbaik</span>
+                    <h1 class="display-5 text-dark mb-3" style="letter-spacing: -1px;">Download Mobile App</h1>
+                    <p class="text-secondary mb-4 lead fs-6" style="max-width: 500px; line-height: 1.7;">
+                        Our community users and app download almost <strong>2M+</strong> in world-wide.
+                    </p>
+                    <div class="d-flex align-items-center gap-3 mb-4 flex-wrap">
+                        <a href="#" class="d-inline-block text-decoration-none">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" width="135" height="46" class="lazyload lazy-effect" alt="App Store" fetchpriority="low">
+                        </a>
+                        <a href="#" class="d-inline-block text-decoration-none">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" width="155" height="46" class="lazyload lazy-effect" alt="Google Play" fetchpriority="low">
+                        </a>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 text-dark small fw-bold bg-white d-inline-flex px-3 py-2 rounded-pill shadow-sm">
+                        <span class="text-warning fs-6">★ 4.9</span>
+                        <span>12,300+ verified review TravelMeta app</span>
+                    </div>
+                </div>
+                <div class="col-lg-5 text-center position-relative d-none d-lg-block">
+                    <div class="position-relative" style="height: 320px;">
+                        <div class="image-shimmer-effect rounded-4 shadow-lg position-absolute end-0 top-0 border border-white border-3" style="width: 250px; height: 340px; transform: rotate(4deg);">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=500&q=80" width="500" height="680" class="rounded-4 lazyload lazy-effect" alt="Mobile App" fetchpriority="low">
+                        </div>
+                        <div class="position-absolute bg-white rounded-pill px-4 py-2 shadow-sm small fw-bold text-dark d-flex align-items-center gap-2" style="top: 40px; left: 10px; z-index: 2;">
+                            <span class="text-warning">★ 4.9</span> Average rating
+                        </div>
+                        <div class="position-absolute bg-white rounded-pill px-4 py-2 shadow-sm small fw-bold text-dark d-flex align-items-center gap-2" style="bottom: 40px; left: 0px; z-index: 2;">
+                            <span class="bg-success text-white rounded-circle p-1 small"><i class="bi bi-people-fill"></i></span> 2M active users.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. SECTION: TRAVEL TIPS & INSPIRATIONS -->
+    <section class="container py-5 my-3 scroll-reveal">
+        <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-3">
+            <div>
+                <span class="text-primary fw-bold small text-uppercase tracking-wider">Edukasi & Wawasan</span>
+                <h2 class="display-6 mb-0 text-dark">Travel Tips & Inspirations.</h2>
+            </div>
+            <a href="#" class="btn btn-outline-dark rounded-pill px-4 py-2 fw-semibold small shadow-sm text-decoration-none">View All Inspiration</a>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover h-100 bg-white">
+                    <div class="position-relative">
+                        <div class="image-shimmer-effect" style="height: 220px;">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80" width="600" height="400" class="lazyload lazy-effect" alt="Maldives Beach" fetchpriority="low">
+                        </div>
+                        <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 rounded-pill px-3 py-2 shadow-sm small fw-bold z-2">
+                            <i class="bi bi-geo-alt text-primary me-1"></i> Maldives Beach
+                        </span>
+                    </div>
+                    <div class="card-body p-4 d-flex flex-column justify-content-between">
+                        <div>
+                            <h4 class="fw-bold mb-3 text-dark fs-5 lh-sm">Best Time to Visit the Maldives for a Perfect Beach Escape.</h4>
+                            <p class="text-secondary small mb-4 lh-base">
+                                The Maldives is a dream destination known for its crystal-clear lagoons and luxury overwater villas.
+                            </p>
+                        </div>
+                        <a href="#" class="text-primary fw-bold text-decoration-none small d-flex align-items-center gap-1">
+                            Read More <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover h-100 bg-white">
+                    <div class="position-relative">
+                        <div class="image-shimmer-effect" style="height: 220px;">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=600&q=80" width="600" height="400" class="lazyload lazy-effect" alt="South Africa" fetchpriority="low">
+                        </div>
+                        <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 rounded-pill px-3 py-2 shadow-sm small fw-bold z-2">
+                            <i class="bi bi-geo-alt text-primary me-1"></i> South Africa
+                        </span>
+                    </div>
+                    <div class="card-body p-4 d-flex flex-column justify-content-between">
+                        <div>
+                            <h4 class="fw-bold mb-3 text-dark fs-5 lh-sm">What to Expect on Your First Wildlife Adventure Africa Safari.</h4>
+                            <p class="text-secondary small mb-4 lh-base">
+                                An African safari is one of the most exciting travel experiences in the world. Visitors can witness the Big Five wildlife.
+                            </p>
+                        </div>
+                        <a href="#" class="text-primary fw-bold text-decoration-none small d-flex align-items-center gap-1">
+                            Read More <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover h-100 bg-white">
+                    <div class="position-relative">
+                        <div class="image-shimmer-effect" style="height: 220px;">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1527668752550-956627f04c6d?auto=format&fit=crop&w=600&q=80" width="600" height="400" class="lazyload lazy-effect" alt="Switzerland" fetchpriority="low">
+                        </div>
+                        <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 rounded-pill px-3 py-2 shadow-sm small fw-bold z-2">
+                            <i class="bi bi-geo-alt text-primary me-1"></i> Switzerland
+                        </span>
+                    </div>
+                    <div class="card-body p-4 d-flex flex-column justify-content-between">
+                        <div>
+                            <h4 class="fw-bold mb-3 text-dark fs-5 lh-sm">Top Places to Visit in Switzerland for Nature Lovers.</h4>
+                            <p class="text-secondary small mb-4 lh-base">
+                                Switzerland is famous for its snow-capped Alps, charming villages, and scenic train journeys.
+                            </p>
+                        </div>
+                        <a href="#" class="text-primary fw-bold text-decoration-none small d-flex align-items-center gap-1">
+                            Read More <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 13. SECTION: SUBSCRIBE NEWSLETTER -->
+    <section class="container py-4 my-4 scroll-reveal">
+        <div class="rounded-5 p-4 p-lg-5 text-white position-relative overflow-hidden shadow-lg" style="background: var(--primary-gradient);">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-6">
+                    <h2 class="display-6 mb-2 lh-sm" style="letter-spacing: -0.5px;">Subscribe our newsletter to discount 10% all package.</h2>
+                </div>
+                <div class="col-lg-6">
+                    <form id="subscribeForm" class="position-relative mb-3">
+                        <div class="input-group bg-white rounded-pill p-1 shadow-lg">
+                            <input type="email" class="form-control border-0 px-4 py-3 rounded-pill shadow-none bg-transparent" placeholder="Enter your email address" required>
+                            <button class="btn btn-dark rounded-circle d-flex align-items-center justify-content-center m-1 shadow" type="submit" style="width: 48px; height: 48px;"><i class="bi bi-send-fill text-white"></i></button>
+                        </div>
+                    </form>
+                    <div class="d-flex align-items-center gap-2 text-white-50 small">
+                        <i class="bi bi-shield-check text-warning fs-5"></i>
+                        <span>Get practical strategies and business insights to help you grow with confidence.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 14. FOOTER -->
+    <footer id="footer" class="modern-footer pt-5 pb-4 scroll-reveal">
+        <div class="container py-4">
+            <div class="row g-5 mb-5">
+                <div class="col-lg-3 col-md-6">
+                    <a class="fw-bold fs-4 text-white d-flex align-items-center gap-2 mb-3 text-decoration-none" href="#">
+                        <span class="text-white">TravelMeta</span>
+                    </a>
+                    <h6 class="mb-2">TravelMeta Travel Agency</h6>
+                    <p class="small mb-4 lh-sm">
+                        Skyline Plaza, 5th Floor, 123 Main Street<br>
+                        Los Angeles, CA 90001, USA
+                    </p>
+                    <div class="d-flex gap-2 mb-4">
+                        <a href="#" class="social-btn" title="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-btn" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="social-btn" title="YouTube"><i class="bi bi-youtube"></i></a>
+                        <a href="#" class="social-btn" title="Instagram"><i class="bi bi-instagram"></i></a>
+                    </div>
+                    <div class="d-flex gap-3 align-items-center">
+                        <div class="footer-badge-green">
+                            <span style="font-size: 0.45rem; line-height: 1.1;">Tripadvisor</span>
+                            <span style="font-size: 0.42rem; line-height: 1;">Travelers' Choice Award</span>
+                            <strong style="font-size: 0.65rem;">2026</strong>
+                        </div>
+                        <div class="footer-badge-red">
+                            <span style="font-size: 0.45rem; line-height: 1.1;">Condé Nast</span>
+                            <span style="font-size: 0.42rem; font-weight: 800; letter-spacing: 0.5px;">Traveler</span>
+                            <span style="font-size: 0.38rem; line-height: 1;">BEST CITY TOUR AWARD</span>
+                            <strong style="font-size: 0.65rem;">2025</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5>Explore</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2 m-0">
+                        <li><a href="#about" class="footer-link">About TravelMeta</a></li>
+                        <li><a href="#" class="footer-link">Health & Safety Measure</a></li>
+                        <li><a href="#" class="footer-link">Customize Tour</a></li>
+                        <li><a href="#offers" class="footer-link">Deals & Discount</a></li>
+                        <li><a href="#" class="footer-link">Last Minutes Deal</a></li>
+                        <li><a href="#" class="footer-link">Travel Inspirations</a></li>
+                        <li><a href="#footer" class="footer-link">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5>Useful</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2 m-0">
+                        <li><a href="#" class="footer-link">Flight Booking</a></li>
+                        <li><a href="#" class="footer-link">Visa Processing</a></li>
+                        <li><a href="#" class="footer-link">Hotel Booking</a></li>
+                        <li><a href="#" class="footer-link">Transport</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5>Helpline</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2 m-0">
+                        <li><a href="#" class="footer-link">Help & Support</a></li>
+                        <li><a href="#" class="footer-link">FAQs</a></li>
+                        <li><a href="#" class="footer-link">Terms & Condition</a></li>
+                        <li><a href="#" class="footer-link">Affiliates</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-white text-dark rounded-4 p-3 px-4 mb-4 d-flex align-items-center justify-content-between flex-wrap gap-3 shadow-lg">
+                <span class="fw-bold fs-6 text-dark" style="letter-spacing: 0.5px;">We Accept:-</span>
+                <div class="d-flex align-items-center gap-3 fs-4 flex-wrap text-secondary">
+                    <i class="bi bi-credit-card-2-front text-dark" title="Mastercard"></i>
+                    <i class="bi bi-paypal text-primary" title="PayPal"></i>
+                    <i class="bi bi-credit-card text-dark" title="Visa"></i>
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">G Pay</span>
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">stripe</span>
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">paysafe</span>
+                    <i class="bi bi-apple text-dark" title="Apple Pay"></i>
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">adyen</span>
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">elavon</span>
+                </div>
+            </div>
+
+            <div class="small pt-3 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2" style="color: #9ca3af !important;">
+                <p class="mb-0">&copy; 2026 TravelMeta. All Rights Reserved.</p>
+                <p class="mb-0" style="font-size: 0.75rem; max-width: 600px; line-height: 1.6; color: #9ca3af !important;">
+                    All travel services are provided in accordance with applicable international travel regulations, airline policies, visa requirements, and local tourism laws, ensuring transparency, reliability, and compliance throughout your journey.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button id="backToTopBtn" class="btn btn-primary rounded-circle shadow-lg position-fixed bottom-0 end-0 m-4 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;" aria-label="Back to Top">
+        <i class="bi bi-arrow-up fs-5 text-white"></i>
+    </button>
+
+    <!-- COMBINED MOBILE SETTINGS MODAL -->
+    <div class="modal fade" id="mobileSettingsModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-scrollable mobile-modal-top">
+            <div class="modal-content rounded-4 border-0 shadow-lg p-2">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold mobile-modal-title"><i class="bi bi-sliders text-primary me-2"></i>Pengaturan</h5>
+                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="fw-bold mb-3 small"><i class="bi bi-coin text-warning me-1"></i> Mata Uang</h6>
+                    <div class="row g-2 mb-4">
+                        <div class="col-4"><button class="btn btn-light border rounded-3 text-start currency-option w-100 fw-semibold mobile-modal-text">USD ($)</button></div>
+                        <div class="col-4"><button class="btn btn-light border rounded-3 text-start currency-option w-100 fw-semibold mobile-modal-text">IDR (Rp)</button></div>
+                        <div class="col-4"><button class="btn btn-light border rounded-3 text-start currency-option w-100 fw-semibold mobile-modal-text">EUR (€)</button></div>
+                        <div class="col-4"><button class="btn btn-light border rounded-3 text-start currency-option w-100 fw-semibold mobile-modal-text">GBP (£)</button></div>
+                        <div class="col-4"><button class="btn btn-light border rounded-3 text-start currency-option w-100 fw-semibold mobile-modal-text">SGD (S$)</button></div>
+                        <div class="col-4"><button class="btn btn-light border rounded-3 text-start currency-option w-100 fw-semibold mobile-modal-text">JPY (¥)</button></div>
+                    </div>
+                    <h6 class="fw-bold mb-3 border-top pt-3 small"><i class="bi bi-globe text-info me-1"></i> Bahasa</h6>
+                    <div class="row g-2">
+                        <div class="col-6"><button class="btn btn-light border rounded-3 text-start lang-option w-100 fw-semibold mobile-modal-text">English (EN)</button></div>
+                        <div class="col-6"><button class="btn btn-light border rounded-3 text-start lang-option w-100 fw-semibold mobile-modal-text">Bahasa Indonesia (ID)</button></div>
+                        <div class="col-6"><button class="btn btn-light border rounded-3 text-start lang-option w-100 fw-semibold mobile-modal-text">Español (ES)</button></div>
+                        <div class="col-6"><button class="btn btn-light border rounded-3 text-start lang-option w-100 fw-semibold mobile-modal-text">Français (FR)</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CURRENCY (DESKTOP) -->
+    <div class="modal fade" id="currencyModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0 shadow-lg p-2">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-coin text-warning me-2"></i>Pilih Mata Uang</h5>
+                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted small mb-3">Pilih mata uang standar untuk menampilkan tarif di seluruh situs.</p>
+                    <div class="row g-2">
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">USD ($)</button></div>
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">IDR (Rp)</button></div>
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">EUR (€)</button></div>
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">GBP (£)</button></div>
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">SGD (S$)</button></div>
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">JPY (¥)</button></div>
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">AUD (A$)</button></div>
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">CAD (C$)</button></div>
+                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">CNY (¥)</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL LANGUAGE (DESKTOP) -->
+    <div class="modal fade" id="langModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0 shadow-lg p-2">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-globe text-info me-2"></i>Pilih Bahasa</h5>
+                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted small mb-3">Pilih bahasa tampilan antarmuka yang Anda inginkan.</p>
+                    <div class="row g-2">
+                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold">English (EN)</button></div>
+                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold">Bahasa Indonesia (ID)</button></div>
+                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold">Español (ES)</button></div>
+                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold">Français (FR)</button></div>
+                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold">Deutsch (DE)</button></div>
+                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold">日本語 (JA)</button></div>
+                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold">中文 (ZH)</button></div>
+                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold">العربية (AR)</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer fetchpriority="low"></script>
+    
+    <!-- VANILLA JS -->
+    <script>
+        // SET DEFAULT DATE +3 DAYS UNTUK KEBERANGKATAN (Dijalankan sebelum Flatpickr)
+        (function setInitialDates() {
+            const defaultDate = new Date();
+            defaultDate.setDate(defaultDate.getDate() + 3);
+            const yyyy = defaultDate.getFullYear();
+            const mm = String(defaultDate.getMonth() + 1).padStart(2, '0');
+            const dd = String(defaultDate.getDate()).padStart(2, '0');
+            const defaultDateStr = `${yyyy}-${mm}-${dd}`;
+            
+            const owDepDate = document.getElementById("owDepDate");
+            const rtDepDate = document.getElementById("rtDepDate");
+            if (owDepDate) owDepDate.value = defaultDateStr;
+            if (rtDepDate) rtDepDate.value = defaultDateStr;
+        })();
+
+        class VanillaCarousel {
+            constructor(selector, options = {}) {
+                this.carousel = typeof selector === 'string' ? document.querySelector(selector) : selector;
+                if (!this.carousel) return;
+
+                this.track = this.carousel.querySelector('.vc-track');
+                if (!this.track) return;
+
+                this.items = Array.from(this.track.children);
+                this.prevBtn = this.carousel.querySelector('.vc-prev');
+                this.nextBtn = this.carousel.querySelector('.vc-next');
+                this.dotsContainer = this.carousel.querySelector('.vc-dots');
+
+                this.options = Object.assign({
+                    items: 1,
+                    loop: false,
+                    autoplay: false,
+                    autoplayTimeout: 3000,
+                    dots: true,
+                    nav: true,
+                    responsive: {}
+                }, options);
+
+                this.currentIndex = 0;
+                this.itemsPerView = this.options.items;
+                
+                this.isDragging = false;
+                this.isMoved = false; 
+                this.startX = 0;
+                this.currentX = 0;
+                this.animationID = null;
+                
+                this.autoplayTimer = null;
+
+                this.init();
+            }
+
+            init() {
+                this.updateResponsive();
+                this.setupDots();
+                this.updateCarousel();
+                this.bindEvents();
+
+                if (!this.options.nav) {
+                    if (this.prevBtn) this.prevBtn.style.display = 'none';
+                    if (this.nextBtn) this.nextBtn.style.display = 'none';
+                }
+
+                if (this.options.autoplay) this.startAutoplay();
+            }
+
+            updateResponsive() {
+                const width = this.carousel.offsetWidth || window.innerWidth;
+                this.itemsPerView = this.options.items;
+
+                if (this.options.responsive) {
+                    let activeBreakpoint = 0;
+                    for (const breakpoint in this.options.responsive) {
+                        if (width >= parseInt(breakpoint)) {
+                            activeBreakpoint = breakpoint;
+                        }
+                    }
+                    if (activeBreakpoint > 0) {
+                        this.itemsPerView = this.options.responsive[activeBreakpoint].items;
+                    }
+                }
+            }
+
+            updateCarousel() {
+                const itemWidth = 100 / this.itemsPerView;
+                this.items.forEach(item => {
+                    item.style.flex = `0 0 ${itemWidth}%`;
+                    item.style.maxWidth = `${itemWidth}%`;
+                });
+
+                const maxIndex = Math.max(0, this.items.length - this.itemsPerView);
+                if (this.currentIndex > maxIndex) this.currentIndex = maxIndex;
+                if (this.currentIndex < 0) this.currentIndex = 0;
+
+                this.track.style.transform = `translateX(-${this.currentIndex * (100 / this.itemsPerView)}%)`;
+                
+                this.updateDots();
+                this.updateNavVisibility();
+            }
+
+            updateNavVisibility() {
+                if (!this.options.nav) return;
+
+                const maxIndex = Math.max(0, this.items.length - this.itemsPerView);
+
+                if (maxIndex === 0 && !this.options.loop) {
+                    if (this.prevBtn) this.prevBtn.classList.add('is-hidden');
+                    if (this.nextBtn) this.nextBtn.classList.add('is-hidden');
+                    return;
+                }
+
+                if (!this.options.loop) {
+                    if (this.currentIndex <= 0) {
+                        if (this.prevBtn) this.prevBtn.classList.add('is-hidden');
+                    } else {
+                        if (this.prevBtn) this.prevBtn.classList.remove('is-hidden');
+                    }
+
+                    if (this.currentIndex >= maxIndex) {
+                        if (this.nextBtn) this.nextBtn.classList.add('is-hidden');
+                    } else {
+                        if (this.nextBtn) this.nextBtn.classList.remove('is-hidden');
+                    }
+                } else {
+                    if (this.prevBtn) this.prevBtn.classList.remove('is-hidden');
+                    if (this.nextBtn) this.nextBtn.classList.remove('is-hidden');
+                }
+            }
+
+            slideNext() {
+                const maxIndex = Math.max(0, this.items.length - this.itemsPerView);
+                if (this.currentIndex < maxIndex) {
+                    this.currentIndex += this.itemsPerView;
+                    if (this.currentIndex > maxIndex) this.currentIndex = maxIndex;
+                } else if (this.options.loop) {
+                    this.currentIndex = 0;
+                }
+                this.updateCarousel();
+            }
+
+            slidePrev() {
+                if (this.currentIndex > 0) {
+                    this.currentIndex -= this.itemsPerView;
+                    if (this.currentIndex < 0) this.currentIndex = 0;
+                } else if (this.options.loop) {
+                    this.currentIndex = Math.max(0, this.items.length - this.itemsPerView);
+                }
+                this.updateCarousel();
+            }
+
+            setupDots() {
+                if (!this.dotsContainer || !this.options.dots) return;
+                this.dotsContainer.innerHTML = '';
+                
+                const totalPages = Math.ceil(this.items.length / this.itemsPerView);
+                if (totalPages <= 1) return;
+
+                for (let i = 0; i < totalPages; i++) {
+                    const dot = document.createElement('span');
+                    dot.classList.add('vc-dot');
+                    dot.addEventListener('click', () => {
+                        this.currentIndex = i * this.itemsPerView;
+                        const maxIndex = Math.max(0, this.items.length - this.itemsPerView);
+                        if (this.currentIndex > maxIndex) this.currentIndex = maxIndex;
+                        
+                        this.updateCarousel();
+                    });
+                    this.dotsContainer.appendChild(dot);
+                }
+            }
+
+            updateDots() {
+                if (!this.dotsContainer || !this.options.dots) return;
+                const dots = Array.from(this.dotsContainer.children);
+                const activePage = Math.round(this.currentIndex / this.itemsPerView);
+                
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === activePage);
+                });
+            }
+
+            startAutoplay() {
+                this.stopAutoplay();
+                this.autoplayTimer = setInterval(() => this.slideNext(), this.options.autoplayTimeout);
+            }
+
+            stopAutoplay() {
+                if (this.autoplayTimer) clearInterval(this.autoplayTimer);
+            }
+
+            bindEvents() {
+                if (this.nextBtn) this.nextBtn.addEventListener('click', () => { this.slideNext(); this.startAutoplay(); });
+                if (this.prevBtn) this.prevBtn.addEventListener('click', () => { this.slidePrev(); this.startAutoplay(); });
+
+                if (this.options.autoplay) {
+                    this.carousel.addEventListener('mouseenter', () => this.stopAutoplay());
+                    this.carousel.addEventListener('mouseleave', () => this.startAutoplay());
+                    this.carousel.addEventListener('touchstart', () => this.stopAutoplay(), { passive: true });
+                }
+
+                if (window.ResizeObserver) {
+                    const resizeObserver = new ResizeObserver(() => {
+                        this.updateResponsive();
+                        this.setupDots();
+                        this.updateCarousel();
+                    });
+                    resizeObserver.observe(this.carousel);
+                } else {
+                    window.addEventListener('resize', () => {
+                        this.updateResponsive();
+                        this.setupDots();
+                        this.updateCarousel();
+                    });
+                }
+
+                this.track.addEventListener('dragstart', (e) => e.preventDefault());
+
+                const dragStart = (e) => {
+                    if (e.type === 'mousedown') e.preventDefault();
+                    this.isDragging = true;
+                    this.isMoved = false; 
+                    
+                    if (this.animationID) cancelAnimationFrame(this.animationID);
+                    
+                    this.track.style.transition = 'none';
+                    this.track.style.cursor = 'grabbing';
+                    this.startX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+                };
+
+                const dragMove = (e) => {
+                    if (!this.isDragging) return;
+                    const x = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+                    this.currentX = x - this.startX;
+
+                    if (Math.abs(this.currentX) > 5) {
+                        this.isMoved = true;
+                    }
+                    
+                    const maxIndex = Math.max(0, this.items.length - this.itemsPerView);
+                    if (
+                        (this.currentIndex === 0 && this.currentX > 0) ||
+                        (this.currentIndex === maxIndex && this.currentX < 0)
+                    ) {
+                        this.currentX = this.currentX * 0.3; 
+                    }
+
+                    if (this.animationID) cancelAnimationFrame(this.animationID);
+                    this.animationID = requestAnimationFrame(() => {
+                        const diffPercent = (this.currentX / this.track.offsetWidth) * 100;
+                        const baseTranslate = -(this.currentIndex * (100 / this.itemsPerView));
+                        this.track.style.transform = `translateX(${baseTranslate + diffPercent}%)`;
+                    });
+                };
+
+                const dragEnd = () => {
+                    if (!this.isDragging) return;
+                    this.isDragging = false;
+                    
+                    if (this.animationID) cancelAnimationFrame(this.animationID);
+                    
+                    this.track.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
+                    this.track.style.cursor = 'grab';
+
+                    if (Math.abs(this.currentX) > 75) {
+                        if (this.currentX < 0) this.slideNext();
+                        else this.slidePrev();
+                    } else {
+                        this.updateCarousel(); 
+                    }
+                    
+                    setTimeout(() => {
+                        this.currentX = 0;
+                        this.isMoved = false;
+                    }, 150);
+                };
+
+                this.track.addEventListener('click', (e) => {
+                    if (this.isMoved) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+                }, true); 
+
+                this.track.addEventListener('touchstart', dragStart, { passive: true });
+                this.track.addEventListener('touchmove', dragMove, { passive: true });
+                this.track.addEventListener('touchend', dragEnd);
+
+                this.track.addEventListener('mousedown', dragStart);
+                this.track.addEventListener('mousemove', dragMove);
+                this.track.addEventListener('mouseup', dragEnd);
+                this.track.addEventListener('mouseleave', dragEnd);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            const PROXY_WORKER_URL = "https://api.pesan.workers.dev/";
+
+            let userOrigin = "SIN"; 
+            let userOriginName = "Singapore";
+            let visitorCurrency = "USD";
+
+            const currencyMapping = {
+                "AB":"RUB","AD":"EUR","AE":"AED","AF":"AFN","AG":"XCD","AI":"XCD","AL":"ALL","AM":"AMD","AO":"AOA","AQ":"","AR":"ARS","AS":"USD","AT":"EUR","AU":"AUD","AW":"AWG","AX":"EUR","AZ":"AZN","BA":"BAM","BB":"BBD","BD":"BDT","BE":"EUR","BF":"XOF","BG":"EUR","BH":"BHD","BI":"BIF","BJ":"XOF","BL":"EUR","BM":"BMD","BN":"BND","BO":"BOB","BQ":"USD","BR":"BRL","BS":"BSD","BT":"BTN","BV":"NOK","BW":"BWP","BY":"BYN","BZ":"BZD","CA":"CAD","CC":"AUD","CD":"CDF","CF":"XAF","CG":"XAF","CH":"CHF","CI":"XOF","CK":"NZD","CL":"CLP","CM":"XAF","CN":"CNY","CO":"COP","CR":"CRC","CU":"CUP","CV":"CVE","CW":"XCG","CX":"AUD","CY":"EUR","CZ":"CZK","DE":"EUR","DJ":"DJF","DK":"DKK","DM":"XCD","DO":"DOP","DZ":"DZD","EC":"USD","EE":"EUR","EG":"EGP","EH":"MAD","ER":"ERN","ES":"EUR","ET":"ETB","FI":"EUR","FJ":"FJD","FK":"FKP","FM":"USD","FO":"DKK","FR":"EUR","GA":"XAF","GB":"GBP","GD":"XCD","GE":"GEL","GF":"EUR","GG":"GBP","GH":"GHS","GI":"GIP","GL":"DKK","GM":"GMD","GN":"GNF","GP":"EUR","GQ":"XAF","GR":"EUR","GS":"GBP","GT":"GTQ","GU":"USD","GW":"XOF","GY":"GYD","HK":"HKD","HM":"AUD","HN":"HNL","HR":"EUR","HT":"HTG","HU":"HUF","ID":"IDR","IE":"EUR","IL":"ILS","IM":"GBP","IN":"INR","IO":"USD","IQ":"IQD","IR":"IRR","IS":"ISK","IT":"EUR","JE":"GBP","JM":"JMD","JO":"JOD","JP":"JPY","KE":"KES","KG":"KGS","KH":"KHR","KI":"AUD","KM":"KMF","KN":"XCD","KP":"KPW","KR":"KRW","KW":"KWD","KX":"","KY":"KYD","KZ":"KZT","LA":"LAK","LB":"LBP","LC":"XCD","LI":"CHF","LK":"LKR","LR":"LRD","LS":"LSL","LT":"EUR","LU":"EUR","LV":"EUR","LY":"LYD","MA":"MAD","MC":"EUR","MD":"MDL","ME":"EUR","MF":"EUR","MG":"MGA","MH":"USD","MK":"MKD","ML":"XOF","MM":"MMK","MN":"MNT","MO":"MOP","MP":"USD","MQ":"EUR","MR":"MRO","MS":"XCD","MT":"EUR","MU":"MUR","MV":"MVR","MW":"MWK","MX":"MXN","MY":"MYR","MZ":"MZN","NA":"NAD","NC":"XPF","NE":"XOF","NF":"AUD","NG":"NGN","NI":"NIO","NL":"EUR","NO":"NOK","NP":"NPR","NR":"AUD","NU":"NZD","NY":"TRY","NZ":"NZD","OM":"OMR","PA":"PAB","PE":"PEN","PF":"XPF","PG":"PGK","PH":"PHP","PK":"PKR","PL":"PLN","PM":"EUR","PN":"NZD","PR":"USD","PS":"ILS","PT":"EUR","PW":"USD","PY":"PYG","QA":"QAR","RE":"EUR","RO":"RON","RS":"RSD","RU":"RUB","RW":"RWF","SA":"SAR","SB":"SBD","SC":"SCR","SD":"SDG","SE":"SEK","SG":"SGD","SH":"SHP","SI":"EUR","SJ":"NOK","SK":"EUR","SL":"SLL","SM":"EUR","SN":"XOF","SO":"SOS","SR":"SRD","SS":"SSP","ST":"STD","SV":"USD","SX":"XCG","SY":"SYP","SZ":"SZL","TC":"USD","TD":"XAF","TF":"EUR","TG":"XOF","TH":"THB","TJ":"TJS","TK":"NZD","TL":"USD","TM":"TMT","TN":"TND","TO":"TOP","TR":"TRY","TT":"TTD","TV":"AUD","TW":"TWD","TZ":"TZS","UA":"UAH","UG":"UGX","UM":"USD","US":"USD","UY":"UYU","UZ":"UZS","VA":"EUR","VC":"XCD","VE":"VEF","VG":"USD","VI":"USD","VN":"VND","VU":"VUV","WF":"XPF","WS":"WST","XK":"EUR","YE":"YER","YT":"EUR","ZA":"ZAR","ZM":"ZMK","ZW":"ZWL"
+            };
+
+            const continentDestinations = {
+                'dealAmerica': [
+                    { code: 'NYC', name: 'New York' },
+                    { code: 'LAX', name: 'Los Angeles' },
+                    { code: 'MIA', name: 'Miami' },
+                    { code: 'YYZ', name: 'Toronto' },
+                    { code: 'CUN', name: 'Cancun' },
+                    { code: 'GRU', name: 'Sao Paulo' }
+                ],
+                'dealEurope': [
+                    { code: 'PAR', name: 'Paris' },
+                    { code: 'LON', name: 'London' },
+                    { code: 'ROM', name: 'Rome' },
+                    { code: 'AMS', name: 'Amsterdam' },
+                    { code: 'BCN', name: 'Barcelona' },
+                    { code: 'BER', name: 'Berlin' }
+                ],
+                'dealAsia': [
+                    { code: 'BKK', name: 'Bangkok' },
+                    { code: 'SIN', name: 'Singapore' },
+                    { code: 'TYO', name: 'Tokyo' },
+                    { code: 'ICN', name: 'Seoul' },
+                    { code: 'KUL', name: 'Kuala Lumpur' },
+                    { code: 'TPE', name: 'Taipei' }
+                ],
+                'dealAfrica': [
+                    { code: 'CPT', name: 'Cape Town' },
+                    { code: 'JNB', name: 'Johannesburg' },
+                    { code: 'CAI', name: 'Cairo' },
+                    { code: 'CMN', name: 'Casablanca' },
+                    { code: 'NBO', name: 'Nairobi' },
+                    { code: 'MRU', name: 'Mauritius' }
+                ],
+                'dealMiddleEast': [
+                    { code: 'DXB', name: 'Dubai' },
+                    { code: 'DOH', name: 'Doha' },
+                    { code: 'IST', name: 'Istanbul' },
+                    { code: 'AUH', name: 'Abu Dhabi' },
+                    { code: 'TLV', name: 'Tel Aviv' },
+                    { code: 'RUH', name: 'Riyadh' }
+                ]
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+            document.querySelectorAll('.scroll-reveal').forEach(el => {
+                revealObserver.observe(el);
+            });
+
+            // BACK TO TOP BUTTON LOGIC
+            const backToTopBtn = document.getElementById('backToTopBtn');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const startY = window.scrollY || window.pageYOffset;
+                if (startY === 0) return;
+                const duration = 1200; 
+                const startTime = performance.now();
+
+                function scrollStep(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const easeProgress = 1 - Math.pow(1 - progress, 3);
+                    
+                    window.scrollTo(0, startY * (1 - easeProgress));
+
+                    if (progress < 1) {
+                        requestAnimationFrame(scrollStep);
+                    }
+                }
+
+                requestAnimationFrame(scrollStep);
+            });
+
+            // VANILLA CAROUSEL INITIALIZATION
+            const carousels = document.querySelectorAll('.vanilla-carousel');
+            carousels.forEach(function(carouselElement) {
+                new VanillaCarousel(carouselElement, {
+                    items: 1, 
+                    loop: true,
+                    autoplay: true,
+                    autoplayTimeout: 4000,
+                    dots: true,
+                    nav: true,
+                    responsive: {
+                        576: { items: 2 },
+                        768: { items: 2 },
+                        992: { items: 3 },
+                        1200: { items: 3 }
+                    }
+                });
+            });
+
+            // LAZY LOAD API TRIGGER
+            let apiLoaded = false;
+            const apiObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !apiLoaded) {
+                        apiLoaded = true;
+                        const container = document.querySelector('#dealAmerica .flight-results-container');
+                        fetchContinentDeals('dealAmerica', container);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: "0px 0px 250px 0px" });
+
+            // WHEREAMI CALL THEN OBSERVE API
+            fetch("https://www.apistp.com/whereami?locale=en")
+                .then(res => res.json())
+                .then(locData => {
+                    if(locData) {
+                        userOrigin = locData.code || locData.iata || "SIN";
+                        userOriginName = locData.city || locData.name || userOrigin;
+                        
+                        const countryCode = locData.country || locData.country_code || "";
+                        if (countryCode && currencyMapping[countryCode]) {
+                            visitorCurrency = currencyMapping[countryCode];
+                        }
+                        
+                        // Set nilai pencarian lokasi default (One-Way & Round-Trip ter-sync)
+                        const owOriginInput = document.getElementById("owOrigin");
+                        const rtOriginInput = document.getElementById("rtOrigin");
+                        const val = `${userOriginName} (${userOrigin})`;
+                        if(owOriginInput) owOriginInput.value = val;
+                        if(rtOriginInput) rtOriginInput.value = val;
+                    }
+                    const bestDealsSection = document.getElementById('best-deals');
+                    if(bestDealsSection) apiObserver.observe(bestDealsSection);
+                })
+                .catch(err => {
+                    console.warn("Whereami Direct API fallback used:", err);
+                    const owOriginInput = document.getElementById("owOrigin");
+                    const rtOriginInput = document.getElementById("rtOrigin");
+                    const val = "Singapore (SIN)";
+                    if(owOriginInput) owOriginInput.value = val;
+                    if(rtOriginInput) rtOriginInput.value = val;
+                    const bestDealsSection = document.getElementById('best-deals');
+                    if(bestDealsSection) apiObserver.observe(bestDealsSection);
+                });
+
+            function fetchContinentDeals(continentKey, containerEl) {
+                if(!containerEl) return;
+                const cities = continentDestinations[continentKey];
+                if(!cities) return;
+
+                let skeletonHtml = '';
+                for(let i=0; i<6; i++) {
+                    skeletonHtml += `
+                        <div class="col-md-4">
+                            <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white">
+                                <div class="skeleton skeleton-img-box"></div>
+                                <div class="card-body p-4">
+                                    <div class="skeleton skeleton-text short mb-3"></div>
+                                    <div class="skeleton skeleton-text mb-2"></div>
+                                    <div class="skeleton skeleton-text short mb-4"></div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="skeleton skeleton-text w-25 mb-0"></div>
+                                        <div class="skeleton skeleton-text w-25 mb-0 rounded-pill" style="height: 35px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+                containerEl.innerHTML = skeletonHtml;
+
+                let promises = cities.map(city => {
+                    const proxyUrl = `${PROXY_WORKER_URL}?origin=${userOrigin}&destination=${city.code}&unique=true&sorting=price&currency=${visitorCurrency}&page=1&one_way=false`;
+                    
+                    return fetch(proxyUrl)
+                        .then(res => res.json())
+                        .then(resData => {
+                            let priceText = "Cek Harga";
+                            let datesText = "Jadwal Fleksibel";
+                            
+                            if(resData && resData.data && resData.data.length > 0) {
+                                const flightInfo = resData.data[0];
+                                if(flightInfo.price) {
+                                    priceText = `${visitorCurrency} ${Number(flightInfo.price).toLocaleString()}`;
+                                }
+                                if(flightInfo.departure_at && flightInfo.return_at) {
+                                    const depDate = flightInfo.departure_at.split('T')[0];
+                                    const retDate = flightInfo.return_at.split('T')[0];
+                                    datesText = `${depDate} ➔ ${retDate}`;
+                                } else if(flightInfo.departure_at) {
+                                    datesText = flightInfo.departure_at.split('T')[0];
+                                }
+                            }
+                            
+                            return {
+                                code: city.code,
+                                name: city.name,
+                                imgUrl: `https://zen.wego.com/cdn-cgi/image/height=280/destinations/cities/${city.code}.jpg`,
+                                priceText: priceText,
+                                datesText: datesText
+                            };
+                        })
+                        .catch(() => ({
+                            code: city.code,
+                            name: city.name,
+                            imgUrl: `https://zen.wego.com/cdn-cgi/image/height=280/destinations/cities/${city.code}.jpg`,
+                            priceText: "Cek Harga",
+                            datesText: "Cek Jadwal"
+                        }));
+                });
+
+                Promise.all(promises).then(results => {
+                    let htmlContent = "";
+                    results.forEach(item => {
+                        htmlContent += `
+                            <div class="col-md-4">
+                                <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover bg-white">
+                                    <div class="image-shimmer-effect" style="height: 200px;">
+                                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="${item.imgUrl}" width="600" height="280" class="lazyload lazy-effect" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80'" fetchpriority="low">
+                                    </div>
+                                    <div class="card-body p-4">
+                                        <span class="badge bg-primary bg-opacity-10 text-primary mb-2 px-3 py-1 rounded-pill fw-semibold">
+                                            <i class="bi bi-calendar3 me-1"></i> ${item.datesText}
+                                        </span>
+                                        <h5 class="fw-bold text-dark text-truncate" title="${userOriginName} ke ${item.name}">${userOriginName} ➔ ${item.name}</h5>
+                                        <p class="text-muted small mb-3">Round-Trip • Bagasi Termasuk</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="text-danger fw-bold fs-5">${item.priceText}</span>
+                                            <button class="btn btn-outline-primary btn-sm rounded-pill px-3 py-2 fw-semibold">Pesan</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    containerEl.innerHTML = htmlContent;
+                });
+            }
+
+            const flightDealsTabs = document.querySelectorAll('#flightDealsTab button');
+            flightDealsTabs.forEach(tab => {
+                tab.addEventListener('shown.bs.tab', (e) => {
+                    const continentKey = e.target.getAttribute('data-continent');
+                    const targetPaneSelector = e.target.getAttribute('data-bs-target');
+                    const paneEl = document.querySelector(targetPaneSelector + ' .flight-results-container');
+                    if(paneEl && paneEl.children.length <= 1) {
+                        fetchContinentDeals(continentKey, paneEl);
+                    }
+                });
+            });
+
+            // =========================================
+            // SINKRONISASI INPUT KOTA & AUTOCOMPLETE
+            // =========================================
+            const owOrigin = document.getElementById('owOrigin');
+            const owDest = document.getElementById('owDest');
+            const rtOrigin = document.getElementById('rtOrigin');
+            const rtDest = document.getElementById('rtDest');
+
+            // Saat mengetik manual
+            [owOrigin, rtOrigin].forEach(el => {
+                if(el) el.addEventListener('input', (e) => {
+                    const target = e.target === owOrigin ? rtOrigin : owOrigin;
+                    if(target) target.value = e.target.value;
+                });
+            });
+            [owDest, rtDest].forEach(el => {
+                if(el) el.addEventListener('input', (e) => {
+                    const target = e.target === owDest ? rtDest : owDest;
+                    if(target) target.value = e.target.value;
+                });
+            });
+
+            const setupTravelAutocomplete = (input) => {
+                let container = input.parentNode.querySelector('.autocomplete-suggestions');
+                if (!container) {
+                    container = document.createElement('div');
+                    container.className = 'autocomplete-suggestions';
+                    input.parentNode.appendChild(container);
+                }
+
+                let debounceTimer;
+                input.addEventListener('input', () => {
+                    clearTimeout(debounceTimer);
+                    const query = input.value.trim();
+                    if (query.length < 2) {
+                        container.innerHTML = '';
+                        container.style.display = 'none';
+                        return;
+                    }
+
+                    debounceTimer = setTimeout(() => {
+                        fetch(`https://autocomplete.travelpayouts.com/jravia?with_countries=true&locale=en&service=aviasales&q=${encodeURIComponent(query)}`)
+                            .then(res => res.json())
+                            .then(data => {
+                                container.innerHTML = '';
+                                if (!data || data.length === 0) {
+                                    container.style.display = 'none';
+                                    return;
+                                }
+
+                                data.forEach(item => {
+                                    const div = document.createElement('div');
+                                    div.className = 'autocomplete-suggestion-item';
+                                    div.innerHTML = `<strong>${item.name || item.city_name}</strong> (${item.code}) <br><small class="text-muted">${item.country_name || ''}</small>`;
+                                    
+                                    div.addEventListener('click', () => {
+                                        input.value = `${item.name || item.city_name} (${item.code})`;
+                                        container.innerHTML = '';
+                                        container.style.display = 'none';
+
+                                        // Sinkronisasi khusus jika autocomplete diklik untuk Origin/Destinasi utama
+                                        if (input.id === 'owOrigin' && rtOrigin) rtOrigin.value = input.value;
+                                        if (input.id === 'rtOrigin' && owOrigin) owOrigin.value = input.value;
+                                        if (input.id === 'owDest' && rtDest) rtDest.value = input.value;
+                                        if (input.id === 'rtDest' && owDest) owDest.value = input.value;
+                                    });
+                                    container.appendChild(div);
+                                });
+                                container.style.display = 'block';
+                            })
+                            .catch(err => console.error("Autocomplete error:", err));
+                    }, 300);
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!input.contains(e.target) && !container.contains(e.target)) {
+                        container.style.display = 'none';
+                    }
+                });
+            };
+
+            document.querySelectorAll('.autocomplete-input').forEach(input => setupTravelAutocomplete(input));
+
+            // Tombol Swap Origin/Destinasi otomatis ikut tersinkronisasi
+            document.querySelectorAll('.swap-inputs-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const boxItem = btn.closest('.search-box-item');
+                    const inputs = boxItem.querySelectorAll('.autocomplete-input');
+                    if (inputs.length === 2) {
+                        const temp = inputs[0].value;
+                        inputs[0].value = inputs[1].value;
+                        inputs[1].value = temp;
+
+                        // Sinkron antar One-way dan Round-trip
+                        if(inputs[0].id === 'owOrigin' || inputs[0].id === 'rtOrigin') {
+                            if(owOrigin && rtOrigin) owOrigin.value = rtOrigin.value = inputs[0].value;
+                            if(owDest && rtDest) owDest.value = rtDest.value = inputs[1].value;
+                        }
+                    }
+                });
+            });
+
+            // ==========================================
+            // TEXT SUMMARIES (Sync Passengers Globally)
+            // ==========================================
+            function updateAllSummaries() {
+                const flightAdult = document.getElementById("flightAdult");
+                const adults = flightAdult ? (parseInt(flightAdult.value) || 1) : 1;
+                const childInput = document.getElementById("flightChild");
+                const kids = childInput ? parseInt(childInput.value) || 0 : 0;
+                const infantInput = document.getElementById("flightInfant");
+                const infants = infantInput ? parseInt(infantInput.value) || 0 : 0;
+                const totalKids = kids + infants;
+
+                // Update teks summary di semua Tab Penerbangan (One-Way, Round-Trip, Multi-City)
+                document.querySelectorAll(".travelers-summary-text, .mc-travelers-summary").forEach(el => {
+                    if (totalKids > 0) {
+                        el.textContent = `${adults} Adult, ${totalKids} Child`;
+                    } else {
+                        el.textContent = `${adults} Adult, 0 Child`;
+                    }
+                });
+            }
+
+            // Kelas Kabin bersifat Global (karena dropdownnya ada di luar tab)
+            document.querySelectorAll('.cabin-option').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.getElementById('cabinClassDropdownBtn').textContent = e.target.getAttribute('data-cabin');
+                });
+            });
+
+            // ==========================================
+            // LOGIKA PEMUATAN FLATPICKR
+            // ==========================================
+            let flatpickrLoaded = false;
+            const loadFlatpickr = () => {
+                if (flatpickrLoaded) {
+                    if (typeof flatpickr !== 'undefined') {
+                        flatpickr(".lazy-date:not(.flatpickr-input)", { dateFormat: "Y-m-d", altInput: true, altFormat: "j M Y" });
+                    }
+                    return;
+                }
+                const link = document.createElement("link");
+                link.rel = "stylesheet";
+                link.href = "https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css";
+                document.head.appendChild(link);
+                
+                const script = document.createElement("script");
+                script.src = "https://cdn.jsdelivr.net/npm/flatpickr";
+                script.onload = () => { 
+                    flatpickrLoaded = true;
+                    flatpickr(".lazy-date", { dateFormat: "Y-m-d", altInput: true, altFormat: "j M Y" }); 
+                };
+                document.body.appendChild(script);
+            };
+
+            // Menambahkan listener untuk mobile (touchstart, click) dan dekstop (mouseover, focus)
+            document.querySelectorAll(".lazy-date").forEach(input => {
+                input.addEventListener("mouseover", loadFlatpickr);
+                input.addEventListener("focus", loadFlatpickr);
+                input.addEventListener("click", loadFlatpickr);
+                input.addEventListener("touchstart", loadFlatpickr, { passive: true });
+            });
+
+            // ==========================================
+            // GLOBAL EVENT DELEGATION (Increase/Decrease & Syncing)
+            // ==========================================
+            document.addEventListener('click', (e) => {
+                
+                // Increase Button [+]
+                const incBtn = e.target.closest('.increase-count');
+                if (incBtn) {
+                    e.preventDefault(); e.stopPropagation();
+                    const targetId = incBtn.getAttribute('data-target');
+                    const input = document.getElementById(targetId);
+                    
+                    if (input) {
+                        const newVal = parseInt(input.value) + 1;
+                        
+                        // SINKRONISASI jika itu input penumpang penerbangan (OW, RT, MC)
+                        const isFlight = targetId.startsWith('flight') || targetId.startsWith('rt') || targetId.startsWith('mc');
+                        if (isFlight) {
+                            let type = '';
+                            if (targetId.includes('Adult')) type = 'Adult';
+                            if (targetId.includes('Child')) type = 'Child';
+                            if (targetId.includes('Infant')) type = 'Infant';
+                            
+                            if (type) {
+                                document.querySelectorAll(`input[id*="Adult"], input[id*="Child"], input[id*="Infant"]`).forEach(el => {
+                                    if ((el.id.startsWith('flight') || el.id.startsWith('rt') || el.id.startsWith('mc')) && el.id.includes(type)) {
+                                        el.value = newVal;
+                                    }
+                                });
+                            }
+                        } else {
+                            input.value = newVal;
+                        }
+                        updateAllSummaries();
+                    }
+                    return;
+                }
+                
+                // Decrease Button [-]
+                const decBtn = e.target.closest('.decrease-count');
+                if (decBtn) {
+                    e.preventDefault(); e.stopPropagation();
+                    const targetId = decBtn.getAttribute('data-target');
+                    const input = document.getElementById(targetId);
+                    
+                    if (input) {
+                        let minValue = 0;
+                        if (targetId.includes('Adult')) minValue = 1;
+
+                        if (parseInt(input.value) > minValue) {
+                            const newVal = parseInt(input.value) - 1;
+                            
+                            // SINKRONISASI
+                            const isFlight = targetId.startsWith('flight') || targetId.startsWith('rt') || targetId.startsWith('mc');
+                            if (isFlight) {
+                                let type = '';
+                                if (targetId.includes('Adult')) type = 'Adult';
+                                if (targetId.includes('Child')) type = 'Child';
+                                if (targetId.includes('Infant')) type = 'Infant';
+                                
+                                if (type) {
+                                    document.querySelectorAll(`input[id*="Adult"], input[id*="Child"], input[id*="Infant"]`).forEach(el => {
+                                        if ((el.id.startsWith('flight') || el.id.startsWith('rt') || el.id.startsWith('mc')) && el.id.includes(type)) {
+                                            el.value = newVal;
+                                        }
+                                    });
+                                }
+                            } else {
+                                input.value = newVal;
+                            }
+                            updateAllSummaries();
+                        }
+                    }
+                    return;
+                }
+
+                // Apply Button (Tutup Dropdown)
+                const applyBtn = e.target.closest('.apply-btn');
+                if (applyBtn) {
+                    e.preventDefault(); e.stopPropagation();
+                    const toggleEl = applyBtn.closest('.dropdown').querySelector('[data-bs-toggle="dropdown"]');
+                    if (toggleEl) {
+                        const bsDropdown = bootstrap.Dropdown.getInstance(toggleEl) || new bootstrap.Dropdown(toggleEl);
+                        bsDropdown.hide();
+                    }
+                }
+            });
+
+            // ==========================================
+            // MULTI-CITY LOGIC & ROW MANAGEMENT
+            // ==========================================
+            const addFlightBtn = document.getElementById("addFlightBtn");
+            const multiCityContainer = document.getElementById("multiCityContainer");
+
+            function updateMultiCityButtons() {
+                if(!multiCityContainer) return;
+                const rows = multiCityContainer.querySelectorAll(".multicity-row");
+                
+                // Handle Disable Remove Button (Minimum 1 baris)
+                rows.forEach((row) => {
+                    const btn = row.querySelector(".remove-row");
+                    if (rows.length === 1) { 
+                        btn.setAttribute("disabled", "true"); 
+                    } else { 
+                        btn.removeAttribute("disabled"); 
+                    }
+                });
+
+                // Handle Max 4 Penerbangan
+                if(addFlightBtn) {
+                    if (rows.length >= 4) {
+                        addFlightBtn.style.display = "none";
+                    } else {
+                        addFlightBtn.style.display = "inline-flex";
+                    }
+                }
+            }
+
+            if(addFlightBtn) {
+                addFlightBtn.addEventListener("click", () => {
+                    const rows = multiCityContainer.querySelectorAll(".multicity-row");
+                    if (rows.length >= 4) return; // Preventifikasi ganda
+
+                    // Ambil nilai passenger saat ini agar baris baru tersinkronisasi
+                    const currentAdult = document.getElementById('flightAdult') ? document.getElementById('flightAdult').value : "1";
+                    const currentChild = document.getElementById('flightChild') ? document.getElementById('flightChild').value : "0";
+                    const currentInfant = document.getElementById('flightInfant') ? document.getElementById('flightInfant').value : "0";
+                    
+                    const totalKids = parseInt(currentChild) + parseInt(currentInfant);
+                    const summaryText = totalKids > 0 ? `${currentAdult} Adult, ${totalKids} Child` : `${currentAdult} Adult, 0 Child`;
+
+                    // Generate ID Unik berdasarkan Timestamp / Panjang baris
+                    const uniqueId = Date.now();
+                    const rowCountLabel = rows.length + 1;
+                    
+                    const newRow = document.createElement("div");
+                    newRow.className = "row g-2 mb-2 multicity-row align-items-center";
+                    newRow.innerHTML = `
+                        <div class="col-lg-5 col-md-12">
+                            <div class="search-box-item">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center flex-grow-1 position-relative pe-2">
+                                        <i class="bi bi-airplane-engines text-primary me-2"></i>
+                                        <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Penerbangan ${rowCountLabel}: Dari">
+                                    </div>
+                                    <div class="d-flex align-items-center flex-grow-1 position-relative ps-2 border-start">
+                                        <i class="bi bi-airplane-fill text-primary me-2"></i>
+                                        <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Penerbangan ${rowCountLabel}: Ke">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="search-box-item">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-calendar text-primary me-2"></i>
+                                    <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Tanggal">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <div class="dropdown w-100">
+                                <div class="search-box-item cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                    <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Passengers</div>
+                                    <div class="fw-bold small text-dark travelers-summary-text mc-travelers-summary">${summaryText}</div>
+                                </div>
+                                <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100" style="min-width: 250px;">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="small">Dewasa</span>
+                                        <div class="input-group input-group-sm w-50">
+                                            <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcAdult${uniqueId}">-</button>
+                                            <input type="text" id="mcAdult${uniqueId}" class="form-control text-center fw-bold mc-input mc-adult bg-white" value="${currentAdult}" readonly>
+                                            <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcAdult${uniqueId}">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="small">Anak</span>
+                                        <div class="input-group input-group-sm w-50">
+                                            <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcChild${uniqueId}">-</button>
+                                            <input type="text" id="mcChild${uniqueId}" class="form-control text-center fw-bold mc-input mc-child bg-white" value="${currentChild}" readonly>
+                                            <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcChild${uniqueId}">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <span class="small">Bayi</span>
+                                        <div class="input-group input-group-sm w-50">
+                                            <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcInfant${uniqueId}">-</button>
+                                            <input type="text" id="mcInfant${uniqueId}" class="form-control text-center fw-bold mc-input mc-infant bg-white" value="${currentInfant}" readonly>
+                                            <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcInfant${uniqueId}">+</button>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-12">
+                            <button class="btn btn-outline-danger btn-sm w-100 py-3 remove-row rounded-3" style="min-height: 72px;"><i class="bi bi-trash3"></i> Hapus</button>
+                        </div>
+                    `;
+                    multiCityContainer.appendChild(newRow);
+                    
+                    // Setup Autocomplete & DatePicker pada element yang baru ditambahkan
+                    newRow.querySelectorAll(".autocomplete-input").forEach(input => setupTravelAutocomplete(input));
+                    
+                    const newDateInput = newRow.querySelector(".lazy-date");
+                    newDateInput.addEventListener("mouseover", loadFlatpickr);
+                    newDateInput.addEventListener("focus", loadFlatpickr);
+                    newDateInput.addEventListener("click", loadFlatpickr);
+                    newDateInput.addEventListener("touchstart", loadFlatpickr, { passive: true });
+                    
+                    // Panggil otomatis untuk render flatpickr pada elemen baru
+                    loadFlatpickr();
+
+                    updateMultiCityButtons();
+                });
+            }
+
+            // Hapus baris Multi-city
+            document.addEventListener("click", (e) => {
+                if (e.target.closest(".remove-row")) {
+                    e.target.closest(".multicity-row").remove();
+                    updateMultiCityButtons();
+                }
+            });
+            // Initial call to set limit button constraint
+            updateMultiCityButtons();
+
+            // Sync Desktop & Mobile Currency buttons
+            document.querySelectorAll(".currency-option").forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    const txt = e.target.textContent;
+                    
+                    const deskBtn = document.getElementById("selectedCurrencyBtnDesk");
+                    if (deskBtn) deskBtn.innerHTML = `<i class="bi bi-coin text-warning"></i> ${txt}`;
+                    
+                    const mobCurrencyTxt = document.getElementById("mobCurrText");
+                    if (mobCurrencyTxt) mobCurrencyTxt.textContent = txt.split(' ')[0];
+                    
+                    const currModal = bootstrap.Modal.getInstance(document.getElementById('currencyModal'));
+                    if (currModal) currModal.hide();
+                    const mobSettingsModal = bootstrap.Modal.getInstance(document.getElementById('mobileSettingsModal'));
+                    if (mobSettingsModal) mobSettingsModal.hide();
+                });
+            });
+
+            document.querySelectorAll(".lang-option").forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    const txt = e.target.textContent;
+
+                    const deskBtn = document.getElementById("selectedLangBtnDesk");
+                    if (deskBtn) deskBtn.innerHTML = `<i class="bi bi-globe text-info"></i> ${txt}`;
+                    
+                    const mobLangTxt = document.getElementById("mobLangText");
+                    const langCode = txt.match(/\(([^)]+)\)/);
+                    if (mobLangTxt && langCode) {
+                        mobLangTxt.textContent = langCode[1];
+                    }
+
+                    const langModal = bootstrap.Modal.getInstance(document.getElementById('langModal'));
+                    if (langModal) langModal.hide();
+                    const mobSettingsModal = bootstrap.Modal.getInstance(document.getElementById('mobileSettingsModal'));
+                    if (mobSettingsModal) mobSettingsModal.hide();
+                });
+            });
+
+            document.querySelectorAll(".search-action-btn").forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    alert("Mencari penerbangan secara real-time...");
+                });
+            });
+
+            const subForm = document.getElementById("subscribeForm");
+            if(subForm) {
+                subForm.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    alert("Terima kasih telah berlangganan! Kupon diskon 10% telah dikirimkan ke email Anda.");
+                    subForm.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
