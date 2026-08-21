@@ -1,12 +1,4 @@
-/* OVERRIDE BOOTSTRAP ICONS FONT-FACE UNTUK MENAMBAHKAN FONT-DISPLAY: SWAP */
-        @font-face {
-            font-family: "bootstrap-icons";
-            src: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff2?856008caa5eb66df68595e734e59580d") format("woff2"),
-                 url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff?856008caa5eb66df68595e734e59580d") format("woff");
-            font-display: swap;
-        }
-
-        :root {
+:root {
             --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 50%, #0f172a 100%);
             --button-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
