@@ -73,7 +73,7 @@
 
                 <div class="collapse navbar-collapse d-none d-lg-flex justify-content-end" id="navbarNavDesk">
     <ul class="navbar-nav mx-auto align-items-center gap-2 gap-xl-3">
-        <li class="nav-item"><a class="nav-link text-primary fw-semibold" href="index.html">Beranda</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html">Beranda</a></li>
         <li class="nav-item"><a class="nav-link text-dark fw-medium" href="flights.html">Flights</a></li>
         <li class="nav-item"><a class="nav-link text-dark fw-medium" href="hotels.html">Hotel</a></li>
         
@@ -81,9 +81,9 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button" data-bs-toggle="dropdown">More Services</a>
             <ul class="dropdown-menu shadow-lg rounded-4 p-2 border-0" style="min-width: 200px;">
-                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="car-rental.html"><i class="bi bi-car-front text-primary me-2"></i> Car Rental</a></li>
-                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="taxi.html"><i class="bi bi-taxi-front text-primary me-2"></i> Taxi</a></li>
-                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="bike.html"><i class="bi bi-bicycle text-primary me-2"></i> Bike</a></li>
+                <li class="nav-item"><a class="dropdown-item rounded-3 py-2 text-dark" href="car-rental.html"><i class="bi bi-car-front text-primary me-2"></i> Car Rental</a></li>
+                <li class="nav-item"><a class="dropdown-item rounded-3 py-2 text-dark" href="taxi.html"><i class="bi bi-taxi-front text-primary me-2"></i> Taxi</a></li>
+                <li class="nav-item"><a class="dropdown-item rounded-3 py-2 text-dark" href="bike.html"><i class="bi bi-bicycle text-primary me-2"></i> Bike</a></li>
             </ul>
         </li>
 
@@ -129,27 +129,27 @@
         </div>
         <div class="offcanvas-body p-4 d-flex flex-column bg-white">
     <ul class="list-unstyled d-flex flex-column gap-3 fw-semibold text-dark mb-auto" style="font-size: 1.05rem;">
-        <li><a href="index.html" class="text-primary text-decoration-none d-block py-2">Beranda</a></li>
-        <li><a href="flights.html" class="text-dark text-decoration-none d-block py-2">Flights</a></li>
-        <li><a href="hotels.html" class="text-dark text-decoration-none d-block py-2">Hotel</a></li>
+        <li class="nav-item"><a href="index.html" class="text-dark text-decoration-none d-block py-2">Beranda</a></li>
+        <li class="nav-item"><a href="flights.html" class="text-dark text-decoration-none d-block py-2">Flights</a></li>
+        <li class="nav-item"><a href="hotels.html" class="text-dark text-decoration-none d-block py-2">Hotel</a></li>
         
         <!-- Accordion untuk Transportasi di Mobile -->
-        <li>
+        <li class="nav-item">
             <div class="d-flex justify-content-between align-items-center py-2" data-bs-toggle="collapse" data-bs-target="#mobileTransportCollapse">
                 <span class="text-dark cursor-pointer">Transport & Rentals</span>
                 <i class="bi bi-plus-lg text-dark fs-5 cursor-pointer"></i>
             </div>
             <div class="collapse" id="mobileTransportCollapse">
                 <ul class="list-unstyled ps-3 mt-1 d-flex flex-column gap-3 small fw-normal">
-                    <li><a href="car-rental.html" class="text-secondary text-decoration-none d-block">Car Rental</a></li>
-                    <li><a href="taxi.html" class="text-secondary text-decoration-none d-block">Taxi</a></li>
-                    <li><a href="bike.html" class="text-secondary text-decoration-none d-block">Bike</a></li>
+                    <li class="nav-item"><a href="car-rental.html" class="text-dark text-decoration-none d-block">Car Rental</a></li>
+                    <li class="nav-item"><a href="taxi.html" class="text-dark text-decoration-none d-block">Taxi</a></li>
+                    <li class="nav-item"><a href="bike.html" class="text-dark text-decoration-none d-block">Bike</a></li>
                 </ul>
             </div>
         </li>
 
-        <li><a href="tours.html" class="text-dark text-decoration-none d-block py-2">Tour</a></li>
-        <li><a href="visa.html" class="text-dark text-decoration-none d-block py-2">Visa</a></li>
+        <li class="nav-item"><a href="tours.html" class="text-dark text-decoration-none d-block py-2">Tour</a></li>
+        <li class="nav-item"><a href="visa.html" class="text-dark text-decoration-none d-block py-2">Visa</a></li>
     </ul>
 
     <div class="mt-5 d-flex flex-column gap-3">
@@ -1032,6 +1032,9 @@
                     <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold responsive-btn">GBP (£)</button></div>
                     <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold responsive-btn">SGD (S$)</button></div>
                     <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold responsive-btn">JPY (¥)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold responsive-btn">AUD (A$)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold responsive-btn">CAD (C$)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold responsive-btn">CNY (¥)</button></div>
                 </div>
                 
                 <!-- Bahasa (4 Opsi) -->
@@ -1041,6 +1044,10 @@
                     <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold responsive-btn">Indonesia (ID)</button></div>
                     <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold responsive-btn">Español (ES)</button></div>
                     <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold responsive-btn">Français (FR)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold responsive-btn">Deutsch (DE)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold responsive-btn">日本語 (JA)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold responsive-btn">中文 (ZH)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold responsive-btn">العربية (AR)</button></div>
                 </div>
             </div>
         </div>

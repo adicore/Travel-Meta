@@ -73,7 +73,7 @@
 
                 <div class="collapse navbar-collapse d-none d-lg-flex justify-content-end" id="navbarNavDesk">
     <ul class="navbar-nav mx-auto align-items-center gap-2 gap-xl-3">
-        <li class="nav-item"><a class="nav-link text-primary fw-semibold" href="index.html">Beranda</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html">Beranda</a></li>
         <li class="nav-item"><a class="nav-link text-dark fw-medium" href="flights.html">Flights</a></li>
         <li class="nav-item"><a class="nav-link text-dark fw-medium" href="hotels.html">Hotel</a></li>
         
@@ -81,9 +81,9 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button" data-bs-toggle="dropdown">More Services</a>
             <ul class="dropdown-menu shadow-lg rounded-4 p-2 border-0" style="min-width: 200px;">
-                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="car-rental.html"><i class="bi bi-car-front text-primary me-2"></i> Car Rental</a></li>
-                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="taxi.html"><i class="bi bi-taxi-front text-primary me-2"></i> Taxi</a></li>
-                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="bike.html"><i class="bi bi-bicycle text-primary me-2"></i> Bike</a></li>
+                <li class="nav-item"><a class="dropdown-item rounded-3 py-2 text-dark" href="car-rental.html"><i class="bi bi-car-front text-primary me-2"></i> Car Rental</a></li>
+                <li class="nav-item"><a class="dropdown-item rounded-3 py-2 text-dark" href="taxi.html"><i class="bi bi-taxi-front text-primary me-2"></i> Taxi</a></li>
+                <li class="nav-item"><a class="dropdown-item rounded-3 py-2 text-dark" href="bike.html"><i class="bi bi-bicycle text-primary me-2"></i> Bike</a></li>
             </ul>
         </li>
 
@@ -117,44 +117,50 @@
     <!-- MOBILE OFFCANVAS SIDE MENU -->
     <div class="offcanvas offcanvas-start border-0 shadow-lg d-lg-none w-100" tabindex="-1" id="offcanvasMobileMenu">
         <div class="offcanvas-header py-4 px-4 border-bottom border-light d-flex justify-content-between align-items-center w-100">
-            <a class="fw-bold fs-4 text-dark d-flex align-items-center gap-2 text-decoration-none m-0" href="index.html">
+            <a class="fw-bold fs-4 text-dark d-flex align-items-center gap-2 text-decoration-none m-0" href="#">
                 <div class="bg-primary text-white p-2 rounded-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 32px; height: 32px;">
-                    <i class="bi bi-building fs-6"></i>
+                    <i class="bi bi-airplane-engines fs-6"></i>
                 </div>
                 TravelMeta
             </a>
-            <button type="button" class="btn btn-white bg-white border rounded-3 px-2 py-1 shadow-sm ms-auto" data-bs-dismiss="offcanvas" style="width: 36px; height: 36px;"><i class="bi bi-x-lg fs-5"></i></button>
+            <button type="button" class="btn btn-white bg-white border rounded-3 px-2 py-1 shadow-sm d-flex align-items-center justify-content-center ms-auto" data-bs-dismiss="offcanvas" style="width: 36px; height: 36px;">
+                <i class="bi bi-x-lg fs-5"></i>
+            </button>
         </div>
         <div class="offcanvas-body p-4 d-flex flex-column bg-white">
-            <ul class="list-unstyled d-flex flex-column gap-3 fw-semibold text-dark mb-auto" style="font-size: 1.05rem;">
-                <li><a href="index.html" class="text-dark text-decoration-none d-block py-2">Beranda</a></li>
-                <li><a href="flights.html" class="text-dark text-decoration-none d-block py-2">Flights</a></li>
-                <li><a href="hotels.html" class="text-primary text-decoration-none d-block py-2">Hotel</a></li>
-                <li>
-                    <div class="d-flex justify-content-between align-items-center py-2" data-bs-toggle="collapse" data-bs-target="#mobileTransportCollapse">
-                        <span class="text-dark cursor-pointer">Transport & Rentals</span>
-                        <i class="bi bi-plus-lg text-dark fs-5 cursor-pointer"></i>
-                    </div>
-                    <div class="collapse" id="mobileTransportCollapse">
-                        <ul class="list-unstyled ps-3 mt-1 d-flex flex-column gap-3 small fw-normal">
-                            <li><a href="car-rental.html" class="text-secondary text-decoration-none d-block">Car Rental</a></li>
-                            <li><a href="taxi.html" class="text-secondary text-decoration-none d-block">Taxi</a></li>
-                            <li><a href="bike.html" class="text-secondary text-decoration-none d-block">Bike</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li><a href="tours.html" class="text-dark text-decoration-none d-block py-2">Tour</a></li>
-                <li><a href="visa.html" class="text-dark text-decoration-none d-block py-2">Visa</a></li>
-            </ul>
-            <div class="mt-5 d-flex flex-column gap-3">
-                <a href="#" class="btn btn-outline-primary rounded-pill py-3 fw-semibold d-flex align-items-center justify-content-center gap-2 border-2">
-                    <i class="bi bi-robot fs-5"></i> Plan with AI
-                </a>
-                <a href="https://whatsapp.com" target="_blank" class="btn btn-primary rounded-pill py-3 fw-semibold d-flex align-items-center justify-content-center gap-2 shadow-sm text-white border-0" style="background-color: #0d6efd;">
-                    <i class="bi bi-whatsapp fs-5 text-white"></i> +44-800 123 456
-                </a>
+    <ul class="list-unstyled d-flex flex-column gap-3 fw-semibold text-dark mb-auto" style="font-size: 1.05rem;">
+        <li class="nav-item"><a href="index.html" class="text-dark text-decoration-none d-block py-2">Beranda</a></li>
+        <li class="nav-item"><a href="flights.html" class="text-dark text-decoration-none d-block py-2">Flights</a></li>
+        <li class="nav-item"><a href="hotels.html" class="text-dark text-decoration-none d-block py-2">Hotel</a></li>
+        
+        <!-- Accordion untuk Transportasi di Mobile -->
+        <li class="nav-item">
+            <div class="d-flex justify-content-between align-items-center py-2" data-bs-toggle="collapse" data-bs-target="#mobileTransportCollapse">
+                <span class="text-dark cursor-pointer">Transport & Rentals</span>
+                <i class="bi bi-plus-lg text-dark fs-5 cursor-pointer"></i>
             </div>
-        </div>
+            <div class="collapse" id="mobileTransportCollapse">
+                <ul class="list-unstyled ps-3 mt-1 d-flex flex-column gap-3 small fw-normal">
+                    <li class="nav-item"><a href="car-rental.html" class="text-dark text-decoration-none d-block">Car Rental</a></li>
+                    <li class="nav-item"><a href="taxi.html" class="text-dark text-decoration-none d-block">Taxi</a></li>
+                    <li class="nav-item"><a href="bike.html" class="text-dark text-decoration-none d-block">Bike</a></li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item"><a href="tours.html" class="text-dark text-decoration-none d-block py-2">Tour</a></li>
+        <li class="nav-item"><a href="visa.html" class="text-dark text-decoration-none d-block py-2">Visa</a></li>
+    </ul>
+
+    <div class="mt-5 d-flex flex-column gap-3">
+        <a href="#" class="btn btn-outline-primary rounded-pill py-3 fw-semibold d-flex align-items-center justify-content-center gap-2 border-2">
+            <i class="bi bi-robot fs-5"></i> Plan with AI
+        </a>
+        <a href="https://whatsapp.com" target="_blank" class="btn btn-primary rounded-pill py-3 fw-semibold d-flex align-items-center justify-content-center gap-2 shadow-sm text-white border-0" style="background-color: #0d6efd;">
+            <i class="bi bi-whatsapp fs-5 text-white"></i> +44-800 123 456
+        </a>
+    </div>
+</div>
     </div>
 
     <!-- 3. HERO SECTION UNTUK HOTEL PAGE -->
@@ -816,6 +822,9 @@
                     <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold responsive-btn">GBP (£)</button></div>
                     <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold responsive-btn">SGD (S$)</button></div>
                     <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold responsive-btn">JPY (¥)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold responsive-btn">AUD (A$)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold responsive-btn">CAD (C$)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold responsive-btn">CNY (¥)</button></div>
                 </div>
                 
                 <!-- Bahasa (4 Opsi) -->
@@ -825,6 +834,10 @@
                     <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold responsive-btn">Indonesia (ID)</button></div>
                     <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold responsive-btn">Español (ES)</button></div>
                     <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold responsive-btn">Français (FR)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold responsive-btn">Deutsch (DE)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold responsive-btn">日本語 (JA)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold responsive-btn">中文 (ZH)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold responsive-btn">العربية (AR)</button></div>
                 </div>
             </div>
         </div>
