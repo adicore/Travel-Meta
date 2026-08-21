@@ -22,7 +22,7 @@
     <!-- Global Style -->
     <link rel="stylesheet" href="./src/css/style.css" fetchpriority="high">
 </head>
-<body class="bg-light">
+<body class="bg-light" id="page-index">
 
     <!-- 1. MODERN HEADER & NAVIGATION -->
     <header class="bg-white sticky-top shadow-sm scroll-reveal">
@@ -1546,39 +1546,34 @@
         </div>
     </div>
 
-    <!-- MOBILE BOTTOM NAVIGATION (Muncul hanya di Mobile/Tablet) -->
+    <!-- Contoh Mobile Bottom Navigation yang sudah diberi Class ID -->
     <nav class="mobile-bottom-nav d-lg-none d-flex justify-content-between align-items-center py-2 position-fixed bottom-0 w-100 shadow-lg" style="z-index: 1075;">
-        
-        <!-- Menu 1: Flight -->
-        <a href="flights.html" class="text-decoration-none d-flex flex-column align-items-center nav-item">
-            <i class="bi bi-airplane nav-icon"></i>
-            <span class="nav-text">Flight</span>
-        </a>
+    
+    <a href="index.html" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-index">
+        <i class="bi bi-house-door nav-icon"></i>
+        <span class="nav-text">Home</span>
+    </a>
 
-        <!-- Menu 2: Hotel (Contoh kondisi Aktif) -->
-        <a href="hotels.html" class="text-decoration-none d-flex flex-column align-items-center nav-item active">
-            <i class="bi bi-building nav-icon"></i>
-            <span class="nav-text">Hotel</span>
-        </a>
+    <a href="flights.html" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-flights">
+        <i class="bi bi-airplane nav-icon"></i>
+        <span class="nav-text">Flight</span>
+    </a>
 
-        <!-- Menu 3: Booking -->
-        <a href="#" class="text-decoration-none d-flex flex-column align-items-center nav-item">
-            <i class="bi bi-ticket-perforated nav-icon"></i>
-            <span class="nav-text">Booking</span>
-        </a>
+    <a href="hotels.html" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-hotels">
+        <i class="bi bi-building nav-icon"></i>
+        <span class="nav-text">Hotel</span>
+    </a>
 
-        <!-- Menu 4: Save -->
-        <a href="#" class="text-decoration-none d-flex flex-column align-items-center nav-item">
-            <i class="bi bi-heart nav-icon"></i>
-            <span class="nav-text">Save</span>
-        </a>
+    <a href="#" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-tours">
+        <i class="bi bi-ticket-perforated nav-icon"></i>
+        <span class="nav-text">Tour</span>
+    </a>
 
-        <!-- Menu 5: Login -->
-        <a href="#" class="text-decoration-none d-flex flex-column align-items-center nav-item" data-bs-toggle="modal" data-bs-target="#loginModal">
-            <i class="bi bi-box-arrow-in-right nav-icon"></i>
-            <span class="nav-text">Login</span>
-        </a>
-        
+    <a href="#" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-visa">
+        <i class="bi bi-passport nav-icon"></i>
+        <span class="nav-text">Visa</span>
+    </a>
+    
     </nav>
 
     <!-- Bootstrap JS Bundle -->
