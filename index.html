@@ -324,60 +324,34 @@
                 </div>
 
                 <div class="collapse navbar-collapse d-none d-lg-flex justify-content-end" id="navbarNavDesk">
-                    <ul class="navbar-nav mx-auto align-items-center gap-3">
-                        <li class="nav-item"><a class="nav-link text-primary fw-semibold" href="#">Home</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button" data-bs-toggle="dropdown">Destination</a>
-                            <div class="dropdown-menu shadow-lg rounded-4 p-4 mega-menu">
-                                <div class="row g-4">
-                                    <div class="col-md-4">
-                                        <h6 class="fw-bold text-primary mb-3"><i class="bi bi-globe-americas me-1"></i> Amerika</h6>
-                                        <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
-                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">New York (NYC)</a></li>
-                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">Los Angeles (LAX)</a></li>
-                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">Toronto (YYZ)</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <h6 class="fw-bold text-primary mb-3"><i class="bi bi-globe-europe-africa me-1"></i> Eropa</h6>
-                                        <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
-                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">Paris (PAR)</a></li>
-                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">London (LON)</a></li>
-                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">Rome (ROM)</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <h6 class="fw-bold text-primary mb-3"><i class="bi bi-globe-asia-australia me-1"></i> Asia</h6>
-                                        <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
-                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">Singapura (SIN)</a></li>
-                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">Tokyo (TYO)</a></li>
-                                            <li><a class="dropdown-item rounded-2 py-1 px-2 text-dark small" href="#best-deals">Bangkok (BKK)</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button" data-bs-toggle="dropdown">Pages</a>
-                            <ul class="dropdown-menu shadow-lg rounded-4 p-2" style="width: 220px;">
-                                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="#offers"><i class="bi bi-tag text-primary me-2"></i> Discounts & Offers</a></li>
-                                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="#hotels"><i class="bi bi-building text-primary me-2"></i> Popular Hotels</a></li>
-                                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="#tours"><i class="bi bi-map text-primary me-2"></i> Popular Tours</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="#about">Holidays</a></li>
-                        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="#footer">Contact</a></li>
-                    </ul>
+    <ul class="navbar-nav mx-auto align-items-center gap-2 gap-xl-3">
+        <li class="nav-item"><a class="nav-link text-primary fw-semibold" href="index.html">Beranda</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="flights.html">Flights</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="hotels.html">Hotel</a></li>
+        
+        <!-- Dropdown untuk Layanan Tambahan (Transport & Aktivitas) agar Navbar tetap rapi -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button" data-bs-toggle="dropdown">More Services</a>
+            <ul class="dropdown-menu shadow-lg rounded-4 p-2 border-0" style="min-width: 200px;">
+                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="car-rental.html"><i class="bi bi-car-front text-primary me-2"></i> Car Rental</a></li>
+                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="taxi.html"><i class="bi bi-taxi-front text-primary me-2"></i> Taxi</a></li>
+                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="bike.html"><i class="bi bi-bicycle text-primary me-2"></i> Bike</a></li>
+            </ul>
+        </li>
 
-                    <div class="d-flex align-items-center gap-3">
-                        <a href="#" class="btn btn-outline-primary rounded-pill px-3 py-2 small fw-semibold d-flex align-items-center gap-2 border-2 text-decoration-none">
-                            <i class="bi bi-robot"></i> Plan with AI
-                        </a>
-                        <a href="https://whatsapp.com" target="_blank" class="btn btn-primary rounded-pill px-4 py-2 small fw-semibold d-flex align-items-center gap-2 text-decoration-none">
-                            <i class="bi bi-whatsapp fs-6"></i> +44-800 123 456
-                        </a>
-                    </div>
-                </div>
+        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="tours.html">Tour</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="visa.html">Visa</a></li>
+    </ul>
+
+    <div class="d-flex align-items-center gap-3">
+        <a href="#" class="btn btn-outline-primary rounded-pill px-3 py-2 small fw-semibold d-flex align-items-center gap-2 border-2 text-decoration-none">
+            <i class="bi bi-robot"></i> Plan with AI
+        </a>
+        <a href="https://whatsapp.com" target="_blank" class="btn btn-primary rounded-pill px-4 py-2 small fw-semibold d-flex align-items-center gap-2 text-decoration-none">
+            <i class="bi bi-whatsapp fs-6"></i> +44-800 123 456
+        </a>
+    </div>
+</div>
             </div>
             
             <div class="container d-lg-none mt-2 pt-3 border-top d-flex justify-content-between align-items-center flex-nowrap">
@@ -406,47 +380,39 @@
             </button>
         </div>
         <div class="offcanvas-body p-4 d-flex flex-column bg-white">
-            <ul class="list-unstyled d-flex flex-column gap-3 fw-semibold text-dark mb-auto" style="font-size: 1.05rem;">
-                <li><a href="#" class="text-primary text-decoration-none d-block py-2">Home</a></li>
-                <li>
-                    <div class="d-flex justify-content-between align-items-center py-2" data-bs-toggle="collapse" data-bs-target="#mobileDestCollapse">
-                        <span class="text-primary cursor-pointer">Destination</span>
-                        <i class="bi bi-plus-lg text-primary fs-5 cursor-pointer"></i>
-                    </div>
-                    <div class="collapse" id="mobileDestCollapse">
-                        <ul class="list-unstyled ps-3 mt-1 d-flex flex-column gap-3 small fw-normal">
-                            <li><a href="#best-deals" class="text-secondary text-decoration-none d-block">Amerika</a></li>
-                            <li><a href="#best-deals" class="text-secondary text-decoration-none d-block">Eropa</a></li>
-                            <li><a href="#best-deals" class="text-secondary text-decoration-none d-block">Asia</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <div class="d-flex justify-content-between align-items-center py-2" data-bs-toggle="collapse" data-bs-target="#mobilePagesCollapse">
-                        <span class="text-dark cursor-pointer">Pages</span>
-                        <i class="bi bi-plus-lg text-dark fs-5 cursor-pointer"></i>
-                    </div>
-                    <div class="collapse" id="mobilePagesCollapse">
-                        <ul class="list-unstyled ps-3 mt-1 d-flex flex-column gap-3 small fw-normal">
-                            <li><a href="#offers" class="text-secondary text-decoration-none d-block">Discounts & Offers</a></li>
-                            <li><a href="#hotels" class="text-secondary text-decoration-none d-block">Popular Hotels</a></li>
-                            <li><a href="#tours" class="text-secondary text-decoration-none d-block">Popular Tours</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li><a href="#about" class="text-dark text-decoration-none d-block py-2">Holidays</a></li>
-                <li><a href="#footer" class="text-dark text-decoration-none d-block py-2">Contact</a></li>
-            </ul>
-
-            <div class="mt-5 d-flex flex-column gap-3">
-                <a href="#" class="btn btn-outline-primary rounded-pill py-3 fw-semibold d-flex align-items-center justify-content-center gap-2 border-2">
-                    <i class="bi bi-robot fs-5"></i> Plan with AI
-                </a>
-                <a href="https://whatsapp.com" target="_blank" class="btn btn-primary rounded-pill py-3 fw-semibold d-flex align-items-center justify-content-center gap-2 shadow-sm text-white border-0" style="background-color: #0d6efd;">
-                    <i class="bi bi-whatsapp fs-5 text-white"></i> +44-800 123 456
-                </a>
+    <ul class="list-unstyled d-flex flex-column gap-3 fw-semibold text-dark mb-auto" style="font-size: 1.05rem;">
+        <li><a href="index.html" class="text-primary text-decoration-none d-block py-2">Beranda</a></li>
+        <li><a href="flights.html" class="text-dark text-decoration-none d-block py-2">Flights</a></li>
+        <li><a href="hotels.html" class="text-dark text-decoration-none d-block py-2">Hotel</a></li>
+        
+        <!-- Accordion untuk Transportasi di Mobile -->
+        <li>
+            <div class="d-flex justify-content-between align-items-center py-2" data-bs-toggle="collapse" data-bs-target="#mobileTransportCollapse">
+                <span class="text-dark cursor-pointer">Transport & Rentals</span>
+                <i class="bi bi-plus-lg text-dark fs-5 cursor-pointer"></i>
             </div>
-        </div>
+            <div class="collapse" id="mobileTransportCollapse">
+                <ul class="list-unstyled ps-3 mt-1 d-flex flex-column gap-3 small fw-normal">
+                    <li><a href="car-rental.html" class="text-secondary text-decoration-none d-block">Car Rental</a></li>
+                    <li><a href="taxi.html" class="text-secondary text-decoration-none d-block">Taxi</a></li>
+                    <li><a href="bike.html" class="text-secondary text-decoration-none d-block">Bike</a></li>
+                </ul>
+            </div>
+        </li>
+
+        <li><a href="tours.html" class="text-dark text-decoration-none d-block py-2">Tour</a></li>
+        <li><a href="visa.html" class="text-dark text-decoration-none d-block py-2">Visa</a></li>
+    </ul>
+
+    <div class="mt-5 d-flex flex-column gap-3">
+        <a href="#" class="btn btn-outline-primary rounded-pill py-3 fw-semibold d-flex align-items-center justify-content-center gap-2 border-2">
+            <i class="bi bi-robot fs-5"></i> Plan with AI
+        </a>
+        <a href="https://whatsapp.com" target="_blank" class="btn btn-primary rounded-pill py-3 fw-semibold d-flex align-items-center justify-content-center gap-2 shadow-sm text-white border-0" style="background-color: #0d6efd;">
+            <i class="bi bi-whatsapp fs-5 text-white"></i> +44-800 123 456
+        </a>
+    </div>
+</div>
     </div>
 
     <!-- 3. HERO SLIDER -->
