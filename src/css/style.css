@@ -383,3 +383,24 @@ img, video, iframe, canvas {
     flex: 0 0 50%;
     max-width: 50%;
 }
+
+/* ==========================================================
+   FIX Z-INDEX MODAL MOBILE
+   ========================================================== */
+
+/* Memaksa Modal agar selalu di atas Header, Offcanvas, dan Navigasi Bawah */
+#mobileSettingsModal {
+    z-index: 2000 !important; 
+}
+
+/* Memastikan latar belakang gelap (backdrop) juga berada di atas semuanya */
+.modal-backdrop {
+    z-index: 1999 !important;
+}
+
+/* Memastikan tidak ada interferensi dari navigasi bawah saat modal terbuka */
+@media (max-width: 991.98px) {
+    .modal-open .mobile-bottom-nav {
+        z-index: 1 !important; /* Menurunkan z-index navigasi saat modal aktif agar tidak menutupi */
+    }
+}
