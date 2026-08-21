@@ -21,12 +21,34 @@
 
 /* 1. Kunci struktur utama HTML dan Body secara paksa */
 html, body {
-    overflow-x: hidden !important; /* Mematikan scroll horizontal secara paksa */
     width: 100%;
     max-width: 100vw;
     position: relative;
     margin: 0;
     padding: 0;
+}
+
+/* ==========================================================
+   FIX BUG: HALAMAN BERGESER HANYA PADA MOBILE
+   ========================================================== */
+
+/* Hapus perintah overflow-x: hidden global sebelumnya */
+
+/* Perintah ini hanya akan aktif di layar lebar maksimal 991px (Tablet & HP) */
+@media (max-width: 991px) {
+    html, body {
+        overflow-x: hidden !important;
+        width: 100%;
+        max-width: 100vw;
+    }
+}
+
+/* Tambahan: Pastikan elemen container tetap aman di desktop */
+@media (min-width: 992px) {
+    html, body {
+        overflow-x: auto; /* Desktop kembali ke scroll normal */
+        overflow-y: auto;
+    }
 }
 
 /* 2. Mencegah konten meluber karena teks panjang atau elemen yang keluar batas */
