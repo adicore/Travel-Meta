@@ -44,7 +44,7 @@ html, body {
 }
 
 /* Tambahan: Pastikan elemen container tetap aman di desktop */
-@media (min-width: 992px) {
+@media (min-width: 1492px) {
     html, body {
         overflow-x: auto; /* Desktop kembali ke scroll normal */
         overflow-y: auto;
