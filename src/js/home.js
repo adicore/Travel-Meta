@@ -558,8 +558,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // =========================================================================
-    // FITUR TOGGLE: "DROP CAR OFF AT DIFFERENT LOCATION"
+// =========================================================================
+    // FITUR TOGGLE: "DROP CAR OFF AT DIFFERENT LOCATION" (SMOOTH ANIMATION)
     // =========================================================================
     const diffLocationToggle = document.getElementById('diffLocationToggle');
     const pickupCol = document.getElementById('pickupCol');
@@ -569,21 +569,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (diffLocationToggle && pickupCol && dropoffCol) {
         diffLocationToggle.addEventListener('change', function() {
             if (this.checked) {
-                // 1. Jika Dicentang: Bagi dua kolomnya (50% - 50%)
-                pickupCol.classList.remove('col-12');
-                pickupCol.classList.add('col-md-6');
-                
-                dropoffCol.classList.remove('d-none'); // Tampilkan Drop-off
-                dropoffInput.setAttribute('required', 'true'); // Wajib diisi
+                // Tampilkan Drop-off (Geser Mulus)
+                pickupCol.classList.replace('col-12', 'col-md-6');
+                dropoffCol.classList.remove('dropoff-hidden'); // Lepas efek sembunyi
+                dropoffInput.setAttribute('required', 'true');
             } else {
-                // 2. Jika Tidak Dicentang: Pick-up kembali penuh (100%), Drop-off hilang
-                pickupCol.classList.remove('col-md-6');
-                pickupCol.classList.add('col-12');
-                
-                dropoffCol.classList.add('d-none'); // Sembunyikan Drop-off
-                dropoffInput.removeAttribute('required'); // Cabut wajib isi
-                dropoffInput.value = ''; // Bersihkan input otomatis
+                // Sembunyikan Drop-off (Geser Mulus)
+                pickupCol.classList.replace('col-md-6', 'col-12');
+                dropoffCol.classList.add('dropoff-hidden'); // Pasang efek sembunyi
+                dropoffInput.removeAttribute('required');
+                dropoffInput.value = '';
             }
         });
     }
-});

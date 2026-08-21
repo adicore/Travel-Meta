@@ -493,3 +493,41 @@ header.sticky-top {
 .custom-time-ui .arrowDown {
     border-radius: 4px;
 }
+
+/* ========================================================
+   ANIMASI HALUS TOGGLE LOKASI CAR RENTAL
+======================================================== */
+/* 1. Mencegah elemen turun ke bawah saat transisi di Desktop */
+@media (min-width: 768px) {
+    #locationRow {
+        flex-wrap: nowrap;
+    }
+}
+
+/* 2. Mengatur kecepatan dan kehalusan gerak */
+#pickupCol, #dropoffCol {
+    transition: width 0.4s ease, max-width 0.4s ease, max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+}
+
+/* 3. Kelas khusus untuk menyembunyikan Drop-off dengan elegan */
+.dropoff-hidden {
+    max-width: 0 !important;
+    opacity: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    overflow: hidden !important;
+    border: none !important;
+}
+
+/* 4. Perilaku khusus di HP (Membuka ke bawah, bukan ke samping) */
+@media (max-width: 767px) {
+    .dropoff-hidden {
+        max-height: 0 !important;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    #dropoffCol {
+        max-height: 150px; /* Tinggi maksimal saat tampil di HP */
+    }
+}
