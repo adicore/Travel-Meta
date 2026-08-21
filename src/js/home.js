@@ -309,8 +309,16 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     function initFlatpickrElements() {
+        // Deteksi apakah pengguna sedang menggunakan HP (layar kecil)
+        const isMobile = window.innerWidth <= 768;
+
         // 1. Kalender default untuk bagian penerbangan/hotel
-        flatpickr(".lazy-date:not(.flatpickr-input)", { dateFormat: "Y-m-d", altInput: true, altFormat: "j M Y" }); 
+        flatpickr(".lazy-date:not(.flatpickr-input)", { 
+            dateFormat: "Y-m-d", 
+            altInput: true, 
+            altFormat: "j M Y",
+            disableMobile: true // PENTING: Tanpa tanda kutip
+        }); 
 
         // 2. Kalender Pick-up Date
         const pickupEl = document.getElementById('carPickupDate');
@@ -318,13 +326,10 @@ document.addEventListener("DOMContentLoaded", () => {
             pickupDateInstance = flatpickr(pickupEl, {
                 dateFormat: "Y-m-d",
                 minDate: "today",
-                allowInput: true,
-                disableMobile: "true",
+                allowInput: !isMobile, // Izinkan ketik di PC, tapi larang di HP agar keyboard tidak muncul!
+                disableMobile: true,   // PENTING: Tanpa tanda kutip
                 onChange: function(selectedDates, dateStr, instance) {
-                    // 🔥 VALIDASI: Saat pick-up diubah, perbarui batas minimal drop-off
-                    if (dropoffDateInstance) {
-                        dropoffDateInstance.set("minDate", dateStr);
-                    }
+                    if (dropoffDateInstance) dropoffDateInstance.set("minDate", dateStr);
                 }
             });
         }
@@ -335,8 +340,8 @@ document.addEventListener("DOMContentLoaded", () => {
             dropoffDateInstance = flatpickr(dropoffEl, {
                 dateFormat: "Y-m-d",
                 minDate: "today",
-                allowInput: true,
-                disableMobile: "true"
+                allowInput: !isMobile, 
+                disableMobile: true    
             });
         }
 
@@ -346,12 +351,11 @@ document.addEventListener("DOMContentLoaded", () => {
             noCalendar: true, 
             dateFormat: "H:i", 
             time_24hr: true, 
-            allowInput: true, 
+            allowInput: !isMobile, 
             defaultHour: 10, 
             defaultMinute: 0, 
-            disableMobile: "true",
+            disableMobile: true,
             onOpen: function(selectedDates, dateStr, instance) {
-                // 🔥 Menyuntikkan class CSS "custom-time-ui" ke kontainer waktu ini
                 instance.calendarContainer.classList.add('custom-time-ui');
             }
         });
