@@ -46,12 +46,19 @@
         }
 
         header.sticky-top { z-index: 1070 !important; }
-        .offcanvas { z-index: 1080 !important; } /* PERBAIKAN Z-INDEX MENU MOBILE AGAR MENUTUPI HEADER */
+        .offcanvas { z-index: 1080 !important; } 
         .cursor-pointer { cursor: pointer; }
         
         .hamburger-icon { display: flex; flex-direction: column; justify-content: space-around; width: 22px; height: 18px; }
         .hamburger-icon span { display: block; height: 2px; width: 100%; background-color: #1e293b; border-radius: 2px; transition: all 0.3s; }
         .hamburger-icon span:nth-child(2) { width: 70%; }
+
+        /* HEADER LOGO RESPONSIVE */
+        .logo-icon-box { width: 38px; height: 38px; font-size: 1.25rem; }
+        @media (max-width: 575.98px) {
+            .logo-icon-box { width: 32px; height: 32px; font-size: 1rem; }
+            .header-mobile-actions { gap: 0.5rem !important; } /* Mencegah berdesakan di HP */
+        }
 
         /* LAZYSIZES EFFECT */
         .lazy-effect {
@@ -76,8 +83,8 @@
         .hero-carousel img { height: 620px; object-fit: cover; filter: brightness(0.55); }
         
         /* Typography Responsive di Hero Caption */
-        .hero-title { font-size: clamp(2rem, 5vw, 4.2rem); letter-spacing: -1.5px; }
-        .hero-subtitle { font-size: clamp(1rem, 2.5vw, 1.35rem); }
+        .hero-title { font-size: clamp(1.8rem, 5vw, 4.2rem); letter-spacing: -1px; }
+        .hero-subtitle { font-size: clamp(0.95rem, 2.5vw, 1.35rem); }
         .carousel-caption { padding-bottom: 9rem !important; }
 
         .search-card { 
@@ -119,13 +126,16 @@
         .about-img-2 { width: 210px; height: 340px; transform: translateY(-10px); z-index: 3; }
         .about-img-3 { width: 200px; height: 320px; transform: rotate(8deg) translateX(80px); z-index: 2; }
         
+        @media (max-width: 991.98px) {
+            .search-card { margin-top: -120px; } /* Penyesuaian jarak Search Card di Tablet */
+        }
         @media (max-width: 767.98px) {
             .hero-carousel { height: 550px; }
             .hero-carousel img { height: 550px; }
             .carousel-caption { padding-bottom: 7rem !important; }
             .search-card { margin-top: -100px; }
             
-            /* Responsive About Images */
+            /* Responsive About Images Tablet */
             .about-img-container { height: 280px; }
             .about-img-1 { width: 140px; height: 220px; transform: rotate(-8deg) translateX(-50px); }
             .about-img-2 { width: 150px; height: 240px; transform: translateY(-5px); }
@@ -141,6 +151,18 @@
             .about-img-1 { width: 110px; height: 180px; transform: rotate(-8deg) translateX(-40px); }
             .about-img-2 { width: 120px; height: 190px; transform: translateY(0px); }
             .about-img-3 { width: 110px; height: 180px; transform: rotate(8deg) translateX(40px); }
+            
+            /* Penyesuaian Kotak Pencarian agar tidak terlalu tinggi di HP */
+            .search-box-item { padding: 10px 14px; min-height: 64px; }
+            .search-action-btn { min-height: 64px !important; }
+        }
+        @media (max-width: 400px) {
+            /* Ultra Small Mobile Screen Adjustments */
+            .about-img-container { height: 200px; }
+            .about-img-1 { width: 90px; height: 150px; transform: rotate(-8deg) translateX(-30px); }
+            .about-img-2 { width: 100px; height: 160px; transform: translateY(0px); }
+            .about-img-3 { width: 90px; height: 150px; transform: rotate(8deg) translateX(30px); }
+            .hero-title { font-size: 1.6rem; }
         }
 
         /* TITLE & BUTTON EFFECTS */
@@ -229,7 +251,7 @@
     <!-- 1. MODERN HEADER & NAVIGATION -->
     <header class="bg-white sticky-top shadow-sm scroll-reveal">
         
-        <!-- DESKTOP TOP BAR (Disembunyikan di Mobile) -->
+        <!-- DESKTOP TOP BAR (Disembunyikan di Mobile & Tablet Kecil) -->
         <div class="border-bottom py-2 bg-white small d-none d-lg-block">
             <div class="container d-flex justify-content-between align-items-center">
                 <div class="text-secondary d-flex align-items-center gap-1">
@@ -251,22 +273,24 @@
         </div>
 
         <!-- MAIN NAVBAR -->
-        <nav class="navbar navbar-expand-lg navbar-light py-3">
-            <div class="container d-flex justify-content-between">
+        <nav class="navbar navbar-expand-lg navbar-light py-2 py-lg-3">
+            <div class="container d-flex justify-content-between align-items-center">
                 
-                <!-- LOGO (Tampil Kiri di PC dan Mobile) -->
-                <a class="navbar-brand fw-bold fs-4 text-dark d-flex align-items-center gap-2 text-decoration-none m-0" href="#">
-                    <div class="bg-primary text-white p-2 rounded-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 38px; height: 38px;">
-                        <i class="bi bi-airplane-engines fs-5"></i>
+                <!-- LOGO RESPONSIVE (Tampil Kiri di PC, Tablet, Mobile) -->
+                <!-- Kelas fs-5 untuk Mobile, fs-lg-4 untuk Desktop -->
+                <a class="navbar-brand fw-bold fs-5 fs-lg-4 text-dark d-flex align-items-center gap-2 text-decoration-none m-0" href="#">
+                    <div class="logo-icon-box bg-primary text-white rounded-3 d-flex align-items-center justify-content-center shadow-sm">
+                        <i class="bi bi-airplane-engines"></i>
                     </div>
                     TravelMeta
                 </a>
 
-                <!-- MOBILE HEADER ACTIONS (Tampil khusus HP: Referensi image_e0f49c.png) -->
-                <div class="d-flex align-items-center gap-3 d-lg-none">
+                <!-- MOBILE & TABLET HEADER ACTIONS -->
+                <!-- Kelas gap-sm-3 dan gap-2 untuk menyesuaikan kerapatan menu di HP/Tablet -->
+                <div class="d-flex align-items-center gap-2 gap-sm-3 d-lg-none header-mobile-actions">
                     <div class="d-flex align-items-center gap-1 cursor-pointer" data-bs-toggle="modal" data-bs-target="#currencyModal">
                         <i class="bi bi-globe fs-5 text-dark"></i>
-                        <span class="fw-semibold text-dark small" style="font-size: 0.85rem;">USD</span>
+                        <span class="fw-semibold text-dark small d-none d-sm-inline-block" style="font-size: 0.85rem;">USD</span>
                     </div>
                     <a href="#" class="text-dark text-decoration-none"><i class="bi bi-person-circle fs-4"></i></a>
                     <button class="btn btn-white bg-white border shadow-sm rounded-3 p-2 d-flex align-items-center justify-content-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMobileMenu" style="width: 42px; height: 42px;">
@@ -278,7 +302,7 @@
                     </button>
                 </div>
 
-                <!-- DESKTOP MENU NAVBAR (Sembunyikan di Mobile) -->
+                <!-- DESKTOP MENU NAVBAR (Sembunyikan di Mobile/Tablet) -->
                 <div class="collapse navbar-collapse d-none d-lg-flex justify-content-end" id="navbarNavDesk">
                     <ul class="navbar-nav mx-auto align-items-center gap-3">
                         <li class="nav-item"><a class="nav-link text-primary fw-semibold" href="#">Home</a></li>
@@ -336,22 +360,22 @@
                 </div>
             </div>
 
-            <!-- MOBILE SUB-HEADER (Rating & Cart. Khusus HP: Referensi image_e0f49c.png) -->
-            <div class="container d-lg-none mt-3 pt-3 border-top d-flex justify-content-between align-items-center">
-                <div class="text-secondary small d-flex align-items-start gap-1 w-75">
+            <!-- MOBILE SUB-HEADER (Rating & Cart) -->
+            <div class="container d-lg-none mt-2 pt-3 border-top d-flex justify-content-between align-items-center flex-nowrap">
+                <div class="text-secondary small d-flex align-items-start gap-1 flex-grow-1 pe-2">
                     <span class="text-warning fs-6 lh-1" style="margin-top: 1px;">★</span> 
                     <span class="fw-medium text-dark lh-sm" style="font-size: 0.8rem;">
-                        <span class="text-primary fw-bold">4.9 Rated</span> by <strong class="text-dark">10,000+</strong> Travelers Worldwide.
+                        <span class="text-primary fw-bold">4.9 Rated</span> by <strong class="text-dark">10,000+</strong> Travelers.
                     </span>
                 </div>
-                <a href="#" class="text-dark text-decoration-none"><i class="bi bi-cart3 fs-4"></i></a>
+                <a href="#" class="text-dark text-decoration-none flex-shrink-0"><i class="bi bi-cart3 fs-4"></i></a>
             </div>
         </nav>
     </header>
 
     <!-- MOBILE OFFCANVAS SIDE MENU (Referensi image_e0f47a.png) -->
-    <!-- Z-index telah diperbaiki melalui class CSS .offcanvas agar posisinya di atas header sticky -->
-    <div class="offcanvas offcanvas-start border-0 shadow-lg d-lg-none" tabindex="-1" id="offcanvasMobileMenu" style="width: 290px;">
+    <!-- max-width: 85vw memastikan menu samping tidak full menutup 100% pada HP sempit -->
+    <div class="offcanvas offcanvas-start border-0 shadow-lg d-lg-none" tabindex="-1" id="offcanvasMobileMenu" style="width: 290px; max-width: 85vw;">
         <div class="offcanvas-header py-4 px-4 border-bottom border-light">
             <a class="fw-bold fs-4 text-dark d-flex align-items-center gap-2 text-decoration-none m-0" href="#">
                 <div class="bg-primary text-white p-2 rounded-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 32px; height: 32px;">
@@ -415,7 +439,7 @@
                     <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80" width="1920" height="620" class="d-block w-100 h-100 lazyload lazy-effect" alt="Paradise Beach" fetchpriority="high">
                 </div>
                 <!-- Flexbox Rata Tengah Akurat -->
-                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center h-100 top-0 start-0 w-100 container z-2">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center h-100 top-0 start-0 w-100 container z-2 px-3">
                     <span class="badge bg-primary bg-opacity-75 backdrop-blur mb-3 px-3 py-2 rounded-pill fw-semibold shadow-sm">Eksplorasi Dunia</span>
                     <h1 class="hero-title fw-extrabold text-white text-center mb-3 w-100" style="max-width: 900px;">Temukan Harga Tiket & Hotel Termurah</h1>
                     <p class="hero-subtitle text-white-50 text-center w-100" style="max-width: 700px;">Bandingkan penawaran dari ratusan situs travel secara instan.</p>
@@ -426,7 +450,7 @@
                     <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1920&q=80" width="1920" height="620" class="d-block w-100 h-100 lazyload lazy-effect" alt="Mountain View" fetchpriority="low">
                 </div>
                 <!-- Flexbox Rata Tengah Akurat -->
-                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center h-100 top-0 start-0 w-100 container z-2">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center h-100 top-0 start-0 w-100 container z-2 px-3">
                     <span class="badge bg-success bg-opacity-75 backdrop-blur mb-3 px-3 py-2 rounded-pill fw-semibold shadow-sm">Petualangan Baru</span>
                     <h1 class="hero-title fw-extrabold text-white text-center mb-3 w-100" style="max-width: 900px;">Liburan Impian Tanpa Bikin Kantong Bolong</h1>
                     <p class="hero-subtitle text-white-50 text-center w-100" style="max-width: 700px;">Nikmati diskon eksklusif tur, rental mobil, dan reservasi hotel global.</p>
@@ -453,7 +477,7 @@
                 <!-- FLIGHTS TAB -->
                 <div class="tab-pane fade show active" id="flightSearchTab">
                     <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
-                        <ul class="nav nav-pills gap-2 small" role="tablist">
+                        <ul class="nav nav-pills gap-2 small flex-nowrap overflow-x-auto w-100 w-md-auto pb-2 pb-md-0" role="tablist" style="scrollbar-width: none;">
                             <li class="nav-item"><button class="nav-link active rounded-pill px-3 py-1" data-bs-toggle="tab" data-bs-target="#oneWay">One-way</button></li>
                             <li class="nav-item"><button class="nav-link rounded-pill px-3 py-1 text-dark" data-bs-toggle="tab" data-bs-target="#roundTrip">Roundtrip</button></li>
                             <li class="nav-item"><button class="nav-link rounded-pill px-3 py-1 text-dark" data-bs-toggle="tab" data-bs-target="#multiCity">Multi-city</button></li>
@@ -1168,7 +1192,6 @@
     </section>
 
     <!-- 9. SECTION: ABOUT -->
-    <!-- PERBAIKAN: g-5 diubah menjadi g-4 g-lg-5 agar lebih pas/responsif untuk ukuran mobile tanpa overflow margin -->
     <section id="about" class="container py-5 my-4 scroll-reveal">
         <div class="row align-items-center g-4 g-lg-5">
             <div class="col-lg-6">
@@ -1183,7 +1206,7 @@
                 <a href="#" class="btn btn-primary rounded-pill px-5 py-3 fw-bold shadow text-decoration-none">Discover More</a>
             </div>
 
-            <div class="col-lg-6">
+            <div class="col-lg-6 mt-5 mt-lg-0">
                 <div class="about-img-container mb-5">
                     <div class="about-img-item about-img-1">
                         <div class="image-shimmer-effect">
