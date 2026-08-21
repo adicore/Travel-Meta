@@ -266,7 +266,83 @@
         </div>
     </section>
 
-    <!-- 6. SECTION: ABOUT -->
+    <!-- 6. SECTION: POPULAR HOTELS -->
+    <section id="hotels" class="container py-5 scroll-reveal">
+        <div class="text-center mb-4">
+            <h2 class="display-6 text-dark">Popular Hotels Globally</h2>
+            <p class="text-muted">Akomodasi pilihan dengan fasilitas mewah dan ulasan terbaik.</p>
+        </div>
+        <div class="overflow-hidden mb-4">
+            <div class="d-flex overflow-x-auto hide-scroll justify-content-md-center">
+                <ul class="nav nav-pills gap-2 flex-nowrap" role="tablist">
+                    <li class="nav-item"><button class="nav-link active rounded-pill px-4 fw-semibold text-nowrap" data-bs-toggle="pill" data-bs-target="#hotelAmerica">Amerika</button></li>
+                    <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold text-nowrap" data-bs-toggle="pill" data-bs-target="#hotelEurope">Eropa</button></li>
+                    <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold text-nowrap" data-bs-toggle="pill" data-bs-target="#hotelAsia">Asia</button></li>
+                    <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold text-nowrap" data-bs-toggle="pill" data-bs-target="#hotelAfrica">Afrika</button></li>
+                    <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold text-nowrap" data-bs-toggle="pill" data-bs-target="#hotelMiddleEast">Middle East</button></li>
+                </ul>
+            </div>
+        </div>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="hotelAmerica">
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover position-relative bg-white">
+                            <div class="image-shimmer-effect position-relative" style="height: 220px;">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" width="600" height="400" class="lazyload lazy-effect" alt="Luxury Ocean View Hotel" fetchpriority="low">
+                                <button class="btn btn-white bg-white rounded-circle position-absolute top-0 start-0 m-3 d-flex align-items-center justify-content-center shadow-sm border-0" style="width: 38px; height: 38px; z-index: 2;" title="Wishlist">
+                                    <i class="bi bi-heart text-dark fs-5"></i>
+                                </button>
+                                <span class="badge position-absolute top-0 end-0 m-3 px-3 py-2 rounded-pill fw-bold text-white shadow-sm" style="background-color: #ff3b30; z-index: 2; font-size: 0.8rem;">
+                                    10% Off
+                                </span>
+                            </div>
+                            <div class="card-body p-4 d-flex flex-column justify-content-between">
+                                <div>
+                                    <h5 class="fw-bold mb-1 fs-5">
+                                        <a href="#" class="text-dark text-decoration-none">Luxury Ocean View Hotel</a>
+                                    </h5>
+                                    <p class="text-muted small mb-3 d-flex align-items-center gap-1">
+                                        <i class="bi bi-cursor text-secondary" style="font-size: 0.85rem; transform: rotate(0deg);"></i> Bali, Indonesia
+                                    </p>
+                                    <div class="d-flex align-items-center gap-2 mb-3">
+                                        <span class="badge bg-primary text-white px-2 py-1 rounded-2 fw-bold fs-6">4.5</span>
+                                        <div>
+                                            <span class="fw-bold text-dark small d-block lh-1">Excellent</span>
+                                            <small class="text-muted" style="font-size: 0.75rem;">Based on 2,456 reviews</small>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2 mb-3 text-dark small fw-medium">
+                                        <i class="bi bi-check-circle-fill text-primary fs-6"></i>
+                                        <span>Free Cancellation</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="text-end mb-2">
+                                        <span class="text-muted text-decoration-line-through small me-2">USD 2,959</span>
+                                        <div class="d-flex align-items-center justify-content-end gap-1">
+                                            <i class="bi bi-info-circle text-muted" style="font-size: 0.8rem;"></i>
+                                            <span class="fw-extrabold text-dark fs-4 lh-1">USD 2,559</span>
+                                        </div>
+                                        <small class="text-muted" style="font-size: 0.75rem;">per night</small>
+                                    </div>
+                                    <button class="btn btn-primary w-100 rounded-pill py-2 fw-bold shadow-sm">
+                                        Check Availability
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="hotelEurope"><div class="text-center py-4 text-muted">Hotel Eropa segera hadir...</div></div>
+            <div class="tab-pane fade" id="hotelAsia"><div class="text-center py-4 text-muted">Hotel Asia segera hadir...</div></div>
+            <div class="tab-pane fade" id="hotelAfrica"><div class="text-center py-4 text-muted">Hotel Afrika segera hadir...</div></div>
+            <div class="tab-pane fade" id="hotelMiddleEast"><div class="text-center py-4 text-muted">Hotel Middle East segera hadir...</div></div>
+        </div>
+    </section>
+
+    <!-- 7. SECTION: ABOUT -->
     <section id="about" class="container py-5 my-4 scroll-reveal">
         <div class="row align-items-center g-4 g-lg-5">
             <div class="col-lg-6">
@@ -289,7 +365,7 @@
         </div>
     </section>
 
-    <!-- 7. SECTION: ABOUT FEATURES -->
+    <!-- 8. SECTION: ABOUT FEATURES -->
     <section class="container py-5 my-4 scroll-reveal">
         <div class="row g-4">
             <div class="col-lg-3 col-md-6">
@@ -323,7 +399,7 @@
         </div>
     </section>
 
-    <!-- 8. SECTION: CUSTOMER REVIEWS (USING VANILLA CAROUSEL) -->
+    <!-- 9. SECTION: CUSTOMER REVIEWS (USING VANILLA CAROUSEL) -->
     <section class="py-5 my-4 position-relative overflow-hidden scroll-reveal" style="background: linear-gradient(135deg, #e3fcef 0%, #cbf5df 100%);">
         <div class="container py-4">
             <div class="row align-items-center mb-5">
@@ -457,7 +533,7 @@
         </div>
     </section>
 
-    <!-- 9. SECTION: DOWNLOAD MOBILE APP -->
+    <!-- 10. SECTION: DOWNLOAD MOBILE APP -->
     <section class="container py-5 my-4 scroll-reveal">
         <div class="rounded-5 p-4 p-lg-5 position-relative overflow-hidden text-dark shadow-lg border" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);">
             <div class="row align-items-center">
@@ -497,7 +573,7 @@
         </div>
     </section>
 
-    <!-- 10. SECTION: TRAVEL TIPS & INSPIRATIONS -->
+    <!-- 11. SECTION: TRAVEL TIPS & INSPIRATIONS -->
     <section class="container py-5 my-3 scroll-reveal">
         <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-3">
             <div>
@@ -582,7 +658,7 @@
         </div>
     </section>
 
-    <!-- 11. SECTION: SUBSCRIBE NEWSLETTER -->
+    <!-- 12. SECTION: SUBSCRIBE NEWSLETTER -->
     <section class="container py-4 my-4 scroll-reveal">
         <div class="rounded-5 p-4 p-lg-5 text-white position-relative overflow-hidden shadow-lg" style="background: var(--primary-gradient);">
             <div class="row align-items-center g-4">
@@ -605,7 +681,7 @@
         </div>
     </section>
 
-    <!-- 12. FOOTER -->
+    <!-- 13. FOOTER -->
     <footer id="footer" class="modern-footer pt-5 pb-4 scroll-reveal">
         <div class="container py-4">
             <div class="row g-5 mb-5">
