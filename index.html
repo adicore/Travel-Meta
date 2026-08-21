@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TravelMeta - Global Travel Meta Search Engine</title>
     
-    <!-- Google Fonts: Plus Jakarta Sans & Poppins (Fetchpriority High) -->
+    <!-- Google Fonts: Plus Jakarta Sans & Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin fetchpriority="high">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet" fetchpriority="high">
     
-    <!-- Bootstrap 5.3.3 CSS (Fetchpriority High) -->
+    <!-- Bootstrap 5.3.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" fetchpriority="high">
     
-    <!-- Bootstrap Icons CSS (Fetchpriority Low) -->
+    <!-- Bootstrap Icons CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" fetchpriority="low">
     
-    <!-- Lazysizes JS (Fetchpriority High) -->
+    <!-- Lazysizes JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async fetchpriority="high"></script>
 
     <style>
@@ -55,9 +55,19 @@
 
         /* HEADER LOGO RESPONSIVE */
         .logo-icon-box { width: 38px; height: 38px; font-size: 1.25rem; }
+        
+        /* RESPONSIVE MOBILE MODIFICATIONS */
         @media (max-width: 575.98px) {
             .logo-icon-box { width: 32px; height: 32px; font-size: 1rem; }
             .header-mobile-actions { gap: 0.5rem !important; }
+            
+            /* Modal Mobile Positioning & Font Size */
+            .mobile-modal-top { margin-top: 1rem !important; align-items: flex-start !important; }
+            .mobile-modal-text { font-size: 0.8rem !important; padding: 0.4rem 0.5rem !important; }
+            .mobile-modal-title { font-size: 1.1rem !important; }
+            
+            /* Cabin class dropdown full width on mobile */
+            .cabin-dropdown-mobile { width: 100% !important; justify-content: space-between !important; }
         }
 
         /* LAZYSIZES EFFECT */
@@ -135,7 +145,6 @@
             .carousel-caption { padding-bottom: 7rem !important; }
             .search-card { margin-top: -100px; }
             
-            /* Responsive About Images Tablet */
             .about-img-container { height: 280px; }
             .about-img-1 { width: 140px; height: 220px; transform: rotate(-8deg) translateX(-50px); }
             .about-img-2 { width: 150px; height: 240px; transform: translateY(-5px); }
@@ -146,7 +155,6 @@
             .hero-carousel img { height: 520px; }
             .carousel-caption { padding-bottom: 8rem !important; }
             
-            /* Extra Small About Images */
             .about-img-container { height: 240px; }
             .about-img-1 { width: 110px; height: 180px; transform: rotate(-8deg) translateX(-40px); }
             .about-img-2 { width: 120px; height: 190px; transform: translateY(0px); }
@@ -167,7 +175,7 @@
         .hide-scroll::-webkit-scrollbar { display: none; }
         .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* TITLE & BUTTON EFFECTS (DIBUAT SANGAT TEBAL / FONT-WEIGHT 900) */
+        /* TITLE & BUTTON EFFECTS */
         h1, h2, .display-6, .display-5, .display-3, .hero-title {
             background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%); 
             -webkit-background-clip: text; 
@@ -217,7 +225,7 @@
             background: linear-gradient(90deg, #e2e8f0 25%, #cbd5e1 50%, #e2e8f0 75%) !important;
             background-size: 200% 100% !important;
             animation: skeleton-loading 1.5s infinite !important;
-            color: transparent !important; 
+            color: #1e293b !important; /* Diperbarui agar teks tetap terlihat */
             box-shadow: none !important;
         }
 
@@ -385,15 +393,15 @@
     </header>
 
     <!-- MOBILE OFFCANVAS SIDE MENU -->
-    <div class="offcanvas offcanvas-start border-0 shadow-lg d-lg-none" tabindex="-1" id="offcanvasMobileMenu" style="width: 290px; max-width: 85vw;">
-        <div class="offcanvas-header py-4 px-4 border-bottom border-light">
+    <div class="offcanvas offcanvas-start border-0 shadow-lg d-lg-none w-100" tabindex="-1" id="offcanvasMobileMenu">
+        <div class="offcanvas-header py-4 px-4 border-bottom border-light d-flex justify-content-between align-items-center w-100">
             <a class="fw-bold fs-4 text-dark d-flex align-items-center gap-2 text-decoration-none m-0" href="#">
                 <div class="bg-primary text-white p-2 rounded-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 32px; height: 32px;">
                     <i class="bi bi-airplane-engines fs-6"></i>
                 </div>
                 TravelMeta
             </a>
-            <button type="button" class="btn btn-white bg-white border rounded-3 px-2 py-1 shadow-sm d-flex align-items-center justify-content-center" data-bs-dismiss="offcanvas" style="width: 36px; height: 36px;">
+            <button type="button" class="btn btn-white bg-white border rounded-3 px-2 py-1 shadow-sm d-flex align-items-center justify-content-center ms-auto" data-bs-dismiss="offcanvas" style="width: 36px; height: 36px;">
                 <i class="bi bi-x-lg fs-5"></i>
             </button>
         </div>
@@ -490,24 +498,27 @@
                 <!-- FLIGHTS TAB -->
                 <div class="tab-pane fade show active" id="flightSearchTab">
                     
-                    <!-- FLIGHT TYPES & CABIN DROPDOWN (Global untuk semua tipe penerbangan) -->
-                    <div class="d-flex justify-content-between align-items-center mb-3 gap-2">
-                        <div class="flex-grow-1 overflow-hidden border border-light rounded-pill p-1 shadow-sm" style="max-width: max-content;">
+                    <!-- FLIGHT TYPES & CABIN DROPDOWN (Flex-column untuk mobile agar Tab diatas Cabin) -->
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-3">
+                        <div class="overflow-hidden border border-light rounded-pill p-1 shadow-sm w-100 w-md-auto" style="max-width: 100%;">
                             <div class="d-flex overflow-x-auto hide-scroll">
                                 <ul class="nav nav-pills gap-1 small flex-nowrap" role="tablist">
-                                    <li class="nav-item"><button class="nav-link active rounded-pill px-3 py-1 text-nowrap" data-bs-toggle="tab" data-bs-target="#oneWay">One-way</button></li>
-                                    <li class="nav-item"><button class="nav-link rounded-pill px-3 py-1 text-dark text-nowrap" data-bs-toggle="tab" data-bs-target="#roundTrip">Roundtrip</button></li>
-                                    <li class="nav-item"><button class="nav-link rounded-pill px-3 py-1 text-dark text-nowrap" data-bs-toggle="tab" data-bs-target="#multiCity">Multi-city</button></li>
+                                    <li class="nav-item flex-fill"><button class="nav-link active rounded-pill px-3 py-1 text-nowrap w-100 text-center" data-bs-toggle="tab" data-bs-target="#oneWay">One-way</button></li>
+                                    <li class="nav-item flex-fill"><button class="nav-link rounded-pill px-3 py-1 text-dark text-nowrap w-100 text-center" data-bs-toggle="tab" data-bs-target="#roundTrip">Roundtrip</button></li>
+                                    <li class="nav-item flex-fill"><button class="nav-link rounded-pill px-3 py-1 text-dark text-nowrap w-100 text-center" data-bs-toggle="tab" data-bs-target="#multiCity">Multi-city</button></li>
                                 </ul>
                             </div>
                         </div>
                         
-                        <div class="dropdown ms-auto flex-shrink-0">
-                            <button class="btn btn-light btn-sm custom-dropdown-toggle rounded-pill px-3 py-1 border text-primary fw-semibold shadow-sm d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown">
-                                <span id="cabinClassDropdownBtn">Economy</span>
-                                <i class="bi bi-chevron-down arrow-icon text-dark" style="font-size: 0.8rem; -webkit-text-stroke: 1px;"></i>
+                        <div class="dropdown align-self-start align-self-md-auto w-100 w-md-auto">
+                            <button class="btn btn-light btn-sm custom-dropdown-toggle rounded-pill px-3 py-2 border text-primary fw-semibold shadow-sm d-flex align-items-center justify-content-between cabin-dropdown-mobile" type="button" data-bs-toggle="dropdown">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-star-fill text-warning" style="font-size: 0.75rem;"></i>
+                                    <span id="cabinClassDropdownBtn">Economy</span>
+                                </div>
+                                <i class="bi bi-chevron-down arrow-icon text-dark ms-2" style="font-size: 0.8rem; -webkit-text-stroke: 1px;"></i>
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-4 p-2">
+                            <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-4 p-2 w-100">
                                 <li><a class="dropdown-item cabin-option rounded-3 py-2 text-dark" href="#" data-cabin="Economy">Economy</a></li>
                                 <li><a class="dropdown-item cabin-option rounded-3 py-2 text-dark" href="#" data-cabin="Premium Economy">Premium Economy</a></li>
                                 <li><a class="dropdown-item cabin-option rounded-3 py-2 text-dark" href="#" data-cabin="Business">Business</a></li>
@@ -540,7 +551,7 @@
                                 <div class="col-lg-2 col-md-6">
                                     <div class="search-box-item">
                                         <div class="text-muted small mb-1"><i class="bi bi-calendar text-primary me-1"></i> Departure</div>
-                                        <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Pilih Tanggal">
+                                        <input type="text" id="owDepDate" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Pilih Tanggal">
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6">
@@ -605,7 +616,7 @@
                                 <div class="col-lg-2 col-md-6">
                                     <div class="search-box-item">
                                         <div class="text-muted small mb-1"><i class="bi bi-calendar text-primary me-1"></i> Departure</div>
-                                        <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Pergi">
+                                        <input type="text" id="rtDepDate" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Pergi">
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-md-6">
@@ -1729,28 +1740,29 @@
 
     <!-- COMBINED MOBILE SETTINGS MODAL -->
     <div class="modal fade" id="mobileSettingsModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <!-- Ditambahkan class mobile-modal-top agar responsif dan popup muncul jelas di atas -->
+        <div class="modal-dialog modal-dialog-scrollable mobile-modal-top">
             <div class="modal-content rounded-4 border-0 shadow-lg p-2">
                 <div class="modal-header border-0 pb-0">
-                    <h5 class="modal-title fw-bold"><i class="bi bi-sliders text-primary me-2"></i>Pengaturan</h5>
+                    <h5 class="modal-title fw-bold mobile-modal-title"><i class="bi bi-sliders text-primary me-2"></i>Pengaturan</h5>
                     <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <h6 class="fw-bold mb-3"><i class="bi bi-coin text-warning me-1"></i> Mata Uang</h6>
+                    <h6 class="fw-bold mb-3 small"><i class="bi bi-coin text-warning me-1"></i> Mata Uang</h6>
                     <div class="row g-2 mb-4">
-                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">USD ($)</button></div>
-                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">IDR (Rp)</button></div>
-                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">EUR (€)</button></div>
-                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">GBP (£)</button></div>
-                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">SGD (S$)</button></div>
-                        <div class="col-4"><button class="btn btn-light py-2 border rounded-3 text-start currency-option w-100 fw-semibold">JPY (¥)</button></div>
+                        <div class="col-4"><button class="btn btn-light border rounded-3 text-start currency-option w-100 fw-semibold mobile-modal-text">USD ($)</button></div>
+                        <div class="col-4"><button class="btn btn-light border rounded-3 text-start currency-option w-100 fw-semibold mobile-modal-text">IDR (Rp)</button></div>
+                        <div class="col-4"><button class="btn btn-light border rounded-3 text-start currency-option w-100 fw-semibold mobile-modal-text">EUR (€)</button></div>
+                        <div class="col-4"><button class="btn btn-light border rounded-3 text-start currency-option w-100 fw-semibold mobile-modal-text">GBP (£)</button></div>
+                        <div class="col-4"><button class="btn btn-light border rounded-3 text-start currency-option w-100 fw-semibold mobile-modal-text">SGD (S$)</button></div>
+                        <div class="col-4"><button class="btn btn-light border rounded-3 text-start currency-option w-100 fw-semibold mobile-modal-text">JPY (¥)</button></div>
                     </div>
-                    <h6 class="fw-bold mb-3 border-top pt-3"><i class="bi bi-globe text-info me-1"></i> Bahasa</h6>
+                    <h6 class="fw-bold mb-3 border-top pt-3 small"><i class="bi bi-globe text-info me-1"></i> Bahasa</h6>
                     <div class="row g-2">
-                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold">English (EN)</button></div>
-                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold">Bahasa Indonesia (ID)</button></div>
-                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold">Español (ES)</button></div>
-                        <div class="col-6"><button class="btn btn-light py-2 border rounded-3 text-start lang-option w-100 fw-semibold">Français (FR)</button></div>
+                        <div class="col-6"><button class="btn btn-light border rounded-3 text-start lang-option w-100 fw-semibold mobile-modal-text">English (EN)</button></div>
+                        <div class="col-6"><button class="btn btn-light border rounded-3 text-start lang-option w-100 fw-semibold mobile-modal-text">Bahasa Indonesia (ID)</button></div>
+                        <div class="col-6"><button class="btn btn-light border rounded-3 text-start lang-option w-100 fw-semibold mobile-modal-text">Español (ES)</button></div>
+                        <div class="col-6"><button class="btn btn-light border rounded-3 text-start lang-option w-100 fw-semibold mobile-modal-text">Français (FR)</button></div>
                     </div>
                 </div>
             </div>
@@ -1813,6 +1825,21 @@
     
     <!-- VANILLA JS -->
     <script>
+        // SET DEFAULT DATE +3 DAYS UNTUK KEBERANGKATAN (Dijalankan sebelum Flatpickr)
+        (function setInitialDates() {
+            const defaultDate = new Date();
+            defaultDate.setDate(defaultDate.getDate() + 3);
+            const yyyy = defaultDate.getFullYear();
+            const mm = String(defaultDate.getMonth() + 1).padStart(2, '0');
+            const dd = String(defaultDate.getDate()).padStart(2, '0');
+            const defaultDateStr = `${yyyy}-${mm}-${dd}`;
+            
+            const owDepDate = document.getElementById("owDepDate");
+            const rtDepDate = document.getElementById("rtDepDate");
+            if (owDepDate) owDepDate.value = defaultDateStr;
+            if (rtDepDate) rtDepDate.value = defaultDateStr;
+        })();
+
         class VanillaCarousel {
             constructor(selector, options = {}) {
                 this.carousel = typeof selector === 'string' ? document.querySelector(selector) : selector;
@@ -2516,9 +2543,17 @@
                 });
             });
 
+            // ==========================================
+            // LOGIKA PEMUATAN FLATPICKR (Diperbarui)
+            // ==========================================
             let flatpickrLoaded = false;
             const loadFlatpickr = () => {
-                if (flatpickrLoaded) return;
+                if (flatpickrLoaded) {
+                    if (typeof flatpickr !== 'undefined') {
+                        flatpickr(".lazy-date:not(.flatpickr-input)", { dateFormat: "Y-m-d", altInput: true, altFormat: "j M Y" });
+                    }
+                    return;
+                }
                 const link = document.createElement("link");
                 link.rel = "stylesheet";
                 link.href = "https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css";
@@ -2526,14 +2561,19 @@
                 
                 const script = document.createElement("script");
                 script.src = "https://cdn.jsdelivr.net/npm/flatpickr";
-                script.onload = () => { flatpickr(".lazy-date", { dateFormat: "Y-m-d", altInput: true, altFormat: "j M Y" }); };
+                script.onload = () => { 
+                    flatpickrLoaded = true;
+                    flatpickr(".lazy-date", { dateFormat: "Y-m-d", altInput: true, altFormat: "j M Y" }); 
+                };
                 document.body.appendChild(script);
-                flatpickrLoaded = true;
             };
 
+            // Menambahkan listener untuk mobile (touchstart, click) dan dekstop (mouseover, focus)
             document.querySelectorAll(".lazy-date").forEach(input => {
-                input.addEventListener("mouseover", loadFlatpickr, { once: true });
-                input.addEventListener("focus", loadFlatpickr, { once: true });
+                input.addEventListener("mouseover", loadFlatpickr);
+                input.addEventListener("focus", loadFlatpickr);
+                input.addEventListener("click", loadFlatpickr);
+                input.addEventListener("touchstart", loadFlatpickr, { passive: true });
             });
 
             // ==========================================
@@ -2734,9 +2774,19 @@
                         </div>
                     `;
                     multiCityContainer.appendChild(newRow);
+                    
+                    // Setup Autocomplete & DatePicker pada element yang baru ditambahkan
                     newRow.querySelectorAll(".autocomplete-input").forEach(input => setupTravelAutocomplete(input));
-                    newRow.querySelector(".lazy-date").addEventListener("mouseover", loadFlatpickr, { once: true });
-                    newRow.querySelector(".lazy-date").addEventListener("focus", loadFlatpickr, { once: true });
+                    
+                    const newDateInput = newRow.querySelector(".lazy-date");
+                    newDateInput.addEventListener("mouseover", loadFlatpickr);
+                    newDateInput.addEventListener("focus", loadFlatpickr);
+                    newDateInput.addEventListener("click", loadFlatpickr);
+                    newDateInput.addEventListener("touchstart", loadFlatpickr, { passive: true });
+                    
+                    // Panggil otomatis untuk render flatpickr pada elemen baru
+                    loadFlatpickr();
+
                     updateMultiCityButtons();
                 });
             }
