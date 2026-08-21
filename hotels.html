@@ -47,15 +47,15 @@
 
         <nav class="navbar navbar-expand-lg navbar-light py-2 py-lg-3">
             <div class="container d-flex justify-content-between align-items-center">
-                <a class="navbar-brand fw-bold fs-5 fs-lg-4 text-dark d-flex align-items-center gap-2 text-decoration-none m-0" href="index.html">
+                <a class="navbar-brand fw-bold fs-5 fs-lg-4 text-dark d-flex align-items-center gap-2 text-decoration-none m-0" href="#">
                     <div class="logo-icon-box bg-primary text-white rounded-3 d-flex align-items-center justify-content-center shadow-sm">
-                        <i class="bi bi-building"></i>
+                        <i class="bi bi-airplane-engines"></i>
                     </div>
                     TravelMeta
                 </a>
 
                 <div class="d-flex align-items-center gap-2 gap-sm-3 d-lg-none header-mobile-actions">
-                    <div class="d-flex align-items-center gap-1 cursor-pointer bg-light px-2 py-1 rounded-pill border shadow-sm" data-bs-toggle="modal" data-bs-target="#mobileSettingsModal">
+                    <div class="d-flex align-items-center gap-1 cursor-pointer bg-light px-2 py-1 rounded-pill border shadow-sm" data-bs-toggle="modal" data-bs-target="#mobileSettingsModal" title="Language & Currency">
                         <i class="bi bi-globe-americas fs-6 text-dark ms-1"></i>
                         <span class="fw-bold text-dark small me-1" style="font-size: 0.75rem;">
                             <span id="mobLangText">EN</span> • <span id="mobCurrText">USD</span>
@@ -63,36 +63,53 @@
                     </div>
                     <a href="#" class="text-dark text-decoration-none"><i class="bi bi-person-circle fs-4"></i></a>
                     <button class="btn btn-white bg-white border shadow-sm rounded-3 p-2 d-flex align-items-center justify-content-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMobileMenu" style="width: 42px; height: 42px;">
-                        <div class="hamburger-icon"><span></span><span></span><span></span></div>
+                        <div class="hamburger-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
                     </button>
                 </div>
 
                 <div class="collapse navbar-collapse d-none d-lg-flex justify-content-end" id="navbarNavDesk">
-                    <ul class="navbar-nav mx-auto align-items-center gap-2 gap-xl-3">
-                        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="index.html">Beranda</a></li>
-                        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="flights.html">Flights</a></li>
-                        <li class="nav-item"><a class="nav-link text-primary fw-semibold" href="hotels.html">Hotel</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button" data-bs-toggle="dropdown">More Services</a>
-                            <ul class="dropdown-menu shadow-lg rounded-4 p-2 border-0" style="min-width: 200px;">
-                                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="car-rental.html"><i class="bi bi-car-front text-primary me-2"></i> Car Rental</a></li>
-                                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="taxi.html"><i class="bi bi-taxi-front text-primary me-2"></i> Taxi</a></li>
-                                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="bike.html"><i class="bi bi-bicycle text-primary me-2"></i> Bike</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="tours.html">Tour</a></li>
-                        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="visa.html">Visa</a></li>
-                    </ul>
+    <ul class="navbar-nav mx-auto align-items-center gap-2 gap-xl-3">
+        <li class="nav-item"><a class="nav-link text-primary fw-semibold" href="index.html">Beranda</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="flights.html">Flights</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="hotels.html">Hotel</a></li>
+        
+        <!-- Dropdown untuk Layanan Tambahan (Transport & Aktivitas) agar Navbar tetap rapi -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button" data-bs-toggle="dropdown">More Services</a>
+            <ul class="dropdown-menu shadow-lg rounded-4 p-2 border-0" style="min-width: 200px;">
+                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="car-rental.html"><i class="bi bi-car-front text-primary me-2"></i> Car Rental</a></li>
+                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="taxi.html"><i class="bi bi-taxi-front text-primary me-2"></i> Taxi</a></li>
+                <li><a class="dropdown-item rounded-3 py-2 text-dark" href="bike.html"><i class="bi bi-bicycle text-primary me-2"></i> Bike</a></li>
+            </ul>
+        </li>
 
-                    <div class="d-flex align-items-center gap-3">
-                        <a href="#" class="btn btn-outline-primary rounded-pill px-3 py-2 small fw-semibold d-flex align-items-center gap-2 border-2 text-decoration-none">
-                            <i class="bi bi-robot"></i> Plan with AI
-                        </a>
-                        <a href="https://whatsapp.com" target="_blank" class="btn btn-primary rounded-pill px-4 py-2 small fw-semibold d-flex align-items-center gap-2 text-decoration-none">
-                            <i class="bi bi-whatsapp fs-6"></i> +44-800 123 456
-                        </a>
-                    </div>
+        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="tours.html">Tour</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="visa.html">Visa</a></li>
+    </ul>
+
+    <div class="d-flex align-items-center gap-3">
+        <a href="#" class="btn btn-outline-primary rounded-pill px-3 py-2 small fw-semibold d-flex align-items-center gap-2 border-2 text-decoration-none">
+            <i class="bi bi-robot"></i> Plan with AI
+        </a>
+        <a href="https://whatsapp.com" target="_blank" class="btn btn-primary rounded-pill px-4 py-2 small fw-semibold d-flex align-items-center gap-2 text-decoration-none">
+            <i class="bi bi-whatsapp fs-6"></i> +44-800 123 456
+        </a>
+    </div>
+</div>
+            </div>
+            
+            <div class="container d-lg-none mt-2 pt-3 border-top d-flex justify-content-between align-items-center flex-nowrap">
+                <div class="text-secondary small d-flex align-items-start gap-1 flex-grow-1 pe-2">
+                    <span class="text-warning fs-6 lh-1" style="margin-top: 1px;">★</span> 
+                    <span class="fw-medium text-dark lh-sm" style="font-size: 0.8rem;">
+                        <span class="text-primary fw-bold">4.9 Rated</span> by <strong class="text-dark">10,000+</strong> Travelers.
+                    </span>
                 </div>
+                <a href="#" class="text-dark text-decoration-none flex-shrink-0"><i class="bi bi-cart3 fs-4"></i></a>
             </div>
         </nav>
     </header>
@@ -778,35 +795,40 @@
         <i class="bi bi-arrow-up fs-5 text-white"></i>
     </button>
 
-    <!-- COMBINED MOBILE SETTINGS MODAL -->
+    <!-- REVISED MOBILE MODAL -->
     <div class="modal fade" id="mobileSettingsModal" tabindex="-1">
-        <!-- Ditambahkan class mobile-modal-top agar responsif dan popup muncul jelas di atas -->
-        <div class="modal-dialog modal-dialog-scrollable mobile-modal-top">
-            <div class="modal-content rounded-4 border-0 shadow-lg p-2">
-                <div class="modal-header border-0 pb-0">
-                    <h5 class="modal-title fw-bold mobile-modal-title"><i class="bi bi-sliders text-primary me-2"></i>Pengaturan</h5>
-                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+    <!-- modal-dialog-centered (tengah) + modal-dialog-scrollable (konten bisa scroll) -->
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable mx-2 mx-sm-auto">
+        <div class="modal-content rounded-4 border-0 shadow-lg" style="height: 80vh;">
+            <div class="modal-header border-0 py-3">
+                <h5 class="modal-title fw-bold"><i class="bi bi-sliders text-primary me-2"></i>Pengaturan</h5>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+            </div>
+            
+            <!-- Isi Modal -->
+            <div class="modal-body p-3">
+                <!-- Mata Uang (6 Opsi) -->
+                <h6 class="fw-bold mb-3 small"><i class="bi bi-coin text-warning me-1"></i> Mata Uang</h6>
+                <div class="row row-cols-3 g-2 mb-4">
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold responsive-btn">USD ($)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold responsive-btn">IDR (Rp)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold responsive-btn">EUR (€)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold responsive-btn">GBP (£)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold responsive-btn">SGD (S$)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold responsive-btn">JPY (¥)</button></div>
                 </div>
-                <div class="modal-body">
-                    <h6 class="fw-bold mb-3 small"><i class="bi bi-coin text-warning me-1"></i> Mata Uang</h6>
-                    <div class="row g-2 mb-4">
-                        <div class="col-4"><button class="btn btn-light border rounded-3 text-start currency-option w-100 fw-semibold mobile-modal-text">USD ($)</button></div>
-                        <div class="col-4"><button class="btn btn-light border rounded-3 text-start currency-option w-100 fw-semibold mobile-modal-text">IDR (Rp)</button></div>
-                        <div class="col-4"><button class="btn btn-light border rounded-3 text-start currency-option w-100 fw-semibold mobile-modal-text">EUR (€)</button></div>
-                        <div class="col-4"><button class="btn btn-light border rounded-3 text-start currency-option w-100 fw-semibold mobile-modal-text">GBP (£)</button></div>
-                        <div class="col-4"><button class="btn btn-light border rounded-3 text-start currency-option w-100 fw-semibold mobile-modal-text">SGD (S$)</button></div>
-                        <div class="col-4"><button class="btn btn-light border rounded-3 text-start currency-option w-100 fw-semibold mobile-modal-text">JPY (¥)</button></div>
-                    </div>
-                    <h6 class="fw-bold mb-3 border-top pt-3 small"><i class="bi bi-globe text-info me-1"></i> Bahasa</h6>
-                    <div class="row g-2">
-                        <div class="col-6"><button class="btn btn-light border rounded-3 text-start lang-option w-100 fw-semibold mobile-modal-text">English (EN)</button></div>
-                        <div class="col-6"><button class="btn btn-light border rounded-3 text-start lang-option w-100 fw-semibold mobile-modal-text">Bahasa Indonesia (ID)</button></div>
-                        <div class="col-6"><button class="btn btn-light border rounded-3 text-start lang-option w-100 fw-semibold mobile-modal-text">Español (ES)</button></div>
-                        <div class="col-6"><button class="btn btn-light border rounded-3 text-start lang-option w-100 fw-semibold mobile-modal-text">Français (FR)</button></div>
-                    </div>
+                
+                <!-- Bahasa (4 Opsi) -->
+                <h6 class="fw-bold mb-3 border-top pt-3 small"><i class="bi bi-globe text-info me-1"></i> Bahasa</h6>
+                <div class="row row-cols-2 g-2">
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold responsive-btn">English (EN)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold responsive-btn">Indonesia (ID)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold responsive-btn">Español (ES)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold responsive-btn">Français (FR)</button></div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- MODAL CURRENCY (DESKTOP) -->

@@ -1452,35 +1452,40 @@
         <i class="bi bi-arrow-up fs-5 text-white"></i>
     </button>
 
-    <!-- COMBINED MOBILE SETTINGS MODAL -->
+    <!-- REVISED MOBILE MODAL -->
     <div class="modal fade" id="mobileSettingsModal" tabindex="-1">
-        <!-- Ditambahkan class mobile-modal-top agar responsif dan popup muncul jelas di atas -->
-        <div class="modal-dialog modal-dialog-scrollable mobile-modal-top">
-            <div class="modal-content rounded-4 border-0 shadow-lg p-2">
-                <div class="modal-header border-0 pb-0">
-                    <h5 class="modal-title fw-bold mobile-modal-title"><i class="bi bi-sliders text-primary me-2"></i>Pengaturan</h5>
-                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+    <!-- modal-dialog-centered (tengah) + modal-dialog-scrollable (konten bisa scroll) -->
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable mx-2 mx-sm-auto">
+        <div class="modal-content rounded-4 border-0 shadow-lg" style="height: 80vh;">
+            <div class="modal-header border-0 py-3">
+                <h5 class="modal-title fw-bold"><i class="bi bi-sliders text-primary me-2"></i>Pengaturan</h5>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+            </div>
+            
+            <!-- Isi Modal -->
+            <div class="modal-body p-3">
+                <!-- Mata Uang (6 Opsi) -->
+                <h6 class="fw-bold mb-3 small"><i class="bi bi-coin text-warning me-1"></i> Mata Uang</h6>
+                <div class="row row-cols-3 g-2 mb-4">
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold responsive-btn">USD ($)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold responsive-btn">IDR (Rp)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold responsive-btn">EUR (€)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold responsive-btn">GBP (£)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold responsive-btn">SGD (S$)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold responsive-btn">JPY (¥)</button></div>
                 </div>
-                <div class="modal-body">
-                    <h6 class="fw-bold mb-3 small"><i class="bi bi-coin text-warning me-1"></i> Mata Uang</h6>
-                    <div class="row g-2 mb-4">
-                        <div class="col-4"><button class="btn btn-light border rounded-3 text-start currency-option w-100 fw-semibold mobile-modal-text">USD ($)</button></div>
-                        <div class="col-4"><button class="btn btn-light border rounded-3 text-start currency-option w-100 fw-semibold mobile-modal-text">IDR (Rp)</button></div>
-                        <div class="col-4"><button class="btn btn-light border rounded-3 text-start currency-option w-100 fw-semibold mobile-modal-text">EUR (€)</button></div>
-                        <div class="col-4"><button class="btn btn-light border rounded-3 text-start currency-option w-100 fw-semibold mobile-modal-text">GBP (£)</button></div>
-                        <div class="col-4"><button class="btn btn-light border rounded-3 text-start currency-option w-100 fw-semibold mobile-modal-text">SGD (S$)</button></div>
-                        <div class="col-4"><button class="btn btn-light border rounded-3 text-start currency-option w-100 fw-semibold mobile-modal-text">JPY (¥)</button></div>
-                    </div>
-                    <h6 class="fw-bold mb-3 border-top pt-3 small"><i class="bi bi-globe text-info me-1"></i> Bahasa</h6>
-                    <div class="row g-2">
-                        <div class="col-6"><button class="btn btn-light border rounded-3 text-start lang-option w-100 fw-semibold mobile-modal-text">English (EN)</button></div>
-                        <div class="col-6"><button class="btn btn-light border rounded-3 text-start lang-option w-100 fw-semibold mobile-modal-text">Bahasa Indonesia (ID)</button></div>
-                        <div class="col-6"><button class="btn btn-light border rounded-3 text-start lang-option w-100 fw-semibold mobile-modal-text">Español (ES)</button></div>
-                        <div class="col-6"><button class="btn btn-light border rounded-3 text-start lang-option w-100 fw-semibold mobile-modal-text">Français (FR)</button></div>
-                    </div>
+                
+                <!-- Bahasa (4 Opsi) -->
+                <h6 class="fw-bold mb-3 border-top pt-3 small"><i class="bi bi-globe text-info me-1"></i> Bahasa</h6>
+                <div class="row row-cols-2 g-2">
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold responsive-btn">English (EN)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold responsive-btn">Indonesia (ID)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold responsive-btn">Español (ES)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold responsive-btn">Français (FR)</button></div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- MODAL CURRENCY (DESKTOP) -->

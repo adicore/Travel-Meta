@@ -355,3 +355,31 @@ img, video, iframe, canvas {
         -webkit-overflow-scrolling: touch; /* Scroll yang halus untuk iPhone */
     }
 }
+
+/* Styling tombol agar teks responsif */
+.responsive-btn {
+    font-size: 0.75rem !important; /* Ukuran yang pas untuk mobile */
+    padding: 0.6rem 0.2rem !important;
+    white-space: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
+    height: 50px; /* Tinggi seragam agar tidak berantakan */
+}
+
+/* Memastikan modal tidak keluar jalur */
+.modal-dialog-scrollable .modal-content {
+    max-height: 80vh !important; /* Membatasi tinggi agar tidak menutupi layar penuh */
+}
+
+/* Penyesuaian khusus untuk kolom agar grid tidak rusak */
+.row-cols-3 > .col {
+    flex: 0 0 33.3333%;
+    max-width: 33.3333%;
+}
+
+.row-cols-2 > .col {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
