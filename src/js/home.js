@@ -557,4 +557,33 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Mencari data secara real-time...");
         });
     });
+
+    // =========================================================================
+    // FITUR TOGGLE: "DROP CAR OFF AT DIFFERENT LOCATION"
+    // =========================================================================
+    const diffLocationToggle = document.getElementById('diffLocationToggle');
+    const pickupCol = document.getElementById('pickupCol');
+    const dropoffCol = document.getElementById('dropoffCol');
+    const dropoffInput = document.getElementById('dropoffInput');
+
+    if (diffLocationToggle && pickupCol && dropoffCol) {
+        diffLocationToggle.addEventListener('change', function() {
+            if (this.checked) {
+                // 1. Jika Dicentang: Bagi dua kolomnya (50% - 50%)
+                pickupCol.classList.remove('col-12');
+                pickupCol.classList.add('col-md-6');
+                
+                dropoffCol.classList.remove('d-none'); // Tampilkan Drop-off
+                dropoffInput.setAttribute('required', 'true'); // Wajib diisi
+            } else {
+                // 2. Jika Tidak Dicentang: Pick-up kembali penuh (100%), Drop-off hilang
+                pickupCol.classList.remove('col-md-6');
+                pickupCol.classList.add('col-12');
+                
+                dropoffCol.classList.add('d-none'); // Sembunyikan Drop-off
+                dropoffInput.removeAttribute('required'); // Cabut wajib isi
+                dropoffInput.value = ''; // Bersihkan input otomatis
+            }
+        });
+    }
 });
