@@ -407,24 +407,27 @@ img, video, iframe, canvas {
 }
 
 /* ==========================================================
-   FIX Z-INDEX MODAL MOBILE
+   FIX MODAL & CLICKABLE ISSUES (GLOBAL)
    ========================================================== */
 
-/* Memaksa Modal agar selalu di atas Header, Offcanvas, dan Navigasi Bawah */
-#mobileSettingsModal {
-    z-index: 2000 !important; 
+/* 1. Biarkan Bootstrap menangani scroll body secara otomatis */
+body.modal-open {
+    overflow: hidden !important;
+    padding-right: 0 !important; /* Mencegah halaman bergeser saat modal terbuka */
 }
 
-/* Memastikan latar belakang gelap (backdrop) juga berada di atas semuanya */
+/* 2. Z-Index Management (Lebih aman dari konflik) */
 .modal-backdrop {
-    z-index: 1999 !important;
+    z-index: 1040 !important; /* Bootstrap default adalah 1040 */
 }
 
-/* Memastikan tidak ada interferensi dari navigasi bawah saat modal terbuka */
-@media (max-width: 991.98px) {
-    .modal-open .mobile-bottom-nav {
-        z-index: 1 !important; /* Menurunkan z-index navigasi saat modal aktif agar tidak menutupi */
-    }
+#mobileSettingsModal, #currencyModal, #langModal {
+    z-index: 1050 !important; /* Harus lebih tinggi dari backdrop */
+}
+
+/* 3. Mencegah header menutupi modal (Sering terjadi pada position: sticky) */
+header.sticky-top {
+    z-index: 1030 !important; /* Harus lebih rendah dari Modal agar Modal muncul di atas */
 }
 
 /* ==========================================================
