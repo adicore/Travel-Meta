@@ -46,6 +46,7 @@
         }
 
         header.sticky-top { z-index: 1070 !important; }
+        .offcanvas { z-index: 1080 !important; } /* PERBAIKAN Z-INDEX MENU MOBILE AGAR MENUTUPI HEADER */
         .cursor-pointer { cursor: pointer; }
         
         .hamburger-icon { display: flex; flex-direction: column; justify-content: space-around; width: 22px; height: 18px; }
@@ -349,6 +350,7 @@
     </header>
 
     <!-- MOBILE OFFCANVAS SIDE MENU (Referensi image_e0f47a.png) -->
+    <!-- Z-index telah diperbaiki melalui class CSS .offcanvas agar posisinya di atas header sticky -->
     <div class="offcanvas offcanvas-start border-0 shadow-lg d-lg-none" tabindex="-1" id="offcanvasMobileMenu" style="width: 290px;">
         <div class="offcanvas-header py-4 px-4 border-bottom border-light">
             <a class="fw-bold fs-4 text-dark d-flex align-items-center gap-2 text-decoration-none m-0" href="#">
@@ -1166,8 +1168,9 @@
     </section>
 
     <!-- 9. SECTION: ABOUT -->
+    <!-- PERBAIKAN: g-5 diubah menjadi g-4 g-lg-5 agar lebih pas/responsif untuk ukuran mobile tanpa overflow margin -->
     <section id="about" class="container py-5 my-4 scroll-reveal">
-        <div class="row align-items-center g-5">
+        <div class="row align-items-center g-4 g-lg-5">
             <div class="col-lg-6">
                 <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill fw-bold mb-3">We're #01 travel agency in globally</span>
                 <h1 class="display-5 fw-extrabold text-dark mb-4 lh-tight" style="letter-spacing: -1px;">Explore the World With Confidence.</h1>
@@ -1180,7 +1183,6 @@
                 <a href="#" class="btn btn-primary rounded-pill px-5 py-3 fw-bold shadow text-decoration-none">Discover More</a>
             </div>
 
-            <!-- Diperbarui agar lebih Mobile Responsive -->
             <div class="col-lg-6">
                 <div class="about-img-container mb-5">
                     <div class="about-img-item about-img-1">
