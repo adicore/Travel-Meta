@@ -280,13 +280,20 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // FLATPICKR LAZY LOADER
+    // =========================================================================
+    // FLATPICKR LAZY LOADER (Dengan Validasi Pick-up/Drop-off & Custom Time UI)
+    // =========================================================================
     let flatpickrLoaded = false;
+    let pickupDateInstance, dropoffDateInstance; // Variabel penyimpan memori kalender
+
     const loadFlatpickr = () => {
         if (flatpickrLoaded) {
-            if (typeof flatpickr !== 'undefined') flatpickr(".lazy-date:not(.flatpickr-input)", { dateFormat: "Y-m-d", altInput: true, altFormat: "j M Y" });
+            if (typeof flatpickr !== 'undefined') {
+                initFlatpickrElements();
+            }
             return;
         }
+        
         const link = document.createElement("link");
         link.rel = "stylesheet";
         link.href = "https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css";
@@ -296,12 +303,62 @@ document.addEventListener("DOMContentLoaded", () => {
         script.src = "https://cdn.jsdelivr.net/npm/flatpickr";
         script.onload = () => { 
             flatpickrLoaded = true;
-            flatpickr(".lazy-date", { dateFormat: "Y-m-d", altInput: true, altFormat: "j M Y" }); 
+            initFlatpickrElements();
         };
         document.body.appendChild(script);
     };
 
-    document.querySelectorAll(".lazy-date").forEach(input => {
+    function initFlatpickrElements() {
+        // 1. Kalender default untuk bagian penerbangan/hotel
+        flatpickr(".lazy-date:not(.flatpickr-input)", { dateFormat: "Y-m-d", altInput: true, altFormat: "j M Y" }); 
+
+        // 2. Kalender Pick-up Date
+        const pickupEl = document.getElementById('carPickupDate');
+        if (pickupEl && !pickupEl.classList.contains('flatpickr-input')) {
+            pickupDateInstance = flatpickr(pickupEl, {
+                dateFormat: "Y-m-d",
+                minDate: "today",
+                allowInput: true,
+                disableMobile: "true",
+                onChange: function(selectedDates, dateStr, instance) {
+                    // 🔥 VALIDASI: Saat pick-up diubah, perbarui batas minimal drop-off
+                    if (dropoffDateInstance) {
+                        dropoffDateInstance.set("minDate", dateStr);
+                    }
+                }
+            });
+        }
+
+        // 3. Kalender Drop-off Date
+        const dropoffEl = document.getElementById('carDropoffDate');
+        if (dropoffEl && !dropoffEl.classList.contains('flatpickr-input')) {
+            dropoffDateInstance = flatpickr(dropoffEl, {
+                dateFormat: "Y-m-d",
+                minDate: "today",
+                allowInput: true,
+                disableMobile: "true"
+            });
+        }
+
+        // 4. Dropdown Waktu (Dengan gaya khusus saat dibuka)
+        flatpickr(".flatpickr-time:not(.flatpickr-input)", { 
+            enableTime: true, 
+            noCalendar: true, 
+            dateFormat: "H:i", 
+            time_24hr: true, 
+            allowInput: true, 
+            defaultHour: 10, 
+            defaultMinute: 0, 
+            disableMobile: "true",
+            onOpen: function(selectedDates, dateStr, instance) {
+                // 🔥 Menyuntikkan class CSS "custom-time-ui" ke kontainer waktu ini
+                instance.calendarContainer.classList.add('custom-time-ui');
+            }
+        });
+    }
+
+    // Pemicu (Event Listeners)
+    document.querySelectorAll(".lazy-date, .flatpickr-date, .flatpickr-time").forEach(input => {
         input.addEventListener("mouseover", loadFlatpickr);
         input.addEventListener("focus", loadFlatpickr);
         input.addEventListener("click", loadFlatpickr);

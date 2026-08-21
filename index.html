@@ -522,7 +522,7 @@
 
                 <!-- TRANSPORT TAB -->
                 <div class="tab-pane fade" id="carSearchTab">
-                    <div class="row g-2 align-items-center">
+                    <!-- <div class="row g-2 align-items-center">
                         <div class="col-lg-4 col-md-12">
                             <div class="search-box-item">
                                 <div class="text-muted small mb-1"><i class="bi bi-geo-alt text-primary me-1"></i> Pick-up Location</div>
@@ -544,7 +544,73 @@
                         <div class="col-lg-2 col-md-12">
                             <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="min-height: 72px;">Cari Mobil</button>
                         </div>
-                    </div>
+                    </div> -->
+                    <form id="carRentalSearch" class="bg-white p-4 rounded-4 shadow-sm">
+    <div class="row g-3 mb-3">
+        <!-- Lokasi Penjemputan -->
+        <div class="col-md-6">
+            <label class="form-label text-muted fw-bold" style="font-size: 0.85rem;">Pick-up location</label>
+            <div class="input-group">
+                <span class="input-group-text bg-white text-muted"><i class="fa-solid fa-location-dot"></i></span>
+                <input type="text" class="form-control" placeholder="City, airport, or address" required>
+            </div>
+        </div>
+        
+        <!-- Lokasi Pengembalian (Baru ditambahkan di sebelah kanan) -->
+        <div class="col-md-6">
+            <label class="form-label text-muted fw-bold" style="font-size: 0.85rem;">Drop-off location</label>
+            <div class="input-group">
+                <span class="input-group-text bg-white text-muted"><i class="fa-solid fa-location-dot"></i></span>
+                <input type="text" class="form-control" placeholder="City, airport, or address" required>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3 mb-4">
+        <!-- Tanggal Penjemputan -->
+        <div class="col-6 col-md-3">
+            <label class="form-label text-muted fw-bold" style="font-size: 0.85rem;">Pick-up date</label>
+            <div class="input-group">
+                <span class="input-group-text bg-white text-muted"><i class="fa-regular fa-calendar"></i></span>
+                <input type="text" id="carPickupDate" class="form-control flatpickr-date" placeholder="YYYY-MM-DD" required>
+            </div>
+        </div>
+        
+        <!-- Waktu Penjemputan -->
+        <div class="col-6 col-md-3">
+            <label class="form-label text-muted fw-bold" style="font-size: 0.85rem;">Pick-up time</label>
+            <div class="input-group">
+                <span class="input-group-text bg-white text-muted"><i class="fa-regular fa-clock"></i></span>
+                <input type="text" class="form-control flatpickr-time" placeholder="HH:MM" required>
+            </div>
+        </div>
+
+        <!-- Tanggal Pengembalian -->
+        <div class="col-6 col-md-3">
+            <label class="form-label text-muted fw-bold" style="font-size: 0.85rem;">Drop-off date</label>
+            <div class="input-group">
+                <span class="input-group-text bg-white text-muted"><i class="fa-regular fa-calendar"></i></span>
+                <input type="text" id="carDropoffDate" class="form-control flatpickr-date" placeholder="YYYY-MM-DD" required>
+            </div>
+        </div>
+        
+        <!-- Waktu Pengembalian -->
+        <div class="col-6 col-md-3">
+            <label class="form-label text-muted fw-bold" style="font-size: 0.85rem;">Drop-off time</label>
+            <div class="input-group">
+                <span class="input-group-text bg-white text-muted"><i class="fa-regular fa-clock"></i></span>
+                <input type="text" class="form-control flatpickr-time" placeholder="HH:MM" required>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tombol Pencarian -->
+    <div class="text-end">
+        <button type="submit" class="btn btn-primary px-5 py-2 fw-bold rounded-pill">
+            <i class="fa-solid fa-magnifying-glass me-2"></i> Search Cars
+        </button>
+    </div>
+</form>
                 </div>
 
                 <!-- TOURS TAB -->

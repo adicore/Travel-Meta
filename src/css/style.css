@@ -454,3 +454,42 @@ header.sticky-top {
 #page-visa .nav-bottom-visa {
     color: #0d6efd !important;
 }
+
+/* ========================================================
+   GAYA KHUSUS FLATPICKR TIME DROPDOWN (CAR RENTAL)
+======================================================== */
+.custom-time-ui {
+    border-radius: 12px !important; /* Membuat sudut membulat */
+    border: 1px solid #e9ecef !important; /* Garis tepi tipis */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important; /* Bayangan halus / Soft shadow */
+    padding: 8px !important;
+}
+
+/* Modifikasi input angka jam dan menit */
+.custom-time-ui .numInputWrapper {
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.custom-time-ui .numInputWrapper:hover {
+    background-color: #f0f8ff !important; /* Latar belakang hover biru muda */
+}
+
+.custom-time-ui .numInput {
+    color: #212529 !important; /* Warna teks tegas */
+    font-weight: bold !important;
+    font-size: 1.1rem !important;
+}
+
+/* Mempercantik pemisah (Titik Dua / Separator) */
+.custom-time-ui .flatpickr-time-separator {
+    color: #0D8ABC !important; /* Sesuaikan dengan warna biru primary Gojameka */
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Panah atas/bawah pada jam */
+.custom-time-ui .arrowUp, 
+.custom-time-ui .arrowDown {
+    border-radius: 4px;
+}
