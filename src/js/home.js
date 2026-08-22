@@ -312,7 +312,7 @@ document.addEventListener("DOMContentLoaded", () => {
             flightReturnCol.classList.remove('flight-return-hidden');
             // Menyesuaikan lebar grid saat kolom Return muncul
             flightDepCol.className = 'col-lg-2 col-md-12';
-            flightReturnCol.className = 'd-block';
+            flightReturnCol.classList.remove('d-none');
         });
     }
 
