@@ -1,38 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
+    
     // =========================================================================
-    // 1. KONFIGURASI API & MATA UANG
+    // 1. DIMANA SAYA API & AUTOCOMPLETE
     // =========================================================================
-    const PROXY_WORKER_URL = "https://api.pesan.workers.dev/";
     let userOrigin = "SIN"; 
     let userOriginName = "Singapore";
-    let visitorCurrency = "USD";
-
-    const currencyMapping = {
-        "AB":"RUB","AD":"EUR","AE":"AED","AF":"AFN","AG":"XCD","AI":"XCD","AL":"ALL","AM":"AMD","AO":"AOA","AQ":"","AR":"ARS","AS":"USD","AT":"EUR","AU":"AUD","AW":"AWG","AX":"EUR","AZ":"AZN","BA":"BAM","BB":"BBD","BD":"BDT","BE":"EUR","BF":"XOF","BG":"EUR","BH":"BHD","BI":"BIF","BJ":"XOF","BL":"EUR","BM":"BMD","BN":"BND","BO":"BOB","BQ":"USD","BR":"BRL","BS":"BSD","BT":"BTN","BV":"NOK","BW":"BWP","BY":"BYN","BZ":"BZD","CA":"CAD","CC":"AUD","CD":"CDF","CF":"XAF","CG":"XAF","CH":"CHF","CI":"XOF","CK":"NZD","CL":"CLP","CM":"XAF","CN":"CNY","CO":"COP","CR":"CRC","CU":"CUP","CV":"CVE","CW":"XCG","CX":"AUD","CY":"EUR","CZ":"CZK","DE":"EUR","DJ":"DJF","DK":"DKK","DM":"XCD","DO":"DOP","DZ":"DZD","EC":"USD","EE":"EUR","EG":"EGP","EH":"MAD","ER":"ERN","ES":"EUR","ET":"ETB","FI":"EUR","FJ":"FJD","FK":"FKP","FM":"USD","FO":"DKK","FR":"EUR","GA":"XAF","GB":"GBP","GD":"XCD","GE":"GEL","GF":"EUR","GG":"GBP","GH":"GHS","GI":"GIP","GL":"DKK","GM":"GMD","GN":"GNF","GP":"EUR","GQ":"XAF","GR":"EUR","GS":"GBP","GT":"GTQ","GU":"USD","GW":"XOF","GY":"GYD","HK":"HKD","HM":"AUD","HN":"HNL","HR":"EUR","HT":"HTG","HU":"HUF","ID":"IDR","IE":"EUR","IL":"ILS","IM":"GBP","IN":"INR","IO":"USD","IQ":"IQD","IR":"IRR","IS":"ISK","IT":"EUR","JE":"GBP","JM":"JMD","JO":"JOD","JP":"JPY","KE":"KES","KG":"KGS","KH":"KHR","KI":"AUD","KM":"KMF","KN":"XCD","KP":"KPW","KR":"KRW","KW":"KWD","KX":"","KY":"KYD","KZ":"KZT","LA":"LAK","LB":"LBP","LC":"XCD","LI":"CHF","LK":"LKR","LR":"LRD","LS":"LSL","LT":"EUR","LU":"EUR","LV":"EUR","LY":"LYD","MA":"MAD","MC":"EUR","MD":"MDL","ME":"EUR","MF":"EUR","MG":"MGA","MH":"USD","MK":"MKD","ML":"XOF","MM":"MMK","MN":"MNT","MO":"MOP","MP":"USD","MQ":"EUR","MR":"MRO","MS":"XCD","MT":"EUR","MU":"MUR","MV":"MVR","MW":"MWK","MX":"MXN","MY":"MYR","MZ":"MZN","NA":"NAD","NC":"XPF","NE":"XOF","NF":"AUD","NG":"NGN","NI":"NIO","NL":"EUR","NO":"NOK","NP":"NPR","NR":"AUD","NU":"NZD","NY":"TRY","NZ":"NZD","OM":"OMR","PA":"PAB","PE":"PEN","PF":"XPF","PG":"PGK","PH":"PHP","PK":"PKR","PL":"PLN","PM":"EUR","PN":"NZD","PR":"USD","PS":"ILS","PT":"EUR","PW":"USD","PY":"PYG","QA":"QAR","RE":"EUR","RO":"RON","RS":"RSD","RU":"RUB","RW":"RWF","SA":"SAR","SB":"SBD","SC":"SCR","SD":"SDG","SE":"SEK","SG":"SGD","SH":"SHP","SI":"EUR","SJ":"NOK","SK":"EUR","SL":"SLL","SM":"EUR","SN":"XOF","SO":"SOS","SR":"SRD","SS":"SSP","ST":"STD","SV":"USD","SX":"XCG","SY":"SYP","SZ":"SZL","TC":"USD","TD":"XAF","TF":"EUR","TG":"XOF","TH":"THB","TJ":"TJS","TK":"NZD","TL":"USD","TM":"TMT","TN":"TND","TO":"TOP","TR":"TRY","TT":"TTD","TV":"AUD","TW":"TWD","TZ":"TZS","UA":"UAH","UG":"UGX","UM":"USD","US":"USD","UY":"UYU","UZ":"UZS","VA":"EUR","VC":"XCD","VE":"VEF","VG":"USD","VI":"USD","VN":"VND","VU":"VUV","WF":"XPF","WS":"WST","XK":"EUR","YER":"YER","YT":"EUR","ZA":"ZAR","ZM":"ZMK","ZW":"ZWL"
-    };
-
-    const continentDestinations = {
-        'dealAmerica': [{ code: 'NYC', name: 'New York' }, { code: 'LAX', name: 'Los Angeles' }, { code: 'MIA', name: 'Miami' }, { code: 'YYZ', name: 'Toronto' }, { code: 'CUN', name: 'Cancun' }, { code: 'GRU', name: 'Sao Paulo' }],
-        'dealEurope': [{ code: 'PAR', name: 'Paris' }, { code: 'LON', name: 'London' }, { code: 'ROM', name: 'Rome' }, { code: 'AMS', name: 'Amsterdam' }, { code: 'BCN', name: 'Barcelona' }, { code: 'BER', name: 'Berlin' }],
-        'dealAsia': [{ code: 'BKK', name: 'Bangkok' }, { code: 'SIN', name: 'Singapore' }, { code: 'TYO', name: 'Tokyo' }, { code: 'ICN', name: 'Seoul' }, { code: 'KUL', name: 'Kuala Lumpur' }, { code: 'TPE', name: 'Taipei' }],
-        'dealAfrica': [{ code: 'CPT', name: 'Cape Town' }, { code: 'JNB', name: 'Johannesburg' }, { code: 'CAI', name: 'Cairo' }, { code: 'CMN', name: 'Casablanca' }, { code: 'NBO', name: 'Nairobi' }, { code: 'MRU', name: 'Mauritius' }],
-        'dealMiddleEast': [{ code: 'DXB', name: 'Dubai' }, { code: 'DOH', name: 'Doha' }, { code: 'IST', name: 'Istanbul' }, { code: 'AUH', name: 'Abu Dhabi' }, { code: 'TLV', name: 'Tel Aviv' }, { code: 'RUH', name: 'Riyadh' }]
-    };
-
-    // =========================================================================
-    // 2. WHEREAMI API & CONTINENT FLIGHT DEALS
-    // =========================================================================
-    let apiLoaded = false;
-    const apiObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !apiLoaded) {
-                apiLoaded = true;
-                const container = document.querySelector('#dealAmerica .flight-results-container');
-                fetchContinentDeals('dealAmerica', container);
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { rootMargin: "0px 0px 250px 0px" });
 
     fetch("https://www.apistp.com/whereami?locale=en")
         .then(res => res.json())
@@ -40,108 +12,15 @@ document.addEventListener("DOMContentLoaded", () => {
             if(locData) {
                 userOrigin = locData.code || locData.iata || "SIN";
                 userOriginName = locData.city || locData.name || userOrigin;
-                const countryCode = locData.country || locData.country_code || "";
-                if (countryCode && currencyMapping[countryCode]) {
-                    visitorCurrency = currencyMapping[countryCode];
-                }
                 const flightOriginInput = document.getElementById("flightOrigin");
-                const val = `${userOriginName} (${userOrigin})`;
-                if(flightOriginInput) flightOriginInput.value = val;
+                if(flightOriginInput) flightOriginInput.value = `${userOriginName} (${userOrigin})`;
             }
-            const bestDeals = document.getElementById('best-deals');
-            if(bestDeals) apiObserver.observe(bestDeals);
         })
         .catch(() => {
             const flightOriginInput = document.getElementById("flightOrigin");
-            const val = "Jakarta (CGK)";
-            if(flightOriginInput) flightOriginInput.value = val;
-            const bestDeals = document.getElementById('best-deals');
-            if(bestDeals) apiObserver.observe(bestDeals);
+            if(flightOriginInput) flightOriginInput.value = "Singapore (SIN)";
         });
 
-    function fetchContinentDeals(continentKey, containerEl) {
-        if(!containerEl) return;
-        const cities = continentDestinations[continentKey];
-        if(!cities) return;
-
-        let skeletonHtml = '';
-        for(let i=0; i<6; i++) {
-            skeletonHtml += `
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white">
-                        <div class="skeleton skeleton-img-box"></div>
-                        <div class="card-body p-4">
-                            <div class="skeleton skeleton-text short mb-3"></div>
-                            <div class="skeleton skeleton-text mb-2"></div>
-                            <div class="skeleton skeleton-text short mb-4"></div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="skeleton skeleton-text w-25 mb-0"></div>
-                                <div class="skeleton skeleton-text w-25 mb-0 rounded-pill" style="height: 35px;"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-        containerEl.innerHTML = skeletonHtml;
-
-        let promises = cities.map(city => {
-            const proxyUrl = `${PROXY_WORKER_URL}?origin=${userOrigin}&destination=${city.code}&unique=true&sorting=price&currency=${visitorCurrency}&page=1&one_way=false`;
-            return fetch(proxyUrl)
-                .then(res => res.json())
-                .then(resData => {
-                    let priceText = "Cek Harga";
-                    let datesText = "Jadwal Fleksibel";
-                    if(resData && resData.data && resData.data.length > 0) {
-                        const flightInfo = resData.data[0];
-                        if(flightInfo.price) priceText = `${visitorCurrency} ${Number(flightInfo.price).toLocaleString()}`;
-                        if(flightInfo.departure_at && flightInfo.return_at) {
-                            datesText = `${flightInfo.departure_at.split('T')[0]} ➔ ${flightInfo.return_at.split('T')[0]}`;
-                        }
-                    }
-                    return { code: city.code, name: city.name, imgUrl: `https://zen.wego.com/cdn-cgi/image/height=280/destinations/cities/${city.code}.jpg`, priceText, datesText };
-                })
-                .catch(() => ({ code: city.code, name: city.name, imgUrl: `https://zen.wego.com/cdn-cgi/image/height=280/destinations/cities/${city.code}.jpg`, priceText: "Cek Harga", datesText: "Cek Jadwal" }));
-        });
-
-        Promise.all(promises).then(results => {
-            let htmlContent = "";
-            results.forEach(item => {
-                htmlContent += `
-                    <div class="col-md-4">
-                        <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover bg-white">
-                            <div class="image-shimmer-effect" style="height: 200px;">
-                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="${item.imgUrl}" width="600" height="280" class="lazyload lazy-effect" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80'" fetchpriority="low">
-                            </div>
-                            <div class="card-body p-4">
-                                <span class="badge bg-primary bg-opacity-10 text-primary mb-2 px-3 py-1 rounded-pill fw-semibold"><i class="bi bi-calendar3 me-1"></i> ${item.datesText}</span>
-                                <h5 class="fw-bold text-dark text-truncate">${userOriginName} ➔ ${item.name}</h5>
-                                <p class="text-muted small mb-3">Round-Trip • Bagasi Termasuk</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="text-danger fw-bold fs-5">${item.priceText}</span>
-                                    <button class="btn btn-outline-primary btn-sm rounded-pill px-3 py-2 fw-semibold">Pesan</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            containerEl.innerHTML = htmlContent;
-        });
-    }
-
-    document.querySelectorAll('#flightDealsTab button').forEach(tab => {
-        tab.addEventListener('shown.bs.tab', (e) => {
-            const continentKey = e.target.getAttribute('data-continent');
-            const targetPaneSelector = e.target.getAttribute('data-bs-target');
-            const paneEl = document.querySelector(targetPaneSelector + ' .flight-results-container');
-            if(paneEl && paneEl.children.length <= 1) fetchContinentDeals(continentKey, paneEl);
-        });
-    });
-
-    // =========================================================================
-    // 3. AUTOCOMPLETE & SWAP TUKAR BANDARA (KHUSUS FLIGHTS)
-    // =========================================================================
     const setupTravelAutocomplete = (input) => {
         let container = input.parentNode.querySelector('.autocomplete-suggestions');
         if (!container) {
@@ -198,9 +77,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // =========================================================================
-    // 4. ATURAN PENUMPANG PESAWAT (LIMIT MAX 9, ADULT MIN 1, INFANT <= ADULT)
+    // 2. LOGIKA PENUMPANG (MAX 9, ADULT MIN 1, INFANT <= ADULT)
     // =========================================================================
-    function updatePassengerGroup(adultInput, childInput, infantInput, summaryEls, scopeElement = document) {
+    function validateAndUpdatePassengers(adultId, childId, infantId, summarySelector) {
+        const adultInput = document.getElementById(adultId);
+        const childInput = document.getElementById(childId);
+        const infantInput = document.getElementById(infantId);
+
         if (!adultInput || !childInput || !infantInput) return;
 
         const adults = parseInt(adultInput.value) || 1;
@@ -208,23 +91,17 @@ document.addEventListener("DOMContentLoaded", () => {
         const infants = parseInt(infantInput.value) || 0;
         const total = adults + children + infants;
 
-        const adultId = adultInput.id;
-        const childId = childInput.id;
-        const infantId = infantInput.id;
+        const incAdult = document.querySelector(`.increase-count[data-target="${adultId}"]`);
+        const decAdult = document.querySelector(`.decrease-count[data-target="${adultId}"]`);
+        const incChild = document.querySelector(`.increase-count[data-target="${childId}"]`);
+        const decChild = document.querySelector(`.decrease-count[data-target="${childId}"]`);
+        const incInfant = document.querySelector(`.increase-count[data-target="${infantId}"]`);
+        const decInfant = document.querySelector(`.decrease-count[data-target="${infantId}"]`);
 
-        const incAdult = scopeElement.querySelector(`.increase-count[data-target="${adultId}"]`);
-        const decAdult = scopeElement.querySelector(`.decrease-count[data-target="${adultId}"]`);
-        const incChild = scopeElement.querySelector(`.increase-count[data-target="${childId}"]`);
-        const decChild = scopeElement.querySelector(`.decrease-count[data-target="${childId}"]`);
-        const incInfant = scopeElement.querySelector(`.increase-count[data-target="${infantId}"]`);
-        const decInfant = scopeElement.querySelector(`.decrease-count[data-target="${infantId}"]`);
-
-        // Validasi tombol Disable untuk Tambah (+)
         if (incAdult) incAdult.disabled = (total >= 9);
         if (incChild) incChild.disabled = (total >= 9);
         if (incInfant) incInfant.disabled = (total >= 9 || infants >= adults);
 
-        // Validasi tombol Disable untuk Kurang (-)
         if (decAdult) decAdult.disabled = (adults <= 1 || adults - 1 < infants);
         if (decChild) decChild.disabled = (children <= 0);
         if (decInfant) decInfant.disabled = (infants <= 0);
@@ -232,37 +109,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const totalKids = children + infants;
         const summaryText = totalKids > 0 ? `${adults} Adult, ${totalKids} Child` : `${adults} Adult, 0 Child`;
         
-        summaryEls.forEach(el => {
+        document.querySelectorAll(summarySelector).forEach(el => {
             el.textContent = summaryText;
         });
     }
 
     function updateFlightSummaries() {
-        // One-way & Round-trip Passengers
-        const flightAdult = document.getElementById("flightAdult");
-        const flightChild = document.getElementById("flightChild");
-        const flightInfant = document.getElementById("flightInfant");
-        const mainSummaries = document.querySelectorAll(".travelers-summary-text:not(.mc-travelers-summary)");
-        updatePassengerGroup(flightAdult, flightChild, flightInfant, mainSummaries);
-
-        // Multi-City Passengers (Hanya baris PERTAMA yang memiliki selector penumpang)
-        const mcAdult = document.getElementById("mcAdult1");
-        const mcChild = document.getElementById("mcChild1");
-        const mcInfant = document.getElementById("mcInfant1");
-        const mcSummaries = document.querySelectorAll(".mc-travelers-summary");
-        if (mcAdult && mcChild && mcInfant) {
-            updatePassengerGroup(mcAdult, mcChild, mcInfant, mcSummaries);
-        }
+        validateAndUpdatePassengers('flightAdult', 'flightChild', 'flightInfant', '.travelers-summary-text:not(.mc-travelers-summary)');
+        validateAndUpdatePassengers('mcAdult', 'mcChild', 'mcInfant', '.mc-travelers-summary');
     }
 
-    document.querySelectorAll('.cabin-option').forEach(item => {
-        item.addEventListener('click', (e) => {
-            e.preventDefault();
-            document.getElementById('cabinClassDropdownBtn').textContent = e.target.getAttribute('data-cabin');
-        });
-    });
-
-    // Pemicu Klik Counter Penumpang (+ / -) khusus Penerbangan
     document.addEventListener('click', (e) => {
         const incBtn = e.target.closest('.increase-count');
         if (incBtn) {
@@ -271,44 +127,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const targetId = incBtn.getAttribute('data-target');
             const input = document.getElementById(targetId);
-            if (input) {
-                let val = parseInt(input.value) || 0;
-                let isFlight = targetId.startsWith('flight');
-                let isMC = input.classList.contains('mc-input');
+            
+            if (input && (targetId.startsWith('flight') || targetId.startsWith('mc'))) {
+                const isMC = targetId.startsWith('mc');
+                const adultId = isMC ? 'mcAdult' : 'flightAdult';
+                const childId = isMC ? 'mcChild' : 'flightChild';
+                const infantId = isMC ? 'mcInfant' : 'flightInfant';
 
-                // Batasan Maksimal Penerbangan
-                if (isFlight || isMC) {
-                    let adultIn = isFlight ? document.getElementById('flightAdult') : document.getElementById('mcAdult1');
-                    let childIn = isFlight ? document.getElementById('flightChild') : document.getElementById('mcChild1');
-                    let infantIn = isFlight ? document.getElementById('flightInfant') : document.getElementById('mcInfant1');
+                const adultIn = document.getElementById(adultId);
+                const childIn = document.getElementById(childId);
+                const infantIn = document.getElementById(infantId);
 
-                    if (adultIn && childIn && infantIn) {
-                        const adults = parseInt(adultIn.value) || 1;
-                        const children = parseInt(childIn.value) || 0;
-                        const infants = parseInt(infantIn.value) || 0;
-                        const total = adults + children + infants;
+                if (adultIn && childIn && infantIn) {
+                    const adults = parseInt(adultIn.value) || 1;
+                    const children = parseInt(childIn.value) || 0;
+                    const infants = parseInt(infantIn.value) || 0;
+                    const total = adults + children + infants;
 
-                        if (total >= 9) return;
-                        if (targetId.includes('Infant') && infants >= adults) return;
-                    }
+                    if (total >= 9) return;
+                    if (targetId.includes('Infant') && infants >= adults) return;
                 }
 
-                let type = '';
-                if (targetId.includes('Adult')) type = 'Adult';
-                if (targetId.includes('Child')) type = 'Child';
-                if (targetId.includes('Infant')) type = 'Infant';
-
-                // Update semua selector tipe penerbangan terkait
-                if (type && isFlight) {
-                    document.querySelectorAll(`input[id*="Adult"], input[id*="Child"], input[id*="Infant"]`).forEach(el => {
-                        if (el.id.startsWith('flight') && el.id.includes(type)) {
-                            el.value = val + 1;
-                        }
-                    });
-                } else {
-                    input.value = val + 1;
-                }
-
+                input.value = parseInt(input.value) + 1;
                 updateFlightSummaries();
             }
             return;
@@ -321,40 +161,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const targetId = decBtn.getAttribute('data-target');
             const input = document.getElementById(targetId);
-            if (input) {
-                let val = parseInt(input.value) || 0;
+            
+            if (input && (targetId.startsWith('flight') || targetId.startsWith('mc'))) {
+                const isMC = targetId.startsWith('mc');
+                const adultId = isMC ? 'mcAdult' : 'flightAdult';
+                const infantId = isMC ? 'mcInfant' : 'flightInfant';
+
+                const adultIn = document.getElementById(adultId);
+                const infantIn = document.getElementById(infantId);
                 let minValue = targetId.includes('Adult') ? 1 : 0;
-                let isFlight = targetId.startsWith('flight');
-                let isMC = input.classList.contains('mc-input');
 
-                // Batasan Minimal Penerbangan
-                if (isFlight || isMC) {
-                    let adultIn = isFlight ? document.getElementById('flightAdult') : document.getElementById('mcAdult1');
-                    let infantIn = isFlight ? document.getElementById('flightInfant') : document.getElementById('mcInfant1');
-
-                    if (targetId.includes('Adult') && adultIn && infantIn) {
-                        const adults = parseInt(adultIn.value) || 1;
-                        const infants = parseInt(infantIn.value) || 0;
-                        if (adults <= 1 || adults - 1 < infants) return;
-                    }
+                if (targetId.includes('Adult') && adultIn && infantIn) {
+                    const adults = parseInt(adultIn.value) || 1;
+                    const infants = parseInt(infantIn.value) || 0;
+                    if (adults <= 1 || adults - 1 < infants) return;
                 }
 
-                if (val > minValue) {
-                    let type = '';
-                    if (targetId.includes('Adult')) type = 'Adult';
-                    if (targetId.includes('Child')) type = 'Child';
-                    if (targetId.includes('Infant')) type = 'Infant';
-
-                    if (type && isFlight) {
-                        document.querySelectorAll(`input[id*="Adult"], input[id*="Child"], input[id*="Infant"]`).forEach(el => {
-                            if (el.id.startsWith('flight') && el.id.includes(type)) {
-                                el.value = val - 1;
-                            }
-                        });
-                    } else {
-                        input.value = val - 1;
-                    }
-
+                if (parseInt(input.value) > minValue) {
+                    input.value = parseInt(input.value) - 1;
                     updateFlightSummaries();
                 }
             }
@@ -372,8 +196,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    document.querySelectorAll('.cabin-option').forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('cabinClassDropdownBtn').textContent = e.target.getAttribute('data-cabin');
+        });
+    });
+
     // =========================================================================
-    // 5. FLATPICKR KALENDER & TOGGLE ONE-WAY / ROUNDTRIP
+    // 3. FLATPICKR KALENDER & TOGGLE ONE-WAY / ROUNDTRIP
     // =========================================================================
     let flatpickrLoaded = false;
 
@@ -382,7 +213,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (typeof flatpickr !== 'undefined') initFlightFlatpickr();
             return;
         }
-        
         const link = document.createElement("link");
         link.rel = "stylesheet";
         link.href = "https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css";
@@ -401,37 +231,32 @@ document.addEventListener("DOMContentLoaded", () => {
     const roundTripTabBtn = document.getElementById('roundTripTabBtn');
     const flightDepCol = document.getElementById('flightDepCol');
     const flightReturnCol = document.getElementById('flightReturnCol');
-    const flightRouteCol = document.getElementById('flightRouteCol');
+    const flightTravelersCol = document.getElementById('flightTravelersCol');
 
     if (oneWayTabBtn && roundTripTabBtn && flightReturnCol) {
         oneWayTabBtn.addEventListener('click', () => {
+            flightReturnCol.classList.add('flight-return-hidden');
             flightDepCol.className = 'col-lg-4 col-md-12';
-            flightReturnCol.className = 'd-none';
+            flightTravelersCol.className = 'col-lg-4 col-md-6';
         });
 
         roundTripTabBtn.addEventListener('click', () => {
-            flightDepCol.className = 'col-lg-2 col-md-12';
-            flightReturnCol.classList.remove('d-none');
-            flightReturnCol.className = 'col-lg-2 col-md-12';
+            flightReturnCol.classList.remove('flight-return-hidden');
+            flightDepCol.className = 'col-lg-2 col-md-6';
+            flightTravelersCol.className = 'col-lg-4 col-md-6';
         });
     }
 
     function initFlightFlatpickr() {
         const isMobile = window.innerWidth <= 768;
-        
         const commonDateConfig = {
-            dateFormat: "Y-m-d",
-            altInput: true,
-            altFormat: "j M Y",
-            minDate: "today",
-            allowInput: !isMobile, 
-            disableMobile: true
+            dateFormat: "Y-m-d", altInput: true, altFormat: "j M Y",
+            minDate: "today", allowInput: !isMobile, disableMobile: true
         };
 
         const flightDepEl = document.getElementById('flightDepDate');
         const flightRetEl = document.getElementById('flightRetDate');
 
-        // Validasi Tanggal Keberangkatan & Kepulangan
         if (flightDepEl && !flightDepEl._flatpickr) {
             flatpickr(flightDepEl, {
                 ...commonDateConfig,
@@ -446,12 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         }
-
-        if (flightRetEl && !flightRetEl._flatpickr) {
-            flatpickr(flightRetEl, commonDateConfig);
-        }
-
-        // Lazy-date untuk Multi-city
+        if (flightRetEl && !flightRetEl._flatpickr) flatpickr(flightRetEl, commonDateConfig);
         flatpickr(".lazy-date:not(.flatpickr-input):not(#flightDepDate):not(#flightRetDate)", commonDateConfig);
     }
 
@@ -463,7 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // =========================================================================
-    // 6. MULTI-CITY ROWS ADDITION (KINI TANPA KOLOM PENUMPANG)
+    // 4. MULTI-CITY ROWS DYNAMIC ADDITION
     // =========================================================================
     const addFlightBtn = document.getElementById("addFlightBtn");
     const multiCityContainer = document.getElementById("multiCityContainer");
@@ -489,7 +309,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const newRow = document.createElement("div");
             newRow.className = "row g-2 mb-2 multicity-row align-items-center";
             
-            // Perhatikan kolom penumpang telah ditiadakan, dan lebar input diperbesar
             newRow.innerHTML = `
                 <div class="col-lg-6 col-md-12">
                     <div class="search-box-item py-2 px-3 border rounded-3 bg-white" style="min-height: 58px; display: flex; flex-direction: column; justify-content: center;">
@@ -519,10 +338,7 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             multiCityContainer.appendChild(newRow);
             
-            // Inisialisasi API Autocomplete di baris baru
             newRow.querySelectorAll(".autocomplete-input").forEach(input => setupTravelAutocomplete(input));
-            
-            // Pasang Pemicu Lazy Loader Kalender di baris baru
             const newDateInput = newRow.querySelector(".lazy-date");
             newDateInput.addEventListener("mouseover", loadFlatpickr);
             newDateInput.addEventListener("focus", loadFlatpickr);
@@ -539,8 +355,7 @@ document.addEventListener("DOMContentLoaded", () => {
             updateMultiCityButtons();
         }
     });
-    
-    // Inisialisasi Tampilan Awal
+
     updateMultiCityButtons();
     updateFlightSummaries();
 });
