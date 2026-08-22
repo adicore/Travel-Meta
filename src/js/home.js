@@ -310,7 +310,13 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.appendChild(script);
     };
 
+    // Flag penanda agar inisialisasi serentak hanya berjalan sekali
+    let datesInitialized = false;
+
     function initFlatpickrElements() {
+        // Jika sudah pernah diinisialisasi serentak, hentikan agar tidak duplikat
+        if (datesInitialized) return; 
+
         const isMobile = window.innerWidth <= 768;
         
         const commonDateConfig = {
@@ -322,30 +328,30 @@ document.addEventListener("DOMContentLoaded", () => {
             disableMobile: true
         };
 
-        // Variabel instance kalender
+        // Ambil semua elemen target dalam satu scope
+        const owDepEl = document.getElementById('owDepDate');
+        const rtDepEl = document.getElementById('rtDepDate');
+        const rtRetEl = document.getElementById('rtRetDate');
+        const hotelInEl = document.getElementById('hotelCheckIn');
+        const hotelOutEl = document.getElementById('hotelCheckOut');
+        const pickupEl = document.getElementById('carPickupDate');
+        const dropoffEl = document.getElementById('carDropoffDate');
+
+        // Deklarasi instance dalam satu blok lokal agar saling mengenali
         let owDepInstance, rtDepInstance, rtRetInstance;
         let hotelInInstance, hotelOutInstance;
         let pickupDateInstance, dropoffDateInstance;
 
-        // Ambil nilai awal departure yang sudah ada (misal dari setInitialDates)
-        const owDepEl = document.getElementById('owDepDate');
-        const rtDepEl = document.getElementById('rtDepDate');
-        const rtRetEl = document.getElementById('rtRetDate');
-
-        const initialDepVal = (rtDepEl && rtDepEl.value) ? rtDepEl.value : ((owDepEl && owDepEl.value) ? owDepEl.value : "today");
-
         // =========================================================================
         // 1. PENERBANGAN: SINKRONISASI DEPARTURE & VALIDASI ROUND-TRIP
         // =========================================================================
-        if (owDepEl && !owDepEl.classList.contains('flatpickr-input')) {
+        if (owDepEl) {
             owDepInstance = flatpickr(owDepEl, {
                 ...commonDateConfig,
                 onChange: function(selectedDates, dateStr) {
-                    // Sinkronkan ke Round-Trip Departure
                     if (rtDepInstance) rtDepInstance.setDate(dateStr, false);
                     if (rtRetInstance) {
                         rtRetInstance.set("minDate", dateStr);
-                        // Jika return date lebih awal dari departure baru, sesuaikan otomatis
                         const currentRet = rtRetInstance.selectedDates[0];
                         if (currentRet && currentRet < selectedDates[0]) {
                             rtRetInstance.setDate(dateStr, true);
@@ -355,15 +361,13 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        if (rtDepEl && !rtDepEl.classList.contains('flatpickr-input')) {
+        if (rtDepEl) {
             rtDepInstance = flatpickr(rtDepEl, {
                 ...commonDateConfig,
                 onChange: function(selectedDates, dateStr) {
-                    // Sinkronkan ke One-Way Departure
                     if (owDepInstance) owDepInstance.setDate(dateStr, false);
                     if (rtRetInstance) {
                         rtRetInstance.set("minDate", dateStr);
-                        // Jika return date lebih awal dari departure baru, sesuaikan otomatis
                         const currentRet = rtRetInstance.selectedDates[0];
                         if (currentRet && currentRet < selectedDates[0]) {
                             rtRetInstance.setDate(dateStr, true);
@@ -373,21 +377,17 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        if (rtRetEl && !rtRetEl.classList.contains('flatpickr-input')) {
+        if (rtRetEl) {
             rtRetInstance = flatpickr(rtRetEl, {
                 ...commonDateConfig,
-                minDate: initialDepVal // Mengikuti tanggal departure aktif saat ini
+                minDate: (rtDepEl && rtDepEl.value) ? rtDepEl.value : "today"
             });
         }
 
         // =========================================================================
         // 2. VALIDASI HOTEL (Check-in & Check-out)
         // =========================================================================
-        const hotelInEl = document.getElementById('hotelCheckIn');
-        const hotelOutEl = document.getElementById('hotelCheckOut');
-        const initialHotelIn = (hotelInEl && hotelInEl.value) ? hotelInEl.value : "today";
-
-        if (hotelInEl && !hotelInEl.classList.contains('flatpickr-input')) {
+        if (hotelInEl) {
             hotelInInstance = flatpickr(hotelInEl, {
                 ...commonDateConfig,
                 onChange: function(selectedDates, dateStr) {
@@ -401,21 +401,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         }
-        if (hotelOutEl && !hotelOutEl.classList.contains('flatpickr-input')) {
+        if (hotelOutEl) {
             hotelOutInstance = flatpickr(hotelOutEl, {
                 ...commonDateConfig,
-                minDate: initialHotelIn
+                minDate: (hotelInEl && hotelInEl.value) ? hotelInEl.value : "today"
             });
         }
 
         // =========================================================================
-        // 3. VALIDASI RENTAL MOBIL (Pick-up & Drop-off Date/Time)
+        // 3. VALIDASI RENTAL MOBIL (Pick-up & Drop-off)
         // =========================================================================
-        const pickupEl = document.getElementById('carPickupDate');
-        const dropoffEl = document.getElementById('carDropoffDate');
-        const initialPickup = (pickupEl && pickupEl.value) ? pickupEl.value : "today";
-
-        if (pickupEl && !pickupEl.classList.contains('flatpickr-input')) {
+        if (pickupEl) {
             pickupDateInstance = flatpickr(pickupEl, {
                 dateFormat: "Y-m-d", minDate: "today", allowInput: !isMobile, disableMobile: true,
                 onChange: function(selectedDates, dateStr) {
@@ -429,12 +425,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         }
-        if (dropoffEl && !dropoffEl.classList.contains('flatpickr-input')) {
+        if (dropoffEl) {
             dropoffDateInstance = flatpickr(dropoffEl, {
-                dateFormat: "Y-m-d", minDate: initialPickup, allowInput: !isMobile, disableMobile: true
+                dateFormat: "Y-m-d", minDate: "today", allowInput: !isMobile, disableMobile: true
             });
         }
 
+        // =========================================================================
+        // 4. TIME PICKER & KALENDER LAINNYA
+        // =========================================================================
         flatpickr(".flatpickr-time:not(.flatpickr-input)", { 
             enableTime: true, noCalendar: true, dateFormat: "H:i", time_24hr: true, 
             allowInput: !isMobile, defaultHour: 10, defaultMinute: 0, disableMobile: true,
@@ -443,10 +442,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // =========================================================================
-        // 4. KALENDER LAINNYA
-        // =========================================================================
         flatpickr(".lazy-date:not(.flatpickr-input):not(#owDepDate):not(#rtDepDate):not(#rtRetDate):not(#hotelCheckIn):not(#hotelCheckOut)", commonDateConfig);
+
+        // Tandai bahwa seluruh kalender utama berhasil diinisialisasi serentak
+        datesInitialized = true;
     }
 
     // Pemicu (Event Listeners)
