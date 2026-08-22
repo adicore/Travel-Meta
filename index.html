@@ -210,179 +210,131 @@
 
             <div class="tab-content pt-2">
                 <!-- FLIGHTS TAB -->
-                <div class="tab-pane fade show active" id="flightSearchTab">
-                    
-                    <!-- FLIGHT TYPES & CABIN DROPDOWN (Flex-column untuk mobile agar Tab diatas Cabin) -->
-                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-3">
-                        <div class="overflow-hidden border border-light rounded-pill p-1 shadow-sm w-100 w-md-auto" style="max-width: 100%;">
-                            <div class="d-flex overflow-x-auto hide-scroll">
-                                <ul class="nav nav-pills gap-1 small flex-nowrap" role="tablist">
-                                    <li class="nav-item flex-fill"><button class="nav-link active rounded-pill px-3 py-1 text-nowrap w-100 text-center" data-bs-toggle="tab" data-bs-target="#oneWay">One-way</button></li>
-                                    <li class="nav-item flex-fill"><button class="nav-link rounded-pill px-3 py-1 text-dark text-nowrap w-100 text-center" data-bs-toggle="tab" data-bs-target="#roundTrip">Roundtrip</button></li>
-                                    <li class="nav-item flex-fill"><button class="nav-link rounded-pill px-3 py-1 text-dark text-nowrap w-100 text-center" data-bs-toggle="tab" data-bs-target="#multiCity">Multi-city</button></li>
-                                </ul>
+              <!-- FLIGHTS TAB -->
+<div class="tab-pane fade show active" id="flightSearchTab">
+    
+    <!-- TOMBOL PILIHAN PENERBANGAN -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-3">
+        <div class="overflow-hidden border border-light rounded-pill p-1 shadow-sm w-100 w-md-auto" style="max-width: 100%;">
+            <div class="d-flex overflow-x-auto hide-scroll">
+                <ul class="nav nav-pills gap-1 small flex-nowrap" role="tablist">
+                    <li class="nav-item flex-fill">
+                        <button class="nav-link active rounded-pill px-3 py-1 text-nowrap w-100 text-center" data-bs-toggle="pill" data-bs-target="#flightMainContent" id="oneWayTabBtn">One-way</button>
+                    </li>
+                    <li class="nav-item flex-fill">
+                        <button class="nav-link rounded-pill px-3 py-1 text-dark text-nowrap w-100 text-center" data-bs-toggle="pill" data-bs-target="#flightMainContent" id="roundTripTabBtn">Roundtrip</button>
+                    </li>
+                    <li class="nav-item flex-fill">
+                        <button class="nav-link rounded-pill px-3 py-1 text-dark text-nowrap w-100 text-center" data-bs-toggle="pill" data-bs-target="#multiCity">Multi-city</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- CABIN DROPDOWN -->
+        <div class="dropdown align-self-start align-self-md-auto w-100 w-md-auto">
+            <button class="btn btn-light btn-sm custom-dropdown-toggle rounded-pill px-3 py-2 border text-primary fw-semibold shadow-sm d-flex align-items-center justify-content-between cabin-dropdown-mobile" type="button" data-bs-toggle="dropdown">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-star-fill text-warning" style="font-size: 0.75rem;"></i>
+                    <span id="cabinClassDropdownBtn">Economy</span>
+                </div>
+                <i class="bi bi-chevron-down arrow-icon text-dark ms-2" style="font-size: 0.8rem; -webkit-text-stroke: 1px;"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-4 p-2 w-100">
+                <li><a class="dropdown-item cabin-option rounded-3 py-2 text-dark" href="#" data-cabin="Economy">Economy</a></li>
+                <li><a class="dropdown-item cabin-option rounded-3 py-2 text-dark" href="#" data-cabin="Premium Economy">Premium Economy</a></li>
+                <li><a class="dropdown-item cabin-option rounded-3 py-2 text-dark" href="#" data-cabin="Business">Business</a></li>
+                <li><a class="dropdown-item cabin-option rounded-3 py-2 text-dark" href="#" data-cabin="First Class">First Class</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="tab-content">
+        <!-- KONTRAINER UTAMA (DIGABUNG UNTUK ONE-WAY & ROUNDTRIP) -->
+        <div class="tab-pane fade show active" id="flightMainContent">
+            <div class="row g-2 align-items-center">
+                <!-- Origin & Destination -->
+                <div class="col-lg-4 col-md-12" id="flightRouteCol">
+                    <div class="search-box-item position-relative">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="flex-grow-1 position-relative pe-2">
+                                <div class="text-muted small mb-1"><i class="bi bi-airplane-engines text-primary me-1"></i> Leaving From</div>
+                                <input type="text" id="flightOrigin" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Detecting location...">
                             </div>
-                        </div>
-                        
-                        <div class="dropdown align-self-start align-self-md-auto w-100 w-md-auto">
-                            <button class="btn btn-light btn-sm custom-dropdown-toggle rounded-pill px-3 py-2 border text-primary fw-semibold shadow-sm d-flex align-items-center justify-content-between cabin-dropdown-mobile" type="button" data-bs-toggle="dropdown">
-                                <div class="d-flex align-items-center gap-2">
-                                    <i class="bi bi-star-fill text-warning" style="font-size: 0.75rem;"></i>
-                                    <span id="cabinClassDropdownBtn">Economy</span>
-                                </div>
-                                <i class="bi bi-chevron-down arrow-icon text-dark ms-2" style="font-size: 0.8rem; -webkit-text-stroke: 1px;"></i>
+                            <button class="btn btn-light btn-sm rounded-circle border shadow-sm d-flex align-items-center justify-content-center swap-inputs-btn flex-shrink-0" style="width: 32px; height: 32px;" type="button" title="Tukar">
+                                <i class="bi bi-arrow-left-right text-secondary"></i>
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-4 p-2 w-100">
-                                <li><a class="dropdown-item cabin-option rounded-3 py-2 text-dark" href="#" data-cabin="Economy">Economy</a></li>
-                                <li><a class="dropdown-item cabin-option rounded-3 py-2 text-dark" href="#" data-cabin="Premium Economy">Premium Economy</a></li>
-                                <li><a class="dropdown-item cabin-option rounded-3 py-2 text-dark" href="#" data-cabin="Business">Business</a></li>
-                                <li><a class="dropdown-item cabin-option rounded-3 py-2 text-dark" href="#" data-cabin="First Class">First Class</a></li>
-                            </ul>
+                            <div class="flex-grow-1 position-relative ps-3 border-start">
+                                <div class="text-muted small mb-1"><i class="bi bi-airplane-fill text-primary me-1"></i> Going To</div>
+                                <input type="text" id="flightDest" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Destination">
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="tab-content">
-                        <!-- FLIGHT ONE WAY -->
-                        <div class="tab-pane fade show active" id="oneWay">
-                            <div class="row g-2 align-items-center">
-                                <div class="col-lg-4 col-md-12">
-                                    <div class="search-box-item position-relative">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="flex-grow-1 position-relative pe-2">
-                                                <div class="text-muted small mb-1"><i class="bi bi-airplane-engines text-primary me-1"></i> Leaving From</div>
-                                                <input type="text" id="owOrigin" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Detecting location...">
-                                            </div>
-                                            <button class="btn btn-light btn-sm rounded-circle border shadow-sm d-flex align-items-center justify-content-center swap-inputs-btn flex-shrink-0" style="width: 32px; height: 32px;" type="button" title="Tukar">
-                                                <i class="bi bi-arrow-left-right text-secondary"></i>
-                                            </button>
-                                            <div class="flex-grow-1 position-relative ps-3 border-start">
-                                                <div class="text-muted small mb-1"><i class="bi bi-airplane-fill text-primary me-1"></i> Going To</div>
-                                                <input type="text" id="owDest" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Destination">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-6">
-                                    <div class="search-box-item">
-                                        <div class="text-muted small mb-1"><i class="bi bi-calendar text-primary me-1"></i> Departure</div>
-                                        <input type="text" id="owDepDate" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Pilih Tanggal">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="dropdown w-100">
-                                        <div class="search-box-item cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                                            <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Travelers</div>
-                                            <div class="fw-bold small text-dark travelers-summary-text">1 Adult, 0 Child</div>
-                                        </div>
-                                        <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100" style="min-width: 280px;">
-                                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                                <span class="small">Dewasa (12+)</span>
-                                                <div class="input-group input-group-sm w-50">
-                                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightAdult">-</button>
-                                                    <input type="text" id="flightAdult" class="form-control text-center fw-bold bg-white" value="1" readonly>
-                                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightAdult">+</button>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                                <span class="small">Anak (2-11)</span>
-                                                <div class="input-group input-group-sm w-50">
-                                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightChild">-</button>
-                                                    <input type="text" id="flightChild" class="form-control text-center fw-bold bg-white" value="0" readonly>
-                                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightChild">+</button>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                                <span class="small">Bayi (&lt;2)</span>
-                                                <div class="input-group input-group-sm w-50">
-                                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightInfant">-</button>
-                                                    <input type="text" id="flightInfant" class="form-control text-center fw-bold bg-white" value="0" readonly>
-                                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightInfant">+</button>
-                                                </div>
-                                            </div>
-                                            <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-12">
-                                    <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="min-height: 72px;">Search</button>
+                </div>
+
+                <!-- Departure Date -->
+                <div class="col-lg-2 col-md-6" id="flightDepCol">
+                    <div class="search-box-item">
+                        <div class="text-muted small mb-1"><i class="bi bi-calendar text-primary me-1"></i> Departure</div>
+                        <input type="text" id="flightDepDate" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Pilih Tanggal">
+                    </div>
+                </div>
+
+                <!-- Return Date (Disembunyikan default untuk One-way, muncul saat Roundtrip) -->
+                <div class="col-lg-2 col-md-6 d-none" id="flightReturnCol">
+                    <div class="search-box-item">
+                        <div class="text-muted small mb-1"><i class="bi bi-calendar-check text-primary me-1"></i> Return</div>
+                        <input type="text" id="flightRetDate" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Kembali">
+                    </div>
+                </div>
+
+                <!-- Travelers Dropdown -->
+                <div class="col-lg-4 col-md-6" id="flightTravelersCol">
+                    <div class="dropdown w-100">
+                        <div class="search-box-item cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                            <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Travelers</div>
+                            <div class="fw-bold small text-dark travelers-summary-text">1 Adult, 0 Child</div>
+                        </div>
+                        <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100" style="min-width: 280px;">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="small">Dewasa (12+)</span>
+                                <div class="input-group input-group-sm w-50">
+                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightAdult">-</button>
+                                    <input type="text" id="flightAdult" class="form-control text-center fw-bold bg-white" value="1" readonly>
+                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightAdult">+</button>
                                 </div>
                             </div>
-                        </div>
-
-                        <!-- FLIGHT ROUND TRIP -->
-                        <div class="tab-pane fade" id="roundTrip">
-                            <div class="row g-2 align-items-center">
-                                <div class="col-lg-3 col-md-12">
-                                    <div class="search-box-item position-relative">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="flex-grow-1 position-relative pe-1">
-                                                <div class="text-muted small mb-1"><i class="bi bi-airplane-engines text-primary me-1"></i> From</div>
-                                                <input type="text" id="rtOrigin" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Origin">
-                                            </div>
-                                            <button class="btn btn-light btn-sm rounded-circle border shadow-sm d-flex align-items-center justify-content-center swap-inputs-btn flex-shrink-0" style="width: 30px; height: 30px;" type="button"><i class="bi bi-arrow-left-right text-secondary"></i></button>
-                                            <div class="flex-grow-1 position-relative ps-2 border-start">
-                                                <div class="text-muted small mb-1"><i class="bi bi-airplane-fill text-primary me-1"></i> To</div>
-                                                <input type="text" id="rtDest" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Destination">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-6">
-                                    <div class="search-box-item">
-                                        <div class="text-muted small mb-1"><i class="bi bi-calendar text-primary me-1"></i> Departure</div>
-                                        <input type="text" id="rtDepDate" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Pergi">
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-6">
-                                    <div class="search-box-item">
-                                        <div class="text-muted small mb-1"><i class="bi bi-calendar-check text-primary me-1"></i> Return</div>
-                                        <input type="text" id="rtRetDate" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Kembali">
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-12">
-                                    <div class="dropdown w-100">
-                                        <div class="search-box-item cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                                            <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Passengers</div>
-                                            <div class="fw-bold small text-dark travelers-summary-text">1 Adult, 0 Child</div>
-                                        </div>
-                                        <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100" style="min-width: 280px;">
-                                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                                <span class="small">Dewasa (12+)</span>
-                                                <div class="input-group input-group-sm w-50">
-                                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="rtAdult">-</button>
-                                                    <input type="text" id="rtAdult" class="form-control text-center fw-bold bg-white" value="1" readonly>
-                                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="rtAdult">+</button>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                                <span class="small">Anak (2-11)</span>
-                                                <div class="input-group input-group-sm w-50">
-                                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="rtChild">-</button>
-                                                    <input type="text" id="rtChild" class="form-control text-center fw-bold bg-white" value="0" readonly>
-                                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="rtChild">+</button>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                                <span class="small">Bayi (&lt;2)</span>
-                                                <div class="input-group input-group-sm w-50">
-                                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="rtInfant">-</button>
-                                                    <input type="text" id="rtInfant" class="form-control text-center fw-bold bg-white" value="0" readonly>
-                                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="rtInfant">+</button>
-                                                </div>
-                                            </div>
-                                            <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-12">
-                                    <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="min-height: 72px;">Search</button>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="small">Anak (2-11)</span>
+                                <div class="input-group input-group-sm w-50">
+                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightChild">-</button>
+                                    <input type="text" id="flightChild" class="form-control text-center fw-bold bg-white" value="0" readonly>
+                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightChild">+</button>
                                 </div>
                             </div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="small">Bayi (&lt;2)</span>
+                                <div class="input-group input-group-sm w-50">
+                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightInfant">-</button>
+                                    <input type="text" id="flightInfant" class="form-control text-center fw-bold bg-white" value="0" readonly>
+                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightInfant">+</button>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
                         </div>
+                    </div>
+                </div>
 
-                        <!-- FLIGHT MULTI CITY -->
-                        <div class="tab-pane fade" id="multiCity">
-                            <div id="multiCityContainer">
+                <!-- Search Button -->
+                <div class="col-lg-2 col-md-12">
+                    <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="min-height: 72px;">Search</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- FLIGHT MULTI CITY -->
+        <div class="tab-pane fade" id="multiCity">
+           <div id="multiCityContainer">
                                 <div class="row g-2 mb-2 multicity-row align-items-center">
                                     <div class="col-lg-5 col-md-12">
                                         <div class="search-box-item">
@@ -450,14 +402,9 @@
                                 <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3 py-2 fw-semibold" id="addFlightBtn"><i class="bi bi-plus me-1"></i> Tambah Penerbangan</button>
                                 <button class="btn btn-primary px-4 py-2 fw-bold search-action-btn rounded-pill shadow-sm">Cari Multi-City</button>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-3 text-muted small">
-                        Save Up to <span class="text-primary fw-bold">$390</span> on Schengen Visa – 14 days delivery!
-                    </div>
-                </div>
-
+        </div>
+    </div>
+</div>
                 <!-- HOTELS TAB -->
                 <div class="tab-pane fade" id="hotelSearchTab">
                     <form id="hotelSearchForm">

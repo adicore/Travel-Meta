@@ -290,6 +290,34 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.appendChild(script);
     };
 
+    // =========================================================================
+    // TOGGLE ONE-WAY & ROUNDTRIP DYNAMIC VIEW
+    // =========================================================================
+    const oneWayTabBtn = document.getElementById('oneWayTabBtn');
+    const roundTripTabBtn = document.getElementById('roundTripTabBtn');
+    const flightReturnCol = document.getElementById('flightReturnCol');
+    const flightRouteCol = document.getElementById('flightRouteCol');
+    const flightTravelersCol = document.getElementById('flightTravelersCol');
+
+    if (oneWayTabBtn && roundTripTabBtn && flightReturnCol) {
+        oneWayTabBtn.addEventListener('click', () => {
+            flightReturnCol.classList.add('d-none');
+            // Menyesuaikan lebar kolom grid Bootstrap agar pas 12 kolom
+            flightRouteCol.className = 'col-lg-4 col-md-12';
+            flightTravelersCol.className = 'col-lg-4 col-md-6';
+        });
+
+        roundTripTabBtn.addEventListener('click', () => {
+            flightReturnCol.classList.remove('d-none');
+            // Menyesuaikan lebar kolom grid saat Return muncul
+            flightRouteCol.className = 'col-lg-3 col-md-12';
+            flightTravelersCol.className = 'col-lg-3 col-md-12';
+        });
+    }
+
+    // =========================================================================
+    // INISIALISASI FLATPIKR (Flight Dep, Return, Hotel, Mobil, dll)
+    // =========================================================================
     function initFlatpickrElements() {
         const isMobile = window.innerWidth <= 768;
         
@@ -302,83 +330,38 @@ document.addEventListener("DOMContentLoaded", () => {
             disableMobile: true
         };
 
-        const owDepEl = document.getElementById('owDepDate');
-        const rtDepEl = document.getElementById('rtDepDate');
-        const rtRetEl = document.getElementById('rtRetDate');
+        const flightDepEl = document.getElementById('flightDepDate');
+        const flightRetEl = document.getElementById('flightRetDate');
         const hotelInEl = document.getElementById('hotelCheckIn');
         const hotelOutEl = document.getElementById('hotelCheckOut');
         const pickupEl = document.getElementById('carPickupDate');
         const dropoffEl = document.getElementById('carDropoffDate');
 
-        let owDepInstance, rtDepInstance, rtRetInstance;
+        let flightDepInstance, flightRetInstance;
         let hotelInInstance, hotelOutInstance;
         let pickupDateInstance, dropoffDateInstance;
 
-        // Flag pengunci untuk mencegah infinite loop / reset tanggal pada sinkronisasi
-        let isSyncing = false;
-
-        // =========================================================================
-        // 1. PENERBANGAN: SINKRONISASI DEPARTURE & VALIDASI ROUND-TRIP
-        // =========================================================================
-        if (owDepEl && !owDepEl._flatpickr) {
-            owDepInstance = flatpickr(owDepEl, {
+        // 1. Validasi Tanggal Penerbangan (Departure & Return)
+        if (flightDepEl && !flightDepEl._flatpickr) {
+            flightDepInstance = flatpickr(flightDepEl, {
                 ...commonDateConfig,
                 onChange: function(selectedDates, dateStr) {
-                    if (isSyncing) return;
-                    isSyncing = true;
-
-                    if (rtDepEl && rtDepEl._flatpickr && dateStr) {
-                        rtDepEl._flatpickr.setDate(dateStr, true);
-                    } else if (rtDepEl) {
-                        rtDepEl.value = dateStr;
-                    }
-
-                    if (rtRetEl && rtRetEl._flatpickr && dateStr) {
-                        rtRetEl._flatpickr.set("minDate", dateStr);
-                        const currentRet = rtRetEl._flatpickr.selectedDates[0];
+                    if (flightRetEl && flightRetEl._flatpickr && dateStr) {
+                        flightRetEl._flatpickr.set("minDate", dateStr);
+                        const currentRet = flightRetEl._flatpickr.selectedDates[0];
                         if (currentRet && currentRet < selectedDates[0]) {
-                            rtRetEl._flatpickr.setDate(dateStr, true);
+                            flightRetEl._flatpickr.setDate(dateStr, true);
                         }
                     }
-
-                    isSyncing = false;
                 }
             });
         }
 
-        if (rtDepEl && !rtDepEl._flatpickr) {
-            rtDepInstance = flatpickr(rtDepEl, {
-                ...commonDateConfig,
-                onChange: function(selectedDates, dateStr) {
-                    if (isSyncing) return;
-                    isSyncing = true;
-
-                    if (owDepEl && owDepEl._flatpickr && dateStr) {
-                        owDepEl._flatpickr.setDate(dateStr, true);
-                    } else if (owDepEl) {
-                        owDepEl.value = dateStr;
-                    }
-
-                    if (rtRetEl && rtRetEl._flatpickr && dateStr) {
-                        rtRetEl._flatpickr.set("minDate", dateStr);
-                        const currentRet = rtRetEl._flatpickr.selectedDates[0];
-                        if (currentRet && currentRet < selectedDates[0]) {
-                            rtRetEl._flatpickr.setDate(dateStr, true);
-                        }
-                    }
-
-                    isSyncing = false;
-                }
-            });
+        if (flightRetEl && !flightRetEl._flatpickr) {
+            flightRetInstance = flatpickr(flightRetEl, commonDateConfig);
         }
 
-        if (rtRetEl && !rtRetEl._flatpickr) {
-            rtRetInstance = flatpickr(rtRetEl, commonDateConfig);
-        }
-
-        // =========================================================================
-        // 2. VALIDASI HOTEL (Check-in & Check-out)
-        // =========================================================================
+        // 2. Validasi Hotel (Check-in & Check-out)
         if (hotelInEl && !hotelInEl._flatpickr) {
             hotelInInstance = flatpickr(hotelInEl, {
                 ...commonDateConfig,
@@ -397,9 +380,7 @@ document.addEventListener("DOMContentLoaded", () => {
             hotelOutInstance = flatpickr(hotelOutEl, commonDateConfig);
         }
 
-        // =========================================================================
-        // 3. VALIDASI RENTAL MOBIL (Pick-up & Drop-off)
-        // =========================================================================
+        // 3. Validasi Rental Mobil (Pick-up & Drop-off)
         if (pickupEl && !pickupEl._flatpickr) {
             pickupDateInstance = flatpickr(pickupEl, {
                 dateFormat: "Y-m-d", minDate: "today", allowInput: !isMobile, disableMobile: true,
@@ -418,9 +399,7 @@ document.addEventListener("DOMContentLoaded", () => {
             dropoffDateInstance = flatpickr(dropoffEl, commonDateConfig);
         }
 
-        // =========================================================================
-        // 4. TIME PICKER & KALENDER LAINNYA
-        // =========================================================================
+        // 4. Time Picker & Kalender Umum
         flatpickr(".flatpickr-time:not(.flatpickr-input)", { 
             enableTime: true, noCalendar: true, dateFormat: "H:i", time_24hr: true, 
             allowInput: !isMobile, defaultHour: 10, defaultMinute: 0, disableMobile: true,
@@ -429,7 +408,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        flatpickr(".lazy-date:not(.flatpickr-input):not(#owDepDate):not(#rtDepDate):not(#rtRetDate):not(#hotelCheckIn):not(#hotelCheckOut)", commonDateConfig);
+        flatpickr(".lazy-date:not(.flatpickr-input):not(#flightDepDate):not(#flightRetDate):not(#hotelCheckIn):not(#hotelCheckOut)", commonDateConfig);
     }
 
     // Pemicu (Event Listeners)
