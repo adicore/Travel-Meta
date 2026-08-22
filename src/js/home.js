@@ -671,5 +671,27 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // 🔥 Sinkronisasi otomatis saat pengguna berpindah ke tab Round-trip
+    const roundTripTabBtn = document.querySelector('[data-bs-target="#roundTrip"]');
+    if (roundTripTabBtn) {
+        roundTripTabBtn.addEventListener('shown.bs.tab', () => {
+            const owDepEl = document.getElementById('owDepDate');
+            const rtDepEl = document.getElementById('rtDepDate');
+            const rtRetEl = document.getElementById('rtRetDate');
+
+            if (owDepEl && rtDepEl && owDepEl._flatpickr && rtDepEl._flatpickr) {
+                // Ambil tanggal yang sedang dipilih di One-way
+                const selectedOwDate = owDepEl._flatpickr.selectedDates[0];
+                if (selectedOwDate) {
+                    // Terapkan ke Round-trip departure & sesuaikan minimal return date
+                    rtDepEl._flatpickr.setDate(selectedOwDate, false);
+                    if (rtRetEl && rtRetEl._flatpickr) {
+                        rtRetEl._flatpickr.set("minDate", selectedOwDate);
+                    }
+                }
+            }
+        });
+    }
+
 
 });
