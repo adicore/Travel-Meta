@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // AUTOCOMPLETE & INPUT SYNCHRONIZATION
+    // AUTOCOMPLETE & INPUT SYNCHRONIZATION (KODE ASLI ANDA)
     const owOrigin = document.getElementById('owOrigin');
     const owDest = document.getElementById('owDest');
     const rtOrigin = document.getElementById('rtOrigin');
@@ -258,7 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
         validateAndUpdatePassengers('flightAdult', 'flightChild', 'flightInfant', '.travelers-summary-text:not(.mc-travelers-summary)');
         validateAndUpdatePassengers('mcAdult', 'mcChild', 'mcInfant', '.mc-travelers-summary');
 
-        // 3. Hotel Summary & Limits (Max: 10 Rooms, 20 Adults, 20 Children)
+        // Hotel Summary & Limits
         const hotelRoomInput = document.getElementById("hotelRoom");
         const hotelAdultInput = document.getElementById("hotelAdult");
         const hotelChildInput = document.getElementById("hotelChild");
@@ -287,7 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (decHChild) decHChild.disabled = (children <= 0);
         }
 
-        // 4. Tour Summary & Limits (Max: 10 Persons)
+        // Tour Summary & Limits
         const tourAdultInput = document.getElementById("tourAdult");
         if (tourAdultInput) {
             const a = parseInt(tourAdultInput.value) || 1;
@@ -300,7 +300,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (decTour) decTour.disabled = (a <= 1);
         }
 
-        // 5. Experience Summary & Limits (Max: 10 Persons)
+        // Experience Summary & Limits
         const expAdultInput = document.getElementById("expAdult");
         if (expAdultInput) {
             const a = parseInt(expAdultInput.value) || 1;
@@ -322,7 +322,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // =========================================================================
-    // FLATPICKR LAZY LOADER & INISIALISASI TANGGAL (AMAN DARI RESET)
+    // FLATPICKR LAZY LOADER & INISIALISASI TANGGAL (DENGAN PENGAMAN _flatpickr)
     // =========================================================================
     let flatpickrLoaded = false;
 
@@ -346,37 +346,11 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.appendChild(script);
     };
 
-    // TOGGLE ONE-WAY & ROUNDTRIP DYNAMIC VIEW
-    const oneWayTabBtn = document.getElementById('oneWayTabBtn');
-    const roundTripTabBtn = document.getElementById('roundTripTabBtn');
-    const flightDepCol = document.getElementById('flightDepCol');
-    const flightReturnCol = document.getElementById('flightReturnCol');
-    const flightRouteCol = document.getElementById('flightRouteCol');
-    const flightTravelersCol = document.getElementById('flightTravelersCol');
-
-    if (oneWayTabBtn && roundTripTabBtn && flightReturnCol) {
-        oneWayTabBtn.addEventListener('click', () => {
-            flightDepCol.className = 'col-lg-4 col-md-12';
-            flightReturnCol.className = 'd-none';
-        });
-
-        roundTripTabBtn.addEventListener('click', () => {
-            flightDepCol.className = 'col-lg-2 col-md-12';
-            flightReturnCol.classList.remove('d-none');
-            flightReturnCol.className = 'col-lg-2 col-md-12';
-        });
-    }
-
     function initFlatpickrElements() {
         const isMobile = window.innerWidth <= 768;
-        
         const commonDateConfig = {
-            dateFormat: "Y-m-d",
-            altInput: true,
-            altFormat: "j M Y",
-            minDate: "today",
-            allowInput: !isMobile, 
-            disableMobile: true
+            dateFormat: "Y-m-d", altInput: true, altFormat: "j M Y",
+            minDate: "today", allowInput: !isMobile, disableMobile: true
         };
 
         const flightDepEl = document.getElementById('flightDepDate');
@@ -386,7 +360,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const pickupEl = document.getElementById('carPickupDate');
         const dropoffEl = document.getElementById('carDropoffDate');
 
-        // 1. Validasi Tanggal Penerbangan (Departure & Return)
         if (flightDepEl && !flightDepEl._flatpickr) {
             flatpickr(flightDepEl, {
                 ...commonDateConfig,
@@ -402,11 +375,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        if (flightRetEl && !flightRetEl._flatpickr) {
-            flatpickr(flightRetEl, commonDateConfig);
-        }
+        if (flightRetEl && !flightRetEl._flatpickr) flatpickr(flightRetEl, commonDateConfig);
 
-        // 2. Validasi Hotel (Check-in & Check-out)
         if (hotelInEl && !hotelInEl._flatpickr) {
             flatpickr(hotelInEl, {
                 ...commonDateConfig,
@@ -421,14 +391,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         }
-        if (hotelOutEl && !hotelOutEl._flatpickr) {
-            flatpickr(hotelOutEl, commonDateConfig);
-        }
+        if (hotelOutEl && !hotelOutEl._flatpickr) flatpickr(hotelOutEl, commonDateConfig);
 
-        // 3. Validasi Rental Mobil (Pick-up & Drop-off)
         if (pickupEl && !pickupEl._flatpickr) {
             flatpickr(pickupEl, {
-                dateFormat: "Y-m-d", minDate: "today", allowInput: !isMobile, disableMobile: true,
+                ...commonDateConfig,
                 onChange: function(selectedDates, dateStr) {
                     if (dropoffEl && dropoffEl._flatpickr && dateStr) {
                         dropoffEl._flatpickr.set("minDate", dateStr);
@@ -440,20 +407,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         }
-        if (dropoffEl && !dropoffEl._flatpickr) {
-            flatpickr(dropoffEl, commonDateConfig);
-        }
+        if (dropoffEl && !dropoffEl._flatpickr) flatpickr(dropoffEl, commonDateConfig);
 
-        // 4. Time Picker
         flatpickr(".flatpickr-time:not(.flatpickr-input)", { 
             enableTime: true, noCalendar: true, dateFormat: "H:i", time_24hr: true, 
-            allowInput: !isMobile, defaultHour: 10, defaultMinute: 0, disableMobile: true,
-            onOpen: function(selectedDates, dateStr, instance) {
-                instance.calendarContainer.classList.add('custom-time-ui');
-            }
+            allowInput: !isMobile, defaultHour: 10, defaultMinute: 0, disableMobile: true 
         });
 
-        // 5. Kalender Umum / Lazy-date (PENTING: Cek !input._flatpickr agar tidak mereset tanggal yang sudah terisi)
+        // PENTING: Pengecekan !input._flatpickr mencegah tanggal multi-city ter-reset
         document.querySelectorAll(".lazy-date:not(#flightDepDate):not(#flightRetDate):not(#hotelCheckIn):not(#hotelCheckOut)").forEach(input => {
             if (!input._flatpickr) {
                 flatpickr(input, commonDateConfig);
@@ -461,7 +422,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Pemicu (Event Listeners)
     document.querySelectorAll(".lazy-date, .flatpickr-date, .flatpickr-time").forEach(input => {
         input.addEventListener("mouseover", loadFlatpickr);
         input.addEventListener("focus", loadFlatpickr);
@@ -481,7 +441,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (input) {
                 let val = parseInt(input.value) || 0;
 
-                // Validasi Batas Penerbangan (Flights & Multi-City)
                 if (targetId.startsWith('flight') || targetId.startsWith('mc')) {
                     const isMC = targetId.startsWith('mc');
                     const adultIn = document.getElementById(isMC ? 'mcAdult' : 'flightAdult');
@@ -499,7 +458,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }
 
-                // Validasi Hotel, Tour, Experience
                 if (targetId === "hotelRoom" && val >= 10) return;
                 if ((targetId === "hotelAdult" || targetId === "hotelChild") && val >= 20) return;
                 if ((targetId === "tourAdult" || targetId === "expAdult") && val >= 10) return;
@@ -626,14 +584,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateMultiCityButtons();
     updateAllSummaries();
 
-    document.querySelectorAll(".search-action-btn").forEach(btn => {
-        btn.addEventListener("click", (e) => {
-            e.preventDefault();
-            alert("Mencari data secara real-time...");
-        });
-    });
-
-    // FITUR TOGGLE: "DROP CAR OFF AT DIFFERENT LOCATION"
+    // CAR RENTAL DIFFERENT LOCATION TOGGLE
     const diffLocationToggle = document.getElementById('diffLocationToggle');
     const pickupCol = document.getElementById('pickupCol');
     const dropoffCol = document.getElementById('dropoffCol');
@@ -645,12 +596,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 dropoffCol.classList.remove('d-none');
                 pickupCol.classList.remove('col-12'); 
                 pickupCol.classList.add('col-12', 'col-md-6'); 
-                dropoffCol.classList.remove('dropoff-hidden'); 
                 if (dropoffInput) dropoffInput.setAttribute('required', 'true');
             } else {
                 pickupCol.classList.remove('col-md-6');
                 pickupCol.classList.add('col-12'); 
-                dropoffCol.classList.add('dropoff-hidden'); 
+                dropoffCol.classList.add('d-none'); 
                 if (dropoffInput) {
                     dropoffInput.removeAttribute('required');
                     dropoffInput.value = '';
