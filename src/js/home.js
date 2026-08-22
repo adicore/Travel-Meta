@@ -295,6 +295,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // =========================================================================
     const oneWayTabBtn = document.getElementById('oneWayTabBtn');
     const roundTripTabBtn = document.getElementById('roundTripTabBtn');
+    const flightDepCol = document.getElementById('flightDepCol');
     const flightReturnCol = document.getElementById('flightReturnCol');
     const flightRouteCol = document.getElementById('flightRouteCol');
     const flightTravelersCol = document.getElementById('flightTravelersCol');
@@ -303,15 +304,15 @@ document.addEventListener("DOMContentLoaded", () => {
         oneWayTabBtn.addEventListener('click', () => {
             flightReturnCol.classList.add('flight-return-hidden');
             // Menyesuaikan lebar grid Bootstrap agar proporsional
-            // flightRouteCol.className = 'col-lg-4 col-md-12';
-            // flightTravelersCol.className = 'col-lg-4 col-md-6';
+            flightDepCol.className = 'col-lg-4 col-md-12';
+            flightReturnCol.className = 'd-none';
         });
 
         roundTripTabBtn.addEventListener('click', () => {
             flightReturnCol.classList.remove('flight-return-hidden');
             // Menyesuaikan lebar grid saat kolom Return muncul
-            // flightRouteCol.className = 'col-lg-3 col-md-12';
-            // flightTravelersCol.className = 'col-lg-3 col-md-12';
+            flightDepCol.className = 'col-lg-2 col-md-12';
+            flightReturnCol.className = 'd-block';
         });
     }
 
