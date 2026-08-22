@@ -251,6 +251,7 @@
                 <div class="tab-content">
                     <!-- KONTAINER UTAMA (ONE-WAY & ROUNDTRIP DIGABUNG) -->
                     <div class="tab-pane fade show active" id="flightMainContent">
+                        <form id="flightSearch" class="p-0" ction="/search">
                         <div class="row g-2 align-items-center">
                             
                             <!-- Origin & Destination (Leaving From & Going To) -->
@@ -331,11 +332,12 @@
                             </div>
 
                         </div>
+                        </form>
                     </div>
 
                     <!-- FLIGHT MULTI CITY -->
                     <div class="tab-pane fade" id="multiCity">
-    
+    <form id="flightSearch" class="p-0" action="/search">
     <!-- KOLOM PENUMPANG MULTI-CITY (DIPISAH TERSENDIRI / GLOBAL) -->
     <div class="row mb-3">
         <div class="col-lg-4 col-md-6">
@@ -412,6 +414,7 @@
         <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3 py-2 fw-semibold" id="addFlightBtn"><i class="bi bi-plus me-1"></i> Tambah Rute</button>
         <button class="btn btn-primary px-4 py-2 fw-bold search-action-btn rounded-pill shadow-sm" style="height: 58px;">Cari Penerbangan</button>
     </div>
+    </form>
 </div>
 
                 </div>
@@ -486,7 +489,7 @@
 
                 <!-- TRANSPORT TAB -->
                 <div class="tab-pane fade" id="carSearchTab">
-                    <form id="carRentalSearch" class="p-0">
+                    <form id="carRentalSearch" class="p-0" action="/search">
     <!-- 🔥 TOGGLE: LOKASI PENGEMBALIAN BERBEDA -->
     <div class="mb-3 d-flex align-items-center">
         <div class="form-check form-switch">
@@ -559,7 +562,7 @@
 
                 <!-- TOURS TAB -->
                 <div class="tab-pane fade" id="tourSearchTab">
-                    <form id="tourSearchForm">
+                    <form id="tourSearchForm" action="/search">
                     <div class="row g-2 align-items-center">
                         <div class="col-lg-5 col-md-12">
                             <div class="search-box-item">
@@ -601,7 +604,7 @@
 
                 <!-- EXPERIENCE TAB -->
                 <div class="tab-pane fade" id="expSearchTab">
-                    <form id="expSearchForm">
+                    <form id="expSearchForm" action="/search">
                     <div class="row g-2 align-items-center">
                         <div class="col-lg-5 col-md-12">
                             <div class="search-box-item">
@@ -643,7 +646,7 @@
 
                 <!-- VISA TAB -->
                 <div class="tab-pane fade" id="visaSearchTab">
-                    <form id="visaSearchForm">
+                    <form id="visaSearchForm" action="/search">
                     <div class="row g-2 align-items-center">
                         <div class="col-lg-4 col-md-6">
                             <div class="search-box-item">
