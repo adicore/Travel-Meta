@@ -293,27 +293,27 @@ document.addEventListener("DOMContentLoaded", () => {
     // =========================================================================
     // TOGGLE ONE-WAY & ROUNDTRIP DYNAMIC VIEW
     // =========================================================================
-    // const oneWayTabBtn = document.getElementById('oneWayTabBtn');
-    // const roundTripTabBtn = document.getElementById('roundTripTabBtn');
-    // const flightReturnCol = document.getElementById('flightReturnCol');
-    // const flightRouteCol = document.getElementById('flightRouteCol');
-    // const flightTravelersCol = document.getElementById('flightTravelersCol');
+    const oneWayTabBtn = document.getElementById('oneWayTabBtn');
+    const roundTripTabBtn = document.getElementById('roundTripTabBtn');
+    const flightReturnCol = document.getElementById('flightReturnCol');
+    const flightRouteCol = document.getElementById('flightRouteCol');
+    const flightTravelersCol = document.getElementById('flightTravelersCol');
 
-    // if (oneWayTabBtn && roundTripTabBtn && flightReturnCol) {
-    //     oneWayTabBtn.addEventListener('click', () => {
-    //         flightReturnCol.classList.add('flight-return-hidden');
-    //         // Menyesuaikan lebar grid Bootstrap agar proporsional
-    //         flightRouteCol.className = 'col-lg-4 col-md-12';
-    //         flightTravelersCol.className = 'col-lg-4 col-md-6';
-    //     });
+    if (oneWayTabBtn && roundTripTabBtn && flightReturnCol) {
+        oneWayTabBtn.addEventListener('click', () => {
+            flightReturnCol.classList.add('flight-return-hidden');
+            // Menyesuaikan lebar grid Bootstrap agar proporsional
+            // flightRouteCol.className = 'col-lg-4 col-md-12';
+            // flightTravelersCol.className = 'col-lg-4 col-md-6';
+        });
 
-    //     roundTripTabBtn.addEventListener('click', () => {
-    //         flightReturnCol.classList.remove('flight-return-hidden');
-    //         // Menyesuaikan lebar grid saat kolom Return muncul
-    //         flightRouteCol.className = 'col-lg-3 col-md-12';
-    //         flightTravelersCol.className = 'col-lg-3 col-md-12';
-    //     });
-    // }
+        roundTripTabBtn.addEventListener('click', () => {
+            flightReturnCol.classList.remove('flight-return-hidden');
+            // Menyesuaikan lebar grid saat kolom Return muncul
+            // flightRouteCol.className = 'col-lg-3 col-md-12';
+            // flightTravelersCol.className = 'col-lg-3 col-md-12';
+        });
+    }
 
     // =========================================================================
     // INISIALISASI FLATPIKR (Flight Dep, Return, Hotel, Mobil, dll)
