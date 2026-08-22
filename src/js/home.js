@@ -603,8 +603,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-// =========================================================================
-    // FITUR TOGGLE: "DROP CAR OFF AT DIFFERENT LOCATION" (SMOOTH ANIMATION)
+    // =========================================================================
+    // FITUR TOGGLE: "DROP CAR OFF AT DIFFERENT LOCATION" (SMOOTH & ROBUST)
     // =========================================================================
     const diffLocationToggle = document.getElementById('diffLocationToggle');
     const pickupCol = document.getElementById('pickupCol');
@@ -614,17 +614,34 @@ document.addEventListener("DOMContentLoaded", () => {
     if (diffLocationToggle && pickupCol && dropoffCol) {
         diffLocationToggle.addEventListener('change', function() {
             if (this.checked) {
-                // Tampilkan Drop-off (Geser Mulus)
-                pickupCol.classList.replace('col-12', 'col-md-6');
-                dropoffCol.classList.remove('dropoff-hidden'); // Lepas efek sembunyi
-                dropoffInput.setAttribute('required', 'true');
+                // 1. Pastikan kelas d-none bawaan Bootstrap dipaksa hapus (jika masih tersisa di HTML)
+                dropoffCol.classList.remove('d-none');
+                
+                // 2. Atur ulang lebar Pick-up (Tetap full di HP, jadi setengah di PC)
+                pickupCol.classList.remove('col-12'); 
+                pickupCol.classList.add('col-12', 'col-md-6'); 
+                
+                // 3. Lepas efek sembunyi (Animasi CSS berjalan)
+                dropoffCol.classList.remove('dropoff-hidden'); 
+                
+                // 4. Wajibkan isi lokasi
+                if (dropoffInput) dropoffInput.setAttribute('required', 'true');
             } else {
-                // Sembunyikan Drop-off (Geser Mulus)
-                pickupCol.classList.replace('col-md-6', 'col-12');
-                dropoffCol.classList.add('dropoff-hidden'); // Pasang efek sembunyi
-                dropoffInput.removeAttribute('required');
-                dropoffInput.value = '';
+                // 1. Kembalikan Pick-up menjadi lebar penuh
+                pickupCol.classList.remove('col-md-6');
+                pickupCol.classList.add('col-12'); 
+                
+                // 2. Pasang efek sembunyi
+                dropoffCol.classList.add('dropoff-hidden'); 
+                
+                // 3. Bersihkan input
+                if (dropoffInput) {
+                    dropoffInput.removeAttribute('required');
+                    dropoffInput.value = '';
+                }
             }
         });
     }
+
+
 });
