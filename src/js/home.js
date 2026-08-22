@@ -295,12 +295,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.appendChild(script);
     };
 
-    // Flag penanda agar inisialisasi serentak hanya berjalan sekali
-    let datesInitialized = false;
-
     function initFlatpickrElements() {
-        if (datesInitialized) return; 
-
         const isMobile = window.innerWidth <= 768;
         
         const commonDateConfig = {
@@ -312,7 +307,6 @@ document.addEventListener("DOMContentLoaded", () => {
             disableMobile: true
         };
 
-        // Ambil elemen target kalender utama
         const owDepEl = document.getElementById('owDepDate');
         const rtDepEl = document.getElementById('rtDepDate');
         const rtRetEl = document.getElementById('rtRetDate');
@@ -321,89 +315,93 @@ document.addEventListener("DOMContentLoaded", () => {
         const pickupEl = document.getElementById('carPickupDate');
         const dropoffEl = document.getElementById('carDropoffDate');
 
-        let owDepInstance, rtDepInstance, rtRetInstance;
-        let hotelInInstance, hotelOutInstance;
-        let pickupDateInstance, dropoffDateInstance;
-
         // =========================================================================
         // 1. PENERBANGAN: SINKRONISASI DEPARTURE & VALIDASI ROUND-TRIP
         // =========================================================================
-        if (owDepEl) {
-            owDepInstance = flatpickr(owDepEl, {
+        if (owDepEl && !owDepEl._flatpickr) {
+            flatpickr(owDepEl, {
                 ...commonDateConfig,
                 onChange: function(selectedDates, dateStr) {
-                    if (rtDepInstance) rtDepInstance.setDate(dateStr, false);
-                    if (rtRetInstance) {
-                        rtRetInstance.set("minDate", dateStr);
-                        const currentRet = rtRetInstance.selectedDates[0];
+                    if (rtDepEl && rtDepEl._flatpickr) {
+                        rtDepEl._flatpickr.setDate(dateStr, false);
+                    } else if (rtDepEl) {
+                        rtDepEl.value = dateStr;
+                    }
+                    if (rtRetEl && rtRetEl._flatpickr) {
+                        rtRetEl._flatpickr.set("minDate", dateStr);
+                        const currentRet = rtRetEl._flatpickr.selectedDates[0];
                         if (currentRet && currentRet < selectedDates[0]) {
-                            rtRetInstance.setDate(dateStr, true);
+                            rtRetEl._flatpickr.setDate(dateStr, true);
                         }
                     }
                 }
             });
         }
 
-        if (rtDepEl) {
-            rtDepInstance = flatpickr(rtDepEl, {
+        if (rtDepEl && !rtDepEl._flatpickr) {
+            flatpickr(rtDepEl, {
                 ...commonDateConfig,
                 onChange: function(selectedDates, dateStr) {
-                    if (owDepInstance) owDepInstance.setDate(dateStr, false);
-                    if (rtRetInstance) {
-                        rtRetInstance.set("minDate", dateStr);
-                        const currentRet = rtRetInstance.selectedDates[0];
+                    if (owDepEl && owDepEl._flatpickr) {
+                        owDepEl._flatpickr.setDate(dateStr, false);
+                    } else if (owDepEl) {
+                        owDepEl.value = dateStr;
+                    }
+                    if (rtRetEl && rtRetEl._flatpickr) {
+                        rtRetEl._flatpickr.set("minDate", dateStr);
+                        const currentRet = rtRetEl._flatpickr.selectedDates[0];
                         if (currentRet && currentRet < selectedDates[0]) {
-                            rtRetInstance.setDate(dateStr, true);
+                            rtRetEl._flatpickr.setDate(dateStr, true);
                         }
                     }
                 }
             });
         }
 
-        if (rtRetEl) {
-            rtRetInstance = flatpickr(rtRetEl, commonDateConfig);
+        if (rtRetEl && !rtRetEl._flatpickr) {
+            flatpickr(rtRetEl, commonDateConfig);
         }
 
         // =========================================================================
         // 2. VALIDASI HOTEL (Check-in & Check-out)
         // =========================================================================
-        if (hotelInEl) {
-            hotelInInstance = flatpickr(hotelInEl, {
+        if (hotelInEl && !hotelInEl._flatpickr) {
+            flatpickr(hotelInEl, {
                 ...commonDateConfig,
                 onChange: function(selectedDates, dateStr) {
-                    if (hotelOutInstance) {
-                        hotelOutInstance.set("minDate", dateStr);
-                        const currentOut = hotelOutInstance.selectedDates[0];
+                    if (hotelOutEl && hotelOutEl._flatpickr) {
+                        hotelOutEl._flatpickr.set("minDate", dateStr);
+                        const currentOut = hotelOutEl._flatpickr.selectedDates[0];
                         if (currentOut && currentOut < selectedDates[0]) {
-                            hotelOutInstance.setDate(dateStr, true);
+                            hotelOutEl._flatpickr.setDate(dateStr, true);
                         }
                     }
                 }
             });
         }
-        if (hotelOutEl) {
-            hotelOutInstance = flatpickr(hotelOutEl, commonDateConfig);
+        if (hotelOutEl && !hotelOutEl._flatpickr) {
+            flatpickr(hotelOutEl, commonDateConfig);
         }
 
         // =========================================================================
         // 3. VALIDASI RENTAL MOBIL (Pick-up & Drop-off)
         // =========================================================================
-        if (pickupEl) {
-            pickupDateInstance = flatpickr(pickupEl, {
-                ...commonDateConfig,
+        if (pickupEl && !pickupEl._flatpickr) {
+            flatpickr(pickupEl, {
+                dateFormat: "Y-m-d", minDate: "today", allowInput: !isMobile, disableMobile: true,
                 onChange: function(selectedDates, dateStr) {
-                    if (dropoffDateInstance) {
-                        dropoffDateInstance.set("minDate", dateStr);
-                        const currentDrop = dropoffDateInstance.selectedDates[0];
+                    if (dropoffEl && dropoffEl._flatpickr) {
+                        dropoffEl._flatpickr.set("minDate", dateStr);
+                        const currentDrop = dropoffEl._flatpickr.selectedDates[0];
                         if (currentDrop && currentDrop < selectedDates[0]) {
-                            dropoffDateInstance.setDate(dateStr, true);
+                            dropoffEl._flatpickr.setDate(dateStr, true);
                         }
                     }
                 }
             });
         }
-        if (dropoffEl) {
-            dropoffDateInstance = flatpickr(dropoffEl, commonDateConfig);
+        if (dropoffEl && !dropoffEl._flatpickr) {
+            flatpickr(dropoffEl, commonDateConfig);
         }
 
         // =========================================================================
@@ -418,9 +416,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         flatpickr(".lazy-date:not(.flatpickr-input):not(#owDepDate):not(#rtDepDate):not(#rtRetDate):not(#hotelCheckIn):not(#hotelCheckOut)", commonDateConfig);
-
-        datesInitialized = true;
     }
+
+    // 🔥 Pemicu tambahan: Pastikan kalender ter-refresh saat pengguna berpindah tab pencarian penerbangan
+    document.querySelectorAll('#searchCategoryTab [data-bs-toggle="pill"], #flightSearchTab [data-bs-toggle="tab"]').forEach(tabEl => {
+        tabEl.addEventListener('shown.bs.tab', () => {
+            loadFlatpickr();
+        });
+    });
 
     // Pemicu (Event Listeners)
     document.querySelectorAll(".lazy-date, .flatpickr-date, .flatpickr-time").forEach(input => {
