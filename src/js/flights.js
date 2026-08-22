@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // =========================================================================
-    // 4. ATURAN PENUMPANG PESAWAT (LIMIT MAX 9, DLL)
+    // 4. ATURAN PENUMPANG PESAWAT (LIMIT MAX 9, ADULT MIN 1, INFANT <= ADULT)
     // =========================================================================
     function updatePassengerGroup(adultInput, childInput, infantInput, summaryEls, scopeElement = document) {
         if (!adultInput || !childInput || !infantInput) return;
@@ -219,11 +219,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const incInfant = scopeElement.querySelector(`.increase-count[data-target="${infantId}"]`);
         const decInfant = scopeElement.querySelector(`.decrease-count[data-target="${infantId}"]`);
 
-        // Validasi tombol Disable
+        // Validasi tombol Disable untuk Tambah (+)
         if (incAdult) incAdult.disabled = (total >= 9);
         if (incChild) incChild.disabled = (total >= 9);
         if (incInfant) incInfant.disabled = (total >= 9 || infants >= adults);
 
+        // Validasi tombol Disable untuk Kurang (-)
         if (decAdult) decAdult.disabled = (adults <= 1 || adults - 1 < infants);
         if (decChild) decChild.disabled = (children <= 0);
         if (decInfant) decInfant.disabled = (infants <= 0);
@@ -244,14 +245,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const mainSummaries = document.querySelectorAll(".travelers-summary-text:not(.mc-travelers-summary)");
         updatePassengerGroup(flightAdult, flightChild, flightInfant, mainSummaries);
 
-        // Multi-City Passengers
-        document.querySelectorAll(".multicity-row").forEach(row => {
-            const mcAdult = row.querySelector(".mc-adult");
-            const mcChild = row.querySelector(".mc-child");
-            const mcInfant = row.querySelector(".mc-infant");
-            const mcSummary = row.querySelectorAll(".mc-travelers-summary, .travelers-summary-text");
-            updatePassengerGroup(mcAdult, mcChild, mcInfant, mcSummary, row);
-        });
+        // Multi-City Passengers (Hanya baris PERTAMA yang memiliki selector penumpang)
+        const mcAdult = document.getElementById("mcAdult1");
+        const mcChild = document.getElementById("mcChild1");
+        const mcInfant = document.getElementById("mcInfant1");
+        const mcSummaries = document.querySelectorAll(".mc-travelers-summary");
+        if (mcAdult && mcChild && mcInfant) {
+            updatePassengerGroup(mcAdult, mcChild, mcInfant, mcSummaries);
+        }
     }
 
     document.querySelectorAll('.cabin-option').forEach(item => {
@@ -272,13 +273,14 @@ document.addEventListener("DOMContentLoaded", () => {
             const input = document.getElementById(targetId);
             if (input) {
                 let val = parseInt(input.value) || 0;
+                let isFlight = targetId.startsWith('flight');
+                let isMC = input.classList.contains('mc-input');
 
                 // Batasan Maksimal Penerbangan
-                if (targetId.startsWith('flight') || input.classList.contains('mc-input')) {
-                    let scope = incBtn.closest('.multicity-row') || document;
-                    let adultIn = scope.querySelector('#flightAdult, .mc-adult');
-                    let childIn = scope.querySelector('#flightChild, .mc-child');
-                    let infantIn = scope.querySelector('#flightInfant, .mc-infant');
+                if (isFlight || isMC) {
+                    let adultIn = isFlight ? document.getElementById('flightAdult') : document.getElementById('mcAdult1');
+                    let childIn = isFlight ? document.getElementById('flightChild') : document.getElementById('mcChild1');
+                    let infantIn = isFlight ? document.getElementById('flightInfant') : document.getElementById('mcInfant1');
 
                     if (adultIn && childIn && infantIn) {
                         const adults = parseInt(adultIn.value) || 1;
@@ -296,7 +298,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (targetId.includes('Child')) type = 'Child';
                 if (targetId.includes('Infant')) type = 'Infant';
 
-                if (type && targetId.startsWith('flight')) {
+                // Update semua selector tipe penerbangan terkait
+                if (type && isFlight) {
                     document.querySelectorAll(`input[id*="Adult"], input[id*="Child"], input[id*="Infant"]`).forEach(el => {
                         if (el.id.startsWith('flight') && el.id.includes(type)) {
                             el.value = val + 1;
@@ -321,12 +324,13 @@ document.addEventListener("DOMContentLoaded", () => {
             if (input) {
                 let val = parseInt(input.value) || 0;
                 let minValue = targetId.includes('Adult') ? 1 : 0;
+                let isFlight = targetId.startsWith('flight');
+                let isMC = input.classList.contains('mc-input');
 
                 // Batasan Minimal Penerbangan
-                if (targetId.startsWith('flight') || input.classList.contains('mc-input')) {
-                    let scope = decBtn.closest('.multicity-row') || document;
-                    let adultIn = scope.querySelector('#flightAdult, .mc-adult');
-                    let infantIn = scope.querySelector('#flightInfant, .mc-infant');
+                if (isFlight || isMC) {
+                    let adultIn = isFlight ? document.getElementById('flightAdult') : document.getElementById('mcAdult1');
+                    let infantIn = isFlight ? document.getElementById('flightInfant') : document.getElementById('mcInfant1');
 
                     if (targetId.includes('Adult') && adultIn && infantIn) {
                         const adults = parseInt(adultIn.value) || 1;
@@ -341,7 +345,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (targetId.includes('Child')) type = 'Child';
                     if (targetId.includes('Infant')) type = 'Infant';
 
-                    if (type && targetId.startsWith('flight')) {
+                    if (type && isFlight) {
                         document.querySelectorAll(`input[id*="Adult"], input[id*="Child"], input[id*="Infant"]`).forEach(el => {
                             if (el.id.startsWith('flight') && el.id.includes(type)) {
                                 el.value = val - 1;
@@ -427,7 +431,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const flightDepEl = document.getElementById('flightDepDate');
         const flightRetEl = document.getElementById('flightRetDate');
 
-        // Validasi Tanggal Keberangkatan & Kepulangan Pesawat
+        // Validasi Tanggal Keberangkatan & Kepulangan
         if (flightDepEl && !flightDepEl._flatpickr) {
             flatpickr(flightDepEl, {
                 ...commonDateConfig,
@@ -447,7 +451,7 @@ document.addEventListener("DOMContentLoaded", () => {
             flatpickr(flightRetEl, commonDateConfig);
         }
 
-        // Lazy-date cadangan untuk Multi-city
+        // Lazy-date untuk Multi-city
         flatpickr(".lazy-date:not(.flatpickr-input):not(#flightDepDate):not(#flightRetDate)", commonDateConfig);
     }
 
@@ -459,7 +463,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // =========================================================================
-    // 6. MULTI-CITY ROWS ADDITION
+    // 6. MULTI-CITY ROWS ADDITION (KINI TANPA KOLOM PENUMPANG)
     // =========================================================================
     const addFlightBtn = document.getElementById("addFlightBtn");
     const multiCityContainer = document.getElementById("multiCityContainer");
@@ -481,18 +485,13 @@ document.addEventListener("DOMContentLoaded", () => {
             const rows = multiCityContainer.querySelectorAll(".multicity-row");
             if (rows.length >= 4) return;
 
-            const currentAdult = document.getElementById('flightAdult')?.value || "1";
-            const currentChild = document.getElementById('flightChild')?.value || "0";
-            const currentInfant = document.getElementById('flightInfant')?.value || "0";
-            const totalKids = parseInt(currentChild) + parseInt(currentInfant);
-            const summaryText = totalKids > 0 ? `${currentAdult} Adult, ${totalKids} Child` : `${currentAdult} Adult, 0 Child`;
-            const uniqueId = Date.now();
             const rowCountLabel = rows.length + 1;
-            
             const newRow = document.createElement("div");
             newRow.className = "row g-2 mb-2 multicity-row align-items-center";
+            
+            // Perhatikan kolom penumpang telah ditiadakan, dan lebar input diperbesar
             newRow.innerHTML = `
-                <div class="col-lg-5 col-md-12">
+                <div class="col-lg-6 col-md-12">
                     <div class="search-box-item py-2 px-3 border rounded-3 bg-white" style="min-height: 58px; display: flex; flex-direction: column; justify-content: center;">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center flex-grow-1 position-relative pe-2">
@@ -506,7 +505,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="search-box-item py-2 px-3 border rounded-3 bg-white" style="min-height: 58px; display: flex; flex-direction: column; justify-content: center;">
                         <div class="d-flex align-items-center">
                             <i class="bi bi-calendar text-primary me-2"></i>
@@ -515,47 +514,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-6">
-                    <div class="dropdown w-100">
-                        <div class="search-box-item cursor-pointer py-2 px-3 border rounded-3 bg-white" style="min-height: 58px; display: flex; flex-direction: column; justify-content: center;" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                            <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Passengers</div>
-                            <div class="fw-bold small text-dark travelers-summary-text mc-travelers-summary">${summaryText}</div>
-                        </div>
-                        <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100" style="min-width: 250px;">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="small">Dewasa</span>
-                                <div class="input-group input-group-sm w-50">
-                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcAdult${uniqueId}">-</button>
-                                    <input type="text" id="mcAdult${uniqueId}" class="form-control text-center fw-bold mc-input mc-adult bg-white" value="${currentAdult}" readonly>
-                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcAdult${uniqueId}">+</button>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="small">Anak</span>
-                                <div class="input-group input-group-sm w-50">
-                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcChild${uniqueId}">-</button>
-                                    <input type="text" id="mcChild${uniqueId}" class="form-control text-center fw-bold mc-input mc-child bg-white" value="${currentChild}" readonly>
-                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcChild${uniqueId}">+</button>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="small">Bayi</span>
-                                <div class="input-group input-group-sm w-50">
-                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcInfant${uniqueId}">-</button>
-                                    <input type="text" id="mcInfant${uniqueId}" class="form-control text-center fw-bold mc-input mc-infant bg-white" value="${currentInfant}" readonly>
-                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcInfant${uniqueId}">+</button>
-                                </div>
-                            </div>
-                            <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-12">
                     <button class="btn btn-outline-danger btn-sm w-100 remove-row rounded-3 d-flex align-items-center justify-content-center" style="height: 58px;"><i class="bi bi-trash3"></i> Hapus</button>
                 </div>
             `;
             multiCityContainer.appendChild(newRow);
+            
+            // Inisialisasi API Autocomplete di baris baru
             newRow.querySelectorAll(".autocomplete-input").forEach(input => setupTravelAutocomplete(input));
             
+            // Pasang Pemicu Lazy Loader Kalender di baris baru
             const newDateInput = newRow.querySelector(".lazy-date");
             newDateInput.addEventListener("mouseover", loadFlatpickr);
             newDateInput.addEventListener("focus", loadFlatpickr);
@@ -563,7 +530,6 @@ document.addEventListener("DOMContentLoaded", () => {
             newDateInput.addEventListener("touchstart", loadFlatpickr, { passive: true });
 
             updateMultiCityButtons();
-            updateFlightSummaries();
         });
     }
 
@@ -573,6 +539,8 @@ document.addEventListener("DOMContentLoaded", () => {
             updateMultiCityButtons();
         }
     });
+    
+    // Inisialisasi Tampilan Awal
     updateMultiCityButtons();
     updateFlightSummaries();
 });
