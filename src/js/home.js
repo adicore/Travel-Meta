@@ -520,8 +520,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const pickupEl = document.getElementById('carPickupDate');
         const dropoffEl = document.getElementById('carDropoffDate');
 
-        if (flightDepEl && !flightDepEl.hasAttribute('data-fp-initialized')) {
-            flightDepEl.setAttribute('data-fp-initialized', 'true');
+        // Untuk elemen ID statis, hapus class lazy-date sebelum dieksekusi 
+        if (flightDepEl && !flightDepEl._flatpickr) {
+            flightDepEl.classList.remove("lazy-date");
             flatpickr(flightDepEl, {
                 ...commonDateConfig,
                 onChange: function(selectedDates, dateStr) {
@@ -535,14 +536,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         }
-
-        if (flightRetEl && !flightRetEl.hasAttribute('data-fp-initialized')) {
-            flightRetEl.setAttribute('data-fp-initialized', 'true');
+        if (flightRetEl && !flightRetEl._flatpickr) {
+            flightRetEl.classList.remove("lazy-date");
             flatpickr(flightRetEl, commonDateConfig);
         }
-
-        if (hotelInEl && !hotelInEl.hasAttribute('data-fp-initialized')) {
-            hotelInEl.setAttribute('data-fp-initialized', 'true');
+        if (hotelInEl && !hotelInEl._flatpickr) {
+            hotelInEl.classList.remove("lazy-date");
             flatpickr(hotelInEl, {
                 ...commonDateConfig,
                 onChange: function(selectedDates, dateStr) {
@@ -556,13 +555,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         }
-        if (hotelOutEl && !hotelOutEl.hasAttribute('data-fp-initialized')) {
-            hotelOutEl.setAttribute('data-fp-initialized', 'true');
+        if (hotelOutEl && !hotelOutEl._flatpickr) {
+            hotelOutEl.classList.remove("lazy-date");
             flatpickr(hotelOutEl, commonDateConfig);
         }
-
-        if (pickupEl && !pickupEl.hasAttribute('data-fp-initialized')) {
-            pickupEl.setAttribute('data-fp-initialized', 'true');
+        if (pickupEl && !pickupEl._flatpickr) {
+            pickupEl.classList.remove("lazy-date");
             flatpickr(pickupEl, {
                 ...commonDateConfig,
                 onChange: function(selectedDates, dateStr) {
@@ -576,21 +574,28 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         }
-        if (dropoffEl && !dropoffEl.hasAttribute('data-fp-initialized')) {
-            dropoffEl.setAttribute('data-fp-initialized', 'true');
+        if (dropoffEl && !dropoffEl._flatpickr) {
+            dropoffEl.classList.remove("lazy-date");
             flatpickr(dropoffEl, commonDateConfig);
         }
-
-        flatpickr(".flatpickr-time:not(.flatpickr-input)", { 
-            enableTime: true, noCalendar: true, dateFormat: "H:i", time_24hr: true, 
-            allowInput: !isMobile, defaultHour: 10, defaultMinute: 0, disableMobile: true 
+        
+        document.querySelectorAll(".flatpickr-time:not(.flatpickr-input)").forEach(input => {
+            if (!input._flatpickr) {
+                flatpickr(input, { 
+                    enableTime: true, noCalendar: true, dateFormat: "H:i", time_24hr: true, 
+                    allowInput: !isMobile, defaultHour: 10, defaultMinute: 0, disableMobile: true 
+                });
+            }
         });
 
+        // =========================================================================
+        // PENGAMAN ABSOLUT: Cabut ".lazy-date" agar Flatpickr tidak reset berulang!
+        // =========================================================================
         document.querySelectorAll(".lazy-date").forEach(input => {
-            if (!input.hasAttribute('data-fp-initialized')) {
-                input.setAttribute('data-fp-initialized', 'true');
-                flatpickr(input, commonDateConfig);
-            }
+            // Kita menghapus class lazy-date TEPAT SEBELUM fungsi flatpickr dijalankan.
+            // Hal ini memutus siklus duplikasi class pada input palsu yang dibuat plugin.
+            input.classList.remove("lazy-date");
+            flatpickr(input, commonDateConfig);
         });
     }
 
