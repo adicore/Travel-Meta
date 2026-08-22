@@ -495,25 +495,25 @@ header.sticky-top {
 }
 
 /* ========================================================
-   ANIMASI HALUS TOGGLE LOKASI CAR RENTAL (DIperbarui)
+   ANIMASI HALUS TOGGLE LOKASI CAR RENTAL (FINAL FIX)
 ======================================================== */
-/* 1. Mencegah elemen turun ke bawah saat transisi di Desktop */
 @media (min-width: 768px) {
     #locationRow {
         flex-wrap: nowrap;
     }
 }
 
-/* 2. Mengatur kecepatan dan kehalusan gerak */
+/* Transisi mulus untuk kolom */
 #pickupCol, #dropoffCol {
-    transition: width 0.4s ease, max-width 0.4s ease, flex 0.4s ease, opacity 0.4s ease, padding 0.4s ease, margin 0.4s ease;
+    transition: width 0.35s ease, max-width 0.35s ease, flex 0.35s ease, opacity 0.25s ease, padding 0.35s ease;
 }
 
-/* 3. Kelas khusus untuk menyembunyikan Drop-off tanpa meninggalkan celah */
+/* Kelas untuk menyembunyikan Drop-off dengan bersih tanpa sisa celah/teks pecah */
 .dropoff-hidden {
     max-width: 0 !important;
-    flex: 0 0 0 !important; /* 🔥 KUNCI UTAMA: Memaksa ruang flex menjadi 0 */
+    flex: 0 0 0 !important;
     opacity: 0 !important;
+    visibility: hidden !important; /* 🔥 Mengunci elemen agar tidak bisa diklik dan langsung sembunyi */
     padding-left: 0 !important;
     padding-right: 0 !important;
     padding-top: 0 !important;
@@ -524,12 +524,18 @@ header.sticky-top {
     border: none !important;
 }
 
-/* 4. Perilaku khusus di HP (Membuka ke bawah, bukan ke samping) */
+/* Mencegah kotak dalam mengalami distorsi bentuk saat menyusut */
+#dropoffCol .search-box-item {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* Perilaku khusus di HP (Membuka ke bawah) */
 @media (max-width: 767px) {
     .dropoff-hidden {
         max-height: 0 !important;
     }
     #dropoffCol {
-        max-height: 150px;
+        max-height: 120px;
     }
 }
