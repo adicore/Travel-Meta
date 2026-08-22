@@ -260,14 +260,14 @@
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="flex-grow-1 position-relative pe-2">
                                             <div class="text-muted small mb-1"><i class="bi bi-airplane-engines text-primary me-1"></i> Leaving From</div>
-                                            <input type="text" id="flightOrigin" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Detecting location...">
+                                            <input type="text" id="flightOrigin" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Detecting location..." name="origin_iata">
                                         </div>
                                         <button class="btn btn-light btn-sm rounded-circle border shadow-sm d-flex align-items-center justify-content-center swap-inputs-btn flex-shrink-0" style="width: 32px; height: 32px;" type="button" title="Tukar">
                                             <i class="bi bi-arrow-left-right text-secondary"></i>
                                         </button>
                                         <div class="flex-grow-1 position-relative ps-3 border-start">
                                             <div class="text-muted small mb-1"><i class="bi bi-airplane-fill text-primary me-1"></i> Going To</div>
-                                            <input type="text" id="flightDest" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Destination">
+                                            <input type="text" id="flightDest" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Destination" name="destination_iata">
                                         </div>
                                     </div>
                                 </div>
@@ -277,7 +277,7 @@
                             <div class="col-lg-4 col-md-12" id="flightDepCol">
                                 <div class="search-box-item py-2 px-3 border rounded-3 bg-white" style="min-height: 58px; display: flex; flex-direction: column; justify-content: center;">
                                     <div class="text-muted small mb-1"><i class="bi bi-calendar text-primary me-1"></i> Departure</div>
-                                    <input type="text" id="flightDepDate" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Pilih Tanggal">
+                                    <input type="text" id="flightDepDate" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Pilih Tanggal" name="depart_date">
                                 </div>
                             </div>
 
@@ -285,7 +285,7 @@
                             <div class="col-lg-2 col-md-6 d-none" id="flightReturnCol">
                                 <div class="search-box-item py-2 px-3 border rounded-3 bg-white h-100" style="min-height: 58px; display: flex; flex-direction: column; justify-content: center;">
                                     <div class="text-muted small mb-1"><i class="bi bi-calendar-check text-primary me-1"></i> Return</div>
-                                    <input type="text" id="flightRetDate" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Kembali">
+                                    <input type="text" id="flightRetDate" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Kembali" name="return_date">
                                 </div>
                             </div>
 
@@ -301,7 +301,7 @@
                                             <span class="small">Dewasa (12+)</span>
                                             <div class="input-group input-group-sm w-50">
                                                 <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightAdult">-</button>
-                                                <input type="text" id="flightAdult" class="form-control text-center fw-bold bg-white" value="1" readonly>
+                                                <input type="text" id="flightAdult" class="form-control text-center fw-bold bg-white" value="1" readonly name="adults">
                                                 <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightAdult">+</button>
                                             </div>
                                         </div>
@@ -309,7 +309,7 @@
                                             <span class="small">Anak (2-11)</span>
                                             <div class="input-group input-group-sm w-50">
                                                 <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightChild">-</button>
-                                                <input type="text" id="flightChild" class="form-control text-center fw-bold bg-white" value="0" readonly>
+                                                <input type="text" id="flightChild" class="form-control text-center fw-bold bg-white" value="0" readonly name="children">
                                                 <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightChild">+</button>
                                             </div>
                                         </div>
@@ -317,7 +317,7 @@
                                             <span class="small">Bayi (&lt;2)</span>
                                             <div class="input-group input-group-sm w-50">
                                                 <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightInfant">-</button>
-                                                <input type="text" id="flightInfant" class="form-control text-center fw-bold bg-white" value="0" readonly>
+                                                <input type="text" id="flightInfant" class="form-control text-center fw-bold bg-white" value="0" readonly name="infants">
                                                 <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightInfant">+</button>
                                             </div>
                                         </div>
