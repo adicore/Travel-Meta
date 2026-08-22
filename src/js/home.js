@@ -301,15 +301,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (oneWayTabBtn && roundTripTabBtn && flightReturnCol) {
         oneWayTabBtn.addEventListener('click', () => {
-            flightReturnCol.classList.add('d-none');
-            // Menyesuaikan lebar kolom grid Bootstrap agar pas 12 kolom
+            flightReturnCol.classList.add('flight-return-hidden');
+            // Menyesuaikan lebar grid Bootstrap agar proporsional
             flightRouteCol.className = 'col-lg-4 col-md-12';
             flightTravelersCol.className = 'col-lg-4 col-md-6';
         });
 
         roundTripTabBtn.addEventListener('click', () => {
-            flightReturnCol.classList.remove('d-none');
-            // Menyesuaikan lebar kolom grid saat Return muncul
+            flightReturnCol.classList.remove('flight-return-hidden');
+            // Menyesuaikan lebar grid saat kolom Return muncul
             flightRouteCol.className = 'col-lg-3 col-md-12';
             flightTravelersCol.className = 'col-lg-3 col-md-12';
         });

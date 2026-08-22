@@ -539,3 +539,19 @@ header.sticky-top {
         max-height: 120px;
     }
 }
+
+/* Efek transisi halus untuk Return Date */
+#flightReturnCol {
+    transition: all 0.35s ease-in-out;
+    overflow: hidden;
+}
+
+.flight-return-hidden {
+    opacity: 0;
+    max-width: 0;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 0 !important;
+    pointer-events: none;
+    transform: scale(0.95);
+}
