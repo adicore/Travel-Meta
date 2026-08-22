@@ -39,21 +39,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (countryCode && currencyMapping[countryCode]) {
                     visitorCurrency = currencyMapping[countryCode];
                 }
-                const owOriginInput = document.getElementById("owOrigin");
-                const rtOriginInput = document.getElementById("rtOrigin");
+                const flightOriginInput = document.getElementById("flightOrigin");
                 const val = `${userOriginName} (${userOrigin})`;
-                if(owOriginInput) owOriginInput.value = val;
-                if(rtOriginInput) rtOriginInput.value = val;
+                if(flightOriginInput) flightOriginInput.value = val;
             }
             const bestDeals = document.getElementById('best-deals');
             if(bestDeals) apiObserver.observe(bestDeals);
         })
         .catch(() => {
-            const owOriginInput = document.getElementById("owOrigin");
-            const rtOriginInput = document.getElementById("rtOrigin");
-            const val = "Singapore (SIN)";
-            if(owOriginInput) owOriginInput.value = val;
-            if(rtOriginInput) rtOriginInput.value = val;
+            const flightOriginInput = document.getElementById("flightOrigin");
+            const val = "Jakarta (CGK)";
+            if(flightOriginInput) flightOriginInput.value = val;
             const bestDeals = document.getElementById('best-deals');
             if(bestDeals) apiObserver.observe(bestDeals);
         });
