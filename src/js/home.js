@@ -498,7 +498,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if(addFlightBtn && multiCityContainer) {
-        addFlightBtn.addEventListener("click", () => {
+        addFlightBtn.addEventListener("click", (e) => {
+            e.preventDefault();
             const rows = multiCityContainer.querySelectorAll(".multicity-row");
             if (rows.length >= 4) return;
 
