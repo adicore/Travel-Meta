@@ -327,21 +327,30 @@ document.addEventListener("DOMContentLoaded", () => {
         let hotelInInstance, hotelOutInstance;
         let pickupDateInstance, dropoffDateInstance;
 
-        // =========================================================================
-        // 1. PENERBANGAN: SINKRONISASI DEPARTURE & VALIDASI ROUND-TRIP
-        // =========================================================================
+        // Ambil nilai awal departure yang sudah ada (misal dari setInitialDates)
         const owDepEl = document.getElementById('owDepDate');
         const rtDepEl = document.getElementById('rtDepDate');
         const rtRetEl = document.getElementById('rtRetDate');
 
+        const initialDepVal = (rtDepEl && rtDepEl.value) ? rtDepEl.value : ((owDepEl && owDepEl.value) ? owDepEl.value : "today");
+
+        // =========================================================================
+        // 1. PENERBANGAN: SINKRONISASI DEPARTURE & VALIDASI ROUND-TRIP
+        // =========================================================================
         if (owDepEl && !owDepEl.classList.contains('flatpickr-input')) {
             owDepInstance = flatpickr(owDepEl, {
                 ...commonDateConfig,
                 onChange: function(selectedDates, dateStr) {
                     // Sinkronkan ke Round-Trip Departure
                     if (rtDepInstance) rtDepInstance.setDate(dateStr, false);
-                    // Kunci batas minimal Return Date
-                    if (rtRetInstance) rtRetInstance.set("minDate", dateStr);
+                    if (rtRetInstance) {
+                        rtRetInstance.set("minDate", dateStr);
+                        // Jika return date lebih awal dari departure baru, sesuaikan otomatis
+                        const currentRet = rtRetInstance.selectedDates[0];
+                        if (currentRet && currentRet < selectedDates[0]) {
+                            rtRetInstance.setDate(dateStr, true);
+                        }
+                    }
                 }
             });
         }
@@ -352,14 +361,23 @@ document.addEventListener("DOMContentLoaded", () => {
                 onChange: function(selectedDates, dateStr) {
                     // Sinkronkan ke One-Way Departure
                     if (owDepInstance) owDepInstance.setDate(dateStr, false);
-                    // Kunci batas minimal Return Date
-                    if (rtRetInstance) rtRetInstance.set("minDate", dateStr);
+                    if (rtRetInstance) {
+                        rtRetInstance.set("minDate", dateStr);
+                        // Jika return date lebih awal dari departure baru, sesuaikan otomatis
+                        const currentRet = rtRetInstance.selectedDates[0];
+                        if (currentRet && currentRet < selectedDates[0]) {
+                            rtRetInstance.setDate(dateStr, true);
+                        }
+                    }
                 }
             });
         }
 
         if (rtRetEl && !rtRetEl.classList.contains('flatpickr-input')) {
-            rtRetInstance = flatpickr(rtRetEl, commonDateConfig);
+            rtRetInstance = flatpickr(rtRetEl, {
+                ...commonDateConfig,
+                minDate: initialDepVal // Mengikuti tanggal departure aktif saat ini
+            });
         }
 
         // =========================================================================
@@ -367,17 +385,27 @@ document.addEventListener("DOMContentLoaded", () => {
         // =========================================================================
         const hotelInEl = document.getElementById('hotelCheckIn');
         const hotelOutEl = document.getElementById('hotelCheckOut');
+        const initialHotelIn = (hotelInEl && hotelInEl.value) ? hotelInEl.value : "today";
 
         if (hotelInEl && !hotelInEl.classList.contains('flatpickr-input')) {
             hotelInInstance = flatpickr(hotelInEl, {
                 ...commonDateConfig,
                 onChange: function(selectedDates, dateStr) {
-                    if (hotelOutInstance) hotelOutInstance.set("minDate", dateStr);
+                    if (hotelOutInstance) {
+                        hotelOutInstance.set("minDate", dateStr);
+                        const currentOut = hotelOutInstance.selectedDates[0];
+                        if (currentOut && currentOut < selectedDates[0]) {
+                            hotelOutInstance.setDate(dateStr, true);
+                        }
+                    }
                 }
             });
         }
         if (hotelOutEl && !hotelOutEl.classList.contains('flatpickr-input')) {
-            hotelOutInstance = flatpickr(hotelOutEl, commonDateConfig);
+            hotelOutInstance = flatpickr(hotelOutEl, {
+                ...commonDateConfig,
+                minDate: initialHotelIn
+            });
         }
 
         // =========================================================================
@@ -385,18 +413,25 @@ document.addEventListener("DOMContentLoaded", () => {
         // =========================================================================
         const pickupEl = document.getElementById('carPickupDate');
         const dropoffEl = document.getElementById('carDropoffDate');
+        const initialPickup = (pickupEl && pickupEl.value) ? pickupEl.value : "today";
 
         if (pickupEl && !pickupEl.classList.contains('flatpickr-input')) {
             pickupDateInstance = flatpickr(pickupEl, {
                 dateFormat: "Y-m-d", minDate: "today", allowInput: !isMobile, disableMobile: true,
                 onChange: function(selectedDates, dateStr) {
-                    if (dropoffDateInstance) dropoffDateInstance.set("minDate", dateStr);
+                    if (dropoffDateInstance) {
+                        dropoffDateInstance.set("minDate", dateStr);
+                        const currentDrop = dropoffDateInstance.selectedDates[0];
+                        if (currentDrop && currentDrop < selectedDates[0]) {
+                            dropoffDateInstance.setDate(dateStr, true);
+                        }
+                    }
                 }
             });
         }
         if (dropoffEl && !dropoffEl.classList.contains('flatpickr-input')) {
             dropoffDateInstance = flatpickr(dropoffEl, {
-                dateFormat: "Y-m-d", minDate: "today", allowInput: !isMobile, disableMobile: true
+                dateFormat: "Y-m-d", minDate: initialPickup, allowInput: !isMobile, disableMobile: true
             });
         }
 
@@ -409,7 +444,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         // =========================================================================
-        // 4. KALENDER LAINNYA (Tour, Experience, Visa, Multi-city, dll)
+        // 4. KALENDER LAINNYA
         // =========================================================================
         flatpickr(".lazy-date:not(.flatpickr-input):not(#owDepDate):not(#rtDepDate):not(#rtRetDate):not(#hotelCheckIn):not(#hotelCheckOut)", commonDateConfig);
     }
