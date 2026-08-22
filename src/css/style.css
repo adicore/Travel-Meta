@@ -495,7 +495,7 @@ header.sticky-top {
 }
 
 /* ========================================================
-   ANIMASI HALUS TOGGLE LOKASI CAR RENTAL
+   ANIMASI HALUS TOGGLE LOKASI CAR RENTAL (DIperbarui)
 ======================================================== */
 /* 1. Mencegah elemen turun ke bawah saat transisi di Desktop */
 @media (min-width: 768px) {
@@ -506,15 +506,20 @@ header.sticky-top {
 
 /* 2. Mengatur kecepatan dan kehalusan gerak */
 #pickupCol, #dropoffCol {
-    transition: width 0.4s ease, max-width 0.4s ease, max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+    transition: width 0.4s ease, max-width 0.4s ease, flex 0.4s ease, opacity 0.4s ease, padding 0.4s ease, margin 0.4s ease;
 }
 
-/* 3. Kelas khusus untuk menyembunyikan Drop-off dengan elegan */
+/* 3. Kelas khusus untuk menyembunyikan Drop-off tanpa meninggalkan celah */
 .dropoff-hidden {
     max-width: 0 !important;
+    flex: 0 0 0 !important; /* 🔥 KUNCI UTAMA: Memaksa ruang flex menjadi 0 */
     opacity: 0 !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
     overflow: hidden !important;
     border: none !important;
 }
@@ -523,11 +528,8 @@ header.sticky-top {
 @media (max-width: 767px) {
     .dropoff-hidden {
         max-height: 0 !important;
-        margin-top: 0 !important;
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
     }
     #dropoffCol {
-        max-height: 150px; /* Tinggi maksimal saat tampil di HP */
+        max-height: 150px;
     }
 }
