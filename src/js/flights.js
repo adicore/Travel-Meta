@@ -448,7 +448,7 @@ document.addEventListener("DOMContentLoaded", () => {
             newDateInput.addEventListener("focus", loadFlatpickr);
             newDateInput.addEventListener("click", loadFlatpickr);
             newDateInput.addEventListener("touchstart", loadFlatpickr, { passive: true });
-            loadFlatpickr();
+            //loadFlatpickr();
 
             updateMultiCityButtons();
         });
