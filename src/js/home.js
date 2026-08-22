@@ -16,21 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
         'dealMiddleEast': [{ code: 'DXB', name: 'Dubai' }, { code: 'DOH', name: 'Doha' }, { code: 'IST', name: 'Istanbul' }, { code: 'AUH', name: 'Abu Dhabi' }, { code: 'TLV', name: 'Tel Aviv' }, { code: 'RUH', name: 'Riyadh' }]
     };
 
-    // SET DEFAULT DATE +3 DAYS
-    (function setInitialDates() {
-        const defaultDate = new Date();
-        defaultDate.setDate(defaultDate.getDate() + 3);
-        const yyyy = defaultDate.getFullYear();
-        const mm = String(defaultDate.getMonth() + 1).padStart(2, '0');
-        const dd = String(defaultDate.getDate()).padStart(2, '0');
-        const defaultDateStr = `${yyyy}-${mm}-${dd}`;
-        
-        const owDepDate = document.getElementById("owDepDate");
-        const rtDepDate = document.getElementById("rtDepDate");
-        if (owDepDate) owDepDate.value = defaultDateStr;
-        if (rtDepDate) rtDepDate.value = defaultDateStr;
-    })();
-
     // WHEREAMI API & CONTINENT DEALS
     let apiLoaded = false;
     const apiObserver = new IntersectionObserver((entries, observer) => {
@@ -314,7 +299,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let datesInitialized = false;
 
     function initFlatpickrElements() {
-        // Jika sudah pernah diinisialisasi serentak, hentikan agar tidak duplikat
         if (datesInitialized) return; 
 
         const isMobile = window.innerWidth <= 768;
@@ -328,7 +312,7 @@ document.addEventListener("DOMContentLoaded", () => {
             disableMobile: true
         };
 
-        // Ambil semua elemen target dalam satu scope
+        // Ambil elemen target kalender utama
         const owDepEl = document.getElementById('owDepDate');
         const rtDepEl = document.getElementById('rtDepDate');
         const rtRetEl = document.getElementById('rtRetDate');
@@ -337,7 +321,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const pickupEl = document.getElementById('carPickupDate');
         const dropoffEl = document.getElementById('carDropoffDate');
 
-        // Deklarasi instance dalam satu blok lokal agar saling mengenali
         let owDepInstance, rtDepInstance, rtRetInstance;
         let hotelInInstance, hotelOutInstance;
         let pickupDateInstance, dropoffDateInstance;
@@ -378,10 +361,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (rtRetEl) {
-            rtRetInstance = flatpickr(rtRetEl, {
-                ...commonDateConfig,
-                minDate: (rtDepEl && rtDepEl.value) ? rtDepEl.value : "today"
-            });
+            rtRetInstance = flatpickr(rtRetEl, commonDateConfig);
         }
 
         // =========================================================================
@@ -402,10 +382,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
         if (hotelOutEl) {
-            hotelOutInstance = flatpickr(hotelOutEl, {
-                ...commonDateConfig,
-                minDate: (hotelInEl && hotelInEl.value) ? hotelInEl.value : "today"
-            });
+            hotelOutInstance = flatpickr(hotelOutEl, commonDateConfig);
         }
 
         // =========================================================================
@@ -413,7 +390,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // =========================================================================
         if (pickupEl) {
             pickupDateInstance = flatpickr(pickupEl, {
-                dateFormat: "Y-m-d", minDate: "today", allowInput: !isMobile, disableMobile: true,
+                ...commonDateConfig,
                 onChange: function(selectedDates, dateStr) {
                     if (dropoffDateInstance) {
                         dropoffDateInstance.set("minDate", dateStr);
@@ -426,9 +403,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
         if (dropoffEl) {
-            dropoffDateInstance = flatpickr(dropoffEl, {
-                dateFormat: "Y-m-d", minDate: "today", allowInput: !isMobile, disableMobile: true
-            });
+            dropoffDateInstance = flatpickr(dropoffEl, commonDateConfig);
         }
 
         // =========================================================================
@@ -444,7 +419,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         flatpickr(".lazy-date:not(.flatpickr-input):not(#owDepDate):not(#rtDepDate):not(#rtRetDate):not(#hotelCheckIn):not(#hotelCheckOut)", commonDateConfig);
 
-        // Tandai bahwa seluruh kalender utama berhasil diinisialisasi serentak
         datesInitialized = true;
     }
 
