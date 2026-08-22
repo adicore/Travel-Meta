@@ -281,16 +281,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // =========================================================================
-    // FLATPICKR LAZY LOADER (Dengan Validasi Pick-up/Drop-off & Custom Time UI)
+    // FLATPICKR LAZY LOADER (Semua Form: Mobil, Penerbangan, Hotel)
     // =========================================================================
     let flatpickrLoaded = false;
-    let pickupDateInstance, dropoffDateInstance; // Variabel penyimpan memori kalender
+    
+    // Siapkan memori untuk menyimpan instance kalender
+    let pickupDateInstance, dropoffDateInstance;
+    let flightDepInstance, flightRetInstance;
+    let hotelInInstance, hotelOutInstance;
 
     const loadFlatpickr = () => {
         if (flatpickrLoaded) {
-            if (typeof flatpickr !== 'undefined') {
-                initFlatpickrElements();
-            }
+            if (typeof flatpickr !== 'undefined') initFlatpickrElements();
             return;
         }
         
@@ -309,57 +311,100 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     function initFlatpickrElements() {
-        // Deteksi apakah pengguna sedang menggunakan HP (layar kecil)
         const isMobile = window.innerWidth <= 768;
-
-        // 1. Kalender default untuk bagian penerbangan/hotel
-        flatpickr(".lazy-date:not(.flatpickr-input)", { 
-            dateFormat: "Y-m-d", 
-            altInput: true, 
+        
+        // Konfigurasi dasar untuk semua kalender tanggal
+        const commonDateConfig = {
+            dateFormat: "Y-m-d",
+            altInput: true,
             altFormat: "j M Y",
-            disableMobile: true // PENTING: Tanpa tanda kutip
-        }); 
+            minDate: "today",
+            allowInput: !isMobile, 
+            disableMobile: true
+        };
 
-        // 2. Kalender Pick-up Date
+        // ==========================================
+        // 1. VALIDASI PENERBANGAN (Round-Trip)
+        // ==========================================
+        const flightDepEl = document.getElementById('rtDepDate');
+        const flightRetEl = document.getElementById('rtRetDate');
+
+        if (flightDepEl && !flightDepEl.classList.contains('flatpickr-input')) {
+            flightDepInstance = flatpickr(flightDepEl, {
+                ...commonDateConfig,
+                onChange: function(selectedDates, dateStr) {
+                    // Kunci batas minimal Return Date
+                    if (flightRetInstance) flightRetInstance.set("minDate", dateStr);
+                }
+            });
+        }
+        if (flightRetEl && !flightRetEl.classList.contains('flatpickr-input')) {
+            flightRetInstance = flatpickr(flightRetEl, commonDateConfig);
+        }
+
+        // ==========================================
+        // 2. VALIDASI HOTEL
+        // ==========================================
+        const hotelInEl = document.getElementById('hotelCheckIn');
+        const hotelOutEl = document.getElementById('hotelCheckOut');
+
+        if (hotelInEl && !hotelInEl.classList.contains('flatpickr-input')) {
+            hotelInInstance = flatpickr(hotelInEl, {
+                ...commonDateConfig,
+                onChange: function(selectedDates, dateStr) {
+                    // Kunci batas minimal Check-out Date
+                    if (hotelOutInstance) hotelOutInstance.set("minDate", dateStr);
+                }
+            });
+        }
+        if (hotelOutEl && !hotelOutEl.classList.contains('flatpickr-input')) {
+            hotelOutInstance = flatpickr(hotelOutEl, commonDateConfig);
+        }
+
+        // ==========================================
+        // 3. VALIDASI RENTAL MOBIL (Car Rental)
+        // ==========================================
         const pickupEl = document.getElementById('carPickupDate');
+        const dropoffEl = document.getElementById('carDropoffDate');
+
         if (pickupEl && !pickupEl.classList.contains('flatpickr-input')) {
+            // Khusus mobil tidak pakai altInput agar formatnya tetap YYYY-MM-DD
             pickupDateInstance = flatpickr(pickupEl, {
-                dateFormat: "Y-m-d",
-                minDate: "today",
-                allowInput: !isMobile, // Izinkan ketik di PC, tapi larang di HP agar keyboard tidak muncul!
-                disableMobile: true,   // PENTING: Tanpa tanda kutip
-                onChange: function(selectedDates, dateStr, instance) {
+                dateFormat: "Y-m-d", minDate: "today", allowInput: !isMobile, disableMobile: true,
+                onChange: function(selectedDates, dateStr) {
                     if (dropoffDateInstance) dropoffDateInstance.set("minDate", dateStr);
                 }
             });
         }
-
-        // 3. Kalender Drop-off Date
-        const dropoffEl = document.getElementById('carDropoffDate');
         if (dropoffEl && !dropoffEl.classList.contains('flatpickr-input')) {
             dropoffDateInstance = flatpickr(dropoffEl, {
-                dateFormat: "Y-m-d",
-                minDate: "today",
-                allowInput: !isMobile, 
-                disableMobile: true    
+                dateFormat: "Y-m-d", minDate: "today", allowInput: !isMobile, disableMobile: true
             });
         }
 
-        // 4. Dropdown Waktu (Dengan gaya khusus saat dibuka)
+        // Waktu Rental Mobil
         flatpickr(".flatpickr-time:not(.flatpickr-input)", { 
-            enableTime: true, 
-            noCalendar: true, 
-            dateFormat: "H:i", 
-            time_24hr: true, 
-            allowInput: !isMobile, 
-            defaultHour: 10, 
-            defaultMinute: 0, 
-            disableMobile: true,
+            enableTime: true, noCalendar: true, dateFormat: "H:i", time_24hr: true, 
+            allowInput: !isMobile, defaultHour: 10, defaultMinute: 0, disableMobile: true,
             onOpen: function(selectedDates, dateStr, instance) {
                 instance.calendarContainer.classList.add('custom-time-ui');
             }
         });
+
+        // ==========================================
+        // 4. SISA KALENDER LAINNYA (Penerbangan One-way, Tour, dll)
+        // ==========================================
+        // Ini akan menangkap input dengan class .lazy-date yang BUKAN bagian dari validasi berpasangan di atas
+        flatpickr(".lazy-date:not(.flatpickr-input):not(#rtDepDate):not(#rtRetDate):not(#hotelCheckIn):not(#hotelCheckOut)", commonDateConfig);
     }
+
+    // Pemicu (Event Listeners)
+    document.querySelectorAll(".lazy-date, .flatpickr-date, .flatpickr-time").forEach(input => {
+        input.addEventListener("mouseover", loadFlatpickr);
+        input.addEventListener("focus", loadFlatpickr);
+        input.addEventListener("click", loadFlatpickr);
+        input.addEventListener("touchstart", loadFlatpickr, { passive: true });
+    });
 
     // Pemicu (Event Listeners)
     document.querySelectorAll(".lazy-date, .flatpickr-date, .flatpickr-time").forEach(input => {
