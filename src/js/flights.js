@@ -1,10 +1,39 @@
 document.addEventListener("DOMContentLoaded", () => {
     
     // =========================================================================
-    // 1. DIMANA SAYA API & AUTOCOMPLETE
+    // 1. KONFIGURASI API, MATA UANG & DESTINASI BENUA (BEST DEALS)
     // =========================================================================
+    const PROXY_WORKER_URL = "https://api.pesan.workers.dev/";
     let userOrigin = "SIN"; 
     let userOriginName = "Singapore";
+    let visitorCurrency = "USD";
+
+    const currencyMapping = {
+        "AB":"RUB","AD":"EUR","AE":"AED","AF":"AFN","AG":"XCD","AI":"XCD","AL":"ALL","AM":"AMD","AO":"AOA","AQ":"","AR":"ARS","AS":"USD","AT":"EUR","AU":"AUD","AW":"AWG","AX":"EUR","AZ":"AZN","BA":"BAM","BB":"BBD","BD":"BDT","BE":"EUR","BF":"XOF","BG":"EUR","BH":"BHD","BI":"BIF","BJ":"XOF","BL":"EUR","BM":"BMD","BN":"BND","BO":"BOB","BQ":"USD","BR":"BRL","BS":"BSD","BT":"BTN","BV":"NOK","BW":"BWP","BY":"BYN","BZ":"BZD","CA":"CAD","CC":"AUD","CD":"CDF","CF":"XAF","CG":"XAF","CH":"CHF","CI":"XOF","CK":"NZD","CL":"CLP","CM":"XAF","CN":"CNY","CO":"COP","CR":"CRC","CU":"CUP","CV":"CVE","CW":"XCG","CX":"AUD","CY":"EUR","CZ":"CZK","DE":"EUR","DJ":"DJF","DK":"DKK","DM":"XCD","DO":"DOP","DZ":"DZD","EC":"USD","EE":"EUR","EG":"EGP","EH":"MAD","ER":"ERN","ES":"EUR","ET":"ETB","FI":"EUR","FJ":"FJD","FK":"FKP","FM":"USD","FO":"DKK","FR":"EUR","GA":"XAF","GB":"GBP","GD":"XCD","GE":"GEL","GF":"EUR","GG":"GBP","GH":"GHS","GI":"GIP","GL":"DKK","GM":"GMD","GN":"GNF","GP":"EUR","GQ":"XAF","GR":"EUR","GS":"GBP","GT":"GTQ","GU":"USD","GW":"XOF","GY":"GYD","HK":"HKD","HM":"AUD","HN":"HNL","HR":"EUR","HT":"HTG","HU":"HUF","ID":"IDR","IE":"EUR","IL":"ILS","IM":"GBP","IN":"INR","IO":"USD","IQ":"IQD","IR":"IRR","IS":"ISK","IT":"EUR","JE":"GBP","JM":"JMD","JO":"JOD","JP":"JPY","KE":"KES","KG":"KGS","KH":"KHR","KI":"AUD","KM":"KMF","KN":"XCD","KP":"KPW","KR":"KRW","KW":"KWD","KX":"","KY":"KYD","KZ":"KZT","LA":"LAK","LB":"LBP","LC":"XCD","LI":"CHF","LK":"LKR","LR":"LRD","LS":"LSL","LT":"EUR","LU":"EUR","LV":"EUR","LY":"LYD","MA":"MAD","MC":"EUR","MD":"MDL","ME":"EUR","MF":"EUR","MG":"MGA","MH":"USD","MK":"MKD","ML":"XOF","MM":"MMK","MN":"MNT","MO":"MOP","MP":"USD","MQ":"EUR","MR":"MRO","MS":"XCD","MT":"EUR","MU":"MUR","MV":"MVR","MW":"MWK","MX":"MXN","MY":"MYR","MZ":"MZN","NA":"NAD","NC":"XPF","NE":"XOF","NF":"AUD","NG":"NGN","NI":"NIO","NL":"EUR","NO":"NOK","NP":"NPR","NR":"AUD","NU":"NZD","NY":"TRY","NZ":"NZD","OM":"OMR","PA":"PAB","PE":"PEN","PF":"XPF","PG":"PGK","PH":"PHP","PK":"PKR","PL":"PLN","PM":"EUR","PN":"NZD","PR":"USD","PS":"ILS","PT":"EUR","PW":"USD","PY":"PYG","QA":"QAR","RE":"EUR","RO":"RON","RS":"RSD","RU":"RUB","RW":"RWF","SA":"SAR","SB":"SBD","SC":"SCR","SD":"SDG","SE":"SEK","SG":"SGD","SH":"SHP","SI":"EUR","SJ":"NOK","SK":"EUR","SL":"SLL","SM":"EUR","SN":"XOF","SO":"SOS","SR":"SRD","SS":"SSP","ST":"STD","SV":"USD","SX":"XCG","SY":"SYP","SZ":"SZL","TC":"USD","TD":"XAF","TF":"EUR","TG":"XOF","TH":"THB","TJ":"TJS","TK":"NZD","TL":"USD","TM":"TMT","TN":"TND","TO":"TOP","TR":"TRY","TT":"TTD","TV":"AUD","TW":"TWD","TZ":"TZS","UA":"UAH","UG":"UGX","UM":"USD","US":"USD","UY":"UYU","UZ":"UZS","VA":"EUR","VC":"XCD","VE":"VEF","VG":"USD","VI":"USD","VN":"VND","VU":"VUV","WF":"XPF","WS":"WST","XK":"EUR","YER":"YER","YT":"EUR","ZA":"ZAR","ZM":"ZMK","ZW":"ZWL"
+    };
+
+    const continentDestinations = {
+        'dealAmerica': [{ code: 'NYC', name: 'New York' }, { code: 'LAX', name: 'Los Angeles' }, { code: 'MIA', name: 'Miami' }, { code: 'YYZ', name: 'Toronto' }, { code: 'CUN', name: 'Cancun' }, { code: 'GRU', name: 'Sao Paulo' }],
+        'dealEurope': [{ code: 'PAR', name: 'Paris' }, { code: 'LON', name: 'London' }, { code: 'ROM', name: 'Rome' }, { code: 'AMS', name: 'Amsterdam' }, { code: 'BCN', name: 'Barcelona' }, { code: 'BER', name: 'Berlin' }],
+        'dealAsia': [{ code: 'BKK', name: 'Bangkok' }, { code: 'SIN', name: 'Singapore' }, { code: 'TYO', name: 'Tokyo' }, { code: 'ICN', name: 'Seoul' }, { code: 'KUL', name: 'Kuala Lumpur' }, { code: 'TPE', name: 'Taipei' }],
+        'dealAfrica': [{ code: 'CPT', name: 'Cape Town' }, { code: 'JNB', name: 'Johannesburg' }, { code: 'CAI', name: 'Cairo' }, { code: 'CMN', name: 'Casablanca' }, { code: 'NBO', name: 'Nairobi' }, { code: 'MRU', name: 'Mauritius' }],
+        'dealMiddleEast': [{ code: 'DXB', name: 'Dubai' }, { code: 'DOH', name: 'Doha' }, { code: 'IST', name: 'Istanbul' }, { code: 'AUH', name: 'Abu Dhabi' }, { code: 'TLV', name: 'Tel Aviv' }, { code: 'RUH', name: 'Riyadh' }]
+    };
+
+    // =========================================================================
+    // 2. WHEREAMI API & BEST DEALS OBSERVER
+    // =========================================================================
+    let apiLoaded = false;
+    const apiObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !apiLoaded) {
+                apiLoaded = true;
+                const container = document.querySelector('#dealAmerica .flight-results-container');
+                fetchContinentDeals('dealAmerica', container);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { rootMargin: "0px 0px 250px 0px" });
 
     fetch("https://www.apistp.com/whereami?locale=en")
         .then(res => res.json())
@@ -12,15 +41,106 @@ document.addEventListener("DOMContentLoaded", () => {
             if(locData) {
                 userOrigin = locData.code || locData.iata || "SIN";
                 userOriginName = locData.city || locData.name || userOrigin;
+                const countryCode = locData.country || locData.country_code || "";
+                if (countryCode && currencyMapping[countryCode]) {
+                    visitorCurrency = currencyMapping[countryCode];
+                }
                 const flightOriginInput = document.getElementById("flightOrigin");
                 if(flightOriginInput) flightOriginInput.value = `${userOriginName} (${userOrigin})`;
             }
+            const bestDeals = document.getElementById('best-deals');
+            if(bestDeals) apiObserver.observe(bestDeals);
         })
         .catch(() => {
             const flightOriginInput = document.getElementById("flightOrigin");
             if(flightOriginInput) flightOriginInput.value = "Singapore (SIN)";
+            const bestDeals = document.getElementById('best-deals');
+            if(bestDeals) apiObserver.observe(bestDeals);
         });
 
+    function fetchContinentDeals(continentKey, containerEl) {
+        if(!containerEl) return;
+        const cities = continentDestinations[continentKey];
+        if(!cities) return;
+
+        let skeletonHtml = '';
+        for(let i=0; i<6; i++) {
+            skeletonHtml += `
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white">
+                        <div class="skeleton skeleton-img-box"></div>
+                        <div class="card-body p-4">
+                            <div class="skeleton skeleton-text short mb-3"></div>
+                            <div class="skeleton skeleton-text mb-2"></div>
+                            <div class="skeleton skeleton-text short mb-4"></div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="skeleton skeleton-text w-25 mb-0"></div>
+                                <div class="skeleton skeleton-text w-25 mb-0 rounded-pill" style="height: 35px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        containerEl.innerHTML = skeletonHtml;
+
+        let promises = cities.map(city => {
+            const proxyUrl = `${PROXY_WORKER_URL}?origin=${userOrigin}&destination=${city.code}&unique=true&sorting=price&currency=${visitorCurrency}&page=1&one_way=false`;
+            return fetch(proxyUrl)
+                .then(res => res.json())
+                .then(resData => {
+                    let priceText = "Cek Harga";
+                    let datesText = "Jadwal Fleksibel";
+                    if(resData && resData.data && resData.data.length > 0) {
+                        const flightInfo = resData.data[0];
+                        if(flightInfo.price) priceText = `${visitorCurrency} ${Number(flightInfo.price).toLocaleString()}`;
+                        if(flightInfo.departure_at && flightInfo.return_at) {
+                            datesText = `${flightInfo.departure_at.split('T')[0]} ➔ ${flightInfo.return_at.split('T')[0]}`;
+                        }
+                    }
+                    return { code: city.code, name: city.name, imgUrl: `https://zen.wego.com/cdn-cgi/image/height=280/destinations/cities/${city.code}.jpg`, priceText, datesText };
+                })
+                .catch(() => ({ code: city.code, name: city.name, imgUrl: `https://zen.wego.com/cdn-cgi/image/height=280/destinations/cities/${city.code}.jpg`, priceText: "Cek Harga", datesText: "Cek Jadwal" }));
+        });
+
+        Promise.all(promises).then(results => {
+            let htmlContent = "";
+            results.forEach(item => {
+                htmlContent += `
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover bg-white">
+                            <div class="image-shimmer-effect" style="height: 200px;">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="${item.imgUrl}" width="600" height="280" class="lazyload lazy-effect" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80'" fetchpriority="low">
+                            </div>
+                            <div class="card-body p-4">
+                                <span class="badge bg-primary bg-opacity-10 text-primary mb-2 px-3 py-1 rounded-pill fw-semibold"><i class="bi bi-calendar3 me-1"></i> ${item.datesText}</span>
+                                <h5 class="fw-bold text-dark text-truncate">${userOriginName} ➔ ${item.name}</h5>
+                                <p class="text-muted small mb-3">Round-Trip • Bagasi Termasuk</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="text-danger fw-bold fs-5">${item.priceText}</span>
+                                    <button class="btn btn-outline-primary btn-sm rounded-pill px-3 py-2 fw-semibold">Pesan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            containerEl.innerHTML = htmlContent;
+        });
+    }
+
+    document.querySelectorAll('#flightDealsTab button').forEach(tab => {
+        tab.addEventListener('shown.bs.tab', (e) => {
+            const continentKey = e.target.getAttribute('data-continent');
+            const targetPaneSelector = e.target.getAttribute('data-bs-target');
+            const paneEl = document.querySelector(targetPaneSelector + ' .flight-results-container');
+            if(paneEl && paneEl.children.length <= 1) fetchContinentDeals(continentKey, paneEl);
+        });
+    });
+
+    // =========================================================================
+    // 3. AUTOCOMPLETE & SWAP INPUTS
+    // =========================================================================
     const setupTravelAutocomplete = (input) => {
         let container = input.parentNode.querySelector('.autocomplete-suggestions');
         if (!container) {
@@ -76,8 +196,15 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    document.querySelectorAll('.cabin-option').forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('cabinClassDropdownBtn').textContent = e.target.getAttribute('data-cabin');
+        });
+    });
+
     // =========================================================================
-    // 2. LOGIKA PENUMPANG (MAX 9, ADULT MIN 1, INFANT <= ADULT)
+    // 4. ATURAN PENUMPANG PESAWAT (MAX 9, ADULT MIN 1, INFANT <= ADULT)
     // =========================================================================
     function validateAndUpdatePassengers(adultId, childId, infantId, summarySelector) {
         const adultInput = document.getElementById(adultId);
@@ -130,13 +257,9 @@ document.addEventListener("DOMContentLoaded", () => {
             
             if (input && (targetId.startsWith('flight') || targetId.startsWith('mc'))) {
                 const isMC = targetId.startsWith('mc');
-                const adultId = isMC ? 'mcAdult' : 'flightAdult';
-                const childId = isMC ? 'mcChild' : 'flightChild';
-                const infantId = isMC ? 'mcInfant' : 'flightInfant';
-
-                const adultIn = document.getElementById(adultId);
-                const childIn = document.getElementById(childId);
-                const infantIn = document.getElementById(infantId);
+                const adultIn = document.getElementById(isMC ? 'mcAdult' : 'flightAdult');
+                const childIn = document.getElementById(isMC ? 'mcChild' : 'flightChild');
+                const infantIn = document.getElementById(isMC ? 'mcInfant' : 'flightInfant');
 
                 if (adultIn && childIn && infantIn) {
                     const adults = parseInt(adultIn.value) || 1;
@@ -164,11 +287,8 @@ document.addEventListener("DOMContentLoaded", () => {
             
             if (input && (targetId.startsWith('flight') || targetId.startsWith('mc'))) {
                 const isMC = targetId.startsWith('mc');
-                const adultId = isMC ? 'mcAdult' : 'flightAdult';
-                const infantId = isMC ? 'mcInfant' : 'flightInfant';
-
-                const adultIn = document.getElementById(adultId);
-                const infantIn = document.getElementById(infantId);
+                const adultIn = document.getElementById(isMC ? 'mcAdult' : 'flightAdult');
+                const infantIn = document.getElementById(isMC ? 'mcInfant' : 'flightInfant');
                 let minValue = targetId.includes('Adult') ? 1 : 0;
 
                 if (targetId.includes('Adult') && adultIn && infantIn) {
@@ -196,15 +316,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    document.querySelectorAll('.cabin-option').forEach(item => {
-        item.addEventListener('click', (e) => {
-            e.preventDefault();
-            document.getElementById('cabinClassDropdownBtn').textContent = e.target.getAttribute('data-cabin');
-        });
-    });
-
     // =========================================================================
-    // 3. FLATPICKR KALENDER & TOGGLE ONE-WAY / ROUNDTRIP
+    // 5. FLATPICKR KALENDER & TOGGLE ONE-WAY / ROUNDTRIP
     // =========================================================================
     let flatpickrLoaded = false;
 
@@ -283,7 +396,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // =========================================================================
-    // 4. MULTI-CITY ROWS DYNAMIC ADDITION
+    // 6. MULTI-CITY ROWS DYNAMIC ADDITION
     // =========================================================================
     const addFlightBtn = document.getElementById("addFlightBtn");
     const multiCityContainer = document.getElementById("multiCityContainer");
