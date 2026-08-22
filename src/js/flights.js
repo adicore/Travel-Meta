@@ -348,15 +348,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (oneWayTabBtn && roundTripTabBtn && flightReturnCol) {
         oneWayTabBtn.addEventListener('click', () => {
-            flightReturnCol.classList.add('flight-return-hidden');
             flightDepCol.className = 'col-lg-4 col-md-12';
-            flightTravelersCol.className = 'col-lg-4 col-md-6';
+            flightReturnCol.className = 'd-none';
         });
 
         roundTripTabBtn.addEventListener('click', () => {
-            flightReturnCol.classList.remove('flight-return-hidden');
-            flightDepCol.className = 'col-lg-2 col-md-6';
-            flightTravelersCol.className = 'col-lg-4 col-md-6';
+            flightDepCol.className = 'col-lg-2 col-md-12';
+            flightReturnCol.classList.remove('d-none');
+            flightReturnCol.className = 'col-lg-2 col-md-12';
         });
     }
 

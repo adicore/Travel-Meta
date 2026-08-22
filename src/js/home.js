@@ -625,19 +625,13 @@ document.addEventListener("DOMContentLoaded", () => {
             const rows = multiCityContainer.querySelectorAll(".multicity-row");
             if (rows.length >= 4) return;
 
-            const currentAdult = document.getElementById('flightAdult')?.value || "1";
-            const currentChild = document.getElementById('flightChild')?.value || "0";
-            const currentInfant = document.getElementById('flightInfant')?.value || "0";
-            const totalKids = parseInt(currentChild) + parseInt(currentInfant);
-            const summaryText = totalKids > 0 ? `${currentAdult} Adult, ${totalKids} Child` : `${currentAdult} Adult, 0 Child`;
-            const uniqueId = Date.now();
             const rowCountLabel = rows.length + 1;
-            
             const newRow = document.createElement("div");
             newRow.className = "row g-2 mb-2 multicity-row align-items-center";
+            
             newRow.innerHTML = `
-                <div class="col-lg-5 col-md-12">
-                    <div class="search-box-item">
+                <div class="col-lg-6 col-md-12">
+                    <div class="search-box-item py-2 px-3 border rounded-3 bg-white" style="min-height: 58px; display: flex; flex-direction: column; justify-content: center;">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center flex-grow-1 position-relative pe-2">
                                 <i class="bi bi-airplane-engines text-primary me-2"></i>
@@ -650,8 +644,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="search-box-item">
+                <div class="col-lg-4 col-md-6">
+                    <div class="search-box-item py-2 px-3 border rounded-3 bg-white" style="min-height: 58px; display: flex; flex-direction: column; justify-content: center;">
                         <div class="d-flex align-items-center">
                             <i class="bi bi-calendar text-primary me-2"></i>
                             <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Tanggal">
@@ -659,47 +653,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-6">
-                    <div class="dropdown w-100">
-                        <div class="search-box-item cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                            <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Passengers</div>
-                            <div class="fw-bold small text-dark travelers-summary-text mc-travelers-summary">${summaryText}</div>
-                        </div>
-                        <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100" style="min-width: 250px;">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="small">Dewasa</span>
-                                <div class="input-group input-group-sm w-50">
-                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcAdult${uniqueId}">-</button>
-                                    <input type="text" id="mcAdult${uniqueId}" class="form-control text-center fw-bold mc-input mc-adult bg-white" value="${currentAdult}" readonly>
-                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcAdult${uniqueId}">+</button>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="small">Anak</span>
-                                <div class="input-group input-group-sm w-50">
-                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcChild${uniqueId}">-</button>
-                                    <input type="text" id="mcChild${uniqueId}" class="form-control text-center fw-bold mc-input mc-child bg-white" value="${currentChild}" readonly>
-                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcChild${uniqueId}">+</button>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="small">Bayi</span>
-                                <div class="input-group input-group-sm w-50">
-                                    <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcInfant${uniqueId}">-</button>
-                                    <input type="text" id="mcInfant${uniqueId}" class="form-control text-center fw-bold mc-input mc-infant bg-white" value="${currentInfant}" readonly>
-                                    <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcInfant${uniqueId}">+</button>
-                                </div>
-                            </div>
-                            <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-12">
-                    <button class="btn btn-outline-danger btn-sm w-100 py-3 remove-row rounded-3" style="min-height: 72px;"><i class="bi bi-trash3"></i> Hapus</button>
+                    <button class="btn btn-outline-danger btn-sm w-100 remove-row rounded-3 d-flex align-items-center justify-content-center" style="height: 58px;"><i class="bi bi-trash3"></i> Hapus</button>
                 </div>
             `;
             multiCityContainer.appendChild(newRow);
-            newRow.querySelectorAll(".autocomplete-input").forEach(input => setupTravelAutocomplete(input));
             
+            newRow.querySelectorAll(".autocomplete-input").forEach(input => setupTravelAutocomplete(input));
             const newDateInput = newRow.querySelector(".lazy-date");
             newDateInput.addEventListener("mouseover", loadFlatpickr);
             newDateInput.addEventListener("focus", loadFlatpickr);
@@ -716,7 +675,9 @@ document.addEventListener("DOMContentLoaded", () => {
             updateMultiCityButtons();
         }
     });
+
     updateMultiCityButtons();
+    updateFlightSummaries();
 
     document.querySelectorAll(".search-action-btn").forEach(btn => {
         btn.addEventListener("click", (e) => {
