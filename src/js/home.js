@@ -322,7 +322,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // =========================================================================
-    // FLATPICKR LAZY LOADER & INISIALISASI TANGGAL (DENGAN SYNC LOCK)
+    // FLATPICKR LAZY LOADER & INISIALISASI TANGGAL (AMAN DARI RESET)
     // =========================================================================
     let flatpickrLoaded = false;
 
@@ -346,9 +346,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.appendChild(script);
     };
 
-    // =========================================================================
     // TOGGLE ONE-WAY & ROUNDTRIP DYNAMIC VIEW
-    // =========================================================================
     const oneWayTabBtn = document.getElementById('oneWayTabBtn');
     const roundTripTabBtn = document.getElementById('roundTripTabBtn');
     const flightDepCol = document.getElementById('flightDepCol');
@@ -358,24 +356,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (oneWayTabBtn && roundTripTabBtn && flightReturnCol) {
         oneWayTabBtn.addEventListener('click', () => {
-            //flightReturnCol.classList.add('flight-return-hidden');
-            // Menyesuaikan lebar grid Bootstrap agar proporsional
             flightDepCol.className = 'col-lg-4 col-md-12';
             flightReturnCol.className = 'd-none';
         });
 
         roundTripTabBtn.addEventListener('click', () => {
-            //flightReturnCol.classList.remove('flight-return-hidden');
-            // Menyesuaikan lebar grid saat kolom Return muncul
             flightDepCol.className = 'col-lg-2 col-md-12';
             flightReturnCol.classList.remove('d-none');
             flightReturnCol.className = 'col-lg-2 col-md-12';
         });
     }
 
-    // =========================================================================
-    // INISIALISASI FLATPIKR (Flight Dep, Return, Hotel, Mobil, dll)
-    // =========================================================================
     function initFlatpickrElements() {
         const isMobile = window.innerWidth <= 768;
         
@@ -395,13 +386,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const pickupEl = document.getElementById('carPickupDate');
         const dropoffEl = document.getElementById('carDropoffDate');
 
-        let flightDepInstance, flightRetInstance;
-        let hotelInInstance, hotelOutInstance;
-        let pickupDateInstance, dropoffDateInstance;
-
         // 1. Validasi Tanggal Penerbangan (Departure & Return)
         if (flightDepEl && !flightDepEl._flatpickr) {
-            flightDepInstance = flatpickr(flightDepEl, {
+            flatpickr(flightDepEl, {
                 ...commonDateConfig,
                 onChange: function(selectedDates, dateStr) {
                     if (flightRetEl && flightRetEl._flatpickr && dateStr) {
@@ -416,12 +403,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (flightRetEl && !flightRetEl._flatpickr) {
-            flightRetInstance = flatpickr(flightRetEl, commonDateConfig);
+            flatpickr(flightRetEl, commonDateConfig);
         }
 
         // 2. Validasi Hotel (Check-in & Check-out)
         if (hotelInEl && !hotelInEl._flatpickr) {
-            hotelInInstance = flatpickr(hotelInEl, {
+            flatpickr(hotelInEl, {
                 ...commonDateConfig,
                 onChange: function(selectedDates, dateStr) {
                     if (hotelOutEl && hotelOutEl._flatpickr && dateStr) {
@@ -435,12 +422,12 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
         if (hotelOutEl && !hotelOutEl._flatpickr) {
-            hotelOutInstance = flatpickr(hotelOutEl, commonDateConfig);
+            flatpickr(hotelOutEl, commonDateConfig);
         }
 
         // 3. Validasi Rental Mobil (Pick-up & Drop-off)
         if (pickupEl && !pickupEl._flatpickr) {
-            pickupDateInstance = flatpickr(pickupEl, {
+            flatpickr(pickupEl, {
                 dateFormat: "Y-m-d", minDate: "today", allowInput: !isMobile, disableMobile: true,
                 onChange: function(selectedDates, dateStr) {
                     if (dropoffEl && dropoffEl._flatpickr && dateStr) {
@@ -454,10 +441,10 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
         if (dropoffEl && !dropoffEl._flatpickr) {
-            dropoffDateInstance = flatpickr(dropoffEl, commonDateConfig);
+            flatpickr(dropoffEl, commonDateConfig);
         }
 
-        // 4. Time Picker & Kalender Umum
+        // 4. Time Picker
         flatpickr(".flatpickr-time:not(.flatpickr-input)", { 
             enableTime: true, noCalendar: true, dateFormat: "H:i", time_24hr: true, 
             allowInput: !isMobile, defaultHour: 10, defaultMinute: 0, disableMobile: true,
@@ -466,7 +453,12 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        flatpickr(".lazy-date:not(.flatpickr-input):not(#flightDepDate):not(#flightRetDate):not(#hotelCheckIn):not(#hotelCheckOut)", commonDateConfig);
+        // 5. Kalender Umum / Lazy-date (PENTING: Cek !input._flatpickr agar tidak mereset tanggal yang sudah terisi)
+        document.querySelectorAll(".lazy-date:not(#flightDepDate):not(#flightRetDate):not(#hotelCheckIn):not(#hotelCheckOut)").forEach(input => {
+            if (!input._flatpickr) {
+                flatpickr(input, commonDateConfig);
+            }
+        });
     }
 
     // Pemicu (Event Listeners)
@@ -490,11 +482,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 let val = parseInt(input.value) || 0;
 
                 // Validasi Batas Penerbangan (Flights & Multi-City)
-                if (targetId.startsWith('flight') || input.classList.contains('mc-input')) {
-                    let scope = incBtn.closest('.multicity-row') || document;
-                    let adultIn = scope.querySelector('#flightAdult, .mc-adult');
-                    let childIn = scope.querySelector('#flightChild, .mc-child');
-                    let infantIn = scope.querySelector('#flightInfant, .mc-infant');
+                if (targetId.startsWith('flight') || targetId.startsWith('mc')) {
+                    const isMC = targetId.startsWith('mc');
+                    const adultIn = document.getElementById(isMC ? 'mcAdult' : 'flightAdult');
+                    const childIn = document.getElementById(isMC ? 'mcChild' : 'flightChild');
+                    const infantIn = document.getElementById(isMC ? 'mcInfant' : 'flightInfant');
 
                     if (adultIn && childIn && infantIn) {
                         const adults = parseInt(adultIn.value) || 1;
@@ -512,22 +504,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if ((targetId === "hotelAdult" || targetId === "hotelChild") && val >= 20) return;
                 if ((targetId === "tourAdult" || targetId === "expAdult") && val >= 10) return;
 
-                let type = '';
-                if (targetId.includes('Adult')) type = 'Adult';
-                if (targetId.includes('Child')) type = 'Child';
-                if (targetId.includes('Infant')) type = 'Infant';
-
-                // Jika ingin menyamakan seluruh input penerbangan secara global atau per baris
-                if (type && targetId.startsWith('flight')) {
-                    document.querySelectorAll(`input[id*="Adult"], input[id*="Child"], input[id*="Infant"]`).forEach(el => {
-                        if (el.id.startsWith('flight') && el.id.includes(type)) {
-                            el.value = val + 1;
-                        }
-                    });
-                } else {
-                    input.value = val + 1;
-                }
-
+                input.value = val + 1;
                 updateAllSummaries();
             }
             return;
@@ -544,12 +521,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 let val = parseInt(input.value) || 0;
                 let minValue = (targetId.includes('Adult') || targetId.includes('Room')) ? 1 : 0;
 
-                if (targetId.startsWith('flight') || input.classList.contains('mc-input')) {
-                    let scope = decBtn.closest('.multicity-row') || document;
-                    let adultIn = scope.querySelector('#flightAdult, .mc-adult');
-                    let infantIn = scope.querySelector('#flightInfant, .mc-infant');
-
-                    if (targetId.includes('Adult') && adultIn && infantIn) {
+                if (targetId.startsWith('flight') || targetId.startsWith('mc')) {
+                    if (targetId.includes('Adult')) {
+                        const isMC = targetId.startsWith('mc');
+                        const adultIn = document.getElementById(isMC ? 'mcAdult' : 'flightAdult');
+                        const infantIn = document.getElementById(isMC ? 'mcInfant' : 'flightInfant');
                         const adults = parseInt(adultIn.value) || 1;
                         const infants = parseInt(infantIn.value) || 0;
                         if (adults <= 1 || adults - 1 < infants) return;
@@ -557,21 +533,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 if (val > minValue) {
-                    let type = '';
-                    if (targetId.includes('Adult')) type = 'Adult';
-                    if (targetId.includes('Child')) type = 'Child';
-                    if (targetId.includes('Infant')) type = 'Infant';
-
-                    if (type && targetId.startsWith('flight')) {
-                        document.querySelectorAll(`input[id*="Adult"], input[id*="Child"], input[id*="Infant"]`).forEach(el => {
-                            if (el.id.startsWith('flight') && el.id.includes(type)) {
-                                el.value = val - 1;
-                            }
-                        });
-                    } else {
-                        input.value = val - 1;
-                    }
-
+                    input.value = val - 1;
                     updateAllSummaries();
                 }
             }
@@ -671,9 +633,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // =========================================================================
     // FITUR TOGGLE: "DROP CAR OFF AT DIFFERENT LOCATION"
-    // =========================================================================
     const diffLocationToggle = document.getElementById('diffLocationToggle');
     const pickupCol = document.getElementById('pickupCol');
     const dropoffCol = document.getElementById('dropoffCol');
