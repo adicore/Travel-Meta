@@ -302,14 +302,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (oneWayTabBtn && roundTripTabBtn && flightReturnCol) {
         oneWayTabBtn.addEventListener('click', () => {
-            flightReturnCol.classList.add('flight-return-hidden');
+            //flightReturnCol.classList.add('flight-return-hidden');
             // Menyesuaikan lebar grid Bootstrap agar proporsional
             flightDepCol.className = 'col-lg-4 col-md-12';
             flightReturnCol.className = 'd-none';
         });
 
         roundTripTabBtn.addEventListener('click', () => {
-            flightReturnCol.classList.remove('flight-return-hidden');
+            //flightReturnCol.classList.remove('flight-return-hidden');
             // Menyesuaikan lebar grid saat kolom Return muncul
             flightDepCol.className = 'col-lg-2 col-md-12';
             flightReturnCol.classList.remove('d-none');
