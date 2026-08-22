@@ -216,11 +216,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    function updateFlightPassengerStates() {
-        const adultInput = document.getElementById("flightAdult");
-        const childInput = document.getElementById("flightChild");
-        const infantInput = document.getElementById("flightInfant");
-
+    // =========================================================================
+    // UPDATE PASSENGER STATES & LIMITS (FLIGHTS & MULTI-CITY)
+    // =========================================================================
+    function updatePassengerGroup(adultInput, childInput, infantInput, summaryEls, scopeElement = document) {
         if (!adultInput || !childInput || !infantInput) return;
 
         const adults = parseInt(adultInput.value) || 1;
@@ -228,39 +227,53 @@ document.addEventListener("DOMContentLoaded", () => {
         const infants = parseInt(infantInput.value) || 0;
         const total = adults + children + infants;
 
-        // Ambil elemen tombol berdasarkan data-target
-        const incAdult = document.querySelector('.increase-count[data-target="flightAdult"]');
-        const decAdult = document.querySelector('.decrease-count[data-target="flightAdult"]');
-        const incChild = document.querySelector('.increase-count[data-target="flightChild"]');
-        const decChild = document.querySelector('.decrease-count[data-target="flightChild"]');
-        const incInfant = document.querySelector('.increase-count[data-target="flightInfant"]');
-        const decInfant = document.querySelector('.decrease-count[data-target="flightInfant"]');
+        const adultId = adultInput.id;
+        const childId = childInput.id;
+        const infantId = infantInput.id;
 
-        // Aturan Disabled / Enabled untuk Tombol Tambah (+)
+        const incAdult = scopeElement.querySelector(`.increase-count[data-target="${adultId}"]`);
+        const decAdult = scopeElement.querySelector(`.decrease-count[data-target="${adultId}"]`);
+        const incChild = scopeElement.querySelector(`.increase-count[data-target="${childId}"]`);
+        const decChild = scopeElement.querySelector(`.decrease-count[data-target="${childId}"]`);
+        const incInfant = scopeElement.querySelector(`.increase-count[data-target="${infantId}"]`);
+        const decInfant = scopeElement.querySelector(`.decrease-count[data-target="${infantId}"]`);
+
+        // Aturan Disabled / Enabled Tombol Tambah (+)
         if (incAdult) incAdult.disabled = (total >= 9);
         if (incChild) incChild.disabled = (total >= 9);
-        if (incInfant) incInfant.disabled = (total >= 9 || infants >= adults); // Infant tidak boleh melebihi jumlah Adult
+        if (incInfant) incInfant.disabled = (total >= 9 || infants >= adults);
 
-        // Aturan Disabled / Enabled untuk Tombol Kurang (-)
-        if (decAdult) decAdult.disabled = (adults <= 1 || adults - 1 < infants); // Adult minimal 1 dan tidak boleh kurang dari jumlah infant
+        // Aturan Disabled / Enabled Tombol Kurang (-)
+        if (decAdult) decAdult.disabled = (adults <= 1 || adults - 1 < infants);
         if (decChild) decChild.disabled = (children <= 0);
         if (decInfant) decInfant.disabled = (infants <= 0);
 
-        // Update teks ringkasan travelers
         const totalKids = children + infants;
-        document.querySelectorAll(".travelers-summary-text, .mc-travelers-summary").forEach(el => {
-            el.textContent = totalKids > 0 ? `${adults} Adult, ${totalKids} Child` : `${adults} Adult, 0 Child`;
+        const summaryText = totalKids > 0 ? `${adults} Adult, ${totalKids} Child` : `${adults} Adult, 0 Child`;
+        
+        summaryEls.forEach(el => {
+            el.textContent = summaryText;
         });
     }
 
-    // =========================================================================
-    // UPDATE RINGKASAN & BATASAN (LIMITS & DISABLED BUTTONS)
-    // =========================================================================
     function updateAllSummaries() {
-        // 1. Flight Passenger States
-        updateFlightPassengerStates();
+        // 1. Main Flight Passengers (One-way & Round-trip)
+        const flightAdult = document.getElementById("flightAdult");
+        const flightChild = document.getElementById("flightChild");
+        const flightInfant = document.getElementById("flightInfant");
+        const mainSummaries = document.querySelectorAll(".travelers-summary-text:not(.mc-travelers-summary)");
+        updatePassengerGroup(flightAdult, flightChild, flightInfant, mainSummaries);
 
-        // 2. Hotel Summary & Limits (Max: 10 Rooms, 20 Adults, 20 Children)
+        // 2. Multi-City Rows Passengers (Menerapkan aturan yang sama di setiap baris)
+        document.querySelectorAll(".multicity-row").forEach(row => {
+            const mcAdult = row.querySelector(".mc-adult");
+            const mcChild = row.querySelector(".mc-child");
+            const mcInfant = row.querySelector(".mc-infant");
+            const mcSummary = row.querySelectorAll(".mc-travelers-summary, .travelers-summary-text");
+            updatePassengerGroup(mcAdult, mcChild, mcInfant, mcSummary, row);
+        });
+
+        // 3. Hotel Summary & Limits (Max: 10 Rooms, 20 Adults, 20 Children)
         const hotelRoomInput = document.getElementById("hotelRoom");
         const hotelAdultInput = document.getElementById("hotelAdult");
         const hotelChildInput = document.getElementById("hotelChild");
@@ -274,7 +287,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const summary = document.getElementById("hotelSummaryText");
             if (summary) summary.textContent = `${rooms} Room, ${guests} Guests`;
 
-            // Tombol Hotel (+ / -)
             const incRoom = document.querySelector('.increase-count[data-target="hotelRoom"]');
             const decRoom = document.querySelector('.decrease-count[data-target="hotelRoom"]');
             const incHAdult = document.querySelector('.increase-count[data-target="hotelAdult"]');
@@ -290,7 +302,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (decHChild) decHChild.disabled = (children <= 0);
         }
 
-        // 3. Tour Summary & Limits (Max: 10 Persons)
+        // 4. Tour Summary & Limits (Max: 10 Persons)
         const tourAdultInput = document.getElementById("tourAdult");
         if (tourAdultInput) {
             const a = parseInt(tourAdultInput.value) || 1;
@@ -303,7 +315,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (decTour) decTour.disabled = (a <= 1);
         }
 
-        // 4. Experience Summary & Limits (Max: 10 Persons)
+        // 5. Experience Summary & Limits (Max: 10 Persons)
         const expAdultInput = document.getElementById("expAdult");
         if (expAdultInput) {
             const a = parseInt(expAdultInput.value) || 1;
@@ -492,12 +504,45 @@ document.addEventListener("DOMContentLoaded", () => {
             if (input) {
                 let val = parseInt(input.value) || 0;
 
-                // Validasi Batas Maksimal
+                // Validasi Batas Penerbangan (Flights & Multi-City)
+                if (targetId.startsWith('flight') || input.classList.contains('mc-input')) {
+                    let scope = incBtn.closest('.multicity-row') || document;
+                    let adultIn = scope.querySelector('#flightAdult, .mc-adult');
+                    let childIn = scope.querySelector('#flightChild, .mc-child');
+                    let infantIn = scope.querySelector('#flightInfant, .mc-infant');
+
+                    if (adultIn && childIn && infantIn) {
+                        const adults = parseInt(adultIn.value) || 1;
+                        const children = parseInt(childIn.value) || 0;
+                        const infants = parseInt(infantIn.value) || 0;
+                        const total = adults + children + infants;
+
+                        if (total >= 9) return;
+                        if (targetId.includes('Infant') && infants >= adults) return;
+                    }
+                }
+
+                // Validasi Hotel, Tour, Experience
                 if (targetId === "hotelRoom" && val >= 10) return;
                 if ((targetId === "hotelAdult" || targetId === "hotelChild") && val >= 20) return;
                 if ((targetId === "tourAdult" || targetId === "expAdult") && val >= 10) return;
 
-                input.value = val + 1;
+                let type = '';
+                if (targetId.includes('Adult')) type = 'Adult';
+                if (targetId.includes('Child')) type = 'Child';
+                if (targetId.includes('Infant')) type = 'Infant';
+
+                // Jika ingin menyamakan seluruh input penerbangan secara global atau per baris
+                if (type && targetId.startsWith('flight')) {
+                    document.querySelectorAll(`input[id*="Adult"], input[id*="Child"], input[id*="Infant"]`).forEach(el => {
+                        if (el.id.startsWith('flight') && el.id.includes(type)) {
+                            el.value = val + 1;
+                        }
+                    });
+                } else {
+                    input.value = val + 1;
+                }
+
                 updateAllSummaries();
             }
             return;
@@ -514,8 +559,34 @@ document.addEventListener("DOMContentLoaded", () => {
                 let val = parseInt(input.value) || 0;
                 let minValue = (targetId.includes('Adult') || targetId.includes('Room')) ? 1 : 0;
 
+                if (targetId.startsWith('flight') || input.classList.contains('mc-input')) {
+                    let scope = decBtn.closest('.multicity-row') || document;
+                    let adultIn = scope.querySelector('#flightAdult, .mc-adult');
+                    let infantIn = scope.querySelector('#flightInfant, .mc-infant');
+
+                    if (targetId.includes('Adult') && adultIn && infantIn) {
+                        const adults = parseInt(adultIn.value) || 1;
+                        const infants = parseInt(infantIn.value) || 0;
+                        if (adults <= 1 || adults - 1 < infants) return;
+                    }
+                }
+
                 if (val > minValue) {
-                    input.value = val - 1;
+                    let type = '';
+                    if (targetId.includes('Adult')) type = 'Adult';
+                    if (targetId.includes('Child')) type = 'Child';
+                    if (targetId.includes('Infant')) type = 'Infant';
+
+                    if (type && targetId.startsWith('flight')) {
+                        document.querySelectorAll(`input[id*="Adult"], input[id*="Child"], input[id*="Infant"]`).forEach(el => {
+                            if (el.id.startsWith('flight') && el.id.includes(type)) {
+                                el.value = val - 1;
+                            }
+                        });
+                    } else {
+                        input.value = val - 1;
+                    }
+
                     updateAllSummaries();
                 }
             }
