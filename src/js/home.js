@@ -662,7 +662,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     updateMultiCityButtons();
-    updateFlightSummaries();
+    updateAllSummaries();
 
     document.querySelectorAll(".search-action-btn").forEach(btn => {
         btn.addEventListener("click", (e) => {
