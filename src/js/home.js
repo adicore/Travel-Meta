@@ -219,7 +219,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // =========================================================================
     // UPDATE PASSENGER STATES & LIMITS (FLIGHTS & MULTI-CITY)
     // =========================================================================
-    function updatePassengerGroup(adultInput, childInput, infantInput, summaryEls, scopeElement = document) {
+    function validateAndUpdatePassengers(adultId, childId, infantId, summarySelector) {
+        const adultInput = document.getElementById(adultId);
+        const childInput = document.getElementById(childId);
+        const infantInput = document.getElementById(infantId);
+
         if (!adultInput || !childInput || !infantInput) return;
 
         const adults = parseInt(adultInput.value) || 1;
@@ -227,23 +231,17 @@ document.addEventListener("DOMContentLoaded", () => {
         const infants = parseInt(infantInput.value) || 0;
         const total = adults + children + infants;
 
-        const adultId = adultInput.id;
-        const childId = childInput.id;
-        const infantId = infantInput.id;
+        const incAdult = document.querySelector(`.increase-count[data-target="${adultId}"]`);
+        const decAdult = document.querySelector(`.decrease-count[data-target="${adultId}"]`);
+        const incChild = document.querySelector(`.increase-count[data-target="${childId}"]`);
+        const decChild = document.querySelector(`.decrease-count[data-target="${childId}"]`);
+        const incInfant = document.querySelector(`.increase-count[data-target="${infantId}"]`);
+        const decInfant = document.querySelector(`.decrease-count[data-target="${infantId}"]`);
 
-        const incAdult = scopeElement.querySelector(`.increase-count[data-target="${adultId}"]`);
-        const decAdult = scopeElement.querySelector(`.decrease-count[data-target="${adultId}"]`);
-        const incChild = scopeElement.querySelector(`.increase-count[data-target="${childId}"]`);
-        const decChild = scopeElement.querySelector(`.decrease-count[data-target="${childId}"]`);
-        const incInfant = scopeElement.querySelector(`.increase-count[data-target="${infantId}"]`);
-        const decInfant = scopeElement.querySelector(`.decrease-count[data-target="${infantId}"]`);
-
-        // Aturan Disabled / Enabled Tombol Tambah (+)
         if (incAdult) incAdult.disabled = (total >= 9);
         if (incChild) incChild.disabled = (total >= 9);
         if (incInfant) incInfant.disabled = (total >= 9 || infants >= adults);
 
-        // Aturan Disabled / Enabled Tombol Kurang (-)
         if (decAdult) decAdult.disabled = (adults <= 1 || adults - 1 < infants);
         if (decChild) decChild.disabled = (children <= 0);
         if (decInfant) decInfant.disabled = (infants <= 0);
@@ -251,27 +249,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const totalKids = children + infants;
         const summaryText = totalKids > 0 ? `${adults} Adult, ${totalKids} Child` : `${adults} Adult, 0 Child`;
         
-        summaryEls.forEach(el => {
+        document.querySelectorAll(summarySelector).forEach(el => {
             el.textContent = summaryText;
         });
     }
 
     function updateAllSummaries() {
-        // 1. Main Flight Passengers (One-way & Round-trip)
-        const flightAdult = document.getElementById("flightAdult");
-        const flightChild = document.getElementById("flightChild");
-        const flightInfant = document.getElementById("flightInfant");
-        const mainSummaries = document.querySelectorAll(".travelers-summary-text:not(.mc-travelers-summary)");
-        updatePassengerGroup(flightAdult, flightChild, flightInfant, mainSummaries);
-
-        // 2. Multi-City Rows Passengers (Menerapkan aturan yang sama di setiap baris)
-        document.querySelectorAll(".multicity-row").forEach(row => {
-            const mcAdult = row.querySelector(".mc-adult");
-            const mcChild = row.querySelector(".mc-child");
-            const mcInfant = row.querySelector(".mc-infant");
-            const mcSummary = row.querySelectorAll(".mc-travelers-summary, .travelers-summary-text");
-            updatePassengerGroup(mcAdult, mcChild, mcInfant, mcSummary, row);
-        });
+        validateAndUpdatePassengers('flightAdult', 'flightChild', 'flightInfant', '.travelers-summary-text:not(.mc-travelers-summary)');
+        validateAndUpdatePassengers('mcAdult', 'mcChild', 'mcInfant', '.mc-travelers-summary');
 
         // 3. Hotel Summary & Limits (Max: 10 Rooms, 20 Adults, 20 Children)
         const hotelRoomInput = document.getElementById("hotelRoom");
