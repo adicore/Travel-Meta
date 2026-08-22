@@ -369,13 +369,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const flightDepEl = document.getElementById('flightDepDate');
         const flightRetEl = document.getElementById('flightRetDate');
 
+        // ==== PERLINDUNGAN DEPARTURE & RETURN YANG ANDA INGINKAN ====
         if (flightDepEl && !flightDepEl._flatpickr) {
+            flightDepEl.classList.remove("lazy-date"); // Pengaman agar tidak terinisialisasi ulang
             flatpickr(flightDepEl, {
                 ...commonDateConfig,
                 onChange: function(selectedDates, dateStr) {
                     if (flightRetEl && flightRetEl._flatpickr && dateStr) {
                         flightRetEl._flatpickr.set("minDate", dateStr);
                         const currentRet = flightRetEl._flatpickr.selectedDates[0];
+                        // Jika return sebelumnya mendahului departure yang baru dipilih, ubah otomatis
                         if (currentRet && currentRet < selectedDates[0]) {
                             flightRetEl._flatpickr.setDate(dateStr, true);
                         }
@@ -383,8 +386,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         }
-        if (flightRetEl && !flightRetEl._flatpickr) flatpickr(flightRetEl, commonDateConfig);
-        flatpickr(".lazy-date:not(.flatpickr-input):not(#flightDepDate):not(#flightRetDate)", commonDateConfig);
+        
+        if (flightRetEl && !flightRetEl._flatpickr) {
+            flightRetEl.classList.remove("lazy-date"); // Pengaman
+            flatpickr(flightRetEl, commonDateConfig);
+        }
+
+        // ==== PENGAMAN UTAMA UNTUK BARIS MULTI-CITY ====
+        // Hapus class lazy-date sebelum dieksekusi agar Flatpickr tidak mereset ulang tanggal sebelumnya
+        document.querySelectorAll(".lazy-date:not(#flightDepDate):not(#flightRetDate)").forEach(input => {
+            input.classList.remove("lazy-date");
+            flatpickr(input, commonDateConfig);
+        });
     }
 
     document.querySelectorAll(".lazy-date, .flatpickr-date").forEach(input => {
@@ -451,6 +464,9 @@ document.addEventListener("DOMContentLoaded", () => {
             multiCityContainer.appendChild(newRow);
             
             newRow.querySelectorAll(".autocomplete-input").forEach(input => setupTravelAutocomplete(input));
+            
+            // Baris baru akan memiliki class "lazy-date", 
+            // sehingga saat diklik, hanya baris baru ini yang akan diinisialisasi Flatpickr!
             const newDateInput = newRow.querySelector(".lazy-date");
             newDateInput.addEventListener("mouseover", loadFlatpickr);
             newDateInput.addEventListener("focus", loadFlatpickr);
