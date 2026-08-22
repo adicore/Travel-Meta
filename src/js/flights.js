@@ -431,8 +431,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const flightDepEl = document.getElementById('flightDepDate');
         const flightRetEl = document.getElementById('flightRetDate');
 
-        if (flightDepEl && !flightDepEl.hasAttribute('data-fp-initialized')) {
-            flightDepEl.setAttribute('data-fp-initialized', 'true');
+        if (flightDepEl && !flightDepEl._flatpickr) {
             flightDepEl.classList.remove("lazy-date");
             flatpickr(flightDepEl, {
                 ...commonDateConfig,
@@ -447,19 +446,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         }
-        
-        if (flightRetEl && !flightRetEl.hasAttribute('data-fp-initialized')) {
-            flightRetEl.setAttribute('data-fp-initialized', 'true');
+        if (flightRetEl && !flightRetEl._flatpickr) {
             flightRetEl.classList.remove("lazy-date");
             flatpickr(flightRetEl, commonDateConfig);
         }
 
-        document.querySelectorAll(".lazy-date:not(#flightDepDate):not(#flightRetDate)").forEach(input => {
-            if (!input.hasAttribute('data-fp-initialized')) {
-                input.setAttribute('data-fp-initialized', 'true');
-                input.classList.remove("lazy-date");
-                flatpickr(input, commonDateConfig);
-            }
+        // =========================================================================
+        // PENGAMAN ABSOLUT: Cabut ".lazy-date" agar Flatpickr tidak reset berulang!
+        // =========================================================================
+        document.querySelectorAll(".lazy-date").forEach(input => {
+            // Kita menghapus class lazy-date TEPAT SEBELUM fungsi flatpickr dijalankan.
+            // Hal ini memutus siklus duplikasi class pada input palsu yang dibuat plugin.
+            input.classList.remove("lazy-date");
+            flatpickr(input, commonDateConfig);
         });
     }
 
