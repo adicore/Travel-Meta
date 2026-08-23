@@ -97,7 +97,8 @@ document.addEventListener("DOMContentLoaded", () => {
             if (this.checked) {
                 dropoffCol.classList.remove('d-none');
                 pickupCol.classList.remove('col-12'); 
-                pickupCol.classList.add('col-12', 'col-md-6'); 
+                pickupCol.classList.add('col-12', 'col-md-6');
+                dropoffCol.classList.add('col-12', 'col-md-6'); 
                 if (dropoffInput) dropoffInput.setAttribute('required', 'true');
             } else {
                 pickupCol.classList.remove('col-md-6');
