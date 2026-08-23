@@ -177,6 +177,7 @@
     <div class="container search-card scroll-reveal" style="margin-top: -100px;">
         <div class="card border-0 p-3 p-lg-4 bg-white">
             <div id="flightSearchTab">
+                
                 <!-- PILIHAN TIPE PENERBANGAN & KELAS KABIN -->
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-3">
                     <div class="overflow-hidden border border-light rounded-pill p-1 shadow-sm w-100 w-md-auto" style="max-width: 100%;">
@@ -216,6 +217,7 @@
                 <div class="tab-content">
                     <!-- KONTAINER UTAMA (ONE-WAY & ROUNDTRIP DIGABUNG) -->
                     <div class="tab-pane fade show active" id="flightMainContent">
+                        <form id="flightSearch" class="p-0" ction="/search">
                         <div class="row g-2 align-items-center">
                             
                             <!-- Origin & Destination (Leaving From & Going To) -->
@@ -224,14 +226,14 @@
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="flex-grow-1 position-relative pe-2">
                                             <div class="text-muted small mb-1"><i class="bi bi-airplane-engines text-primary me-1"></i> Leaving From</div>
-                                            <input type="text" id="flightOrigin" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Detecting location...">
+                                            <input type="text" id="flightOrigin" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Detecting location..." name="origin_iata">
                                         </div>
                                         <button class="btn btn-light btn-sm rounded-circle border shadow-sm d-flex align-items-center justify-content-center swap-inputs-btn flex-shrink-0" style="width: 32px; height: 32px;" type="button" title="Tukar">
                                             <i class="bi bi-arrow-left-right text-secondary"></i>
                                         </button>
                                         <div class="flex-grow-1 position-relative ps-3 border-start">
                                             <div class="text-muted small mb-1"><i class="bi bi-airplane-fill text-primary me-1"></i> Going To</div>
-                                            <input type="text" id="flightDest" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Destination">
+                                            <input type="text" id="flightDest" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Destination" name="destination_iata">
                                         </div>
                                     </div>
                                 </div>
@@ -241,7 +243,7 @@
                             <div class="col-lg-4 col-md-12" id="flightDepCol">
                                 <div class="search-box-item py-2 px-3 border rounded-3 bg-white" style="min-height: 58px; display: flex; flex-direction: column; justify-content: center;">
                                     <div class="text-muted small mb-1"><i class="bi bi-calendar text-primary me-1"></i> Departure</div>
-                                    <input type="text" id="flightDepDate" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Pilih Tanggal">
+                                    <input type="text" id="flightDepDate" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Pilih Tanggal" name="depart_date">
                                 </div>
                             </div>
 
@@ -249,7 +251,7 @@
                             <div class="col-lg-2 col-md-6 d-none" id="flightReturnCol">
                                 <div class="search-box-item py-2 px-3 border rounded-3 bg-white h-100" style="min-height: 58px; display: flex; flex-direction: column; justify-content: center;">
                                     <div class="text-muted small mb-1"><i class="bi bi-calendar-check text-primary me-1"></i> Return</div>
-                                    <input type="text" id="flightRetDate" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Kembali">
+                                    <input type="text" id="flightRetDate" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Kembali" name="return_date">
                                 </div>
                             </div>
 
@@ -265,7 +267,7 @@
                                             <span class="small">Dewasa (12+)</span>
                                             <div class="input-group input-group-sm w-50">
                                                 <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightAdult">-</button>
-                                                <input type="text" id="flightAdult" class="form-control text-center fw-bold bg-white" value="1" readonly>
+                                                <input type="text" id="flightAdult" class="form-control text-center fw-bold bg-white" value="1" readonly name="adults">
                                                 <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightAdult">+</button>
                                             </div>
                                         </div>
@@ -273,7 +275,7 @@
                                             <span class="small">Anak (2-11)</span>
                                             <div class="input-group input-group-sm w-50">
                                                 <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightChild">-</button>
-                                                <input type="text" id="flightChild" class="form-control text-center fw-bold bg-white" value="0" readonly>
+                                                <input type="text" id="flightChild" class="form-control text-center fw-bold bg-white" value="0" readonly name="children">
                                                 <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightChild">+</button>
                                             </div>
                                         </div>
@@ -281,7 +283,7 @@
                                             <span class="small">Bayi (&lt;2)</span>
                                             <div class="input-group input-group-sm w-50">
                                                 <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightInfant">-</button>
-                                                <input type="text" id="flightInfant" class="form-control text-center fw-bold bg-white" value="0" readonly>
+                                                <input type="text" id="flightInfant" class="form-control text-center fw-bold bg-white" value="0" readonly name="infants">
                                                 <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightInfant">+</button>
                                             </div>
                                         </div>
@@ -296,89 +298,102 @@
                             </div>
 
                         </div>
+                        </form>
                     </div>
-
                     <!-- FLIGHT MULTI CITY -->
 <div class="tab-pane fade" id="multiCity">
+    <form id="flightSearch" class="p-0" action="/search">
     
-    <!-- KOLOM PENUMPANG MULTI-CITY (DIPISAH TERSENDIRI / GLOBAL) -->
-    <div class="row mb-3">
-        <div class="col-lg-4 col-md-6">
-            <div class="dropdown w-100">
-                <div class="search-box-item cursor-pointer py-2 px-3 border rounded-3 bg-white" style="min-height: 58px; display: flex; flex-direction: column; justify-content: center;" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                    <div class="text-muted small mb-1"><i class="bi bi-people text-primary me-1"></i> Multi-city Travelers</div>
-                    <div class="fw-bold small text-dark mc-travelers-summary">1 Adult, 0 Child</div>
+        <!-- KONTAINER BARIS PENERBANGAN MULTI-CITY -->
+        <div id="multiCityContainer">
+            <!-- Baris Penerbangan 1 -->
+            <div class="row g-2 mb-2 multicity-row align-items-center">
+                <div class="col-lg-6 col-md-12">
+                    <div class="search-box-item py-2 px-3 border rounded-3 bg-white" style="min-height: 58px; display: flex; flex-direction: column; justify-content: center;">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center flex-grow-1 position-relative pe-2">
+                                <i class="bi bi-airplane-engines text-primary me-2"></i>
+                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Penerbangan 1: Dari">
+                            </div>
+                            <div class="d-flex align-items-center flex-grow-1 position-relative ps-2 border-start">
+                                <i class="bi bi-airplane-fill text-primary me-2"></i>
+                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Penerbangan 1: Ke">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100" style="min-width: 280px;">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="small">Dewasa (12+)</span>
-                        <div class="input-group input-group-sm w-50">
-                            <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcAdult">-</button>
-                            <input type="text" id="mcAdult" class="form-control text-center fw-bold mc-input bg-white" value="1" readonly>
-                            <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcAdult">+</button>
+                <div class="col-lg-4 col-md-6">
+                    <div class="search-box-item py-2 px-3 border rounded-3 bg-white" style="min-height: 58px; display: flex; flex-direction: column; justify-content: center;">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-calendar text-primary me-2"></i>
+                            <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Tanggal">
                         </div>
                     </div>
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="small">Anak (2-11)</span>
-                        <div class="input-group input-group-sm w-50">
-                            <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcChild">-</button>
-                            <input type="text" id="mcChild" class="form-control text-center fw-bold mc-input bg-white" value="0" readonly>
-                            <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcChild">+</button>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="small">Bayi (&lt;2)</span>
-                        <div class="input-group input-group-sm w-50">
-                            <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcInfant">-</button>
-                            <input type="text" id="mcInfant" class="form-control text-center fw-bold mc-input bg-white" value="0" readonly>
-                            <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcInfant">+</button>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <button class="btn btn-outline-danger btn-sm w-100 remove-row rounded-3 d-flex align-items-center justify-content-center" style="height: 58px;" disabled><i class="bi bi-trash3"></i> Hapus</button>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- KONTAINER BARIS PENERBANGAN MULTI-CITY -->
-    <div id="multiCityContainer">
-        <!-- Baris Penerbangan 1 -->
-        <div class="row g-2 mb-2 multicity-row align-items-center">
-            <div class="col-lg-6 col-md-12">
-                <div class="search-box-item py-2 px-3 border rounded-3 bg-white" style="min-height: 58px; display: flex; flex-direction: column; justify-content: center;">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div class="d-flex align-items-center flex-grow-1 position-relative pe-2">
-                            <i class="bi bi-airplane-engines text-primary me-2"></i>
-                            <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Penerbangan 1: Dari">
+        <!-- TOMBOL TAMBAH PENERBANGAN, PENUMPANG & CARI -->
+        <div class="mt-3 d-flex justify-content-between align-items-center flex-wrap gap-3">
+            
+            <!-- Bagian Kiri: Tombol Tambah Rute -->
+            <div>
+                <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3 py-2 fw-semibold" id="addFlightBtn">
+                    <i class="bi bi-plus me-1"></i> Tambah Rute
+                </button>
+            </div>
+            
+            <!-- Bagian Kanan: Dropdown Penumpang & Tombol Cari -->
+            <div class="d-flex align-items-center flex-wrap gap-2">
+                
+                <!-- Dropdown Penumpang Multi-City -->
+                <div class="dropdown">
+                    <div class="search-box-item cursor-pointer py-2 px-4 border rounded-pill bg-white shadow-sm d-flex flex-column justify-content-center" style="height: 58px; min-width: 210px;" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                        <div class="text-muted mb-0" style="font-size: 0.75rem;"><i class="bi bi-people text-primary me-1"></i> Multi-city Travelers</div>
+                        <div class="fw-bold small text-dark mc-travelers-summary">1 Adult, 0 Child</div>
+                    </div>
+                    <!-- Ditambahkan dropdown-menu-end agar rapi di sisi kanan -->
+                    <div class="dropdown-menu dropdown-menu-end p-3 shadow-lg border-0 rounded-4 mt-2" style="min-width: 280px;">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="small">Dewasa (12+)</span>
+                            <div class="input-group input-group-sm w-50">
+                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcAdult">-</button>
+                                <input type="text" id="mcAdult" class="form-control text-center fw-bold mc-input bg-white" value="1" readonly>
+                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcAdult">+</button>
+                            </div>
                         </div>
-                        <div class="d-flex align-items-center flex-grow-1 position-relative ps-2 border-start">
-                            <i class="bi bi-airplane-fill text-primary me-2"></i>
-                            <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Penerbangan 1: Ke">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="small">Anak (2-11)</span>
+                            <div class="input-group input-group-sm w-50">
+                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcChild">-</button>
+                                <input type="text" id="mcChild" class="form-control text-center fw-bold mc-input bg-white" value="0" readonly>
+                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcChild">+</button>
+                            </div>
                         </div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="small">Bayi (&lt;2)</span>
+                            <div class="input-group input-group-sm w-50">
+                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcInfant">-</button>
+                                <input type="text" id="mcInfant" class="form-control text-center fw-bold mc-input bg-white" value="0" readonly>
+                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcInfant">+</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="search-box-item py-2 px-3 border rounded-3 bg-white" style="min-height: 58px; display: flex; flex-direction: column; justify-content: center;">
-                    <div class="d-flex align-items-center">
-                        <i class="bi bi-calendar text-primary me-2"></i>
-                        <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Tanggal">
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-6">
-                <button class="btn btn-outline-danger btn-sm w-100 remove-row rounded-3 d-flex align-items-center justify-content-center" style="height: 58px;" disabled><i class="bi bi-trash3"></i> Hapus</button>
+
+                <!-- Tombol Cari Penerbangan -->
+                <button class="btn btn-primary px-4 py-2 fw-bold search-action-btn rounded-pill shadow-sm" style="height: 58px;">
+                    Cari Penerbangan
+                </button>
+                
             </div>
         </div>
-    </div>
-
-    <!-- TOMBOL TAMBAH PENERBANGAN & CARI -->
-    <div class="mt-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
-        <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3 py-2 fw-semibold" id="addFlightBtn"><i class="bi bi-plus me-1"></i> Tambah Rute</button>
-        <button class="btn btn-primary px-4 py-2 fw-bold search-action-btn rounded-pill shadow-sm" style="height: 58px;">Cari Penerbangan</button>
-    </div>
+    </form>
 </div>
-
                 </div>
 
                 <div class="mt-3 text-muted small">
