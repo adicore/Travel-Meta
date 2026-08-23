@@ -1,140 +1,57 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // SET DEFAULT CHECK-IN & CHECK-OUT DATES (+3 DAYS & +5 DAYS)
-    (function setInitialHotelDates() {
-        const checkInDate = new Date();
-        checkInDate.setDate(checkInDate.getDate() + 3);
-        
-        const checkOutDate = new Date();
-        checkOutDate.setDate(checkOutDate.getDate() + 5);
+    
+    // =========================================================================
+    // 1. LOGIKA ATURAN TAMU & KAMAR HOTEL
+    // =========================================================================
+    function updateHotelSummaries() {
+        const hotelRoomInput = document.getElementById("hotelRoom");
+        const hotelAdultInput = document.getElementById("hotelAdult");
+        const hotelChildInput = document.getElementById("hotelChild");
 
-        const formatDate = (date) => {
-            const yyyy = date.getFullYear();
-            const mm = String(date.getMonth() + 1).padStart(2, '0');
-            const dd = String(date.getDate()).padStart(2, '0');
-            return `${yyyy}-${mm}-${dd}`;
-        };
+        if (hotelRoomInput && hotelAdultInput && hotelChildInput) {
+            const rooms = parseInt(hotelRoomInput.value) || 1;
+            const adults = parseInt(hotelAdultInput.value) || 2;
+            const children = parseInt(hotelChildInput.value) || 0;
+            const guests = adults + children;
 
-        const checkInInput = document.getElementById("hotelCheckIn");
-        const checkOutInput = document.getElementById("hotelCheckOut");
-        if (checkInInput) checkInInput.value = formatDate(checkInDate);
-        if (checkOutInput) checkOutInput.value = formatDate(checkOutDate);
-    })();
+            const summary = document.getElementById("hotelSummaryText");
+            if (summary) summary.textContent = `${rooms} Room, ${guests} Guests`;
 
-    // HOTEL LOCATION AUTOCOMPLETE
-    const hotelLocationInput = document.getElementById('hotelLocation');
-    if (hotelLocationInput) {
-        let container = hotelLocationInput.parentNode.querySelector('.autocomplete-suggestions');
-        if (!container) {
-            container = document.createElement('div');
-            container.className = 'autocomplete-suggestions';
-            hotelLocationInput.parentNode.appendChild(container);
-        }
+            const incRoom = document.querySelector('.increase-count[data-target="hotelRoom"]');
+            const decRoom = document.querySelector('.decrease-count[data-target="hotelRoom"]');
+            const incHAdult = document.querySelector('.increase-count[data-target="hotelAdult"]');
+            const decHAdult = document.querySelector('.decrease-count[data-target="hotelAdult"]');
+            const incHChild = document.querySelector('.increase-count[data-target="hotelChild"]');
+            const decHChild = document.querySelector('.decrease-count[data-target="hotelChild"]');
 
-        let debounceTimer;
-        hotelLocationInput.addEventListener('input', () => {
-            clearTimeout(debounceTimer);
-            const query = hotelLocationInput.value.trim();
-            if (query.length < 2) {
-                container.innerHTML = '';
-                container.style.display = 'none';
-                return;
-            }
-
-            debounceTimer = setTimeout(() => {
-                // Contoh dummy atau endpoint pencarian hotel/kota
-                fetch(`https://autocomplete.travelpayouts.com/places?locale=en&types[]=city&term=${encodeURIComponent(query)}`)
-                    .then(res => res.json())
-                    .then(data => {
-                        container.innerHTML = '';
-                        if (!data || data.length === 0) {
-                            container.style.display = 'none';
-                            return;
-                        }
-                        data.forEach(item => {
-                            const div = document.createElement('div');
-                            div.className = 'autocomplete-suggestion-item';
-                            div.innerHTML = `<strong>${item.name || item.city_name}</strong> <br><small class="text-muted">${item.country_name || ''}</small>`;
-                            div.addEventListener('click', () => {
-                                hotelLocationInput.value = `${item.name || item.city_name}, ${item.country_name || ''}`;
-                                container.innerHTML = '';
-                                container.style.display = 'none';
-                            });
-                            container.appendChild(div);
-                        });
-                        container.style.display = 'block';
-                    })
-                    .catch(() => {
-                        container.style.display = 'none';
-                    });
-            }, 300);
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!hotelLocationInput.contains(e.target) && !container.contains(e.target)) {
-                container.style.display = 'none';
-            }
-        });
-    }
-
-    // UPDATE HOTEL ROOM & GUEST SUMMARY
-    function updateHotelSummary() {
-        const roomInput = document.getElementById("hotelRoom");
-        const adultInput = document.getElementById("hotelAdult");
-        const childInput = document.getElementById("hotelChild");
-        
-        const rooms = roomInput ? parseInt(roomInput.value) || 1 : 1;
-        const adults = adultInput ? parseInt(adultInput.value) || 2 : 2;
-        const children = childInput ? parseInt(childInput.value) || 0 : 0;
-        const totalGuests = adults + children;
-
-        const summaryText = document.getElementById("hotelSummaryText");
-        if (summaryText) {
-            summaryText.textContent = `${rooms} Room${rooms > 1 ? 's' : ''}, ${totalGuests} Guest${totalGuests > 1 ? 's' : ''}`;
+            // Aturan Batas Maksimal (Kamar 10, Dewasa 20, Anak 20)
+            if (incRoom) incRoom.disabled = (rooms >= 10);
+            if (decRoom) decRoom.disabled = (rooms <= 1);
+            if (incHAdult) incHAdult.disabled = (adults >= 20);
+            if (decHAdult) decHAdult.disabled = (adults <= 1);
+            if (incHChild) incHChild.disabled = (children >= 20);
+            if (decHChild) decHChild.disabled = (children <= 0);
         }
     }
 
-    // FLATPICKR LAZY LOADER FOR HOTEL DATES
-    let flatpickrLoaded = false;
-    const loadFlatpickr = () => {
-        if (flatpickrLoaded) {
-            if (typeof flatpickr !== 'undefined') {
-                flatpickr(".lazy-date:not(.flatpickr-input)", { dateFormat: "Y-m-d", altInput: true, altFormat: "j M Y" });
-            }
-            return;
-        }
-        const link = document.createElement("link");
-        link.rel = "stylesheet";
-        link.href = "https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css";
-        document.head.appendChild(link);
-        
-        const script = document.createElement("script");
-        script.src = "https://cdn.jsdelivr.net/npm/flatpickr";
-        script.onload = () => { 
-            flatpickrLoaded = true;
-            flatpickr(".lazy-date", { dateFormat: "Y-m-d", altInput: true, altFormat: "j M Y" }); 
-        };
-        document.body.appendChild(script);
-    };
-
-    document.querySelectorAll(".lazy-date").forEach(input => {
-        input.addEventListener("mouseover", loadFlatpickr);
-        input.addEventListener("focus", loadFlatpickr);
-        input.addEventListener("click", loadFlatpickr);
-        input.addEventListener("touchstart", loadFlatpickr, { passive: true });
-    });
-
-    // EVENT DELEGATION FOR HOTEL COUNTERS (+ / -)
+    // Event listener global untuk tombol Plus/Minus dan Apply
     document.addEventListener('click', (e) => {
         const incBtn = e.target.closest('.increase-count');
         if (incBtn) {
             e.preventDefault(); e.stopPropagation();
+            if (incBtn.disabled) return;
+
             const targetId = incBtn.getAttribute('data-target');
-            if (targetId && (targetId.startsWith('hotel'))) {
-                const input = document.getElementById(targetId);
-                if (input) {
-                    input.value = parseInt(input.value) + 1;
-                    updateHotelSummary();
-                }
+            const input = document.getElementById(targetId);
+            if (input) {
+                let val = parseInt(input.value) || 0;
+                
+                // Mencegah penambahan melebihi batas
+                if (targetId === "hotelRoom" && val >= 10) return;
+                if ((targetId === "hotelAdult" || targetId === "hotelChild") && val >= 20) return;
+
+                input.value = val + 1;
+                updateHotelSummaries();
             }
             return;
         }
@@ -142,15 +59,18 @@ document.addEventListener("DOMContentLoaded", () => {
         const decBtn = e.target.closest('.decrease-count');
         if (decBtn) {
             e.preventDefault(); e.stopPropagation();
+            if (decBtn.disabled) return;
+
             const targetId = decBtn.getAttribute('data-target');
-            if (targetId && (targetId.startsWith('hotel'))) {
-                const input = document.getElementById(targetId);
-                if (input) {
-                    const minValue = (targetId === 'hotelRoom' || targetId === 'hotelAdult') ? 1 : 0;
-                    if (parseInt(input.value) > minValue) {
-                        input.value = parseInt(input.value) - 1;
-                        updateHotelSummary();
-                    }
+            const input = document.getElementById(targetId);
+            if (input) {
+                let val = parseInt(input.value) || 0;
+                // Nilai minimal kamar dan dewasa adalah 1, anak adalah 0
+                let minValue = (targetId.includes('Adult') || targetId.includes('Room')) ? 1 : 0;
+
+                if (val > minValue) {
+                    input.value = val - 1;
+                    updateHotelSummaries();
                 }
             }
             return;
@@ -167,11 +87,86 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // SEARCH ACTION BUTTON
-    document.querySelectorAll(".search-action-btn").forEach(btn => {
-        btn.addEventListener("click", (e) => {
-            e.preventDefault();
-            alert("Mencari ketersediaan hotel secara real-time...");
+    // Inisialisasi awal UI saat halaman dimuat
+    updateHotelSummaries();
+
+
+    // =========================================================================
+    // 2. FLATPICKR LOADER & INISIALISASI (KHUSUS HOTEL)
+    // =========================================================================
+    let flatpickrLoaded = false;
+
+    const loadFlatpickr = () => {
+        if (flatpickrLoaded) {
+            if (typeof flatpickr !== 'undefined') initFlatpickrElements();
+            return;
+        }
+        
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = "https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css";
+        document.head.appendChild(link);
+        
+        const script = document.createElement("script");
+        script.src = "https://cdn.jsdelivr.net/npm/flatpickr";
+        script.onload = () => { 
+            flatpickrLoaded = true;
+            initFlatpickrElements();
+        };
+        document.body.appendChild(script);
+    };
+
+    function initFlatpickrElements() {
+        const isMobile = window.innerWidth <= 768;
+        const commonDateConfig = {
+            dateFormat: "Y-m-d", altInput: true, altFormat: "j M Y",
+            minDate: "today", allowInput: !isMobile, disableMobile: true
+        };
+
+        const hotelInEl = document.getElementById('hotelCheckIn');
+        const hotelOutEl = document.getElementById('hotelCheckOut');
+
+        // Pengaturan kalender Check-In
+        if (hotelInEl && !hotelInEl._flatpickr) {
+            hotelInEl.classList.remove("lazy-date");
+            flatpickr(hotelInEl, {
+                ...commonDateConfig,
+                onChange: function(selectedDates, dateStr) {
+                    // Jika Check-out sudah aktif, set minimal tanggalnya sesuai Check-in baru
+                    if (hotelOutEl && hotelOutEl._flatpickr && dateStr) {
+                        hotelOutEl._flatpickr.set("minDate", dateStr);
+                        const currentOut = hotelOutEl._flatpickr.selectedDates[0];
+                        // Jika tanggal Check-out sebelumnya mendahului Check-in yang baru, geser otomatis
+                        if (currentOut && currentOut < selectedDates[0]) {
+                            hotelOutEl._flatpickr.setDate(dateStr, true);
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Pengaturan kalender Check-Out
+        if (hotelOutEl && !hotelOutEl._flatpickr) {
+            hotelOutEl.classList.remove("lazy-date");
+            flatpickr(hotelOutEl, commonDateConfig);
+        }
+
+        // =========================================================================
+        // PENGAMAN ABSOLUT: Cabut ".lazy-date" agar Flatpickr tidak reset berulang!
+        // =========================================================================
+        document.querySelectorAll(".lazy-date").forEach(input => {
+            // Kita menghapus class lazy-date TEPAT SEBELUM fungsi flatpickr dijalankan.
+            input.classList.remove("lazy-date");
+            flatpickr(input, commonDateConfig);
         });
+    }
+
+    // Trigger Flatpickr hanya jika pengguna berinteraksi (Lazy Load performa)
+    document.querySelectorAll(".lazy-date, .flatpickr-date").forEach(input => {
+        input.addEventListener("mouseover", loadFlatpickr);
+        input.addEventListener("focus", loadFlatpickr);
+        input.addEventListener("click", loadFlatpickr);
+        input.addEventListener("touchstart", loadFlatpickr, { passive: true });
     });
+
 });
