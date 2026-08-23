@@ -1460,100 +1460,55 @@
     </button>
 
     <!-- UNIFIED REGIONAL SETTINGS MODAL (Bahasa & Mata Uang) -->
-<div class="modal fade" id="regionalSettingsModal" tabindex="-1" aria-labelledby="regionalSettingsModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content rounded-4 border-0 shadow-lg">
+     <!-- UNIFIED REGIONAL SETTINGS MODAL (Desain Scroll / List Vertikal) -->
+<div class="modal fade" id="regionalSettingsModal" tabindex="-1">
+    <!-- Ditambahkan modal-lg agar tampil proporsional di Desktop, namun tetap pas di Mobile -->
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg mx-2 mx-sm-auto">
+        <div class="modal-content rounded-4 border-0 shadow-lg" style="max-height: 85vh;">
             
-            <div class="modal-header border-bottom-0 pb-0 mt-2 mx-2">
-                <h5 class="modal-title fw-bold text-dark" id="regionalSettingsModalLabel">Pengaturan Regional</h5>
-                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-header border-0 py-3 pb-0 px-4 mt-2">
+                <h5 class="modal-title fw-bold text-dark"><i class="bi bi-sliders text-primary me-2"></i>Pengaturan Regional</h5>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
             </div>
             
-            <div class="modal-body p-4">
+            <!-- Isi Modal -->
+            <div class="modal-body p-4 pt-3">
                 
-                <!-- Nav Pills (Tab Selector) -->
-                <ul class="nav nav-pills nav-fill mb-4 p-1 bg-light rounded-pill border shadow-sm" id="regionalTabs" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active rounded-pill fw-bold" id="lang-tab" data-bs-toggle="tab" data-bs-target="#lang-tab-pane" type="button" role="tab">
-                            <i class="bi bi-globe2 me-1"></i> Bahasa
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link rounded-pill fw-bold" id="currency-tab" data-bs-toggle="tab" data-bs-target="#currency-tab-pane" type="button" role="tab">
-                            <i class="bi bi-coin me-1"></i> Mata Uang
-                        </button>
-                    </li>
-                </ul>
-
-                <!-- Tab Content -->
-                <div class="tab-content" id="regionalTabsContent">
-                    
-                    <!-- TAB 1: BAHASA -->
-                    <div class="tab-pane fade show active" id="lang-tab-pane" role="tabpanel" tabindex="0">
-                        <div class="row g-3">
-                            <!-- Opsi Aktif -->
-                            <div class="col-6 col-md-4">
-                                <div class="p-3 border rounded-3 cursor-pointer text-center region-item active-region border-primary bg-primary bg-opacity-10">
-                                    <div class="fw-bold text-dark">English (EN)</div>
-                                    <div class="small text-muted">United States</div>
-                                </div>
-                            </div>
-                            <!-- Opsi Lain -->
-                            <div class="col-6 col-md-4">
-                                <div class="p-3 border rounded-3 cursor-pointer text-center region-item hover-bg-light">
-                                    <div class="fw-bold text-dark">Bahasa (ID)</div>
-                                    <div class="small text-muted">Indonesia</div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-4">
-                                <div class="p-3 border rounded-3 cursor-pointer text-center region-item hover-bg-light">
-                                    <div class="fw-bold text-dark">日本語 (JA)</div>
-                                    <div class="small text-muted">Japan</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- TAB 2: MATA UANG -->
-                    <div class="tab-pane fade" id="currency-tab-pane" role="tabpanel" tabindex="0">
-                        <div class="row g-3">
-                            <!-- Opsi Aktif -->
-                            <div class="col-6 col-md-4">
-                                <div class="p-3 border rounded-3 cursor-pointer text-center region-item active-region border-primary bg-primary bg-opacity-10">
-                                    <div class="fw-bold text-dark">USD - $</div>
-                                    <div class="small text-muted">US Dollar</div>
-                                </div>
-                            </div>
-                            <!-- Opsi Lain -->
-                            <div class="col-6 col-md-4">
-                                <div class="p-3 border rounded-3 cursor-pointer text-center region-item hover-bg-light">
-                                    <div class="fw-bold text-dark">IDR - Rp</div>
-                                    <div class="small text-muted">Indonesian Rupiah</div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-4">
-                                <div class="p-3 border rounded-3 cursor-pointer text-center region-item hover-bg-light">
-                                    <div class="fw-bold text-dark">EUR - €</div>
-                                    <div class="small text-muted">Euro</div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-4">
-                                <div class="p-3 border rounded-3 cursor-pointer text-center region-item hover-bg-light">
-                                    <div class="fw-bold text-dark">SGD - S$</div>
-                                    <div class="small text-muted">Singapore Dollar</div>
-                                </div>
-                            </div>
-                            <!-- Tambahkan mata uang lainnya di sini -->
-                        </div>
-                    </div>
-
+                <!-- Bagian Mata Uang -->
+                <h6 class="fw-bold mb-3 small text-muted"><i class="bi bi-coin text-warning me-1"></i> MATA UANG</h6>
+                <!-- Responsive Grid: 2 kolom di HP kecil, 3 kolom di HP besar, 4 kolom di Laptop/Tablet -->
+                <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-2 mb-4">
+                    <div class="col"><button class="btn btn-outline-primary active border-2 rounded-3 text-center currency-option w-100 fw-semibold py-2">USD ($)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">IDR (Rp)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">EUR (€)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">GBP (£)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">SGD (S$)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">JPY (¥)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">AUD (A$)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">CAD (C$)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">CNY (¥)</button></div>
                 </div>
+                
+                <!-- Bagian Bahasa -->
+                <h6 class="fw-bold mb-3 border-top pt-4 small text-muted"><i class="bi bi-globe text-info me-1"></i> BAHASA</h6>
+                <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-2 mb-2">
+                    <div class="col"><button class="btn btn-outline-primary active border-2 rounded-3 text-center lang-option w-100 fw-semibold py-2">English (EN)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">Indonesia (ID)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">Español (ES)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">Français (FR)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">Deutsch (DE)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">日本語 (JA)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">中文 (ZH)</button></div>
+                    <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">العربية (AR)</button></div>
+                </div>
+                
+            </div>
+
+            <!-- Tombol Aksi di Bawah (Opsional & Mempermudah UX) -->
+            <div class="modal-footer border-0 d-flex justify-content-center pb-4 pt-1">
+                <button type="button" class="btn btn-primary rounded-pill px-5 py-2 fw-bold shadow-sm" data-bs-dismiss="modal">Terapkan Pengaturan</button>
             </div>
             
-            <div class="modal-footer border-top-0 d-flex justify-content-center pb-4">
-                <button type="button" class="btn btn-primary rounded-pill px-5 fw-bold shadow-sm" data-bs-dismiss="modal">Simpan Pengaturan</button>
-            </div>
-
         </div>
     </div>
 </div>
