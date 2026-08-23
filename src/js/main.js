@@ -350,4 +350,51 @@ document.addEventListener("DOMContentLoaded", () => {
             subForm.reset();
         });
     }
+
+    // 1. Logika Pemilihan Mata Uang (Currency)
+    const currencyButtons = document.querySelectorAll('.currency-option');
+    currencyButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Hapus kelas aktif dari semua tombol mata uang
+            currencyButtons.forEach(btn => {
+                btn.classList.remove('btn-outline-primary', 'active', 'border-2');
+                btn.classList.add('btn-light');
+            });
+            
+            // Tambahkan kelas aktif ke tombol yang sedang diklik
+            this.classList.remove('btn-light');
+            this.classList.add('btn-outline-primary', 'active', 'border-2');
+
+            // Ambil kode mata uang (contoh: "USD" dari "USD ($)")
+            const selectedCurrency = this.textContent.split(' ')[0];
+            
+            // Perbarui teks ringkasan di header (jika elemennya ada)
+            const mobCurrText = document.getElementById('mobCurrText');
+            if (mobCurrText) mobCurrText.textContent = selectedCurrency;
+        });
+    });
+
+    // 2. Logika Pemilihan Bahasa (Language)
+    const langButtons = document.querySelectorAll('.lang-option');
+    langButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Hapus kelas aktif dari semua tombol bahasa
+            langButtons.forEach(btn => {
+                btn.classList.remove('btn-outline-primary', 'active', 'border-2');
+                btn.classList.add('btn-light');
+            });
+            
+            // Tambahkan kelas aktif ke tombol yang sedang diklik
+            this.classList.remove('btn-light');
+            this.classList.add('btn-outline-primary', 'active', 'border-2');
+
+            // Ambil singkatan bahasa di dalam kurung (contoh: "EN" dari "English (EN)")
+            const match = this.textContent.match(/\(([^)]+)\)/);
+            const selectedLang = match ? match[1] : this.textContent;
+
+            // Perbarui teks ringkasan di header (jika elemennya ada)
+            const mobLangText = document.getElementById('mobLangText');
+            if (mobLangText) mobLangText.textContent = selectedLang;
+        });
+    });
 });
