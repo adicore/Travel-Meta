@@ -361,16 +361,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 btn.classList.add('btn-light');
             });
             
-            // Tambahkan kelas aktif ke tombol yang sedang diklik
+            // Tambahkan kelas aktif ke tombol yang diklik
             this.classList.remove('btn-light');
             this.classList.add('btn-outline-primary', 'active', 'border-2');
 
             // Ambil kode mata uang (contoh: "USD" dari "USD ($)")
             const selectedCurrency = this.textContent.split(' ')[0];
             
-            // Perbarui teks ringkasan di header (jika elemennya ada)
-            const mobCurrText = document.getElementById('mobCurrText');
-            if (mobCurrText) mobCurrText.textContent = selectedCurrency;
+            // Perbarui teks ringkasan di Desktop DAN Mobile sekaligus
+            const currencyElements = document.querySelectorAll('#mobCurrText, #deskCurrText');
+            currencyElements.forEach(el => {
+                if (el) el.textContent = selectedCurrency;
+            });
         });
     });
 
@@ -384,7 +386,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 btn.classList.add('btn-light');
             });
             
-            // Tambahkan kelas aktif ke tombol yang sedang diklik
+            // Tambahkan kelas aktif ke tombol yang diklik
             this.classList.remove('btn-light');
             this.classList.add('btn-outline-primary', 'active', 'border-2');
 
@@ -392,9 +394,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const match = this.textContent.match(/\(([^)]+)\)/);
             const selectedLang = match ? match[1] : this.textContent;
 
-            // Perbarui teks ringkasan di header (jika elemennya ada)
-            const mobLangText = document.getElementById('mobLangText');
-            if (mobLangText) mobLangText.textContent = selectedLang;
+            // Perbarui teks ringkasan di Desktop DAN Mobile sekaligus
+            const langElements = document.querySelectorAll('#mobLangText, #deskLangText');
+            langElements.forEach(el => {
+                if (el) el.textContent = selectedLang;
+            });
         });
     });
 });
