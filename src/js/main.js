@@ -351,42 +351,84 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 1. Logika Pemilihan Mata Uang (Currency)
+    // =========================================================================
+    // 1. MUAT PREFERENSI DARI LOCALSTORAGE SAAT HALAMAN DIMUAT
+    // =========================================================================
+    const savedCurrency = localStorage.getItem('selectedCurrency');
+    const savedLang = localStorage.getItem('selectedLanguage');
+
+    // Terapkan Mata Uang yang Tersimpan
+    if (savedCurrency) {
+        document.querySelectorAll('#mobCurrText, #deskCurrText').forEach(el => {
+            if (el) el.textContent = savedCurrency;
+        });
+        document.querySelectorAll('.currency-option').forEach(btn => {
+            if (btn.textContent.split(' ')[0] === savedCurrency) {
+                btn.classList.remove('btn-light');
+                btn.classList.add('btn-outline-primary', 'active', 'border-2');
+            } else {
+                btn.classList.remove('btn-outline-primary', 'active', 'border-2');
+                btn.classList.add('btn-light');
+            }
+        });
+    }
+
+    // Terapkan Bahasa yang Tersimpan
+    if (savedLang) {
+        document.querySelectorAll('#mobLangText, #deskLangText').forEach(el => {
+            if (el) el.textContent = savedLang;
+        });
+        document.querySelectorAll('.lang-option').forEach(btn => {
+            const match = btn.textContent.match(/\(([^)]+)\)/);
+            const code = match ? match[1] : btn.textContent;
+            if (code === savedLang) {
+                btn.classList.remove('btn-light');
+                btn.classList.add('btn-outline-primary', 'active', 'border-2');
+            } else {
+                btn.classList.remove('btn-outline-primary', 'active', 'border-2');
+                btn.classList.add('btn-light');
+            }
+        });
+    }
+
+    // =========================================================================
+    // 2. LOGIKA PEMILIHAN MATA UANG (CURRENCY)
+    // =========================================================================
     const currencyButtons = document.querySelectorAll('.currency-option');
     currencyButtons.forEach(button => {
         button.addEventListener('click', function() {
-            // Hapus kelas aktif dari semua tombol mata uang
             currencyButtons.forEach(btn => {
                 btn.classList.remove('btn-outline-primary', 'active', 'border-2');
                 btn.classList.add('btn-light');
             });
             
-            // Tambahkan kelas aktif ke tombol yang diklik
             this.classList.remove('btn-light');
             this.classList.add('btn-outline-primary', 'active', 'border-2');
 
             // Ambil kode mata uang (contoh: "USD" dari "USD ($)")
             const selectedCurrency = this.textContent.split(' ')[0];
             
-            // Perbarui teks ringkasan di Desktop DAN Mobile sekaligus
-            const currencyElements = document.querySelectorAll('#mobCurrText, #deskCurrText');
-            currencyElements.forEach(el => {
+            // Simpan ke localStorage agar persisten
+            localStorage.setItem('selectedCurrency', selectedCurrency);
+
+            // Perbarui teks ringkasan di Desktop & Mobile
+            document.querySelectorAll('#mobCurrText, #deskCurrText').forEach(el => {
                 if (el) el.textContent = selectedCurrency;
             });
         });
     });
 
-    // 2. Logika Pemilihan Bahasa (Language)
+    // =========================================================================
+    // 3. LOGIKA PEMILIHAN BAHASA (LANGUAGE)
+    // =========================================================================
     const langButtons = document.querySelectorAll('.lang-option');
     langButtons.forEach(button => {
         button.addEventListener('click', function() {
-            // Hapus kelas aktif dari semua tombol bahasa
             langButtons.forEach(btn => {
                 btn.classList.remove('btn-outline-primary', 'active', 'border-2');
                 btn.classList.add('btn-light');
             });
             
-            // Tambahkan kelas aktif ke tombol yang diklik
             this.classList.remove('btn-light');
             this.classList.add('btn-outline-primary', 'active', 'border-2');
 
@@ -394,9 +436,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const match = this.textContent.match(/\(([^)]+)\)/);
             const selectedLang = match ? match[1] : this.textContent;
 
-            // Perbarui teks ringkasan di Desktop DAN Mobile sekaligus
-            const langElements = document.querySelectorAll('#mobLangText, #deskLangText');
-            langElements.forEach(el => {
+            // Simpan ke localStorage agar persisten
+            localStorage.setItem('selectedLanguage', selectedLang);
+
+            // Perbarui teks ringkasan di Desktop & Mobile
+            document.querySelectorAll('#mobLangText, #deskLangText').forEach(el => {
                 if (el) el.textContent = selectedLang;
             });
         });
