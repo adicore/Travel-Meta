@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taxi & Airport Transfer - Gojameka</title>
+    <!-- Google Fonts: Plus Jakarta Sans & Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" fetchpriority="high">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin fetchpriority="high">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet" fetchpriority="high">
+    
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" fetchpriority="high">
+    
+    <!-- Bootstrap Icons CSS -->
+    <link rel="stylesheet" href="./src/css/bootstrap-icons.min.css" fetchpriority="low">
+    
+    <!-- Lazysizes JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async fetchpriority="high"></script>
+
+    <!-- Global Style -->
+    <link rel="stylesheet" href="./src/css/style.css" fetchpriority="high">
+</head>
+<body class="bg-light" id="page-index">
+
+    <!-- HEADER UTAMA -->
+<header class="bg-white sticky-top shadow-sm">
+    
+    <!-- TOP BAR (Hanya Tampil di Desktop) -->
+    <div class="border-bottom py-2 bg-white small d-none d-lg-block">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="text-secondary d-flex align-items-center gap-1">
+                <span class="text-warning">★</span> 
+                <span class="fw-bold text-dark">4.9 Rated</span> by <strong class="text-dark">10,000+</strong> Travelers Worldwide.
+            </div>
+            <div class="d-flex align-items-center gap-3 text-secondary">
+                <!-- Tombol Unified Modal (Desktop) -->
+                <button class="btn btn-sm btn-light border py-1 px-3 fw-semibold rounded-pill d-flex align-items-center gap-2 shadow-sm" type="button" data-bs-toggle="modal" data-bs-target="#regionalSettingsModal">
+                <i class="bi bi-globe text-info"></i> 
+                <span id="deskLangText">EN</span> • <span id="deskCurrText">USD</span> 
+                <i class="bi bi-coin text-warning"></i>
+                </button>
+                <a href="#" class="text-secondary text-decoration-none px-1" title="Cart"><i class="bi bi-cart3 fs-6"></i></a>
+                <a href="#" class="text-secondary text-decoration-none px-1" title="Profile"><i class="bi bi-person-circle fs-5"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light py-2 py-lg-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            
+            <!-- Logo -->
+            <a class="navbar-brand fw-bold fs-5 fs-lg-4 text-dark d-flex align-items-center gap-2 text-decoration-none m-0" href="#">
+                <div class="logo-icon-box bg-primary text-white rounded-3 d-flex align-items-center justify-content-center shadow-sm">
+                    <i class="bi bi-airplane-engines"></i>
+                </div>
+                TravelMeta
+            </a>
+
+            <!-- Aksi Header Mobile (Tombol Bahasa/Mata Uang, Profil, Hamburger) -->
+            <div class="d-flex align-items-center gap-2 gap-sm-3 d-lg-none header-mobile-actions">
+                <!-- Tombol Unified Modal (Mobile) -->
+                <div class="d-flex align-items-center gap-1 cursor-pointer bg-light px-2 py-1 rounded-pill border shadow-sm" data-bs-toggle="modal" data-bs-target="#regionalSettingsModal" title="Language & Currency">
+                    <i class="bi bi-globe-americas fs-6 text-dark ms-1"></i>
+                    <span class="fw-bold text-dark small me-1" style="font-size: 0.75rem;">
+                        <span id="mobLangText">EN</span> • <span id="mobCurrText">USD</span>
+                    </span>
+                </div>
+                <a href="#" class="text-dark text-decoration-none"><i class="bi bi-person-circle fs-4"></i></a>
+                
+                <!-- Tombol Hamburger (Membuka Offcanvas) -->
+                <button class="btn btn-white bg-white border shadow-sm rounded-3 p-2 d-flex align-items-center justify-content-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" style="width: 42px; height: 42px;">
+                    <div class="hamburger-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+            </div>
+
+            <!-- OFFCANVAS NAVBAR (Menu Utama -> Otomatis jadi Side Menu di Mobile) -->
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                
+                <!-- Header Offcanvas (Hanya muncul saat dibuka di Mobile) -->
+                <div class="offcanvas-header border-bottom">
+                    <h5 class="offcanvas-title fw-bold text-dark d-flex align-items-center gap-2" id="offcanvasNavbarLabel">
+                        <div class="bg-primary text-white rounded-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 30px; height: 30px;">
+                            <i class="bi bi-airplane-engines small"></i>
+                        </div>
+                        TravelMeta
+                    </h5>
+                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Tutup"></button>
+                </div>
+
+                <!-- Body Offcanvas (Daftar Menu Utama) -->
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav mx-auto align-items-lg-center gap-2 gap-xl-3">
+                        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html">Beranda</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="flights.html">Flights</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="hotels.html">Hotel</a></li>
+                        
+                        <!-- Dropdown More Services -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button" data-bs-toggle="dropdown">More Services</a>
+                            <ul class="dropdown-menu shadow-lg rounded-4 p-2 border-0" style="min-width: 200px;">
+                                <li class="nav-item"><a class="dropdown-item rounded-3 py-2 text-dark" href="car-rental.html"><i class="bi bi-car-front text-primary me-2"></i> Car Rental</a></li>
+                                <li class="nav-item"><a class="dropdown-item rounded-3 py-2 text-dark" href="taxi.html"><i class="bi bi-taxi-front text-primary me-2"></i> Taxi</a></li>
+                                <li class="nav-item"><a class="dropdown-item rounded-3 py-2 text-dark" href="bike.html"><i class="bi bi-bicycle text-primary me-2"></i> Bike</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="tours.html">Tour</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="visa.html">Visa</a></li>
+                    </ul>
+
+                    <!-- Tombol Action Tambahan (Plan AI & Whatsapp) -->
+                    <div class="d-flex flex-column flex-lg-row align-items-lg-center gap-3 mt-4 mt-lg-0">
+                        <a href="#" class="btn btn-outline-primary rounded-pill px-3 py-2 small fw-semibold d-flex align-items-center justify-content-center gap-2 border-2 text-decoration-none">
+                            <i class="bi bi-robot"></i> Plan with AI
+                        </a>
+                        <a href="https://whatsapp.com" target="_blank" class="btn btn-primary rounded-pill px-4 py-2 small fw-semibold d-flex align-items-center justify-content-center gap-2 text-decoration-none">
+                            <i class="bi bi-whatsapp fs-6"></i> +44-800 123 456
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Info Tambahan Mobile (Bagian Bawah Navbar Khusus Mobile) -->
+        <div class="container d-lg-none mt-2 pt-3 border-top d-flex justify-content-between align-items-center flex-nowrap">
+            <div class="text-secondary small d-flex align-items-start gap-1 flex-grow-1 pe-2">
+                <span class="text-warning fs-6 lh-1" style="margin-top: 1px;">★</span> 
+                <span class="fw-medium text-dark lh-sm" style="font-size: 0.8rem;">
+                    <span class="text-primary fw-bold">4.9 Rated</span> by <strong class="text-dark">10,000+</strong> Travelers.
+                </span>
+            </div>
+            <a href="#" class="text-dark text-decoration-none flex-shrink-0"><i class="bi bi-cart3 fs-4"></i></a>
+        </div>
+    </nav>
+</header>
+
+    <!-- HERO SECTION (Khusus Taxi Transfer) -->
+    <div class="position-relative d-flex align-items-center mt-0" style="background: url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat; min-height: 650px;">
+        <!-- Overlay Gradient Gelap -->
+        <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(37, 99, 235, 0.7) 100%);"></div>
+        
+        <div class="container position-relative z-2 py-5">
+            <div class="row align-items-center justify-content-between g-5">
+                
+                <!-- KIRI: Teks Hero -->
+                <div class="col-lg-5 text-white text-center text-lg-start">
+                    <span class="badge bg-warning text-dark mb-3 px-3 py-2 rounded-pill fw-bold shadow-sm"><i class="bi bi-lightning-charge-fill me-1"></i> Instan & Tepat Waktu</span>
+                    <h1 class="display-4 fw-bold mb-3">Antar Jemput Bandara & Taksi Eksekutif</h1>
+                    <p class="lead text-white-50 mb-0">Nikmati perjalanan mulus tanpa hambatan dengan supir profesional yang siap menjemput Anda tepat waktu.</p>
+                </div>
+
+                <!-- KANAN: Kotak Search Taxi -->
+                <div class="col-lg-6">
+                    <div class="card border-0 p-4 bg-white shadow-lg rounded-4">
+                        <h5 class="fw-bold text-dark mb-4"><i class="bi bi-taxi-front-fill text-primary me-2"></i>Pesan Taksi / Transfer</h5>
+                        <form id="taxiSearchForm" action="/search-taxi">
+                            
+                            <!-- Pick-up Location -->
+                            <div class="mb-3">
+                                <div class="search-box-item px-3 py-2 rounded-3 border bg-white">
+                                    <div class="text-muted small mb-1"><i class="bi bi-geo-alt-fill text-primary me-1"></i> Lokasi Penjemputan</div>
+                                    <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent fs-6" placeholder="Bandara, Hotel, atau Alamat" required>
+                                </div>
+                            </div>
+                            
+                            <!-- Drop-off Location -->
+                            <div class="mb-3">
+                                <div class="search-box-item px-3 py-2 rounded-3 border bg-white">
+                                    <div class="text-muted small mb-1"><i class="bi bi-geo-alt text-danger me-1"></i> Lokasi Tujuan</div>
+                                    <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent fs-6" placeholder="Bandara, Hotel, atau Alamat" required>
+                                </div>
+                            </div>
+
+                            <!-- Baris Tanggal & Waktu -->
+                            <div class="row g-2 mb-3">
+                                <div class="col-6">
+                                    <div class="search-box-item px-3 py-2 rounded-3 border bg-white cursor-pointer h-100">
+                                        <div class="text-muted small mb-1"><i class="bi bi-calendar-event text-primary me-1"></i> Tanggal</div>
+                                        <input type="text" id="taxiDate" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent fs-6" placeholder="Pilih tanggal" required>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="search-box-item px-3 py-2 rounded-3 border bg-white cursor-pointer h-100">
+                                        <div class="text-muted small mb-1"><i class="bi bi-clock text-primary me-1"></i> Waktu</div>
+                                        <input type="text" id="taxiTime" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent fs-6" placeholder="Pilih waktu" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Penumpang & Kendaraan -->
+                            <div class="mb-4">
+                                <div class="dropdown w-100">
+                                    <div class="search-box-item px-3 py-2 border rounded-3 bg-white cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                        <div class="text-muted small mb-1"><i class="bi bi-people text-primary me-1"></i> Penumpang</div>
+                                        <div class="fw-bold small text-dark" id="taxiSummaryText">1 Penumpang, 1 Koper</div>
+                                    </div>
+                                    <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <span class="small fw-semibold">Penumpang</span>
+                                            <div class="input-group input-group-sm w-50">
+                                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="taxiPassenger">-</button>
+                                                <input type="text" id="taxiPassenger" class="form-control text-center fw-bold bg-white" value="1" readonly>
+                                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="taxiPassenger">+</button>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <span class="small fw-semibold">Koper / Bagasi</span>
+                                            <div class="input-group input-group-sm w-50">
+                                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="taxiLuggage">-</button>
+                                                <input type="text" id="taxiLuggage" class="form-control text-center fw-bold bg-white" value="1" readonly>
+                                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="taxiLuggage">+</button>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- TOMBOL PENCARIAN -->
+                            <button type="submit" class="btn btn-primary btn-lg py-3 w-100 fw-bold rounded-pill shadow-sm">
+                                Cari Taksi <i class="bi bi-arrow-right ms-2"></i>
+                            </button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FITUR & KEUNGGULAN (Pengganti Section yang Dihapus) -->
+    <section class="py-5 bg-white">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold text-dark">Mengapa Memesan Transfer Bersama Kami?</h2>
+                <p class="text-muted">Keunggulan layanan taksi dan penjemputan eksekutif kami</p>
+            </div>
+            <div class="row g-4 text-center">
+                <div class="col-md-4">
+                    <div class="p-4 border border-light rounded-4 bg-light shadow-sm h-100">
+                        <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center shadow-sm mb-3" style="width: 70px; height: 70px;">
+                            <i class="bi bi-person-badge text-primary fs-2"></i>
+                        </div>
+                        <h5 class="fw-bold">Layanan Meet & Greet</h5>
+                        <p class="text-muted small">Supir kami akan menunggu di area kedatangan dengan papan nama Anda. Tidak perlu pusing mencari taksi.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 border border-light rounded-4 bg-light shadow-sm h-100">
+                        <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center shadow-sm mb-3" style="width: 70px; height: 70px;">
+                            <i class="bi bi-cash-stack text-primary fs-2"></i>
+                        </div>
+                        <h5 class="fw-bold">Harga Tetap Pasti</h5>
+                        <p class="text-muted small">Tarif sudah termasuk tol dan biaya parkir. Tidak ada argo tersembunyi atau biaya tambahan saat macet.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 border border-light rounded-4 bg-light shadow-sm h-100">
+                        <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center shadow-sm mb-3" style="width: 70px; height: 70px;">
+                            <i class="bi bi-clock-history text-primary fs-2"></i>
+                        </div>
+                        <h5 class="fw-bold">Bebas Tunggu Keterlambatan</h5>
+                        <p class="text-muted small">Kami memantau jadwal penerbangan Anda. Jika pesawat terlambat, waktu jemput otomatis disesuaikan gratis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 14. FOOTER -->
+    <footer id="footer" class="modern-footer pt-5 pb-4 scroll-reveal">
+        <div class="container py-4">
+            <div class="row g-5 mb-5">
+                <div class="col-lg-3 col-md-6">
+                    <a class="fw-bold fs-4 text-white d-flex align-items-center gap-2 mb-3 text-decoration-none" href="#">
+                        <span class="text-white">TravelMeta</span>
+                    </a>
+                    <h6 class="mb-2">TravelMeta Travel Agency</h6>
+                    <p class="small mb-4 lh-sm">
+                        Skyline Plaza, 5th Floor, 123 Main Street<br>
+                        Los Angeles, CA 90001, USA
+                    </p>
+                    <div class="d-flex gap-2 mb-4">
+                        <a href="#" class="social-btn" title="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-btn" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="social-btn" title="YouTube"><i class="bi bi-youtube"></i></a>
+                        <a href="#" class="social-btn" title="Instagram"><i class="bi bi-instagram"></i></a>
+                    </div>
+                    <div class="d-flex gap-3 align-items-center">
+                        <div class="footer-badge-green">
+                            <span style="font-size: 0.45rem; line-height: 1.1;">Tripadvisor</span>
+                            <span style="font-size: 0.42rem; line-height: 1;">Travelers' Choice Award</span>
+                            <strong style="font-size: 0.65rem;">2026</strong>
+                        </div>
+                        <div class="footer-badge-red">
+                            <span style="font-size: 0.45rem; line-height: 1.1;">Condé Nast</span>
+                            <span style="font-size: 0.42rem; font-weight: 800; letter-spacing: 0.5px;">Traveler</span>
+                            <span style="font-size: 0.38rem; line-height: 1;">BEST CITY TOUR AWARD</span>
+                            <strong style="font-size: 0.65rem;">2025</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5>Explore</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2 m-0">
+                        <li><a href="#about" class="footer-link">About TravelMeta</a></li>
+                        <li><a href="#" class="footer-link">Health & Safety Measure</a></li>
+                        <li><a href="#" class="footer-link">Customize Tour</a></li>
+                        <li><a href="#offers" class="footer-link">Deals & Discount</a></li>
+                        <li><a href="#" class="footer-link">Last Minutes Deal</a></li>
+                        <li><a href="#" class="footer-link">Travel Inspirations</a></li>
+                        <li><a href="#footer" class="footer-link">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5>Useful</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2 m-0">
+                        <li><a href="#" class="footer-link">Flight Booking</a></li>
+                        <li><a href="#" class="footer-link">Visa Processing</a></li>
+                        <li><a href="#hotels" class="footer-link">Hotel Booking</a></li>
+                        <li><a href="#" class="footer-link">Transport</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5>Helpline</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2 m-0">
+                        <li><a href="#" class="footer-link">Help & Support</a></li>
+                        <li><a href="#" class="footer-link">FAQs</a></li>
+                        <li><a href="#" class="footer-link">Terms & Condition</a></li>
+                        <li><a href="#" class="footer-link">Affiliates</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-white text-dark rounded-4 p-3 px-4 mb-4 d-flex align-items-center justify-content-between flex-wrap gap-3 shadow-lg">
+                <span class="fw-bold fs-6 text-dark" style="letter-spacing: 0.5px;">We Accept:-</span>
+                <div class="d-flex align-items-center gap-3 fs-4 flex-wrap text-secondary">
+                    <i class="bi bi-credit-card-2-front text-dark" title="Mastercard"></i>
+                    <i class="bi bi-paypal text-primary" title="PayPal"></i>
+                    <i class="bi bi-credit-card text-dark" title="Visa"></i>
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">G Pay</span>
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">stripe</span>
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">paysafe</span>
+                    <i class="bi bi-apple text-dark" title="Apple Pay"></i>
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">adyen</span>
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">elavon</span>
+                </div>
+            </div>
+
+            <div class="small pt-3 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2" style="color: #9ca3af !important;">
+                <p class="mb-0">&copy; 2026 TravelMeta. All Rights Reserved.</p>
+                <p class="mb-0" style="font-size: 0.75rem; max-width: 600px; line-height: 1.6; color: #9ca3af !important;">
+                    All travel services are provided in accordance with applicable international travel regulations, airline policies, visa requirements, and local tourism laws, ensuring transparency, reliability, and compliance throughout your journey.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button id="backToTopBtn" class="btn btn-primary rounded-circle shadow-lg position-fixed bottom-0 end-0 m-4 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;" aria-label="Back to Top">
+        <i class="bi bi-arrow-up fs-5 text-white"></i>
+    </button>
+
+    <!-- UNIFIED REGIONAL SETTINGS MODAL (Dengan Sistem Tab) -->
+<div class="modal fade" id="regionalSettingsModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg mx-2 mx-sm-auto">
+        <div class="modal-content rounded-4 border-0 shadow-lg" style="max-height: 85vh;">
+            
+            <div class="modal-header border-0 py-3 pb-0 px-4 mt-2">
+                <h5 class="modal-title fw-bold text-dark"><i class="bi bi-sliders text-primary me-2"></i>Pengaturan Regional</h5>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+            </div>
+            
+            <!-- Isi Modal -->
+            <div class="modal-body p-4 pt-3">
+                
+                <!-- Nav Pills (Tab Pemisah Mata Uang & Bahasa) -->
+                <ul class="nav nav-pills nav-fill mb-4 p-1 bg-light rounded-pill border shadow-sm" id="regionalTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active rounded-pill fw-bold py-2" id="currency-tab" data-bs-toggle="pill" data-bs-target="#currency-tab-pane" type="button" role="tab">
+                            <i class="bi bi-coin text-warning me-1"></i> Mata Uang
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link rounded-pill fw-bold py-2" id="lang-tab" data-bs-toggle="pill" data-bs-target="#lang-tab-pane" type="button" role="tab">
+                            <i class="bi bi-globe text-info me-1"></i> Bahasa
+                        </button>
+                    </li>
+                </ul>
+
+                <!-- Konten Tab -->
+                <div class="tab-content" id="regionalTabsContent">
+                    
+                    <!-- TAB 1: MATA UANG -->
+                    <div class="tab-pane fade show active" id="currency-tab-pane" role="tabpanel" tabindex="0">
+                        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-2">
+                            <div class="col"><button class="btn btn-outline-primary active border-2 rounded-3 text-center currency-option w-100 fw-semibold py-2">USD ($)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">IDR (Rp)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">EUR (€)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">GBP (£)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">SGD (S$)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">JPY (¥)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">AUD (A$)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">CAD (C$)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">CNY (¥)</button></div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: BAHASA -->
+                    <div class="tab-pane fade" id="lang-tab-pane" role="tabpanel" tabindex="0">
+                        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-2">
+                            <div class="col"><button class="btn btn-outline-primary active border-2 rounded-3 text-center lang-option w-100 fw-semibold py-2">English (EN)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">Indonesia (ID)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">Español (ES)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">Français (FR)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">Deutsch (DE)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">日本語 (JA)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">中文 (ZH)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">العربية (AR)</button></div>
+                        </div>
+                    </div>
+
+                </div>
+                
+            </div>
+
+            <!-- Tombol Aksi di Bawah -->
+            <div class="modal-footer border-0 d-flex justify-content-center pb-4 pt-1">
+                <button type="button" class="btn btn-primary rounded-pill px-5 py-2 fw-bold shadow-sm" data-bs-dismiss="modal">Terapkan Pengaturan</button>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+    <!-- Contoh Mobile Bottom Navigation yang sudah diberi Class ID -->
+    <nav class="mobile-bottom-nav d-lg-none d-flex justify-content-between align-items-center py-2 position-fixed bottom-0 w-100 shadow-lg" style="z-index: 1075;">
+    
+    <a href="index.html" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-index">
+        <i class="bi bi-house-door nav-icon"></i>
+        <span class="nav-text">Home</span>
+    </a>
+
+    <a href="flights.html" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-flights">
+        <i class="bi bi-airplane nav-icon"></i>
+        <span class="nav-text">Flight</span>
+    </a>
+
+    <a href="hotels.html" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-hotels">
+        <i class="bi bi-building nav-icon"></i>
+        <span class="nav-text">Hotel</span>
+    </a>
+
+    <a href="#" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-tours">
+        <i class="bi bi-ticket-perforated nav-icon"></i>
+        <span class="nav-text">Tour</span>
+    </a>
+
+    <a href="#" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-visa">
+        <i class="bi bi-passport nav-icon"></i>
+        <span class="nav-text">Visa</span>
+    </a>
+    
+    </nav>
+
+    <!-- Bootstrap & Plugins -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+      <!-- Skrip Modular -->
+<script src="./src/js/main.js" defer></script>
+<script src="./src/js/taxi.js"></script>
+</body>
+</html>
