@@ -160,74 +160,78 @@
                     <div class="card border-0 p-4 bg-white shadow-lg rounded-4">
                         <h5 class="fw-bold text-dark mb-4"><i class="bi bi-taxi-front-fill text-primary me-2"></i>Pesan Taksi / Transfer</h5>
                         <form id="taxiSearchForm" action="/search-taxi">
-                            
-                            <!-- Pick-up Location -->
-                            <div class="mb-3">
-                                <div class="search-box-item px-3 py-2 rounded-3 border bg-white">
-                                    <div class="text-muted small mb-1"><i class="bi bi-geo-alt-fill text-primary me-1"></i> Lokasi Penjemputan</div>
-                                    <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent fs-6" placeholder="Bandara, Hotel, atau Alamat" required>
-                                </div>
-                            </div>
-                            
-                            <!-- Drop-off Location -->
-                            <div class="mb-3">
-                                <div class="search-box-item px-3 py-2 rounded-3 border bg-white">
-                                    <div class="text-muted small mb-1"><i class="bi bi-geo-alt text-danger me-1"></i> Lokasi Tujuan</div>
-                                    <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent fs-6" placeholder="Bandara, Hotel, atau Alamat" required>
-                                </div>
-                            </div>
+    
+    <!-- Area Input Lokasi (Dengan Tombol Swap) -->
+    <div class="position-relative mb-3 search-box-group">
+        <!-- Pick-up Location -->
+        <div class="search-box-item px-3 py-2 rounded-3 border bg-white mb-2">
+            <div class="text-muted small mb-1"><i class="bi bi-geo-alt-fill text-primary me-1"></i> Lokasi Penjemputan</div>
+            <input type="text" id="taxiPickup" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent fs-6 autocomplete-input" placeholder="Bandara, Hotel, atau Kota" required autocomplete="off">
+        </div>
+        
+        <!-- Swap Button -->
+        <button type="button" class="btn btn-white shadow-sm border rounded-circle position-absolute swap-inputs-btn" style="right: 20px; top: 50%; transform: translateY(-50%); z-index: 10; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;" title="Tukar Lokasi">
+            <i class="bi bi-arrow-down-up text-primary fw-bold"></i>
+        </button>
 
-                            <!-- Baris Tanggal & Waktu -->
-                            <div class="row g-2 mb-3">
-                                <div class="col-6">
-                                    <div class="search-box-item px-3 py-2 rounded-3 border bg-white cursor-pointer h-100">
-                                        <div class="text-muted small mb-1"><i class="bi bi-calendar-event text-primary me-1"></i> Tanggal</div>
-                                        <input type="text" id="taxiDate" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent fs-6" placeholder="Pilih tanggal" required>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="search-box-item px-3 py-2 rounded-3 border bg-white cursor-pointer h-100">
-                                        <div class="text-muted small mb-1"><i class="bi bi-clock text-primary me-1"></i> Waktu</div>
-                                        <input type="text" id="taxiTime" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent fs-6" placeholder="Pilih waktu" required>
-                                    </div>
-                                </div>
-                            </div>
+        <!-- Drop-off Location -->
+        <div class="search-box-item px-3 py-2 rounded-3 border bg-white">
+            <div class="text-muted small mb-1"><i class="bi bi-geo-alt text-danger me-1"></i> Lokasi Tujuan</div>
+            <input type="text" id="taxiDropoff" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent fs-6 autocomplete-input" placeholder="Bandara, Hotel, atau Kota" required autocomplete="off">
+        </div>
+    </div>
 
-                            <!-- Penumpang & Kendaraan -->
-                            <div class="mb-4">
-                                <div class="dropdown w-100">
-                                    <div class="search-box-item px-3 py-2 border rounded-3 bg-white cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                                        <div class="text-muted small mb-1"><i class="bi bi-people text-primary me-1"></i> Penumpang</div>
-                                        <div class="fw-bold small text-dark" id="taxiSummaryText">1 Penumpang, 1 Koper</div>
-                                    </div>
-                                    <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100">
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <span class="small fw-semibold">Penumpang</span>
-                                            <div class="input-group input-group-sm w-50">
-                                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="taxiPassenger">-</button>
-                                                <input type="text" id="taxiPassenger" class="form-control text-center fw-bold bg-white" value="1" readonly>
-                                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="taxiPassenger">+</button>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <span class="small fw-semibold">Koper / Bagasi</span>
-                                            <div class="input-group input-group-sm w-50">
-                                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="taxiLuggage">-</button>
-                                                <input type="text" id="taxiLuggage" class="form-control text-center fw-bold bg-white" value="1" readonly>
-                                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="taxiLuggage">+</button>
-                                            </div>
-                                        </div>
-                                        <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
-                                    </div>
-                                </div>
-                            </div>
+    <!-- Baris Tanggal & Waktu -->
+    <div class="row g-2 mb-3">
+        <div class="col-6">
+            <div class="search-box-item px-3 py-2 rounded-3 border bg-white cursor-pointer h-100">
+                <div class="text-muted small mb-1"><i class="bi bi-calendar-event text-primary me-1"></i> Tanggal</div>
+                <input type="text" id="taxiDate" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent fs-6" placeholder="Pilih tanggal" required>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="search-box-item px-3 py-2 rounded-3 border bg-white cursor-pointer h-100">
+                <div class="text-muted small mb-1"><i class="bi bi-clock text-primary me-1"></i> Waktu</div>
+                <input type="text" id="taxiTime" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent fs-6" placeholder="Pilih waktu" required>
+            </div>
+        </div>
+    </div>
 
-                            <!-- TOMBOL PENCARIAN -->
-                            <button type="submit" class="btn btn-primary btn-lg py-3 w-100 fw-bold rounded-pill shadow-sm">
-                                Cari Taksi <i class="bi bi-arrow-right ms-2"></i>
-                            </button>
+    <!-- Penumpang & Kendaraan -->
+    <div class="mb-4">
+        <div class="dropdown w-100">
+            <div class="search-box-item px-3 py-2 border rounded-3 bg-white cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                <div class="text-muted small mb-1"><i class="bi bi-people text-primary me-1"></i> Penumpang & Bagasi</div>
+                <div class="fw-bold small text-dark" id="taxiSummaryText">1 Penumpang, 1 Koper</div>
+            </div>
+            <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="small fw-semibold">Penumpang</span>
+                    <div class="input-group input-group-sm w-50">
+                        <button class="btn btn-outline-secondary decrease-count" type="button" data-target="taxiPassenger">-</button>
+                        <input type="text" id="taxiPassenger" class="form-control text-center fw-bold bg-white" value="1" readonly>
+                        <button class="btn btn-outline-secondary increase-count" type="button" data-target="taxiPassenger">+</button>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="small fw-semibold">Koper / Bagasi</span>
+                    <div class="input-group input-group-sm w-50">
+                        <button class="btn btn-outline-secondary decrease-count" type="button" data-target="taxiLuggage">-</button>
+                        <input type="text" id="taxiLuggage" class="form-control text-center fw-bold bg-white" value="1" readonly>
+                        <button class="btn btn-outline-secondary increase-count" type="button" data-target="taxiLuggage">+</button>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
+            </div>
+        </div>
+    </div>
 
-                        </form>
+    <!-- TOMBOL PENCARIAN -->
+    <button type="submit" class="btn btn-primary btn-lg py-3 w-100 fw-bold rounded-pill shadow-sm">
+        Cari Taksi <i class="bi bi-arrow-right ms-2"></i>
+    </button>
+
+</form>
                     </div>
                 </div>
             </div>
