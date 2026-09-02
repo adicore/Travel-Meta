@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 window.disqusLoaded = true;
 
                 var d = document, s = d.createElement('script');
-                s.src = 'https://travego.disqus.com/embed.js';
+                s.src = `https://${DisQusShortname}.disqus.com/embed.js`;
                 s.setAttribute('data-timestamp', +new Date());
                 
                 // Konfigurasi dinamis (opsional, sesuaikan dengan URL/Identifier halaman Anda)
@@ -35,4 +35,23 @@ document.addEventListener("DOMContentLoaded", function() {
 
             observer.observe(disqusSection);
         }
+
+        let countScriptLoaded = false;
+            
+            function loadDisqusCount() {
+                if (countScriptLoaded) return;
+                countScriptLoaded = true;
+                
+                var s = document.createElement('script');
+                s.id = 'dsq-count-scr';
+                s.src = `//${DisQusShortname}.disqus.com/count.js`;
+                s.async = true;
+                document.body.appendChild(s);
+            }
+
+            // Muat skrip count secara tertunda saat user mulai menggulir halaman
+            window.addEventListener('scroll', loadDisqusCount, { once: true });
+            
+            // Atau sebagai cadangan (fallback), muat otomatis setelah 4 detik jika user tidak melakukan scroll
+            setTimeout(loadDisqusCount, 4000);
     });
