@@ -139,8 +139,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // =========================================================================
-    // 3. AUTOCOMPLETE DESAIN KUSTOM (DIPERLEBAR) & SWAP INPUTS
+    // 3. AUTOCOMPLETE & INPUT SYNCHRONIZATION (UPDATE DESAIN LEBAR)
     // =========================================================================
+    const owOrigin = document.getElementById('flightOrigin'); // Menyesuaikan dengan ID di flights.html
+    const owDest = document.getElementById('flightDest');
+
     const setupTravelAutocomplete = (input) => {
         const listContainer = document.createElement('ul');
         listContainer.className = 'autocomplete-list-' + (input.id || Math.random());
@@ -153,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const rect = input.getBoundingClientRect();
             listContainer.style.top = (rect.bottom + window.scrollY) + 'px';
             listContainer.style.left = (rect.left + window.scrollX) + 'px';
-            // Memperlebar dropdown minimal 340px atau mengikuti lebar input
+            // Update: Memperlebar dropdown minimal 340px atau mengikuti lebar input
             listContainer.style.width = Math.max(rect.width, 340) + 'px';
         };
 
@@ -379,15 +382,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // =========================================================================
-    // 5. FLATPICKR LOADER & INISIALISASI (initFlatpickrElements)
+    // 5. FLATPICKR LOADER & INISIALISASI (DIPERBAIKI UNTUK MENCEGAH BUG BERTUMPUK)
     // =========================================================================
     let flatpickrLoaded = false;
+    let isFetchingFlatpickr = false; // Mencegah load ganda saat event mouseover & click berjalan bersamaan
 
-    const loadFlatpickr = () => {
+    const loadFlatpickr = (e) => {
+        // Cegah eksekusi jika input yang di-hover/diklik sudah memiliki kalender aktif
+        if (e && e.target && e.target._flatpickr) return;
+
         if (flatpickrLoaded) {
             if (typeof flatpickr !== 'undefined') initFlatpickrElements();
             return;
         }
+
+        // Kunci pengaman
+        if (isFetchingFlatpickr) return; 
+        isFetchingFlatpickr = true;
+        
         const link = document.createElement("link");
         link.rel = "stylesheet";
         link.href = "https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css";
@@ -397,7 +409,13 @@ document.addEventListener("DOMContentLoaded", () => {
         script.src = "https://cdn.jsdelivr.net/npm/flatpickr";
         script.onload = () => { 
             flatpickrLoaded = true;
+            isFetchingFlatpickr = false; // Lepas kunci
             initFlatpickrElements();
+            
+            // Buka kalender otomatis jika pemicunya adalah klik
+            if (e && (e.type === 'click' || e.type === 'focus') && e.target && e.target._flatpickr) {
+                e.target._flatpickr.open();
+            }
         };
         document.body.appendChild(script);
     };
@@ -406,7 +424,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const roundTripTabBtn = document.getElementById('roundTripTabBtn');
     const flightDepCol = document.getElementById('flightDepCol');
     const flightReturnCol = document.getElementById('flightReturnCol');
-    const flightTravelersCol = document.getElementById('flightTravelersCol');
 
     if (oneWayTabBtn && roundTripTabBtn && flightReturnCol) {
         oneWayTabBtn.addEventListener('click', () => {
@@ -431,6 +448,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const flightDepEl = document.getElementById('flightDepDate');
         const flightRetEl = document.getElementById('flightRetDate');
 
+        // Mencegah duplicate initialization dengan if (!element._flatpickr)
         if (flightDepEl && !flightDepEl._flatpickr) {
             flightDepEl.classList.remove("lazy-date");
             flatpickr(flightDepEl, {
@@ -451,18 +469,28 @@ document.addEventListener("DOMContentLoaded", () => {
             flatpickr(flightRetEl, commonDateConfig);
         }
 
-        // =========================================================================
-        // PENGAMAN ABSOLUT: Cabut ".lazy-date" agar Flatpickr tidak reset berulang!
-        // =========================================================================
+        // Pengaman Absolut Time Picker (meski tidak ada di halaman ini, mencegah error jika nanti ditambahkan)
+        document.querySelectorAll(".flatpickr-time").forEach(input => {
+            if (!input._flatpickr) {
+                flatpickr(input, { 
+                    enableTime: true, noCalendar: true, dateFormat: "H:i", time_24hr: true, 
+                    allowInput: !isMobile, defaultHour: 10, defaultMinute: 0, disableMobile: true 
+                });
+                input.classList.remove("flatpickr-time"); 
+            }
+        });
+
+        // Cabut class lazy-date untuk elemen multi-city dinamis
         document.querySelectorAll(".lazy-date").forEach(input => {
-            // Kita menghapus class lazy-date TEPAT SEBELUM fungsi flatpickr dijalankan.
-            // Hal ini memutus siklus duplikasi class pada input palsu yang dibuat plugin.
-            input.classList.remove("lazy-date");
-            flatpickr(input, commonDateConfig);
+            if (!input._flatpickr) { 
+                input.classList.remove("lazy-date");
+                flatpickr(input, commonDateConfig);
+            }
         });
     }
 
-    document.querySelectorAll(".lazy-date, .flatpickr-date").forEach(input => {
+    // Melampirkan event listener untuk lazy-loading pada semua elemen tanggal & waktu yang belum aktif
+    document.querySelectorAll(".lazy-date, .flatpickr-date, .flatpickr-time").forEach(input => {
         input.addEventListener("mouseover", loadFlatpickr);
         input.addEventListener("focus", loadFlatpickr);
         input.addEventListener("click", loadFlatpickr);
