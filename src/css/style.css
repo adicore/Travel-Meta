@@ -802,3 +802,28 @@ header.sticky-top {
 .car-card:hover .car-image-container img.main-car {
     transform: scale(1.06); /* Efek zoom halus saat card disentuh mouse */
 }
+.car-heart-btn {
+    width: 34px;
+    height: 34px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    transition: all 0.2s ease;
+    cursor: pointer; /* Mengubah kursor menjadi ikon tangan */
+    z-index: 10;     /* Memastikan tombol berada di lapisan paling atas */
+    position: absolute;
+}
+
+.car-heart-btn i {
+    pointer-events: none; /* Memastikan klik menembus ikon dan langsung mengenai tombol */
+}
+
+.car-heart-btn:hover {
+    background: #fef2f2;
+    color: #ef4444;
+    border-color: #fecaca;
+}
