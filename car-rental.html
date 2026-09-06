@@ -310,42 +310,72 @@
                 
                 <!-- CARD ITEM 1 -->
                 <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="card h-100 car-card rounded-4 overflow-hidden">
-                        <!-- Image Container -->
-                        <div class="position-relative car-image-container p-3">
-                            <button class="car-heart-btn position-absolute top-0 end-0 mt-3 me-3"><i class="bi bi-heart"></i></button>
-                            <!-- Image Mobil -->
-                            <img src="https://images.unsplash.com/photo-1617469165786-8007eda3caa7?auto=format&fit=crop&w=400&q=80" alt="Mercedes E-Class" class="img-fluid main-car">
-                            <!-- Provider Logo -->
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Sixt_logo.svg/200px-Sixt_logo.svg.png" alt="Sixt" class="position-absolute bottom-0 start-0 mb-3 ms-3" style="height: 18px;">
+    <div class="card h-100 car-card shadow-sm">
+        
+        <!-- Area Gambar & Badge -->
+        <div class="car-image-container p-3">
+            <span class="position-absolute top-0 start-0 mt-3 ms-3 car-badge-bestseller shadow-sm">BEST SELLER</span>
+            <button class="car-heart-btn position-absolute top-0 end-0 mt-3 me-3 shadow-sm"><i class="bi bi-heart"></i></button>
+            
+            <img src="https://images.unsplash.com/photo-1617469165786-8007eda3caa7?auto=format&fit=crop&w=400&q=80" alt="Mercedes E-Class" class="img-fluid main-car">
+            
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Sixt_logo.svg/200px-Sixt_logo.svg.png" alt="Sixt" class="position-absolute bottom-0 start-0 mb-3 ms-3" style="height: 16px; opacity: 0.85;">
+        </div>
+
+        <!-- Konten Card -->
+        <div class="card-body p-4 d-flex flex-column justify-content-between">
+            <div>
+                <div class="text-uppercase text-muted fw-semibold mb-1" style="font-size: 0.7rem; letter-spacing: 0.5px;">Heathrow Airport • LUXURY</div>
+                <h5 class="fw-bold text-dark mb-3 text-truncate" style="font-size: 1.05rem;">Mercedes-Benz E-Class <span class="fw-normal text-muted" style="font-size: 0.8rem;">or similar</span></h5>
+                
+                <!-- Fitur Mobil (Grid Kotak-Kotak Kecil yang Rapi) -->
+                <div class="row g-2 mb-3">
+                    <div class="col-6">
+                        <div class="car-feature-box d-flex align-items-center justify-content-center gap-1">
+                            <i class="bi bi-person text-secondary"></i> <span>4 Kursi</span>
                         </div>
-                        <!-- Card Body -->
-                        <div class="card-body p-4">
-                            <p class="text-muted small mb-1">Heathrow Airport • LUXURY</p>
-                            <h5 class="fw-bold text-dark mb-3 text-truncate" style="font-size: 1.1rem;">Mercedes-Benz E-Class <span class="fw-normal text-muted" style="font-size: 0.85rem;">or similar</span></h5>
-                            
-                            <!-- Features Grid -->
-                            <div class="row g-3 mb-4 car-features small fw-medium text-dark">
-                                <div class="col-6 d-flex align-items-center"><i class="bi bi-person me-2"></i> 4</div>
-                                <div class="col-6 d-flex align-items-center"><i class="bi bi-briefcase me-2"></i> 2</div>
-                                <div class="col-6 d-flex align-items-center"><i class="bi bi-gear me-2"></i> Auto</div>
-                                <div class="col-6 d-flex align-items-center"><i class="bi bi-speedometer2 me-2"></i> Unlmtd</div>
-                            </div>
-                            
-                            <!-- Rating -->
-                            <div class="d-flex align-items-center mb-2">
-                                <span class="car-rating-badge me-2">4.8</span>
-                                <span class="fw-bold text-dark small me-1">Exceptional</span>
-                                <span class="text-muted small" style="font-size: 0.75rem;">3,014 reviews</span>
-                            </div>
-                            
-                            <!-- Price -->
-                            <div class="fs-5 fw-bold text-dark mt-2">
-                                US$72 <span class="fw-normal text-muted" style="font-size: 0.85rem;">total</span>
-                            </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="car-feature-box d-flex align-items-center justify-content-center gap-1">
+                            <i class="bi bi-briefcase text-secondary"></i> <span>2 Koper</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="car-feature-box d-flex align-items-center justify-content-center gap-1">
+                            <i class="bi bi-gear text-secondary"></i> <span>Automatic</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="car-feature-box d-flex align-items-center justify-content-center gap-1">
+                            <i class="bi bi-speedometer2 text-secondary"></i> <span>Unlimited</span>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div>
+                <!-- Rating Section -->
+                <div class="d-flex align-items-center mb-3 pt-2 border-top">
+                    <span class="car-rating-badge me-2 shadow-sm">4.8</span>
+                    <div>
+                        <span class="fw-bold text-dark small d-block lh-1">Exceptional</span>
+                        <span class="text-muted" style="font-size: 0.7rem;">3,014 reviews</span>
+                    </div>
+                </div>
+                
+                <!-- Harga & Tombol -->
+                <div class="d-flex align-items-center justify-content-between pt-1">
+                    <div>
+                        <span class="text-muted small d-block lh-1 mb-1" style="font-size: 0.7rem;">Harga Total</span>
+                        <span class="fs-5 fw-extrabold text-primary">US$72</span>
+                    </div>
+                    <button class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-semibold shadow-none">Pilih Mobil</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 
                 <!-- CARD ITEM 2 -->
                 <div class="col-xl-3 col-lg-4 col-md-6">
