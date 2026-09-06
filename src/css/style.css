@@ -588,6 +588,29 @@ header.sticky-top {
 .hover-bg-light:hover { background-color: #f8f9fa; border-color: #dee2e6 !important; }
 .active-region { box-shadow: 0 0 0 1px #0d6efd; } /* Outline warna biru */
 
+/* STYLING KHUSUS BLOG ARTIKEL */
+        .article-content p {
+            line-height: 1.8;
+            color: #2d3748;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        .toc-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #0d6efd;
+        }
+        /* Sticky Sidebar Khusus Desktop */
+        @media (min-width: 992px) {
+            .sticky-sidebar {
+                position: sticky;
+                top: 90px;
+                z-index: 10;
+            }
+        }
+        .article-content img:nth-child(2n+1) {
+    display: none;
+}
+
 /* =========================================================================
    CUSTOM CSS: CAR RENTAL DESTINATIONS
 ========================================================================= */
