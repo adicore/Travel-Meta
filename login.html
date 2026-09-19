@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masuk ke TravelMeta</title>
+    <!-- Google Fonts: Plus Jakarta Sans & Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" fetchpriority="high">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin fetchpriority="high">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet" fetchpriority="high">
+    
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" fetchpriority="high">
+    
+    <!-- Bootstrap Icons CSS -->
+    <link rel="stylesheet" href="./src/css/bootstrap-icons.min.css" fetchpriority="low">
+
+    <!-- Global Style Tambahan Khusus Login -->
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #ffffff;
+        }
+        
+        .login-side-image {
+            background: linear-gradient(rgba(15, 23, 42, 0.2), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            position: relative;
+        }
+
+        .form-floating > .form-control:focus ~ label,
+        .form-floating > .form-control:not(:placeholder-shown) ~ label {
+            color: #2563eb;
+            font-weight: 600;
+        }
+
+        .form-control:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.15);
+        }
+
+        .btn-social {
+            border: 1px solid #e2e8f0;
+            background-color: #ffffff;
+            color: #475569;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-social:hover {
+            background-color: #f8fafc;
+            border-color: #cbd5e1;
+            color: #0f172a;
+        }
+
+        .password-toggle {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #64748b;
+            z-index: 10;
+        }
+
+        .password-toggle:hover {
+            color: #2563eb;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .divider:not(:empty)::before {
+            margin-right: .5em;
+        }
+
+        .divider:not(:empty)::after {
+            margin-left: .5em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container-fluid p-0">
+        <div class="row g-0 min-vh-100">
+            
+            <!-- KOLOM KIRI: GAMBAR (Sembunyi di Mobile) -->
+            <div class="col-lg-6 d-none d-lg-flex flex-column justify-content-between login-side-image p-5 text-white">
+                <div>
+                    <a href="index.html" class="text-white text-decoration-none d-inline-flex align-items-center gap-2 fw-bold fs-4">
+                        <div class="bg-primary text-white rounded-3 d-flex align-items-center justify-content-center" style="width: 35px; height: 35px;">
+                            <i class="bi bi-airplane-engines small"></i>
+                        </div>
+                        TravelMeta
+                    </a>
+                </div>
+                <div>
+                    <h2 class="display-5 fw-bold mb-3">Jelajahi Dunia Bersama Kami.</h2>
+                    <p class="fs-5 text-white-50 mb-0" style="max-width: 500px;">Temukan penerbangan termurah, hotel ternyaman, dan pengalaman wisata tak terlupakan di ujung jari Anda.</p>
+                </div>
+            </div>
+
+            <!-- KOLOM KANAN: FORMULIR LOGIN -->
+            <div class="col-lg-6 d-flex align-items-center justify-content-center p-4 p-md-5">
+                <div class="w-100" style="max-width: 420px;">
+                    
+                    <!-- Header Mobile (Hanya tampil di HP) -->
+                    <div class="d-lg-none mb-5 text-center">
+                        <a href="index.html" class="text-dark text-decoration-none d-inline-flex align-items-center gap-2 fw-bold fs-3">
+                            <div class="bg-primary text-white rounded-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                <i class="bi bi-airplane-engines fs-5"></i>
+                            </div>
+                            TravelMeta
+                        </a>
+                    </div>
+
+                    <!-- Judul Form -->
+                    <div class="mb-5">
+                        <h3 class="fw-bold text-dark mb-2">Selamat Datang Kembali! 👋</h3>
+                        <p class="text-secondary small">Silakan masukkan detail akun Anda untuk melanjutkan perjalanan.</p>
+                    </div>
+
+                    <!-- Formulir Login -->
+                    <form id="loginForm">
+                        
+                        <!-- Input Email -->
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control rounded-4" id="floatingEmail" placeholder="name@example.com" required>
+                            <label for="floatingEmail" class="text-muted"><i class="bi bi-envelope me-2"></i>Alamat Email</label>
+                        </div>
+
+                        <!-- Input Password -->
+                        <div class="form-floating mb-3 position-relative">
+                            <input type="password" class="form-control rounded-4" id="floatingPassword" placeholder="Password" required>
+                            <label for="floatingPassword" class="text-muted"><i class="bi bi-lock me-2"></i>Kata Sandi</label>
+                            <i class="bi bi-eye-slash password-toggle fs-5" id="togglePassword" title="Tampilkan Sandi"></i>
+                        </div>
+
+                        <!-- Opsi Tambahan -->
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input shadow-none" type="checkbox" id="rememberMe">
+                                <label class="form-check-label small text-secondary" for="rememberMe">
+                                    Ingat saya
+                                </label>
+                            </div>
+                            <a href="#" class="text-primary small fw-semibold text-decoration-none">Lupa sandi?</a>
+                        </div>
+
+                        <!-- Tombol Login -->
+                        <button type="submit" class="btn btn-primary w-100 py-3 rounded-pill fw-bold shadow-sm mb-4">
+                            Masuk Sekarang
+                        </button>
+
+                        <!-- Divider -->
+                        <div class="divider mb-4">Atau masuk dengan</div>
+
+                        <!-- Tombol Sosial Media -->
+                        <div class="d-flex gap-3 mb-5">
+                            <button type="button" class="btn btn-social w-100 py-2 rounded-pill d-flex align-items-center justify-content-center gap-2">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" width="18" alt="Google"> Google
+                            </button>
+                            <button type="button" class="btn btn-social w-100 py-2 rounded-pill d-flex align-items-center justify-content-center gap-2">
+                                <i class="bi bi-facebook text-primary fs-5"></i> Facebook
+                            </button>
+                        </div>
+
+                        <!-- Link Daftar -->
+                        <p class="text-center text-secondary small mb-0">
+                            Belum punya akun? <a href="#" class="text-primary fw-bold text-decoration-none">Daftar di sini</a>
+                        </p>
+
+                        <!-- Back to Home -->
+                        <div class="text-center mt-4">
+                            <a href="index.html" class="text-muted small text-decoration-none hover-text-primary">
+                                <i class="bi bi-arrow-left me-1"></i> Kembali ke Beranda
+                            </a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script JavaScript untuk Fitur Toggle Password -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('floatingPassword');
+
+            togglePassword.addEventListener('click', function () {
+                // Toggle type attribute
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                
+                // Toggle icon
+                this.classList.toggle('bi-eye');
+                this.classList.toggle('bi-eye-slash');
+            });
+        });
+    </script>
+</body>
+</html>
