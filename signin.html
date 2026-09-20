@@ -310,6 +310,16 @@
                         body: JSON.stringify({ email, password, totp_code })
                     });
                     const data = await res.json();
+                    if (data.success) {
+    // 1. SIMPAN TOKEN KE COOKIE BROWSER (Sangat Penting!)
+    // Ganti 'session_token' dengan nama cookie yang dibaca oleh backend Anda
+    document.cookie = `session_token=${data.token}; path=/; max-age=86400; SameSite=Lax; Secure`;
+    
+    // 2. Muat ulang halaman agar masuk ke dashboard
+    window.location.href = "/";
+} else {
+    alert("Login gagal: " + data.error);
+}
                     
                     if (!res.ok) throw new Error(data.error || 'Gagal login. Periksa kembali kredensial Anda.');
 
