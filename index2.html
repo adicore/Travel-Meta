@@ -1478,7 +1478,13 @@
         <div class="modal-content rounded-4 border-0 shadow-lg" style="max-height: 85vh;">
             
             <div class="modal-header border-0 py-3 pb-0 px-4 mt-2">
-                <h5 class="modal-title fw-bold text-dark"><i class="bi bi-sliders text-primary me-2"></i>Pengaturan Regional</h5>
+                <div class="d-flex align-items-center gap-3">
+                    <span class="modal-icon-badge"><i class="bi bi-globe-americas"></i></span>
+                    <div>
+                        <h5 class="modal-title fw-bold text-dark mb-0">Pengaturan Regional</h5>
+                        <p class="regional-subtitle text-muted mb-0">Pilih mata uang dan bahasa yang sesuai untuk Anda</p>
+                    </div>
+                </div>
                 <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
             </div>
             
@@ -1489,12 +1495,12 @@
                 <ul class="nav nav-pills nav-fill mb-4 p-1 bg-light rounded-pill border shadow-sm" id="regionalTabs" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active rounded-pill fw-bold py-2" id="currency-tab" data-bs-toggle="pill" data-bs-target="#currency-tab-pane" type="button" role="tab">
-                            <i class="bi bi-coin text-warning me-1"></i> Mata Uang
+                            <i class="bi bi-coin me-1"></i> Mata Uang
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link rounded-pill fw-bold py-2" id="lang-tab" data-bs-toggle="pill" data-bs-target="#lang-tab-pane" type="button" role="tab">
-                            <i class="bi bi-globe text-info me-1"></i> Bahasa
+                            <i class="bi bi-globe me-1"></i> Bahasa
                         </button>
                     </li>
                 </ul>
@@ -1504,30 +1510,42 @@
                     
                     <!-- TAB 1: MATA UANG -->
                     <div class="tab-pane fade show active" id="currency-tab-pane" role="tabpanel" tabindex="0">
-                        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-2">
-                            <div class="col"><button class="btn btn-outline-primary active border-2 rounded-3 text-center currency-option w-100 fw-semibold py-2">USD ($)</button></div>
-                            <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">IDR (Rp)</button></div>
-                            <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">EUR (€)</button></div>
-                            <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">GBP (£)</button></div>
-                            <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">SGD (S$)</button></div>
-                            <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">JPY (¥)</button></div>
-                            <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">AUD (A$)</button></div>
-                            <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">CAD (C$)</button></div>
-                            <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">CNY (¥)</button></div>
+
+                        <span class="region-group-label d-block">Populer</span>
+                        <div class="row row-cols-2 row-cols-sm-2 g-2 mb-4">
+                            <div class="col"><button class="btn region-option active currency-option w-100"><img src="https://flagcdn.com/w40/us.png" class="region-flag" alt=""><span class="region-label">USD ($)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option currency-option w-100"><img src="https://flagcdn.com/w40/id.png" class="region-flag" alt=""><span class="region-label">IDR (Rp)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option currency-option w-100"><img src="https://flagcdn.com/w40/eu.png" class="region-flag" alt=""><span class="region-label">EUR (€)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option currency-option w-100"><img src="https://flagcdn.com/w40/gb.png" class="region-flag" alt=""><span class="region-label">GBP (£)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                        </div>
+
+                        <span class="region-group-label d-block">Lainnya</span>
+                        <div class="row row-cols-2 row-cols-sm-2 g-2">
+                            <div class="col"><button class="btn region-option currency-option w-100"><img src="https://flagcdn.com/w40/sg.png" class="region-flag" alt=""><span class="region-label">SGD (S$)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option currency-option w-100"><img src="https://flagcdn.com/w40/jp.png" class="region-flag" alt=""><span class="region-label">JPY (¥)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option currency-option w-100"><img src="https://flagcdn.com/w40/au.png" class="region-flag" alt=""><span class="region-label">AUD (A$)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option currency-option w-100"><img src="https://flagcdn.com/w40/ca.png" class="region-flag" alt=""><span class="region-label">CAD (C$)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option currency-option w-100"><img src="https://flagcdn.com/w40/cn.png" class="region-flag" alt=""><span class="region-label">CNY (¥)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
                         </div>
                     </div>
 
                     <!-- TAB 2: BAHASA -->
                     <div class="tab-pane fade" id="lang-tab-pane" role="tabpanel" tabindex="0">
-                        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-2">
-                            <div class="col"><button class="btn btn-outline-primary active border-2 rounded-3 text-center lang-option w-100 fw-semibold py-2">English (EN)</button></div>
-                            <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">Indonesia (ID)</button></div>
-                            <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">Español (ES)</button></div>
-                            <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">Français (FR)</button></div>
-                            <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">Deutsch (DE)</button></div>
-                            <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">日本語 (JA)</button></div>
-                            <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">中文 (ZH)</button></div>
-                            <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">العربية (AR)</button></div>
+
+                        <span class="region-group-label d-block">Populer</span>
+                        <div class="row row-cols-2 row-cols-sm-2 g-2 mb-4">
+                            <div class="col"><button class="btn region-option active lang-option w-100"><img src="https://flagcdn.com/w40/gb.png" class="region-flag" alt=""><span class="region-label">English (EN)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option lang-option w-100"><img src="https://flagcdn.com/w40/id.png" class="region-flag" alt=""><span class="region-label">Indonesia (ID)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option lang-option w-100"><img src="https://flagcdn.com/w40/es.png" class="region-flag" alt=""><span class="region-label">Español (ES)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option lang-option w-100"><img src="https://flagcdn.com/w40/fr.png" class="region-flag" alt=""><span class="region-label">Français (FR)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                        </div>
+
+                        <span class="region-group-label d-block">Lainnya</span>
+                        <div class="row row-cols-2 row-cols-sm-2 g-2">
+                            <div class="col"><button class="btn region-option lang-option w-100"><img src="https://flagcdn.com/w40/de.png" class="region-flag" alt=""><span class="region-label">Deutsch (DE)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option lang-option w-100"><img src="https://flagcdn.com/w40/jp.png" class="region-flag" alt=""><span class="region-label">日本語 (JA)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option lang-option w-100"><img src="https://flagcdn.com/w40/cn.png" class="region-flag" alt=""><span class="region-label">中文 (ZH)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option lang-option w-100"><img src="https://flagcdn.com/w40/sa.png" class="region-flag" alt=""><span class="region-label">العربية (AR)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
                         </div>
                     </div>
 
@@ -1537,7 +1555,7 @@
 
             <!-- Tombol Aksi di Bawah -->
             <div class="modal-footer border-0 d-flex justify-content-center pb-4 pt-1">
-                <button type="button" class="btn btn-primary rounded-pill px-5 py-2 fw-bold shadow-sm" data-bs-dismiss="modal">Terapkan Pengaturan</button>
+                <button type="button" class="btn btn-primary rounded-pill px-5 py-2 fw-bold shadow-sm" data-bs-dismiss="modal"><i class="bi bi-check2-circle me-1"></i> Terapkan Pengaturan</button>
             </div>
             
         </div>

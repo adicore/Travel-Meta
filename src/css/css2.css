@@ -246,7 +246,7 @@ img, video, iframe, canvas {
         .image-shimmer-effect:hover img.lazyloaded { transform: scale(1.06); filter: brightness(1.03); }
 
         a { transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); }
-        a:hover, a:focus { color: #38bdf8 !important; transform: translateX(2px); }
+        a:hover, a:focus { color: #1d4ed8 !important; transform: translateX(2px); }
 
         .card-hover { transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); box-shadow: var(--card-shadow); border: 1px solid rgba(226, 232, 240, 0.8); overflow: hidden; }
         .card-hover:hover { transform: translateY(-6px); box-shadow: var(--card-hover-shadow)!important; border-color: rgba(59, 130, 246, 0.3); }
@@ -961,13 +961,13 @@ header.sticky-top {
 .footer-link { display: inline-flex; align-items: center; }
 .footer-link::before {
     content: '→'; display: inline-block; width: 0; overflow: hidden; opacity: 0;
-    color: #38bdf8; transition: all .25s ease;
+    color: #3b82f6; transition: all .25s ease;
 }
 .footer-link:hover::before { width: 15px; opacity: 1; }
 .footer-link:hover { color: #ffffff !important; transform: translateX(0); }
 
-.social-btn { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); }
-.social-btn:hover { background: linear-gradient(135deg,#2563eb,#38bdf8); box-shadow: 0 10px 20px rgba(37,99,235,.35); }
+.social-btn { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); color: #ffffff !important; }
+.social-btn:hover { background: linear-gradient(135deg,#2563eb,#1d4ed8); box-shadow: 0 10px 20px rgba(37,99,235,.35); color: #ffffff !important; transform: translateY(-3px) scale(1.08); }
 
 .footer-badge-green, .footer-badge-red {
     border: 3px solid rgba(255,255,255,.14);
@@ -990,3 +990,41 @@ header.sticky-top {
 @media (max-width: 767.98px) {
     .modern-footer::after { width: 300px; height: 300px; top: -100px; right: -100px; }
 }
+/* ============================================================
+   REDESIGN — PENGATURAN REGIONAL (Currency & Language Modal)
+   ============================================================ */
+.modal-icon-badge {
+    width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 1.15rem;
+}
+.regional-subtitle { font-size: .82rem; }
+
+#regionalTabs .nav-link { color: #475569; }
+#regionalTabs .nav-link.active {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
+    color: #fff !important; box-shadow: 0 8px 18px rgba(37, 99, 235, .3);
+}
+
+.region-group-label {
+    font-size: .72rem; text-transform: uppercase; letter-spacing: .6px;
+    color: #94a3b8; font-weight: 800; margin-bottom: 10px;
+}
+
+.region-option {
+    display: flex; align-items: center; gap: 10px; text-align: left;
+    border: 1.5px solid #e2e8f0; background: #fff; border-radius: 14px;
+    padding: 10px 14px; transition: all .25s ease;
+}
+.region-option:hover { border-color: #93c5fd; background: #f8fafc; transform: none; }
+.region-option.active { border-color: #2563eb; background: #eff6ff; box-shadow: 0 6px 14px rgba(37, 99, 235, .15); }
+
+.region-flag {
+    width: 24px; height: 18px; object-fit: cover; border-radius: 4px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.08); flex-shrink: 0;
+}
+.region-label { flex: 1; font-size: .85rem; font-weight: 700; color: #1e293b; }
+
+.option-check { color: #2563eb; opacity: 0; font-size: 1rem; transition: opacity .2s ease; }
+.region-option.active .option-check { opacity: 1; }
