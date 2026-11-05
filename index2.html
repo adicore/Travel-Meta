@@ -143,15 +143,19 @@
 
     <!-- 3. HERO SLIDER -->
     <div id="heroSlider" class="carousel slide hero-carousel scroll-reveal" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        </div>
         <div class="carousel-inner h-100">
             <div class="carousel-item active h-100">
                 <div class="image-shimmer-effect">
                     <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80" width="1920" height="620" class="d-block w-100 h-100 lazyload lazy-effect" alt="Paradise Beach" fetchpriority="high">
                 </div>
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center h-100 top-0 start-0 w-100 container z-2 px-3">
-                    <span class="badge bg-primary bg-opacity-75 backdrop-blur mb-3 px-3 py-2 rounded-pill fw-semibold shadow-sm">Eksplorasi Dunia</span>
-                    <h1 class="hero-title text-white text-center mb-3 w-100" style="max-width: 900px;">Temukan Harga Tiket & Hotel Termurah</h1>
-                    <p class="hero-subtitle text-white-50 text-center w-100" style="max-width: 700px;">Bandingkan penawaran dari ratusan situs travel secara instan.</p>
+                    <span class="hero-badge mb-3"><i class="bi bi-compass"></i> Eksplorasi Dunia</span>
+                    <h1 class="hero-title text-white text-center mb-2 w-100 mx-auto" style="max-width: 900px;">Temukan Harga Tiket & Hotel Termurah</h1>
+                    <p class="hero-subtitle text-center w-100 mx-auto mb-0" style="max-width: 700px;">Bandingkan penawaran dari ratusan situs travel secara instan.</p>
                 </div>
             </div>
             <div class="carousel-item h-100">
@@ -159,14 +163,14 @@
                     <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1920&q=80" width="1920" height="620" class="d-block w-100 h-100 lazyload lazy-effect" alt="Mountain View" fetchpriority="low">
                 </div>
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center h-100 top-0 start-0 w-100 container z-2 px-3">
-                    <span class="badge bg-success bg-opacity-75 backdrop-blur mb-3 px-3 py-2 rounded-pill fw-semibold shadow-sm">Petualangan Baru</span>
-                    <h1 class="hero-title text-white text-center mb-3 w-100" style="max-width: 900px;">Liburan Impian Tanpa Bikin Kantong Bolong</h1>
-                    <p class="hero-subtitle text-white-50 text-center w-100" style="max-width: 700px;">Nikmati diskon eksklusif tur, rental mobil, dan reservasi hotel global.</p>
+                    <span class="hero-badge mb-3"><i class="bi bi-stars"></i> Petualangan Baru</span>
+                    <h1 class="hero-title text-white text-center mb-2 w-100 mx-auto" style="max-width: 900px;">Liburan Impian Tanpa Bikin Kantong Bolong</h1>
+                    <p class="hero-subtitle text-center w-100 mx-auto mb-0" style="max-width: 700px;">Nikmati diskon eksklusif tur, rental mobil, dan reservasi hotel global.</p>
                 </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#heroSlider" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
-        <button class="carousel-control-next" type="button" data-bs-target="#heroSlider" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroSlider" data-bs-slide="prev" aria-label="Sebelumnya"><span class="carousel-control-prev-icon"></span></button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroSlider" data-bs-slide="next" aria-label="Berikutnya"><span class="carousel-control-next-icon"></span></button>
     </div>
 
     <!-- 4. ADVANCED SEARCH BOX WIDGET -->
