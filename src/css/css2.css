@@ -1123,3 +1123,17 @@ header.sticky-top {
     #heroSlider .hero-subtitle { font-size: .88rem; }
     .search-card .search-box-item { min-height: 64px !important; }
 }
+
+
+/* ============================================================
+   STICKY HEADER — menempel saat digulir, normal kembali di puncak
+   ============================================================ */
+/* Penyebab sticky tidak jalan: overflow-x:hidden pada html/body membuat body
+   menjadi scroll container. 'clip' tetap mencegah geser horizontal tanpa itu. */
+html, body { overflow-x: clip !important; overflow-y: visible !important; }
+
+header.sticky-top { transition: box-shadow .3s ease, background-color .3s ease; }
+header.sticky-top.is-stuck { box-shadow: 0 10px 28px rgba(15, 23, 42, .14) !important; }
+
+/* Anchor (#offers, #hotels, dll.) tidak tertutup header yang menempel */
+html { scroll-padding-top: 90px; }

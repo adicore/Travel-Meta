@@ -1602,5 +1602,33 @@
       <!-- Skrip Modular -->
 <script src="./src/js/main.js" defer></script>
 <script src="./src/js/index2.js" defer></script>
+<!-- STICKY HEADER: menempel saat digulir, kembali normal di puncak halaman -->
+<script>
+(function () {
+    var header = document.querySelector('header.sticky-top');
+    if (!header) return;
+    var topbar = header.querySelector(':scope > div.border-bottom');
+    var ticking = false;
+
+    function measure() {
+        // Top bar ikut tergulir pergi; navbar utama yang menempel (tanpa lompatan layout)
+        var h = topbar ? topbar.offsetHeight : 0;
+        header.style.top = (-h) + 'px';
+        return h;
+    }
+    function update() {
+        var h = measure();
+        header.classList.toggle('is-stuck', window.scrollY > h + 4);
+        ticking = false;
+    }
+    function onScroll() {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    window.addEventListener('load', update);
+    update();
+})();
+</script>
 </body>
 </html>
