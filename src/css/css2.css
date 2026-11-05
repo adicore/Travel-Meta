@@ -1299,3 +1299,74 @@ html { scroll-padding-top: 90px; }
     .about-trust { grid-template-columns: 1fr; }
     .about-trust-cell + .about-trust-cell { border-left: 0; border-top: 1px solid #e2e8f0; }
 }
+
+
+/* ============================================================
+   REDESIGN — TRAVEL TIPS & INSPIRATIONS (scoped: .tip-*)
+   ============================================================ */
+.section-link-outline {
+    display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: .88rem; padding: 10px 22px;
+    border-radius: 50px; background: #fff; color: #0f172a !important; border: 1.5px solid #cbd5e1; transition: all .3s ease;
+}
+.section-link-outline:hover { background: #1d4ed8; border-color: #1d4ed8; color: #fff !important; transform: translateY(-2px); }
+
+.tip-card {
+    position: relative; overflow: hidden; border-radius: 1.5rem; background: #fff; border: 1px solid #e2e8f0;
+    box-shadow: 0 14px 30px -16px rgba(15, 23, 42, .25);
+    transition: transform .4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow .4s ease;
+}
+.tip-card:hover { transform: translateY(-6px); box-shadow: 0 28px 48px -20px rgba(15, 23, 42, .35); }
+.tip-card .image-shimmer-effect { width: 100%; height: 100%; }
+.tip-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .7s ease; }
+.tip-card:hover img { transform: scale(1.07); }
+
+.tip-chip {
+    position: absolute; top: 16px; left: 16px; z-index: 3; display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,.95); color: #0f172a; font-size: .76rem; font-weight: 700; padding: 6px 14px; border-radius: 50px;
+    box-shadow: 0 6px 16px rgba(0,0,0,.15);
+}
+.tip-chip i { color: #2563eb; }
+
+.tip-title { font-weight: 800; line-height: 1.35; letter-spacing: -.2px; margin: 0 0 .6rem; }
+.tip-text { margin: 0 0 1rem; line-height: 1.65; font-size: .9rem; }
+
+.tip-link { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: .88rem; text-decoration: none; }
+.tip-arrow {
+    width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+    font-size: .85rem; transition: all .3s ease;
+}
+.tip-link:hover .tip-arrow { transform: translateX(4px); }
+
+/* Kartu utama (featured) */
+.tip-featured { min-height: 480px; height: 100%; border: 0; }
+.tip-featured .image-shimmer-effect { position: absolute; inset: 0; }
+.tip-featured::after {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(180deg, rgba(15,23,42,.05) 30%, rgba(15,23,42,.9) 100%);
+}
+.tip-featured-body { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 2rem; }
+.tip-featured .tip-title { font-size: clamp(1.35rem, 2.4vw, 1.75rem); color: #fff; -webkit-text-fill-color: #fff; background: none; }
+.tip-featured .tip-text { color: rgba(255,255,255,.82); max-width: 520px; }
+.tip-featured .tip-link { color: #fff !important; }
+.tip-featured .tip-link:hover { color: #fff !important; transform: none; }
+.tip-featured .tip-arrow { background: #fff; color: #1d4ed8; }
+
+/* Kartu samping (horizontal) */
+.tip-side { display: flex; flex: 1 1 0; min-height: 220px; }
+.tip-side .tip-media { position: relative; flex: 0 0 42%; min-height: 100%; overflow: hidden; }
+.tip-side .tip-body { flex: 1; padding: 1.5rem; display: flex; flex-direction: column; justify-content: center; }
+.tip-side .tip-title { font-size: 1.08rem; color: #0f172a; }
+.tip-side .tip-text { color: #64748b; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.tip-side .tip-link { color: #1d4ed8; }
+.tip-side .tip-link:hover { transform: none; }
+.tip-side .tip-arrow { background: #eff6ff; color: #1d4ed8; }
+.tip-side .tip-link:hover .tip-arrow { background: #1d4ed8; color: #fff; }
+.tip-side .tip-chip { top: 12px; left: 12px; font-size: .7rem; padding: 5px 11px; }
+
+@media (max-width: 991.98px) { .tip-featured { min-height: 420px; } }
+@media (max-width: 575.98px) {
+    .tip-featured { min-height: 400px; }
+    .tip-featured-body { padding: 1.5rem; }
+    .tip-side { flex-direction: column; }
+    .tip-side .tip-media { flex: 0 0 200px; min-height: 200px; }
+}
