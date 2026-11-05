@@ -1232,37 +1232,76 @@
 
     <!-- 11. SECTION: DOWNLOAD MOBILE APP -->
     <section class="container py-5 my-4 scroll-reveal">
-        <div class="rounded-5 p-4 p-lg-5 position-relative overflow-hidden text-dark shadow-lg border" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);">
-            <div class="row align-items-center">
-                <div class="col-lg-7 py-4">
-                    <span class="badge bg-success text-white px-3 py-2 rounded-pill fw-semibold mb-3">Aplikasi Mobile Terbaik</span>
-                    <h1 class="display-5 text-dark mb-3" style="letter-spacing: -1px;">Download Mobile App</h1>
-                    <p class="text-secondary mb-4 lead fs-6" style="max-width: 500px; line-height: 1.7;">
+        <div class="app-promo position-relative overflow-hidden">
+            <div class="row align-items-center g-4 position-relative" style="z-index: 2;">
+                <div class="col-lg-7">
+                    <span class="app-kicker mb-3"><i class="bi bi-phone-fill"></i> Aplikasi Mobile Terbaik</span>
+                    <h2 class="app-title mb-3">Download Mobile App</h2>
+                    <p class="app-lead mb-4">
                         Our community users and app download almost <strong>2M+</strong> in world-wide.
                     </p>
+
+                    <ul class="app-features list-unstyled mb-4">
+                        <li><span class="app-feature-icon"><i class="bi bi-lightning-charge-fill"></i></span> Pesan tiket &amp; hotel hanya dalam hitungan detik</li>
+                        <li><span class="app-feature-icon"><i class="bi bi-bell-fill"></i></span> Notifikasi harga turun &amp; promo eksklusif</li>
+                        <li><span class="app-feature-icon"><i class="bi bi-shield-check"></i></span> Pembayaran aman &amp; e-ticket selalu di genggaman</li>
+                    </ul>
+
                     <div class="d-flex align-items-center gap-3 mb-4 flex-wrap">
-                        <a href="#" class="d-inline-block text-decoration-none">
+                        <a href="#" class="app-store-btn d-inline-block text-decoration-none">
                             <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" width="135" height="46" class="lazyload lazy-effect" alt="App Store" fetchpriority="low">
                         </a>
-                        <a href="#" class="d-inline-block text-decoration-none">
+                        <a href="#" class="app-store-btn d-inline-block text-decoration-none">
                             <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" width="155" height="46" class="lazyload lazy-effect" alt="Google Play" fetchpriority="low">
                         </a>
                     </div>
-                    <div class="d-flex align-items-center gap-2 text-dark small fw-bold bg-white d-inline-flex px-3 py-2 rounded-pill shadow-sm">
-                        <span class="text-warning fs-6">★ 4.9</span>
-                        <span>12,300+ verified review TravelMeta app</span>
+
+                    <div class="app-stats d-flex align-items-center flex-wrap gap-3 gap-sm-4">
+                        <div>
+                            <div class="app-stat-value"><i class="bi bi-star-fill text-warning me-1"></i>4.9</div>
+                            <div class="app-stat-label">12,300+ verified review TravelMeta app</div>
+                        </div>
+                        <span class="app-stat-divider d-none d-sm-block"></span>
+                        <div>
+                            <div class="app-stat-value">2M+</div>
+                            <div class="app-stat-label">Pengguna aktif</div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-5 text-center position-relative d-none d-lg-block">
-                    <div class="position-relative" style="height: 320px;">
-                        <div class="image-shimmer-effect rounded-4 shadow-lg position-absolute end-0 top-0 border border-white border-3" style="width: 250px; height: 340px; transform: rotate(4deg);">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=500&q=80" width="500" height="680" class="rounded-4 lazyload lazy-effect" alt="Mobile App" fetchpriority="low">
+
+                <div class="col-lg-5 d-none d-lg-block">
+                    <div class="app-phone-stage position-relative">
+                        <div class="app-phone">
+                            <div class="app-phone-notch"></div>
+                            <div class="app-screen">
+                                <div class="app-screen-head">
+                                    <div>
+                                        <small>Halo, Traveler</small>
+                                        <strong>Mau ke mana hari ini?</strong>
+                                    </div>
+                                    <span class="app-screen-avatar"><i class="bi bi-person-fill"></i></span>
+                                </div>
+                                <div class="app-screen-search"><i class="bi bi-search"></i> Cari destinasi, hotel, tiket</div>
+                                <div class="app-screen-card">
+                                    <span class="app-screen-tag">Round-Trip</span>
+                                    <div class="app-screen-route">JKT <i class="bi bi-airplane-engines"></i> DPS</div>
+                                    <div class="app-screen-price">Mulai dari <b>$89</b></div>
+                                </div>
+                                <div class="app-screen-row">
+                                    <div class="app-screen-mini"><i class="bi bi-building"></i><span>Hotel</span></div>
+                                    <div class="app-screen-mini"><i class="bi bi-geo-alt"></i><span>Tur</span></div>
+                                    <div class="app-screen-mini"><i class="bi bi-car-front"></i><span>Mobil</span></div>
+                                </div>
+                                <div class="app-screen-nav">
+                                    <i class="bi bi-house-door-fill active"></i><i class="bi bi-heart"></i><i class="bi bi-ticket-perforated"></i><i class="bi bi-person"></i>
+                                </div>
+                            </div>
                         </div>
-                        <div class="position-absolute bg-white rounded-pill px-4 py-2 shadow-sm small fw-bold text-dark d-flex align-items-center gap-2" style="top: 40px; left: 10px; z-index: 2;">
-                            <span class="text-warning">★ 4.9</span> Average rating
+                        <div class="app-float app-float-top">
+                            <span class="text-warning"><i class="bi bi-star-fill"></i> 4.9</span> Average rating
                         </div>
-                        <div class="position-absolute bg-white rounded-pill px-4 py-2 shadow-sm small fw-bold text-dark d-flex align-items-center gap-2" style="bottom: 40px; left: 0px; z-index: 2;">
-                            <span class="bg-success text-white rounded-circle p-1 small"><i class="bi bi-people-fill"></i></span> 2M active users.
+                        <div class="app-float app-float-bottom">
+                            <span class="app-float-icon"><i class="bi bi-people-fill"></i></span> 2M active users.
                         </div>
                     </div>
                 </div>

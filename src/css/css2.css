@@ -1137,3 +1137,78 @@ header.sticky-top.is-stuck { box-shadow: 0 10px 28px rgba(15, 23, 42, .14) !impo
 
 /* Anchor (#offers, #hotels, dll.) tidak tertutup header yang menempel */
 html { scroll-padding-top: 90px; }
+
+
+/* ============================================================
+   REDESIGN — DOWNLOAD MOBILE APP (scoped: .app-promo)
+   ============================================================ */
+.app-promo {
+    border-radius: 2rem; padding: clamp(1.75rem, 4vw, 3.5rem);
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 55%, #1d4ed8 100%);
+    box-shadow: 0 30px 60px -20px rgba(15, 23, 42, .5); color: #fff;
+}
+.app-promo::before, .app-promo::after { content: ''; position: absolute; border-radius: 50%; pointer-events: none; z-index: 1; }
+.app-promo::before { width: 420px; height: 420px; top: -180px; right: -120px; background: radial-gradient(circle, rgba(96,165,250,.35), transparent 70%); }
+.app-promo::after { width: 320px; height: 320px; bottom: -160px; left: -100px; background: radial-gradient(circle, rgba(255,255,255,.10), transparent 70%); }
+
+.app-kicker {
+    display: inline-flex; align-items: center; gap: 8px; padding: 7px 16px; border-radius: 50px;
+    font-size: .82rem; font-weight: 700; color: #fff;
+    background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.28);
+}
+.app-title { font-size: clamp(2rem, 4.2vw, 3rem); font-weight: 800; letter-spacing: -1px; color: #fff !important; -webkit-text-fill-color: #fff; background: none; }
+.app-lead { max-width: 480px; line-height: 1.7; color: rgba(255,255,255,.8); font-size: 1.02rem; }
+.app-lead strong { color: #fff; }
+
+.app-features li { display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,.92); font-size: .95rem; font-weight: 500; margin-bottom: 12px; }
+.app-feature-icon {
+    width: 32px; height: 32px; border-radius: 10px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,.14); color: #93c5fd; font-size: .95rem;
+}
+
+.app-store-btn { border-radius: 10px; transition: transform .3s ease, box-shadow .3s ease; box-shadow: 0 10px 22px rgba(0,0,0,.3); }
+.app-store-btn:hover { transform: translateY(-4px) !important; box-shadow: 0 16px 30px rgba(0,0,0,.4); }
+.app-store-btn img { display: block; }
+
+.app-stats { padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,.16); }
+.app-stat-value { font-size: 1.4rem; font-weight: 800; line-height: 1.1; color: #fff; }
+.app-stat-label { font-size: .8rem; color: rgba(255,255,255,.7); margin-top: 2px; }
+.app-stat-divider { width: 1px; height: 38px; background: rgba(255,255,255,.2); }
+
+/* Phone mockup (murni HTML/CSS) */
+.app-phone-stage { height: 440px; display: flex; align-items: center; justify-content: center; }
+.app-phone {
+    position: relative; width: 224px; height: 430px; border-radius: 34px; padding: 9px;
+    background: linear-gradient(160deg, #1e293b, #020617); transform: rotate(4deg);
+    box-shadow: 0 30px 60px rgba(0,0,0,.5), inset 0 0 0 2px rgba(255,255,255,.12);
+}
+.app-phone-notch { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 62px; height: 16px; background: #020617; border-radius: 20px; z-index: 3; }
+.app-screen { height: 100%; border-radius: 26px; background: #f8fafc; padding: 36px 14px 12px; display: flex; flex-direction: column; gap: 12px; overflow: hidden; color: #0f172a; }
+.app-screen-head { display: flex; justify-content: space-between; align-items: center; }
+.app-screen-head small { display: block; font-size: .62rem; color: #64748b; }
+.app-screen-head strong { font-size: .8rem; line-height: 1.2; display: block; }
+.app-screen-avatar { width: 28px; height: 28px; border-radius: 50%; background: #dbeafe; color: #1d4ed8; display: inline-flex; align-items: center; justify-content: center; font-size: .85rem; }
+.app-screen-search { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 9px 11px; font-size: .64rem; color: #94a3b8; display: flex; align-items: center; gap: 7px; }
+.app-screen-card { border-radius: 16px; padding: 14px; color: #fff; background: linear-gradient(135deg, #2563eb, #1d4ed8); box-shadow: 0 10px 20px rgba(37,99,235,.3); }
+.app-screen-tag { display: inline-block; font-size: .56rem; font-weight: 700; padding: 3px 9px; border-radius: 50px; background: rgba(255,255,255,.2); margin-bottom: 8px; }
+.app-screen-route { font-size: 1.05rem; font-weight: 800; letter-spacing: .5px; display: flex; align-items: center; gap: 8px; }
+.app-screen-price { font-size: .64rem; opacity: .9; margin-top: 4px; }
+.app-screen-price b { font-size: .9rem; }
+.app-screen-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.app-screen-mini { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 9px 4px; text-align: center; font-size: .58rem; font-weight: 600; color: #475569; }
+.app-screen-mini i { display: block; font-size: 1.05rem; color: #2563eb; margin-bottom: 3px; }
+.app-screen-nav { margin-top: auto; display: flex; justify-content: space-around; padding-top: 10px; border-top: 1px solid #e2e8f0; color: #94a3b8; font-size: 1.05rem; }
+.app-screen-nav .active { color: #2563eb; }
+
+.app-float {
+    position: absolute; z-index: 4; background: #fff; color: #0f172a; border-radius: 50px; padding: 9px 16px;
+    font-size: .8rem; font-weight: 700; display: flex; align-items: center; gap: 8px; box-shadow: 0 14px 30px rgba(0,0,0,.3);
+}
+.app-float-top { top: 60px; left: -6px; }
+.app-float-bottom { bottom: 56px; right: -4px; }
+.app-float-icon { width: 24px; height: 24px; border-radius: 50%; background: #16a34a; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: .7rem; }
+
+@media (max-width: 575.98px) {
+    .app-promo { border-radius: 1.5rem; }
+    .app-store-btn img { max-width: 100%; height: auto; }
+}
