@@ -400,3 +400,57 @@
 .cr-news-note { display: flex; align-items: flex-start; gap: 10px; font-size: .82rem; line-height: 1.5; color: #7c2d12; }
 .cr-news-note i { color: #ea580c; font-size: 1.15rem; margin-top: -1px; }
 @media (max-width: 575.98px) { .cr-news::before, .cr-news::after { display: none; } .cr-news-btn { padding: 0; width: 50px; } }
+
+
+/* ============================================================
+   CAR RENTAL — WARNA KOTAK PENCARIAN (biru → oranye/charcoal)
+   Hanya warna; struktur, ukuran, dan fungsi tidak diubah.
+   ============================================================ */
+.cr-hero .col-lg-6 > .card { position: relative; border: 1px solid rgba(255,255,255,.4) !important; box-shadow: 0 40px 70px -30px rgba(0,0,0,.7) !important; }
+.cr-hero .col-lg-6 > .card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; border-radius: 1rem 1rem 0 0; pointer-events: none;
+    background: linear-gradient(90deg, #f97316, #fdba74);
+}
+
+/* Ikon label */
+#carSearchTab .text-primary { color: #ea580c !important; }
+
+/* Kolom input */
+#carSearchTab .search-box-item { border-color: #d1d5db; }
+#carSearchTab .search-box-item:hover { border-color: #fdba74; }
+#carSearchTab .search-box-item:focus-within {
+    border-color: #f97316 !important; box-shadow: 0 0 0 4px rgba(249, 115, 22, .18) !important; background-color: #fffaf5 !important;
+}
+#carSearchTab .search-box-item .text-muted { color: #6b7280 !important; }
+#carSearchTab .form-control::placeholder { color: #9ca3af; }
+
+/* Toggle "Drop car off at different location" */
+#carSearchTab .form-check-input:checked { background-color: #f97316 !important; border-color: #f97316 !important; }
+#carSearchTab .form-check-input:focus { border-color: #fdba74 !important; box-shadow: 0 0 0 .25rem rgba(249, 115, 22, .25) !important; }
+#carSearchTab .form-check-input:not(:checked) { border-color: #9ca3af !important; }
+
+/* Tombol Cari Mobil */
+#carSearchTab .search-action-btn {
+    background: linear-gradient(135deg, #f97316, #ea580c) !important; border: 0 !important; color: #fff !important;
+    box-shadow: 0 18px 30px -14px rgba(234, 88, 12, .85) !important;
+}
+#carSearchTab .search-action-btn:hover { background: linear-gradient(135deg, #fb923c, #f97316) !important; box-shadow: 0 22px 34px -14px rgba(234, 88, 12, .95) !important; }
+
+/* Saran autocomplete */
+.autocomplete-suggestion-item:hover { background-color: #fff7ed !important; color: #c2410c; }
+
+/* Kalender & pemilih waktu (flatpickr, dimuat di body) */
+.flatpickr-calendar { border-radius: 16px; box-shadow: 0 24px 48px -16px rgba(17, 24, 39, .35) !important; }
+.flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange,
+.flatpickr-day.selected:hover, .flatpickr-day.startRange:hover, .flatpickr-day.endRange:hover,
+.flatpickr-day.selected.inRange, .flatpickr-day.selected.prevMonthDay, .flatpickr-day.selected.nextMonthDay {
+    background: #f97316 !important; border-color: #f97316 !important; color: #fff !important; box-shadow: none !important;
+}
+.flatpickr-day.today { border-color: #f97316 !important; }
+.flatpickr-day.today:not(.selected):hover { background: #f97316 !important; color: #fff !important; }
+.flatpickr-day:not(.selected):not(.startRange):not(.endRange):not(.flatpickr-disabled):hover { background: #ffedd5; border-color: #ffedd5; }
+.flatpickr-day.inRange { background: #ffedd5 !important; border-color: #ffedd5 !important; box-shadow: -5px 0 0 #ffedd5, 5px 0 0 #ffedd5 !important; }
+.flatpickr-months .flatpickr-prev-month:hover svg, .flatpickr-months .flatpickr-next-month:hover svg { fill: #f97316 !important; }
+.flatpickr-time input:hover, .flatpickr-time .flatpickr-am-pm:hover, .flatpickr-time input:focus, .flatpickr-time .flatpickr-am-pm:focus { background: #fff7ed !important; }
+.custom-time-ui .numInputWrapper:hover { background-color: #fff7ed !important; }
+.custom-time-ui .flatpickr-time-separator { color: #ea580c !important; }
