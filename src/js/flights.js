@@ -35,6 +35,19 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }, { rootMargin: "0px 0px 250px 0px" });
 
+    // Observer untuk section One-Way (endpoint sama, parameter one_way=true)
+    let oneWayLoaded = false;
+    const oneWayObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !oneWayLoaded) {
+                oneWayLoaded = true;
+                const container = document.querySelector('#owDealAmerica .flight-results-container');
+                fetchContinentDeals('dealAmerica', container, true);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { rootMargin: "0px 0px 250px 0px" });
+
     fetch("https://www.apistp.com/whereami?locale=en")
         .then(res => res.json())
         .then(locData => {
@@ -50,15 +63,19 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             const bestDeals = document.getElementById('best-deals');
             if(bestDeals) apiObserver.observe(bestDeals);
+            const oneWayDeals = document.getElementById('best-deals-oneway');
+            if(oneWayDeals) oneWayObserver.observe(oneWayDeals);
         })
         .catch(() => {
             const flightOriginInput = document.getElementById("flightOrigin");
             if(flightOriginInput) flightOriginInput.value = "Singapore (SIN)";
             const bestDeals = document.getElementById('best-deals');
             if(bestDeals) apiObserver.observe(bestDeals);
+            const oneWayDeals = document.getElementById('best-deals-oneway');
+            if(oneWayDeals) oneWayObserver.observe(oneWayDeals);
         });
 
-    function fetchContinentDeals(continentKey, containerEl) {
+    function fetchContinentDeals(continentKey, containerEl, isOneWay = false) {
         if(!containerEl) return;
         const cities = continentDestinations[continentKey];
         if(!cities) return;
@@ -66,17 +83,17 @@ document.addEventListener("DOMContentLoaded", () => {
         let skeletonHtml = '';
         for(let i=0; i<6; i++) {
             skeletonHtml += `
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white">
-                        <div class="skeleton skeleton-img-box"></div>
-                        <div class="card-body p-4">
+                <div class="col-lg-6">
+                    <div class="fl-ticket fl-ticket-skeleton">
+                        <div class="skeleton fl-ticket-photo-skel"></div>
+                        <div class="fl-ticket-main">
                             <div class="skeleton skeleton-text short mb-3"></div>
                             <div class="skeleton skeleton-text mb-2"></div>
-                            <div class="skeleton skeleton-text short mb-4"></div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="skeleton skeleton-text w-25 mb-0"></div>
-                                <div class="skeleton skeleton-text w-25 mb-0 rounded-pill" style="height: 35px;"></div>
-                            </div>
+                            <div class="skeleton skeleton-text short mb-0"></div>
+                        </div>
+                        <div class="fl-ticket-stub">
+                            <div class="skeleton skeleton-text w-75 mb-2"></div>
+                            <div class="skeleton skeleton-text w-100 mb-0 rounded-pill" style="height: 35px;"></div>
                         </div>
                     </div>
                 </div>
@@ -84,8 +101,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         containerEl.innerHTML = skeletonHtml;
 
+        const tripLabel = isOneWay ? 'One-Way' : 'Round-Trip';
+        const tripIcon = isOneWay ? 'bi-arrow-right' : 'bi-arrow-left-right';
+
         let promises = cities.map(city => {
-            const proxyUrl = `${PROXY_WORKER_URL}?origin=${userOrigin}&destination=${city.code}&unique=true&sorting=price&currency=${visitorCurrency}&page=1&one_way=false`;
+            const proxyUrl = `${PROXY_WORKER_URL}?origin=${userOrigin}&destination=${city.code}&unique=true&sorting=price&currency=${visitorCurrency}&page=1&one_way=${isOneWay ? 'true' : 'false'}`;
             return fetch(proxyUrl)
                 .then(res => res.json())
                 .then(resData => {
@@ -94,7 +114,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     if(resData && resData.data && resData.data.length > 0) {
                         const flightInfo = resData.data[0];
                         if(flightInfo.price) priceText = `${visitorCurrency} ${Number(flightInfo.price).toLocaleString()}`;
-                        if(flightInfo.departure_at && flightInfo.return_at) {
+                        if(isOneWay) {
+                            if(flightInfo.departure_at) datesText = flightInfo.departure_at.split('T')[0];
+                        } else if(flightInfo.departure_at && flightInfo.return_at) {
                             datesText = `${flightInfo.departure_at.split('T')[0]} ➔ ${flightInfo.return_at.split('T')[0]}`;
                         }
                     }
@@ -107,19 +129,30 @@ document.addEventListener("DOMContentLoaded", () => {
             let htmlContent = "";
             results.forEach(item => {
                 htmlContent += `
-                    <div class="col-md-4">
-                        <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover bg-white">
-                            <div class="image-shimmer-effect" style="height: 200px;">
-                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="${item.imgUrl}" width="600" height="280" class="lazyload lazy-effect" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80'" fetchpriority="low">
-                            </div>
-                            <div class="card-body p-4">
-                                <span class="badge bg-primary bg-opacity-10 text-primary mb-2 px-3 py-1 rounded-pill fw-semibold"><i class="bi bi-calendar3 me-1"></i> ${item.datesText}</span>
-                                <h5 class="fw-bold text-dark text-truncate">${userOriginName} ➔ ${item.name}</h5>
-                                <p class="text-muted small mb-3">Round-Trip • Bagasi Termasuk</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="text-danger fw-bold fs-5">${item.priceText}</span>
-                                    <button class="btn btn-outline-primary btn-sm rounded-pill px-3 py-2 fw-semibold">Pesan</button>
+                    <div class="col-lg-6">
+                        <div class="fl-ticket">
+                            <div class="fl-ticket-photo">
+                                <div class="image-shimmer-effect">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="${item.imgUrl}" width="600" height="280" class="lazyload lazy-effect" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80'" fetchpriority="low">
                                 </div>
+                                <span class="fl-ticket-photo-label">${item.name}</span>
+                            </div>
+                            <div class="fl-ticket-main">
+                                <div class="fl-ticket-meta">
+                                    <span class="fl-ticket-type"><i class="bi ${tripIcon}"></i> ${tripLabel}</span>
+                                    <span class="fl-ticket-date"><i class="bi bi-calendar3"></i> ${item.datesText}</span>
+                                </div>
+                                <div class="fl-ticket-route">
+                                    <div class="fl-ticket-city"><strong>${userOrigin}</strong><span>${userOriginName}</span></div>
+                                    <div class="fl-ticket-path"><span class="fl-ticket-line"></span><i class="bi bi-airplane-fill"></i><span class="fl-ticket-line"></span></div>
+                                    <div class="fl-ticket-city fl-ticket-city-end"><strong>${item.code}</strong><span>${item.name}</span></div>
+                                </div>
+                                <div class="fl-ticket-foot"><i class="bi bi-suitcase2"></i> ${tripLabel} • Bagasi Termasuk</div>
+                            </div>
+                            <div class="fl-ticket-stub">
+                                <span class="fl-ticket-price-label">Mulai dari</span>
+                                <span class="fl-ticket-price">${item.priceText}</span>
+                                <button class="fl-ticket-btn">Pesan <i class="bi bi-arrow-right"></i></button>
                             </div>
                         </div>
                     </div>
@@ -135,6 +168,16 @@ document.addEventListener("DOMContentLoaded", () => {
             const targetPaneSelector = e.target.getAttribute('data-bs-target');
             const paneEl = document.querySelector(targetPaneSelector + ' .flight-results-container');
             if(paneEl && paneEl.children.length <= 1) fetchContinentDeals(continentKey, paneEl);
+        });
+    });
+
+    // Tab benua untuk section One-Way (one_way=true)
+    document.querySelectorAll('#flightOneWayTab button').forEach(tab => {
+        tab.addEventListener('shown.bs.tab', (e) => {
+            const continentKey = e.target.getAttribute('data-continent');
+            const targetPaneSelector = e.target.getAttribute('data-bs-target');
+            const paneEl = document.querySelector(targetPaneSelector + ' .flight-results-container');
+            if(paneEl && paneEl.children.length <= 1) fetchContinentDeals(continentKey, paneEl, true);
         });
     });
 

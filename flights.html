@@ -21,7 +21,7 @@
 
     <!-- Global Style -->
     <link rel="stylesheet" href="./src/css/style.css" fetchpriority="high">
-    <link rel="stylesheet" href="./src/css/flights.css" fetchpriority="high">
+    <link rel="stylesheet" href="./src/css/flights-extra.css" fetchpriority="high">
 </head>
 <body class="bg-light" id="page-flights">
 
@@ -471,20 +471,23 @@
         </div>
     </section>
 
-    <!-- 6. SECTION: BEST DEALS FLIGHT ROUTES -->
-    <section id="best-deals" class="container py-5 bg-white rounded-4 shadow-sm my-4 border scroll-reveal">
-        <div class="text-center mb-4">
-            <h2 class="display-6 text-dark">Best Deals Rute Penerbangan Round-Trip</h2>
-            <p class="text-muted">Pilihan rute pulang-pergi terhemat berdasarkan kota terpopuler per benua.</p>
-        </div>
-        <div class="overflow-hidden mb-4">
-            <div class="d-flex overflow-x-auto hide-scroll justify-content-md-center">
-                <ul class="nav nav-pills gap-2 flex-nowrap" id="flightDealsTab" role="tablist">
-                    <li class="nav-item"><button class="nav-link active rounded-pill px-4 fw-semibold text-nowrap" data-bs-toggle="pill" data-bs-target="#dealAmerica" data-continent="dealAmerica">Amerika</button></li>
-                    <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold text-nowrap" data-bs-toggle="pill" data-bs-target="#dealEurope" data-continent="dealEurope">Eropa</button></li>
-                    <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold text-nowrap" data-bs-toggle="pill" data-bs-target="#dealAsia" data-continent="dealAsia">Asia</button></li>
-                    <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold text-nowrap" data-bs-toggle="pill" data-bs-target="#dealAfrica" data-continent="dealAfrica">Afrika</button></li>
-                    <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold text-nowrap" data-bs-toggle="pill" data-bs-target="#dealMiddleEast" data-continent="dealMiddleEast">Middle East</button></li>
+    <!-- 6. SECTION: BEST DEALS FLIGHT ROUTES (ROUND-TRIP) -->
+    <section id="best-deals" class="container fl-deals my-4 scroll-reveal">
+        <div class="fl-deals-head">
+            <div class="fl-deals-heading">
+                <span class="fl-deals-icon"><i class="bi bi-arrow-left-right"></i></span>
+                <div>
+                    <h2 class="fl-deals-title">Best Deals Rute Penerbangan Round-Trip</h2>
+                    <p class="fl-deals-sub">Pilihan rute pulang-pergi terhemat berdasarkan kota terpopuler per benua.</p>
+                </div>
+            </div>
+            <div class="fl-deals-tabs overflow-x-auto hide-scroll">
+                <ul class="nav nav-pills flex-nowrap" id="flightDealsTab" role="tablist">
+                        <li class="nav-item"><button class="nav-link active text-nowrap" data-bs-toggle="pill" data-bs-target="#dealAmerica" data-continent="dealAmerica">Amerika</button></li>
+                        <li class="nav-item"><button class="nav-link text-nowrap" data-bs-toggle="pill" data-bs-target="#dealEurope" data-continent="dealEurope">Eropa</button></li>
+                        <li class="nav-item"><button class="nav-link text-nowrap" data-bs-toggle="pill" data-bs-target="#dealAsia" data-continent="dealAsia">Asia</button></li>
+                        <li class="nav-item"><button class="nav-link text-nowrap" data-bs-toggle="pill" data-bs-target="#dealAfrica" data-continent="dealAfrica">Afrika</button></li>
+                        <li class="nav-item"><button class="nav-link text-nowrap" data-bs-toggle="pill" data-bs-target="#dealMiddleEast" data-continent="dealMiddleEast">Middle East</button></li>
                 </ul>
             </div>
         </div>
@@ -494,6 +497,35 @@
             <div class="tab-pane fade" id="dealAsia"><div class="row g-4 flight-results-container" data-continent="dealAsia"></div></div>
             <div class="tab-pane fade" id="dealAfrica"><div class="row g-4 flight-results-container" data-continent="dealAfrica"></div></div>
             <div class="tab-pane fade" id="dealMiddleEast"><div class="row g-4 flight-results-container" data-continent="dealMiddleEast"></div></div>
+        </div>
+    </section>
+
+    <!-- 6.5. SECTION: BEST DEALS FLIGHT ROUTES (ONE-WAY) -->
+    <section id="best-deals-oneway" class="container fl-deals fl-deals-oneway my-4 scroll-reveal">
+        <div class="fl-deals-head">
+            <div class="fl-deals-heading">
+                <span class="fl-deals-icon"><i class="bi bi-arrow-right"></i></span>
+                <div>
+                    <h2 class="fl-deals-title">Best Deals Rute Penerbangan One-Way</h2>
+                    <p class="fl-deals-sub">Pilihan tiket sekali jalan termurah berdasarkan kota terpopuler per benua.</p>
+                </div>
+            </div>
+            <div class="fl-deals-tabs overflow-x-auto hide-scroll">
+                <ul class="nav nav-pills flex-nowrap" id="flightOneWayTab" role="tablist">
+                        <li class="nav-item"><button class="nav-link active text-nowrap" data-bs-toggle="pill" data-bs-target="#owDealAmerica" data-continent="dealAmerica">Amerika</button></li>
+                        <li class="nav-item"><button class="nav-link text-nowrap" data-bs-toggle="pill" data-bs-target="#owDealEurope" data-continent="dealEurope">Eropa</button></li>
+                        <li class="nav-item"><button class="nav-link text-nowrap" data-bs-toggle="pill" data-bs-target="#owDealAsia" data-continent="dealAsia">Asia</button></li>
+                        <li class="nav-item"><button class="nav-link text-nowrap" data-bs-toggle="pill" data-bs-target="#owDealAfrica" data-continent="dealAfrica">Afrika</button></li>
+                        <li class="nav-item"><button class="nav-link text-nowrap" data-bs-toggle="pill" data-bs-target="#owDealMiddleEast" data-continent="dealMiddleEast">Middle East</button></li>
+                </ul>
+            </div>
+        </div>
+        <div class="tab-content" id="flightOneWayContent">
+            <div class="tab-pane fade show active" id="owDealAmerica"><div class="row g-4 flight-results-container" data-continent="dealAmerica"></div></div>
+            <div class="tab-pane fade" id="owDealEurope"><div class="row g-4 flight-results-container" data-continent="dealEurope"></div></div>
+            <div class="tab-pane fade" id="owDealAsia"><div class="row g-4 flight-results-container" data-continent="dealAsia"></div></div>
+            <div class="tab-pane fade" id="owDealAfrica"><div class="row g-4 flight-results-container" data-continent="dealAfrica"></div></div>
+            <div class="tab-pane fade" id="owDealMiddleEast"><div class="row g-4 flight-results-container" data-continent="dealMiddleEast"></div></div>
         </div>
     </section>
 
