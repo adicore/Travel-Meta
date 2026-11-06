@@ -143,12 +143,19 @@
 </header>
 
     <!-- 3. HERO FOR FLIGHT PAGE ONLY -->
-    <div class="position-relative pt-5 pb-5 mt-0 scroll-reveal" style="background: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat; min-height: 480px;">
-        <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(37, 99, 235, 0.6) 100%);"></div>
+    <div class="fl-hero position-relative pt-5 pb-5 mt-0 scroll-reveal" style="background: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat; min-height: 480px;">
+        <div class="fl-hero-overlay position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(37, 99, 235, 0.6) 100%);"></div>
+        <span class="fl-hero-arc" aria-hidden="true"></span>
+        <i class="bi bi-airplane-fill fl-hero-plane" aria-hidden="true"></i>
         <div class="container position-relative z-2 pt-4 pb-5 text-center text-white">
-            <span class="badge bg-primary bg-opacity-75 backdrop-blur mb-3 px-3 py-2 rounded-pill fw-semibold shadow-sm">Tiket Pesawat Spesial</span>
-            <h1 class="display-4 fw-bold flight-hero-title mb-3">Terbang Lebih Jauh, Bayar Lebih Murah</h1>
-            <p class="lead text-white-50 mb-4 mx-auto" style="max-width: 700px;">Bandingkan harga tiket penerbangan dari ratusan maskapai secara instan dan temukan penawaran terbaik untuk perjalanan Anda berikutnya.</p>
+            <span class="fl-hero-badge mb-3"><i class="bi bi-airplane-fill"></i> Tiket Pesawat Spesial</span>
+            <h1 class="display-4 fw-bold flight-hero-title fl-hero-title mb-3">Terbang Lebih Jauh, <span class="fl-hero-accent">Bayar Lebih Murah</span></h1>
+            <p class="lead fl-hero-lead mb-4 mx-auto" style="max-width: 700px;">Bandingkan harga tiket penerbangan dari ratusan maskapai secara instan dan temukan penawaran terbaik untuk perjalanan Anda berikutnya.</p>
+            <ul class="fl-hero-points list-unstyled mb-0">
+                <li><i class="bi bi-airplane-engines"></i> Ratusan maskapai</li>
+                <li><i class="bi bi-lightning-charge-fill"></i> Bandingkan secara instan</li>
+                <li><i class="bi bi-patch-check-fill"></i> Penawaran terbaik</li>
+            </ul>
         </div>
     </div>
 
@@ -384,76 +391,101 @@
 
     <!-- 5. SECTION: DISCOUNTS & OFFERS -->
     <section id="offers" class="container py-5 mt-5 scroll-reveal">
-        <div class="text-center mb-5">
-            <span class="text-primary fw-semibold small text-uppercase tracking-wider">Promo Spesial</span>
-            <h2 class="display-6 text-dark mt-1">Discounts & Offers</h2>
-            <p class="text-muted mb-0">Manfaatkan kupon dan paket promo eksklusif untuk destinasi impian Anda.</p>
+        <div class="fl-off-head">
+            <div class="fl-off-heading">
+                <span class="fl-off-icon"><i class="bi bi-tags-fill"></i></span>
+                <div>
+                    <h2 class="fl-off-title">Discounts &amp; Offers</h2>
+                    <p class="fl-off-sub">Manfaatkan kupon dan paket promo eksklusif untuk destinasi impian Anda.</p>
+                </div>
+            </div>
+            <a href="#offers" class="fl-off-all">Lihat Semua Promo <i class="bi bi-arrow-right"></i></a>
         </div>
 
         <div class="position-relative px-md-4">
             <div class="vanilla-carousel card-wrap">
                 <div class="vc-track">
-                    
+
                     <div class="vc-item">
-                        <div class="card border-0 rounded-4 overflow-hidden text-white card-hover card-item" style="height: 380px;">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=600&q=80" class="card-img lazyload lazy-effect w-100 h-100" style="object-fit: cover;" alt="Travel Around the World" fetchpriority="low">
-                            <div class="card-img-overlay d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.65) 100%); pointer-events: none;">
-                                <div style="pointer-events: auto;">
-                                    <h3 class="fw-bold text-uppercase text-white lh-sm" style="font-family: 'Poppins', sans-serif; font-size: clamp(1.25rem, 4vw, 1.75rem);">TRAVEL AROUND THE WORLD</h3>
+                        <div class="card border-0 overflow-hidden card-hover card-item fl-offer">
+                            <div class="fl-offer-photo">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=600&q=80" class="card-img lazyload lazy-effect w-100 h-100" style="object-fit: cover;" alt="Travel Around the World" fetchpriority="low">
+                                <span class="fl-offer-chip"><i class="bi bi-globe-americas"></i> International</span>
+                                <div class="fl-offer-badge"><b>25%</b><small>off</small></div>
+                            </div>
+                            <div class="fl-offer-body">
+                                <h3 class="fl-offer-title">TRAVEL AROUND THE WORLD</h3>
+                                <p class="fl-offer-sub">Diskon tiket penerbangan ke destinasi internasional pilihan.</p>
+                            </div>
+                            <div class="fl-offer-stub">
+                                <div>
+                                    <span class="fl-offer-code-label">Kode promo</span>
+                                    <span class="fl-offer-code">FLY25</span>
                                 </div>
-                                <div style="pointer-events: auto;">
-                                    <span class="badge rounded-pill px-3 py-2 fw-bold shadow" style="background-color: #ff007f; font-size: clamp(0.85rem, 2vw, 1rem);">25% off</span>
-                                </div>
+                                <a href="#" class="fl-offer-cta">Pesan <i class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
 
                     <div class="vc-item">
-                        <div class="card border-0 rounded-4 overflow-hidden text-white card-hover card-item" style="height: 380px;">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" class="card-img lazyload lazy-effect w-100 h-100" style="object-fit: cover;" alt="Breath Adventure Awaits" fetchpriority="low">
-                            <div class="card-img-overlay d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
-                                <div style="pointer-events: auto;">
-                                    <i class="bi bi-airplane text-white fs-5 mb-2 d-inline-block"></i>
-                                    <h3 class="fw-bold text-warning lh-sm" style="font-family: 'Poppins', sans-serif; font-size: clamp(1.25rem, 4vw, 1.75rem);">Breath Adventure Awaits</h3>
+                        <div class="card border-0 overflow-hidden card-hover card-item fl-offer">
+                            <div class="fl-offer-photo">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" class="card-img lazyload lazy-effect w-100 h-100" style="object-fit: cover;" alt="Breath Adventure Awaits" fetchpriority="low">
+                                <span class="fl-offer-chip"><i class="bi bi-arrow-right"></i> One-way</span>
+                                <div class="fl-offer-badge"><small>mulai</small><b>$199</b><small>/only</small></div>
+                            </div>
+                            <div class="fl-offer-body">
+                                <h3 class="fl-offer-title">Breath Adventure Awaits</h3>
+                                <p class="fl-offer-sub">Tiket sekali jalan untuk petualangan Anda berikutnya.</p>
+                            </div>
+                            <div class="fl-offer-stub">
+                                <div>
+                                    <span class="fl-offer-code-label">Kode promo</span>
+                                    <span class="fl-offer-code">ONEWAY199</span>
                                 </div>
-                                <div class="align-self-end bg-danger text-white rounded-circle d-flex flex-column align-items-center justify-content-center p-2 fw-bold shadow-lg" style="width: clamp(70px, 15vw, 85px); height: clamp(70px, 15vw, 85px); transform: rotate(-10deg); pointer-events: auto;">
-                                    <span class="lh-1 fw-extrabold" style="font-size: clamp(1.2rem, 3vw, 1.5rem);">$199</span>
-                                    <span style="font-size: clamp(0.55rem, 1.5vw, 0.75rem); letter-spacing: 1px;">/only</span>
-                                </div>
+                                <a href="#" class="fl-offer-cta">Pesan <i class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
 
                     <div class="vc-item">
-                        <div class="card border-0 rounded-4 overflow-hidden text-white card-hover card-item" style="height: 380px;">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" class="card-img lazyload lazy-effect w-100 h-100" style="object-fit: cover;" alt="20% off SALE" fetchpriority="low">
-                            <div class="card-img-overlay d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
-                                <div style="pointer-events: auto;">
-                                    <span class="text-uppercase small fw-bold tracking-wider text-warning">up to</span>
-                                    <h1 class="text-white mb-0 lh-1" style="font-size: clamp(3rem, 8vw, 4rem);">20% off</h1>
-                                    <h4 class="fw-bold tracking-widest text-uppercase" style="font-size: clamp(1.25rem, 4vw, 1.75rem);">SALE</h4>
+                        <div class="card border-0 overflow-hidden card-hover card-item fl-offer">
+                            <div class="fl-offer-photo">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" class="card-img lazyload lazy-effect w-100 h-100" style="object-fit: cover;" alt="20% off SALE" fetchpriority="low">
+                                <span class="fl-offer-chip"><i class="bi bi-arrow-left-right"></i> Round-trip</span>
+                                <div class="fl-offer-badge"><small>up to</small><b>20%</b><small>off</small></div>
+                            </div>
+                            <div class="fl-offer-body">
+                                <h3 class="fl-offer-title">Round-Trip SALE</h3>
+                                <p class="fl-offer-sub">Hemat lebih banyak untuk tiket pulang-pergi.</p>
+                            </div>
+                            <div class="fl-offer-stub">
+                                <div>
+                                    <span class="fl-offer-code-label">Kode promo</span>
+                                    <span class="fl-offer-code">RT20</span>
                                 </div>
-                                <div class="text-center bg-success text-white py-2 rounded-pill fw-bold small shadow" style="pointer-events: auto;">
-                                    ★ TRAVEL • View All Tour
-                                </div>
+                                <a href="#" class="fl-offer-cta">View All Tour <i class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
 
                     <div class="vc-item">
-                        <div class="card border-0 rounded-4 overflow-hidden text-white card-hover card-item" style="height: 380px;">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=600&q=80" class="card-img lazyload lazy-effect w-100 h-100" style="object-fit: cover;" alt="Summer Vacation" fetchpriority="low">
-                            <div class="card-img-overlay d-flex flex-column justify-content-between p-4 z-2" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); pointer-events: none;">
-                                <div style="pointer-events: auto;">
-                                    <h3 class="fw-bold text-white lh-sm" style="font-family: 'Poppins', sans-serif; font-size: clamp(1.25rem, 4vw, 1.75rem);">Summer Vacation</h3>
+                        <div class="card border-0 overflow-hidden card-hover card-item fl-offer">
+                            <div class="fl-offer-photo">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=600&q=80" class="card-img lazyload lazy-effect w-100 h-100" style="object-fit: cover;" alt="Summer Vacation" fetchpriority="low">
+                                <span class="fl-offer-chip"><i class="bi bi-sun-fill"></i> VACATION mode</span>
+                                <div class="fl-offer-badge"><small>mulai</small><b>$199</b><small>/only</small></div>
+                            </div>
+                            <div class="fl-offer-body">
+                                <h3 class="fl-offer-title">Summer Vacation</h3>
+                                <p class="fl-offer-sub">Terbang liburan musim panas dengan harga spesial.</p>
+                            </div>
+                            <div class="fl-offer-stub">
+                                <div>
+                                    <span class="fl-offer-code-label">Kode promo</span>
+                                    <span class="fl-offer-code">SUMMER199</span>
                                 </div>
-                                <div class="d-flex justify-content-between align-items-end" style="pointer-events: auto;">
-                                    <span class="badge bg-light text-dark rounded-pill px-3 py-1 fw-semibold shadow" style="font-size: clamp(0.7rem, 2vw, 0.85rem);">VACATION mode</span>
-                                    <div class="rounded-circle d-flex flex-column align-items-center justify-content-center p-2 fw-bold shadow-lg text-white" style="width: clamp(70px, 15vw, 85px); height: clamp(70px, 15vw, 85px); background-color: #ff007f;">
-                                        <span class="lh-1 fw-extrabold" style="font-size: clamp(1.2rem, 3vw, 1.5rem);">$199</span>
-                                        <span style="font-size: clamp(0.55rem, 1.5vw, 0.75rem); letter-spacing: 1px;">/only</span>
-                                    </div>
-                                </div>
+                                <a href="#" class="fl-offer-cta">Pesan <i class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
