@@ -20,6 +20,7 @@
 
     <!-- Global Style -->
     <link rel="stylesheet" href="./src/css/style.css" fetchpriority="high">
+    <link rel="stylesheet" href="./src/css/car-rental-extra.css" fetchpriority="high">
 </head>
 <body class="bg-light" id="page-car-rental">
 
@@ -241,27 +242,29 @@
     <!-- KONTEN FITUR / KEUNGGULAN SEWA MOBIL (Pengganti bagian yang dibuang) -->
     <section class="py-5">
         <div class="container">
-            <div class="row g-4 text-center">
+            <div class="cr-perks">
+                <div class="row g-0">
                 <div class="col-md-4">
-                    <div class="p-4 border rounded-4 bg-white shadow-sm h-100">
-                        <i class="bi bi-shield-check text-primary fs-1 mb-3"></i>
-                        <h5 class="fw-bold">Armada Terjamin</h5>
-                        <p class="text-muted small">Mobil selalu dalam kondisi prima, bersih, dan perawatan berkala secara rutin.</p>
+                    <div class="cr-perk">
+                        <span class="cr-perk-ring"><span class="cr-perk-core"><i class="bi bi-shield-check"></i></span></span>
+                        <h5 class="cr-perk-title">Armada Terjamin</h5>
+                        <p class="cr-perk-text mb-0">Mobil selalu dalam kondisi prima, bersih, dan perawatan berkala secara rutin.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="p-4 border rounded-4 bg-white shadow-sm h-100">
-                        <i class="bi bi-headset text-primary fs-1 mb-3"></i>
-                        <h5 class="fw-bold">Layanan 24/7</h5>
-                        <p class="text-muted small">Tim dukungan pelanggan kami siap membantu Anda kapanpun dibutuhkan di perjalanan.</p>
+                    <div class="cr-perk">
+                        <span class="cr-perk-ring"><span class="cr-perk-core"><i class="bi bi-headset"></i></span></span>
+                        <h5 class="cr-perk-title">Layanan 24/7</h5>
+                        <p class="cr-perk-text mb-0">Tim dukungan pelanggan kami siap membantu Anda kapanpun dibutuhkan di perjalanan.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="p-4 border rounded-4 bg-white shadow-sm h-100">
-                        <i class="bi bi-cash-coin text-primary fs-1 mb-3"></i>
-                        <h5 class="fw-bold">Harga Transparan</h5>
-                        <p class="text-muted small">Tanpa biaya tersembunyi. Sudah termasuk opsi dengan supir atau lepas kunci.</p>
+                    <div class="cr-perk">
+                        <span class="cr-perk-ring"><span class="cr-perk-core"><i class="bi bi-cash-coin"></i></span></span>
+                        <h5 class="cr-perk-title">Harga Transparan</h5>
+                        <p class="cr-perk-text mb-0">Tanpa biaya tersembunyi. Sudah termasuk opsi dengan supir atau lepas kunci.</p>
                     </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -430,87 +433,75 @@
 
     <!-- 9. SECTION: ABOUT -->
     <section id="about" class="container py-5 my-4 scroll-reveal">
-        <div class="row align-items-center g-4 g-lg-5">
-            <div class="col-lg-6">
-                <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill fw-bold mb-3">We're #01 travel agency in globally</span>
-                <h1 class="display-5 text-dark mb-4 lh-tight" style="letter-spacing: -1px;">Explore the World With Confidence.</h1>
-                <p class="text-secondary mb-3" style="line-height: 1.8;">
+        <div class="cr-about">
+            <div class="cr-about-photo">
+                <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1200&q=80" width="1200" height="900" class="lazyload lazy-effect" alt="Road Trip" onerror="this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=800&q=80'" fetchpriority="low"></div>
+                <div class="cr-about-stats">
+                    <div class="cr-stat">
+                        <div class="cr-stat-value">5,000,000</div>
+                        <div class="cr-stat-label">Trusted by 5M Users</div>
+                        <span class="cr-stat-note cr-stat-green"><i class="bi bi-tripadvisor"></i> Tripadvisor</span>
+                    </div>
+                    <div class="cr-stat">
+                        <div class="cr-stat-value cr-stat-value-sm">Traveler</div>
+                        <div class="cr-stat-label">BEST CITY TOUR AWARD</div>
+                        <span class="cr-stat-note cr-stat-year">2025</span>
+                    </div>
+                </div>
+            </div>
+            <div class="cr-about-card">
+                <span class="cr-tag mb-3"><i class="bi bi-speedometer2"></i> We're #01 travel agency in globally</span>
+                <h2 class="cr-about-title mb-4">Explore the World With <span class="cr-hl">Confidence.</span></h2>
+                <p class="cr-about-text mb-3">
                     Travel is more than visiting places - it's about discovering cultures, creating memories, and experiencing the world in a way that stays with you forever. Our travel agency is dedicated to designing seamless and inspiring journeys for explorers who want more than just a typical vacation.
                 </p>
-                <p class="text-secondary mb-4" style="line-height: 1.8;">
+                <p class="cr-about-text mb-4">
                     Our team of passionate travel experts works closely with each traveler to understand their interests, preferences, and expectations. This allows us to create journeys that feel personal, well-organized, and truly extraordinary.
                 </p>
-                <a href="#" class="btn btn-primary rounded-pill px-5 py-3 fw-bold shadow text-decoration-none">Discover More</a>
-            </div>
-
-            <div class="col-lg-6 mt-5 mt-lg-0">
-                <div class="about-img-container mb-5">
-                    <div class="about-img-item about-img-1">
-                        <div class="image-shimmer-effect">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=500&q=80" width="500" height="800" class="lazyload lazy-effect" alt="Traveler" fetchpriority="low">
-                        </div>
-                    </div>
-                    <div class="about-img-item about-img-2">
-                        <div class="image-shimmer-effect">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=500&q=80" width="500" height="800" class="lazyload lazy-effect" alt="World Landmarks" fetchpriority="low">
-                        </div>
-                    </div>
-                    <div class="about-img-item about-img-3">
-                        <div class="image-shimmer-effect">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" width="500" height="800" class="lazyload lazy-effect" alt="Beach Resort" fetchpriority="low">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row text-center align-items-center g-3 pt-2 bg-white p-4 rounded-4 shadow-sm border">
-                    <div class="col-6">
-                        <div class="d-flex flex-column align-items-center">
-                            <h4 class="fw-extrabold mb-0 fs-4 text-dark">5,000,000</h4>
-                            <small class="text-muted fw-semibold mb-1" style="font-size: 0.75rem;">Trusted by 5M Users</small>
-                            <span class="text-success small fw-bold"><i class="bi bi-tripadvisor"></i> Tripadvisor</span>
-                        </div>
-                    </div>
-                    <div class="col-6 border-start">
-                        <div class="d-flex flex-column align-items-center">
-                            <span class="text-danger fw-extrabold fs-6" style="letter-spacing: 0.5px;">Traveler</span>
-                            <small class="text-dark fw-bold" style="font-size: 0.65rem;">BEST CITY TOUR AWARD</small>
-                            <span class="badge bg-danger text-white rounded-pill px-2 py-0 fw-bold mt-1" style="font-size: 0.65rem;">2025</span>
-                        </div>
-                    </div>
-                </div>
+                <a href="#" class="cr-btn">Discover More <i class="bi bi-arrow-right"></i></a>
             </div>
         </div>
     </section>
 
     <!-- 9.5. SECTION: ABOUT FEATURES -->
     <section class="container py-5 my-4 scroll-reveal">
-        <div class="row g-4">
-            <div class="col-lg-3 col-md-6">
-                <div class="card border-0 rounded-4 h-100 p-4" style="background-color: #e6f4a3;">
-                    <i class="bi bi-award fs-1 mb-3 text-dark"></i>
-                    <h4 class="fw-bold fs-5 text-dark mb-3">Best Price Guarantee Ever.</h4>
-                    <p class="text-dark mb-0 small" style="line-height: 1.7;">Travel confidently knowing you're getting the best value - we guarantee competitive prices with <strong class="fw-bold">no hidden costs</strong>.</p>
+        <div class="cr-route">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="cr-stop">
+                        <span class="cr-stop-dot"><i class="bi bi-award"></i></span>
+                        <div>
+                            <h4 class="cr-stop-title">Best Price Guarantee Ever.</h4>
+                            <p class="cr-stop-text mb-0">Travel confidently knowing you're getting the best value - we guarantee competitive prices with <strong>no hidden costs</strong>.</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="card border-0 rounded-4 h-100 p-4" style="background-color: #f1f2f4;">
-                    <i class="bi bi-shield-check fs-1 mb-3 text-dark"></i>
-                    <h4 class="fw-bold fs-5 text-dark mb-3">Safe, Secure & Hassle-Free Booking.</h4>
-                    <p class="text-dark mb-0 small" style="line-height: 1.7;">Plan and confirm your trip quickly with our safe, simple, and fully <strong class="fw-bold">secure booking system</strong>.</p>
+                <div class="col-lg-3 col-md-6">
+                    <div class="cr-stop">
+                        <span class="cr-stop-dot"><i class="bi bi-shield-check"></i></span>
+                        <div>
+                            <h4 class="cr-stop-title">Safe, Secure &amp; Hassle-Free Booking.</h4>
+                            <p class="cr-stop-text mb-0">Plan and confirm your trip quickly with our safe, simple, and fully <strong>secure booking system</strong>.</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="card border-0 rounded-4 h-100 p-4" style="background-color: #c1edcc;">
-                    <i class="bi bi-train-front fs-1 mb-3 text-dark"></i>
-                    <h4 class="fw-bold fs-5 text-dark mb-3">Flexible & Custom Travel Packages.</h4>
-                    <p class="text-dark mb-0 small" style="line-height: 1.7;">Plan your trip your way with flexible travel packages tailored to your interests and <strong class="fw-bold">custom package</strong>.</p>
+                <div class="col-lg-3 col-md-6">
+                    <div class="cr-stop">
+                        <span class="cr-stop-dot"><i class="bi bi-train-front"></i></span>
+                        <div>
+                            <h4 class="cr-stop-title">Flexible &amp; Custom Travel Packages.</h4>
+                            <p class="cr-stop-text mb-0">Plan your trip your way with flexible travel packages tailored to your interests and <strong>custom package</strong>.</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="card border-0 rounded-4 h-100 p-4" style="background-color: #e2e0ff;">
-                    <i class="bi bi-chat-dots fs-1 mb-3 text-dark"></i>
-                    <h4 class="fw-bold fs-5 text-dark mb-3">Our Support Always with You 24/7.</h4>
-                    <p class="text-dark mb-0 small" style="line-height: 1.7;">Travel with peace of mind knowing our expert team is always ready to <strong class="fw-bold">support you anytime, anywhere</strong>.</p>
+                <div class="col-lg-3 col-md-6">
+                    <div class="cr-stop">
+                        <span class="cr-stop-dot"><i class="bi bi-chat-dots"></i></span>
+                        <div>
+                            <h4 class="cr-stop-title">Our Support Always with You 24/7.</h4>
+                            <p class="cr-stop-text mb-0">Travel with peace of mind knowing our expert team is always ready to <strong>support you anytime, anywhere</strong>.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -681,38 +672,35 @@
 
     <!-- 11. SECTION: DOWNLOAD MOBILE APP -->
     <section class="container py-5 my-4 scroll-reveal">
-        <div class="rounded-5 p-4 p-lg-5 position-relative overflow-hidden text-dark shadow-lg border" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);">
-            <div class="row align-items-center">
-                <div class="col-lg-7 py-4">
-                    <span class="badge bg-success text-white px-3 py-2 rounded-pill fw-semibold mb-3">Aplikasi Mobile Terbaik</span>
-                    <h1 class="display-5 text-dark mb-3" style="letter-spacing: -1px;">Download Mobile App</h1>
-                    <p class="text-secondary mb-4 lead fs-6" style="max-width: 500px; line-height: 1.7;">
+        <div class="cr-app">
+            <div class="row align-items-center g-4 position-relative" style="z-index: 2;">
+                <div class="col-lg-7">
+                    <span class="cr-app-tag mb-3"><i class="bi bi-phone"></i> Aplikasi Mobile Terbaik</span>
+                    <h2 class="cr-app-title mb-3">Download Mobile App</h2>
+                    <p class="cr-app-text mb-4">
                         Our community users and app download almost <strong>2M+</strong> in world-wide.
                     </p>
+                    <ul class="cr-app-list list-unstyled mb-4">
+                        <li><i class="bi bi-check-circle-fill"></i> Pilih mobil &amp; pesan dalam hitungan detik</li>
+                        <li><i class="bi bi-check-circle-fill"></i> Notifikasi promo &amp; harga sewa terbaik</li>
+                        <li><i class="bi bi-check-circle-fill"></i> Kontrak &amp; e-voucher sewa di genggaman</li>
+                    </ul>
                     <div class="d-flex align-items-center gap-3 mb-4 flex-wrap">
-                        <a href="#" class="d-inline-block text-decoration-none">
+                        <a href="#" class="cr-store d-inline-block text-decoration-none">
                             <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" width="135" height="46" class="lazyload lazy-effect" alt="App Store" fetchpriority="low">
                         </a>
-                        <a href="#" class="d-inline-block text-decoration-none">
+                        <a href="#" class="cr-store d-inline-block text-decoration-none">
                             <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" width="155" height="46" class="lazyload lazy-effect" alt="Google Play" fetchpriority="low">
                         </a>
                     </div>
-                    <div class="d-flex align-items-center gap-2 text-dark small fw-bold bg-white d-inline-flex px-3 py-2 rounded-pill shadow-sm">
-                        <span class="text-warning fs-6">★ 4.9</span>
-                        <span>12,300+ verified review TravelMeta app</span>
-                    </div>
+                    <div class="cr-app-review"><span class="cr-app-score"><i class="bi bi-star-fill"></i> 4.9</span><span>12,300+ verified review TravelMeta app</span></div>
                 </div>
-                <div class="col-lg-5 text-center position-relative d-none d-lg-block">
-                    <div class="position-relative" style="height: 320px;">
-                        <div class="image-shimmer-effect rounded-4 shadow-lg position-absolute end-0 top-0 border border-white border-3" style="width: 250px; height: 340px; transform: rotate(4deg);">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=500&q=80" width="500" height="680" class="rounded-4 lazyload lazy-effect" alt="Mobile App" fetchpriority="low">
-                        </div>
-                        <div class="position-absolute bg-white rounded-pill px-4 py-2 shadow-sm small fw-bold text-dark d-flex align-items-center gap-2" style="top: 40px; left: 10px; z-index: 2;">
-                            <span class="text-warning">★ 4.9</span> Average rating
-                        </div>
-                        <div class="position-absolute bg-white rounded-pill px-4 py-2 shadow-sm small fw-bold text-dark d-flex align-items-center gap-2" style="bottom: 40px; left: 0px; z-index: 2;">
-                            <span class="bg-success text-white rounded-circle p-1 small"><i class="bi bi-people-fill"></i></span> 2M active users.
-                        </div>
+                <div class="col-lg-5">
+                    <div class="cr-wheel">
+                        <div class="cr-wheel-ring"></div>
+                        <div class="cr-wheel-img"><div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=700&q=80" width="500" height="680" class="lazyload lazy-effect" alt="Mobile App" fetchpriority="low"></div></div>
+                        <span class="cr-wheel-chip cr-wheel-chip-top"><span class="text-warning"><i class="bi bi-star-fill"></i> 4.9</span> Average rating</span>
+                        <span class="cr-wheel-chip cr-wheel-chip-bottom"><span class="cr-wheel-chip-icon"><i class="bi bi-people-fill"></i></span> 2M active users.</span>
                     </div>
                 </div>
             </div>
@@ -721,86 +709,44 @@
 
     <!-- 12. SECTION: TRAVEL TIPS & INSPIRATIONS -->
     <section class="container py-5 my-3 scroll-reveal">
-        <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-3">
+        <div class="cr-tips-head">
             <div>
-                <span class="text-primary fw-bold small text-uppercase tracking-wider">Edukasi & Wawasan</span>
-                <h2 class="display-6 mb-0 text-dark">Travel Tips & Inspirations.</h2>
+                <span class="cr-tips-kicker"><i class="bi bi-signpost-split-fill"></i> Edukasi &amp; Wawasan</span>
+                <h2 class="cr-tips-title">Travel Tips &amp; Inspirations<span class="cr-dot">.</span></h2>
             </div>
-            <a href="#" class="btn btn-outline-dark rounded-pill px-4 py-2 fw-semibold small shadow-sm text-decoration-none">View All Inspiration</a>
+            <a href="#" class="cr-tips-all">View All Inspiration <i class="bi bi-arrow-right"></i></a>
         </div>
-        
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover h-100 bg-white">
-                    <div class="position-relative">
-                        <div class="image-shimmer-effect" style="height: 220px;">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80" width="600" height="400" class="lazyload lazy-effect" alt="Maldives Beach" fetchpriority="low">
-                        </div>
-                        <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 rounded-pill px-3 py-2 shadow-sm small fw-bold z-2">
-                            <i class="bi bi-geo-alt text-primary me-1"></i> Maldives Beach
-                        </span>
-                    </div>
-                    <div class="card-body p-4 d-flex flex-column justify-content-between">
-                        <div>
-                            <h4 class="fw-bold mb-3 text-dark fs-5 lh-sm">Best Time to Visit the Maldives for a Perfect Beach Escape.</h4>
-                            <p class="text-secondary small mb-4 lh-base">
-                                The Maldives is a dream destination known for its crystal-clear lagoons and luxury overwater villas.
-                            </p>
-                        </div>
-                        <a href="#" class="text-primary fw-bold text-decoration-none small d-flex align-items-center gap-1">
-                            Read More <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
+        <div class="cr-tips-list">
+            <article class="cr-tip">
+                <span class="cr-tip-num">01</span>
+                <div class="cr-tip-media"><div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80" width="600" height="400" class="lazyload lazy-effect" alt="Maldives Beach" fetchpriority="low"></div></div>
+                <div class="cr-tip-body">
+                    <span class="cr-tip-place"><i class="bi bi-geo-alt-fill"></i> Maldives Beach</span>
+                    <h4 class="cr-tip-title">Best Time to Visit the Maldives for a Perfect Beach Escape.</h4>
+                    <p class="cr-tip-text">The Maldives is a dream destination known for its crystal-clear lagoons and luxury overwater villas.</p>
                 </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover h-100 bg-white">
-                    <div class="position-relative">
-                        <div class="image-shimmer-effect" style="height: 220px;">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=600&q=80" width="600" height="400" class="lazyload lazy-effect" alt="South Africa" fetchpriority="low">
-                        </div>
-                        <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 rounded-pill px-3 py-2 shadow-sm small fw-bold z-2">
-                            <i class="bi bi-geo-alt text-primary me-1"></i> South Africa
-                        </span>
-                    </div>
-                    <div class="card-body p-4 d-flex flex-column justify-content-between">
-                        <div>
-                            <h4 class="fw-bold mb-3 text-dark fs-5 lh-sm">What to Expect on Your First Wildlife Adventure Africa Safari.</h4>
-                            <p class="text-secondary small mb-4 lh-base">
-                                An African safari is one of the most exciting travel experiences in the world. Visitors can witness the Big Five wildlife.
-                            </p>
-                        </div>
-                        <a href="#" class="text-primary fw-bold text-decoration-none small d-flex align-items-center gap-1">
-                            Read More <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
+                <a href="#" class="cr-tip-link" aria-label="Read More: Maldives Beach"><span class="cr-tip-link-label">Read More</span><span class="cr-tip-arrow"><i class="bi bi-arrow-right"></i></span></a>
+            </article>
+            <article class="cr-tip">
+                <span class="cr-tip-num">02</span>
+                <div class="cr-tip-media"><div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=600&q=80" width="600" height="400" class="lazyload lazy-effect" alt="South Africa" fetchpriority="low"></div></div>
+                <div class="cr-tip-body">
+                    <span class="cr-tip-place"><i class="bi bi-geo-alt-fill"></i> South Africa</span>
+                    <h4 class="cr-tip-title">What to Expect on Your First Wildlife Adventure Africa Safari.</h4>
+                    <p class="cr-tip-text">An African safari is one of the most exciting travel experiences in the world. Visitors can witness the Big Five wildlife.</p>
                 </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover h-100 bg-white">
-                    <div class="position-relative">
-                        <div class="image-shimmer-effect" style="height: 220px;">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1527668752550-956627f04c6d?auto=format&fit=crop&w=600&q=80" width="600" height="400" class="lazyload lazy-effect" alt="Switzerland" fetchpriority="low">
-                        </div>
-                        <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 rounded-pill px-3 py-2 shadow-sm small fw-bold z-2">
-                            <i class="bi bi-geo-alt text-primary me-1"></i> Switzerland
-                        </span>
-                    </div>
-                    <div class="card-body p-4 d-flex flex-column justify-content-between">
-                        <div>
-                            <h4 class="fw-bold mb-3 text-dark fs-5 lh-sm">Top Places to Visit in Switzerland for Nature Lovers.</h4>
-                            <p class="text-secondary small mb-4 lh-base">
-                                Switzerland is famous for its snow-capped Alps, charming villages, and scenic train journeys.
-                            </p>
-                        </div>
-                        <a href="#" class="text-primary fw-bold text-decoration-none small d-flex align-items-center gap-1">
-                            Read More <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
+                <a href="#" class="cr-tip-link" aria-label="Read More: South Africa"><span class="cr-tip-link-label">Read More</span><span class="cr-tip-arrow"><i class="bi bi-arrow-right"></i></span></a>
+            </article>
+            <article class="cr-tip">
+                <span class="cr-tip-num">03</span>
+                <div class="cr-tip-media"><div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1527668752550-956627f04c6d?auto=format&fit=crop&w=600&q=80" width="600" height="400" class="lazyload lazy-effect" alt="Switzerland" fetchpriority="low"></div></div>
+                <div class="cr-tip-body">
+                    <span class="cr-tip-place"><i class="bi bi-geo-alt-fill"></i> Switzerland</span>
+                    <h4 class="cr-tip-title">Top Places to Visit in Switzerland for Nature Lovers.</h4>
+                    <p class="cr-tip-text">Switzerland is famous for its snow-capped Alps, charming villages, and scenic train journeys.</p>
                 </div>
-            </div>
+                <a href="#" class="cr-tip-link" aria-label="Read More: Switzerland"><span class="cr-tip-link-label">Read More</span><span class="cr-tip-arrow"><i class="bi bi-arrow-right"></i></span></a>
+            </article>
         </div>
     </section>
 

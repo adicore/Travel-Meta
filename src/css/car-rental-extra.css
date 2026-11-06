@@ -1,0 +1,187 @@
+/* ============================================================
+   CAR RENTAL PAGE — extra styles
+   Sections: Keunggulan Sewa Mobil, About (+Features), Download App, Travel Tips
+   Tema: charcoal + oranye (otomotif). Muat setelah style.css:
+   ./src/css/car-rental-extra.css
+   ============================================================ */
+
+.cr-tag {
+    display: inline-flex; align-items: center; gap: 8px; padding: 7px 16px; border-radius: 50px;
+    font-size: .82rem; font-weight: 700; color: #c2410c; background: #fff7ed; border: 1px solid #fed7aa;
+}
+
+/* ---------- KEUNGGULAN SEWA MOBIL: panel dashboard gelap ---------- */
+.cr-perks {
+    position: relative; overflow: hidden; padding: .75rem; border-radius: 2rem;
+    background: linear-gradient(135deg, #111827 0%, #1f2937 100%); box-shadow: 0 34px 60px -30px rgba(17, 24, 39, .8);
+}
+.cr-perks::before {
+    content: ''; position: absolute; top: -140px; right: -100px; width: 380px; height: 380px; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle, rgba(249,115,22,.3), transparent 70%);
+}
+.cr-perks .row { position: relative; z-index: 1; }
+.cr-perk { height: 100%; padding: 2.25rem 1.75rem; text-align: center; transition: background-color .3s ease; border-radius: 1.5rem; }
+.cr-perk:hover { background: rgba(255,255,255,.04); }
+@media (min-width: 768px) { .cr-perks .col-md-4:not(:last-child) .cr-perk { border-radius: 0; border-right: 2px dashed rgba(255,255,255,.18); } }
+@media (max-width: 767.98px) { .cr-perks .col-md-4:not(:last-child) .cr-perk { border-radius: 0; border-bottom: 2px dashed rgba(255,255,255,.18); } }
+.cr-perk-ring {
+    display: inline-flex; width: 86px; height: 86px; padding: 5px; margin-bottom: 1.25rem; border-radius: 50%;
+    background: conic-gradient(from 220deg, #f97316 0 62%, rgba(255,255,255,.14) 62% 100%);
+}
+.cr-perk-core { flex: 1; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #111827; color: #fb923c; font-size: 1.9rem; }
+.cr-perk-title { margin: 0 0 .6rem; font-size: 1.15rem; font-weight: 800; color: #fff; -webkit-text-fill-color: #fff; background: none; }
+.cr-perk-text { font-size: .9rem; line-height: 1.7; color: rgba(255,255,255,.7); }
+
+/* ---------- ABOUT: foto lebar + kartu teks yang menumpuk ---------- */
+.cr-about { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: center; }
+.cr-about-photo {
+    grid-column: 5 / 13; grid-row: 1; position: relative; height: 560px; border-radius: 2rem; overflow: hidden;
+    background: #e5e7eb; box-shadow: 0 34px 64px -34px rgba(17, 24, 39, .6);
+}
+.cr-about-photo .image-shimmer-effect { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cr-about-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cr-about-photo::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(17,24,39,0) 45%, rgba(17,24,39,.6)); }
+.cr-about-card {
+    grid-column: 1 / 8; grid-row: 1; position: relative; z-index: 3; padding: clamp(1.75rem, 3.5vw, 3rem);
+    background: #fff; border: 1px solid #e5e7eb; border-radius: 1.75rem; box-shadow: 0 40px 70px -30px rgba(17, 24, 39, .35);
+}
+.cr-about-title {
+    font-size: clamp(2rem, 3.6vw, 2.9rem); font-weight: 800; letter-spacing: -1px; line-height: 1.15;
+    color: #111827 !important; -webkit-text-fill-color: #111827; background: none;
+}
+.cr-hl { background: linear-gradient(transparent 62%, #fdba74 62%); padding: 0 4px; }
+.cr-about-text { color: #4b5563; line-height: 1.85; }
+.cr-btn {
+    display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; border-radius: 50px; font-weight: 700;
+    color: #fff !important; text-decoration: none; background: linear-gradient(135deg, #f97316, #ea580c);
+    box-shadow: 0 16px 30px -12px rgba(234, 88, 12, .7); transition: all .3s ease;
+}
+.cr-btn:hover { color: #fff !important; transform: translateY(-3px) !important; box-shadow: 0 22px 34px -12px rgba(234, 88, 12, .8); }
+.cr-btn i { transition: transform .3s ease; }
+.cr-btn:hover i { transform: translateX(4px); }
+
+.cr-about-stats {
+    position: absolute; z-index: 2; left: calc(37.5% + 20px); right: 20px; bottom: 20px; display: grid; grid-template-columns: 1fr 1fr;
+    background: rgba(17, 24, 39, .6); border: 1px solid rgba(255,255,255,.22); border-radius: 1.25rem; overflow: hidden;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+.cr-stat { padding: 16px 20px; color: #fff; }
+.cr-stat + .cr-stat { border-left: 1px solid rgba(255,255,255,.2); }
+.cr-stat-value { font-size: 1.5rem; font-weight: 800; line-height: 1.1; }
+.cr-stat-value-sm { font-size: 1.2rem; color: #fdba74; }
+.cr-stat-label { font-size: .72rem; font-weight: 600; color: rgba(255,255,255,.75); margin: 3px 0 6px; }
+.cr-stat-note { font-size: .76rem; font-weight: 700; }
+.cr-stat-green { color: #4ade80; }
+.cr-stat-year { display: inline-block; padding: 1px 10px; border-radius: 50px; background: #ea580c; color: #fff; }
+
+/* ---------- ABOUT FEATURES: peta rute dengan checkpoint ---------- */
+.cr-route { position: relative; }
+@media (min-width: 992px) {
+    .cr-route::before { content: ''; position: absolute; top: 32px; left: 32px; right: calc(25% - 32px); border-top: 3px dashed #fdba74; z-index: 0; }
+}
+.cr-stop { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 1.25rem; height: 100%; }
+.cr-stop-dot {
+    width: 64px; height: 64px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%;
+    font-size: 1.5rem; color: #ea580c; background: #fff; border: 3px solid #f97316; box-shadow: 0 0 0 8px #f8fafc; transition: all .3s ease;
+}
+.cr-stop:hover .cr-stop-dot { background: #f97316; color: #fff; transform: scale(1.06); }
+.cr-stop-title { margin: 0 0 .5rem; font-size: 1.05rem; font-weight: 800; line-height: 1.35; color: #111827; }
+.cr-stop-text { font-size: .88rem; line-height: 1.7; color: #4b5563; }
+.cr-stop-text strong { color: #111827; }
+@media (max-width: 991.98px) { .cr-stop { flex-direction: row; align-items: flex-start; gap: 1.25rem; } }
+
+/* ---------- DOWNLOAD APP: banner oranye + foto dalam "velg" ---------- */
+.cr-app {
+    position: relative; overflow: hidden; padding: clamp(1.75rem, 4vw, 3.5rem) clamp(1.75rem, 4vw, 3.5rem) clamp(2.5rem, 4vw, 4rem); border-radius: 2rem; color: #fff;
+    background: linear-gradient(120deg, #7c2d12 0%, #c2410c 55%, #f97316 100%); box-shadow: 0 34px 64px -30px rgba(194, 65, 12, .7);
+}
+.cr-app::before {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 18px; height: 4px; z-index: 1; pointer-events: none;
+    background: repeating-linear-gradient(90deg, rgba(255,255,255,.4) 0 28px, transparent 28px 56px);
+}
+.cr-app-tag {
+    display: inline-flex; align-items: center; gap: 8px; padding: 7px 16px; border-radius: 50px; font-size: .82rem; font-weight: 700; color: #fff;
+    background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.35);
+}
+.cr-app-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -1px; color: #fff !important; -webkit-text-fill-color: #fff; background: none; }
+.cr-app-text { max-width: 480px; line-height: 1.75; color: rgba(255,255,255,.92); }
+.cr-app-text strong { color: #fff; }
+.cr-app-list li { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: .95rem; font-weight: 600; color: #fff; }
+.cr-app-list i { color: #fde68a; font-size: 1.1rem; }
+.cr-store { border-radius: 10px; box-shadow: 0 12px 24px -10px rgba(0,0,0,.55); transition: transform .3s ease; }
+.cr-store:hover { transform: translateY(-4px) !important; }
+.cr-store img { display: block; }
+.cr-app-review {
+    display: inline-flex; align-items: center; flex-wrap: wrap; gap: 12px; width: fit-content; padding: 10px 18px; border-radius: 50px;
+    background: #fff; color: #111827; font-size: .85rem; font-weight: 600;
+}
+.cr-app-score { color: #ea580c; font-weight: 800; }
+
+.cr-wheel { position: relative; width: min(100%, 340px); aspect-ratio: 1; margin: 1rem auto; }
+.cr-wheel-ring { position: absolute; inset: -16px; border-radius: 50%; border: 3px dashed rgba(255,255,255,.6); animation: cr-spin 50s linear infinite; }
+.cr-wheel-img { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; border: 8px solid #fff; background: #7c2d12; box-shadow: 0 30px 50px -16px rgba(0,0,0,.5); }
+.cr-wheel-img .image-shimmer-effect { width: 100%; height: 100%; }
+.cr-wheel-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cr-wheel-chip {
+    position: absolute; z-index: 2; display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 50px;
+    background: #fff; color: #111827; font-size: .8rem; font-weight: 700; box-shadow: 0 14px 28px rgba(0,0,0,.3); white-space: nowrap;
+}
+.cr-wheel-chip-top { top: 8%; left: -18px; }
+.cr-wheel-chip-bottom { bottom: 8%; right: -18px; }
+.cr-wheel-chip-icon { width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: .7rem; color: #fff; background: #16a34a; }
+@keyframes cr-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .cr-wheel-ring { animation: none; } }
+@media (max-width: 575.98px) { .cr-wheel { width: 250px; } .cr-wheel-chip-top { left: -8px; } .cr-wheel-chip-bottom { right: -8px; } }
+
+/* ---------- TRAVEL TIPS: daftar baris bernomor ---------- */
+.cr-tips-head { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1.25rem; margin-bottom: 2rem; }
+.cr-tips-kicker { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: .84rem; font-weight: 700; color: #c2410c; }
+.cr-tips-title {
+    margin: 0; font-size: clamp(1.9rem, 3.6vw, 2.7rem); font-weight: 800; letter-spacing: -.8px;
+    color: #111827 !important; -webkit-text-fill-color: #111827; background: none;
+}
+.cr-dot { color: #f97316; -webkit-text-fill-color: #f97316; }
+.cr-tips-all {
+    display: inline-flex; align-items: center; gap: 8px; padding: 11px 26px; border-radius: 50px; font-weight: 700; font-size: .88rem;
+    color: #fff !important; text-decoration: none; background: #111827; transition: all .3s ease;
+}
+.cr-tips-all:hover { background: #ea580c; color: #fff !important; transform: translateY(-2px) !important; }
+
+.cr-tips-list { border-top: 2px solid #111827; }
+.cr-tip {
+    position: relative; display: grid; grid-template-columns: 70px 260px 1fr auto; align-items: center; gap: 1.5rem;
+    padding: 1.5rem 1rem; border-bottom: 2px dashed #d1d5db; transition: background-color .3s ease;
+}
+.cr-tip:hover { background: #fff7ed; }
+.cr-tip-num { font-size: 2.6rem; font-weight: 800; line-height: 1; color: #e5e7eb; transition: color .3s ease; }
+.cr-tip:hover .cr-tip-num { color: #f97316; }
+.cr-tip-media { height: 160px; border-radius: 1.25rem; overflow: hidden; background: #e5e7eb; }
+.cr-tip-media .image-shimmer-effect { width: 100%; height: 100%; }
+.cr-tip-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .7s ease; }
+.cr-tip:hover .cr-tip-media img { transform: scale(1.08); }
+.cr-tip-body { min-width: 0; }
+.cr-tip-place { display: inline-flex; align-items: center; gap: 6px; margin-bottom: .6rem; padding: 4px 12px; border-radius: 50px; font-size: .74rem; font-weight: 700; color: #c2410c; background: #ffedd5; }
+.cr-tip-title { margin: 0 0 .5rem; font-size: 1.2rem; font-weight: 800; line-height: 1.35; color: #111827; }
+.cr-tip-text { margin: 0; font-size: .9rem; line-height: 1.65; color: #6b7280; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.cr-tip-link { display: inline-flex; align-items: center; gap: 12px; font-size: .88rem; font-weight: 700; color: #111827 !important; text-decoration: none; }
+.cr-tip-arrow { width: 46px; height: 46px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: #111827; color: #fff; transition: all .3s ease; }
+.cr-tip-link:hover { color: #c2410c !important; transform: none !important; }
+.cr-tip-link:hover .cr-tip-arrow { background: #f97316; transform: translateX(5px); }
+
+@media (max-width: 991.98px) {
+    .cr-about-photo { grid-column: 1 / -1; height: 380px; }
+    .cr-about-card { grid-column: 1 / -1; grid-row: 2; margin: -90px 16px 0; }
+    .cr-about-stats { left: 16px; right: 16px; top: 16px; bottom: auto; }
+    .cr-tip { grid-template-columns: 48px 200px 1fr; gap: 1.25rem; }
+    .cr-tip-link { grid-column: 3; justify-self: start; }
+}
+@media (max-width: 575.98px) {
+    .cr-about-photo { height: 420px; }
+    .cr-about-stats { grid-template-columns: 1fr; }
+    .cr-stat + .cr-stat { border-left: 0; border-top: 1px solid rgba(255,255,255,.2); }
+    .cr-about-card { margin: -60px 8px 0; }
+    .cr-tip { grid-template-columns: 1fr; gap: 1rem; }
+    .cr-tip-media { height: 200px; }
+    .cr-tip-num { font-size: 1.8rem; }
+    .cr-tip-link { grid-column: 1; }
+}
