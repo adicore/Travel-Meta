@@ -1,0 +1,204 @@
+/* ============================================================
+   TAXI PAGE — extra styles
+   Sections: Hero, Fitur & Keunggulan, About (+Features), Download App, Newsletter
+   Tema: hijau hutan + zamrud + lime, motif argometer & papan catur taksi.
+   Muat setelah style.css:  ./src/css/taxi-extra.css
+   ============================================================ */
+
+.tx-checker-divider, .tx-news-strip, .tx-about::before, .tx-hero::after {
+    background: repeating-conic-gradient(#0f172a 0 25%, #ffffff 0 50%) 0 0 / 20px 20px;
+}
+
+/* ---------- HERO (kotak pencarian taksi hanya diubah warnanya) ---------- */
+.tx-hero { isolation: isolate; overflow: hidden; }
+.tx-hero-overlay {
+    z-index: 0;
+    background:
+        radial-gradient(circle at 85% 15%, rgba(163,230,53,.22), transparent 42%),
+        linear-gradient(120deg, rgba(2,24,20,.95) 0%, rgba(4,60,48,.85) 55%, rgba(5,150,105,.55) 100%) !important;
+}
+.tx-hero > .container { z-index: 3 !important; }
+.tx-hero::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 20px; z-index: 2; pointer-events: none; }
+.tx-hero-watermark { position: absolute; left: -40px; bottom: 10px; z-index: 1; font-size: 22rem; line-height: 1; color: rgba(255,255,255,.04); pointer-events: none; }
+.tx-hero-badge {
+    display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 50px; font-size: .85rem; font-weight: 800; color: #1a2e05;
+    background: linear-gradient(135deg, #d9f99d, #a3e635); box-shadow: 0 12px 24px -10px rgba(163,230,53,.7);
+}
+.tx-hero-title { color: #fff !important; -webkit-text-fill-color: #fff; background: none; letter-spacing: -1.2px; line-height: 1.1; text-shadow: 0 4px 24px rgba(0,0,0,.4); }
+.tx-hero-accent { background: linear-gradient(135deg, #d9f99d, #34d399); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; text-shadow: none; }
+.tx-hero-lead { color: rgba(255,255,255,.86); line-height: 1.7; }
+.tx-hero-points { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+@media (min-width: 992px) { .tx-hero-points { justify-content: flex-start; } }
+.tx-hero-points li {
+    display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 50px; font-size: .82rem; font-weight: 700; color: #fff;
+    background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.22); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.tx-hero-points i { color: #bef264; }
+
+/* Kotak pencarian taksi: hanya warna */
+.tx-hero .col-lg-6 > .card { position: relative; border: 1px solid rgba(255,255,255,.4) !important; box-shadow: 0 40px 70px -30px rgba(0,0,0,.7) !important; }
+.tx-hero .col-lg-6 > .card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; border-radius: 1rem 1rem 0 0; pointer-events: none;
+    background: linear-gradient(90deg, #10b981, #a3e635);
+}
+#taxiSearchForm .text-primary, .tx-hero .card h5 .text-primary { color: #059669 !important; }
+.tx-hero .card h5 .text-primary { color: #059669 !important; }
+#taxiSearchForm .search-box-item { border-color: #d1d5db; }
+#taxiSearchForm .search-box-item:hover { border-color: #6ee7b7; }
+#taxiSearchForm .search-box-item:focus-within { border-color: #10b981 !important; box-shadow: 0 0 0 4px rgba(16,185,129,.18) !important; background-color: #f7fef9 !important; }
+#taxiSearchForm .btn-primary { background: linear-gradient(135deg, #10b981, #059669) !important; border: 0 !important; color: #fff !important; box-shadow: 0 12px 22px -12px rgba(5,150,105,.9) !important; }
+#taxiSearchForm .btn-primary:hover { background: linear-gradient(135deg, #34d399, #10b981) !important; }
+#taxiSearchForm > .btn-primary.btn-lg { background: linear-gradient(135deg, #bef264, #84cc16) !important; color: #1a2e05 !important; box-shadow: 0 18px 30px -14px rgba(132,204,22,.9) !important; }
+#taxiSearchForm > .btn-primary.btn-lg:hover { background: linear-gradient(135deg, #d9f99d, #a3e635) !important; }
+.flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange, .flatpickr-day.selected:hover { background: #10b981 !important; border-color: #10b981 !important; color: #fff !important; }
+.flatpickr-day.today { border-color: #10b981 !important; }
+.flatpickr-day:not(.selected):not(.flatpickr-disabled):hover { background: #ecfdf5; border-color: #ecfdf5; }
+
+/* ---------- FITUR & KEUNGGULAN: kartu argometer ---------- */
+.tx-sec-title { font-size: clamp(1.7rem, 3.4vw, 2.5rem); font-weight: 800; letter-spacing: -.8px; color: #052e26 !important; -webkit-text-fill-color: #052e26; background: none; }
+.tx-checker-divider { display: block; width: 160px; height: 20px; margin: 0 auto; border-radius: 4px; }
+
+.tx-meter {
+    padding: 1.75rem; border-radius: 1.5rem; background: linear-gradient(160deg, #04201a, #021410); border: 2px solid #14532d;
+    box-shadow: inset 0 0 0 4px #021410, inset 0 0 0 5px rgba(163,230,53,.28), 0 28px 44px -26px rgba(2,20,16,.85);
+    transition: transform .35s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow .35s ease;
+}
+.tx-meter:hover { transform: translateY(-6px); box-shadow: inset 0 0 0 4px #021410, inset 0 0 0 5px rgba(163,230,53,.6), 0 34px 52px -26px rgba(132,204,22,.35); }
+.tx-meter-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.4rem; }
+.tx-meter-icon { width: 54px; height: 54px; border-radius: 15px; display: inline-flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #bef264; border: 1.5px solid rgba(163,230,53,.5); background: rgba(163,230,53,.08); }
+.tx-meter-led { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 2.3rem; font-weight: 700; letter-spacing: 4px; color: #a3e635; text-shadow: 0 0 14px rgba(163,230,53,.75); }
+.tx-meter-title { margin: 0 0 .65rem; font-size: 1.15rem; font-weight: 800; color: #fff; -webkit-text-fill-color: #fff; background: none; }
+.tx-meter-text { font-size: .9rem; line-height: 1.7; color: rgba(255,255,255,.72); }
+
+/* ---------- ABOUT: panel gelap + foto miring ---------- */
+.tx-tag { display: inline-flex; align-items: center; gap: 8px; padding: 7px 16px; border-radius: 50px; font-size: .82rem; font-weight: 700; color: #1a2e05; background: linear-gradient(135deg, #d9f99d, #a3e635); }
+.tx-about {
+    position: relative; display: grid; grid-template-columns: 7fr 5fr; overflow: hidden; border-radius: 2rem; color: #fff;
+    background: linear-gradient(135deg, #04201a 0%, #064e3b 100%); box-shadow: 0 36px 64px -34px rgba(2, 32, 26, .85);
+}
+.tx-about::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 14px; background-size: 14px 14px; z-index: 3; }
+.tx-about-text { position: relative; z-index: 2; padding: clamp(2rem, 4vw, 3.5rem); padding-top: clamp(2.5rem, 4vw, 3.9rem); }
+.tx-about-title { font-size: clamp(2rem, 3.8vw, 2.9rem); font-weight: 800; letter-spacing: -1px; line-height: 1.15; color: #fff !important; -webkit-text-fill-color: #fff; background: none; }
+.tx-about-p { color: rgba(255,255,255,.78); line-height: 1.85; }
+.tx-about-photo { position: relative; min-height: 460px; }
+.tx-about-photo .image-shimmer-effect { position: absolute; inset: 0; width: 100%; height: 100%; }
+.tx-about-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tx-about-photo { clip-path: polygon(16% 0, 100% 0, 100% 100%, 0 100%); }
+.tx-about-photo::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(4,32,26,.55), transparent 55%); }
+.tx-about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0; max-width: 460px; border: 1px solid rgba(255,255,255,.2); border-radius: 1.25rem; background: rgba(255,255,255,.06); }
+.tx-stat { padding: 16px 20px; }
+.tx-stat + .tx-stat { border-left: 1px dashed rgba(255,255,255,.3); }
+.tx-stat-value { font-size: 1.5rem; font-weight: 800; line-height: 1.1; color: #fff; }
+.tx-stat-value-sm { font-size: 1.2rem; color: #bef264; }
+.tx-stat-label { margin: 3px 0 6px; font-size: .72rem; font-weight: 600; color: rgba(255,255,255,.7); }
+.tx-stat-source { font-size: .78rem; font-weight: 700; color: #4ade80; }
+.tx-stat-year { display: inline-block; padding: 1px 10px; border-radius: 50px; font-size: .7rem; font-weight: 800; color: #1a2e05; background: #a3e635; }
+.tx-btn {
+    display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; border-radius: 50px; font-weight: 800; color: #1a2e05 !important; text-decoration: none;
+    background: linear-gradient(135deg, #d9f99d, #a3e635); box-shadow: 0 16px 28px -12px rgba(163,230,53,.7); transition: all .3s ease;
+}
+.tx-btn:hover { color: #1a2e05 !important; transform: translateY(-3px) !important; }
+.tx-btn i { transition: transform .3s ease; }
+.tx-btn:hover i { transform: translateX(4px); }
+
+/* ---------- ABOUT FEATURES: zig-zag di sepanjang marka jalan ---------- */
+.tx-lane { position: relative; max-width: 1000px; margin: 0 auto; }
+.tx-lane::before { content: ''; position: absolute; left: 50%; top: 10px; bottom: 10px; border-left: 3px dashed #a3e635; transform: translateX(-1.5px); }
+.tx-lane-item { position: relative; width: 50%; padding: 0 3rem 2rem 0; }
+.tx-lane-item:nth-child(even) { margin-left: 50%; padding: 0 0 2rem 3rem; }
+.tx-lane-item:last-child { padding-bottom: 0; }
+.tx-lane-dot {
+    position: absolute; top: 10px; right: -28px; z-index: 2; width: 56px; height: 56px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; color: #059669; background: #fff; border: 3px solid #10b981; box-shadow: 0 0 0 8px #f8fafc; transition: all .3s ease;
+}
+.tx-lane-item:nth-child(even) .tx-lane-dot { right: auto; left: -28px; }
+.tx-lane-item:hover .tx-lane-dot { background: #10b981; color: #fff; }
+.tx-lane-card { position: relative; padding: 1.5rem 1.6rem; background: #fff; border: 1px solid #d1fae5; border-radius: 1.5rem; box-shadow: 0 20px 38px -26px rgba(5,46,38,.5); transition: transform .35s ease, box-shadow .35s ease; }
+.tx-lane-item:hover .tx-lane-card { transform: translateY(-4px); box-shadow: 0 28px 46px -26px rgba(16,185,129,.5); }
+.tx-lane-num { position: absolute; top: 12px; right: 18px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 1.8rem; font-weight: 700; color: #d9f99d; }
+.tx-lane-title { margin: 0 3rem .6rem 0; font-size: 1.08rem; font-weight: 800; line-height: 1.35; color: #052e26; }
+.tx-lane-text { font-size: .9rem; line-height: 1.7; color: #4b5563; }
+.tx-lane-text strong { color: #052e26; }
+
+/* ---------- DOWNLOAD APP: peta jalan + kartu pesanan ---------- */
+.tx-app {
+    position: relative; overflow: hidden; padding: clamp(1.75rem, 4vw, 3.5rem); border-radius: 2rem; color: #fff;
+    background-color: #052e26;
+    background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(135deg, #052e26, #064e3b);
+    background-size: 44px 44px, 44px 44px, 100% 100%; box-shadow: 0 36px 64px -34px rgba(2, 32, 26, .85);
+}
+.tx-app::before { content: ''; position: absolute; top: -160px; right: -120px; width: 440px; height: 440px; border-radius: 50%; pointer-events: none; background: radial-gradient(circle, rgba(163,230,53,.3), transparent 70%); }
+.tx-app-tag { display: inline-flex; align-items: center; gap: 8px; padding: 7px 16px; border-radius: 50px; font-size: .82rem; font-weight: 800; color: #1a2e05; background: linear-gradient(135deg, #d9f99d, #a3e635); }
+.tx-app-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -1px; color: #fff !important; -webkit-text-fill-color: #fff; background: none; }
+.tx-app-text { max-width: 500px; line-height: 1.75; color: rgba(255,255,255,.82); }
+.tx-app-text strong { color: #bef264; }
+.tx-app-list li { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: .95rem; font-weight: 600; color: rgba(255,255,255,.92); }
+.tx-app-list i { width: 32px; height: 32px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; border-radius: 10px; color: #bef264; background: rgba(163,230,53,.12); border: 1px solid rgba(163,230,53,.35); }
+.tx-store { border-radius: 10px; box-shadow: 0 12px 24px -10px rgba(0,0,0,.6); transition: transform .3s ease; }
+.tx-store:hover { transform: translateY(-4px) !important; }
+.tx-store img { display: block; }
+.tx-app-review { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 10px 18px; border-radius: 50px; font-size: .85rem; font-weight: 600; color: #052e26; background: #fff; }
+.tx-app-score { font-weight: 800; color: #d97706; }
+
+.tx-ride-stage { position: relative; display: flex; justify-content: center; align-items: center; min-height: 340px; }
+.tx-ride { width: 310px; padding: 1.25rem; border-radius: 1.5rem; color: #0f172a; background: #fff; transform: rotate(3deg); box-shadow: 0 34px 56px -18px rgba(0,0,0,.6); }
+.tx-ride-head { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; padding-bottom: .85rem; border-bottom: 1px dashed #d1d5db; font-size: .78rem; font-weight: 800; color: #047857; }
+.tx-ride-pulse { width: 10px; height: 10px; border-radius: 50%; background: #10b981; box-shadow: 0 0 0 0 rgba(16,185,129,.6); animation: tx-pulse 1.8s infinite; }
+@keyframes tx-pulse { 70% { box-shadow: 0 0 0 10px rgba(16,185,129,0); } 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); } }
+@media (prefers-reduced-motion: reduce) { .tx-ride-pulse { animation: none; } }
+.tx-ride-route { position: relative; display: flex; flex-direction: column; gap: 0; }
+.tx-ride-stop { display: flex; align-items: center; gap: 12px; }
+.tx-ride-stop small { display: block; font-size: .66rem; font-weight: 600; color: #9ca3af; line-height: 1.1; }
+.tx-ride-stop b { font-size: .88rem; }
+.tx-ride-dot { width: 22px; height: 22px; flex-shrink: 0; border-radius: 50%; border: 5px solid #10b981; background: #fff; }
+.tx-ride-pin { width: 22px; flex-shrink: 0; text-align: center; font-size: 1.25rem; color: #ea580c; line-height: 1; }
+.tx-ride-line { width: 0; height: 26px; margin: 2px 0 2px 10px; border-left: 2px dashed #a7f3d0; }
+.tx-ride-driver { display: flex; align-items: center; gap: 12px; margin-top: 1rem; padding: .8rem; border-radius: 1rem; background: #f0fdf4; }
+.tx-ride-avatar { width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #fff; background: linear-gradient(135deg, #10b981, #047857); }
+.tx-ride-driver b { display: block; font-size: .84rem; line-height: 1.15; }
+.tx-ride-driver small { font-size: .68rem; color: #6b7280; }
+.tx-ride-eta { margin-left: auto; padding: 4px 11px; border-radius: 50px; font-size: .76rem; font-weight: 800; color: #1a2e05; background: #a3e635; white-space: nowrap; }
+.tx-app-chip { position: absolute; z-index: 3; display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 50px; font-size: .8rem; font-weight: 700; color: #052e26; background: #fff; box-shadow: 0 14px 28px rgba(0,0,0,.35); white-space: nowrap; }
+.tx-app-chip-top { top: 18px; left: -6px; }
+.tx-app-chip-bottom { bottom: 18px; right: -6px; }
+.tx-app-chip-icon { width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: .7rem; color: #fff; background: #16a34a; }
+
+/* ---------- NEWSLETTER: papan lime + garis catur taksi ---------- */
+.tx-news { position: relative; overflow: hidden; border-radius: 2rem; background: linear-gradient(135deg, #ecfccb 0%, #bef264 100%); box-shadow: 0 30px 54px -34px rgba(101,163,13,.7); }
+.tx-news-strip { position: absolute; left: 0; right: 0; height: 20px; z-index: 2; }
+.tx-news-strip-top { top: 0; }
+.tx-news-strip-bottom { bottom: 0; }
+.tx-news-body { position: relative; z-index: 1; margin: 0; padding: clamp(2.75rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3.25rem); }
+.tx-news-sign {
+    position: absolute; top: 20px; left: clamp(1.5rem, 4vw, 3.25rem); z-index: 3; display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px 8px; border-radius: 0 0 14px 14px;
+    font-size: .8rem; font-weight: 800; letter-spacing: 1px; color: #bef264; background: #052e26; box-shadow: 0 12px 20px -10px rgba(2,32,26,.7);
+}
+.tx-news-title { font-size: clamp(1.5rem, 2.8vw, 2.2rem); font-weight: 800; line-height: 1.25; letter-spacing: -.6px; padding-top: 1.25rem; color: #052e26 !important; -webkit-text-fill-color: #052e26; background: none; }
+.tx-news-field { display: flex; align-items: center; gap: 8px; padding: 6px 6px 6px 20px; border-radius: 50px; background: #fff; border: 2px solid #052e26; box-shadow: 6px 6px 0 #052e26; transition: transform .25s ease, box-shadow .25s ease; }
+.tx-news-field:focus-within { transform: translate(3px, 3px); box-shadow: 3px 3px 0 #052e26; }
+.tx-news-icon { color: #059669; font-size: 1.1rem; }
+.tx-news-input { flex: 1; min-width: 0; padding: .75rem .25rem; border: 0; outline: 0; background: transparent; font-size: .95rem; font-weight: 500; color: #052e26; }
+.tx-news-input::placeholder { color: #9ca3af; }
+.tx-news-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-width: 50px; height: 50px; padding: 0 24px; border: 0; border-radius: 50px; cursor: pointer; font-weight: 800; font-size: .9rem; color: #bef264; background: #052e26; transition: all .3s ease; }
+.tx-news-btn:hover { background: #064e3b; transform: translateY(-2px); }
+.tx-news-btn i { transition: transform .3s ease; }
+.tx-news-btn:hover i { transform: translate(3px, -3px); }
+.tx-news-note { display: flex; align-items: flex-start; gap: 10px; margin-top: 1.1rem; font-size: .82rem; line-height: 1.5; color: #1a3a1a; }
+.tx-news-note i { color: #047857; font-size: 1.15rem; margin-top: -1px; }
+
+@media (max-width: 991.98px) {
+    .tx-about { grid-template-columns: 1fr; }
+    .tx-about-photo { min-height: 260px; order: -1; clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%); }
+    .tx-about-text { padding-top: 2rem; }
+    .tx-hero-watermark { font-size: 14rem; }
+}
+@media (max-width: 767.98px) {
+    .tx-lane::before { left: 28px; }
+    .tx-lane-item, .tx-lane-item:nth-child(even) { width: 100%; margin-left: 0; padding: 0 0 1.75rem 4.25rem; }
+    .tx-lane-dot, .tx-lane-item:nth-child(even) .tx-lane-dot { left: 0; right: auto; }
+}
+@media (max-width: 575.98px) {
+    .tx-about-stats { grid-template-columns: 1fr; }
+    .tx-stat + .tx-stat { border-left: 0; border-top: 1px dashed rgba(255,255,255,.3); }
+    .tx-news-btn { padding: 0; width: 50px; }
+}
