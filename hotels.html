@@ -332,14 +332,15 @@
     </section>
 
     <!-- 6. SECTION: POPULAR HOTELS -->
-    <section id="hotels" class="container py-5 scroll-reveal">
-        <div class="text-center mb-4">
+    <section id="hotels" class="container py-5 scroll-reveal ht-pop">
+        <div class="text-center mb-4 ht-pop-head">
+            <span class="ht-pop-kicker"><i class="bi bi-buildings-fill"></i> Hotel Terpopuler</span>
             <h2 class="display-6 text-dark">Popular Hotels Globally</h2>
             <p class="text-muted">Akomodasi pilihan dengan fasilitas mewah dan ulasan terbaik.</p>
         </div>
         <div class="overflow-hidden mb-4">
             <div class="d-flex overflow-x-auto hide-scroll justify-content-md-center">
-                <ul class="nav nav-pills gap-2 flex-nowrap" role="tablist">
+                <ul class="nav nav-pills gap-2 flex-nowrap ht-hotel-tabs" role="tablist">
                     <li class="nav-item"><button class="nav-link active rounded-pill px-4 fw-semibold text-nowrap" data-bs-toggle="pill" data-bs-target="#hotelAmerica">Amerika</button></li>
                     <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold text-nowrap" data-bs-toggle="pill" data-bs-target="#hotelEurope">Eropa</button></li>
                     <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold text-nowrap" data-bs-toggle="pill" data-bs-target="#hotelAsia">Asia</button></li>
@@ -351,59 +352,1764 @@
         <div class="tab-content">
             <div class="tab-pane fade show active" id="hotelAmerica">
                 <div class="row g-4">
-                    <div class="col-md-4">
-                        <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover position-relative bg-white">
-                            <div class="image-shimmer-effect position-relative" style="height: 220px;">
-                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" width="600" height="400" class="lazyload lazy-effect" alt="Luxury Ocean View Hotel" fetchpriority="low">
-                                <button class="btn btn-white bg-white rounded-circle position-absolute top-0 start-0 m-3 d-flex align-items-center justify-content-center shadow-sm border-0" style="width: 38px; height: 38px; z-index: 2;" title="Wishlist">
-                                    <i class="bi bi-heart text-dark fs-5"></i>
-                                </button>
-                                <span class="badge position-absolute top-0 end-0 m-3 px-3 py-2 rounded-pill fw-bold text-white shadow-sm" style="background-color: #ff3b30; z-index: 2; font-size: 0.8rem;">
-                                    10% Off
-                                </span>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Luxury Ocean View Hotel" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">10% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Luxury Ocean View Hotel" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Luxury Ocean View Hotel</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Bali, Indonesia</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.5</span>
+                                    <span class="hc-score-txt"><b>Excellent</b><small>2,456 reviews</small></span>
+                                </div>
                             </div>
-                            <div class="card-body p-4 d-flex flex-column justify-content-between">
-                                <div>
-                                    <h5 class="fw-bold mb-1 fs-5">
-                                        <a href="#" class="text-dark text-decoration-none">Luxury Ocean View Hotel</a>
-                                    </h5>
-                                    <p class="text-muted small mb-3 d-flex align-items-center gap-1">
-                                        <i class="bi bi-cursor text-secondary" style="font-size: 0.85rem; transform: rotate(0deg);"></i> Bali, Indonesia
-                                    </p>
-                                    <div class="d-flex align-items-center gap-2 mb-3">
-                                        <span class="badge bg-primary text-white px-2 py-1 rounded-2 fw-bold fs-6">4.5</span>
-                                        <div>
-                                            <span class="fw-bold text-dark small d-block lh-1">Excellent</span>
-                                            <small class="text-muted" style="font-size: 0.75rem;">Based on 2,456 reviews</small>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center gap-2 mb-3 text-dark small fw-medium">
-                                        <i class="bi bi-check-circle-fill text-primary fs-6"></i>
-                                        <span>Free Cancellation</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="text-end mb-2">
-                                        <span class="text-muted text-decoration-line-through small me-2">USD 2,959</span>
-                                        <div class="d-flex align-items-center justify-content-end gap-1">
-                                            <i class="bi bi-info-circle text-muted" style="font-size: 0.8rem;"></i>
-                                            <span class="fw-extrabold text-dark fs-4 lh-1">USD 2,559</span>
-                                        </div>
-                                        <small class="text-muted" style="font-size: 0.75rem;">per night</small>
-                                    </div>
-                                    <button class="btn btn-primary w-100 rounded-pill py-2 fw-bold shadow-sm">
-                                        Check Availability
-                                    </button>
-                                </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-water"></i> Pool</li><li><i class="bi bi-flower1"></i> Spa</li><li><i class="bi bi-umbrella"></i> Beach</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 2,959</del><b>USD 2,559</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
                             </div>
                         </div>
-                    </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="The Hudson Grand Hotel" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan The Hudson Grand Hotel" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">The Hudson Grand Hotel</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> New York, USA</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.2</span>
+                                    <span class="hc-score-txt"><b>Very Good</b><small>3,963 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-umbrella"></i> Beach</li><li><i class="bi bi-water"></i> Pool</li><li><i class="bi bi-heart-pulse"></i> Gym</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Breakfast Included</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><b>USD 475</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Ocean Drive Resort & Spa" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">10% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Ocean Drive Resort & Spa" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Ocean Drive Resort & Spa</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Miami Beach, USA</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.6</span>
+                                    <span class="hc-score-txt"><b>Excellent</b><small>2,245 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-cup-straw"></i> Bar</li><li><i class="bi bi-heart-pulse"></i> Gym</li><li><i class="bi bi-bus-front"></i> Shuttle</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Airport Shuttle</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 385</del><b>USD 345</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Sunset Boulevard Suites" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">25% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Sunset Boulevard Suites" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="4 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Sunset Boulevard Suites</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Los Angeles, USA</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.8</span>
+                                    <span class="hc-score-txt"><b>Exceptional</b><small>570 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-cup-straw"></i> Bar</li><li><i class="bi bi-p-circle"></i> Parking</li><li><i class="bi bi-umbrella"></i> Beach</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 215</del><b>USD 160</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Playa Azul Beach Resort" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">10% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Playa Azul Beach Resort" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Playa Azul Beach Resort</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Cancún, Mexico</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.2</span>
+                                    <span class="hc-score-txt"><b>Very Good</b><small>1,140 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-flower1"></i> Spa</li><li><i class="bi bi-water"></i> Pool</li><li><i class="bi bi-bus-front"></i> Shuttle</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 290</del><b>USD 260</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Lakeshore Grand Chicago" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Lakeshore Grand Chicago" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="4 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Lakeshore Grand Chicago</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Chicago, USA</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.8</span>
+                                    <span class="hc-score-txt"><b>Exceptional</b><small>3,502 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-bus-front"></i> Shuttle</li><li><i class="bi bi-water"></i> Pool</li><li><i class="bi bi-cup-straw"></i> Bar</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Pay at Hotel</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><b>USD 150</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Golden Gate Boutique Inn" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">10% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Golden Gate Boutique Inn" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="4 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Golden Gate Boutique Inn</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> San Francisco, USA</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.2</span>
+                                    <span class="hc-score-txt"><b>Very Good</b><small>3,460 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-umbrella"></i> Beach</li><li><i class="bi bi-cup-straw"></i> Bar</li><li><i class="bi bi-p-circle"></i> Parking</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Airport Shuttle</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 245</del><b>USD 220</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Copacabana Palace View" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">12% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Copacabana Palace View" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Copacabana Palace View</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Rio de Janeiro, Brazil</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.2</span>
+                                    <span class="hc-score-txt"><b>Very Good</b><small>5,720 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-cup-straw"></i> Bar</li><li><i class="bi bi-umbrella"></i> Beach</li><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-bus-front"></i> Shuttle</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 290</del><b>USD 255</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Maple Leaf Residence" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">12% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Maple Leaf Residence" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <span class="hc-fav"><i class="bi bi-trophy-fill"></i> Guest Favorite</span>
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="4 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Maple Leaf Residence</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Toronto, Canada</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.9</span>
+                                    <span class="hc-score-txt"><b>Exceptional</b><small>1,496 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-umbrella"></i> Beach</li><li><i class="bi bi-flower1"></i> Spa</li><li><i class="bi bi-water"></i> Pool</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 150</del><b>USD 130</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Casa Reforma Hotel" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">15% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Casa Reforma Hotel" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="4 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Casa Reforma Hotel</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Mexico City, Mexico</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.7</span>
+                                    <span class="hc-score-txt"><b>Excellent</b><small>4,299 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-bus-front"></i> Shuttle</li><li><i class="bi bi-cup-hot"></i> Breakfast</li><li><i class="bi bi-p-circle"></i> Parking</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 130</del><b>USD 110</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Palermo Garden Hotel" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">20% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Palermo Garden Hotel" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="4 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Palermo Garden Hotel</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Buenos Aires, Argentina</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.8</span>
+                                    <span class="hc-score-txt"><b>Exceptional</b><small>6,654 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-heart-pulse"></i> Gym</li><li><i class="bi bi-snow"></i> A/C</li><li><i class="bi bi-flower1"></i> Spa</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Airport Shuttle</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 110</del><b>USD 90</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Desert Star Resort" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Desert Star Resort" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Desert Star Resort</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Las Vegas, USA</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.4</span>
+                                    <span class="hc-score-txt"><b>Very Good</b><small>5,435 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-flower1"></i> Spa</li><li><i class="bi bi-water"></i> Pool</li><li><i class="bi bi-heart-pulse"></i> Gym</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Airport Shuttle</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><b>USD 335</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="hotelEurope"><div class="text-center py-4 text-muted">Hotel Eropa segera hadir...</div></div>
-            <div class="tab-pane fade" id="hotelAsia"><div class="text-center py-4 text-muted">Hotel Asia segera hadir...</div></div>
-            <div class="tab-pane fade" id="hotelAfrica"><div class="text-center py-4 text-muted">Hotel Afrika segera hadir...</div></div>
-            <div class="tab-pane fade" id="hotelMiddleEast"><div class="text-center py-4 text-muted">Hotel Middle East segera hadir...</div></div>
+            <div class="tab-pane fade" id="hotelEurope">
+                <div class="row g-4">
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Maison Lumière Paris" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">25% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Maison Lumière Paris" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Maison Lumière Paris</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Paris, France</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.6</span>
+                                    <span class="hc-score-txt"><b>Excellent</b><small>5,128 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-water"></i> Pool</li><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-snow"></i> A/C</li><li><i class="bi bi-flower1"></i> Spa</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Breakfast Included</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 505</del><b>USD 380</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Colosseo Grand Palace" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Colosseo Grand Palace" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Colosseo Grand Palace</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Rome, Italy</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.5</span>
+                                    <span class="hc-score-txt"><b>Excellent</b><small>3,134 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-snow"></i> A/C</li><li><i class="bi bi-flower1"></i> Spa</li><li><i class="bi bi-cup-hot"></i> Breakfast</li><li><i class="bi bi-wifi"></i> Free WiFi</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Airport Shuttle</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><b>USD 350</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Hotel Casa Mediterránea" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">12% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Hotel Casa Mediterránea" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="4 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Hotel Casa Mediterránea</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Barcelona, Spain</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.7</span>
+                                    <span class="hc-score-txt"><b>Excellent</b><small>7,672 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-cup-hot"></i> Breakfast</li><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-p-circle"></i> Parking</li><li><i class="bi bi-heart-pulse"></i> Gym</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Breakfast Included</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 170</del><b>USD 150</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="The Kensington Court" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">20% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan The Kensington Court" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">The Kensington Court</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> London, UK</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.3</span>
+                                    <span class="hc-score-txt"><b>Very Good</b><small>3,831 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-flower1"></i> Spa</li><li><i class="bi bi-bus-front"></i> Shuttle</li><li><i class="bi bi-water"></i> Pool</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Airport Shuttle</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 520</del><b>USD 415</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Canal House Amsterdam" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">25% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Canal House Amsterdam" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="4 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Canal House Amsterdam</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Amsterdam, Netherlands</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.7</span>
+                                    <span class="hc-score-txt"><b>Excellent</b><small>6,729 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-flower1"></i> Spa</li><li><i class="bi bi-water"></i> Pool</li><li><i class="bi bi-snow"></i> A/C</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Airport Shuttle</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 240</del><b>USD 180</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Caldera Cliff Suites" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">20% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Caldera Cliff Suites" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Caldera Cliff Suites</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Santorini, Greece</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.3</span>
+                                    <span class="hc-score-txt"><b>Very Good</b><small>6,898 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-heart-pulse"></i> Gym</li><li><i class="bi bi-flower1"></i> Spa</li><li><i class="bi bi-cup-hot"></i> Breakfast</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Airport Shuttle</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 475</del><b>USD 380</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Palazzo Laguna Venezia" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">25% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Palazzo Laguna Venezia" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Palazzo Laguna Venezia</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Venice, Italy</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.2</span>
+                                    <span class="hc-score-txt"><b>Very Good</b><small>5,658 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-bus-front"></i> Shuttle</li><li><i class="bi bi-cup-hot"></i> Breakfast</li><li><i class="bi bi-cup-straw"></i> Bar</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Airport Shuttle</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 460</del><b>USD 345</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Golden Bridge Hotel" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Golden Bridge Hotel" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="4 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Golden Bridge Hotel</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Prague, Czechia</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.6</span>
+                                    <span class="hc-score-txt"><b>Excellent</b><small>6,309 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-cup-straw"></i> Bar</li><li><i class="bi bi-water"></i> Pool</li><li><i class="bi bi-bus-front"></i> Shuttle</li><li><i class="bi bi-wifi"></i> Free WiFi</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Airport Shuttle</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><b>USD 100</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Ringstrasse Imperial" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">15% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Ringstrasse Imperial" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Ringstrasse Imperial</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Vienna, Austria</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.2</span>
+                                    <span class="hc-score-txt"><b>Very Good</b><small>6,489 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-cup-hot"></i> Breakfast</li><li><i class="bi bi-p-circle"></i> Parking</li><li><i class="bi bi-cup-straw"></i> Bar</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Airport Shuttle</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 360</del><b>USD 305</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Alfama Terrace Hotel" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">10% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Alfama Terrace Hotel" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <span class="hc-fav"><i class="bi bi-trophy-fill"></i> Guest Favorite</span>
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="4 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Alfama Terrace Hotel</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Lisbon, Portugal</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.9</span>
+                                    <span class="hc-score-txt"><b>Exceptional</b><small>3,112 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-bus-front"></i> Shuttle</li><li><i class="bi bi-snow"></i> A/C</li><li><i class="bi bi-p-circle"></i> Parking</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Airport Shuttle</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 130</del><b>USD 115</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Brandenburg Residence" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Brandenburg Residence" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="4 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Brandenburg Residence</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Berlin, Germany</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.9</span>
+                                    <span class="hc-score-txt"><b>Exceptional</b><small>3,091 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-p-circle"></i> Parking</li><li><i class="bi bi-cup-hot"></i> Breakfast</li><li><i class="bi bi-snow"></i> A/C</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Pay at Hotel</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><b>USD 110</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Lakeview Alpine Lodge" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Lakeview Alpine Lodge" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Lakeview Alpine Lodge</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Zurich, Switzerland</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.5</span>
+                                    <span class="hc-score-txt"><b>Excellent</b><small>421 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-flower1"></i> Spa</li><li><i class="bi bi-snow"></i> A/C</li><li><i class="bi bi-heart-pulse"></i> Gym</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Breakfast Included</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><b>USD 460</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="hotelAsia">
+                <div class="row g-4">
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Sakura Garden Hotel" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">20% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Sakura Garden Hotel" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Sakura Garden Hotel</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Tokyo, Japan</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.7</span>
+                                    <span class="hc-score-txt"><b>Excellent</b><small>1,518 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-umbrella"></i> Beach</li><li><i class="bi bi-flower1"></i> Spa</li><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-p-circle"></i> Parking</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 455</del><b>USD 365</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Marina Skyline Hotel" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Marina Skyline Hotel" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <span class="hc-fav"><i class="bi bi-trophy-fill"></i> Guest Favorite</span>
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Marina Skyline Hotel</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Singapore, Singapore</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.9</span>
+                                    <span class="hc-score-txt"><b>Exceptional</b><small>5,675 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-bus-front"></i> Shuttle</li><li><i class="bi bi-flower1"></i> Spa</li><li><i class="bi bi-heart-pulse"></i> Gym</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Breakfast Included</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><b>USD 365</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Chao Phraya Riverside" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">20% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Chao Phraya Riverside" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Chao Phraya Riverside</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Bangkok, Thailand</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.9</span>
+                                    <span class="hc-score-txt"><b>Exceptional</b><small>7,239 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-umbrella"></i> Beach</li><li><i class="bi bi-cup-straw"></i> Bar</li><li><i class="bi bi-bus-front"></i> Shuttle</li><li><i class="bi bi-wifi"></i> Free WiFi</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Breakfast Included</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 255</del><b>USD 205</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Hangang View Hotel" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Hangang View Hotel" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="4 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Hangang View Hotel</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Seoul, South Korea</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.8</span>
+                                    <span class="hc-score-txt"><b>Exceptional</b><small>5,427 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-umbrella"></i> Beach</li><li><i class="bi bi-cup-straw"></i> Bar</li><li><i class="bi bi-p-circle"></i> Parking</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Breakfast Included</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><b>USD 115</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Andaman Cove Resort" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">5% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Andaman Cove Resort" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Andaman Cove Resort</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Phuket, Thailand</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.2</span>
+                                    <span class="hc-score-txt"><b>Very Good</b><small>2,958 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-cup-straw"></i> Bar</li><li><i class="bi bi-umbrella"></i> Beach</li><li><i class="bi bi-heart-pulse"></i> Gym</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 225</del><b>USD 215</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Gion Machiya Retreat" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">5% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Gion Machiya Retreat" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="4 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Gion Machiya Retreat</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Kyoto, Japan</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.4</span>
+                                    <span class="hc-score-txt"><b>Very Good</b><small>2,881 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-cup-hot"></i> Breakfast</li><li><i class="bi bi-flower1"></i> Spa</li><li><i class="bi bi-snow"></i> A/C</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 160</del><b>USD 150</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Victoria Harbour Suites" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">25% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Victoria Harbour Suites" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Victoria Harbour Suites</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Hong Kong, Hong Kong</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.7</span>
+                                    <span class="hc-score-txt"><b>Excellent</b><small>1,129 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-heart-pulse"></i> Gym</li><li><i class="bi bi-umbrella"></i> Beach</li><li><i class="bi bi-cup-straw"></i> Bar</li><li><i class="bi bi-wifi"></i> Free WiFi</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 535</del><b>USD 400</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Atoll Overwater Villas" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">12% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Atoll Overwater Villas" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Atoll Overwater Villas</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Malé, Maldives</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.3</span>
+                                    <span class="hc-score-txt"><b>Very Good</b><small>2,578 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-heart-pulse"></i> Gym</li><li><i class="bi bi-cup-straw"></i> Bar</li><li><i class="bi bi-cup-hot"></i> Breakfast</li><li><i class="bi bi-wifi"></i> Free WiFi</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 725</del><b>USD 640</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Menteng Grand Residence" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Menteng Grand Residence" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Menteng Grand Residence</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Jakarta, Indonesia</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.3</span>
+                                    <span class="hc-score-txt"><b>Very Good</b><small>4,083 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-heart-pulse"></i> Gym</li><li><i class="bi bi-p-circle"></i> Parking</li><li><i class="bi bi-cup-straw"></i> Bar</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Airport Shuttle</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><b>USD 165</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Petronas View Hotel" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Petronas View Hotel" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="4 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Petronas View Hotel</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Kuala Lumpur, Malaysia</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.4</span>
+                                    <span class="hc-score-txt"><b>Very Good</b><small>7,144 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-bus-front"></i> Shuttle</li><li><i class="bi bi-p-circle"></i> Parking</li><li><i class="bi bi-umbrella"></i> Beach</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Breakfast Included</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><b>USD 70</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Old Quarter Boutique" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Old Quarter Boutique" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="3 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Old Quarter Boutique</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Hanoi, Vietnam</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.5</span>
+                                    <span class="hc-score-txt"><b>Excellent</b><small>3,445 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-cup-hot"></i> Breakfast</li><li><i class="bi bi-p-circle"></i> Parking</li><li><i class="bi bi-umbrella"></i> Beach</li><li><i class="bi bi-wifi"></i> Free WiFi</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><b>USD 30</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Ubud Jungle Villas" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">25% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Ubud Jungle Villas" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="4 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Ubud Jungle Villas</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Ubud, Indonesia</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.6</span>
+                                    <span class="hc-score-txt"><b>Excellent</b><small>2,769 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-snow"></i> A/C</li><li><i class="bi bi-flower1"></i> Spa</li><li><i class="bi bi-heart-pulse"></i> Gym</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 120</del><b>USD 90</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="hotelAfrica">
+                <div class="row g-4">
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Table Mountain Lodge" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">15% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Table Mountain Lodge" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Table Mountain Lodge</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Cape Town, South Africa</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.7</span>
+                                    <span class="hc-score-txt"><b>Excellent</b><small>1,915 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-flower1"></i> Spa</li><li><i class="bi bi-umbrella"></i> Beach</li><li><i class="bi bi-cup-straw"></i> Bar</li><li><i class="bi bi-wifi"></i> Free WiFi</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 290</del><b>USD 245</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Riad Jardin Rouge" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">15% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Riad Jardin Rouge" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <span class="hc-fav"><i class="bi bi-trophy-fill"></i> Guest Favorite</span>
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="4 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Riad Jardin Rouge</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Marrakech, Morocco</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.8</span>
+                                    <span class="hc-score-txt"><b>Exceptional</b><small>5,005 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-cup-straw"></i> Bar</li><li><i class="bi bi-flower1"></i> Spa</li><li><i class="bi bi-umbrella"></i> Beach</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Breakfast Included</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 135</del><b>USD 115</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Nile Pyramid View" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Nile Pyramid View" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Nile Pyramid View</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Cairo, Egypt</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.8</span>
+                                    <span class="hc-score-txt"><b>Exceptional</b><small>2,165 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-cup-straw"></i> Bar</li><li><i class="bi bi-cup-hot"></i> Breakfast</li><li><i class="bi bi-flower1"></i> Spa</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Breakfast Included</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><b>USD 230</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Stone Town Beach Resort" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">25% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Stone Town Beach Resort" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Stone Town Beach Resort</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Zanzibar, Tanzania</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.6</span>
+                                    <span class="hc-score-txt"><b>Excellent</b><small>474 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-p-circle"></i> Parking</li><li><i class="bi bi-water"></i> Pool</li><li><i class="bi bi-heart-pulse"></i> Gym</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Airport Shuttle</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 425</del><b>USD 320</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Savanna Safari Lodge" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">5% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Savanna Safari Lodge" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Savanna Safari Lodge</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Nairobi, Kenya</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.1</span>
+                                    <span class="hc-score-txt"><b>Good</b><small>1,735 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-cup-straw"></i> Bar</li><li><i class="bi bi-heart-pulse"></i> Gym</li><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-umbrella"></i> Beach</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 340</del><b>USD 325</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Sandton Executive Hotel" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">10% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Sandton Executive Hotel" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="4 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Sandton Executive Hotel</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Johannesburg, South Africa</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.6</span>
+                                    <span class="hc-score-txt"><b>Excellent</b><small>5,946 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-umbrella"></i> Beach</li><li><i class="bi bi-flower1"></i> Spa</li><li><i class="bi bi-cup-straw"></i> Bar</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 130</del><b>USD 115</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Victoria Falls River Lodge" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">10% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Victoria Falls River Lodge" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Victoria Falls River Lodge</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Victoria Falls, Zimbabwe</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.5</span>
+                                    <span class="hc-score-txt"><b>Excellent</b><small>6,802 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-cup-hot"></i> Breakfast</li><li><i class="bi bi-bus-front"></i> Shuttle</li><li><i class="bi bi-heart-pulse"></i> Gym</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Airport Shuttle</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 355</del><b>USD 320</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Lagoon Bay Resort" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">10% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Lagoon Bay Resort" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Lagoon Bay Resort</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Grand Baie, Mauritius</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.3</span>
+                                    <span class="hc-score-txt"><b>Very Good</b><small>2,322 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-water"></i> Pool</li><li><i class="bi bi-p-circle"></i> Parking</li><li><i class="bi bi-umbrella"></i> Beach</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 415</del><b>USD 375</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Corniche Atlantic Hotel" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">20% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Corniche Atlantic Hotel" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="4 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Corniche Atlantic Hotel</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Casablanca, Morocco</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.2</span>
+                                    <span class="hc-score-txt"><b>Very Good</b><small>1,652 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-flower1"></i> Spa</li><li><i class="bi bi-heart-pulse"></i> Gym</li><li><i class="bi bi-p-circle"></i> Parking</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 130</del><b>USD 105</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Luxor Temple Palace" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">15% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Luxor Temple Palace" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="4 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Luxor Temple Palace</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Luxor, Egypt</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.2</span>
+                                    <span class="hc-score-txt"><b>Very Good</b><small>7,636 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-snow"></i> A/C</li><li><i class="bi bi-cup-hot"></i> Breakfast</li><li><i class="bi bi-cup-straw"></i> Bar</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Pay at Hotel</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 95</del><b>USD 80</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Kruger Bushveld Camp" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">15% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Kruger Bushveld Camp" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="4 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Kruger Bushveld Camp</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Kruger Park, South Africa</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.2</span>
+                                    <span class="hc-score-txt"><b>Very Good</b><small>2,643 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-snow"></i> A/C</li><li><i class="bi bi-cup-straw"></i> Bar</li><li><i class="bi bi-water"></i> Pool</li><li><i class="bi bi-wifi"></i> Free WiFi</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Pay at Hotel</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 160</del><b>USD 135</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Serengeti Tented Camp" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">10% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Serengeti Tented Camp" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Serengeti Tented Camp</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Serengeti, Tanzania</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.3</span>
+                                    <span class="hc-score-txt"><b>Very Good</b><small>4,905 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-flower1"></i> Spa</li><li><i class="bi bi-heart-pulse"></i> Gym</li><li><i class="bi bi-umbrella"></i> Beach</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 490</del><b>USD 440</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="hotelMiddleEast">
+                <div class="row g-4">
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Marina Pearl Hotel" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">5% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Marina Pearl Hotel" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Marina Pearl Hotel</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Dubai Marina, UAE</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.5</span>
+                                    <span class="hc-score-txt"><b>Excellent</b><small>3,124 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-snow"></i> A/C</li><li><i class="bi bi-flower1"></i> Spa</li><li><i class="bi bi-cup-straw"></i> Bar</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 325</del><b>USD 310</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Burj View Grand" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">10% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Burj View Grand" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Burj View Grand</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Downtown Dubai, UAE</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.5</span>
+                                    <span class="hc-score-txt"><b>Excellent</b><small>683 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-umbrella"></i> Beach</li><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-snow"></i> A/C</li><li><i class="bi bi-cup-straw"></i> Bar</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 405</del><b>USD 365</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Palm Jumeirah Atlantis Villas" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">15% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Palm Jumeirah Atlantis Villas" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Palm Jumeirah Atlantis Villas</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Palm Jumeirah, UAE</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.5</span>
+                                    <span class="hc-score-txt"><b>Excellent</b><small>4,288 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-umbrella"></i> Beach</li><li><i class="bi bi-snow"></i> A/C</li><li><i class="bi bi-p-circle"></i> Parking</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 620</del><b>USD 525</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Corniche Royal Hotel" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">15% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Corniche Royal Hotel" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Corniche Royal Hotel</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Abu Dhabi, UAE</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.4</span>
+                                    <span class="hc-score-txt"><b>Very Good</b><small>6,292 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-heart-pulse"></i> Gym</li><li><i class="bi bi-umbrella"></i> Beach</li><li><i class="bi bi-water"></i> Pool</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Pay at Hotel</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 345</del><b>USD 295</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Pearl Qatar Residence" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Pearl Qatar Residence" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Pearl Qatar Residence</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Doha, Qatar</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.7</span>
+                                    <span class="hc-score-txt"><b>Excellent</b><small>5,162 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-cup-straw"></i> Bar</li><li><i class="bi bi-p-circle"></i> Parking</li><li><i class="bi bi-water"></i> Pool</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><b>USD 280</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Al Bustan Beach Resort" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Al Bustan Beach Resort" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Al Bustan Beach Resort</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Muscat, Oman</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.3</span>
+                                    <span class="hc-score-txt"><b>Very Good</b><small>1,553 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-bus-front"></i> Shuttle</li><li><i class="bi bi-p-circle"></i> Parking</li><li><i class="bi bi-heart-pulse"></i> Gym</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><b>USD 260</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Kingdom Tower Suites" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">10% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Kingdom Tower Suites" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <span class="hc-fav"><i class="bi bi-trophy-fill"></i> Guest Favorite</span>
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Kingdom Tower Suites</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Riyadh, Saudi Arabia</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.9</span>
+                                    <span class="hc-score-txt"><b>Exceptional</b><small>1,748 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-snow"></i> A/C</li><li><i class="bi bi-cup-straw"></i> Bar</li><li><i class="bi bi-flower1"></i> Spa</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 305</del><b>USD 275</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Bosphorus Palace Hotel" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Bosphorus Palace Hotel" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="5 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Bosphorus Palace Hotel</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Istanbul, Türkiye</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.4</span>
+                                    <span class="hc-score-txt"><b>Very Good</b><small>1,400 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-flower1"></i> Spa</li><li><i class="bi bi-cup-hot"></i> Breakfast</li><li><i class="bi bi-p-circle"></i> Parking</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><b>USD 220</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Seef Waterfront Hotel" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Seef Waterfront Hotel" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="4 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Seef Waterfront Hotel</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Manama, Bahrain</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.2</span>
+                                    <span class="hc-score-txt"><b>Very Good</b><small>1,583 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-bus-front"></i> Shuttle</li><li><i class="bi bi-umbrella"></i> Beach</li><li><i class="bi bi-cup-straw"></i> Bar</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Breakfast Included</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><b>USD 105</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Salmiya Bay Hotel" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">10% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Salmiya Bay Hotel" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="4 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Salmiya Bay Hotel</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Kuwait City, Kuwait</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.8</span>
+                                    <span class="hc-score-txt"><b>Exceptional</b><small>7,291 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-flower1"></i> Spa</li><li><i class="bi bi-p-circle"></i> Parking</li><li><i class="bi bi-bus-front"></i> Shuttle</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Airport Shuttle</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 130</del><b>USD 115</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Citadel View Hotel" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            <span class="hc-disc">5% Off</span>
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Citadel View Hotel" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="4 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Citadel View Hotel</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Amman, Jordan</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.4</span>
+                                    <span class="hc-score-txt"><b>Very Good</b><small>5,257 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-bus-front"></i> Shuttle</li><li><i class="bi bi-water"></i> Pool</li><li><i class="bi bi-snow"></i> A/C</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Free Cancellation</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><del>USD 85</del><b>USD 80</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <article class="hc-card">
+                        <div class="hc-photo">
+                            <div class="image-shimmer-effect"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Creek Heritage Hotel" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80'" fetchpriority="low"></div>
+                            
+                            <button type="button" class="hc-heart" title="Wishlist" aria-label="Simpan Creek Heritage Hotel" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            
+                        </div>
+                        <div class="hc-main">
+                            <div class="hc-head">
+                                <div class="hc-id">
+                                    <div class="hc-stars" aria-label="4 bintang"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <h5 class="hc-name"><a href="#">Creek Heritage Hotel</a></h5>
+                                    <p class="hc-loc"><i class="bi bi-geo-alt-fill"></i> Sharjah, UAE</p>
+                                </div>
+                                <div class="hc-score">
+                                    <span class="hc-score-num">4.7</span>
+                                    <span class="hc-score-txt"><b>Excellent</b><small>472 reviews</small></span>
+                                </div>
+                            </div>
+                            <ul class="hc-amen"><li><i class="bi bi-umbrella"></i> Beach</li><li><i class="bi bi-snow"></i> A/C</li><li><i class="bi bi-wifi"></i> Free WiFi</li><li><i class="bi bi-flower1"></i> Spa</li></ul>
+                            <div class="hc-perk"><i class="bi bi-check-circle-fill"></i> Pay at Hotel</div>
+                            <div class="hc-foot">
+                                <div class="hc-price"><b>USD 85</b><small>per night</small></div>
+                                <button type="button" class="hc-btn">Check Availability <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -477,12 +2183,12 @@
     </section>
 
     <!-- 9. SECTION: CUSTOMER REVIEWS (USING VANILLA CAROUSEL) -->
-    <section class="py-5 my-4 position-relative overflow-hidden scroll-reveal" style="background: linear-gradient(135deg, #e3fcef 0%, #cbf5df 100%);">
+    <section class="py-5 my-4 position-relative overflow-hidden scroll-reveal ht-reviews">
         <div class="container py-4">
             <div class="row align-items-center mb-5">
                 <div class="col-lg-8">
-                    <span class="text-success fw-bold small d-block mb-1 text-uppercase tracking-wider">Customer experience at TravelMeta</span>
-                    <h2 class="display-5 text-dark mb-3">What’s the People Say</h2>
+                    <span class="ht-rev-kicker mb-2"><span class="ht-rev-line"></span> Customer experience at TravelMeta</span>
+                    <h2 class="display-5 ht-rev-title mb-3">What’s the People Say</h2>
                     <div class="d-flex align-items-center gap-3 flex-wrap">
                         <div class="d-flex align-items-center">
                             <div class="image-shimmer-effect rounded-circle shadow-sm" style="width: 40px; height: 40px; border: 2px solid #fff;">
@@ -493,7 +2199,7 @@
                             </div>
                             <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fw-bold ms-n3 small border border-white border-2 shadow-sm" style="width: 40px; height: 40px;">+</div>
                         </div>
-                        <span class="text-dark fw-semibold small">10,000+ trusted travelers to join TravelMeta community.</span>
+                        <span class="ht-rev-sub fw-semibold small">10,000+ trusted travelers to join TravelMeta community.</span>
                     </div>
                 </div>
                 <div class="col-lg-4 text-lg-end mt-4 mt-lg-0 d-flex justify-content-lg-end gap-3 align-items-center">
@@ -601,7 +2307,7 @@
             </div>
 
             <div class="d-flex justify-content-end align-items-center flex-wrap gap-3 mt-4 pt-2">
-                <div class="d-flex align-items-center gap-2 text-dark small fw-bold bg-white px-4 py-2 rounded-pill shadow-sm">
+                <div class="ht-rev-summary d-flex align-items-center gap-2 small fw-bold px-4 py-2 rounded-pill">
                     <i class="bi bi-tripadvisor text-success fs-5"></i>
                     <span class="text-success">★★★★★</span>
                     <span>4.8 rated 10,000 real traveler at TravelMeta.</span>
@@ -924,5 +2630,17 @@
     <!-- Modular Scripts -->
     <script src="./src/js/main.js" defer></script>
     <script src="./src/js/hotel.js" defer></script>
+<!-- Tombol simpan (hati) pada kartu hotel -->
+<script>
+document.addEventListener('click', function (e) {
+    var b = e.target.closest('.hc-heart');
+    if (!b) return;
+    var on = b.classList.toggle('is-active');
+    var i = b.querySelector('i');
+    i.classList.toggle('bi-heart', !on);
+    i.classList.toggle('bi-heart-fill', on);
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+});
+</script>
 </body>
 </html>
