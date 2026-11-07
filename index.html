@@ -1074,12 +1074,12 @@
     </section>
 
     <!-- 10. SECTION: CUSTOMER REVIEWS (USING VANILLA CAROUSEL) -->
-    <section class="py-5 my-4 position-relative overflow-hidden scroll-reveal" style="background: linear-gradient(135deg, #e3fcef 0%, #cbf5df 100%);">
+    <section class="py-5 my-4 position-relative overflow-hidden scroll-reveal hp-reviews">
         <div class="container py-4">
             <div class="row align-items-center mb-5">
-                <div class="col-lg-8">
-                    <span class="text-success fw-bold small d-block mb-1 text-uppercase tracking-wider">Customer experience at TravelMeta</span>
-                    <h2 class="display-5 text-dark mb-3">What’s the People Say</h2>
+                <div class="col-lg-6">
+                    <span class="hp-rv-kicker mb-3"><i class="bi bi-chat-heart-fill"></i> Customer experience at TravelMeta</span>
+                    <h2 class="display-5 hp-rv-title mb-3">What’s the People Say</h2>
                     <div class="d-flex align-items-center gap-3 flex-wrap">
                         <div class="d-flex align-items-center">
                             <div class="image-shimmer-effect rounded-circle shadow-sm" style="width: 40px; height: 40px; border: 2px solid #fff;">
@@ -1090,17 +1090,28 @@
                             </div>
                             <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fw-bold ms-n3 small border border-white border-2 shadow-sm" style="width: 40px; height: 40px;">+</div>
                         </div>
-                        <span class="text-dark fw-semibold small">10,000+ trusted travelers to join TravelMeta community.</span>
+                        <span class="hp-rv-sub fw-semibold small">10,000+ trusted travelers to join TravelMeta community.</span>
                     </div>
                 </div>
-                <div class="col-lg-4 text-lg-end mt-4 mt-lg-0 d-flex justify-content-lg-end gap-3 align-items-center">
-                    <div class="footer-badge-green p-1">
-                        <i class="bi bi-award-fill fs-6 mb-0 text-white"></i>
-                        <span style="font-size: 0.5rem;">Tripadvisor 2026</span>
-                    </div>
-                    <div class="footer-badge-red p-1">
-                        <i class="bi bi-trophy-fill fs-6 mb-0 text-white"></i>
-                        <span style="font-size: 0.5rem;">Traveler 2025</span>
+                <div class="col-lg-6 mt-4 mt-lg-0">
+                    <div class="hp-rv-score">
+                        <div class="hp-rv-score-main">
+                            <span class="hp-rv-score-num">4.8</span>
+                            <div>
+                                <div class="hp-rv-stars">★★★★★</div>
+                                <div class="hp-rv-score-text"><i class="bi bi-tripadvisor"></i> rated 10,000 real traveler at TravelMeta.</div>
+                            </div>
+                        </div>
+                        <div class="hp-rv-badges">
+                            <div class="footer-badge-green p-1">
+                                <i class="bi bi-award-fill fs-6 mb-0 text-white"></i>
+                                <span style="font-size: 0.5rem;">Tripadvisor 2026</span>
+                            </div>
+                            <div class="footer-badge-red p-1">
+                                <i class="bi bi-trophy-fill fs-6 mb-0 text-white"></i>
+                                <span style="font-size: 0.5rem;">Traveler 2025</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1222,14 +1233,6 @@
                         <svg class='feather feather-chevron-right' fill='none' height='24' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><polyline points='9 18 15 12 9 6'/></svg>
                     </button>
                     <div class="vc-dots"></div>
-                </div>
-            </div>
-
-            <div class="d-flex justify-content-end align-items-center flex-wrap gap-3 mt-4 pt-2">
-                <div class="d-flex align-items-center gap-2 text-dark small fw-bold bg-white px-4 py-2 rounded-pill shadow-sm">
-                    <i class="bi bi-tripadvisor text-success fs-5"></i>
-                    <span class="text-success">★★★★★</span>
-                    <span>4.8 rated 10,000 real traveler at TravelMeta.</span>
                 </div>
             </div>
 
@@ -1371,21 +1374,33 @@
 
     <!-- 13. SECTION: SUBSCRIBE NEWSLETTER -->
     <section class="container py-4 my-4 scroll-reveal">
-        <div class="rounded-5 p-4 p-lg-5 text-white position-relative overflow-hidden shadow-lg" style="background: var(--primary-gradient);">
-            <div class="row align-items-center g-4">
-                <div class="col-lg-6">
-                    <h2 class="display-6 mb-2 lh-sm" style="letter-spacing: -0.5px;">Subscribe our newsletter to discount 10% all package.</h2>
+        <div class="hp-news">
+            <div class="hp-news-inner">
+                <div class="hp-stamp" aria-hidden="true">
+                    <div class="hp-stamp-face">
+                        <i class="bi bi-airplane-fill"></i>
+                        <span class="hp-stamp-value">10%</span>
+                        <span class="hp-stamp-off">OFF</span>
+                    </div>
                 </div>
-                <div class="col-lg-6">
-                    <form id="subscribeForm" class="position-relative mb-3">
-                        <div class="input-group bg-white rounded-pill p-1 shadow-lg">
-                            <input type="email" class="form-control border-0 px-4 py-3 rounded-pill shadow-none bg-transparent" placeholder="Enter your email address" required>
-                            <button class="btn btn-dark rounded-circle d-flex align-items-center justify-content-center m-1 shadow" type="submit" style="width: 48px; height: 48px;"><i class="bi bi-send-fill text-white"></i></button>
+                <span class="hp-postmark" aria-hidden="true"><i class="bi bi-send-fill"></i></span>
+                <div class="row align-items-center g-4 g-lg-5 position-relative">
+                    <div class="col-lg-6">
+                        <span class="hp-news-tag mb-3"><i class="bi bi-envelope-paper-fill"></i> Via Pos Udara</span>
+                        <h2 class="hp-news-title mb-0">Subscribe our newsletter to discount 10% all package.</h2>
+                    </div>
+                    <div class="col-lg-6">
+                        <form id="subscribeForm" class="position-relative mb-3">
+                            <div class="hp-news-field">
+                                <i class="bi bi-envelope hp-news-icon"></i>
+                                <input type="email" class="hp-news-input" placeholder="Enter your email address" required>
+                                <button class="hp-news-btn" type="submit"><span class="d-none d-sm-inline">Subscribe</span> <i class="bi bi-send-fill"></i></button>
+                            </div>
+                        </form>
+                        <div class="hp-news-note">
+                            <i class="bi bi-shield-check"></i>
+                            <span>Get practical strategies and business insights to help you grow with confidence.</span>
                         </div>
-                    </form>
-                    <div class="d-flex align-items-center gap-2 text-white-50 small">
-                        <i class="bi bi-shield-check text-warning fs-5"></i>
-                        <span>Get practical strategies and business insights to help you grow with confidence.</span>
                     </div>
                 </div>
             </div>

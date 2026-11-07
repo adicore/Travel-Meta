@@ -1517,3 +1517,112 @@ html { scroll-padding-top: 90px; }
 #offers .vc-nav:hover { background: linear-gradient(135deg, #0ea5e9, #2563eb); color: #fff; border-color: transparent; }
 #offers .vc-dot { width: 8px; height: 8px; border-radius: 50px; background: #cbd5e1; transition: all .3s ease; }
 #offers .vc-dot.active { width: 28px; background: linear-gradient(90deg, #0ea5e9, #fb7185); }
+
+
+/* ============================================================
+   BERANDA — CUSTOMER REVIEWS v2 (laut dalam + kartu kaca; struktur carousel tetap)
+   ============================================================ */
+.hp-reviews { background: linear-gradient(135deg, #0b1b3a 0%, #0c3a63 55%, #0c4a6e 100%); }
+.hp-reviews::before {
+    content: ''; position: absolute; top: -180px; left: -120px; width: 480px; height: 480px; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle, rgba(14,165,233,.35), transparent 70%);
+}
+.hp-reviews::after {
+    content: ''; position: absolute; bottom: -200px; right: -120px; width: 520px; height: 520px; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle, rgba(244,63,94,.28), transparent 70%);
+}
+.hp-reviews > .container { position: relative; z-index: 2; }
+.hp-rv-kicker {
+    display: inline-flex; align-items: center; gap: 8px; padding: 7px 16px; border-radius: 50px; font-size: .82rem; font-weight: 700; color: #fecdd3;
+    background: rgba(244,63,94,.16); border: 1px solid rgba(251,113,133,.45);
+}
+.hp-rv-title { color: #fff !important; -webkit-text-fill-color: #fff; background: none; letter-spacing: -1px; font-weight: 800; }
+.hp-rv-sub { color: rgba(255,255,255,.82); }
+.hp-reviews .bg-primary { background: linear-gradient(135deg, #0ea5e9, #2563eb) !important; }
+.hp-reviews .image-shimmer-effect.rounded-circle { border-color: #0c3a63 !important; }
+
+/* Blok skor di header */
+.hp-rv-score {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.25rem; padding: 1.25rem 1.5rem; border-radius: 1.5rem;
+    background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+}
+.hp-rv-score-main { display: flex; align-items: center; gap: 16px; min-width: 0; }
+.hp-rv-score-num { font-family: 'Poppins', sans-serif; font-size: clamp(3.2rem, 6vw, 4.4rem); font-weight: 800; line-height: .9; letter-spacing: -2px; color: #fff; }
+.hp-rv-stars { color: #fbbf24; letter-spacing: 3px; font-size: 1.05rem; margin-bottom: 4px; }
+.hp-rv-score-text { display: flex; align-items: center; gap: 8px; font-size: .84rem; font-weight: 600; line-height: 1.4; color: rgba(255,255,255,.85); }
+.hp-rv-score-text i { color: #4ade80; font-size: 1.15rem; }
+.hp-rv-badges { display: flex; gap: 12px; align-items: center; }
+
+/* Kartu ulasan kaca */
+.hp-reviews .vc-item .card {
+    position: relative; height: 320px !important; color: #fff; background: rgba(255,255,255,.09) !important; border: 1px solid rgba(255,255,255,.22) !important; border-radius: 1.5rem !important;
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 26px 44px -28px rgba(0,0,0,.6) !important;
+    transition: transform .35s cubic-bezier(0.165, 0.84, 0.44, 1), background-color .35s ease, border-color .35s ease;
+}
+.hp-reviews .vc-item .card:hover { transform: translateY(-6px); background: rgba(255,255,255,.14) !important; border-color: rgba(125,211,252,.7) !important; }
+.hp-reviews .vc-item .card::after {
+    content: '\201C'; position: absolute; right: 22px; bottom: 56px; font-family: Georgia, serif; font-size: 7rem; line-height: 1; color: rgba(251,113,133,.28); pointer-events: none;
+}
+.hp-reviews .vc-item .card > * { position: relative; z-index: 1; }
+.hp-reviews .vc-item .text-success { color: #fbbf24 !important; }
+.hp-reviews .vc-item .card h5, .hp-reviews .vc-item .card h6 { color: #fff !important; -webkit-text-fill-color: #fff; background: none; font-weight: 800; }
+.hp-reviews .vc-item .card p { color: rgba(255,255,255,.8) !important; }
+.hp-reviews .vc-item .card small.text-muted { color: rgba(255,255,255,.6) !important; }
+.hp-reviews .vc-item .card .btn-light { color: #fff !important; background: rgba(251,113,133,.25); border: 1px solid rgba(251,113,133,.55) !important; box-shadow: none !important; }
+.hp-reviews .vc-item .card .btn-light:hover { background: #fb7185; border-color: #fb7185 !important; }
+.hp-reviews .vc-item .card .border-top { border-top: 1px dashed rgba(255,255,255,.28) !important; }
+.hp-reviews .vc-item .card .image-shimmer-effect { box-shadow: 0 0 0 3px #38bdf8 !important; }
+
+.hp-reviews .vc-nav { background: rgba(255,255,255,.14); color: #fff; border: 1px solid rgba(255,255,255,.35); backdrop-filter: blur(8px); box-shadow: none; }
+.hp-reviews .vc-nav:hover { background: linear-gradient(135deg, #fb7185, #f43f5e); border-color: transparent; color: #fff; }
+.hp-reviews .vc-dot { width: 8px; height: 8px; border-radius: 50px; background: rgba(255,255,255,.3); transition: all .3s ease; }
+.hp-reviews .vc-dot.active { width: 28px; background: linear-gradient(90deg, #7dd3fc, #fb7185); }
+
+/* ============================================================
+   BERANDA — SUBSCRIBE NEWSLETTER v2 (amplop pos udara + perangko)
+   ============================================================ */
+.hp-news {
+    padding: 10px; border-radius: 2rem; box-shadow: 0 34px 60px -34px rgba(8,47,89,.6);
+    background: repeating-linear-gradient(135deg, #f43f5e 0 16px, #fff 16px 28px, #0ea5e9 28px 44px, #fff 44px 56px);
+}
+.hp-news-inner { position: relative; padding: clamp(1.75rem, 4vw, 3.25rem); border-radius: 1.5rem; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+.hp-stamp {
+    position: absolute; top: -26px; right: 34px; z-index: 3; padding: 8px; background: #fff; transform: rotate(5deg); box-shadow: 0 20px 34px -14px rgba(8,47,89,.55);
+    --d: radial-gradient(circle 4px at 50% 50%, transparent 96%, #000 100%);
+    -webkit-mask: radial-gradient(circle 4.5px at 8px 0, transparent 98%, #000) top/16px 51% repeat-x, radial-gradient(circle 4.5px at 8px 100%, transparent 98%, #000) bottom/16px 51% repeat-x;
+            mask: radial-gradient(circle 4.5px at 8px 0, transparent 98%, #000) top/16px 51% repeat-x, radial-gradient(circle 4.5px at 8px 100%, transparent 98%, #000) bottom/16px 51% repeat-x;
+}
+.hp-stamp-face {
+    width: 92px; height: 112px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff;
+    background: linear-gradient(160deg, #0ea5e9, #2563eb); border: 2px solid rgba(255,255,255,.7); outline: 2px solid #0ea5e9; outline-offset: -6px;
+}
+.hp-stamp-face i { font-size: 1.1rem; margin-bottom: 4px; transform: rotate(45deg); }
+.hp-stamp-value { font-family: 'Poppins', sans-serif; font-size: 2rem; font-weight: 800; line-height: 1; }
+.hp-stamp-off { font-size: .7rem; font-weight: 800; letter-spacing: 2px; color: #fde68a; }
+.hp-postmark {
+    position: absolute; top: 4px; right: 144px; z-index: 2; width: 74px; height: 74px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    border: 2px solid rgba(100,116,139,.45); color: rgba(100,116,139,.55); font-size: 1.2rem; transform: rotate(-12deg);
+}
+.hp-postmark::before { content: ''; position: absolute; inset: 6px; border-radius: 50%; border: 1px dashed rgba(100,116,139,.4); }
+.hp-postmark::after { content: ''; position: absolute; left: -64px; top: 30px; width: 60px; height: 14px; background: repeating-linear-gradient(180deg, rgba(100,116,139,.4) 0 2px, transparent 2px 6px); }
+
+.hp-news-tag { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 50px; font-size: .8rem; font-weight: 700; color: #0369a1; background: #e0f2fe; border: 1px solid #bae6fd; }
+.hp-news-title { font-size: clamp(1.5rem, 2.8vw, 2.15rem); font-weight: 800; line-height: 1.25; letter-spacing: -.6px; color: #0b1b3a !important; -webkit-text-fill-color: #0b1b3a; background: none; }
+
+/* Kolom email seperti baris alamat di amplop */
+.hp-news-field { display: flex; align-items: center; gap: 10px; padding: 4px 0; border-bottom: 2px dashed #7dd3fc; transition: border-color .25s ease; }
+.hp-news-field:focus-within { border-bottom: 2px solid #0ea5e9; }
+.hp-news-icon { color: #0284c7; font-size: 1.2rem; }
+.hp-news-input { flex: 1; min-width: 0; padding: .85rem .25rem; border: 0; outline: 0; background: transparent; font-size: 1rem; font-weight: 500; color: #0b1b3a; }
+.hp-news-input::placeholder { color: #94a3b8; }
+.hp-news-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-width: 50px; height: 48px; padding: 0 24px; border: 0; border-radius: 14px; cursor: pointer;
+    font-weight: 800; font-size: .9rem; color: #fff; background: linear-gradient(135deg, #fb7185, #f43f5e); box-shadow: 0 16px 26px -12px rgba(244,63,94,.85); transition: all .3s ease;
+}
+.hp-news-btn:hover { transform: translateY(-2px); background: linear-gradient(135deg, #fda4af, #fb7185); }
+.hp-news-btn i { transition: transform .3s ease; }
+.hp-news-btn:hover i { transform: translate(3px, -3px); }
+.hp-news-note { display: flex; align-items: flex-start; gap: 10px; margin-top: 1rem; font-size: .82rem; line-height: 1.5; color: #64748b; }
+.hp-news-note i { color: #0284c7; font-size: 1.15rem; margin-top: -1px; }
+@media (max-width: 991.98px) { .hp-postmark { display: none; } .hp-stamp { right: 20px; top: -34px; } .hp-stamp-face { width: 74px; height: 92px; } .hp-stamp-value { font-size: 1.6rem; } }
+@media (max-width: 575.98px) { .hp-news-btn { padding: 0; width: 50px; } .hp-news-inner { padding-top: 3.25rem; } }
