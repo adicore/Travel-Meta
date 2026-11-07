@@ -1370,3 +1370,150 @@ html { scroll-padding-top: 90px; }
     .tip-side { flex-direction: column; }
     .tip-side .tip-media { flex: 0 0 200px; min-height: 200px; }
 }
+
+/* ============================================================
+   BERANDA — HERO SLIDER v2 (langit, laut & senja)
+   Palet: navy, biru langit, aksen koral. Bentuk searchbox tidak diubah.
+   ============================================================ */
+#heroSlider { --hero-h: 470px; }
+#heroSlider img { filter: brightness(.95) saturate(1.12); }
+#heroSlider .carousel-item::before {
+    background: linear-gradient(180deg, rgba(8,24,58,.62) 0%, rgba(8,47,89,.32) 45%, rgba(8,24,58,.82) 100%);
+}
+#heroSlider .carousel-item::after {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background:
+        radial-gradient(circle at 12% 18%, rgba(14,165,233,.38), transparent 42%),
+        radial-gradient(circle at 88% 30%, rgba(244,63,94,.24), transparent 38%);
+}
+/* Tepi bawah melengkung */
+#heroSlider::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 64px; z-index: 2; pointer-events: none;
+    background: #f8fafc; clip-path: ellipse(58% 100% at 50% 100%);
+}
+#heroSlider .carousel-caption { padding: 2rem 1rem 7rem !important; z-index: 3; }
+
+#heroSlider .hero-badge {
+    gap: 8px; padding: 8px 18px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.34);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+#heroSlider .hero-badge i { color: #7dd3fc; }
+#heroSlider .hero-title {
+    font-size: clamp(1.9rem, 4.8vw, 3.5rem); font-weight: 800; letter-spacing: -1.4px; line-height: 1.1; text-shadow: 0 6px 30px rgba(0,0,0,.4);
+}
+#heroSlider .hero-accent {
+    background: linear-gradient(135deg, #fde68a 0%, #fb7185 100%); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent; text-shadow: none;
+}
+#heroSlider .hero-subtitle { font-size: clamp(.95rem, 1.8vw, 1.15rem); color: rgba(255,255,255,.9) !important; }
+
+.hero-services { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 1.5rem !important; padding: 0; }
+.hero-services li {
+    display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 50px; font-size: .82rem; font-weight: 700; color: #fff;
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.26); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+.hero-services li i { color: #7dd3fc; font-size: .95rem; }
+
+/* Indikator berbentuk bar */
+#heroSlider .carousel-indicators { margin-bottom: 5.6rem; gap: 8px; }
+#heroSlider .carousel-indicators [data-bs-target] { width: 36px; height: 4px; border-radius: 4px; opacity: .55; background-color: #fff; }
+#heroSlider .carousel-indicators .active { width: 60px; opacity: 1; background: linear-gradient(90deg, #fde68a, #fb7185); }
+
+@media (max-width: 991.98px) { #heroSlider { --hero-h: 440px; } }
+@media (max-width: 767.98px) {
+    #heroSlider { --hero-h: 420px; }
+    #heroSlider::after { height: 44px; }
+    #heroSlider .carousel-caption { padding: 1.5rem 1rem 5.6rem !important; }
+    #heroSlider .carousel-indicators { margin-bottom: 4.2rem; }
+    .hero-services { gap: 8px; margin-top: 1.1rem !important; }
+    .hero-services li { padding: 6px 12px; font-size: .74rem; }
+}
+@media (max-width: 575.98px) { #heroSlider { --hero-h: 400px; } .hero-services { display: none; } }
+
+/* ============================================================
+   BERANDA — WARNA SEARCHBOX (hanya warna: biru → langit + CTA koral)
+   ============================================================ */
+.search-card > .card { position: relative; border: 1px solid #dbeafe !important; box-shadow: 0 40px 70px -34px rgba(8, 47, 89, .55) !important; }
+.search-card > .card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; border-radius: .75rem .75rem 0 0; pointer-events: none;
+    background: linear-gradient(90deg, #0ea5e9, #2563eb, #fb7185);
+}
+.search-card .text-primary { color: #0284c7 !important; }
+.search-card #searchCategoryTab .nav-link.active {
+    background: linear-gradient(135deg, #0ea5e9, #2563eb) !important; color: #fff !important; box-shadow: 0 10px 18px -10px rgba(2,132,199,.9);
+}
+.search-card #searchCategoryTab .nav-link:not(.active):hover { background: #e0f2fe !important; color: #0369a1 !important; }
+.search-card .search-box-item:hover { border-color: #7dd3fc !important; }
+.search-card .search-box-item:focus-within { border-color: #0ea5e9 !important; box-shadow: 0 0 0 4px rgba(14,165,233,.18) !important; }
+.search-card .btn-primary { background: linear-gradient(135deg, #0ea5e9, #2563eb) !important; border: 0 !important; color: #fff !important; box-shadow: 0 12px 22px -12px rgba(2,132,199,.9) !important; }
+.search-card .btn-primary:hover { background: linear-gradient(135deg, #38bdf8, #3b82f6) !important; }
+.search-card .search-action-btn {
+    background: linear-gradient(135deg, #fb7185, #f43f5e) !important; color: #fff !important; box-shadow: 0 18px 30px -14px rgba(244,63,94,.85) !important;
+}
+.search-card .search-action-btn:hover { background: linear-gradient(135deg, #fda4af, #fb7185) !important; }
+.search-card .btn-outline-primary { color: #0284c7 !important; border-color: #7dd3fc !important; background: transparent; }
+.search-card .btn-outline-primary:hover { background: #0ea5e9 !important; border-color: #0ea5e9 !important; color: #fff !important; }
+.search-card .form-check-input:checked { background-color: #0ea5e9 !important; border-color: #0ea5e9 !important; }
+.search-card .form-check-input:focus { box-shadow: 0 0 0 .25rem rgba(14,165,233,.25) !important; border-color: #7dd3fc !important; }
+
+/* Kalender (flatpickr) */
+.flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange,
+.flatpickr-day.selected:hover, .flatpickr-day.startRange:hover, .flatpickr-day.endRange:hover { background: #0ea5e9 !important; border-color: #0ea5e9 !important; color: #fff !important; }
+.flatpickr-day.today { border-color: #0ea5e9 !important; }
+.flatpickr-day.inRange { background: #e0f2fe !important; border-color: #e0f2fe !important; box-shadow: -5px 0 0 #e0f2fe, 5px 0 0 #e0f2fe !important; }
+.flatpickr-day:not(.selected):not(.startRange):not(.endRange):not(.flatpickr-disabled):hover { background: #f0f9ff; border-color: #f0f9ff; }
+
+/* ============================================================
+   BERANDA — DISCOUNTS & OFFERS v2 (kartu angka besar, warna per layanan)
+   ============================================================ */
+.hp-off-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1.25rem 2rem; margin-bottom: 2.5rem; }
+.hp-off-kicker {
+    display: inline-flex; align-items: center; gap: 8px; margin-bottom: .75rem; padding: 7px 16px; border-radius: 50px;
+    font-size: .82rem; font-weight: 700; color: #be123c; background: #fff1f2; border: 1px solid #fecdd3;
+}
+.hp-off-title {
+    margin: 0 0 6px; font-size: clamp(1.9rem, 3.8vw, 2.8rem); font-weight: 800; letter-spacing: -1px;
+    color: #0b1b3a !important; -webkit-text-fill-color: #0b1b3a; background: none;
+}
+.hp-off-sub { margin: 0; color: #64748b; }
+.hp-off-all {
+    display: inline-flex; align-items: center; gap: 8px; padding: 11px 26px; border-radius: 50px; font-weight: 700; font-size: .9rem;
+    color: #0369a1 !important; text-decoration: none; background: #fff; border: 1.5px solid #bae6fd; transition: all .3s ease;
+}
+.hp-off-all:hover { background: #0ea5e9; border-color: #0ea5e9; color: #fff !important; transform: translateY(-2px) !important; }
+
+.hp-offer { --c: 2,132,199; position: relative; height: 430px; border-radius: 1.75rem !important; background: #0b1b3a; box-shadow: 0 28px 48px -28px rgba(8,24,58,.75) !important; transition: transform .4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow .4s ease; }
+.hp-offer-sky { --c: 2,132,199; }
+.hp-offer-emerald { --c: 5,150,105; }
+.hp-offer-rose { --c: 225,29,72; }
+.hp-offer-amber { --c: 217,119,6; }
+.hp-offer:hover { transform: translateY(-8px); box-shadow: 0 40px 60px -28px rgba(var(--c), .7) !important; }
+.hp-offer img.card-img { position: absolute; inset: 0; transition: transform .8s ease; }
+.hp-offer:hover img.card-img { transform: scale(1.08); }
+.hp-offer::before {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(180deg, rgba(8,24,58,.45) 0%, rgba(var(--c), .12) 32%, rgba(var(--c), .93) 100%);
+}
+.hp-offer-body { z-index: 2; padding: 1.5rem; }
+.hp-offer-cat {
+    display: inline-flex; align-items: center; gap: 7px; padding: 6px 14px; border-radius: 50px; font-size: .76rem; font-weight: 700; color: #fff;
+    background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+.hp-offer-num { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 8px; margin-bottom: .6rem; line-height: 1; }
+.hp-offer-num small { flex-basis: 100%; font-size: .78rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; opacity: .9; }
+.hp-offer-num b { font-family: 'Poppins', sans-serif; font-size: clamp(3.2rem, 6vw, 4.4rem); font-weight: 800; letter-spacing: -2px; line-height: .95; text-shadow: 0 6px 20px rgba(0,0,0,.25); }
+.hp-offer-num span { font-size: 1.05rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+.hp-offer-title { margin: 0 0 .3rem; font-family: 'Poppins', sans-serif; font-size: 1.1rem; font-weight: 700; line-height: 1.3; color: #fff; -webkit-text-fill-color: #fff; background: none; }
+.hp-offer-sub { margin: 0 0 .5rem; font-size: .8rem; font-weight: 600; opacity: .9; }
+.hp-offer-cta {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: .85rem; padding: .6rem 1.2rem; border-radius: 50px; font-size: .82rem; font-weight: 800;
+    color: rgb(var(--c)) !important; text-decoration: none; background: #fff; box-shadow: 0 14px 24px -12px rgba(0,0,0,.5); transition: all .3s ease;
+}
+.hp-offer-cta:hover { color: rgb(var(--c)) !important; transform: translateY(-2px) !important; }
+.hp-offer-cta i { transition: transform .3s ease; }
+.hp-offer-cta:hover i { transform: translateX(4px); }
+
+#offers .vc-nav { background: #fff; color: #0369a1; border: 1px solid #bae6fd; box-shadow: 0 12px 24px -10px rgba(8,47,89,.45); }
+#offers .vc-nav:hover { background: linear-gradient(135deg, #0ea5e9, #2563eb); color: #fff; border-color: transparent; }
+#offers .vc-dot { width: 8px; height: 8px; border-radius: 50px; background: #cbd5e1; transition: all .3s ease; }
+#offers .vc-dot.active { width: 28px; background: linear-gradient(90deg, #0ea5e9, #fb7185); }
