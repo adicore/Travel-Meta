@@ -202,3 +202,58 @@
     .tx-stat + .tx-stat { border-left: 0; border-top: 1px dashed rgba(255,255,255,.3); }
     .tx-news-btn { padding: 0; width: 50px; }
 }
+
+
+/* ============================================================
+   TAXI — CUSTOMER REVIEWS (mint + gelembung chat + argometer; struktur carousel tetap)
+   ============================================================ */
+.tx-reviews { background: #f0fdf4; }
+.tx-reviews::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 14px; z-index: 2; pointer-events: none;
+    background: repeating-conic-gradient(#0f172a 0 25%, #ffffff 0 50%) 0 0 / 14px 14px;
+}
+.tx-reviews::after { content: ''; position: absolute; left: 0; right: 0; top: 66%; border-top: 3px dashed #bbf7d0; pointer-events: none; }
+.tx-reviews > .container { position: relative; z-index: 1; }
+.tx-rv-kicker { display: inline-flex; align-items: center; gap: 8px; padding: 7px 16px; border-radius: 50px; font-size: .82rem; font-weight: 800; color: #1a2e05; background: linear-gradient(135deg, #d9f99d, #a3e635); }
+.tx-rv-title { color: #052e26 !important; -webkit-text-fill-color: #052e26; background: none; letter-spacing: -1px; font-weight: 800; }
+.tx-rv-sub { color: #3f6212; }
+.tx-reviews .bg-primary { background: #059669 !important; }
+.tx-reviews .image-shimmer-effect.rounded-circle { border-color: #f0fdf4 !important; }
+
+/* Argometer skor */
+.tx-rv-right { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 16px; }
+@media (min-width: 992px) { .tx-rv-right { justify-content: flex-end; } }
+.tx-rv-meter {
+    display: flex; align-items: center; gap: 18px; padding: 1rem 1.4rem; border-radius: 1.25rem; background: linear-gradient(160deg, #04201a, #021410); border: 2px solid #14532d;
+    box-shadow: inset 0 0 0 4px #021410, inset 0 0 0 5px rgba(163,230,53,.28), 0 22px 36px -22px rgba(2,20,16,.8);
+}
+.tx-rv-led { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: clamp(2.8rem, 5vw, 3.6rem); font-weight: 700; line-height: 1; letter-spacing: 3px; color: #a3e635; text-shadow: 0 0 16px rgba(163,230,53,.8); }
+.tx-rv-stars { color: #fbbf24; letter-spacing: 3px; font-size: 1rem; margin-bottom: 4px; }
+.tx-rv-meter-text { display: flex; align-items: center; gap: 8px; max-width: 230px; font-size: .8rem; font-weight: 600; line-height: 1.4; color: rgba(255,255,255,.85); }
+.tx-rv-meter-text i { color: #4ade80; font-size: 1.1rem; }
+.tx-rv-badges { display: flex; gap: 12px; align-items: center; }
+
+/* Kartu gelembung chat */
+.tx-reviews .vc-item .card {
+    position: relative; height: 320px !important; overflow: visible; background: #fff !important; border: 0 !important; border-radius: 1.75rem 1.75rem 1.75rem .35rem !important;
+    box-shadow: 0 24px 40px -26px rgba(5, 46, 38, .55) !important; transition: transform .35s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow .35s ease;
+}
+.tx-reviews .vc-item .card:hover { transform: translateY(-6px); box-shadow: 0 34px 50px -26px rgba(16, 185, 129, .55) !important; }
+.tx-reviews .vc-item .card::after {
+    content: ''; position: absolute; left: -11px; bottom: 0; width: 16px; height: 18px; background: #fff; clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+.tx-reviews .vc-item .card::before {
+    content: '\201C'; position: absolute; right: 22px; bottom: 58px; font-family: Georgia, serif; font-size: 7rem; line-height: 1; color: #ecfccb; pointer-events: none;
+}
+.tx-reviews .vc-item .card > * { position: relative; z-index: 1; }
+.tx-reviews .vc-item .text-success { color: #f59e0b !important; }
+.tx-reviews .vc-item .card h5 { color: #052e26; font-weight: 800; -webkit-text-fill-color: #052e26; background: none; }
+.tx-reviews .vc-item .card .btn-light { color: #1a2e05 !important; background: linear-gradient(135deg, #d9f99d, #a3e635); border: 0 !important; }
+.tx-reviews .vc-item .card .btn-light:hover { background: #052e26; color: #a3e635 !important; }
+.tx-reviews .vc-item .card .border-top { border-top: 2px dashed #d1fae5 !important; }
+.tx-reviews .vc-item .card .image-shimmer-effect { box-shadow: 0 0 0 3px #a3e635 !important; }
+
+.tx-reviews .vc-nav { background: #052e26; color: #a3e635; border: 0; box-shadow: 0 12px 24px -8px rgba(5,46,38,.6); }
+.tx-reviews .vc-nav:hover { background: linear-gradient(135deg, #d9f99d, #a3e635); color: #052e26; }
+.tx-reviews .vc-dot { width: 8px; height: 8px; border-radius: 50px; background: #bbf7d0; transition: all .3s ease; }
+.tx-reviews .vc-dot.active { width: 28px; background: #059669; }
