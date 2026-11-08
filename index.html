@@ -883,14 +883,15 @@
     </section>
 
     <!-- 8. SECTION: POPULAR TOURS -->
-    <section id="tours" class="container py-5 bg-white rounded-4 shadow-sm my-4 border scroll-reveal">
-        <div class="text-center mb-4">
-            <h2 class="display-6 text-dark">Popular Tours & Attractions</h2>
+    <section id="tours" class="container py-5 bg-white rounded-4 shadow-sm my-4 border scroll-reveal tc-section">
+        <div class="text-center mb-4 tc-head">
+            <span class="tc-kicker"><i class="bi bi-compass-fill"></i> Tur &amp; Atraksi</span>
+            <h2 class="display-6 text-dark">Popular Tours &amp; Attractions</h2>
             <p class="text-muted">Temukan pengalaman tur dan aktivitas paling berkesan.</p>
         </div>
         <div class="overflow-hidden mb-4">
             <div class="d-flex overflow-x-auto hide-scroll justify-content-md-center">
-                <ul class="nav nav-pills gap-2 flex-nowrap" role="tablist">
+                <ul class="nav nav-pills gap-2 flex-nowrap tc-tabs" role="tablist">
                     <li class="nav-item"><button class="nav-link active rounded-pill px-4 fw-semibold text-nowrap" data-bs-toggle="pill" data-bs-target="#tourAmerica">Amerika</button></li>
                     <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold text-nowrap" data-bs-toggle="pill" data-bs-target="#tourEurope">Eropa</button></li>
                     <li class="nav-item"><button class="nav-link rounded-pill px-4 fw-semibold text-nowrap" data-bs-toggle="pill" data-bs-target="#tourAsia">Asia</button></li>
@@ -902,91 +903,1524 @@
         <div class="tab-content">
             <div class="tab-pane fade show active" id="tourAmerica">
                 <div class="row g-4">
-                    <div class="col-md-6">
-                        <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover position-relative bg-white">
-                            <a href="#" class="image-shimmer-effect position-relative d-block" style="height: 240px;">
-                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" width="600" height="400" class="lazyload lazy-effect" alt="Maldives Handpicked Adventure Tours" fetchpriority="low">
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Statue of Liberty & Ellis Island Cruise" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
                             </a>
-                            <button class="btn btn-white bg-white rounded-circle position-absolute top-0 start-0 m-3 d-flex align-items-center justify-content-center shadow-sm border-0" style="width: 38px; height: 38px; z-index: 2;" title="Wishlist">
-                                <i class="bi bi-heart text-dark fs-5"></i>
-                            </button>
-                            <div class="position-absolute top-0 end-0 m-3 d-flex flex-column align-items-end gap-1 z-2">
-                                <span class="badge px-3 py-2 rounded-pill fw-bold text-white shadow-sm" style="background-color: #ff3b30; font-size: 0.75rem;">Sale on!</span>
-                                <span class="badge px-3 py-2 rounded-pill fw-bold text-dark shadow-sm" style="background-color: #ffcc00; font-size: 0.75rem;">Group tour</span>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Statue of Liberty & Ellis Island Cruise" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 25% off</span><span class="tc-badge tc-badge-tag">Group tour</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> New York, USA</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 3 Hours</span>
                             </div>
-                            <div class="card-body p-4 d-flex flex-column justify-content-between">
-                                <div>
-                                    <div class="d-flex align-items-center gap-1 mb-2">
-                                        <span class="text-warning small">★★★★★</span>
-                                        <span class="text-dark small fw-bold">(4.9)</span>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.7)</b><small>545 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Statue of Liberty & Ellis Island Cruise</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-sea"><i class="bi bi-water"></i> Cruise & Water</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$57</del><b>$43</b><span>/per person</span></div>
                                     </div>
-                                    <h5 class="fw-bold mb-2 fs-5">
-                                        <a href="#" class="text-dark text-decoration-none">Maldives Handpicked Adventure Tours</a>
-                                    </h5>
-                                    <div class="d-flex align-items-center gap-4 text-muted small mb-4">
-                                        <span><i class="bi bi-geo-alt me-1 text-secondary"></i> Maldives</span>
-                                        <span><i class="bi bi-clock me-1 text-secondary"></i> 2 Hours</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-end">
-                                    <div>
-                                        <small class="text-muted d-block" style="font-size: 0.75rem;">Starting From</small>
-                                        <span class="fw-extrabold text-dark fs-4">$69<small class="fw-normal text-muted fs-6">/per person</small></span>
-                                    </div>
-                                    <button class="btn btn-primary rounded-pill px-4 py-2 fw-bold shadow-sm">
-                                        View Tour
-                                    </button>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
                                 </div>
                             </div>
-                        </div>
+                        </article>
                     </div>
-                    <div class="col-md-6">
-                        <div class="card border-0 shadow-sm rounded-4 overflow-hidden card-hover position-relative bg-white">
-                            <a href="#" class="image-shimmer-effect position-relative d-block" style="height: 240px;">
-                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80" width="600" height="400" class="lazyload lazy-effect" alt="Camel Ride Journey" fetchpriority="low">
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Grand Canyon Skywalk Day Tour" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
                             </a>
-                            <button class="btn btn-white bg-white rounded-circle position-absolute top-0 start-0 m-3 d-flex align-items-center justify-content-center shadow-sm border-0" style="width: 38px; height: 38px; z-index: 2;" title="Wishlist">
-                                <i class="bi bi-heart text-dark fs-5"></i>
-                            </button>
-                            <div class="position-absolute top-0 end-0 m-3 d-flex flex-column align-items-end gap-1 z-2">
-                                <span class="badge px-3 py-2 rounded-pill fw-bold text-white shadow-sm" style="background-color: #ff3b30; font-size: 0.75rem;">Up to 15% off</span>
-                                <span class="badge px-3 py-2 rounded-pill fw-bold text-dark shadow-sm" style="background-color: #ffcc00; font-size: 0.75rem;">👑 Best seller</span>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Grand Canyon Skywalk Day Tour" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 15% off</span><span class="tc-badge tc-badge-tag">Group tour</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Arizona, USA</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 10 Hours</span>
                             </div>
-                            <div class="card-body p-4 d-flex flex-column justify-content-between">
-                                <div>
-                                    <div class="d-flex align-items-center gap-1 mb-2">
-                                        <span class="text-warning small">★★★★★</span>
-                                        <span class="text-dark small fw-bold">(4.9)</span>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★☆</span><b>(4.4)</b><small>4,183 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Grand Canyon Skywalk Day Tour</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-adv"><i class="bi bi-compass-fill"></i> Adventure</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$139</del><b>$118</b><span>/per person</span></div>
                                     </div>
-                                    <h5 class="fw-bold mb-2 fs-5">
-                                        <a href="#" class="text-dark text-decoration-none">Camel Ride Journey</a>
-                                    </h5>
-                                    <div class="d-flex align-items-center gap-4 text-muted small mb-4">
-                                        <span><i class="bi bi-geo-alt me-1 text-secondary"></i> Morocco</span>
-                                        <span><i class="bi bi-clock me-1 text-secondary"></i> 1 Hour</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-end">
-                                    <div>
-                                        <small class="text-muted d-block" style="font-size: 0.75rem;">Starting From</small>
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="text-muted text-decoration-line-through small">$39</span>
-                                            <span class="fw-extrabold text-dark fs-4">$329<small class="fw-normal text-muted fs-6">/per person</small></span>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width: 45px; height: 45px;">
-                                        <i class="bi bi-globe fs-5"></i>
-                                    </button>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
                                 </div>
                             </div>
-                        </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Golden Gate Bike & Alcatraz Tour" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Golden Gate Bike & Alcatraz Tour" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 25% off</span><span class="tc-badge tc-badge-tag">Free cancellation</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> San Francisco, USA</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 6 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.8)</b><small>1,828 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Golden Gate Bike & Alcatraz Tour</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-adv"><i class="bi bi-compass-fill"></i> Adventure</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$112</del><b>$84</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Niagara Falls Boat Adventure" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Niagara Falls Boat Adventure" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Ontario, Canada</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 4 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.7)</b><small>4,393 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Niagara Falls Boat Adventure</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-sea"><i class="bi bi-water"></i> Cruise & Water</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$58</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Machu Picchu Sunrise Trek" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Machu Picchu Sunrise Trek" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-tag">Group tour</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Cusco, Peru</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 1 Day</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.5)</b><small>1,774 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Machu Picchu Sunrise Trek</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-adv"><i class="bi bi-compass-fill"></i> Adventure</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$146</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Chichén Itzá & Cenote Swim" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Chichén Itzá & Cenote Swim" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-tag">Instant confirmation</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Yucatán, Mexico</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 11 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.7)</b><small>3,566 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Chichén Itzá & Cenote Swim</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-cul"><i class="bi bi-bank2"></i> Culture</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$72</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Christ the Redeemer & Sugarloaf" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Christ the Redeemer & Sugarloaf" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Rio de Janeiro, Brazil</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 5 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.7)</b><small>4,244 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Christ the Redeemer & Sugarloaf</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-cul"><i class="bi bi-bank2"></i> Culture</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$54</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Everglades Airboat Safari" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Everglades Airboat Safari" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-tag">Best seller</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Florida, USA</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 3 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.7)</b><small>1,178 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Everglades Airboat Safari</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-wild"><i class="bi bi-binoculars-fill"></i> Wildlife</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$46</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Hollywood & Beverly Hills Tour" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Hollywood & Beverly Hills Tour" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-tag">Instant confirmation</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Los Angeles, USA</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 4 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.8)</b><small>3,917 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Hollywood & Beverly Hills Tour</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-city"><i class="bi bi-buildings-fill"></i> City Tour</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$49</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Amazon Rainforest Lodge Trek" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Amazon Rainforest Lodge Trek" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Manaus, Brazil</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 2 Days</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.8)</b><small>2,917 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Amazon Rainforest Lodge Trek</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-nat"><i class="bi bi-tree-fill"></i> Nature</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$222</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Banff Lake Louise Canoe Experience" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Banff Lake Louise Canoe Experience" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Sale on!</span><span class="tc-badge tc-badge-tag">Small group</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Alberta, Canada</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 3 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★☆</span><b>(4.4)</b><small>2,425 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Banff Lake Louise Canoe Experience</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-nat"><i class="bi bi-tree-fill"></i> Nature</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$73</del><b>$66</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Havana Classic Car City Tour" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Havana Classic Car City Tour" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-tag">Free cancellation</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Havana, Cuba</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 2 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★☆</span><b>(4.4)</b><small>2,496 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Havana Classic Car City Tour</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-city"><i class="bi bi-buildings-fill"></i> City Tour</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$40</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="tourEurope"><div class="text-center py-4 text-muted">Tur Eropa segera hadir...</div></div>
-            <div class="tab-pane fade" id="tourAsia"><div class="text-center py-4 text-muted">Tur Asia segera hadir...</div></div>
-            <div class="tab-pane fade" id="tourAfrica"><div class="text-center py-4 text-muted">Tur Afrika segera hadir...</div></div>
-            <div class="tab-pane fade" id="tourMiddleEast"><div class="text-center py-4 text-muted">Tur Middle East segera hadir...</div></div>
+            <div class="tab-pane fade" id="tourEurope">
+                <div class="row g-4">
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Eiffel Tower Summit Access" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Eiffel Tower Summit Access" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 15% off</span><span class="tc-badge tc-badge-tag">Free cancellation</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Paris, France</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 2 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.6)</b><small>5,952 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Eiffel Tower Summit Access</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-cul"><i class="bi bi-bank2"></i> Culture</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$73</del><b>$62</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Colosseum & Roman Forum Skip-the-Line" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Colosseum & Roman Forum Skip-the-Line" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-tag">Best seller</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Rome, Italy</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 3 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.8)</b><small>371 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Colosseum & Roman Forum Skip-the-Line</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-cul"><i class="bi bi-bank2"></i> Culture</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$53</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Sagrada Família Guided Tour" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Sagrada Família Guided Tour" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Barcelona, Spain</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 2 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★☆</span><b>(4.4)</b><small>4,074 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Sagrada Família Guided Tour</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-cul"><i class="bi bi-bank2"></i> Culture</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$43</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Venice Gondola & St. Mark’s Walk" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Venice Gondola & St. Mark’s Walk" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-tag">Group tour</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Venice, Italy</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 3 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.5)</b><small>5,655 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Venice Gondola & St. Mark’s Walk</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-cul"><i class="bi bi-bank2"></i> Culture</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$65</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Santorini Sunset Catamaran Cruise" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Santorini Sunset Catamaran Cruise" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Santorini, Greece</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 5 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.6)</b><small>2,607 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Santorini Sunset Catamaran Cruise</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-sea"><i class="bi bi-water"></i> Cruise & Water</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$100</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Swiss Alps Jungfraujoch Day Trip" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Swiss Alps Jungfraujoch Day Trip" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-tag">Best seller</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Interlaken, Switzerland</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 12 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.5)</b><small>3,327 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Swiss Alps Jungfraujoch Day Trip</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-nat"><i class="bi bi-tree-fill"></i> Nature</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$230</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Amsterdam Canal Cruise" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Amsterdam Canal Cruise" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-tag">Instant confirmation</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Amsterdam, Netherlands</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 1.5 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.9)</b><small>1,170 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Amsterdam Canal Cruise</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-sea"><i class="bi bi-water"></i> Cruise & Water</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$23</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Tower of London & Crown Jewels" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Tower of London & Crown Jewels" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 15% off</span><span class="tc-badge tc-badge-tag">Small group</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> London, UK</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 3 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.8)</b><small>4,165 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Tower of London & Crown Jewels</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-cul"><i class="bi bi-bank2"></i> Culture</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$48</del><b>$41</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Prague Castle & Old Town Walk" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Prague Castle & Old Town Walk" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 25% off</span><span class="tc-badge tc-badge-tag">Instant confirmation</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Prague, Czechia</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 3 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.8)</b><small>1,556 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Prague Castle & Old Town Walk</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-city"><i class="bi bi-buildings-fill"></i> City Tour</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$36</del><b>$27</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Tuscany Wine & Countryside Tour" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Tuscany Wine & Countryside Tour" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-tag">Free cancellation</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Florence, Italy</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 8 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.9)</b><small>6,346 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Tuscany Wine & Countryside Tour</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-food"><i class="bi bi-cup-hot-fill"></i> Food & Drink</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$99</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Northern Lights Hunt" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Northern Lights Hunt" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 25% off</span><span class="tc-badge tc-badge-tag">Group tour</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Reykjavik, Iceland</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 4 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.7)</b><small>4,195 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Northern Lights Hunt</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-adv"><i class="bi bi-compass-fill"></i> Adventure</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$116</del><b>$87</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Lisbon Tuk-Tuk Highlights" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Lisbon Tuk-Tuk Highlights" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-tag">Free cancellation</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Lisbon, Portugal</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 2 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.6)</b><small>6,235 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Lisbon Tuk-Tuk Highlights</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-city"><i class="bi bi-buildings-fill"></i> City Tour</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$34</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="tourAsia">
+                <div class="row g-4">
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Maldives Handpicked Adventure Tours" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Maldives Handpicked Adventure Tours" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Sale on!</span><span class="tc-badge tc-badge-tag">Group tour</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Maldives</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 2 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.9)</b><small>2,780 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Maldives Handpicked Adventure Tours</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-sea"><i class="bi bi-water"></i> Cruise & Water</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$69</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Mount Fuji & Hakone Day Trip" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Mount Fuji & Hakone Day Trip" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-tag">Best seller</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Tokyo, Japan</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 10 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.7)</b><small>2,395 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Mount Fuji & Hakone Day Trip</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-nat"><i class="bi bi-tree-fill"></i> Nature</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$120</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Bali Temples & Rice Terraces" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Bali Temples & Rice Terraces" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Sale on!</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Ubud, Indonesia</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 8 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.5)</b><small>6,029 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Bali Temples & Rice Terraces</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-cul"><i class="bi bi-bank2"></i> Culture</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$54</del><b>$49</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Ha Long Bay Overnight Cruise" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Ha Long Bay Overnight Cruise" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Quang Ninh, Vietnam</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 2 Days</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.7)</b><small>6,067 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Ha Long Bay Overnight Cruise</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-sea"><i class="bi bi-water"></i> Cruise & Water</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$155</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Angkor Wat Sunrise Tour" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Angkor Wat Sunrise Tour" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 20% off</span><span class="tc-badge tc-badge-tag">Small group</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Siem Reap, Cambodia</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 6 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.7)</b><small>5,640 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Angkor Wat Sunrise Tour</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-cul"><i class="bi bi-bank2"></i> Culture</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$71</del><b>$57</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Gardens by the Bay Night Tour" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Gardens by the Bay Night Tour" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 15% off</span><span class="tc-badge tc-badge-tag">Private tour</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Singapore</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 3 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.7)</b><small>4,895 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Gardens by the Bay Night Tour</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-city"><i class="bi bi-buildings-fill"></i> City Tour</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$47</del><b>$40</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Taj Mahal Sunrise Experience" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Taj Mahal Sunrise Experience" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-tag">Small group</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Agra, India</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 5 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.9)</b><small>5,600 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Taj Mahal Sunrise Experience</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-cul"><i class="bi bi-bank2"></i> Culture</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$53</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Phi Phi Islands Speedboat Trip" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Phi Phi Islands Speedboat Trip" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Sale on!</span><span class="tc-badge tc-badge-tag">Free cancellation</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Phuket, Thailand</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 8 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.6)</b><small>4,510 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Phi Phi Islands Speedboat Trip</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-sea"><i class="bi bi-water"></i> Cruise & Water</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$78</del><b>$70</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Great Wall Mutianyu Hike" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Great Wall Mutianyu Hike" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Beijing, China</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 6 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.5)</b><small>5,664 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Great Wall Mutianyu Hike</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-adv"><i class="bi bi-compass-fill"></i> Adventure</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$55</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Kyoto Temples & Geisha Walk" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Kyoto Temples & Geisha Walk" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-tag">Instant confirmation</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Kyoto, Japan</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 4 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.5)</b><small>4,133 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Kyoto Temples & Geisha Walk</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-cul"><i class="bi bi-bank2"></i> Culture</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$75</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Komodo Island Snorkel & Trek" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Komodo Island Snorkel & Trek" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 20% off</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Flores, Indonesia</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 1 Day</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.6)</b><small>954 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Komodo Island Snorkel & Trek</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-wild"><i class="bi bi-binoculars-fill"></i> Wildlife</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$152</del><b>$122</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Bangkok Street Food Tuk-Tuk" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Bangkok Street Food Tuk-Tuk" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-tag">Private tour</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Bangkok, Thailand</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 3 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.7)</b><small>3,522 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Bangkok Street Food Tuk-Tuk</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-food"><i class="bi bi-cup-hot-fill"></i> Food & Drink</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$39</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="tourAfrica">
+                <div class="row g-4">
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Camel Ride Journey" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Camel Ride Journey" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 15% off</span><span class="tc-badge tc-badge-tag">👑 Best seller</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Morocco</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 1 Hour</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.9)</b><small>1,641 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Camel Ride Journey</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-adv"><i class="bi bi-compass-fill"></i> Adventure</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$39</del><b>$329</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Serengeti Safari Game Drive" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Serengeti Safari Game Drive" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-tag">Instant confirmation</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Serengeti, Tanzania</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 8 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★☆</span><b>(4.4)</b><small>4,093 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Serengeti Safari Game Drive</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-wild"><i class="bi bi-binoculars-fill"></i> Wildlife</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$140</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1539650116574-8efeb43e2750?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Giza Pyramids & Sphinx Tour" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Giza Pyramids & Sphinx Tour" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 20% off</span><span class="tc-badge tc-badge-tag">Group tour</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Cairo, Egypt</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 5 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.7)</b><small>1,255 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Giza Pyramids & Sphinx Tour</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-cul"><i class="bi bi-bank2"></i> Culture</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$59</del><b>$47</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Table Mountain & Cape Point" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Table Mountain & Cape Point" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 20% off</span><span class="tc-badge tc-badge-tag">Group tour</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Cape Town, South Africa</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 7 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.9)</b><small>4,766 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Table Mountain & Cape Point</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-nat"><i class="bi bi-tree-fill"></i> Nature</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$104</del><b>$83</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Victoria Falls Helicopter Flight" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Victoria Falls Helicopter Flight" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 15% off</span><span class="tc-badge tc-badge-tag">Private tour</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Victoria Falls, Zimbabwe</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 30 Minutes</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.5)</b><small>5,866 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Victoria Falls Helicopter Flight</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-adv"><i class="bi bi-compass-fill"></i> Adventure</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$276</del><b>$235</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Zanzibar Spice & Stone Town Tour" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Zanzibar Spice & Stone Town Tour" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 20% off</span><span class="tc-badge tc-badge-tag">Group tour</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Zanzibar, Tanzania</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 5 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★☆</span><b>(4.4)</b><small>3,484 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Zanzibar Spice & Stone Town Tour</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-cul"><i class="bi bi-bank2"></i> Culture</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$65</del><b>$52</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Kilimanjaro Day Hike" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Kilimanjaro Day Hike" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 20% off</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Moshi, Tanzania</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 8 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★☆</span><b>(4.4)</b><small>887 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Kilimanjaro Day Hike</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-adv"><i class="bi bi-compass-fill"></i> Adventure</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$124</del><b>$99</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Nile Sunset Felucca Ride" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Nile Sunset Felucca Ride" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 15% off</span><span class="tc-badge tc-badge-tag">Instant confirmation</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Luxor, Egypt</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 2 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.8)</b><small>2,014 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Nile Sunset Felucca Ride</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-sea"><i class="bi bi-water"></i> Cruise & Water</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$35</del><b>$30</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Maasai Mara Hot-Air Balloon" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Maasai Mara Hot-Air Balloon" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 20% off</span><span class="tc-badge tc-badge-tag">Private tour</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Maasai Mara, Kenya</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 3 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.7)</b><small>632 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Maasai Mara Hot-Air Balloon</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-adv"><i class="bi bi-compass-fill"></i> Adventure</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$246</del><b>$197</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Marrakech Medina & Souks Walk" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Marrakech Medina & Souks Walk" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Sale on!</span><span class="tc-badge tc-badge-tag">Best seller</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Marrakech, Morocco</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 4 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.8)</b><small>629 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Marrakech Medina & Souks Walk</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-cul"><i class="bi bi-bank2"></i> Culture</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$36</del><b>$32</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1539650116574-8efeb43e2750?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Sahara Overnight Desert Camp" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Sahara Overnight Desert Camp" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 15% off</span><span class="tc-badge tc-badge-tag">Best seller</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Merzouga, Morocco</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 2 Days</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.5)</b><small>3,571 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Sahara Overnight Desert Camp</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-adv"><i class="bi bi-compass-fill"></i> Adventure</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$160</del><b>$136</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Kruger Park Big Five Safari" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Kruger Park Big Five Safari" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 20% off</span><span class="tc-badge tc-badge-tag">Small group</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Mpumalanga, South Africa</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 10 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.6)</b><small>3,829 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Kruger Park Big Five Safari</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-wild"><i class="bi bi-binoculars-fill"></i> Wildlife</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$178</del><b>$142</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="tourMiddleEast">
+                <div class="row g-4">
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Burj Khalifa At The Top" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Burj Khalifa At The Top" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 25% off</span><span class="tc-badge tc-badge-tag">Best seller</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Dubai, UAE</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 2 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.7)</b><small>6,296 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Burj Khalifa At The Top</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-city"><i class="bi bi-buildings-fill"></i> City Tour</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$67</del><b>$50</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1539650116574-8efeb43e2750?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Desert Safari & BBQ Dinner" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Desert Safari & BBQ Dinner" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-tag">Free cancellation</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Dubai, UAE</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 6 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★☆</span><b>(4.4)</b><small>1,546 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Desert Safari & BBQ Dinner</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-adv"><i class="bi bi-compass-fill"></i> Adventure</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$61</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Petra by Night" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Petra by Night" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 20% off</span><span class="tc-badge tc-badge-tag">Private tour</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Petra, Jordan</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 3 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.5)</b><small>5,287 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Petra by Night</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-cul"><i class="bi bi-bank2"></i> Culture</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$70</del><b>$56</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Dead Sea Float & Wadi Mujib" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Dead Sea Float & Wadi Mujib" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-tag">Free cancellation</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Amman, Jordan</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 7 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.5)</b><small>4,123 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Dead Sea Float & Wadi Mujib</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-nat"><i class="bi bi-tree-fill"></i> Nature</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$92</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Sheikh Zayed Grand Mosque Tour" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Sheikh Zayed Grand Mosque Tour" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 25% off</span><span class="tc-badge tc-badge-tag">Free cancellation</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Abu Dhabi, UAE</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 3 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.7)</b><small>4,664 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Sheikh Zayed Grand Mosque Tour</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-cul"><i class="bi bi-bank2"></i> Culture</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$48</del><b>$36</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1539650116574-8efeb43e2750?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Wadi Rum Jeep Adventure" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Wadi Rum Jeep Adventure" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-tag">Free cancellation</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Wadi Rum, Jordan</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 5 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.7)</b><small>4,107 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Wadi Rum Jeep Adventure</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-adv"><i class="bi bi-compass-fill"></i> Adventure</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$78</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Cappadocia Hot-Air Balloon Flight" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Cappadocia Hot-Air Balloon Flight" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-tag">Free cancellation</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Göreme, Türkiye</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 3 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.6)</b><small>3,250 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Cappadocia Hot-Air Balloon Flight</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-adv"><i class="bi bi-compass-fill"></i> Adventure</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$195</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Bosphorus Cruise & Spice Bazaar" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Bosphorus Cruise & Spice Bazaar" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 25% off</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Istanbul, Türkiye</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 2 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.9)</b><small>2,130 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Bosphorus Cruise & Spice Bazaar</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-sea"><i class="bi bi-water"></i> Cruise & Water</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$44</del><b>$33</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Museum of Islamic Art & Souq Waqif" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Museum of Islamic Art & Souq Waqif" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 25% off</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Doha, Qatar</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 4 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.7)</b><small>5,340 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Museum of Islamic Art & Souq Waqif</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-cul"><i class="bi bi-bank2"></i> Culture</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$59</del><b>$44</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Muscat Dolphin Watching Cruise" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Muscat Dolphin Watching Cruise" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-tag">Group tour</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Muscat, Oman</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 3 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.7)</b><small>531 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Muscat Dolphin Watching Cruise</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-wild"><i class="bi bi-binoculars-fill"></i> Wildlife</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$59</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Dubai Marina Yacht Cruise" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Dubai Marina Yacht Cruise" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"><span class="tc-badge tc-badge-sale">Up to 25% off</span><span class="tc-badge tc-badge-tag">Free cancellation</span></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Dubai, UAE</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 2 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.6)</b><small>5,139 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Dubai Marina Yacht Cruise</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-sea"><i class="bi bi-water"></i> Cruise & Water</span><span class="tc-free"><i class="bi bi-check-circle-fill"></i> Free cancellation</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><del>$91</del><b>$68</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <article class="tc-card">
+                            <a href="#" class="tc-media image-shimmer-effect d-block">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=700&q=80" width="700" height="500" class="lazyload lazy-effect" alt="Jebel Shams Canyon Trek" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=700&q=80'" fetchpriority="low">
+                            </a>
+                            <button type="button" class="tc-heart" title="Wishlist" aria-label="Simpan Jebel Shams Canyon Trek" aria-pressed="false"><i class="bi bi-heart"></i></button>
+                            <div class="tc-badges"></div>
+                            <div class="tc-chips">
+                                <span class="tc-chip"><i class="bi bi-geo-alt-fill"></i> Al Hamra, Oman</span>
+                                <span class="tc-chip"><i class="bi bi-clock-fill"></i> 6 Hours</span>
+                            </div>
+                            <div class="tc-body">
+                                <div class="tc-rating"><span class="tc-stars">★★★★★</span><b>(4.7)</b><small>4,760 reviews</small></div>
+                                <h5 class="tc-title"><a href="#">Jebel Shams Canyon Trek</a></h5>
+                                <div class="tc-meta"><span class="tc-cat tc-cat-adv"><i class="bi bi-compass-fill"></i> Adventure</span></div>
+                                <div class="tc-foot">
+                                    <div class="tc-price">
+                                        <small>Starting From</small>
+                                        <div><b>$83</b><span>/per person</span></div>
+                                    </div>
+                                    <button type="button" class="tc-btn">View Tour <i class="bi bi-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1658,6 +3092,18 @@
     window.addEventListener('load', update);
     update();
 })();
+</script>
+<!-- Tombol simpan (hati) pada kartu tur -->
+<script>
+document.addEventListener('click', function (e) {
+    var b = e.target.closest('.tc-heart');
+    if (!b) return;
+    var on = b.classList.toggle('is-active');
+    var i = b.querySelector('i');
+    i.classList.toggle('bi-heart', !on);
+    i.classList.toggle('bi-heart-fill', on);
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+});
 </script>
 </body>
 </html>
