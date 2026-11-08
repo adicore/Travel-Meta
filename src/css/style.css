@@ -438,6 +438,9 @@ header.sticky-top {
 #page-index .nav-item a[href="index.html"],
 #page-flights .nav-item a[href="flights.html"],
 #page-hotels .nav-item a[href="hotels.html"],
+#page-car-rental .nav-item a[href="car-rental.html"],
+#page-taxi .nav-item a[href="taxi.html"],
+#page-bike .nav-item a[href="bike.html"],
 #page-tours .nav-item a[href="tours.html"],
 #page-visa .nav-item a[href="visa.html"] {
     color: #0d6efd !important; /* Biru Bootstrap */
@@ -450,6 +453,9 @@ header.sticky-top {
 #page-index .nav-bottom-index,
 #page-flights .nav-bottom-flights,
 #page-hotels .nav-bottom-hotels,
+#page-car-rental .nav-bottom-car-rental,
+#page-taxi .nav-bottom-taxi,
+#page-bike .nav-bottom-bike,
 #page-tours .nav-bottom-tours,
 #page-visa .nav-bottom-visa {
     color: #0d6efd !important;
