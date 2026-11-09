@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelMeta - Exclusive Tours & Experiences</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans & Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" fetchpriority="high">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin fetchpriority="high">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet" fetchpriority="high">
+    
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" fetchpriority="high">
+    
+    <!-- Bootstrap Icons CSS -->
+    <link rel="stylesheet" href="./src/css/bootstrap-icons.min.css" fetchpriority="low">
+    
+    <!-- Lazysizes JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async fetchpriority="high"></script>
+
+    <!-- Global Style -->
+    <link rel="stylesheet" href="./src/css/style.css" fetchpriority="high">
+    
+    <!-- Custom CSS for Modern Tour Page -->
+    <style>
+        .tour-hero {
+            min-height: 75vh;
+            background: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1920&q=80') center/cover fixed no-repeat;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 280px;
+            gap: 1.25rem;
+        }
+        .bento-item {
+            position: relative;
+            border-radius: 1.25rem;
+            overflow: hidden;
+            display: block;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        .bento-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .bento-item:hover img {
+            transform: scale(1.08);
+        }
+        .bento-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, transparent 60%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            color: white;
+        }
+        .bento-tall {
+            grid-row: span 2;
+            grid-column: span 2;
+        }
+        .bento-wide {
+            grid-column: span 2;
+        }
+        @media (max-width: 991px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 250px; }
+            .bento-tall { grid-column: span 2; }
+            .bento-wide { grid-column: span 2; }
+        }
+        @media (max-width: 767px) {
+            .bento-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; }
+            .bento-tall, .bento-wide { grid-column: span 1; grid-row: span 1; }
+        }
+        .tour-horizontal-card {
+            transition: all 0.3s ease;
+            border: 1px solid #f1f5f9;
+            border-radius: 1.25rem;
+            overflow: hidden;
+            background: #ffffff;
+        }
+        .tour-horizontal-card:hover {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+            transform: translateY(-4px);
+            border-color: #e2e8f0;
+        }
+        .tour-img-wrap {
+            width: 320px;
+            position: relative;
+            flex-shrink: 0;
+        }
+        .tour-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        @media(max-width: 768px) {
+            .tour-horizontal-card { flex-direction: column; }
+            .tour-img-wrap { width: 100%; height: 220px; }
+        }
+        .newsletter-modern {
+            background: #0f172a;
+            border-radius: 2rem;
+            overflow: hidden;
+            position: relative;
+        }
+        .newsletter-shape {
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59,130,246,0.3) 0%, transparent 65%);
+            border-radius: 50%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .feature-modern-box {
+            background: #ffffff;
+            border: 1px solid #f1f5f9;
+            border-radius: 1.25rem;
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        .feature-modern-box:hover {
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+            border-color: #cbd5e1;
+            transform: translateY(-5px);
+        }
+        .feature-modern-icon {
+            width: 60px;
+            height: 60px;
+            background: #eff6ff;
+            color: #2563eb;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body class="bg-light" id="page-tours">
+
+    <!-- HEADER UTAMA DARI INDEX.HTML -->
+    <header class="bg-white sticky-top shadow-sm">
+        <div class="border-bottom py-2 bg-white small d-none d-lg-block">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="text-secondary d-flex align-items-center gap-1">
+                    <span class="text-warning">★</span> 
+                    <span class="fw-bold text-dark">4.9 Rated</span> by <strong class="text-dark">10,000+</strong> Travelers Worldwide.
+                </div>
+                <div class="d-flex align-items-center gap-3 text-secondary">
+                    <button class="btn btn-sm btn-light border py-1 px-3 fw-semibold rounded-pill d-flex align-items-center gap-2 shadow-sm" type="button" data-bs-toggle="modal" data-bs-target="#regionalSettingsModal">
+                    <i class="bi bi-globe text-info"></i> 
+                    <span id="deskLangText">EN</span> • <span id="deskCurrText">USD</span> 
+                    <i class="bi bi-coin text-warning"></i>
+                    </button>
+                    <a href="#" class="text-secondary text-decoration-none px-1" title="Cart"><i class="bi bi-cart3 fs-6"></i></a>
+                    <a href="#" class="text-secondary text-decoration-none px-1" title="Profile"><i class="bi bi-person-circle fs-5"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg navbar-light py-2 py-lg-3">
+            <div class="container d-flex justify-content-between align-items-center">
+                <a class="navbar-brand fw-bold fs-5 fs-lg-4 text-dark d-flex align-items-center gap-2 text-decoration-none m-0" href="#">
+                    <div class="logo-icon-box bg-primary text-white rounded-3 d-flex align-items-center justify-content-center shadow-sm">
+                        <i class="bi bi-airplane-engines"></i>
+                    </div>
+                    TravelMeta
+                </a>
+
+                <div class="d-flex align-items-center gap-2 gap-sm-3 d-lg-none header-mobile-actions">
+                    <div class="d-flex align-items-center gap-1 cursor-pointer bg-light px-2 py-1 rounded-pill border shadow-sm" data-bs-toggle="modal" data-bs-target="#regionalSettingsModal" title="Language & Currency">
+                        <i class="bi bi-globe-americas fs-6 text-dark ms-1"></i>
+                        <span class="fw-bold text-dark small me-1" style="font-size: 0.75rem;">
+                            <span id="mobLangText">EN</span> • <span id="mobCurrText">USD</span>
+                        </span>
+                    </div>
+                    <a href="#" class="text-dark text-decoration-none"><i class="bi bi-person-circle fs-4"></i></a>
+                    <button class="btn btn-white bg-white border shadow-sm rounded-3 p-2 d-flex align-items-center justify-content-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" style="width: 42px; height: 42px;">
+                        <div class="hamburger-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header border-bottom">
+                        <h5 class="offcanvas-title fw-bold text-dark d-flex align-items-center gap-2" id="offcanvasNavbarLabel">
+                            <div class="bg-primary text-white rounded-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 30px; height: 30px;">
+                                <i class="bi bi-airplane-engines small"></i>
+                            </div>
+                            TravelMeta
+                        </h5>
+                        <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Tutup"></button>
+                    </div>
+
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav mx-auto align-items-lg-center gap-2 gap-xl-3">
+                            <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html">Beranda</a></li>
+                            <li class="nav-item"><a class="nav-link text-dark fw-medium" href="flights.html">Flights</a></li>
+                            <li class="nav-item"><a class="nav-link text-dark fw-medium" href="hotels.html">Hotel</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button" data-bs-toggle="dropdown">More Services</a>
+                                <ul class="dropdown-menu shadow-lg rounded-4 p-2 border-0" style="min-width: 200px;">
+                                    <li class="nav-item"><a class="dropdown-item rounded-3 py-2 text-dark" href="car-rental.html"><i class="bi bi-car-front text-primary me-2"></i> Car Rental</a></li>
+                                    <li class="nav-item"><a class="dropdown-item rounded-3 py-2 text-dark" href="taxi.html"><i class="bi bi-taxi-front text-primary me-2"></i> Taxi</a></li>
+                                    <li class="nav-item"><a class="dropdown-item rounded-3 py-2 text-dark" href="bike.html"><i class="bi bi-bicycle text-primary me-2"></i> Bike</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a class="nav-link active text-primary fw-bold" href="tours.html">Tour</a></li>
+                            <li class="nav-item"><a class="nav-link text-dark fw-medium" href="visa.html">Visa</a></li>
+                        </ul>
+
+                        <div class="d-flex flex-column flex-lg-row align-items-lg-center gap-3 mt-4 mt-lg-0">
+                            <a href="#" class="btn btn-outline-primary rounded-pill px-3 py-2 small fw-semibold d-flex align-items-center justify-content-center gap-2 border-2 text-decoration-none">
+                                <i class="bi bi-robot"></i> Plan with AI
+                            </a>
+                            <a href="https://whatsapp.com" target="_blank" class="btn btn-primary rounded-pill px-4 py-2 small fw-semibold d-flex align-items-center justify-content-center gap-2 text-decoration-none">
+                                <i class="bi bi-whatsapp fs-6"></i> +44-800 123 456
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="container d-lg-none mt-2 pt-3 border-top d-flex justify-content-between align-items-center flex-nowrap">
+                <div class="text-secondary small d-flex align-items-start gap-1 flex-grow-1 pe-2">
+                    <span class="text-warning fs-6 lh-1" style="margin-top: 1px;">★</span> 
+                    <span class="fw-medium text-dark lh-sm" style="font-size: 0.8rem;">
+                        <span class="text-primary fw-bold">4.9 Rated</span> by <strong class="text-dark">10,000+</strong> Travelers.
+                    </span>
+                </div>
+                <a href="#" class="text-dark text-decoration-none flex-shrink-0"><i class="bi bi-cart3 fs-4"></i></a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 1. HERO SECTION (MODERN & UNIQUE) -->
+    <section class="tour-hero position-relative d-flex align-items-center justify-content-center overflow-hidden">
+        <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(135deg, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.4) 100%);"></div>
+        <div class="container position-relative z-2 text-center text-white pt-5 mt-4 scroll-reveal">
+            <span class="badge border border-white text-white rounded-pill px-3 py-2 mb-3 fw-medium" style="letter-spacing: 2px; text-transform: uppercase; background: rgba(255,255,255,0.15); backdrop-filter: blur(8px);"><i class="bi bi-compass"></i> Discover the Unseen</span>
+            <h1 class="display-3 fw-bolder mb-4 lh-sm" style="text-shadow: 0 4px 15px rgba(0,0,0,0.4);">Curated Journeys For<br><span style="color: #60a5fa;">The Modern Explorer</span></h1>
+            <p class="lead mb-0 mx-auto fw-light" style="max-width: 650px; color: #f8fafc;">Immerse yourself in authentic experiences, breathtaking landscapes, and unforgettable guided tours around the globe.</p>
+        </div>
+    </section>
+
+    <!-- 2. TOUR SEARCH BOX (IDENTICAL TO INDEX.HTML) -->
+    <div class="container position-relative z-3 scroll-reveal" style="margin-top: -65px;">
+        <div class="card border-0 p-3 p-lg-4 bg-white shadow-lg rounded-4">
+            <form id="tourSearchForm" action="/search">
+                <div class="row g-2 align-items-center">
+                    <div class="col-lg-5 col-md-12">
+                        <div class="search-box-item">
+                            <div class="text-muted small mb-1"><i class="bi bi-compass text-primary me-1"></i> Tour Destination</div>
+                            <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold shadow-none bg-transparent" placeholder="Cth: Paris, Bali, Cappadocia">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="search-box-item">
+                            <div class="text-muted small mb-1"><i class="bi bi-calendar text-primary me-1"></i> Date</div>
+                            <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Tanggal Mulai">
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <div class="dropdown w-100">
+                            <div class="search-box-item cursor-pointer" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Travelers</div>
+                                <div class="fw-bold small text-dark" id="tourSummaryText">2 Persons</div>
+                            </div>
+                            <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100" style="min-width: 250px;">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="small">Peserta</span>
+                                    <div class="input-group input-group-sm w-50">
+                                        <button class="btn btn-outline-secondary decrease-count" type="button" data-target="tourAdult">-</button>
+                                        <input type="text" id="tourAdult" class="form-control text-center fw-bold bg-white" value="2" readonly>
+                                        <button class="btn btn-outline-secondary increase-count" type="button" data-target="tourAdult">+</button>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-sm w-100 py-2 rounded-pill fw-bold apply-btn" type="button">Terapkan</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-12">
+                        <button class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm search-action-btn" style="min-height: 72px;">Cari Tur</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 3. FEATURED DESTINATIONS BENTO GRID -->
+    <section class="container py-5 mt-5 scroll-reveal">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4 gap-3">
+            <div>
+                <span class="text-primary fw-bold text-uppercase" style="letter-spacing: 1px; font-size: 0.85rem;">Trending Now</span>
+                <h2 class="display-6 fw-bold text-dark mb-0 mt-1">Destinasi Favorit</h2>
+            </div>
+            <a href="#" class="btn btn-outline-dark rounded-pill px-4 fw-semibold shadow-sm py-2">Lihat Semua <i class="bi bi-arrow-right ms-1"></i></a>
+        </div>
+        <div class="bento-grid">
+            <a href="#" class="bento-item bento-tall text-decoration-none">
+                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80" alt="Bali" class="lazyload">
+                <div class="bento-overlay">
+                    <h3 class="fw-bold mb-1 fs-3">Bali, Indonesia</h3>
+                    <p class="mb-0 small text-light opacity-75">120+ Paket Tur Eksklusif</p>
+                </div>
+            </a>
+            <a href="#" class="bento-item text-decoration-none">
+                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=600&q=80" alt="Paris" class="lazyload">
+                <div class="bento-overlay">
+                    <h4 class="fw-bold mb-1 fs-4">Paris, Prancis</h4>
+                    <p class="mb-0 small text-light opacity-75">85 Paket Tur</p>
+                </div>
+            </a>
+            <a href="#" class="bento-item text-decoration-none">
+                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=600&q=80" alt="Cappadocia" class="lazyload">
+                <div class="bento-overlay">
+                    <h4 class="fw-bold mb-1 fs-4">Cappadocia, Turki</h4>
+                    <p class="mb-0 small text-light opacity-75">45 Paket Tur</p>
+                </div>
+            </a>
+            <a href="#" class="bento-item bento-wide text-decoration-none">
+                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=800&q=80" alt="Safari" class="lazyload">
+                <div class="bento-overlay">
+                    <h4 class="fw-bold mb-1 fs-3">Maasai Mara, Kenya</h4>
+                    <p class="mb-0 small text-light opacity-75">Petualangan Alam Liar • 30+ Tur</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- 4. WHY CHOOSE OUR TOURS (MODERN FEATURE BOXES) -->
+    <section class="container py-5 scroll-reveal border-top">
+        <div class="row g-4 pt-3">
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-modern-box">
+                    <div class="feature-modern-icon"><i class="bi bi-compass"></i></div>
+                    <h5 class="fw-bold text-dark mb-2">Itinerari Personal</h5>
+                    <p class="text-secondary small mb-0 lh-base">Perjalanan dirancang khusus menyesuaikan minat dan tempo liburan Anda.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-modern-box">
+                    <div class="feature-modern-icon"><i class="bi bi-person-badge"></i></div>
+                    <h5 class="fw-bold text-dark mb-2">Lokal Guide Ahli</h5>
+                    <p class="text-secondary small mb-0 lh-base">Ditemani pemandu wisata lokal profesional yang kaya akan wawasan destinasi.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-modern-box">
+                    <div class="feature-modern-icon"><i class="bi bi-shield-check"></i></div>
+                    <h5 class="fw-bold text-dark mb-2">Tanpa Biaya Tersembunyi</h5>
+                    <p class="text-secondary small mb-0 lh-base">Transparansi harga untuk semua tiket atraksi, hotel, dan transportasi darat.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-modern-box">
+                    <div class="feature-modern-icon"><i class="bi bi-star"></i></div>
+                    <h5 class="fw-bold text-dark mb-2">Akses Prioritas VIP</h5>
+                    <p class="text-secondary small mb-0 lh-base">Lewati antrean panjang di berbagai atraksi wisata ikonik di seluruh dunia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. HORIZONTAL LIST FEATURED TOURS (MODERN CARD LAYOUT) -->
+    <section class="py-5 bg-white scroll-reveal border-top">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="text-primary fw-bold text-uppercase" style="letter-spacing: 1px; font-size: 0.85rem;">Exclusive Picks</span>
+                <h2 class="display-6 fw-bold text-dark mt-1">Paket Tur Pilihan Kami</h2>
+                <p class="text-muted mx-auto" style="max-width: 600px;">Rasakan liburan tanpa stres dengan itinerari yang dirancang khusus oleh ahlinya untuk pengalaman maksimal.</p>
+            </div>
+
+            <div class="d-flex flex-column gap-4">
+                
+                <!-- Card 1 -->
+                <div class="tour-horizontal-card d-flex">
+                    <div class="tour-img-wrap p-2">
+                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=600&q=80" alt="Ha Long Bay" class="rounded-4 lazyload lazy-effect">
+                        <div class="position-absolute top-0 start-0 m-3 mt-4 ms-4">
+                            <span class="badge bg-white text-dark shadow-sm fw-bold px-3 py-2 rounded-pill"><i class="bi bi-star-fill text-warning"></i> 4.9</span>
+                        </div>
+                    </div>
+                    <div class="p-4 d-flex flex-column justify-content-center flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <div>
+                                <div class="text-muted small mb-2 d-flex align-items-center gap-3">
+                                    <span><i class="bi bi-geo-alt-fill text-primary"></i> Vietnam</span>
+                                    <span><i class="bi bi-clock-fill text-primary"></i> 3 Hari 2 Malam</span>
+                                    <span><i class="bi bi-people-fill text-primary"></i> Grup Kecil</span>
+                                </div>
+                                <h3 class="fw-bold h4 mb-2"><a href="#" class="text-dark text-decoration-none">Eksplorasi Ha Long Bay & Hanoi</a></h3>
+                                <p class="text-secondary small mb-0 d-none d-md-block" style="max-width: 600px;">Nikmati pesona keajaiban alam Ha Long Bay dari atas kapal pesiar mewah, dilanjutkan wisata budaya di pusat kota lama Hanoi yang otentik.</p>
+                            </div>
+                            <button class="btn btn-light rounded-circle shadow-sm text-secondary border border-light" style="width:42px; height:42px;"><i class="bi bi-heart fs-6"></i></button>
+                        </div>
+                        <hr class="my-3 border-secondary opacity-10">
+                        <div class="d-flex justify-content-between align-items-end flex-wrap gap-3">
+                            <div class="d-flex align-items-center gap-2 flex-wrap">
+                                <span class="badge bg-light text-dark border px-2 py-1 fw-medium"><i class="bi bi-building"></i> Hotel 4★</span>
+                                <span class="badge bg-light text-dark border px-2 py-1 fw-medium"><i class="bi bi-bus-front"></i> Transportasi VIP</span>
+                                <span class="badge bg-light text-dark border px-2 py-1 fw-medium"><i class="bi bi-cup-hot"></i> Sarapan</span>
+                            </div>
+                            <div class="text-md-end text-start w-100 w-md-auto">
+                                <small class="text-muted d-block text-decoration-line-through">USD 450</small>
+                                <span class="fw-bolder fs-3 text-primary d-block lh-1 mb-2">USD 380</span>
+                                <a href="#" class="btn btn-dark rounded-pill px-4 py-2 fw-semibold shadow-sm w-100">Pesan Sekarang</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="tour-horizontal-card d-flex">
+                    <div class="tour-img-wrap p-2">
+                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=600&q=80" alt="Venice" class="rounded-4 lazyload lazy-effect">
+                        <div class="position-absolute top-0 start-0 m-3 mt-4 ms-4">
+                            <span class="badge bg-white text-dark shadow-sm fw-bold px-3 py-2 rounded-pill"><i class="bi bi-star-fill text-warning"></i> 4.8</span>
+                        </div>
+                    </div>
+                    <div class="p-4 d-flex flex-column justify-content-center flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <div>
+                                <div class="text-muted small mb-2 d-flex align-items-center gap-3">
+                                    <span><i class="bi bi-geo-alt-fill text-primary"></i> Italia</span>
+                                    <span><i class="bi bi-clock-fill text-primary"></i> 5 Hari 4 Malam</span>
+                                    <span><i class="bi bi-person-check-fill text-primary"></i> Tur Privat</span>
+                                </div>
+                                <h3 class="fw-bold h4 mb-2"><a href="#" class="text-dark text-decoration-none">Romantisme Venice & Florence</a></h3>
+                                <p class="text-secondary small mb-0 d-none d-md-block" style="max-width: 600px;">Menyusuri kanal-kanal cantik di Venice dengan gondola eksklusif dan menikmati mahakarya seni klasik Renaissance secara privat di Florence.</p>
+                            </div>
+                            <button class="btn btn-light rounded-circle shadow-sm text-secondary border border-light" style="width:42px; height:42px;"><i class="bi bi-heart fs-6"></i></button>
+                        </div>
+                        <hr class="my-3 border-secondary opacity-10">
+                        <div class="d-flex justify-content-between align-items-end flex-wrap gap-3">
+                            <div class="d-flex align-items-center gap-2 flex-wrap">
+                                <span class="badge bg-light text-dark border px-2 py-1 fw-medium"><i class="bi bi-airplane"></i> Penerbangan</span>
+                                <span class="badge bg-light text-dark border px-2 py-1 fw-medium"><i class="bi bi-building"></i> Hotel 5★</span>
+                                <span class="badge bg-light text-dark border px-2 py-1 fw-medium"><i class="bi bi-ticket-perforated"></i> Akses VIP</span>
+                            </div>
+                            <div class="text-md-end text-start w-100 w-md-auto">
+                                <small class="text-muted d-block text-decoration-line-through">USD 1,200</small>
+                                <span class="fw-bolder fs-3 text-primary d-block lh-1 mb-2">USD 1,050</span>
+                                <a href="#" class="btn btn-dark rounded-pill px-4 py-2 fw-semibold shadow-sm w-100">Pesan Sekarang</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="tour-horizontal-card d-flex">
+                    <div class="tour-img-wrap p-2">
+                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80" alt="Swiss Alps" class="rounded-4 lazyload lazy-effect">
+                        <div class="position-absolute top-0 start-0 m-3 mt-4 ms-4">
+                            <span class="badge bg-white text-dark shadow-sm fw-bold px-3 py-2 rounded-pill"><i class="bi bi-star-fill text-warning"></i> 5.0</span>
+                        </div>
+                    </div>
+                    <div class="p-4 d-flex flex-column justify-content-center flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <div>
+                                <div class="text-muted small mb-2 d-flex align-items-center gap-3">
+                                    <span><i class="bi bi-geo-alt-fill text-primary"></i> Swiss</span>
+                                    <span><i class="bi bi-clock-fill text-primary"></i> 7 Hari 6 Malam</span>
+                                    <span><i class="bi bi-train-front text-primary"></i> Kereta Panorama</span>
+                                </div>
+                                <h3 class="fw-bold h4 mb-2"><a href="#" class="text-dark text-decoration-none">Perjalanan Kereta Panorama Swiss</a></h3>
+                                <p class="text-secondary small mb-0 d-none d-md-block" style="max-width: 600px;">Rasakan kemewahan perjalanan melintasi Pegunungan Alpen yang diselimuti salju menggunakan Glacier Express, mencakup Interlaken dan Danau Jenewa.</p>
+                            </div>
+                            <button class="btn btn-light rounded-circle shadow-sm text-secondary border border-light" style="width:42px; height:42px;"><i class="bi bi-heart fs-6"></i></button>
+                        </div>
+                        <hr class="my-3 border-secondary opacity-10">
+                        <div class="d-flex justify-content-between align-items-end flex-wrap gap-3">
+                            <div class="d-flex align-items-center gap-2 flex-wrap">
+                                <span class="badge bg-light text-dark border px-2 py-1 fw-medium"><i class="bi bi-train-front"></i> Swiss Travel Pass</span>
+                                <span class="badge bg-light text-dark border px-2 py-1 fw-medium"><i class="bi bi-building"></i> Hotel Premium</span>
+                                <span class="badge bg-light text-dark border px-2 py-1 fw-medium"><i class="bi bi-snow"></i> Tiket Ski</span>
+                            </div>
+                            <div class="text-md-end text-start w-100 w-md-auto">
+                                <span class="fw-bolder fs-3 text-primary d-block lh-1 mb-2 mt-3">USD 2,450</span>
+                                <a href="#" class="btn btn-dark rounded-pill px-4 py-2 fw-semibold shadow-sm w-100">Pesan Sekarang</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="#" class="btn btn-outline-primary rounded-pill px-5 py-3 fw-bold shadow-sm">Muat Lebih Banyak Tur <i class="bi bi-arrow-clockwise ms-1"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. MODERN NEWSLETTER SECTION (UNIQUE DESIGN) -->
+    <section class="container py-5 my-4 scroll-reveal">
+        <div class="newsletter-modern p-4 p-md-5 d-flex align-items-center justify-content-between flex-column flex-lg-row shadow-lg">
+            <div class="newsletter-shape"></div>
+            <div class="position-relative z-2 text-white mb-4 mb-lg-0" style="max-width: 500px;">
+                <span class="badge bg-primary px-3 py-2 rounded-pill mb-3 shadow-sm" style="letter-spacing: 1px;"><i class="bi bi-star-fill text-warning"></i> Keuntungan Member</span>
+                <h2 class="display-6 fw-bold mb-3 lh-sm">Dapatkan Diskon 15% Untuk Tur Pertama Anda.</h2>
+                <p class="text-light mb-0 fw-light" style="opacity: 0.9;">Bergabung dengan 5 juta traveler lainnya dan dapatkan inspirasi destinasi serta promo eksklusif setiap minggunya.</p>
+            </div>
+            <div class="position-relative z-2 w-100" style="max-width: 480px;">
+                <form class="bg-white p-2 rounded-pill d-flex shadow">
+                    <i class="bi bi-envelope fs-5 text-muted ms-3 me-2 align-self-center"></i>
+                    <input type="email" class="form-control border-0 shadow-none px-2 fw-medium text-dark" placeholder="Masukkan alamat email Anda" required>
+                    <button type="submit" class="btn btn-primary rounded-pill px-4 fw-bold shadow-sm">Berlangganan</button>
+                </form>
+                <div class="text-white mt-3 small d-flex align-items-center gap-2 justify-content-center justify-content-lg-start" style="opacity: 0.75;">
+                    <i class="bi bi-shield-check"></i> Kami menjaga privasi data Anda dengan sistem enkripsi tingkat lanjut.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER UTAMA DARI INDEX.HTML -->
+    <footer id="footer" class="modern-footer pt-5 pb-4 scroll-reveal">
+        <div class="container py-4">
+            <div class="row g-5 mb-5">
+                <div class="col-lg-3 col-md-6">
+                    <a class="fw-bold fs-4 text-white d-flex align-items-center gap-2 mb-3 text-decoration-none" href="index.html">
+                        <span class="text-white">TravelMeta</span>
+                    </a>
+                    <h6 class="mb-2">TravelMeta Travel Agency</h6>
+                    <p class="small mb-4 lh-sm">
+                        Skyline Plaza, 5th Floor, 123 Main Street<br>
+                        Los Angeles, CA 90001, USA
+                    </p>
+                    <div class="d-flex gap-2 mb-4">
+                        <a href="#" class="social-btn" title="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-btn" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="social-btn" title="YouTube"><i class="bi bi-youtube"></i></a>
+                        <a href="#" class="social-btn" title="Instagram"><i class="bi bi-instagram"></i></a>
+                    </div>
+                    <div class="d-flex gap-3 align-items-center">
+                        <div class="footer-badge-green">
+                            <span style="font-size: 0.45rem; line-height: 1.1;">Tripadvisor</span>
+                            <span style="font-size: 0.42rem; line-height: 1;">Travelers' Choice Award</span>
+                            <strong style="font-size: 0.65rem;">2026</strong>
+                        </div>
+                        <div class="footer-badge-red">
+                            <span style="font-size: 0.45rem; line-height: 1.1;">Condé Nast</span>
+                            <span style="font-size: 0.42rem; font-weight: 800; letter-spacing: 0.5px;">Traveler</span>
+                            <span style="font-size: 0.38rem; line-height: 1;">BEST CITY TOUR AWARD</span>
+                            <strong style="font-size: 0.65rem;">2025</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5>Explore</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2 m-0">
+                        <li><a href="#about" class="footer-link">About TravelMeta</a></li>
+                        <li><a href="#" class="footer-link">Health & Safety Measure</a></li>
+                        <li><a href="#" class="footer-link">Customize Tour</a></li>
+                        <li><a href="#offers" class="footer-link">Deals & Discount</a></li>
+                        <li><a href="#" class="footer-link">Last Minutes Deal</a></li>
+                        <li><a href="#" class="footer-link">Travel Inspirations</a></li>
+                        <li><a href="#footer" class="footer-link">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5>Useful</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2 m-0">
+                        <li><a href="flights.html" class="footer-link">Flight Booking</a></li>
+                        <li><a href="visa.html" class="footer-link">Visa Processing</a></li>
+                        <li><a href="hotels.html" class="footer-link">Hotel Booking</a></li>
+                        <li><a href="car-rental.html" class="footer-link">Transport</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5>Helpline</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2 m-0">
+                        <li><a href="#" class="footer-link">Help & Support</a></li>
+                        <li><a href="#" class="footer-link">FAQs</a></li>
+                        <li><a href="#" class="footer-link">Terms & Condition</a></li>
+                        <li><a href="#" class="footer-link">Affiliates</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-white text-dark rounded-4 p-3 px-4 mb-4 d-flex align-items-center justify-content-between flex-wrap gap-3 shadow-lg">
+                <span class="fw-bold fs-6 text-dark" style="letter-spacing: 0.5px;">We Accept:-</span>
+                <div class="d-flex align-items-center gap-3 fs-4 flex-wrap text-secondary">
+                    <i class="bi bi-credit-card-2-front text-dark" title="Mastercard"></i>
+                    <i class="bi bi-paypal text-primary" title="PayPal"></i>
+                    <i class="bi bi-credit-card text-dark" title="Visa"></i>
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">G Pay</span>
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">stripe</span>
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">paysafe</span>
+                    <i class="bi bi-apple text-dark" title="Apple Pay"></i>
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">adyen</span>
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">elavon</span>
+                </div>
+            </div>
+
+            <div class="small pt-3 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2" style="color: #9ca3af !important;">
+                <p class="mb-0">&copy; 2026 TravelMeta. All Rights Reserved.</p>
+                <p class="mb-0" style="font-size: 0.75rem; max-width: 600px; line-height: 1.6; color: #9ca3af !important;">
+                    All travel services are provided in accordance with applicable international travel regulations, airline policies, visa requirements, and local tourism laws, ensuring transparency, reliability, and compliance throughout your journey.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button id="backToTopBtn" class="btn btn-primary rounded-circle shadow-lg position-fixed bottom-0 end-0 m-4 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;" aria-label="Back to Top">
+        <i class="bi bi-arrow-up fs-5 text-white"></i>
+    </button>
+
+    <!-- UNIFIED REGIONAL SETTINGS MODAL -->
+    <div class="modal fade" id="regionalSettingsModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg mx-2 mx-sm-auto">
+            <div class="modal-content rounded-4 border-0 shadow-lg" style="max-height: 85vh;">
+                <div class="modal-header border-0 py-3 pb-0 px-4 mt-2">
+                    <h5 class="modal-title fw-bold text-dark"><i class="bi bi-sliders text-primary me-2"></i>Pengaturan Regional</h5>
+                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4 pt-3">
+                    <ul class="nav nav-pills nav-fill mb-4 p-1 bg-light rounded-pill border shadow-sm" id="regionalTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active rounded-pill fw-bold py-2" id="currency-tab" data-bs-toggle="pill" data-bs-target="#currency-tab-pane" type="button" role="tab">
+                                <i class="bi bi-coin text-warning me-1"></i> Mata Uang
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link rounded-pill fw-bold py-2" id="lang-tab" data-bs-toggle="pill" data-bs-target="#lang-tab-pane" type="button" role="tab">
+                                <i class="bi bi-globe text-info me-1"></i> Bahasa
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="regionalTabsContent">
+                        <div class="tab-pane fade show active" id="currency-tab-pane" role="tabpanel" tabindex="0">
+                            <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-2">
+                                <div class="col"><button class="btn btn-outline-primary active border-2 rounded-3 text-center currency-option w-100 fw-semibold py-2">USD ($)</button></div>
+                                <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">IDR (Rp)</button></div>
+                                <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">EUR (€)</button></div>
+                                <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">GBP (£)</button></div>
+                                <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">SGD (S$)</button></div>
+                                <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">JPY (¥)</button></div>
+                                <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">AUD (A$)</button></div>
+                                <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">CAD (C$)</button></div>
+                                <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">CNY (¥)</button></div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="lang-tab-pane" role="tabpanel" tabindex="0">
+                            <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-2">
+                                <div class="col"><button class="btn btn-outline-primary active border-2 rounded-3 text-center lang-option w-100 fw-semibold py-2">English (EN)</button></div>
+                                <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">Indonesia (ID)</button></div>
+                                <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">Español (ES)</button></div>
+                                <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">Français (FR)</button></div>
+                                <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">Deutsch (DE)</button></div>
+                                <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">日本語 (JA)</button></div>
+                                <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">中文 (ZH)</button></div>
+                                <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">العربية (AR)</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 d-flex justify-content-center pb-4 pt-1">
+                    <button type="button" class="btn btn-primary rounded-pill px-5 py-2 fw-bold shadow-sm" data-bs-dismiss="modal">Terapkan Pengaturan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <nav class="mobile-bottom-nav d-lg-none d-flex justify-content-between align-items-center py-2 position-fixed bottom-0 w-100 shadow-lg" style="z-index: 1075; background: #fff;">
+        <a href="index.html" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-index">
+            <i class="bi bi-house-door nav-icon"></i>
+            <span class="nav-text">Home</span>
+        </a>
+        <a href="flights.html" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-flights">
+            <i class="bi bi-airplane nav-icon"></i>
+            <span class="nav-text">Flight</span>
+        </a>
+        <a href="hotels.html" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-hotels">
+            <i class="bi bi-building nav-icon"></i>
+            <span class="nav-text">Hotel</span>
+        </a>
+        <a href="tours.html" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-tours active text-primary">
+            <i class="bi bi-compass-fill nav-icon"></i>
+            <span class="nav-text fw-bold">Tour</span>
+        </a>
+        <a href="visa.html" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-visa">
+            <i class="bi bi-passport nav-icon"></i>
+            <span class="nav-text">Visa</span>
+        </a>
+    </nav>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer fetchpriority="low"></script>
+    
+    <!-- Modular Scripts -->
+    <script src="./src/js/main.js" defer></script>
+</body>
+</html>
