@@ -27,7 +27,7 @@
 .tr-btn-ghost:hover { color: #fff !important; background: #1d2b1f; }
 
 /* ---------- HERO ---------- */
-.tr-hero { isolation: isolate; overflow: hidden; min-height: 560px; padding: 4.5rem 0 8.5rem; display: flex; align-items: center; }
+.tr-hero { isolation: isolate; overflow: hidden; min-height: 560px; padding: 4.5rem 0 10.5rem; display: flex; align-items: center; }
 .tr-hero-overlay {
     position: absolute; inset: 0; z-index: 0;
     background: radial-gradient(circle at 85% 15%, rgba(194,101,58,.3), transparent 45%), linear-gradient(120deg, rgba(18,28,18,.95) 0%, rgba(40,58,28,.84) 55%, rgba(74,93,35,.62) 100%);
@@ -53,6 +53,8 @@
 
 
 /* Kotak pencarian tur — struktur sama dengan beranda, warna mengikuti halaman */
+.tr-search { margin-top: -70px; margin-bottom: 1rem; }
+@media (max-width: 767.98px) { .tr-search { margin-top: -56px; } }
 .tr-search > .card { position: relative; border: 1px solid #e7dcc3 !important; box-shadow: 0 40px 70px -34px rgba(18,28,18,.6) !important; }
 .tr-search > .card::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; border-radius: .75rem .75rem 0 0; pointer-events: none;
@@ -301,7 +303,7 @@
 .tr-news-note i { color: #e9b98f; font-size: 1.15rem; margin-top: -1px; }
 
 @media (max-width: 991.98px) {
-    .tr-hero { padding: 3.5rem 0 8rem; min-height: 0; }
+    .tr-hero { padding: 3.5rem 0 9.5rem; min-height: 0; }
     .tr-tags { grid-template-columns: repeat(2, 1fr); }
     .tr-pola-2 { margin-top: 0; }
 }
