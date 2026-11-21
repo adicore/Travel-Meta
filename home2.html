@@ -8,523 +8,387 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin fetchpriority="high">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet" fetchpriority="high">
-    
     <!-- Bootstrap 5.3.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" fetchpriority="high">
-    
     <!-- Bootstrap Icons CSS -->
     <link rel="stylesheet" href="./src/css/bootstrap-icons.min.css" fetchpriority="low">
-    
     <!-- Lazysizes JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async fetchpriority="high"></script>
-
-    <!-- Global Style -->
-    <link rel="stylesheet" href="./src/css/style.css" fetchpriority="high">
+    <!-- Global Style (sama dengan index.html: header, footer, modal, bottom nav) -->
+    <link rel="stylesheet" href="./src/css/home.css" fetchpriority="high">
 
     <style>
-        /* =========================================================
-           CUSTOM CSS FOR "TRAVEL THE WORLD" PAGE
-        ========================================================= */
-        .optin-card {
-            max-width: 800px;
-            margin: 0 auto;
-            border: 1px solid #f1f5f9;
-            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05);
-        }
-        
-        .custom-pill-nav .nav-link {
-            border: 1px solid #e2e8f0;
-            border-radius: 50px;
-            padding: 0.5rem 1.5rem;
-            color: #475569;
-            font-weight: 600;
-            background: white;
-            transition: all 0.2s;
-            font-size: 0.85rem;
-        }
-        
-        .custom-pill-nav .nav-link.active,
-        .custom-pill-nav .nav-link:hover {
-            background: #eff6ff;
-            color: #2563eb;
-            border-color: #bfdbfe;
-        }
+        /* ===== TRAVEL THE WORLD: gaya khusus halaman ===== */
+        :root { --tw-ink:#0f172a; --tw-muted:#475569; --tw-line:#e2e8f0; --tw-blue:#2563eb; --tw-navy:#0b1b3a; }
+        .tw-section { padding: 72px 0; }
+        .tw-title { font-weight: 800; letter-spacing: -.025em; color: var(--tw-ink); }
 
-        .booking-section {
-            background: linear-gradient(rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.6)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-            padding: 80px 0;
-            min-height: 450px;
-        }
+        /* Hero */
+        .tw-hero { padding: 64px 0 56px; background: linear-gradient(180deg, #eaf2ff 0%, #f8fafc 100%); }
+        .tw-hero h1 { font-size: clamp(2rem, 4.4vw, 3.3rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.1; color: var(--tw-ink); }
+        .tw-hero .lead { color: var(--tw-muted); font-size: 1.08rem; max-width: 34em; }
+        .tw-optin { background: #fff; border: 1px solid var(--tw-line); border-radius: 20px; padding: 24px; box-shadow: 0 24px 48px -28px rgba(15,23,42,.28); }
+        .tw-optin h2 { font-size: 1.05rem; font-weight: 700; color: var(--tw-ink); margin-bottom: 16px; }
+        .tw-optin .form-label { font-size: .8rem; font-weight: 600; color: var(--tw-muted); margin-bottom: 4px; }
+        .tw-optin .form-control { border-radius: 12px; border-color: var(--tw-line); padding: 11px 14px; }
+        .tw-optin .form-control:focus, .tw-field:focus-within { border-color: var(--tw-blue); box-shadow: 0 0 0 3px rgba(37,99,235,.15); }
+        .tw-btn { background: var(--button-gradient); color: #fff; border: 0; border-radius: 12px; font-weight: 700; padding: 12px 22px; transition: transform .2s, box-shadow .2s; }
+        .tw-btn:hover { color: #fff; transform: translateY(-1px); box-shadow: 0 12px 24px -10px rgba(37,99,235,.6); }
+        .tw-privacy { font-size: .75rem; color: #64748b; margin: 10px 0 0; }
+        .tw-jump { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 24px 0 0; list-style: none; }
+        .tw-jump a { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; background: #fff; border: 1px solid var(--tw-line); color: var(--tw-ink); font-size: .85rem; font-weight: 600; text-decoration: none; transition: border-color .2s, color .2s; }
+        .tw-jump a:hover { border-color: #93c5fd; color: var(--tw-blue); }
+        .tw-jump i { color: var(--tw-blue); }
+        .tw-visual { position: relative; }
+        .tw-visual > img { width: 100%; height: 100%; min-height: 360px; max-height: 540px; aspect-ratio: 4 / 4.4; object-fit: cover; border-radius: 28px; box-shadow: 0 30px 60px -30px rgba(15,23,42,.45); }
+        .tw-playbook { position: absolute; left: 16px; bottom: 16px; right: 16px; max-width: 340px; display: flex; align-items: center; gap: 14px; padding: 12px 16px 12px 12px; background: rgba(255,255,255,.96); border-radius: 18px; box-shadow: 0 18px 40px -16px rgba(15,23,42,.4); }
+        .tw-playbook img { width: 54px; height: 70px; object-fit: cover; border-radius: 8px; flex-shrink: 0; }
+        .tw-playbook strong { display: block; font-size: .92rem; color: var(--tw-ink); line-height: 1.25; }
+        .tw-playbook span { font-size: .8rem; color: var(--tw-muted); }
+        @media (min-width: 992px) { .tw-playbook { left: -32px; right: auto; bottom: 36px; } }
 
-        .booking-widget-card {
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 12px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-        }
+        /* Booking panel */
+        .tw-panel { position: relative; overflow: hidden; border-radius: 28px; padding: 48px; color: #fff; background: linear-gradient(135deg, #0b1b3a 0%, #12306b 60%, #1d4ed8 140%); }
+        .tw-panel::after { content: ''; position: absolute; top: -160px; right: -120px; width: 420px; height: 420px; background: radial-gradient(circle, rgba(56,189,248,.28), rgba(56,189,248,0) 70%); pointer-events: none; }
+        .tw-panel > * { position: relative; z-index: 1; }
+        .tw-panel h2 { font-weight: 800; letter-spacing: -.025em; font-size: clamp(1.6rem, 3vw, 2.2rem); }
+        .tw-panel .sub { color: rgba(255,255,255,.72); max-width: 40em; }
+        .tw-widget { background: #fff; border-radius: 20px; padding: 20px; color: var(--tw-ink); box-shadow: 0 30px 60px -30px rgba(0,0,0,.55); }
+        .tw-tabs { display: flex; gap: 6px; flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; margin-bottom: 16px; }
+        .tw-tabs .nav-link { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; border-radius: 999px; padding: 8px 16px; font-size: .86rem; font-weight: 600; color: var(--tw-muted); background: transparent; border: 0; }
+        .tw-tabs .nav-link:hover { background: #f1f5f9; }
+        .tw-tabs .nav-link.active { background: #eff6ff; color: var(--tw-blue); }
+        .tw-field { display: block; height: 100%; padding: 10px 14px; border: 1px solid var(--tw-line); border-radius: 14px; background: #fff; transition: border-color .2s, box-shadow .2s; }
+        .tw-field label { display: block; font-size: .75rem; font-weight: 600; color: #64748b; margin-bottom: 2px; }
+        .tw-field .tw-input { display: flex; align-items: center; gap: 8px; }
+        .tw-field i { color: #94a3b8; }
+        .tw-field input, .tw-field select { width: 100%; border: 0; outline: 0; padding: 2px 0; background: transparent; font-weight: 600; font-size: .95rem; color: var(--tw-ink); }
+        .tw-field input::placeholder { color: #94a3b8; font-weight: 500; }
 
-        .booking-tabs .nav-link {
-            color: #475569;
-            font-weight: 600;
-            font-size: 0.85rem;
-            border: none;
-            padding: 10px 20px;
-            border-bottom: 2px solid transparent;
-            border-radius: 0;
-        }
-        
-        .booking-tabs .nav-link.active {
-            color: #2563eb;
-            background: transparent;
-            border-bottom: 2px solid #2563eb;
-        }
+        /* Experiences */
+        .tw-pills { display: flex; gap: 8px; overflow-x: auto; padding: 2px 0 8px; margin: 0 0 24px; list-style: none; }
+        .tw-pills .nav-link { white-space: nowrap; border: 1px solid var(--tw-line); border-radius: 999px; padding: 8px 18px; background: #fff; color: var(--tw-muted); font-size: .85rem; font-weight: 600; transition: all .2s; }
+        .tw-pills .nav-link:hover { border-color: #93c5fd; color: var(--tw-blue); }
+        .tw-pills .nav-link.active { background: var(--tw-ink); border-color: var(--tw-ink); color: #fff; }
+        .tw-card { display: flex; flex-direction: column; height: 100%; background: #fff; border: 1px solid var(--tw-line); border-radius: 20px; overflow: hidden; text-decoration: none; color: var(--tw-ink); transition: box-shadow .25s, border-color .25s; }
+        .tw-card:hover { border-color: #bfdbfe; box-shadow: 0 22px 40px -24px rgba(37,99,235,.35); color: var(--tw-ink); }
+        .tw-card-media { position: relative; aspect-ratio: 3 / 2; overflow: hidden; background: #e2e8f0; }
+        .tw-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .tw-tag { position: absolute; left: 12px; top: 12px; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,.94); font-size: .74rem; font-weight: 700; color: var(--tw-ink); }
+        .tw-card-body { display: flex; flex-direction: column; justify-content: space-between; gap: 12px; padding: 16px 18px 18px; flex: 1; }
+        .tw-card h3 { margin: 0; font-size: 1rem; font-weight: 700; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .tw-rating { display: flex; align-items: center; gap: 8px; font-size: .8rem; color: #64748b; }
+        .tw-stars { color: #f59e0b; font-size: .78rem; display: inline-flex; gap: 2px; }
 
-        .input-minimal {
-            border: none;
-            border-bottom: 1px solid #e2e8f0;
-            border-radius: 0;
-            padding-left: 0;
-            padding-right: 0;
-            font-weight: 600;
-            color: #0f172a;
-            box-shadow: none !important;
-        }
+        /* Reset gradient heading global dari home.css */
+        main h1, main h2, main h3 { background: none !important; -webkit-text-fill-color: currentColor !important; filter: none !important; font-weight: 800 !important; color: var(--tw-ink); }
+        .tw-panel h2 { color: #fff; }
 
-        .input-minimal:focus {
-            border-bottom-color: #2563eb;
-        }
+        /* Tab bar */
+        .tw-tabbar { position: relative; z-index: 5; margin-top: -30px; }
+        .tw-tabs-main { display: flex; gap: 4px; width: max-content; max-width: 100%; margin: 0 auto; padding: 6px; overflow-x: auto; background: #fff; border: 1px solid var(--tw-line); border-radius: 999px; box-shadow: 0 18px 36px -20px rgba(15,23,42,.35); }
+        .tw-tabs-main > * { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border: 0; border-radius: 999px; background: transparent; color: var(--tw-muted); font: 700 .9rem inherit; font-family: inherit; white-space: nowrap; text-decoration: none; transition: background .2s, color .2s; }
+        .tw-tabs-main > *:hover { background: #f1f5f9; color: var(--tw-ink); }
+        .tw-tabs-main > [aria-selected="true"] { background: var(--tw-ink); color: #fff; }
+        .tw-tabs-main > *:focus-visible, .tw-pills .nav-link:focus-visible { outline: 2px solid var(--tw-blue); outline-offset: 2px; }
+        .tw-tabs-main .tw-ext i { font-size: .75rem; }
+        .tw-pane { padding-top: 36px; }
+        .tw-pane[hidden] { display: none; }
 
-        .input-minimal-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #64748b;
-            margin-bottom: 2px;
-            font-weight: 600;
-        }
+        /* Kartu: fallback gambar, video, blog */
+        .tw-ph { display: none; position: absolute; inset: 0; align-items: center; justify-content: center; font-size: 2rem; color: rgba(255,255,255,.7); }
+        .tw-card-media.is-broken { background: linear-gradient(135deg, #12306b, #2563eb); }
+        .tw-card-media.is-broken img { display: none; }
+        .tw-card-media.is-broken .tw-ph { display: flex; }
+        .tw-play { position: absolute; inset: 0; margin: auto; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,.95); color: var(--tw-blue); font-size: 1.8rem; box-shadow: 0 14px 30px -10px rgba(15,23,42,.5); }
+        .tw-card-media button { all: unset; position: absolute; inset: 0; cursor: pointer; }
+        .tw-card-media iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+        .tw-ex { margin: 0; color: var(--tw-muted); font-size: .9rem; line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .tw-meta { font-size: .8rem; color: #64748b; display: flex; justify-content: space-between; align-items: center; }
+        .tw-meta b { color: var(--tw-blue); font-weight: 700; }
+        .tw-tabbar + .tw-pane .tw-panel { margin-top: 0; }
 
-        .experience-card {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            height: 220px;
-            display: block;
-            text-decoration: none;
-            transition: transform 0.3s ease;
-        }
-
-        .experience-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-
-        .experience-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .experience-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 40px 15px 15px 15px;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-        }
-        
-        .stars-rating {
-            color: #fbbf24;
-            font-size: 0.75rem;
+        @media (max-width: 767.98px) {
+            .tw-tabs-main > * { padding: 9px 14px; }
+            .tw-section { padding: 48px 0; }
+            .tw-hero { padding: 36px 0 40px; }
+            .tw-panel { padding: 28px 18px; border-radius: 22px; }
+            .tw-widget { padding: 14px; }
         }
     </style>
 </head>
-<body class="bg-white" id="page-travel-world">
+<body class="bg-light" id="page-travel-world">
 
     <!-- HEADER UTAMA -->
-    <header class="bg-white sticky-top shadow-sm">
-        <div class="border-bottom py-2 bg-white small d-none d-lg-block">
-            <div class="container d-flex justify-content-between align-items-center">
-                <div class="text-secondary d-flex align-items-center gap-1">
-                    <span class="text-warning">★</span> 
-                    <span class="fw-bold text-dark">4.9 Rated</span> by <strong class="text-dark">10,000+</strong> Travelers Worldwide.
-                </div>
-                <div class="d-flex align-items-center gap-3 text-secondary">
-                    <button class="btn btn-sm btn-light border py-1 px-3 fw-semibold rounded-pill d-flex align-items-center gap-2 shadow-sm" type="button" data-bs-toggle="modal" data-bs-target="#regionalSettingsModal">
-                        <i class="bi bi-globe text-info"></i> 
-                        <span id="deskLangText">EN</span> • <span id="deskCurrText">USD</span> 
-                        <i class="bi bi-coin text-warning"></i>
-                    </button>
-                    <a href="#" class="text-secondary text-decoration-none px-1" title="Cart"><i class="bi bi-cart3 fs-6"></i></a>
-                    <a href="#" class="text-secondary text-decoration-none px-1" title="Profile"><i class="bi bi-person-circle fs-5"></i></a>
-                </div>
+<header class="bg-white sticky-top shadow-sm">
+    
+    <!-- TOP BAR (Hanya Tampil di Desktop) -->
+    <div class="border-bottom py-2 bg-white small d-none d-lg-block">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="text-secondary d-flex align-items-center gap-1">
+                <span class="text-warning">★</span> 
+                <span class="fw-bold text-dark">4.9 Rated</span> by <strong class="text-dark">10,000+</strong> Travelers Worldwide.
+            </div>
+            <div class="d-flex align-items-center gap-3 text-secondary">
+                <!-- Tombol Unified Modal (Desktop) -->
+                <button class="btn btn-sm btn-light border py-1 px-3 fw-semibold rounded-pill d-flex align-items-center gap-2 shadow-sm" type="button" data-bs-toggle="modal" data-bs-target="#regionalSettingsModal">
+                <i class="bi bi-globe text-info"></i> 
+                <span id="deskLangText">EN</span> • <span id="deskCurrText">USD</span> 
+                <i class="bi bi-coin text-warning"></i>
+                </button>
+                <a href="#" class="text-secondary text-decoration-none px-1" title="Cart"><i class="bi bi-cart3 fs-6"></i></a>
+                <a href="#" class="text-secondary text-decoration-none px-1" title="Profile"><i class="bi bi-person-circle fs-5"></i></a>
             </div>
         </div>
+    </div>
 
-        <nav class="navbar navbar-expand-lg navbar-light py-2 py-lg-3">
-            <div class="container d-flex justify-content-between align-items-center">
-                <a class="navbar-brand fw-bold fs-5 fs-lg-4 text-dark d-flex align-items-center gap-2 text-decoration-none m-0" href="index.html">
-                    <div class="logo-icon-box bg-primary text-white rounded-3 d-flex align-items-center justify-content-center shadow-sm">
-                        <i class="bi bi-airplane-engines"></i>
-                    </div>
-                    TravelMeta
-                </a>
-
-                <div class="d-flex align-items-center gap-2 gap-sm-3 d-lg-none header-mobile-actions">
-                    <div class="d-flex align-items-center gap-1 cursor-pointer bg-light px-2 py-1 rounded-pill border shadow-sm" data-bs-toggle="modal" data-bs-target="#regionalSettingsModal" title="Language & Currency">
-                        <i class="bi bi-globe-americas fs-6 text-dark ms-1"></i>
-                        <span class="fw-bold text-dark small me-1" style="font-size: 0.75rem;">
-                            <span id="mobLangText">EN</span> • <span id="mobCurrText">USD</span>
-                        </span>
-                    </div>
-                    <a href="#" class="text-dark text-decoration-none"><i class="bi bi-person-circle fs-4"></i></a>
-                    <button class="btn btn-white bg-white border shadow-sm rounded-3 p-2 d-flex align-items-center justify-content-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" style="width: 42px; height: 42px;">
-                        <div class="hamburger-icon"><span></span><span></span><span></span></div>
-                    </button>
-                </div>
-
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                    <div class="offcanvas-header border-bottom">
-                        <h5 class="offcanvas-title fw-bold text-dark d-flex align-items-center gap-2" id="offcanvasNavbarLabel">
-                            <div class="bg-primary text-white rounded-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 30px; height: 30px;">
-                                <i class="bi bi-airplane-engines small"></i>
-                            </div>
-                            TravelMeta
-                        </h5>
-                        <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Tutup"></button>
-                    </div>
-                    <div class="offcanvas-body">
-                        <ul class="navbar-nav mx-auto align-items-lg-center gap-2 gap-xl-3">
-                            <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html">Beranda</a></li>
-                            <li class="nav-item"><a class="nav-link text-dark fw-medium" href="flights.html">Flights</a></li>
-                            <li class="nav-item"><a class="nav-link text-dark fw-medium" href="hotels.html">Hotel</a></li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button" data-bs-toggle="dropdown">More Services</a>
-                                <ul class="dropdown-menu shadow-lg rounded-4 p-2 border-0" style="min-width: 200px;">
-                                    <li class="nav-item"><a class="dropdown-item rounded-3 py-2 text-dark" href="car-rental.html"><i class="bi bi-car-front text-primary me-2"></i> Car Rental</a></li>
-                                    <li class="nav-item"><a class="dropdown-item rounded-3 py-2 text-dark" href="taxi.html"><i class="bi bi-taxi-front text-primary me-2"></i> Taxi</a></li>
-                                    <li class="nav-item"><a class="dropdown-item rounded-3 py-2 text-dark" href="bike.html"><i class="bi bi-bicycle text-primary me-2"></i> Bike</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item"><a class="nav-link text-dark fw-medium" href="tours.html">Tour</a></li>
-                            <li class="nav-item"><a class="nav-link text-dark fw-medium" href="visa.html">Visa</a></li>
-                        </ul>
-                        <div class="d-flex flex-column flex-lg-row align-items-lg-center gap-3 mt-4 mt-lg-0">
-                            <a href="#" class="btn btn-outline-primary rounded-pill px-3 py-2 small fw-semibold d-flex align-items-center justify-content-center gap-2 border-2 text-decoration-none">
-                                <i class="bi bi-robot"></i> Plan with AI
-                            </a>
-                            <a href="https://whatsapp.com" target="_blank" class="btn btn-primary rounded-pill px-4 py-2 small fw-semibold d-flex align-items-center justify-content-center gap-2 text-decoration-none">
-                                <i class="bi bi-whatsapp fs-6"></i> +44-800 123 456
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <!-- SECTION 1: HERO & OPT-IN -->
-    <section class="container py-5 my-4">
-        <div class="row justify-content-center">
-            <div class="col-lg-10 text-center">
-                <h1 class="display-6 fw-extrabold text-dark mb-2" style="letter-spacing: -1px;">I Travel the World for You. Here's Where You Should Go Next.</h1>
-                <p class="text-secondary mb-5">Real experiences. Honest opinions. No tourist fluff.</p>
-                
-                <!-- Opt-in Card -->
-                <div class="card optin-card bg-white rounded-4 p-4 p-md-5 mb-5">
-                    <h5 class="fw-bold text-dark mb-4 text-center">Learn How To Book SMARTER In Minutes</h5>
-                    <div class="row align-items-center justify-content-center g-4">
-                        <div class="col-md-5 text-center">
-                            <!-- Ebook Cover Simulation -->
-                            <div class="d-inline-block rounded-3 overflow-hidden shadow" style="max-width: 180px;">
-                                <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=300&q=80" class="img-fluid" alt="Passport Kings Travel Playbook">
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <form>
-                                <div class="mb-3">
-                                    <label class="form-label small fw-semibold text-muted mb-1">Email</label>
-                                    <input type="email" class="form-control rounded-3 py-2 shadow-none" placeholder="your.email@example.com" required>
-                                </div>
-                                <div class="mb-4">
-                                    <label class="form-label small fw-semibold text-muted mb-1">First Name</label>
-                                    <input type="text" class="form-control rounded-3 py-2 shadow-none" placeholder="Your Name" required>
-                                </div>
-                                <button type="submit" class="btn btn-dark w-100 fw-bold py-2 rounded-3 shadow-sm">Send Me The Playbook</button>
-                                <div class="text-center mt-2">
-                                    <small class="text-muted" style="font-size: 0.65rem;">We respect your privacy and will never send spam. Unsubscribe anytime.</small>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Navigation Pills -->
-                <ul class="nav nav-pills custom-pill-nav justify-content-center gap-2 flex-nowrap overflow-auto pb-2" style="white-space: nowrap;">
-                    <li class="nav-item"><a class="nav-link active" href="#">Book Travel</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Videos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Blogs</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Travel Income</a></li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 2: BOOKING WIDGET (DARK BACKGROUND) -->
-    <section class="booking-section">
-        <div class="container">
-            <h2 class="display-6 fw-bold text-white mb-2">Ready to Go? I'll Help You Book It.</h2>
-            <p class="text-white-50 mb-4">Use my tool below to find flights, hotels, and experiences I personally recommend.</p>
-
-            <div class="booking-widget-card p-3 p-md-4">
-                <!-- Widget Tabs -->
-                <ul class="nav nav-tabs booking-tabs flex-nowrap overflow-auto border-bottom mb-3" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" data-bs-toggle="tab" type="button"><i class="bi bi-airplane me-1"></i> Flights</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" data-bs-toggle="tab" type="button"><i class="bi bi-building me-1"></i> Hotels</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" data-bs-toggle="tab" type="button"><i class="bi bi-taxi-front me-1"></i> Taxi</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" data-bs-toggle="tab" type="button"><i class="bi bi-car-front me-1"></i> Cars</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" data-bs-toggle="tab" type="button"><i class="bi bi-bicycle me-1"></i> Bikes</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" data-bs-toggle="tab" type="button"><i class="bi bi-ticket-perforated me-1"></i> Tours</button>
-                    </li>
-                </ul>
-
-                <!-- Widget Form -->
-                <form>
-                    <div class="row g-3 align-items-end">
-                        <div class="col-lg-3 col-md-6">
-                            <div class="input-minimal-label">Origin</div>
-                            <input type="text" class="form-control input-minimal" value="Surabaya" placeholder="City or Airport">
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="input-minimal-label">Destination</div>
-                            <input type="text" class="form-control input-minimal" placeholder="Where to?">
-                        </div>
-                        <div class="col-lg-2 col-md-4 col-6">
-                            <div class="input-minimal-label">Depart date</div>
-                            <div class="d-flex align-items-center border-bottom pb-1">
-                                <i class="bi bi-calendar3 text-muted me-2 small"></i>
-                                <input type="text" class="form-control input-minimal border-0 p-0" placeholder="Add date">
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-4 col-6">
-                            <div class="input-minimal-label">Return date</div>
-                            <div class="d-flex align-items-center border-bottom pb-1">
-                                <i class="bi bi-calendar3 text-muted me-2 small"></i>
-                                <input type="text" class="form-control input-minimal border-0 p-0" placeholder="Add date">
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-4">
-                            <div class="input-minimal-label">Passengers</div>
-                            <select class="form-select input-minimal">
-                                <option>1 passenger</option>
-                                <option>2 passengers</option>
-                                <option>3+ passengers</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="d-flex justify-content-between align-items-center mt-4 pt-2">
-                        <div class="form-check">
-                            <input class="form-check-input shadow-none" type="checkbox" id="businessClass">
-                            <label class="form-check-label small fw-semibold text-secondary" for="businessClass">Business Class</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary rounded-1 px-5 py-2 fw-bold shadow-sm">Search</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 3: MOST POPULAR EXPERIENCES -->
-    <section class="container py-5 my-4">
-        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4 gap-3">
-            <div>
-                <h2 class="fw-bold text-dark m-0 mb-2">Most Popular Experiences</h2>
-                <p class="text-secondary small m-0">This is the place to visit if you want to plan tours and trips full of unforgettable experiences.</p>
-            </div>
-            <a href="#" class="btn btn-primary btn-sm rounded-1 px-4 py-2 fw-semibold shadow-sm text-nowrap">Discover More</a>
-        </div>
-
-        <!-- Experience Location Tabs -->
-        <ul class="nav nav-pills custom-pill-nav gap-2 flex-nowrap overflow-auto mb-4 pb-2" style="white-space: nowrap;">
-            <li class="nav-item"><a class="nav-link active" href="#">Punta Cana</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Tulum</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Phuket</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Montego Bay</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Atlanta</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Cancun</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Rio De Janeiro</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Dubai</a></li>
-        </ul>
-
-        <!-- Experiences Grid (3x3 layout simulation) -->
-        <div class="row g-3">
+    <!-- MAIN NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light py-2 py-lg-3">
+        <div class="container d-flex justify-content-between align-items-center">
             
-            <!-- Item 1 -->
-            <div class="col-lg-4 col-md-6">
-                <a href="#" class="experience-card">
-                    <img src="https://images.unsplash.com/photo-1544989164-32a188f572f6?auto=format&fit=crop&w=600&q=80" class="experience-img" alt="ATV & Buggy adventure">
-                    <div class="experience-overlay">
-                        <h6 class="fw-bold mb-1 lh-sm text-truncate text-wrap" style="max-height: 2.5rem;">ATV & Buggy adventure in Punta Cana + Water Cave + Macao Beach</h6>
-                        <div class="d-flex align-items-center gap-1">
-                            <div class="stars-rating">★★★★★</div>
-                            <span class="small" style="font-size: 0.65rem;">(2189 Reviews)</span>
-                        </div>
+            <!-- Logo -->
+            <a class="navbar-brand fw-bold fs-5 fs-lg-4 text-dark d-flex align-items-center gap-2 text-decoration-none m-0" href="index.html">
+                <div class="logo-icon-box bg-primary text-white rounded-3 d-flex align-items-center justify-content-center shadow-sm">
+                    <i class="bi bi-airplane-engines"></i>
+                </div>
+                TravelMeta
+            </a>
+
+            <!-- Aksi Header Mobile (Tombol Bahasa/Mata Uang, Profil, Hamburger) -->
+            <div class="d-flex align-items-center gap-2 gap-sm-3 d-lg-none header-mobile-actions">
+                <!-- Tombol Unified Modal (Mobile) -->
+                <div class="d-flex align-items-center gap-1 cursor-pointer bg-light px-2 py-1 rounded-pill border shadow-sm" data-bs-toggle="modal" data-bs-target="#regionalSettingsModal" title="Language & Currency">
+                    <i class="bi bi-globe-americas fs-6 text-dark ms-1"></i>
+                    <span class="fw-bold text-dark small me-1" style="font-size: 0.75rem;">
+                        <span id="mobLangText">EN</span> • <span id="mobCurrText">USD</span>
+                    </span>
+                </div>
+                <a href="#" class="text-dark text-decoration-none"><i class="bi bi-person-circle fs-4"></i></a>
+                
+                <!-- Tombol Hamburger (Membuka Offcanvas) -->
+                <button class="btn btn-white bg-white border shadow-sm rounded-3 p-2 d-flex align-items-center justify-content-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" style="width: 42px; height: 42px;">
+                    <div class="hamburger-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </div>
-                </a>
+                </button>
             </div>
 
-            <!-- Item 2 -->
-            <div class="col-lg-4 col-md-6">
-                <a href="#" class="experience-card">
-                    <img src="https://images.unsplash.com/photo-1540202404-b711ad1b5590?auto=format&fit=crop&w=600&q=80" class="experience-img" alt="Punta Cana Hip Hop Party Boat">
-                    <div class="experience-overlay">
-                        <h6 class="fw-bold mb-1 lh-sm text-truncate text-wrap" style="max-height: 2.5rem;">Punta Cana Hip Hop Party Boat Adults Only Live DJ & Open Bar</h6>
-                        <div class="d-flex align-items-center gap-1">
-                            <div class="stars-rating">★★★★☆</div>
-                            <span class="small" style="font-size: 0.65rem;">(1099 Reviews)</span>
+            <!-- OFFCANVAS NAVBAR (Menu Utama -> Otomatis jadi Side Menu di Mobile) -->
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                
+                <!-- Header Offcanvas (Hanya muncul saat dibuka di Mobile) -->
+                <div class="offcanvas-header border-bottom">
+                    <h5 class="offcanvas-title fw-bold text-dark d-flex align-items-center gap-2" id="offcanvasNavbarLabel">
+                        <div class="bg-primary text-white rounded-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 30px; height: 30px;">
+                            <i class="bi bi-airplane-engines small"></i>
                         </div>
-                    </div>
-                </a>
-            </div>
+                        TravelMeta
+                    </h5>
+                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Tutup"></button>
+                </div>
 
-            <!-- Item 3 -->
-            <div class="col-lg-4 col-md-6">
-                <a href="#" class="experience-card">
-                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" class="experience-img" alt="Saona Island Day Trip">
-                    <div class="experience-overlay">
-                        <h6 class="fw-bold mb-1 lh-sm text-truncate text-wrap" style="max-height: 2.5rem;">Saona Island Day Trip from Punta Cana with Lunch and Open Bar</h6>
-                        <div class="d-flex align-items-center gap-1">
-                            <div class="stars-rating">★★★★★</div>
-                            <span class="small" style="font-size: 0.65rem;">(3267 Reviews)</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
+                <!-- Body Offcanvas (Daftar Menu Utama) -->
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav mx-auto align-items-lg-center gap-2 gap-xl-3">
+                        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html">Beranda</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="flights.html">Flights</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="hotels.html">Hotel</a></li>
+                        
+                        <!-- Dropdown More Services -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button" data-bs-toggle="dropdown">More Services</a>
+                            <ul class="dropdown-menu shadow-lg rounded-4 p-2 border-0" style="min-width: 200px;">
+                                <li class="nav-item"><a class="dropdown-item rounded-3 py-2 text-dark" href="car-rental.html"><i class="bi bi-car-front text-primary me-2"></i> Car Rental</a></li>
+                                <li class="nav-item"><a class="dropdown-item rounded-3 py-2 text-dark" href="taxi.html"><i class="bi bi-taxi-front text-primary me-2"></i> Taxi</a></li>
+                                <li class="nav-item"><a class="dropdown-item rounded-3 py-2 text-dark" href="bike.html"><i class="bi bi-bicycle text-primary me-2"></i> Bike</a></li>
+                            </ul>
+                        </li>
 
-            <!-- Item 4 -->
-            <div class="col-lg-4 col-md-6">
-                <a href="#" class="experience-card">
-                    <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=600&q=80" class="experience-img" alt="Buggy or ATV Tour">
-                    <div class="experience-overlay">
-                        <h6 class="fw-bold mb-1 lh-sm text-truncate text-wrap" style="max-height: 2.5rem;">Punta Cana Buggy or ATV Tour with Macao Beach, Cave and Tastings</h6>
-                        <div class="d-flex align-items-center gap-1">
-                            <div class="stars-rating">★★★★★</div>
-                            <span class="small" style="font-size: 0.65rem;">(1762 Reviews)</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
+                        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="tours.html">Tour</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="visa.html">Visa</a></li>
+                    </ul>
 
-            <!-- Item 5 -->
-            <div class="col-lg-4 col-md-6">
-                <a href="#" class="experience-card">
-                    <img src="https://images.unsplash.com/photo-1511216113906-8f57bb83e776?auto=format&fit=crop&w=600&q=80" class="experience-img" alt="Airport Private Transfers">
-                    <div class="experience-overlay">
-                        <h6 class="fw-bold mb-1 lh-sm text-truncate text-wrap" style="max-height: 2.5rem;">Punta Cana Airport Private Transfers to Hotels</h6>
-                        <div class="d-flex align-items-center gap-1">
-                            <div class="stars-rating">★★★★★</div>
-                            <span class="small" style="font-size: 0.65rem;">(4325 Reviews)</span>
-                        </div>
+                    <!-- Tombol Action Tambahan (Plan AI & Whatsapp) -->
+                    <div class="d-flex flex-column flex-lg-row align-items-lg-center gap-3 mt-4 mt-lg-0">
+                        <a href="#" class="btn btn-outline-primary rounded-pill px-3 py-2 small fw-semibold d-flex align-items-center justify-content-center gap-2 border-2 text-decoration-none">
+                            <i class="bi bi-robot"></i> Plan with AI
+                        </a>
+                        <a href="https://whatsapp.com" target="_blank" class="btn btn-primary rounded-pill px-4 py-2 small fw-semibold d-flex align-items-center justify-content-center gap-2 text-decoration-none">
+                            <i class="bi bi-whatsapp fs-6"></i> +44-800 123 456
+                        </a>
                     </div>
-                </a>
+                </div>
             </div>
-
-            <!-- Item 6 -->
-            <div class="col-lg-4 col-md-6">
-                <a href="#" class="experience-card">
-                    <img src="https://images.unsplash.com/photo-1621245645512-87a17bc13702?auto=format&fit=crop&w=600&q=80" class="experience-img" alt="ATV Adventure to Water Cave">
-                    <div class="experience-overlay">
-                        <h6 class="fw-bold mb-1 lh-sm text-truncate text-wrap" style="max-height: 2.5rem;">ATV Adventure to Water Cave and Macao Beach in Punta Cana</h6>
-                        <div class="d-flex align-items-center gap-1">
-                            <div class="stars-rating">★★★★☆</div>
-                            <span class="small" style="font-size: 0.65rem;">(3374 Reviews)</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Item 7 -->
-            <div class="col-lg-4 col-md-6">
-                <a href="#" class="experience-card">
-                    <img src="https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=600&q=80" class="experience-img" alt="Private Punta Cana Airport Transfers">
-                    <div class="experience-overlay">
-                        <h6 class="fw-bold mb-1 lh-sm text-truncate text-wrap" style="max-height: 2.5rem;">Private Punta Cana Airport Transfers Hotels in Dominican Republic</h6>
-                        <div class="d-flex align-items-center gap-1">
-                            <div class="stars-rating">★★★★★</div>
-                            <span class="small" style="font-size: 0.65rem;">(3600 Reviews)</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Item 8 -->
-            <div class="col-lg-4 col-md-6">
-                <a href="#" class="experience-card">
-                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80" class="experience-img" alt="Dinner in the Sky">
-                    <div class="experience-overlay">
-                        <h6 class="fw-bold mb-1 lh-sm text-truncate text-wrap" style="max-height: 2.5rem;">Dinner in the Sky Experience in Punta Cana</h6>
-                        <div class="d-flex align-items-center gap-1">
-                            <div class="stars-rating">★★★★☆</div>
-                            <span class="small" style="font-size: 0.65rem;">(47 Reviews)</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Item 9 -->
-            <div class="col-lg-4 col-md-6">
-                <a href="#" class="experience-card">
-                    <img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=600&q=80" class="experience-img" alt="Sacred River Jungle River">
-                    <div class="experience-overlay">
-                        <h6 class="fw-bold mb-1 lh-sm text-truncate text-wrap" style="max-height: 2.5rem;">Sacred River, Jungle River and Waterfall Pool w/ Dominican Lunch</h6>
-                        <div class="d-flex align-items-center gap-1">
-                            <div class="stars-rating">★★★★★</div>
-                            <span class="small" style="font-size: 0.65rem;">(134 Reviews)</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
         </div>
         
-        <div class="mt-4 text-muted" style="font-size: 0.65rem;">
-            * Average price per person, taxes and fees included.
+        <!-- Info Tambahan Mobile (Bagian Bawah Navbar Khusus Mobile) -->
+        <div class="container d-lg-none mt-2 pt-3 border-top d-flex justify-content-between align-items-center flex-nowrap">
+            <div class="text-secondary small d-flex align-items-start gap-1 flex-grow-1 pe-2">
+                <span class="text-warning fs-6 lh-1" style="margin-top: 1px;">★</span> 
+                <span class="fw-medium text-dark lh-sm" style="font-size: 0.8rem;">
+                    <span class="text-primary fw-bold">4.9 Rated</span> by <strong class="text-dark">10,000+</strong> Travelers.
+                </span>
+            </div>
+            <a href="#" class="text-dark text-decoration-none flex-shrink-0"><i class="bi bi-cart3 fs-4"></i></a>
+        </div>
+    </nav>
+</header>
+
+    <main>
+    <!-- HERO + OPT-IN -->
+    <section class="tw-hero">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <h1 class="mb-3">I travel the world for you. Here's where to go next.</h1>
+                    <p class="lead mb-4">Real experiences. Honest opinions. No tourist fluff.</p>
+
+                    <form class="tw-optin">
+                        <h2>Learn how to book smarter in minutes</h2>
+                        <div class="row g-3">
+                            <div class="col-md-7">
+                                <label class="form-label" for="optEmail">Email</label>
+                                <input id="optEmail" type="email" class="form-control" placeholder="your.email@example.com" required>
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label" for="optName">First name</label>
+                                <input id="optName" type="text" class="form-control" placeholder="Your name" required>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="tw-btn w-100">Send me the playbook</button>
+                            </div>
+                        </div>
+                        <p class="tw-privacy">We respect your privacy and never send spam. Unsubscribe anytime.</p>
+                    </form>
+
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="tw-visual">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80" alt="Tropical beach with turquoise water" width="1000" height="1100">
+                        <div class="tw-playbook">
+                            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=200&q=80" alt="Passport Kings Travel Playbook cover" width="54" height="70">
+                            <div>
+                                <strong>Passport Kings Travel Playbook</strong>
+                                <span>Free when you sign up</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- TAB BAR -->
+    <nav class="tw-tabbar" aria-label="Page sections">
+        <div class="container">
+            <div class="tw-tabs-main" role="tablist">
+                <button type="button" role="tab" id="tab-book" aria-controls="pane-book" aria-selected="true"><i class="bi bi-airplane"></i>Book Travel</button>
+                <button type="button" role="tab" id="tab-videos" aria-controls="pane-videos" aria-selected="false" tabindex="-1"><i class="bi bi-play-circle"></i>Videos</button>
+                <button type="button" role="tab" id="tab-blogs" aria-controls="pane-blogs" aria-selected="false" tabindex="-1"><i class="bi bi-journal-text"></i>Blogs</button>
+                <!-- TODO: ganti dengan URL Travel Income yang sebenarnya -->
+                <a class="tw-ext" href="https://example.com/travel-income" target="_blank" rel="noopener noreferrer"><i class="bi bi-cash-coin"></i>Travel Income<i class="bi bi-box-arrow-up-right"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- TAB 1: BOOK TRAVEL -->
+    <div id="pane-book" class="tw-pane" role="tabpanel" aria-labelledby="tab-book">
+    <section class="tw-section pt-0">
+        <div class="container">
+            <div class="tw-panel">
+                <h2 class="mb-2">Ready to go? I'll help you book it.</h2>
+                <p class="sub mb-4">Use my tool to find the flights, hotels, and experiences I personally recommend.</p>
+                <div class="tw-widget">
+                    <ul class="tw-tabs nav" id="bookingTabs"><li class="nav-item"><button type="button" class="nav-link active"><i class="bi bi-airplane"></i>Flights</button></li><li class="nav-item"><button type="button" class="nav-link"><i class="bi bi-building"></i>Hotels</button></li><li class="nav-item"><button type="button" class="nav-link"><i class="bi bi-taxi-front"></i>Taxi</button></li><li class="nav-item"><button type="button" class="nav-link"><i class="bi bi-car-front"></i>Cars</button></li><li class="nav-item"><button type="button" class="nav-link"><i class="bi bi-bicycle"></i>Bikes</button></li><li class="nav-item"><button type="button" class="nav-link"><i class="bi bi-ticket-perforated"></i>Tours</button></li></ul>
+                    <form>
+                        <div class="row g-3 align-items-center">
+                            <div class="col-lg-3 col-md-6"><div class="tw-field"><label for="bkOrigin">Origin</label><div class="tw-input"><i class="bi bi-geo-alt"></i><input id="bkOrigin" type="text" value="Surabaya" placeholder="City or airport"></div></div></div>
+                            <div class="col-lg-3 col-md-6"><div class="tw-field"><label for="bkDest">Destination</label><div class="tw-input"><i class="bi bi-pin-map"></i><input id="bkDest" type="text" placeholder="Where to?"></div></div></div>
+                            <div class="col-lg-3 col-md-6 col-6"><div class="tw-field"><label for="bkDepart">Depart</label><div class="tw-input"><i class="bi bi-calendar3"></i><input id="bkDepart" type="text" placeholder="Add date"></div></div></div>
+                            <div class="col-lg-3 col-md-6 col-6"><div class="tw-field"><label for="bkReturn">Return</label><div class="tw-input"><i class="bi bi-calendar3"></i><input id="bkReturn" type="text" placeholder="Add date"></div></div></div>
+                            <div class="col-lg-3 col-md-6"><div class="tw-field"><label for="bkPax">Passengers</label><div class="tw-input"><i class="bi bi-people"></i><select id="bkPax"><option>1 passenger</option><option>2 passengers</option><option>3+ passengers</option></select></div></div></div>
+                            <div class="col-lg-9 col-md-6 d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3">
+                                <div class="form-check m-0 ms-lg-2"><input class="form-check-input shadow-none" type="checkbox" id="businessClass"><label class="form-check-label small fw-semibold text-secondary" for="businessClass">Business class</label></div>
+                                <button type="submit" class="tw-btn px-5"><i class="bi bi-search me-2"></i>Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experiences" class="tw-section pt-2">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
+                <div><h2 class="tw-title fs-1 mb-2">Most popular experiences</h2><p class="text-secondary m-0">Plan tours and trips full of unforgettable moments.</p></div>
+                <a href="#" class="section-link-outline text-nowrap align-self-start">Discover more</a>
+            </div>
+            <ul class="tw-pills nav" id="cityPills" aria-label="Destinations"></ul>
+            <div class="row g-4" id="tourGrid" aria-live="polite"></div>
+        </div>
+    </section>
+    </div>
+
+    <!-- TAB 2: VIDEOS -->
+    <div id="pane-videos" class="tw-pane" role="tabpanel" aria-labelledby="tab-videos" hidden>
+    <section class="tw-section pt-2">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
+                <div><h2 class="tw-title fs-1 mb-2">Watch before you go</h2><p class="text-secondary m-0">Short, honest videos from the places I visit.</p></div>
+                <a href="#" class="section-link-outline text-nowrap align-self-start" target="_blank" rel="noopener noreferrer"><i class="bi bi-youtube"></i>Open YouTube channel</a>
+            </div>
+            <div class="row g-4" id="videoGrid"></div>
+        </div>
+    </section>
+    </div>
+
+    <!-- TAB 3: BLOGS -->
+    <div id="pane-blogs" class="tw-pane" role="tabpanel" aria-labelledby="tab-blogs" hidden>
+    <section class="tw-section pt-2">
+        <div class="container">
+            <div class="mb-4"><h2 class="tw-title fs-1 mb-2">From the blog</h2><p class="text-secondary m-0">Guides and honest notes to help you book with confidence.</p></div>
+            <div class="row g-4" id="blogGrid"></div>
+        </div>
+    </section>
+    </div>
+    </main>
+
+    <!-- 14. FOOTER -->
     <footer id="footer" class="modern-footer pt-5 pb-4 scroll-reveal">
         <div class="container py-4">
             <div class="row g-5 mb-5">
                 <div class="col-lg-3 col-md-6">
-                    <a class="fw-bold fs-4 text-white d-flex align-items-center gap-2 mb-3 text-decoration-none" href="#">
+                    <a class="fw-bold fs-4 text-white d-flex align-items-center gap-2 mb-3 text-decoration-none" href="index.html">
+                        <span class="footer-logo-icon"><i class="bi bi-airplane-engines"></i></span>
                         <span class="text-white">TravelMeta</span>
                     </a>
                     <h6 class="mb-2">TravelMeta Travel Agency</h6>
-                    <p class="small mb-4 lh-sm">
-                        Skyline Plaza, 5th Floor, 123 Main Street<br>
-                        Los Angeles, CA 90001, USA
+                    <p class="small mb-4 lh-sm d-flex gap-2">
+                        <i class="bi bi-geo-alt-fill mt-1" style="color:#38bdf8;"></i>
+                        <span>Skyline Plaza, 5th Floor, 123 Main Street<br>Los Angeles, CA 90001, USA</span>
                     </p>
                     <div class="d-flex gap-2 mb-4">
                         <a href="#" class="social-btn" title="Facebook"><i class="bi bi-facebook"></i></a>
                         <a href="#" class="social-btn" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
                         <a href="#" class="social-btn" title="YouTube"><i class="bi bi-youtube"></i></a>
                         <a href="#" class="social-btn" title="Instagram"><i class="bi bi-instagram"></i></a>
+                    </div>
+                    <div class="d-flex gap-3 align-items-center">
+                        <div class="footer-badge-green">
+                            <span style="font-size: 0.55rem; line-height: 1.15;">Tripadvisor</span>
+                            <span style="font-size: 0.48rem; line-height: 1.1;">Travelers' Choice Award</span>
+                            <strong style="font-size: 0.72rem;">2026</strong>
+                        </div>
+                        <div class="footer-badge-red">
+                            <span style="font-size: 0.55rem; line-height: 1.15;">Condé Nast</span>
+                            <span style="font-size: 0.48rem; font-weight: 800; letter-spacing: 0.5px;">Traveler</span>
+                            <span style="font-size: 0.42rem; line-height: 1.1;">BEST CITY TOUR AWARD</span>
+                            <strong style="font-size: 0.72rem;">2025</strong>
+                        </div>
                     </div>
                 </div>
 
@@ -535,6 +399,9 @@
                         <li><a href="#" class="footer-link">Health & Safety Measure</a></li>
                         <li><a href="#" class="footer-link">Customize Tour</a></li>
                         <li><a href="#" class="footer-link">Deals & Discount</a></li>
+                        <li><a href="#" class="footer-link">Last Minutes Deal</a></li>
+                        <li><a href="#" class="footer-link">Travel Inspirations</a></li>
+                        <li><a href="contact.html" class="footer-link">Contact Us</a></li>
                     </ul>
                 </div>
 
@@ -552,6 +419,7 @@
                     <h5>Helpline</h5>
                     <ul class="list-unstyled d-flex flex-column gap-2 m-0">
                         <li><a href="contact.html" class="footer-link">Help & Support</a></li>
+                        <li><a href="#" class="footer-link">FAQs</a></li>
                         <li><a href="privacy.html" class="footer-link">Privacy Policy</a></li>
                         <li><a href="#" class="footer-link">Terms & Condition</a></li>
                         <li><a href="#" class="footer-link">Affiliates</a></li>
@@ -559,21 +427,25 @@
                 </div>
             </div>
 
-            <div class="bg-white text-dark rounded-4 p-3 px-4 mb-4 d-flex align-items-center justify-content-between flex-wrap gap-3 shadow-lg">
-                <span class="fw-bold fs-6 text-dark">We Accept:-</span>
-                <div class="d-flex align-items-center gap-3 fs-4 flex-wrap text-secondary">
-                    <i class="bi bi-credit-card-2-front text-dark" title="Mastercard"></i>
-                    <i class="bi bi-paypal text-primary" title="PayPal"></i>
-                    <i class="bi bi-credit-card text-dark" title="Visa"></i>
-                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">G Pay</span>
-                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">stripe</span>
+            <div class="payment-strip d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4">
+                <span class="fw-bold fs-6 text-dark" style="letter-spacing: 0.3px;">We Accept</span>
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                    <span class="payment-chip"><i class="bi bi-credit-card-2-front me-1"></i>Mastercard</span>
+                    <span class="payment-chip"><i class="bi bi-paypal me-1 text-primary"></i>PayPal</span>
+                    <span class="payment-chip"><i class="bi bi-credit-card me-1"></i>Visa</span>
+                    <span class="payment-chip">G Pay</span>
+                    <span class="payment-chip">Stripe</span>
+                    <span class="payment-chip">Paysafe</span>
+                    <span class="payment-chip"><i class="bi bi-apple me-1"></i>Apple Pay</span>
+                    <span class="payment-chip">Adyen</span>
+                    <span class="payment-chip">Elavon</span>
                 </div>
             </div>
 
-            <div class="small pt-3 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2" style="color: #9ca3af !important;">
+            <div class="footer-bottom-bar small pt-3 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2" style="color: #9ca3af !important;">
                 <p class="mb-0">&copy; 2026 TravelMeta. All Rights Reserved.</p>
                 <p class="mb-0" style="font-size: 0.75rem; max-width: 600px; line-height: 1.6; color: #9ca3af !important;">
-                    All travel services are provided in accordance with applicable international travel regulations, tourism laws, ensuring transparency and reliability.
+                    All travel services are provided in accordance with applicable international travel regulations, airline policies, visa requirements, and local tourism laws, ensuring transparency, reliability, and compliance throughout your journey.
                 </p>
             </div>
         </div>
@@ -584,77 +456,257 @@
         <i class="bi bi-arrow-up fs-5 text-white"></i>
     </button>
 
-    <!-- UNIFIED REGIONAL SETTINGS MODAL -->
-    <div class="modal fade" id="regionalSettingsModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg mx-2 mx-sm-auto">
-            <div class="modal-content rounded-4 border-0 shadow-lg" style="max-height: 85vh;">
-                <div class="modal-header border-0 py-3 pb-0 px-4 mt-2">
-                    <h5 class="modal-title fw-bold text-dark"><i class="bi bi-sliders text-primary me-2"></i>Pengaturan Regional</h5>
-                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body p-4 pt-3">
-                    <ul class="nav nav-pills nav-fill mb-4 p-1 bg-light rounded-pill border shadow-sm" id="regionalTabs" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active rounded-pill fw-bold py-2" id="currency-tab" data-bs-toggle="pill" data-bs-target="#currency-tab-pane" type="button" role="tab">
-                                <i class="bi bi-coin text-warning me-1"></i> Mata Uang
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link rounded-pill fw-bold py-2" id="lang-tab" data-bs-toggle="pill" data-bs-target="#lang-tab-pane" type="button" role="tab">
-                                <i class="bi bi-globe text-info me-1"></i> Bahasa
-                            </button>
-                        </li>
-                    </ul>
-                    <div class="tab-content" id="regionalTabsContent">
-                        <div class="tab-pane fade show active" id="currency-tab-pane" role="tabpanel" tabindex="0">
-                            <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-2">
-                                <div class="col"><button class="btn btn-outline-primary active border-2 rounded-3 text-center currency-option w-100 fw-semibold py-2">USD ($)</button></div>
-                                <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">IDR (Rp)</button></div>
-                                <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">EUR (€)</button></div>
-                                <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">GBP (£)</button></div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="lang-tab-pane" role="tabpanel" tabindex="0">
-                            <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-2">
-                                <div class="col"><button class="btn btn-outline-primary active border-2 rounded-3 text-center lang-option w-100 fw-semibold py-2">English (EN)</button></div>
-                                <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">Indonesia (ID)</button></div>
-                            </div>
-                        </div>
+    <!-- UNIFIED REGIONAL SETTINGS MODAL (Dengan Sistem Tab) -->
+<div class="modal fade" id="regionalSettingsModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg mx-2 mx-sm-auto">
+        <div class="modal-content rounded-4 border-0 shadow-lg" style="max-height: 85vh;">
+            
+            <div class="modal-header border-0 py-3 pb-0 px-4 mt-2">
+                <div class="d-flex align-items-center gap-3">
+                    <span class="modal-icon-badge"><i class="bi bi-globe-americas"></i></span>
+                    <div>
+                        <h5 class="modal-title fw-bold text-dark mb-0">Pengaturan Regional</h5>
+                        <p class="regional-subtitle text-muted mb-0">Pilih mata uang dan bahasa yang sesuai untuk Anda</p>
                     </div>
                 </div>
-                <div class="modal-footer border-0 d-flex justify-content-center pb-4 pt-1">
-                    <button type="button" class="btn btn-primary rounded-pill px-5 py-2 fw-bold shadow-sm" data-bs-dismiss="modal">Terapkan Pengaturan</button>
-                </div>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
             </div>
+            
+            <!-- Isi Modal -->
+            <div class="modal-body p-4 pt-3">
+                
+                <!-- Nav Pills (Tab Pemisah Mata Uang & Bahasa) -->
+                <ul class="nav nav-pills nav-fill mb-4 p-1 bg-light rounded-pill border shadow-sm" id="regionalTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active rounded-pill fw-bold py-2" id="currency-tab" data-bs-toggle="pill" data-bs-target="#currency-tab-pane" type="button" role="tab">
+                            <i class="bi bi-coin me-1"></i> Mata Uang
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link rounded-pill fw-bold py-2" id="lang-tab" data-bs-toggle="pill" data-bs-target="#lang-tab-pane" type="button" role="tab">
+                            <i class="bi bi-globe me-1"></i> Bahasa
+                        </button>
+                    </li>
+                </ul>
+
+                <!-- Konten Tab -->
+                <div class="tab-content" id="regionalTabsContent">
+                    
+                    <!-- TAB 1: MATA UANG -->
+                    <div class="tab-pane fade show active" id="currency-tab-pane" role="tabpanel" tabindex="0">
+
+                        <span class="region-group-label d-block">Populer</span>
+                        <div class="row row-cols-2 row-cols-sm-2 g-2 mb-4">
+                            <div class="col"><button class="btn region-option active currency-option w-100"><img src="https://flagcdn.com/w40/us.png" class="region-flag" alt=""><span class="region-label">USD ($)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option currency-option w-100"><img src="https://flagcdn.com/w40/id.png" class="region-flag" alt=""><span class="region-label">IDR (Rp)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option currency-option w-100"><img src="https://flagcdn.com/w40/eu.png" class="region-flag" alt=""><span class="region-label">EUR (€)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option currency-option w-100"><img src="https://flagcdn.com/w40/gb.png" class="region-flag" alt=""><span class="region-label">GBP (£)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                        </div>
+
+                        <span class="region-group-label d-block">Lainnya</span>
+                        <div class="row row-cols-2 row-cols-sm-2 g-2">
+                            <div class="col"><button class="btn region-option currency-option w-100"><img src="https://flagcdn.com/w40/sg.png" class="region-flag" alt=""><span class="region-label">SGD (S$)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option currency-option w-100"><img src="https://flagcdn.com/w40/jp.png" class="region-flag" alt=""><span class="region-label">JPY (¥)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option currency-option w-100"><img src="https://flagcdn.com/w40/au.png" class="region-flag" alt=""><span class="region-label">AUD (A$)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option currency-option w-100"><img src="https://flagcdn.com/w40/ca.png" class="region-flag" alt=""><span class="region-label">CAD (C$)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option currency-option w-100"><img src="https://flagcdn.com/w40/cn.png" class="region-flag" alt=""><span class="region-label">CNY (¥)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: BAHASA -->
+                    <div class="tab-pane fade" id="lang-tab-pane" role="tabpanel" tabindex="0">
+
+                        <span class="region-group-label d-block">Populer</span>
+                        <div class="row row-cols-2 row-cols-sm-2 g-2 mb-4">
+                            <div class="col"><button class="btn region-option active lang-option w-100"><img src="https://flagcdn.com/w40/gb.png" class="region-flag" alt=""><span class="region-label">English (EN)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option lang-option w-100"><img src="https://flagcdn.com/w40/id.png" class="region-flag" alt=""><span class="region-label">Indonesia (ID)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option lang-option w-100"><img src="https://flagcdn.com/w40/es.png" class="region-flag" alt=""><span class="region-label">Español (ES)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option lang-option w-100"><img src="https://flagcdn.com/w40/fr.png" class="region-flag" alt=""><span class="region-label">Français (FR)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                        </div>
+
+                        <span class="region-group-label d-block">Lainnya</span>
+                        <div class="row row-cols-2 row-cols-sm-2 g-2">
+                            <div class="col"><button class="btn region-option lang-option w-100"><img src="https://flagcdn.com/w40/de.png" class="region-flag" alt=""><span class="region-label">Deutsch (DE)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option lang-option w-100"><img src="https://flagcdn.com/w40/jp.png" class="region-flag" alt=""><span class="region-label">日本語 (JA)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option lang-option w-100"><img src="https://flagcdn.com/w40/cn.png" class="region-flag" alt=""><span class="region-label">中文 (ZH)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                            <div class="col"><button class="btn region-option lang-option w-100"><img src="https://flagcdn.com/w40/sa.png" class="region-flag" alt=""><span class="region-label">العربية (AR)</span><i class="bi bi-check-circle-fill option-check"></i></button></div>
+                        </div>
+                    </div>
+
+                </div>
+                
+            </div>
+
+            <!-- Tombol Aksi di Bawah -->
+            <div class="modal-footer border-0 d-flex justify-content-center pb-4 pt-1">
+                <button type="button" class="btn btn-primary rounded-pill px-5 py-2 fw-bold shadow-sm" data-bs-dismiss="modal"><i class="bi bi-check2-circle me-1"></i> Terapkan Pengaturan</button>
+            </div>
+            
         </div>
     </div>
+</div>
 
-    <!-- Mobile Bottom Navigation -->
+    <!-- Contoh Mobile Bottom Navigation yang sudah diberi Class ID -->
     <nav class="mobile-bottom-nav d-lg-none d-flex justify-content-between align-items-center py-2 position-fixed bottom-0 w-100 shadow-lg" style="z-index: 1075;">
-        <a href="index.html" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-index">
-            <i class="bi bi-house-door nav-icon"></i>
-            <span class="nav-text">Home</span>
-        </a>
-        <a href="flights.html" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-flights">
-            <i class="bi bi-airplane nav-icon"></i>
-            <span class="nav-text">Flight</span>
-        </a>
-        <a href="hotels.html" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-hotels">
-            <i class="bi bi-building nav-icon"></i>
-            <span class="nav-text">Hotel</span>
-        </a>
-        <a href="#" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-tours">
-            <i class="bi bi-ticket-perforated nav-icon"></i>
-            <span class="nav-text">Tour</span>
-        </a>
-        <a href="#" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-visa">
-            <i class="bi bi-passport nav-icon"></i>
-            <span class="nav-text">Visa</span>
-        </a>
+    
+    <a href="index.html" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-index">
+        <i class="bi bi-house-door nav-icon"></i>
+        <span class="nav-text">Home</span>
+    </a>
+
+    <a href="flights.html" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-flights">
+        <i class="bi bi-airplane nav-icon"></i>
+        <span class="nav-text">Flight</span>
+    </a>
+
+    <a href="hotels.html" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-hotels">
+        <i class="bi bi-building nav-icon"></i>
+        <span class="nav-text">Hotel</span>
+    </a>
+
+    <a href="#" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-tours">
+        <i class="bi bi-ticket-perforated nav-icon"></i>
+        <span class="nav-text">Tour</span>
+    </a>
+
+    <a href="#" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-visa">
+        <i class="bi bi-passport nav-icon"></i>
+        <span class="nav-text">Visa</span>
+    </a>
+    
     </nav>
 
-    <!-- Bootstrap & Plugins -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer fetchpriority="low"></script>
     <script src="./src/js/main.js" defer></script>
+<!-- STICKY HEADER: menempel saat digulir, kembali normal di puncak halaman -->
+<script>
+(function () {
+    var header = document.querySelector('header.sticky-top');
+    if (!header) return;
+    var topbar = header.querySelector(':scope > div.border-bottom');
+    var ticking = false;
+
+    function measure() {
+        // Top bar ikut tergulir pergi; navbar utama yang menempel (tanpa lompatan layout)
+        var h = topbar ? topbar.offsetHeight : 0;
+        header.style.top = (-h) + 'px';
+        return h;
+    }
+    function update() {
+        var h = measure();
+        header.classList.toggle('is-stuck', window.scrollY > h + 4);
+        ticking = false;
+    }
+    function onScroll() {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    window.addEventListener('load', update);
+    update();
+})();
+</script>
+
+    <script>
+    (function () {
+        var $ = function (id) { return document.getElementById(id); };
+        var IMG = ['photo-1544989164-32a188f572f6', 'photo-1540202404-b711ad1b5590', 'photo-1507525428034-b723cf961d3e', 'photo-1518548419970-58e3b4079ab2', 'photo-1511216113906-8f57bb83e776', 'photo-1621245645512-87a17bc13702', 'photo-1449844908441-8829872d2607', 'photo-1517248135467-4c7edcad34c4', 'photo-1433086966358-54859d0ed716'];
+        var TAGS = ['Adventure', 'Boat party', 'Day trip', 'Adventure', 'Transfer', 'Adventure', 'Transfer', 'Dining', 'Nature'];
+        var CITIES = ['Punta Cana', 'Tulum', 'Phuket', 'Montego Bay', 'Atlanta', 'Cancun', 'Rio De Janeiro', 'Dubai'];
+
+        /* ===== DATA: ganti dengan data asli ===== */
+        // Punta Cana = data asli. Kota lain = contoh otomatis dari TPL (ganti dengan tur nyata).
+        var PC = [['ATV & Buggy adventure in Punta Cana + Water Cave + Macao Beach', 5, 2189], ['Punta Cana Hip Hop Party Boat Adults Only Live DJ & Open Bar', 4, 1099], ['Saona Island Day Trip from Punta Cana with Lunch and Open Bar', 5, 3267], ['Punta Cana Buggy or ATV Tour with Macao Beach, Cave and Tastings', 5, 1762], ['Punta Cana Airport Private Transfers to Hotels', 5, 4325], ['ATV Adventure to Water Cave and Macao Beach in Punta Cana', 4, 3374], ['Private Punta Cana Airport Transfers Hotels in Dominican Republic', 5, 3600], ['Dinner in the Sky Experience in Punta Cana', 4, 47], ['Sacred River, Jungle River and Waterfall Pool w/ Dominican Lunch', 5, 134]];
+        var TPL = ['{c} Adventure Day: Off-Road Buggy & ATV Tour', '{c} Sunset Party Cruise with Live DJ', '{c} Full-Day Coastal Trip with Lunch', '{c} Guided Off-Road Tour with Local Tastings', '{c} Airport Private Transfer to Your Hotel', '{c} Cave & Beach Adventure Tour', 'Private Round-Trip Transfers in {c}', 'Signature Dinner Experience in {c}', '{c} Nature Escape: River & Waterfall Day Trip'];
+        // id = kode video YouTube 11 karakter (kosong = kartu belum bisa diputar)
+        var VIDEOS = [
+            { id: '', t: 'Punta Cana in 4 days: what was worth it', c: 'Destination guide' },
+            { id: '', t: 'How I compare flight prices before I book', c: 'Booking tips' },
+            { id: '', t: 'Airport transfers: private or shared?', c: 'Transport' },
+            { id: '', t: 'Dubai on a real budget', c: 'Destination guide' },
+            { id: '', t: 'Phuket beaches, from someone who went', c: 'Destination guide' },
+            { id: '', t: 'Visa mistakes travelers make', c: 'Visa' }
+        ];
+        var BLOGS = [
+            { t: 'How I compare flight prices before booking', e: 'The three checks I run every time, and when waiting a day is worth it.', c: 'Flights', r: 6 },
+            { t: 'Hotel or apartment? How I decide', e: 'What matters for a short city break versus a two-week stay.', c: 'Hotels', r: 5 },
+            { t: 'Airport transfers without the stress', e: 'How to book a ride in advance and what to confirm before you land.', c: 'Transport', r: 4 },
+            { t: 'Five days in Punta Cana: what I would do again', e: 'The tours worth the money and the ones I would skip.', c: 'Destinations', r: 7 },
+            { t: 'Before you apply for a visa', e: 'Documents, timing, and the small details that cause delays.', c: 'Visa', r: 5 },
+            { t: 'Packing light for two weeks', e: 'A simple system that keeps a carry-on enough for most trips.', c: 'Tips', r: 4 }
+        ];
+
+        /* ===== Render ===== */
+        function media(i, extra) {
+            return '<div class="tw-card-media"><img src="https://images.unsplash.com/' + IMG[i % 9] + '?auto=format&fit=crop&w=720&q=80" alt="" loading="lazy" width="720" height="480"><i class="bi bi-image tw-ph"></i><span class="tw-tag">' + TAGS[i % 9] + '</span>' + (extra || '') + '</div>';
+        }
+        function col(inner) { return '<div class="col-lg-4 col-md-6">' + inner + '</div>'; }
+        function tourCard(t, i) {
+            var st = '<i class="bi bi-star-fill"></i>'.repeat(t[1]) + '<i class="bi bi-star"></i>'.repeat(5 - t[1]);
+            return col('<a href="#" class="tw-card">' + media(i) + '<div class="tw-card-body"><h3>' + t[0] + '</h3><div class="tw-rating" aria-label="Rated ' + t[1] + ' out of 5"><span class="tw-stars">' + st + '</span><span>' + t[2].toLocaleString('en-US') + ' reviews</span></div></div></a>');
+        }
+        function showCity(ci) {
+            var c = CITIES[ci];
+            $('tourGrid').innerHTML = IMG.map(function (_, i) {
+                return tourCard(ci === 0 ? PC[i] : [TPL[i].replace('{c}', c), (ci + i) % 4 ? 5 : 4, 40 + ((ci * 37 + i * 211) % 4200)], i);
+            }).join('');
+        }
+        $('cityPills').innerHTML = CITIES.map(function (c, i) { return '<li class="nav-item"><button type="button" class="nav-link' + (i ? '' : ' active') + '" data-city="' + i + '">' + c + '</button></li>'; }).join('');
+        showCity(0);
+        $('cityPills').addEventListener('click', function (e) {
+            var b = e.target.closest('[data-city]'); if (!b) return;
+            this.querySelectorAll('.nav-link').forEach(function (x) { x.classList.remove('active'); });
+            b.classList.add('active'); showCity(+b.dataset.city);
+        });
+
+        $('videoGrid').innerHTML = VIDEOS.map(function (v, i) {
+            var ok = /^[\w-]{11}$/.test(v.id);
+            return col('<div class="tw-card" data-yt="' + (ok ? v.id : '') + '" data-title="' + v.t + '">' + media(i + 2, '<button type="button" aria-label="Play: ' + v.t + '"><span class="tw-play"><i class="bi bi-play-fill"></i></span></button>').replace(/<span class="tw-tag">[^<]*<\/span>/, '') + '<div class="tw-card-body"><h3>' + v.t + '</h3><div class="tw-meta"><span>' + v.c + '</span><b>Watch</b></div></div></div>');
+        }).join('');
+        $('videoGrid').addEventListener('click', function (e) {
+            var btn = e.target.closest('button'); if (!btn) return;
+            var card = btn.closest('[data-yt]'), id = card.dataset.yt; if (!id) return;
+            btn.parentNode.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0" title="' + card.dataset.title + '" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+        });
+
+        $('blogGrid').innerHTML = BLOGS.map(function (b, i) {
+            return col('<a href="#" class="tw-card">' + media(i + 4) .replace(/<span class="tw-tag">[^<]*<\/span>/, '<span class="tw-tag">' + b.c + '</span>') + '<div class="tw-card-body"><div><h3 class="mb-2">' + b.t + '</h3><p class="tw-ex">' + b.e + '</p></div><div class="tw-meta"><span>' + b.r + ' min read</span><b>Read article</b></div></div></a>');
+        }).join('');
+
+        /* ===== Tab utama + tab widget ===== */
+        var PANES = ['book', 'videos', 'blogs'];
+        function openPane(n, push) {
+            PANES.forEach(function (p) {
+                var on = p === n, t = $('tab-' + p);
+                $('pane-' + p).hidden = !on; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1;
+            });
+            if (push) history.replaceState(null, '', '#' + n);
+        }
+        document.querySelector('.tw-tabs-main').addEventListener('click', function (e) {
+            var t = e.target.closest('[role=tab]'); if (t) openPane(t.id.replace('tab-', ''), true);
+        });
+        document.querySelector('.tw-tabs-main').addEventListener('keydown', function (e) {
+            if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+            var cur = PANES.indexOf(document.activeElement.id.replace('tab-', '')); if (cur < 0) return;
+            var n = PANES[(cur + (e.key === 'ArrowRight' ? 1 : 2)) % 3]; openPane(n, true); $('tab-' + n).focus();
+        });
+        var h = location.hash.slice(1); if (PANES.indexOf(h) > -1) openPane(h);
+
+        var bt = $('bookingTabs');
+        bt.addEventListener('click', function (e) {
+            var b = e.target.closest('.nav-link'); if (!b) return;
+            bt.querySelectorAll('.nav-link').forEach(function (x) { x.classList.remove('active'); });
+            b.classList.add('active');
+        });
+
+        // Gambar gagal dimuat: tampilkan placeholder gradasi
+        document.addEventListener('error', function (e) {
+            var m = e.target.tagName === 'IMG' && e.target.closest('.tw-card-media');
+            if (m) m.classList.add('is-broken');
+        }, true);
+    })();
+    </script>
+    
 </body>
 </html>
