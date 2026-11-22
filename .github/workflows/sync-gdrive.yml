@@ -1,0 +1,14 @@
+name: Auto Sync to Google Drive
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  call-gdrive-sync:
+    uses: adicore/public-runner/.github/workflows/reusable-gdrive-sync.yml@main
+    secrets:
+      GDRIVE_TOKEN_JSON: ${{ secrets.GDRIVE_TOKEN_JSON }}
