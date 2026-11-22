@@ -1,4 +1,4 @@
-name: Auto Sync to Google Drive
+name: Auto Sync Repo to Google Drive
 
 on:
   push:
