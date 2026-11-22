@@ -1,4 +1,4 @@
-name: Auto Sync Repo to Google Drive
+name: Trigger Sync to Google Drive
 
 on:
   push:
@@ -8,7 +8,17 @@ on:
   workflow_dispatch:
 
 jobs:
-  call-gdrive-sync:
-    uses: adicore/public-runner/.github/workflows/reusable-gdrive-sync.yml@main
-    secrets:
-      GDRIVE_TOKEN_JSON: ${{ secrets.GDRIVE_TOKEN_JSON }}
+  trigger-public-runner:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kirim Sinyal ke public-runner
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+          REPO_NAME: ${{ github.event.repository.name }}
+        run: |
+          curl -f -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${GH_PAT}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/adicore/public-runner/dispatches \
+            -d "{\"event_type\":\"sync-repo-to-gdrive\",\"client_payload\":{\"repo_name\":\"${REPO_NAME}\"}}"
