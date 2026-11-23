@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelMeta - Flight Search</title>
+    <meta name="description" content="Bandingkan harga tiket pesawat dari ratusan maskapai dan temukan penawaran terbaik untuk perjalanan Anda.">
+    
+    <!-- Google Fonts: Plus Jakarta Sans & Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" fetchpriority="high">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin fetchpriority="high">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet" fetchpriority="high">
+    
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" fetchpriority="high">
+    
+    <!-- Bootstrap Icons CSS -->
+    <link rel="stylesheet" href="./src/css/bootstrap-icons.min.css" fetchpriority="low">
+    
+    <!-- Lazysizes JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async fetchpriority="high"></script>
+
+    <!-- Global Style -->
+    <link rel="stylesheet" href="./src/css/style.css" fetchpriority="high">
+    <link rel="stylesheet" href="./src/css/flights-extra.css" fetchpriority="high">
+    <style>
+        /* ===== FLIGHTS v2: gaya khusus halaman (prefix fx-) ===== */
+        :root { --fx-ink:#0f172a; --fx-muted:#475569; --fx-line:#e2e8f0; --fx-blue:#2563eb; }
+        .fx-sec { padding: 72px 0; }
+        .fx-h1, .fx-h2, .fx-h3 { background: none !important; -webkit-text-fill-color: currentColor !important; filter: none !important; font-weight: 800 !important; letter-spacing: -.025em; margin: 0; }
+        .fx-h2 { font-size: clamp(1.6rem, 3vw, 2.25rem); color: var(--fx-ink); }
+        .fx-h3 { font-size: 1.02rem; color: var(--fx-ink); letter-spacing: -.01em; }
+        .fx-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: 32px; }
+        .fx-head p { margin: 8px 0 0; color: var(--fx-muted); }
+        .fx-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border: 1px solid var(--fx-line); border-radius: 999px; background: #fff; color: var(--fx-ink); font-weight: 700; font-size: .88rem; text-decoration: none; white-space: nowrap; transition: border-color .2s, color .2s; }
+        .fx-link:hover { border-color: #93c5fd; color: var(--fx-blue); }
+        .fx-page a:focus-visible, .fx-page button:focus-visible { outline: 2px solid var(--fx-blue); outline-offset: 2px; }
+
+        /* Hero */
+        .fx-hero { position: relative; color: #fff; padding: 84px 0 150px; background: linear-gradient(100deg, rgba(8,24,58,.94) 0%, rgba(8,24,58,.74) 48%, rgba(37,99,235,.38) 100%), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1920&q=80') center / cover no-repeat, #0b1b3a; }
+        .fx-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); font-size: .82rem; font-weight: 600; }
+        .fx-h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.08; color: #fff; margin: 18px 0 16px; max-width: 13em; }
+        .fx-hero p { max-width: 34em; color: rgba(255,255,255,.86); font-size: 1.08rem; margin: 0; }
+        .fx-points { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-wrap: wrap; gap: 10px; }
+        .fx-points li { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.16); font-size: .88rem; font-weight: 600; }
+        .fx-points i { color: #7dd3fc; }
+
+        /* Keunggulan */
+        .fx-feat { height: 100%; display: flex; gap: 14px; align-items: flex-start; padding: 20px; background: #fff; border: 1px solid var(--fx-line); border-radius: 18px; }
+        .fx-ico { flex: 0 0 46px; width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; background: #eff6ff; color: var(--fx-blue); font-size: 1.25rem; }
+        .fx-feat p { margin: 4px 0 0; font-size: .86rem; color: var(--fx-muted); line-height: 1.5; }
+
+        /* Promo kupon */
+        .fx-promo { height: 100%; display: flex; flex-direction: column; background: #fff; border: 1px solid var(--fx-line); border-radius: 20px; overflow: hidden; }
+        .fx-promo-top { padding: 20px 20px 18px; border-top: 4px solid var(--a); }
+        .fx-chip { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: .74rem; font-weight: 700; color: var(--a); background: var(--s); }
+        .fx-val { display: flex; align-items: baseline; gap: 6px; margin: 14px 0 10px; color: var(--a); line-height: 1; }
+        .fx-val b { font-size: 2.6rem; font-weight: 800; letter-spacing: -.03em; }
+        .fx-val small { font-size: .88rem; font-weight: 600; color: var(--fx-muted); }
+        .fx-promo p { margin: 6px 0 0; font-size: .86rem; color: var(--fx-muted); line-height: 1.5; }
+        .fx-code { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 20px; border-top: 2px dashed var(--fx-line); background: #f8fafc; }
+        .fx-code span { display: block; font-size: .7rem; color: #64748b; }
+        .fx-code strong { font-family: ui-monospace, Menlo, Consolas, monospace; letter-spacing: .06em; color: var(--fx-ink); }
+        .fx-copy { border: 0; border-radius: 10px; padding: 8px 14px; background: var(--a); color: #fff; font-weight: 700; font-size: .82rem; white-space: nowrap; transition: background .2s; }
+        .fx-copy.is-done { background: #16a34a; }
+
+        /* Tentang */
+        .fx-about { display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: center; }
+        .fx-about > div > p { color: var(--fx-muted); line-height: 1.7; margin: 16px 0 0; }
+        .fx-eyebrow { display: inline-block; padding: 5px 14px; border-radius: 999px; background: #eff6ff; color: var(--fx-blue); font-size: .8rem; font-weight: 700; margin-bottom: 14px; }
+        .fx-stats { display: flex; flex-wrap: wrap; gap: 14px; margin: 26px 0; }
+        .fx-stat { padding: 16px 22px; border: 1px solid var(--fx-line); border-radius: 16px; background: #fff; }
+        .fx-stat b { display: block; font-size: 1.7rem; font-weight: 800; color: var(--fx-blue); line-height: 1.1; }
+        .fx-stat span { font-size: .8rem; color: var(--fx-muted); }
+        .fx-collage { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 210px 210px; gap: 14px; }
+        .fx-collage img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; background: #e2e8f0; }
+        .fx-collage img:first-child { grid-row: span 2; }
+
+        /* Ulasan */
+        .fx-band { background: linear-gradient(180deg, #eef4ff 0%, #fff 100%); border-block: 1px solid var(--fx-line); }
+        .fx-score { display: flex; align-items: center; gap: 14px; padding: 12px 20px; background: #fff; border: 1px solid var(--fx-line); border-radius: 18px; }
+        .fx-score b { font-size: 2.4rem; font-weight: 800; color: var(--fx-ink); line-height: 1; }
+        .fx-score span { font-size: .82rem; color: var(--fx-muted); line-height: 1.4; }
+        .fx-stars { color: #f59e0b; font-size: .85rem; display: flex; gap: 2px; }
+
+        /* Ulasan interaktif (editorial) */
+        .fx-rv-stage { position: relative; overflow: hidden; background: #fff; border: 1px solid var(--fx-line); border-radius: 28px; box-shadow: 0 30px 60px -44px rgba(15,23,42,.4); touch-action: pan-y; }
+        .fx-rv-slide { display: grid; grid-template-columns: 5fr 7fr; min-height: 400px; animation: fxIn .35s ease; }
+        .fx-rv-slide[hidden] { display: none; }
+        .fx-rv-photo { position: relative; margin: 0; background: #e2e8f0; user-select: none; }
+        .fx-rv-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .fx-rv-photo::after { content: ''; position: absolute; inset: auto 0 0; height: 45%; background: linear-gradient(0deg, rgba(8,24,58,.55), transparent); }
+        .fx-rv-photo figcaption { position: absolute; left: 20px; bottom: 20px; z-index: 1; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,.95); font-weight: 800; font-size: .85rem; color: var(--fx-ink); }
+        .fx-rv-photo figcaption i { color: #f59e0b; }
+        .fx-rv-body { display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: 44px; }
+        .fx-rv-q { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: #eff6ff; color: var(--fx-blue); font-size: 1.8rem; }
+        .fx-rv-title { font-size: 1.4rem; }
+        .fx-rv-text { margin: 0; font-size: 1.12rem; line-height: 1.75; color: #334155; }
+        .fx-rv-who { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 12px; margin-top: 6px; padding-top: 16px; border-top: 1px solid var(--fx-line); }
+        .fx-rv-who strong { font-size: .95rem; color: var(--fx-ink); }
+        .fx-rv-who span { font-size: .82rem; color: #64748b; }
+        .fx-rv-nav { position: absolute; top: 48px; right: 44px; z-index: 2; display: flex; align-items: center; gap: 12px; }
+        .fx-rv-nav div { display: flex; gap: 8px; }
+        .fx-rv-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--fx-line); background: #fff; color: var(--fx-ink); display: grid; place-items: center; transition: border-color .2s, color .2s; }
+        .fx-rv-btn:hover { border-color: #93c5fd; color: var(--fx-blue); }
+        .fx-rv-count { font-size: .85rem; font-weight: 700; color: var(--fx-muted); }
+        .fx-rv-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+        .fx-rv-tabs button { position: relative; overflow: hidden; display: flex; align-items: center; gap: 12px; min-width: 0; text-align: left; padding: 14px 16px; background: transparent; border: 1px solid var(--fx-line); border-radius: 16px; opacity: .78; transition: opacity .2s, border-color .2s, box-shadow .2s, background .2s; }
+        .fx-rv-tabs button:hover { opacity: 1; border-color: #bfdbfe; }
+        .fx-rv-tabs button[aria-selected="true"] { opacity: 1; background: #fff; border-color: #93c5fd; box-shadow: 0 14px 30px -22px rgba(37,99,235,.6); }
+        .fx-rv-tabs img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+        .fx-rv-tabs span { min-width: 0; }
+        .fx-rv-tabs strong { display: block; font-size: .92rem; color: var(--fx-ink); }
+        .fx-rv-tabs small { display: block; font-size: .78rem; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .fx-rv-tabs button::before { content: ''; position: absolute; left: 0; top: 0; height: 3px; width: 0; background: var(--fx-blue); }
+        .fx-rv:not(.is-run) .fx-rv-tabs [aria-selected="true"]::before { width: 100%; }
+        .fx-rv.is-run .fx-rv-tabs [aria-selected="true"]::before { animation: fxProg 6s linear forwards; }
+        @keyframes fxProg { to { width: 100%; } }
+        @keyframes fxIn { from { opacity: 0; transform: translateY(8px); } }
+        @media (prefers-reduced-motion: reduce) { .fx-rv-slide { animation: none; } }
+        @media (max-width: 991.98px) {
+            .fx-rv-slide { grid-template-columns: 1fr; }
+            .fx-rv-photo { height: 260px; }
+            .fx-rv-body { padding: 28px 22px; }
+            .fx-rv-nav { top: 16px; right: 16px; }
+            .fx-rv-count { display: none; }
+            .fx-rv-tabs { display: flex; overflow-x: auto; }
+            .fx-rv-tabs button { flex: 0 0 auto; min-width: 210px; }
+        }
+
+        /* Artikel */
+        .fx-post { display: flex; flex-direction: column; height: 100%; background: #fff; border: 1px solid var(--fx-line); border-radius: 20px; overflow: hidden; text-decoration: none; color: inherit; transition: box-shadow .25s, border-color .25s; }
+        .fx-post:hover { border-color: #bfdbfe; box-shadow: 0 22px 40px -24px rgba(37,99,235,.35); color: inherit; }
+        .fx-post img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; background: #e2e8f0; }
+        .fx-post-b { display: flex; flex-direction: column; gap: 8px; flex: 1; padding: 18px 20px 20px; }
+        .fx-post-b small { color: var(--fx-blue); font-weight: 700; font-size: .78rem; }
+        .fx-post-b h3 { line-height: 1.4; }
+        .fx-post-b p { margin: 0; color: var(--fx-muted); font-size: .88rem; line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .fx-post-b em { margin-top: auto; padding-top: 6px; font-style: normal; font-weight: 700; font-size: .86rem; color: var(--fx-blue); }
+
+        /* Newsletter */
+        .fx-news { position: relative; overflow: hidden; border-radius: 28px; padding: 52px; color: #fff; background: linear-gradient(135deg, #0b1b3a 0%, #12306b 60%, #1d4ed8 140%); }
+        .fx-news::after { content: ''; position: absolute; top: -140px; right: -100px; width: 380px; height: 380px; background: radial-gradient(circle, rgba(56,189,248,.28), transparent 70%); pointer-events: none; }
+        .fx-news > * { position: relative; z-index: 1; }
+        .fx-news .fx-h2 { color: #fff; }
+        .fx-news-chip { display: inline-flex; align-items: center; gap: 8px; padding: 5px 14px; margin-bottom: 14px; border-radius: 999px; background: rgba(255,255,255,.12); font-size: .8rem; font-weight: 700; }
+        .fx-news-form { display: flex; gap: 8px; padding: 6px; background: #fff; border-radius: 16px; }
+        .fx-news-form input { flex: 1; min-width: 0; border: 0; outline: 0; padding: 10px 14px; border-radius: 12px; font-size: .95rem; }
+        .fx-news-form button { border: 0; border-radius: 12px; padding: 12px 22px; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; font-weight: 700; white-space: nowrap; }
+        .fx-news small { display: block; margin-top: 12px; color: rgba(255,255,255,.75); font-size: .82rem; }
+
+        @media (max-width: 991.98px) { .fx-about { grid-template-columns: 1fr; gap: 32px; } }
+        @media (max-width: 767.98px) {
+            .fx-sec { padding: 48px 0; }
+            .fx-hero { padding: 56px 0 130px; }
+            .fx-collage { grid-template-rows: 150px 150px; }
+            .fx-news { padding: 30px 20px; border-radius: 22px; }
+            .fx-news-form { flex-direction: column; }
+        }
+    </style>
+</head>
+<body class="bg-light fx-page" id="page-flights">
+
+    <!-- HEADER UTAMA -->
+<header class="bg-white sticky-top shadow-sm">
+    
+    <!-- TOP BAR (Hanya Tampil di Desktop) -->
+    <div class="border-bottom py-2 bg-white small d-none d-lg-block">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="text-secondary d-flex align-items-center gap-1">
+                <span class="text-warning">★</span> 
+                <span class="fw-bold text-dark">4.9 Rated</span> by <strong class="text-dark">10,000+</strong> Travelers Worldwide.
+            </div>
+            <div class="d-flex align-items-center gap-3 text-secondary">
+                <!-- Tombol Unified Modal (Desktop) -->
+                <button class="btn btn-sm btn-light border py-1 px-3 fw-semibold rounded-pill d-flex align-items-center gap-2 shadow-sm" type="button" data-bs-toggle="modal" data-bs-target="#regionalSettingsModal">
+                <i class="bi bi-globe text-info"></i> 
+                <span id="deskLangText">EN</span> • <span id="deskCurrText">USD</span> 
+                <i class="bi bi-coin text-warning"></i>
+                </button>
+                <a href="#" class="text-secondary text-decoration-none px-1" title="Cart"><i class="bi bi-cart3 fs-6"></i></a>
+                <a href="#" class="text-secondary text-decoration-none px-1" title="Profile"><i class="bi bi-person-circle fs-5"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light py-2 py-lg-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            
+            <!-- Logo -->
+            <a class="navbar-brand fw-bold fs-5 fs-lg-4 text-dark d-flex align-items-center gap-2 text-decoration-none m-0" href="#">
+                <div class="logo-icon-box bg-primary text-white rounded-3 d-flex align-items-center justify-content-center shadow-sm">
+                    <i class="bi bi-airplane-engines"></i>
+                </div>
+                TravelMeta
+            </a>
+
+            <!-- Aksi Header Mobile (Tombol Bahasa/Mata Uang, Profil, Hamburger) -->
+            <div class="d-flex align-items-center gap-2 gap-sm-3 d-lg-none header-mobile-actions">
+                <!-- Tombol Unified Modal (Mobile) -->
+                <div class="d-flex align-items-center gap-1 cursor-pointer bg-light px-2 py-1 rounded-pill border shadow-sm" data-bs-toggle="modal" data-bs-target="#regionalSettingsModal" title="Language & Currency">
+                    <i class="bi bi-globe-americas fs-6 text-dark ms-1"></i>
+                    <span class="fw-bold text-dark small me-1" style="font-size: 0.75rem;">
+                        <span id="mobLangText">EN</span> • <span id="mobCurrText">USD</span>
+                    </span>
+                </div>
+                <a href="#" class="text-dark text-decoration-none"><i class="bi bi-person-circle fs-4"></i></a>
+                
+                <!-- Tombol Hamburger (Membuka Offcanvas) -->
+                <button class="btn btn-white bg-white border shadow-sm rounded-3 p-2 d-flex align-items-center justify-content-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" style="width: 42px; height: 42px;">
+                    <div class="hamburger-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+            </div>
+
+            <!-- OFFCANVAS NAVBAR (Menu Utama -> Otomatis jadi Side Menu di Mobile) -->
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                
+                <!-- Header Offcanvas (Hanya muncul saat dibuka di Mobile) -->
+                <div class="offcanvas-header border-bottom">
+                    <h5 class="offcanvas-title fw-bold text-dark d-flex align-items-center gap-2" id="offcanvasNavbarLabel">
+                        <div class="bg-primary text-white rounded-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 30px; height: 30px;">
+                            <i class="bi bi-airplane-engines small"></i>
+                        </div>
+                        TravelMeta
+                    </h5>
+                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Tutup"></button>
+                </div>
+
+                <!-- Body Offcanvas (Daftar Menu Utama) -->
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav mx-auto align-items-lg-center gap-2 gap-xl-3">
+                        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html">Beranda</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="flights.html">Flights</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="hotels.html">Hotel</a></li>
+                        
+                        <!-- Dropdown More Services -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button" data-bs-toggle="dropdown">More Services</a>
+                            <ul class="dropdown-menu shadow-lg rounded-4 p-2 border-0" style="min-width: 200px;">
+                                <li class="nav-item"><a class="dropdown-item rounded-3 py-2 text-dark" href="car-rental.html"><i class="bi bi-car-front text-primary me-2"></i> Car Rental</a></li>
+                                <li class="nav-item"><a class="dropdown-item rounded-3 py-2 text-dark" href="taxi.html"><i class="bi bi-taxi-front text-primary me-2"></i> Taxi</a></li>
+                                <li class="nav-item"><a class="dropdown-item rounded-3 py-2 text-dark" href="bike.html"><i class="bi bi-bicycle text-primary me-2"></i> Bike</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="tours.html">Tour</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark fw-medium" href="visa.html">Visa</a></li>
+                    </ul>
+
+                    <!-- Tombol Action Tambahan (Plan AI & Whatsapp) -->
+                    <div class="d-flex flex-column flex-lg-row align-items-lg-center gap-3 mt-4 mt-lg-0">
+                        <a href="#" class="btn btn-outline-primary rounded-pill px-3 py-2 small fw-semibold d-flex align-items-center justify-content-center gap-2 border-2 text-decoration-none">
+                            <i class="bi bi-robot"></i> Plan with AI
+                        </a>
+                        <a href="https://whatsapp.com" target="_blank" class="btn btn-primary rounded-pill px-4 py-2 small fw-semibold d-flex align-items-center justify-content-center gap-2 text-decoration-none">
+                            <i class="bi bi-whatsapp fs-6"></i> +44-800 123 456
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Info Tambahan Mobile (Bagian Bawah Navbar Khusus Mobile) -->
+        <div class="container d-lg-none mt-2 pt-3 border-top d-flex justify-content-between align-items-center flex-nowrap">
+            <div class="text-secondary small d-flex align-items-start gap-1 flex-grow-1 pe-2">
+                <span class="text-warning fs-6 lh-1" style="margin-top: 1px;">★</span> 
+                <span class="fw-medium text-dark lh-sm" style="font-size: 0.8rem;">
+                    <span class="text-primary fw-bold">4.9 Rated</span> by <strong class="text-dark">10,000+</strong> Travelers.
+                </span>
+            </div>
+            <a href="#" class="text-dark text-decoration-none flex-shrink-0"><i class="bi bi-cart3 fs-4"></i></a>
+        </div>
+    </nav>
+</header>
+
+    <!-- HERO -->
+    <section class="fx-hero">
+        <div class="container">
+            <span class="fx-badge"><i class="bi bi-airplane-fill"></i> Tiket Pesawat Spesial</span>
+            <h1 class="fx-h1">Terbang Lebih Jauh, Bayar Lebih Murah</h1>
+            <p>Bandingkan harga tiket penerbangan dari ratusan maskapai secara instan dan temukan penawaran terbaik untuk perjalanan Anda berikutnya.</p>
+            <ul class="fx-points">
+                <li><i class="bi bi-airplane-engines"></i> Ratusan maskapai</li>
+                <li><i class="bi bi-lightning-charge-fill"></i> Bandingkan secara instan</li>
+                <li><i class="bi bi-patch-check-fill"></i> Penawaran terbaik</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 4. ADVANCED SEARCH BOX WIDGET (Hanya Penerbangan) -->
+    <div class="container search-card scroll-reveal" style="margin-top: -100px;">
+        <div class="card border-0 p-3 p-lg-4 bg-white">
+            <div id="flightSearchTab">
+                
+                <!-- PILIHAN TIPE PENERBANGAN & KELAS KABIN -->
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-3">
+                    <div class="overflow-hidden border border-light rounded-pill p-1 shadow-sm w-100 w-md-auto" style="max-width: 100%;">
+                        <div class="d-flex overflow-x-auto hide-scroll">
+                            <ul class="nav nav-pills gap-1 small flex-nowrap" role="tablist">
+                                <li class="nav-item flex-fill">
+                                    <button class="nav-link active rounded-pill px-3 py-1 text-nowrap w-100 text-center" data-bs-toggle="pill" data-bs-target="#flightMainContent" id="oneWayTabBtn">One-way</button>
+                                </li>
+                                <li class="nav-item flex-fill">
+                                    <button class="nav-link rounded-pill px-3 py-1 text-dark text-nowrap w-100 text-center" data-bs-toggle="pill" data-bs-target="#flightMainContent" id="roundTripTabBtn">Roundtrip</button>
+                                </li>
+                                <li class="nav-item flex-fill">
+                                    <button class="nav-link rounded-pill px-3 py-1 text-dark text-nowrap w-100 text-center" data-bs-toggle="pill" data-bs-target="#multiCity">Multi-city</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Dropdown Kelas Kabin -->
+                    <div class="dropdown align-self-start align-self-md-auto w-100 w-md-auto">
+                        <button class="btn btn-light btn-sm custom-dropdown-toggle rounded-pill px-3 py-2 border text-primary fw-semibold shadow-sm d-flex align-items-center justify-content-between cabin-dropdown-mobile" type="button" data-bs-toggle="dropdown">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="bi bi-star-fill text-warning" style="font-size: 0.75rem;"></i>
+                                <span id="cabinClassDropdownBtn">Economy</span>
+                            </div>
+                            <i class="bi bi-chevron-down arrow-icon text-dark ms-2" style="font-size: 0.8rem; -webkit-text-stroke: 1px;"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-4 p-2 w-100">
+                            <li><a class="dropdown-item cabin-option rounded-3 py-2 text-dark" href="#" data-cabin="Economy">Economy</a></li>
+                            <li><a class="dropdown-item cabin-option rounded-3 py-2 text-dark" href="#" data-cabin="Premium Economy">Premium Economy</a></li>
+                            <li><a class="dropdown-item cabin-option rounded-3 py-2 text-dark" href="#" data-cabin="Business">Business</a></li>
+                            <li><a class="dropdown-item cabin-option rounded-3 py-2 text-dark" href="#" data-cabin="First Class">First Class</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="tab-content">
+                    <!-- KONTAINER UTAMA (ONE-WAY & ROUNDTRIP DIGABUNG) -->
+                    <div class="tab-pane fade show active" id="flightMainContent">
+                        <form id="flightSearch" class="p-0" action="/search">
+                        <div class="row g-2 align-items-center">
+                            
+                            <!-- Origin & Destination (Leaving From & Going To) -->
+                            <div class="col-lg-4 col-md-12 transition-all" id="flightRouteCol">
+                                <div class="search-box-item position-relative py-2 px-3 border rounded-3 bg-white" style="min-height: 58px; display: flex; flex-direction: column; justify-content: center;">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="flex-grow-1 position-relative pe-2">
+                                            <div class="text-muted small mb-1"><i class="bi bi-airplane-engines text-primary me-1"></i> Leaving From</div>
+                                            <input type="text" id="flightOrigin" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Detecting location..." name="origin_iata">
+                                        </div>
+                                        <button class="btn btn-light btn-sm rounded-circle border shadow-sm d-flex align-items-center justify-content-center swap-inputs-btn flex-shrink-0" style="width: 32px; height: 32px;" type="button" title="Tukar">
+                                            <i class="bi bi-arrow-left-right text-secondary"></i>
+                                        </button>
+                                        <div class="flex-grow-1 position-relative ps-3 border-start">
+                                            <div class="text-muted small mb-1"><i class="bi bi-airplane-fill text-primary me-1"></i> Going To</div>
+                                            <input type="text" id="flightDest" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Destination" name="destination_iata">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Departure Date -->
+                            <div class="col-lg-4 col-md-12" id="flightDepCol">
+                                <div class="search-box-item py-2 px-3 border rounded-3 bg-white" style="min-height: 58px; display: flex; flex-direction: column; justify-content: center;">
+                                    <div class="text-muted small mb-1"><i class="bi bi-calendar text-primary me-1"></i> Departure</div>
+                                    <input type="text" id="flightDepDate" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Pilih Tanggal" name="depart_date">
+                                </div>
+                            </div>
+
+                            <!-- Return Date (Hilang-timbul otomatis dengan efek transisi) -->
+                            <div class="col-lg-2 col-md-6 d-none" id="flightReturnCol">
+                                <div class="search-box-item py-2 px-3 border rounded-3 bg-white h-100" style="min-height: 58px; display: flex; flex-direction: column; justify-content: center;">
+                                    <div class="text-muted small mb-1"><i class="bi bi-calendar-check text-primary me-1"></i> Return</div>
+                                    <input type="text" id="flightRetDate" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Kembali" name="return_date">
+                                </div>
+                            </div>
+
+                            <!-- Travelers Dropdown -->
+                            <div class="col-lg-2 col-md-12 transition-all" id="flightTravelersCol">
+                                <div class="dropdown w-100">
+                                    <div class="search-box-item cursor-pointer py-2 px-3 border rounded-3 bg-white" style="min-height: 58px; display: flex; flex-direction: column; justify-content: center;" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                        <div class="text-muted small mb-1"><i class="bi bi-person text-primary me-1"></i> Travelers</div>
+                                        <div class="fw-bold small text-dark travelers-summary-text">1 Adult, 0 Child</div>
+                                    </div>
+                                    <div class="dropdown-menu p-3 shadow-lg border-0 rounded-4 w-100" style="min-width: 280px;">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="small">Dewasa (12+)</span>
+                                            <div class="input-group input-group-sm w-50">
+                                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightAdult">-</button>
+                                                <input type="text" id="flightAdult" class="form-control text-center fw-bold bg-white" value="1" readonly name="adults">
+                                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightAdult">+</button>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="small">Anak (2-11)</span>
+                                            <div class="input-group input-group-sm w-50">
+                                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightChild">-</button>
+                                                <input type="text" id="flightChild" class="form-control text-center fw-bold bg-white" value="0" readonly name="children">
+                                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightChild">+</button>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <span class="small">Bayi (&lt;2)</span>
+                                            <div class="input-group input-group-sm w-50">
+                                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="flightInfant">-</button>
+                                                <input type="text" id="flightInfant" class="form-control text-center fw-bold bg-white" value="0" readonly name="infants">
+                                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="flightInfant">+</button>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tombol Search (Tinggi diselaraskan) -->
+                            <div class="col-lg-2 col-md-12">
+                                <button class="btn btn-primary w-100 rounded-3 fw-bold shadow-sm search-action-btn d-flex align-items-center justify-content-center" style="height: 58px;">Search</button>
+                            </div>
+
+                        </div>
+                        </form>
+                    </div>
+                    <!-- FLIGHT MULTI CITY -->
+<div class="tab-pane fade" id="multiCity">
+    <form id="flightSearch" class="p-0" action="/search">
+    
+        <!-- KONTAINER BARIS PENERBANGAN MULTI-CITY -->
+        <div id="multiCityContainer">
+            <!-- Baris Penerbangan 1 -->
+            <div class="row g-2 mb-2 multicity-row align-items-center">
+                <div class="col-lg-6 col-md-12">
+                    <div class="search-box-item py-2 px-3 border rounded-3 bg-white" style="min-height: 58px; display: flex; flex-direction: column; justify-content: center;">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center flex-grow-1 position-relative pe-2">
+                                <i class="bi bi-airplane-engines text-primary me-2"></i>
+                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Penerbangan 1: Dari">
+                            </div>
+                            <div class="d-flex align-items-center flex-grow-1 position-relative ps-2 border-start">
+                                <i class="bi bi-airplane-fill text-primary me-2"></i>
+                                <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold autocomplete-input shadow-none bg-transparent" placeholder="Penerbangan 1: Ke">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="search-box-item py-2 px-3 border rounded-3 bg-white" style="min-height: 58px; display: flex; flex-direction: column; justify-content: center;">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-calendar text-primary me-2"></i>
+                            <input type="text" class="form-control form-control-sm border-0 p-0 fw-bold lazy-date shadow-none bg-transparent" placeholder="Tanggal">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <button class="btn btn-outline-danger btn-sm w-100 remove-row rounded-3 d-flex align-items-center justify-content-center" style="height: 58px;" disabled><i class="bi bi-trash3"></i> Hapus</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TOMBOL TAMBAH PENERBANGAN, PENUMPANG & CARI -->
+        <div class="mt-3 d-flex justify-content-between align-items-center flex-wrap gap-3">
+            
+            <!-- Bagian Kiri: Tombol Tambah Rute -->
+            <div>
+                <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3 py-2 fw-semibold" id="addFlightBtn">
+                    <i class="bi bi-plus me-1"></i> Tambah Rute
+                </button>
+            </div>
+            
+            <!-- Bagian Kanan: Dropdown Penumpang & Tombol Cari -->
+            <div class="d-flex align-items-center flex-wrap gap-2">
+                
+                <!-- Dropdown Penumpang Multi-City -->
+                <div class="dropdown">
+                    <div class="search-box-item cursor-pointer py-2 px-4 border rounded-pill bg-white shadow-sm d-flex flex-column justify-content-center" style="height: 58px; min-width: 210px;" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                        <div class="text-muted mb-0" style="font-size: 0.75rem;"><i class="bi bi-people text-primary me-1"></i> Multi-city Travelers</div>
+                        <div class="fw-bold small text-dark mc-travelers-summary">1 Adult, 0 Child</div>
+                    </div>
+                    <!-- Ditambahkan dropdown-menu-end agar rapi di sisi kanan -->
+                    <div class="dropdown-menu dropdown-menu-end p-3 shadow-lg border-0 rounded-4 mt-2" style="min-width: 280px;">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="small">Dewasa (12+)</span>
+                            <div class="input-group input-group-sm w-50">
+                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcAdult">-</button>
+                                <input type="text" id="mcAdult" class="form-control text-center fw-bold mc-input bg-white" value="1" readonly>
+                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcAdult">+</button>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="small">Anak (2-11)</span>
+                            <div class="input-group input-group-sm w-50">
+                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcChild">-</button>
+                                <input type="text" id="mcChild" class="form-control text-center fw-bold mc-input bg-white" value="0" readonly>
+                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcChild">+</button>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="small">Bayi (&lt;2)</span>
+                            <div class="input-group input-group-sm w-50">
+                                <button class="btn btn-outline-secondary decrease-count" type="button" data-target="mcInfant">-</button>
+                                <input type="text" id="mcInfant" class="form-control text-center fw-bold mc-input bg-white" value="0" readonly>
+                                <button class="btn btn-outline-secondary increase-count" type="button" data-target="mcInfant">+</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-sm w-100 apply-btn py-2 rounded-pill fw-bold" type="button">Terapkan</button>
+                    </div>
+                </div>
+
+                <!-- Tombol Cari Penerbangan -->
+                <button class="btn btn-primary px-4 py-2 fw-bold search-action-btn rounded-pill shadow-sm" style="height: 58px;">
+                    Cari Penerbangan
+                </button>
+                
+            </div>
+        </div>
+    </form>
+</div>
+                </div>
+
+                <div class="mt-3 text-muted small">
+                    Save Up to <span class="text-primary fw-bold">$390</span> on Schengen Visa – 14 days delivery!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- KEUNGGULAN -->
+    <section class="container pt-4 mt-3"><div class="row g-3"><div class="col-lg-3 col-md-6"><div class="fx-feat"><span class="fx-ico"><i class="bi bi-tag"></i></span><div><h3 class="fx-h3">Jaminan harga terbaik</h3><p>Harga kompetitif tanpa biaya tersembunyi.</p></div></div></div><div class="col-lg-3 col-md-6"><div class="fx-feat"><span class="fx-ico"><i class="bi bi-shield-lock"></i></span><div><h3 class="fx-h3">Pemesanan aman & mudah</h3><p>Konfirmasi perjalanan cepat lewat sistem yang aman.</p></div></div></div><div class="col-lg-3 col-md-6"><div class="fx-feat"><span class="fx-ico"><i class="bi bi-sliders"></i></span><div><h3 class="fx-h3">Paket fleksibel</h3><p>Atur perjalanan sesuai minat dan kebutuhan Anda.</p></div></div></div><div class="col-lg-3 col-md-6"><div class="fx-feat"><span class="fx-ico"><i class="bi bi-headset"></i></span><div><h3 class="fx-h3">Dukungan 24/7</h3><p>Tim ahli kami siap membantu kapan saja.</p></div></div></div></div></section>
+
+    <!-- PROMO -->
+    <section id="offers" class="container fx-sec pb-0"><div class="fx-head"><div><h2 class="fx-h2">Discounts &amp; Offers</h2><p>Manfaatkan kupon dan paket promo eksklusif untuk destinasi impian Anda.</p></div><a href="#" class="fx-link">Lihat Semua Promo</a></div><div class="row g-4"><div class="col-lg-3 col-md-6"><div class="fx-promo" style="--a:#2563eb;--s:#eff6ff"><div class="fx-promo-top"><span class="fx-chip">International</span><div class="fx-val"><b>25%</b><small>off</small></div><h3 class="fx-h3">Travel Around the World</h3><p>Diskon tiket penerbangan ke destinasi internasional pilihan.</p></div><div class="fx-code"><div><span>Kode promo</span><strong>FLY25</strong></div><button type="button" class="fx-copy" data-copy="FLY25"><i class="bi bi-copy"></i> Salin</button></div></div></div><div class="col-lg-3 col-md-6"><div class="fx-promo" style="--a:#4f46e5;--s:#eef2ff"><div class="fx-promo-top"><span class="fx-chip">One-way</span><div class="fx-val"><b>$199</b><small>mulai /only</small></div><h3 class="fx-h3">Breath Adventure Awaits</h3><p>Tiket sekali jalan untuk petualangan Anda berikutnya.</p></div><div class="fx-code"><div><span>Kode promo</span><strong>ONEWAY199</strong></div><button type="button" class="fx-copy" data-copy="ONEWAY199"><i class="bi bi-copy"></i> Salin</button></div></div></div><div class="col-lg-3 col-md-6"><div class="fx-promo" style="--a:#0891b2;--s:#ecfeff"><div class="fx-promo-top"><span class="fx-chip">Round-trip</span><div class="fx-val"><b>20%</b><small>up to off</small></div><h3 class="fx-h3">Round-Trip Sale</h3><p>Hemat lebih banyak untuk tiket pulang-pergi.</p></div><div class="fx-code"><div><span>Kode promo</span><strong>RT20</strong></div><button type="button" class="fx-copy" data-copy="RT20"><i class="bi bi-copy"></i> Salin</button></div></div></div><div class="col-lg-3 col-md-6"><div class="fx-promo" style="--a:#d97706;--s:#fffbeb"><div class="fx-promo-top"><span class="fx-chip">Vacation mode</span><div class="fx-val"><b>$199</b><small>mulai /only</small></div><h3 class="fx-h3">Summer Vacation</h3><p>Terbang liburan musim panas dengan harga spesial.</p></div><div class="fx-code"><div><span>Kode promo</span><strong>SUMMER199</strong></div><button type="button" class="fx-copy" data-copy="SUMMER199"><i class="bi bi-copy"></i> Salin</button></div></div></div></div></section>
+
+    <!-- DEALS (dirender flights.js) -->
+    <section id="best-deals" class="container fl-deals my-4 scroll-reveal">
+        <div class="fl-deals-head">
+            <div class="fl-deals-heading">
+                <span class="fl-deals-icon"><i class="bi bi-arrow-left-right"></i></span>
+                <div>
+                    <h2 class="fl-deals-title">Best Deals Rute Penerbangan Round-Trip</h2>
+                    <p class="fl-deals-sub">Pilihan rute pulang-pergi terhemat berdasarkan kota terpopuler per benua.</p>
+                </div>
+            </div>
+            <div class="fl-deals-tabs overflow-x-auto hide-scroll">
+                <ul class="nav nav-pills flex-nowrap" id="flightDealsTab" role="tablist">
+                        <li class="nav-item"><button class="nav-link active text-nowrap" data-bs-toggle="pill" data-bs-target="#dealAmerica" data-continent="dealAmerica">Amerika</button></li>
+                        <li class="nav-item"><button class="nav-link text-nowrap" data-bs-toggle="pill" data-bs-target="#dealEurope" data-continent="dealEurope">Eropa</button></li>
+                        <li class="nav-item"><button class="nav-link text-nowrap" data-bs-toggle="pill" data-bs-target="#dealAsia" data-continent="dealAsia">Asia</button></li>
+                        <li class="nav-item"><button class="nav-link text-nowrap" data-bs-toggle="pill" data-bs-target="#dealAfrica" data-continent="dealAfrica">Afrika</button></li>
+                        <li class="nav-item"><button class="nav-link text-nowrap" data-bs-toggle="pill" data-bs-target="#dealMiddleEast" data-continent="dealMiddleEast">Middle East</button></li>
+                </ul>
+            </div>
+        </div>
+        <div class="tab-content" id="flightDealsContent">
+            <div class="tab-pane fade show active" id="dealAmerica"><div class="row g-4 flight-results-container" data-continent="dealAmerica"></div></div>
+            <div class="tab-pane fade" id="dealEurope"><div class="row g-4 flight-results-container" data-continent="dealEurope"></div></div>
+            <div class="tab-pane fade" id="dealAsia"><div class="row g-4 flight-results-container" data-continent="dealAsia"></div></div>
+            <div class="tab-pane fade" id="dealAfrica"><div class="row g-4 flight-results-container" data-continent="dealAfrica"></div></div>
+            <div class="tab-pane fade" id="dealMiddleEast"><div class="row g-4 flight-results-container" data-continent="dealMiddleEast"></div></div>
+        </div>
+    </section>
+
+    <!-- 6.5. SECTION: BEST DEALS FLIGHT ROUTES (ONE-WAY) -->
+    <section id="best-deals-oneway" class="container fl-deals fl-deals-oneway my-4 scroll-reveal">
+        <div class="fl-deals-head">
+            <div class="fl-deals-heading">
+                <span class="fl-deals-icon"><i class="bi bi-arrow-right"></i></span>
+                <div>
+                    <h2 class="fl-deals-title">Best Deals Rute Penerbangan One-Way</h2>
+                    <p class="fl-deals-sub">Pilihan tiket sekali jalan termurah berdasarkan kota terpopuler per benua.</p>
+                </div>
+            </div>
+            <div class="fl-deals-tabs overflow-x-auto hide-scroll">
+                <ul class="nav nav-pills flex-nowrap" id="flightOneWayTab" role="tablist">
+                        <li class="nav-item"><button class="nav-link active text-nowrap" data-bs-toggle="pill" data-bs-target="#owDealAmerica" data-continent="dealAmerica">Amerika</button></li>
+                        <li class="nav-item"><button class="nav-link text-nowrap" data-bs-toggle="pill" data-bs-target="#owDealEurope" data-continent="dealEurope">Eropa</button></li>
+                        <li class="nav-item"><button class="nav-link text-nowrap" data-bs-toggle="pill" data-bs-target="#owDealAsia" data-continent="dealAsia">Asia</button></li>
+                        <li class="nav-item"><button class="nav-link text-nowrap" data-bs-toggle="pill" data-bs-target="#owDealAfrica" data-continent="dealAfrica">Afrika</button></li>
+                        <li class="nav-item"><button class="nav-link text-nowrap" data-bs-toggle="pill" data-bs-target="#owDealMiddleEast" data-continent="dealMiddleEast">Middle East</button></li>
+                </ul>
+            </div>
+        </div>
+        <div class="tab-content" id="flightOneWayContent">
+            <div class="tab-pane fade show active" id="owDealAmerica"><div class="row g-4 flight-results-container" data-continent="dealAmerica"></div></div>
+            <div class="tab-pane fade" id="owDealEurope"><div class="row g-4 flight-results-container" data-continent="dealEurope"></div></div>
+            <div class="tab-pane fade" id="owDealAsia"><div class="row g-4 flight-results-container" data-continent="dealAsia"></div></div>
+            <div class="tab-pane fade" id="owDealAfrica"><div class="row g-4 flight-results-container" data-continent="dealAfrica"></div></div>
+            <div class="tab-pane fade" id="owDealMiddleEast"><div class="row g-4 flight-results-container" data-continent="dealMiddleEast"></div></div>
+        </div>
+    </section>
+
+    <!-- TENTANG -->
+    <section class="container fx-sec">
+        <div class="fx-about">
+            <div>
+                <span class="fx-eyebrow">We're #01 travel agency in globally</span>
+                <h2 class="fx-h2">Explore the World With Confidence.</h2>
+                <p>Travel is more than visiting places - it's about discovering cultures, creating memories, and experiencing the world in a way that stays with you forever. Our travel agency is dedicated to designing seamless and inspiring journeys for explorers who want more than just a typical vacation.</p>
+                <p>Our team of passionate travel experts works closely with each traveler to understand their interests, preferences, and expectations. This allows us to create journeys that feel personal, well-organized, and truly extraordinary.</p>
+                <div class="fx-stats">
+                    <div class="fx-stat"><b>5,000,000</b><span>Trusted by 5M Users</span></div>
+                    <div class="fx-stat"><b>2025</b><span>Tripadvisor Traveler &middot; Best City Tour Award</span></div>
+                </div>
+                <a href="about.html" class="fx-link">Discover More</a>
+            </div>
+            <div class="fx-collage">
+                <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=700&q=80" alt="Traveler" loading="lazy" width="700" height="434">
+                <img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=400&q=80" alt="World Landmarks" loading="lazy" width="400" height="210">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" alt="Beach Resort" loading="lazy" width="400" height="210">
+            </div>
+        </div>
+    </section>
+
+    <!-- ULASAN (interaktif) -->
+    <section id="reviews" class="fx-band"><div class="container fx-sec">
+        <div class="fx-head"><div><h2 class="fx-h2">What&rsquo;s the People Say</h2><p>Customer experience at TravelMeta</p></div>
+            <div class="fx-score"><b>4.8</b><div><div class="fx-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><span>rated by 10,000+ real travelers</span></div></div></div>
+        <div class="fx-rv" data-rv>
+            <div class="fx-rv-stage">
+                <div aria-live="polite"><article class="fx-rv-slide" role="tabpanel" id="rv-p0" aria-labelledby="rv-t0"><figure class="fx-rv-photo"><img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&crop=faces&w=720&h=720&q=80" alt="Anderson" loading="lazy" width="720" height="720" draggable=false><figcaption><i class="bi bi-star-fill"></i> 5.0</figcaption></figure><div class="fx-rv-body"><span class="fx-rv-q"><i class="bi bi-quote" aria-hidden="true"></i></span><h3 class="fx-h3 fx-rv-title">Perfect Itinerary!</h3><p class="fx-rv-text">Our trip to Vietnam was perfectly organized from start to finish. Highly recommended for international travel.</p><div class="fx-rv-who"><strong>Anderson</strong><span>TravelMeta Traveler</span><div class="fx-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div></div></div></article><article class="fx-rv-slide" role="tabpanel" id="rv-p1" aria-labelledby="rv-t1" hidden><figure class="fx-rv-photo"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&crop=faces&w=720&h=720&q=80" alt="James Bonde" loading="lazy" width="720" height="720" draggable=false><figcaption><i class="bi bi-star-fill"></i> 5.0</figcaption></figure><div class="fx-rv-body"><span class="fx-rv-q"><i class="bi bi-quote" aria-hidden="true"></i></span><h3 class="fx-h3 fx-rv-title">Great Visitors Venue!</h3><p class="fx-rv-text">Thank you so much for your work on our honeymoon. We really did have such a great time.</p><div class="fx-rv-who"><strong>James Bonde</strong><span>TravelMeta Traveler</span><div class="fx-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div></div></div></article><article class="fx-rv-slide" role="tabpanel" id="rv-p2" aria-labelledby="rv-t2" hidden><figure class="fx-rv-photo"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&crop=faces&w=720&h=720&q=80" alt="Amber Lashleye" loading="lazy" width="720" height="720" draggable=false><figcaption><i class="bi bi-star-fill"></i> 5.0</figcaption></figure><div class="fx-rv-body"><span class="fx-rv-q"><i class="bi bi-quote" aria-hidden="true"></i></span><h3 class="fx-h3 fx-rv-title">Fantastic Service!</h3><p class="fx-rv-text">We have returned from Greece and want to let you know how terrific the trip was! Everything was great.</p><div class="fx-rv-who"><strong>Amber Lashleye</strong><span>TravelMeta Traveler</span><div class="fx-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div></div></div></article></div>
+                <div class="fx-rv-nav"><span class="fx-rv-count">1 / 3</span><div><button type="button" class="fx-rv-btn" data-rv-prev aria-label="Ulasan sebelumnya"><i class="bi bi-chevron-left"></i></button><button type="button" class="fx-rv-btn" data-rv-next aria-label="Ulasan berikutnya"><i class="bi bi-chevron-right"></i></button></div></div>
+            </div>
+            <div class="fx-rv-tabs" role="tablist" aria-label="Pilih ulasan"><button type="button" role="tab" id="rv-t0" aria-controls="rv-p0" aria-selected="true" tabindex="0"><img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&crop=faces&w=80&h=80&q=80" alt="" loading="lazy" width="80" height="80"><span><strong>Anderson</strong><small>Perfect Itinerary!</small></span></button><button type="button" role="tab" id="rv-t1" aria-controls="rv-p1" aria-selected="false" tabindex="-1"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&crop=faces&w=80&h=80&q=80" alt="" loading="lazy" width="80" height="80"><span><strong>James Bonde</strong><small>Great Visitors Venue!</small></span></button><button type="button" role="tab" id="rv-t2" aria-controls="rv-p2" aria-selected="false" tabindex="-1"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&crop=faces&w=80&h=80&q=80" alt="" loading="lazy" width="80" height="80"><span><strong>Amber Lashleye</strong><small>Fantastic Service!</small></span></button></div>
+        </div>
+    </div></section>
+
+    <!-- 11. SECTION: DOWNLOAD MOBILE APP -->
+    <section class="container py-5 my-4 scroll-reveal">
+        <div class="app-promo position-relative overflow-hidden">
+            <div class="row align-items-center g-4 position-relative" style="z-index: 2;">
+                <div class="col-lg-7">
+                    <span class="app-kicker mb-3"><i class="bi bi-phone-fill"></i> Aplikasi Mobile Terbaik</span>
+                    <h2 class="app-title mb-3">Download Mobile App</h2>
+                    <p class="app-lead mb-4">
+                        Our community users and app download almost <strong>2M+</strong> in world-wide.
+                    </p>
+
+                    <ul class="app-features list-unstyled mb-4">
+                        <li><span class="app-feature-icon"><i class="bi bi-lightning-charge-fill"></i></span> Pesan tiket &amp; hotel hanya dalam hitungan detik</li>
+                        <li><span class="app-feature-icon"><i class="bi bi-bell-fill"></i></span> Notifikasi harga turun &amp; promo eksklusif</li>
+                        <li><span class="app-feature-icon"><i class="bi bi-shield-check"></i></span> Pembayaran aman &amp; e-ticket selalu di genggaman</li>
+                    </ul>
+
+                    <div class="d-flex align-items-center gap-3 mb-4 flex-wrap">
+                        <a href="#" class="app-store-btn d-inline-block text-decoration-none">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" width="135" height="46" class="lazyload lazy-effect" alt="App Store" fetchpriority="low">
+                        </a>
+                        <a href="#" class="app-store-btn d-inline-block text-decoration-none">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" width="155" height="46" class="lazyload lazy-effect" alt="Google Play" fetchpriority="low">
+                        </a>
+                    </div>
+
+                    <div class="app-stats d-flex align-items-center flex-wrap gap-3 gap-sm-4">
+                        <div>
+                            <div class="app-stat-value"><i class="bi bi-star-fill text-warning me-1"></i>4.9</div>
+                            <div class="app-stat-label">12,300+ verified review TravelMeta app</div>
+                        </div>
+                        <span class="app-stat-divider d-none d-sm-block"></span>
+                        <div>
+                            <div class="app-stat-value">2M+</div>
+                            <div class="app-stat-label">Pengguna aktif</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 d-none d-lg-block">
+                    <div class="app-phone-stage position-relative">
+                        <div class="app-phone">
+                            <div class="app-phone-notch"></div>
+                            <div class="app-screen">
+                                <div class="app-screen-head">
+                                    <div>
+                                        <small>Halo, Traveler</small>
+                                        <strong>Mau ke mana hari ini?</strong>
+                                    </div>
+                                    <span class="app-screen-avatar"><i class="bi bi-person-fill"></i></span>
+                                </div>
+                                <div class="app-screen-search"><i class="bi bi-search"></i> Cari destinasi, hotel, tiket</div>
+                                <div class="app-screen-card">
+                                    <span class="app-screen-tag">Round-Trip</span>
+                                    <div class="app-screen-route">JKT <i class="bi bi-airplane-engines"></i> DPS</div>
+                                    <div class="app-screen-price">Mulai dari <b>$89</b></div>
+                                </div>
+                                <div class="app-screen-row">
+                                    <div class="app-screen-mini"><i class="bi bi-building"></i><span>Hotel</span></div>
+                                    <div class="app-screen-mini"><i class="bi bi-geo-alt"></i><span>Tur</span></div>
+                                    <div class="app-screen-mini"><i class="bi bi-car-front"></i><span>Mobil</span></div>
+                                </div>
+                                <div class="app-screen-nav">
+                                    <i class="bi bi-house-door-fill active"></i><i class="bi bi-heart"></i><i class="bi bi-ticket-perforated"></i><i class="bi bi-person"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="app-float app-float-top">
+                            <span class="text-warning"><i class="bi bi-star-fill"></i> 4.9</span> Average rating
+                        </div>
+                        <div class="app-float app-float-bottom">
+                            <span class="app-float-icon"><i class="bi bi-people-fill"></i></span> 2M active users.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ARTIKEL -->
+    <section class="container fx-sec"><div class="fx-head"><div><h2 class="fx-h2">Travel Tips &amp; Inspirations</h2><p>Edukasi &amp; wawasan untuk perjalanan Anda berikutnya.</p></div><a href="#" class="fx-link">View All Inspiration</a></div><div class="row g-4"><div class="col-lg-4 col-md-6"><a href="#" class="fx-post"><img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80" alt="Maldives Beach" loading="lazy" width="600" height="400"><div class="fx-post-b"><small>Maldives Beach</small><h3 class="fx-h3">Best Time to Visit the Maldives for a Perfect Beach Escape.</h3><p>The Maldives is a dream destination known for its crystal-clear lagoons and luxury overwater villas.</p><em>Read More</em></div></a></div><div class="col-lg-4 col-md-6"><a href="#" class="fx-post"><img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=600&q=80" alt="South Africa" loading="lazy" width="600" height="400"><div class="fx-post-b"><small>South Africa</small><h3 class="fx-h3">What to Expect on Your First Wildlife Adventure Africa Safari.</h3><p>An African safari is one of the most exciting travel experiences in the world. Visitors can witness the Big Five wildlife.</p><em>Read More</em></div></a></div><div class="col-lg-4 col-md-6"><a href="#" class="fx-post"><img src="https://images.unsplash.com/photo-1527668752550-956627f04c6d?auto=format&fit=crop&w=600&q=80" alt="Switzerland" loading="lazy" width="600" height="400"><div class="fx-post-b"><small>Switzerland</small><h3 class="fx-h3">Top Places to Visit in Switzerland for Nature Lovers.</h3><p>Switzerland is famous for its snow-capped Alps, charming villages, and scenic train journeys.</p><em>Read More</em></div></a></div></div></section>
+
+    <!-- NEWSLETTER -->
+    <section class="container pb-5">
+        <div class="fx-news">
+            <div class="row align-items-center g-4 g-lg-5">
+                <div class="col-lg-6">
+                    <span class="fx-news-chip"><i class="bi bi-ticket-perforated-fill"></i> Diskon 10% semua paket</span>
+                    <h2 class="fx-h2">Subscribe our newsletter to discount 10% all package.</h2>
+                </div>
+                <div class="col-lg-6">
+                    <form id="subscribeForm" class="fx-news-form">
+                        <input type="email" placeholder="Enter your email address" aria-label="Email address" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <small><i class="bi bi-shield-check me-1"></i>Get practical strategies and business insights to help you grow with confidence.</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 14. FOOTER -->
+    <footer id="footer" class="modern-footer pt-5 pb-4 scroll-reveal">
+        <div class="container py-4">
+            <div class="row g-5 mb-5">
+                <div class="col-lg-3 col-md-6">
+                    <a class="fw-bold fs-4 text-white d-flex align-items-center gap-2 mb-3 text-decoration-none" href="#">
+                        <span class="text-white">TravelMeta</span>
+                    </a>
+                    <h6 class="mb-2">TravelMeta Travel Agency</h6>
+                    <p class="small mb-4 lh-sm">
+                        Skyline Plaza, 5th Floor, 123 Main Street<br>
+                        Los Angeles, CA 90001, USA
+                    </p>
+                    <div class="d-flex gap-2 mb-4">
+                        <a href="#" class="social-btn" title="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-btn" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="social-btn" title="YouTube"><i class="bi bi-youtube"></i></a>
+                        <a href="#" class="social-btn" title="Instagram"><i class="bi bi-instagram"></i></a>
+                    </div>
+                    <div class="d-flex gap-3 align-items-center">
+                        <div class="footer-badge-green">
+                            <span style="font-size: 0.45rem; line-height: 1.1;">Tripadvisor</span>
+                            <span style="font-size: 0.42rem; line-height: 1;">Travelers' Choice Award</span>
+                            <strong style="font-size: 0.65rem;">2026</strong>
+                        </div>
+                        <div class="footer-badge-red">
+                            <span style="font-size: 0.45rem; line-height: 1.1;">Condé Nast</span>
+                            <span style="font-size: 0.42rem; font-weight: 800; letter-spacing: 0.5px;">Traveler</span>
+                            <span style="font-size: 0.38rem; line-height: 1;">BEST CITY TOUR AWARD</span>
+                            <strong style="font-size: 0.65rem;">2025</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5>Explore</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2 m-0">
+                        <li><a href="#about" class="footer-link">About TravelMeta</a></li>
+                        <li><a href="#" class="footer-link">Health & Safety Measure</a></li>
+                        <li><a href="#" class="footer-link">Customize Tour</a></li>
+                        <li><a href="#offers" class="footer-link">Deals & Discount</a></li>
+                        <li><a href="#" class="footer-link">Last Minutes Deal</a></li>
+                        <li><a href="#" class="footer-link">Travel Inspirations</a></li>
+                        <li><a href="#footer" class="footer-link">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5>Useful</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2 m-0">
+                        <li><a href="#" class="footer-link">Flight Booking</a></li>
+                        <li><a href="#" class="footer-link">Visa Processing</a></li>
+                        <li><a href="#" class="footer-link">Hotel Booking</a></li>
+                        <li><a href="#" class="footer-link">Transport</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5>Helpline</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2 m-0">
+                        <li><a href="#" class="footer-link">Help & Support</a></li>
+                        <li><a href="#" class="footer-link">FAQs</a></li>
+                        <li><a href="#" class="footer-link">Terms & Condition</a></li>
+                        <li><a href="#" class="footer-link">Affiliates</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-white text-dark rounded-4 p-3 px-4 mb-4 d-flex align-items-center justify-content-between flex-wrap gap-3 shadow-lg">
+                <span class="fw-bold fs-6 text-dark" style="letter-spacing: 0.5px;">We Accept:-</span>
+                <div class="d-flex align-items-center gap-3 fs-4 flex-wrap text-secondary">
+                    <i class="bi bi-credit-card-2-front text-dark" title="Mastercard"></i>
+                    <i class="bi bi-paypal text-primary" title="PayPal"></i>
+                    <i class="bi bi-credit-card text-dark" title="Visa"></i>
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">G Pay</span>
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">stripe</span>
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">paysafe</span>
+                    <i class="bi bi-apple text-dark" title="Apple Pay"></i>
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">adyen</span>
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold small">elavon</span>
+                </div>
+            </div>
+
+            <div class="small pt-3 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2" style="color: #9ca3af !important;">
+                <p class="mb-0">&copy; 2026 TravelMeta. All Rights Reserved.</p>
+                <p class="mb-0" style="font-size: 0.75rem; max-width: 600px; line-height: 1.6; color: #9ca3af !important;">
+                    All travel services are provided in accordance with applicable international travel regulations, airline policies, visa requirements, and local tourism laws, ensuring transparency, reliability, and compliance throughout your journey.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button id="backToTopBtn" class="btn btn-primary rounded-circle shadow-lg position-fixed bottom-0 end-0 m-4 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;" aria-label="Back to Top">
+        <i class="bi bi-arrow-up fs-5 text-white"></i>
+    </button>
+
+    <!-- UNIFIED REGIONAL SETTINGS MODAL (Dengan Sistem Tab) -->
+<div class="modal fade" id="regionalSettingsModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg mx-2 mx-sm-auto">
+        <div class="modal-content rounded-4 border-0 shadow-lg" style="max-height: 85vh;">
+            
+            <div class="modal-header border-0 py-3 pb-0 px-4 mt-2">
+                <h5 class="modal-title fw-bold text-dark"><i class="bi bi-sliders text-primary me-2"></i>Pengaturan Regional</h5>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+            </div>
+            
+            <!-- Isi Modal -->
+            <div class="modal-body p-4 pt-3">
+                
+                <!-- Nav Pills (Tab Pemisah Mata Uang & Bahasa) -->
+                <ul class="nav nav-pills nav-fill mb-4 p-1 bg-light rounded-pill border shadow-sm" id="regionalTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active rounded-pill fw-bold py-2" id="currency-tab" data-bs-toggle="pill" data-bs-target="#currency-tab-pane" type="button" role="tab">
+                            <i class="bi bi-coin text-warning me-1"></i> Mata Uang
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link rounded-pill fw-bold py-2" id="lang-tab" data-bs-toggle="pill" data-bs-target="#lang-tab-pane" type="button" role="tab">
+                            <i class="bi bi-globe text-info me-1"></i> Bahasa
+                        </button>
+                    </li>
+                </ul>
+
+                <!-- Konten Tab -->
+                <div class="tab-content" id="regionalTabsContent">
+                    
+                    <!-- TAB 1: MATA UANG -->
+                    <div class="tab-pane fade show active" id="currency-tab-pane" role="tabpanel" tabindex="0">
+                        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-2">
+                            <div class="col"><button class="btn btn-outline-primary active border-2 rounded-3 text-center currency-option w-100 fw-semibold py-2">USD ($)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">IDR (Rp)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">EUR (€)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">GBP (£)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">SGD (S$)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">JPY (¥)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">AUD (A$)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">CAD (C$)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center currency-option w-100 fw-semibold py-2">CNY (¥)</button></div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: BAHASA -->
+                    <div class="tab-pane fade" id="lang-tab-pane" role="tabpanel" tabindex="0">
+                        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-2">
+                            <div class="col"><button class="btn btn-outline-primary active border-2 rounded-3 text-center lang-option w-100 fw-semibold py-2">English (EN)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">Indonesia (ID)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">Español (ES)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">Français (FR)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">Deutsch (DE)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">日本語 (JA)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">中文 (ZH)</button></div>
+                            <div class="col"><button class="btn btn-light border rounded-3 text-center lang-option w-100 fw-semibold py-2">العربية (AR)</button></div>
+                        </div>
+                    </div>
+
+                </div>
+                
+            </div>
+
+            <!-- Tombol Aksi di Bawah -->
+            <div class="modal-footer border-0 d-flex justify-content-center pb-4 pt-1">
+                <button type="button" class="btn btn-primary rounded-pill px-5 py-2 fw-bold shadow-sm" data-bs-dismiss="modal">Terapkan Pengaturan</button>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+    <!-- Contoh Mobile Bottom Navigation yang sudah diberi Class ID -->
+    <nav class="mobile-bottom-nav d-lg-none d-flex justify-content-between align-items-center py-2 position-fixed bottom-0 w-100 shadow-lg" style="z-index: 1075;">
+    
+    <a href="index.html" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-index">
+        <i class="bi bi-house-door nav-icon"></i>
+        <span class="nav-text">Home</span>
+    </a>
+
+    <a href="flights.html" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-flights">
+        <i class="bi bi-airplane nav-icon"></i>
+        <span class="nav-text">Flight</span>
+    </a>
+
+    <a href="hotels.html" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-hotels">
+        <i class="bi bi-building nav-icon"></i>
+        <span class="nav-text">Hotel</span>
+    </a>
+
+    <a href="#" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-tours">
+        <i class="bi bi-ticket-perforated nav-icon"></i>
+        <span class="nav-text">Tour</span>
+    </a>
+
+    <a href="#" class="text-decoration-none d-flex flex-column align-items-center nav-item nav-bottom-visa">
+        <i class="bi bi-passport nav-icon"></i>
+        <span class="nav-text">Visa</span>
+    </a>
+    
+    </nav>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer fetchpriority="low"></script>
+    
+    <!-- Skrip Modular -->
+<script src="./src/js/main.js" defer></script>
+<script src="./src/js/flights.js" defer></script>
+
+<script>
+// Salin kode promo ke clipboard
+document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+        var code = btn.dataset.copy, label = btn.innerHTML;
+        function done() {
+            btn.innerHTML = '<i class="bi bi-check2"></i> Tersalin'; btn.classList.add('is-done');
+            setTimeout(function () { btn.innerHTML = label; btn.classList.remove('is-done'); }, 1800);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(code).then(done, done); }
+        else { var t = document.createElement('textarea'); t.value = code; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); } catch (e) {} t.remove(); done(); }
+    });
+});
+</script>
+
+<script>
+// Penampil ulasan: pilih reviewer, prev/next, swipe, keyboard, auto-rotate (jeda saat hover/fokus/di luar layar)
+(function () {
+    var root = document.querySelector('[data-rv]'); if (!root) return;
+    var tabs = Array.prototype.slice.call(root.querySelectorAll('[role=tab]')), slides = root.querySelectorAll('.fx-rv-slide');
+    var cnt = root.querySelector('.fx-rv-count'), idx = 0, timer = null, hold = false, seen = true;
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function stop() { clearTimeout(timer); root.classList.remove('is-run'); }
+    function run() {
+        stop(); if (reduce || hold || !seen) return;
+        void root.offsetWidth; root.classList.add('is-run');
+        timer = setTimeout(function () { go(idx + 1); }, 6000);
+    }
+    function go(n, focus) {
+        idx = (n + tabs.length) % tabs.length;
+        tabs.forEach(function (t, i) {
+            var on = i === idx; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; slides[i].hidden = !on;
+            if (on && focus) t.focus();
+        });
+        cnt.textContent = (idx + 1) + ' / ' + tabs.length; run();
+    }
+    tabs.forEach(function (t, i) { t.addEventListener('click', function () { go(i); }); });
+    root.querySelector('[data-rv-prev]').addEventListener('click', function () { go(idx - 1); });
+    root.querySelector('[data-rv-next]').addEventListener('click', function () { go(idx + 1); });
+    root.querySelector('[role=tablist]').addEventListener('keydown', function (e) {
+        var k = e.key;
+        if (k === 'ArrowDown' || k === 'ArrowRight') go(idx + 1, true);
+        else if (k === 'ArrowUp' || k === 'ArrowLeft') go(idx - 1, true);
+        else if (k === 'Home') go(0, true); else if (k === 'End') go(tabs.length - 1, true); else return;
+        e.preventDefault();
+    });
+    var x0 = null, stage = root.querySelector('.fx-rv-stage');
+    stage.addEventListener('pointerdown', function (e) { x0 = e.clientX; });
+    stage.addEventListener('pointerup', function (e) {
+        if (x0 !== null && Math.abs(e.clientX - x0) > 50) go(idx + (e.clientX < x0 ? 1 : -1));
+        x0 = null;
+    });
+    root.addEventListener('mouseenter', function () { hold = true; stop(); });
+    root.addEventListener('mouseleave', function () { hold = false; run(); });
+    root.addEventListener('focusin', function () { hold = true; stop(); });
+    root.addEventListener('focusout', function () { hold = false; run(); });
+    if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (en) { seen = en[0].isIntersecting; run(); }, { threshold: .35 }).observe(root);
+    }
+    run();
+})();
+</script>
+</body>
+</html>
