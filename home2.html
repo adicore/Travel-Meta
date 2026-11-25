@@ -24,7 +24,7 @@
         .tw-title { font-weight: 800; letter-spacing: -.025em; color: var(--tw-ink); }
 
         /* Hero */
-        .tw-hero { padding: 64px 0 56px; background: linear-gradient(180deg, #eaf2ff 0%, #f8fafc 100%); }
+        .tw-hero { padding: 64px 0 104px; background: linear-gradient(180deg, #eaf2ff 0%, #f8fafc 100%); }
         .tw-hero h1 { font-size: clamp(2rem, 4.4vw, 3.3rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.1; color: var(--tw-ink); }
         .tw-hero .lead { color: var(--tw-muted); font-size: 1.08rem; max-width: 34em; }
         .tw-optin { background: #fff; border: 1px solid var(--tw-line); border-radius: 20px; padding: 24px; box-shadow: 0 24px 48px -28px rgba(15,23,42,.28); }
@@ -91,7 +91,7 @@
         .tw-tabs-main > [aria-selected="true"] { background: var(--tw-ink); color: #fff; }
         .tw-tabs-main > *:focus-visible, .tw-pills .nav-link:focus-visible { outline: 2px solid var(--tw-blue); outline-offset: 2px; }
         .tw-tabs-main .tw-ext i { font-size: .75rem; }
-        .tw-pane { padding-top: 36px; }
+        .tw-pane { padding-top: 56px; }
         .tw-pane[hidden] { display: none; }
 
         /* Kartu: fallback gambar, video, blog */
@@ -124,8 +124,9 @@
 
         @media (max-width: 767.98px) {
             .tw-tabs-main > * { padding: 9px 14px; }
+            .tw-pane { padding-top: 40px; }
             .tw-section { padding: 48px 0; }
-            .tw-hero { padding: 36px 0 40px; }
+            .tw-hero { padding: 36px 0 72px; }
             .tw-panel { padding: 40px 0 44px; }
             .tw-widget { padding: 14px; }
         }
@@ -323,7 +324,7 @@
         </div>
     </section>
 
-    <section id="experiences" class="tw-section pt-2">
+    <section id="experiences" class="tw-section">
         <div class="container">
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
                 <div><h2 class="tw-title fs-1 mb-2">Most popular experiences</h2><p class="text-secondary m-0">Plan tours and trips full of unforgettable moments.</p></div>
@@ -337,7 +338,7 @@
 
     <!-- TAB 2: VIDEOS -->
     <div id="pane-videos" class="tw-pane" role="tabpanel" aria-labelledby="tab-videos" hidden>
-    <section class="tw-section pt-2">
+    <section class="tw-section pt-0">
         <div class="container">
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
                 <div><h2 class="tw-title fs-1 mb-2">Watch before you go</h2><p class="text-secondary m-0">Short, honest videos from the places I visit.</p></div>
@@ -350,7 +351,7 @@
 
     <!-- TAB 3: BLOGS -->
     <div id="pane-blogs" class="tw-pane" role="tabpanel" aria-labelledby="tab-blogs" hidden>
-    <section class="tw-section pt-2">
+    <section class="tw-section pt-0">
         <div class="container">
             <div class="mb-4"><h2 class="tw-title fs-1 mb-2">From the blog</h2><p class="text-secondary m-0">Guides and honest notes to help you book with confidence.</p></div>
             <div class="row g-4" id="blogGrid"></div>
